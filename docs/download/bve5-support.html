@@ -40,8 +40,16 @@
                 BVE5ではAtsEXはそのままでは使用できませんが、BVE5.8（Version 5.8.7554.391）以降に限りBVE本体に少しだけ手を加えると動作します。<br />
                 このページではBVE本体の加工の手順を説明します。
             </p>
+
+            <div class="note note-warn">
+                <h4>exeインストーラー版をお使いの場合、この手順は原則不要です</h4>
+                <p>
+                    ただし、お使いのPCの設定などによっては必要となる場合があります。<br />
+                    「BVE6では動作するものの、BVE5では動作しない」という場合は一度お試しください。
+                </p>
+            </div>
         </section>
-        <div>
+        <div class="gray">
             <section>
                 <h2>免責事項</h2>
                 <p>
@@ -55,60 +63,57 @@
                 <p>
                     提示しているサンプルコードはBVE5.8（Version 5.8.7554.391）時点のものです。今後BVE5の新しいバージョンがリリースされた場合は内容が異なる可能性があります。
                 </p>
+            </section>
+        </div>
+        <section>
+            <h2>加工手順</h2>
+            <h3>1. BVE5本体がインストールされているフォルダを探す</h3>
+            <p>
+                BVEの実行ファイル（<code>BveTs.exe</code>）があるフォルダを探します。
+            </p>
+            <div class="note note-info">
+                どこにインストールされているか分からない場合は、デスクトップにあるBVE5のショートカットを右クリック→「ファイルの場所を開く」を選択するとインストール先のフォルダが開きます。<br />
+                既定の設定でインストールした場合は、<code>C:\Program Files (x86)\mackoy\BveTs5</code>（64bit PCの場合）あるいは <code>C:\Program Files\mackoy\BveTs5</code>（32bit PCの場合）などになります。
+            </div>
 
-                <h2>加工手順</h2>
-                <h3>1. BVE5本体がインストールされているフォルダを探す</h3>
-                <p>
-                    BVEの実行ファイル（<code>BveTs.exe</code>）があるフォルダを探します。
-                </p>
-                <div class="note note-info">
-                    どこにインストールされているか分からない場合は、デスクトップにあるBVE5のショートカットを右クリック→「ファイルの場所を開く」を選択するとインストール先のフォルダが開きます。<br />
-                    既定の設定でインストールした場合は、<code>C:\Program Files (x86)\mackoy\BveTs5</code>（64bit PCの場合）あるいは <code>C:\Program Files\mackoy\BveTs5</code>（32bit PCの場合）などになります。
-                </div>
+            <h3>2. BveTs.exe.configを開く</h3>
+            <p>
+                BVEの実行ファイルと共にフォルダ内にある <code>BveTs.exe.config</code> をメモ帳などのテキストエディタで開きます。<br />
+                このファイルが無い場合はBVEのバージョンが5.7以前である可能性が高いです。AtsEXはBVE5.8以降にのみ対応しています。
+            </p>
 
-                <h3>2. BveTs.exe.configを開く</h3>
-                <p>
-                    BVEの実行ファイルと共にフォルダ内にある <code>BveTs.exe.config</code> をメモ帳などのテキストエディタで開きます。<br />
-                    このファイルが無い場合はBVEのバージョンが5.7以前である可能性が高いです。AtsEXはBVE5.8以降にのみ対応しています。
-                </p>
-
-                <h3>3. BveTs.exe.configを書き換える</h3>
-                <p>
-                    <code>BveTs.exe.config</code> 内のコードは、デフォルトでは以下のようになっていると思います。
-                </p>
-                <pre><code class="language-xml">
-&lt;?xml version="1.0"?>
+            <h3>3. BveTs.exe.configを書き換える</h3>
+            <p>
+                <code>BveTs.exe.config</code> 内のコードは、デフォルトでは以下のようになっていると思います。
+            </p>
+            <pre><code class="language-xml">&lt;?xml version="1.0"?>
 &lt;configuration>
 &#009;&lt;startup>
 &#009;&#009;&lt;supportedRuntime version="v2.0.50727" sku="Client" />
 &#009;&lt;/startup>
-&lt;/configuration>
-        </code></pre>
-                <p>
-                    これを以下のように書き換えます。
-                </p>
-                <div class="note note-info">
-                    以下のコードはコピー可能です。
-                </div>
-                <pre><code class="language-xml">
-&lt;?xml version="1.0"?>
+&lt;/configuration></code></pre>
+            <p>
+                これを以下のように書き換えます。
+            </p>
+            <div class="note note-info">
+                以下のコードはコピー可能です。
+            </div>
+            <pre><code class="language-xml">&lt;?xml version="1.0"?>
 &lt;configuration>
 &#009;&lt;startup useLegacyV2RuntimeActivationPolicy="true">
 &#009;&#009;&lt;supportedRuntime version="v4.0"/>
 &#009;&#009;&lt;supportedRuntime version="v2.0.50727" sku="Client" />
 &#009;&lt;/startup>
-&lt;/configuration>
-        </code></pre>
-                <p>
-                    書き換えたら保存して閉じます。
-                </p>
+&lt;/configuration></code></pre>
+            <p>
+                書き換えたら保存して閉じます。
+            </p>
 
-                <h3>4. 試しにAtsEXを搭載しているシナリオを開く</h3>
-                <p>
-                    BVE5で拙作のサンプルシナリオなどのAtsEXを搭載しているシナリオを開いてみます。エラーが表示されず、正常に読み込まれれば成功です。
-                </p>
-            </section>
-        </div>
+            <h3>4. 試しにAtsEXを搭載しているシナリオを開く</h3>
+            <p>
+                BVE5で拙作のサンプルシナリオなどのAtsEXを搭載しているシナリオを開いてみます。エラーが表示されず、正常に読み込まれれば成功です。
+            </p>
+        </section>
 
         <script>hljs.highlightAll();</script>
     </div>
