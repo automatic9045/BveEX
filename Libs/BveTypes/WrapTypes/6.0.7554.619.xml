@@ -108,6 +108,42 @@
 		<Method Wrapper="OnDeviceReset" WrapperParams="void" Original="t"/>
 	</Class>
 
+	<Class Wrapper="AtsPlugin" Original="aa">
+		<Bridges>
+			<Bridge Wrapper="PluginLoader"/>
+		</Bridges>
+
+		<Property Wrapper="PanelArray">
+			<Getter Original="a"/>
+		</Property>
+		<Property Wrapper="SoundArray">
+			<Getter Original="b"/>
+		</Property>
+
+		<Field WrapperProperty="IsPluginLoaded" Original="a" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Handles" Original="c" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="_PanelArray" Original="d" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="_SoundArray" Original="e" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="_OldSoundArray" Original="f" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="LocationManager" Original="h" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="StateStore" Original="i" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="SectionManager" Original="j" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Doors" Original="k" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="AtsHandles" Original="l" IsOriginalNonPublic="true"/>
+
+		<Method Wrapper="OnSetBeaconData" WrapperParams="System.Object; atsex:ObjectPassedEventArgs" Original="a" IsOriginalNonPublic="true"/>
+		<Method Wrapper="OnKeyDown" WrapperParams="System.Object; Mackoy.Bvets.InputEventArgs, Mackoy.IInputDevice" Original="b" IsOriginalNonPublic="true"/>
+		<Method Wrapper="OnKeyUp" WrapperParams="System.Object; Mackoy.Bvets.InputEventArgs, Mackoy.IInputDevice" Original="a" IsOriginalNonPublic="true"/>
+		<Method Wrapper="OnDoorStateChanged" WrapperParams="System.Object; System.EventArgs" Original="c" IsOriginalNonPublic="true"/>
+		<Method Wrapper="OnSetSignal" WrapperParams="System.Object; System.EventArgs" Original="b" IsOriginalNonPublic="true"/>
+		<Method Wrapper="OnSetReverser" WrapperParams="System.Object; System.EventArgs" Original="a" IsOriginalNonPublic="true"/>
+		<Method Wrapper="OnSetBrake" WrapperParams="System.Object; atsex:ValueEventArgs`1[System.Int32]" Original="b" IsOriginalNonPublic="true"/>
+		<Method Wrapper="OnSetPower" WrapperParams="System.Object; atsex:ValueEventArgs`1[System.Int32]" Original="a" IsOriginalNonPublic="true"/>
+		<Method Wrapper="OnSetVehicleSpec" WrapperParams="atsex:NotchInfo; System.Int32" Original="a"/>
+		<Method Wrapper="OnInitialize" WrapperParams="atsex:BrakePosition" Original="a"/>
+		<Method Wrapper="OnElapse" WrapperParams="System.Int32" Original="a"/>
+	</Class>
+
 	<Class Wrapper="Background" Original="ch">
 		<Field WrapperProperty="BackgroundObjects" Original="a" IsOriginalNonPublic="true"/>
 
@@ -646,38 +682,6 @@
 		<Property Wrapper="State">
 			<Getter Original="g"/>
 		</Property>
-	</Class>
-
-	<Class Wrapper="PluginLoader" Original="aa">
-		<Property Wrapper="PanelArray">
-			<Getter Original="a"/>
-		</Property>
-		<Property Wrapper="SoundArray">
-			<Getter Original="b"/>
-		</Property>
-
-		<Field WrapperProperty="IsPluginLoaded" Original="a" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="Handles" Original="c" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="_PanelArray" Original="d" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="_SoundArray" Original="e" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="_OldSoundArray" Original="f" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="LocationManager" Original="h" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="StateStore" Original="i" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="SectionManager" Original="j" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="Doors" Original="k" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="AtsHandles" Original="l" IsOriginalNonPublic="true"/>
-
-		<Method Wrapper="OnSetBeaconData" WrapperParams="System.Object; atsex:ObjectPassedEventArgs" Original="a" IsOriginalNonPublic="true"/>
-		<Method Wrapper="OnKeyDown" WrapperParams="System.Object; Mackoy.Bvets.InputEventArgs, Mackoy.IInputDevice" Original="b" IsOriginalNonPublic="true"/>
-		<Method Wrapper="OnKeyUp" WrapperParams="System.Object; Mackoy.Bvets.InputEventArgs, Mackoy.IInputDevice" Original="a" IsOriginalNonPublic="true"/>
-		<Method Wrapper="OnDoorStateChanged" WrapperParams="System.Object; System.EventArgs" Original="c" IsOriginalNonPublic="true"/>
-		<Method Wrapper="OnSetSignal" WrapperParams="System.Object; System.EventArgs" Original="b" IsOriginalNonPublic="true"/>
-		<Method Wrapper="OnSetReverser" WrapperParams="System.Object; System.EventArgs" Original="a" IsOriginalNonPublic="true"/>
-		<Method Wrapper="OnSetBrake" WrapperParams="System.Object; atsex:ValueEventArgs`1[System.Int32]" Original="b" IsOriginalNonPublic="true"/>
-		<Method Wrapper="OnSetPower" WrapperParams="System.Object; atsex:ValueEventArgs`1[System.Int32]" Original="a" IsOriginalNonPublic="true"/>
-		<Method Wrapper="OnSetVehicleSpec" WrapperParams="atsex:NotchInfo; System.Int32" Original="a"/>
-		<Method Wrapper="OnInitialize" WrapperParams="atsex:BrakePosition" Original="a"/>
-		<Method Wrapper="OnElapse" WrapperParams="System.Int32" Original="a"/>
 	</Class>
 
 	<Class Wrapper="PreTrainObjectList" Original="e6">

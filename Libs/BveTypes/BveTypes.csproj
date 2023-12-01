@@ -150,6 +150,7 @@
     <Compile Include="ClassWrappers\Public\ObjectDrawer.cs" />
     <Compile Include="ClassWrappers\Public\ObjectPassedEventArgs.cs" />
     <Compile Include="ClassWrappers\Public\PluginLoader.cs" />
+    <Compile Include="ClassWrappers\Public\AtsPlugin.cs" />
     <Compile Include="ClassWrappers\Public\PreTrainObjectList.cs" />
     <Compile Include="ClassWrappers\Public\PutBetweenStructure.cs" />
     <Compile Include="ClassWrappers\Public\RandomFileList.cs" />
