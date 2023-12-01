@@ -45,7 +45,7 @@ namespace AtsEx.MapStatements
 
         public static HeaderSet FromMap(string filePath)
         {
-            (IDictionary<Identifier, IReadOnlyList<Header>> headers, IReadOnlyList<Header> privateHeaders) = Load(filePath, 1);
+            (IDictionary<Identifier, IReadOnlyList<Header>> headers, IReadOnlyList<Header> privateHeaders) = Load(filePath, 0);
             return new HeaderSet(headers, privateHeaders);
         }
 
