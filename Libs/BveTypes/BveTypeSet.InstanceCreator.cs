@@ -59,7 +59,7 @@ namespace BveTypes
 
             ProfileSelector profileSelector = new ProfileSelector(bveVersion);
             Version profileVersion;
-            List<TypeMemberSetBase> types;
+            WrapTypeSet types;
             using (Profile profile = profileSelector.GetProfileStream(allowLoadProfileForDifferentBveVersion))
             {
                 profileVersion = profile.Version;
@@ -71,11 +71,11 @@ namespace BveTypes
 
                 using (Stream schema = SchemaProvider.GetSchemaStream())
                 {
-                    types = WrapTypesXmlLoader.LoadFile(profile.Stream, schema, classWrapperTypes, bveTypes, additionalWrapTypes);
+                    types = WrapTypeSet.LoadXml(profile.Stream, schema, classWrapperTypes, bveTypes, additionalWrapTypes);
                 }
             }
 
-            BveTypeSet result = new BveTypeSet(types, profileVersion);
+            BveTypeSet result = new BveTypeSet(types.Types, types.Bridge, profileVersion);
 
             ClassWrapperInitializer classWrapperInitializer = new ClassWrapperInitializer(result);
             classWrapperInitializer.InitializeAll();

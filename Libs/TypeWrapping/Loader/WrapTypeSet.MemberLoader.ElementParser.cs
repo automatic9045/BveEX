@@ -10,7 +10,7 @@ using UnembeddedResources;
 
 namespace TypeWrapping
 {
-    public static partial class WrapTypesXmlLoader
+    public partial class WrapTypeSet
     {
         private partial class MemberLoader
         {
@@ -18,7 +18,7 @@ namespace TypeWrapping
             {
                 private class ResourceSet
                 {
-                    private readonly ResourceLocalizer Localizer = ResourceLocalizer.FromResXOfType<ElementParser>(@"TypeWrapping\WrapTypesXmlLoader");
+                    private readonly ResourceLocalizer Localizer = ResourceLocalizer.FromResXOfType<ElementParser>(@"TypeWrapping\WrapTypeSet");
 
                     [ResourceStringHolder(nameof(Localizer))] public Resource<string> OriginalFieldNotFound { get; private set; }
                     [ResourceStringHolder(nameof(Localizer))] public Resource<string> WrapperPropertyNotFound { get; private set; }

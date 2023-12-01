@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace TypeWrapping
 {
-    public static partial class WrapTypesXmlLoader
+    public partial class WrapTypeSet
     {
         private abstract class TypeLoaderBase
         {

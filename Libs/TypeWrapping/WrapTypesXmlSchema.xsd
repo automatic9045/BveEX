@@ -23,6 +23,9 @@
 
 	<xs:element name="Delegate">
 		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Bridges" minOccurs="0" maxOccurs="1"/>
+			</xs:sequence>
 			<xs:attribute name="Wrapper" type="DotNetName" use="required" />
 			<xs:attribute name="Original" type="DotNetName" use="required" />
 		</xs:complexType>
@@ -30,14 +33,30 @@
 
 	<xs:element name="Enum">
 		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Bridges" minOccurs="0" maxOccurs="1"/>
+			</xs:sequence>
 			<xs:attribute name="Wrapper" type="DotNetName" use="required" />
 			<xs:attribute name="Original" type="DotNetName" use="required" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="Bridges">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Bridge" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="Wrapper" type="DotNetName" use="required" />
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 	
 	<xs:element name="Class">
 		<xs:complexType>
 			<xs:sequence>
+				<xs:element ref="Bridges" minOccurs="0" maxOccurs="1"/>
 				<xs:element name="Children" minOccurs="0" maxOccurs="1">
 					<xs:complexType>
 						<xs:sequence>

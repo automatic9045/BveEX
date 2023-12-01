@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -10,7 +11,7 @@ using UnembeddedResources;
 
 namespace TypeWrapping
 {
-    public static partial class WrapTypesXmlLoader
+    public partial class WrapTypeSet
     {
         private partial class MemberLoader
         {
@@ -18,7 +19,7 @@ namespace TypeWrapping
             {
                 private class ResourceSet
                 {
-                    private readonly ResourceLocalizer Localizer = ResourceLocalizer.FromResXOfType<WrappedTypeResolver>(@"TypeWrapping\WrapTypesXmlLoader");
+                    private readonly ResourceLocalizer Localizer = ResourceLocalizer.FromResXOfType<WrappedTypeResolver>(@"TypeWrapping\WrapTypeSet");
 
                     [ResourceStringHolder(nameof(Localizer))] public Resource<string> ElementTypesButArrayNotSupported { get; private set; }
 
@@ -38,11 +39,14 @@ namespace TypeWrapping
                 }
 
                 private readonly Dictionary<Type, Type> WrapperToOriginal = new Dictionary<Type, Type>();
+                private readonly Dictionary<Type, Type> BridgedWrapperToWrapper = new Dictionary<Type, Type>();
+                private readonly ConcurrentDictionary<Type, List<Type>> WrapperToBridgedWrapper = new ConcurrentDictionary<Type, List<Type>>();
 
                 private readonly TypeParser WrapperTypeParser;
                 private readonly TypeParser OriginalTypeParser;
 
                 public int WrappedTypeCount => IsLoaded ? WrapperToOriginal.Count : throw new InvalidOperationException();
+                public IReadOnlyDictionary<Type, List<Type>> BridgingTypes => WrapperToBridgedWrapper;
 
                 public WrappedTypeResolver(XElement root, string targetNamespace,
                     TypeParser wrapperTypeParser, TypeParser originalTypeParser, IDictionary<Type, Type> additionalWrapperToOriginal) : base(root, targetNamespace)
@@ -74,6 +78,21 @@ namespace TypeWrapping
                         Type originalType = OriginalTypeParser.ParseSingleSpecializedTypeName(parentOriginalClassName + originalTypeName);
 
                         lock (WrapperToOriginal) WrapperToOriginal.Add(wrapperType, originalType);
+
+                        XElement bridgesElement = element.Element(TargetNamespace + "Bridges");
+                        if (!(bridgesElement is null))
+                        {
+                            IEnumerable<XElement> bridgeElements = bridgesElement.Elements(TargetNamespace + "Bridge");
+                            foreach (XElement bridgeElement in bridgeElements)
+                            {
+                                string bridgedWrapperTypeName = GetWrapperTypeName(bridgeElement);
+                                Type bridgedWrapperType = WrapperTypeParser.ParseSingleSpecializedTypeName(parentWrapperClassName + bridgedWrapperTypeName);
+
+                                List<Type> bridgedTypes = WrapperToBridgedWrapper.GetOrAdd(wrapperType, _ => new List<Type>());
+                                lock (bridgedTypes) bridgedTypes.Add(bridgedWrapperType);
+                                lock (BridgedWrapperToWrapper) BridgedWrapperToWrapper.Add(bridgedWrapperType, wrapperType);
+                            }
+                        }
                     });
                 }
 
@@ -89,15 +108,13 @@ namespace TypeWrapping
                     else if (wrapper.IsConstructedGenericType)
                     {
                         Type wrapperParent = wrapper.GetGenericTypeDefinition();
-                        WrapperToOriginal.TryGetValue(wrapperParent, out Type originalParent);
-                        originalParent = originalParent ?? wrapperParent;
+                        Type originalParent = ParseSimpleType(wrapperParent);
 
                         Type[] wrapperChildren = wrapper.GetGenericArguments();
                         Type[] originalChildren = new Type[wrapperChildren.Length];
                         for (int i = 0; i < wrapperChildren.Length; i++)
                         {
-                            WrapperToOriginal.TryGetValue(wrapperChildren[i], out Type originalChild);
-                            originalChildren[i] = originalChild ?? wrapperChildren[i];
+                            originalChildren[i] = ParseSimpleType(wrapperChildren[i]);
                         }
 
                         Type result = originalParent.MakeGenericType(originalChildren);
@@ -108,8 +125,7 @@ namespace TypeWrapping
                         if (!wrapper.IsArray || wrapper.Name.Contains("*")) throw new NotSupportedException(Resources.Value.ElementTypesButArrayNotSupported.Value);
 
                         Type wrapperElement = wrapper.GetElementType();
-                        WrapperToOriginal.TryGetValue(wrapperElement, out Type originalElement);
-                        originalElement = originalElement ?? wrapperElement;
+                        Type originalElement = ParseSimpleType(wrapperElement);
 
                         int rank = wrapper.GetArrayRank();
                         Type result = rank == 1 ? originalElement.MakeArrayType() : originalElement.MakeArrayType(rank);
@@ -117,8 +133,21 @@ namespace TypeWrapping
                     }
                     else
                     {
-                        WrapperToOriginal.TryGetValue(wrapper, out Type result);
-                        return result ?? wrapper;
+                        return ParseSimpleType(wrapper);
+                    }
+
+
+                    Type ParseSimpleType(Type simpleWrapper, bool allowBridgedtypes = true)
+                    {
+                        if (!WrapperToOriginal.TryGetValue(simpleWrapper, out Type result))
+                        {
+                            if (allowBridgedtypes && BridgedWrapperToWrapper.TryGetValue(simpleWrapper, out Type bridgedTo))
+                            {
+                                return ParseSimpleType(bridgedTo, false);
+                            }
+                        }
+
+                        return result ?? simpleWrapper;
                     }
                 }
 
@@ -140,13 +169,13 @@ namespace TypeWrapping
                 }
 
 
-                private static string GetWrapperTypeName(XElement element) => GetTypeName(element, "Wrapper");
-                private static string GetOriginalTypeName(XElement element) => GetTypeName(element, "Original");
+                private static string GetWrapperTypeName(XElement element) => GetAttributeValue(element, "Wrapper");
+                private static string GetOriginalTypeName(XElement element) => GetAttributeValue(element, "Original");
 
-                private static string GetTypeName(XElement element, string attributeName)
+                private static string GetAttributeValue(XElement element, string attributeName)
                 {
-                    string typeName = (string)element.Attribute(attributeName);
-                    return typeName;
+                    string attributeValue = (string)element.Attribute(attributeName);
+                    return attributeValue;
                 }
 
 
@@ -159,7 +188,7 @@ namespace TypeWrapping
 
                     foreach (XElement parentClassElement in parentClassElements)
                     {
-                        string wrapperTypeName = GetTypeName(parentClassElement, attributeName);
+                        string wrapperTypeName = GetAttributeValue(parentClassElement, attributeName);
 
                         parentClassNameBuilder.Append(wrapperTypeName);
                         parentClassNameBuilder.Append("+");

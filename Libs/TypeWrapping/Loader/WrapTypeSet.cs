@@ -12,11 +12,11 @@ using UnembeddedResources;
 
 namespace TypeWrapping
 {
-    public static partial class WrapTypesXmlLoader
+    public partial class WrapTypeSet
     {
         private class ResourceSet
         {
-            private readonly ResourceLocalizer Localizer = ResourceLocalizer.FromResXOfType(typeof(WrapTypesXmlLoader), @"TypeWrapping\WrapTypesXmlLoader");
+            private readonly ResourceLocalizer Localizer = ResourceLocalizer.FromResXOfType(typeof(WrapTypeSet), @"TypeWrapping\WrapTypeSet");
 
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> XmlSchemaValidation { get; private set; }
 
@@ -28,14 +28,23 @@ namespace TypeWrapping
 
         private static readonly Lazy<ResourceSet> Resources = new Lazy<ResourceSet>();
 
-        static WrapTypesXmlLoader()
+        static WrapTypeSet()
         {
 #if DEBUG
             _ = Resources.Value;
 #endif
         }
 
-        public static List<TypeMemberSetBase> LoadFile(Stream docStream, Stream schemaStream,
+        public IEnumerable<TypeMemberSetBase> Types { get; }
+        public TypeBridge Bridge { get; }
+
+        private WrapTypeSet(IEnumerable<TypeMemberSetBase> types, TypeBridge bridge)
+        {
+            Types = types;
+            Bridge = bridge;
+        }
+
+        public static WrapTypeSet LoadXml(Stream docStream, Stream schemaStream,
             IEnumerable<Type> wrapperTypes, IEnumerable<Type> originalTypes, IDictionary<Type, Type> additionalWrapperToOriginal)
         {
             XDocument doc = XDocument.Load(docStream);
@@ -54,7 +63,7 @@ namespace TypeWrapping
             MemberLoader loader = new MemberLoader(root, targetNamespace, wrapperTypeParser, originalTypeParser, additionalWrapperToOriginal);
             loader.LoadAll();
 
-            return loader.Types;
+            return new WrapTypeSet(loader.Types, loader.Bridge);
         }
 
         private static void SchemaValidation(object sender, ValidationEventArgs e)

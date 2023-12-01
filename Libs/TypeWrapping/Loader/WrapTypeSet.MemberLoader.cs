@@ -11,13 +11,13 @@ using UnembeddedResources;
 
 namespace TypeWrapping
 {
-    public static partial class WrapTypesXmlLoader
+    public partial class WrapTypeSet
     {
         private partial class MemberLoader : TypeLoaderBase
         {
             private class ResourceSet
             {
-                private readonly ResourceLocalizer Localizer = ResourceLocalizer.FromResXOfType<MemberLoader>(@"TypeWrapping\WrapTypesXmlLoader");
+                private readonly ResourceLocalizer Localizer = ResourceLocalizer.FromResXOfType<MemberLoader>(@"TypeWrapping\WrapTypeSet");
 
                 [ResourceStringHolder(nameof(Localizer))] public Resource<string> PropertyImplementationInvalid { get; private set; }
 
@@ -38,6 +38,9 @@ namespace TypeWrapping
 
             public List<TypeMemberSetBase> Types { get; }
 
+            private readonly Dictionary<Type, TypeMemberSetBase> BridgeSource;
+            public TypeBridge Bridge { get; }
+
             private readonly TypeParser WrapperTypeParser;
             private readonly WrappedTypeResolver Resolver;
 
@@ -50,6 +53,8 @@ namespace TypeWrapping
                 Resolver.LoadAll();
 
                 Types = new List<TypeMemberSetBase>(Resolver.WrappedTypeCount);
+                BridgeSource = new Dictionary<Type, TypeMemberSetBase>(Resolver.BridgingTypes.Sum(x => x.Value.Count));
+                Bridge = new TypeBridge(BridgeSource);
             }
 
             protected override void LoadDelegates(IEnumerable<XElement> delegateElements, IEnumerable<XElement> parentClassElements)
@@ -59,6 +64,7 @@ namespace TypeWrapping
                     (Type wrapperType, Type originalType) = Resolver.Resolve(element, parentClassElements);
                     DelegateMemberSet members = new DelegateMemberSet(wrapperType, originalType);
 
+                    LoadBridges(members);
                     return members;
                 });
 
@@ -72,6 +78,7 @@ namespace TypeWrapping
                     (Type wrapperType, Type originalType) = Resolver.Resolve(element, parentClassElements);
                     EnumMemberSet members = new EnumMemberSet(wrapperType, originalType);
 
+                    LoadBridges(members);
                     return members;
                 });
 
@@ -179,10 +186,22 @@ namespace TypeWrapping
                     }
 
                     ClassMemberSet members = new ClassMemberSet(wrapperType, originalType, propertyGetters, propertySetters, fields, events, constructors, methods);
+
+                    LoadBridges(members);
                     return members;
                 });
 
                 Types.AddRange(loadedTypes);
+            }
+
+            private void LoadBridges(TypeMemberSetBase target)
+            {
+                if (!Resolver.BridgingTypes.TryGetValue(target.WrapperType, out List<Type> bridgedTypes)) return;
+
+                foreach (Type bridgedType in bridgedTypes)
+                {
+                    BridgeSource.Add(bridgedType, target);
+                }
             }
         }
     }

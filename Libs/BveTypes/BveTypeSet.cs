@@ -41,10 +41,11 @@ namespace BveTypes
         }
 
         private readonly Dictionary<Type, TypeMemberSetBase> Types;
+        private readonly TypeBridge Bridge;
         private readonly Dictionary<Type, Type> OriginalAndWrapperTypes;
         private readonly FastCache<Type, FastMethod> FromSourceMethodCache = new FastCache<Type, FastMethod>();
 
-        private BveTypeSet(IEnumerable<TypeMemberSetBase> types, Version profileVersion)
+        private BveTypeSet(IEnumerable<TypeMemberSetBase> types, TypeBridge bridge, Version profileVersion)
         {
 #if DEBUG
             TypeMemberSetBase illegalType = types.FirstOrDefault(type =>
@@ -63,7 +64,12 @@ namespace BveTypes
 #endif
 
             Types = types.ToDictionary(type => type.WrapperType, type => type);
-            OriginalAndWrapperTypes = types.ToDictionary(type => type.OriginalType, type => type.WrapperType);
+            Bridge = bridge;
+            OriginalAndWrapperTypes = types
+                .AsParallel()
+                .Select(type => (type.OriginalType, type.WrapperType))
+                .Concat(bridge.AsParallel().Select(x => (OriginalType: x.Key, x.Value.WrapperType)))
+                .ToDictionary(type => type.OriginalType, type => type.WrapperType);
 
             ProfileVersion = profileVersion;
         }
@@ -84,7 +90,7 @@ namespace BveTypes
         /// <seealso cref="GetClassInfoOf(Type)"/>
         /// <seealso cref="GetEnumInfoOf{TWrapper}"/>
         /// <seealso cref="GetEnumInfoOf(Type)"/>
-        public TypeMemberSetBase GetTypeInfoOf<TWrapper>() => Types[typeof(TWrapper)];
+        public TypeMemberSetBase GetTypeInfoOf<TWrapper>() => GetTypeInfoOf(typeof(TWrapper));
 
         /// <summary>
         /// <paramref name="wrapperType"/> に指定したラッパー型の情報を取得します。
@@ -95,7 +101,8 @@ namespace BveTypes
         /// <seealso cref="GetClassInfoOf(Type)"/>
         /// <seealso cref="GetEnumInfoOf{TWrapper}"/>
         /// <seealso cref="GetEnumInfoOf(Type)"/>
-        public TypeMemberSetBase GetTypeInfoOf(Type wrapperType) => Types[wrapperType];
+        public TypeMemberSetBase GetTypeInfoOf(Type wrapperType)
+            => Types.TryGetValue(wrapperType, out TypeMemberSetBase typeInfo) ? typeInfo : Bridge[wrapperType];
 
 
         /// <summary>
@@ -103,14 +110,14 @@ namespace BveTypes
         /// </summary>
         /// <typeparam name="TWrapper">ラッパー列挙型。</typeparam>
         /// <returns><typeparamref name="TWrapper"/> に指定したラッパー列挙型の情報を表す <see cref="EnumMemberSet"/>。</returns>
-        public EnumMemberSet GetEnumInfoOf<TWrapper>() => (EnumMemberSet)Types[typeof(TWrapper)];
+        public EnumMemberSet GetEnumInfoOf<TWrapper>() => (EnumMemberSet)GetTypeInfoOf<TWrapper>();
 
         /// <summary>
         /// <paramref name="wrapperType"/> に指定したラッパー列挙型の情報を取得します。
         /// </summary>
         /// <param name="wrapperType">ラッパー列挙型。</param>
         /// <returns><paramref name="wrapperType"/> に指定したラッパー列挙型の情報を表す <see cref="EnumMemberSet"/>。</returns>
-        public EnumMemberSet GetEnumInfoOf(Type wrapperType) => (EnumMemberSet)Types[wrapperType];
+        public EnumMemberSet GetEnumInfoOf(Type wrapperType) => (EnumMemberSet)GetTypeInfoOf(wrapperType);
 
 
         /// <summary>
@@ -118,14 +125,14 @@ namespace BveTypes
         /// </summary>
         /// <typeparam name="TWrapper">ラッパークラス。</typeparam>
         /// <returns><typeparamref name="TWrapper"/> に指定したラッパークラスの情報を表す <see cref="ClassMemberSet"/>。</returns>
-        public ClassMemberSet GetClassInfoOf<TWrapper>() => (ClassMemberSet)Types[typeof(TWrapper)];
+        public ClassMemberSet GetClassInfoOf<TWrapper>() => (ClassMemberSet)GetTypeInfoOf<TWrapper>();
 
         /// <summary>
         /// <paramref name="wrapperType"/> に指定したラッパークラスの情報を取得します。
         /// </summary>
         /// <param name="wrapperType">ラッパークラス。</param>
         /// <returns><paramref name="wrapperType"/> に指定したラッパークラスの情報を表す <see cref="ClassMemberSet"/>。</returns>
-        public ClassMemberSet GetClassInfoOf(Type wrapperType) => (ClassMemberSet)Types[wrapperType];
+        public ClassMemberSet GetClassInfoOf(Type wrapperType) => (ClassMemberSet)GetTypeInfoOf(wrapperType);
 
 
         /// <summary>
