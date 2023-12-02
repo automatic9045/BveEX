@@ -51,6 +51,8 @@
     <Compile Include="FastMethod.Generic.cs" />
     <Compile Include="FastMethod.cs" />
     <Compile Include="FastProperty.cs" />
+    <Compile Include="PInvoke\DynamicFastMethod.cs" />
+    <Compile Include="PInvoke\DynamicLibraryCaller.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReflectionExpressionGenerator.cs" />
   </ItemGroup>
@@ -68,6 +70,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\FastMethod\Generic.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\DynamicFastMethod.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\DynamicFastMethod.ja.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
