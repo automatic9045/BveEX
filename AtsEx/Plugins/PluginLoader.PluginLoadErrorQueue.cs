@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
+using AtsEx.Plugins.Native;
 using AtsEx.Plugins.Scripting;
 using AtsEx.PluginHost;
 using AtsEx.PluginHost.LoadErrorManager;
@@ -48,6 +49,12 @@ namespace AtsEx.Plugins
             public void OnFailedToLoadScriptPlugin(ScriptPluginPackage scriptPluginPackage, Exception ex)
             {
                 ExceptionsToResolve.Enqueue(new PluginException(scriptPluginPackage.Title, ex));
+            }
+
+            public void OnFailedToLoadNativePlugin(NativePluginPackage nativePluginPackage, Exception ex)
+            {
+                string libraryName = Path.GetFileName(nativePluginPackage.LibraryPath);
+                ExceptionsToResolve.Enqueue(new PluginException(libraryName, ex));
             }
 
             public void Resolve()

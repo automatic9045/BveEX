@@ -11,6 +11,7 @@
 				<xs:element ref="Assembly"/>
 				<xs:element ref="CSharpScript"/>
 				<xs:element ref="IronPython2"/>
+				<xs:element ref="Native"/>
 			</xs:choice>
 		</xs:complexType>
 	</xs:element>
@@ -33,6 +34,13 @@
 		<xs:complexType>
 			<xs:attribute name="Identifier" type="xs:string" use="optional" />
 			<xs:attribute name="PackageManifestPath" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="Native">
+		<xs:complexType>
+			<xs:attribute name="Identifier" type="xs:string" use="optional" />
+			<xs:attribute name="Path" type="xs:string" use="required" />
 		</xs:complexType>
 	</xs:element>
 </xs:schema>
