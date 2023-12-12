@@ -52,8 +52,8 @@ namespace AtsEx.Native.Ats
 
         private static AtsEx.AsAtsPlugin AtsEx;
         private static ScenarioService.AsAtsPlugin ScenarioService;
+        private static FrameSpan FrameSpan;
 
-        private static TimeSpan Time = TimeSpan.Zero;
         private static int Power;
         private static int Brake;
         private static int Reverser;
@@ -100,6 +100,8 @@ namespace AtsEx.Native.Ats
         {
             if (IsLoadedAsInputDevice) return;
 
+            FrameSpan = null;
+
             ScenarioService?.Dispose();
             ScenarioService = null;
 
@@ -130,6 +132,7 @@ namespace AtsEx.Native.Ats
                 vehicleSpec.BrakeNotches, vehicleSpec.PowerNotches, vehicleSpec.AtsNotch, vehicleSpec.B67Notch, vehicleSpec.Cars);
 
             ScenarioService = new ScenarioService.AsAtsPlugin(AtsEx, vehiclePluginUsing, vehicleConfig, exVehicleSpec, VersionWarningText);
+            FrameSpan = new FrameSpan();
         }
 
         public static void Initialize(DefaultBrakePosition defaultBrakePosition)
@@ -137,6 +140,7 @@ namespace AtsEx.Native.Ats
             if (IsLoadedAsInputDevice) return;
 
             ScenarioService?.Started((BrakePosition)defaultBrakePosition);
+            FrameSpan.Initialize();
         }
 
         public static AtsHandles Elapse(VehicleState vehicleState, IntPtr panel, IntPtr sound)
@@ -156,8 +160,7 @@ namespace AtsEx.Native.Ats
             AtsIoArray soundArray = new AtsIoArray(sound);
 
             TimeSpan now = TimeSpan.FromMilliseconds(vehicleState.Time);
-            TimeSpan elapsed = now - Time;
-            Time = now;
+            TimeSpan elapsed = FrameSpan.Tick(now);
 
             PluginHost.Native.VehicleState exVehicleState = new PluginHost.Native.VehicleState(
                 vehicleState.Location, vehicleState.Speed, now,

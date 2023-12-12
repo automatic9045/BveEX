@@ -127,6 +127,7 @@
     <Compile Include="Native\Ats\AtsIoArray.cs" />
     <Compile Include="Native\Export.cs" />
     <Compile Include="Native\CallerInfo.cs" />
+    <Compile Include="Native\FrameSpan.cs" />
     <Compile Include="Native\InputDevices\InputDeviceMain.cs" />
     <Compile Include="Panels\AtsPanelValue.cs" />
     <Compile Include="Panels\AtsPanelValueSet.cs" />

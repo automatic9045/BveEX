@@ -30,11 +30,11 @@ namespace AtsEx.Native.InputDevices
 
         private AtsEx.AsInputDevice AtsEx = null;
         private ScenarioService.AsInputDevice ScenarioService = null;
+        private FrameSpan FrameSpan = null;
 
         private PluginSourceSet LoadedVehiclePluginUsing = null;
         private VehicleConfig LoadedVehicleConfig = null;
 
-        private TimeSpan Time = TimeSpan.Zero;
         private TickCommandBuilder LastTickCommandBuilder = null;
 
         public InputDeviceMain(CallerInfo callerInfo)
@@ -112,18 +112,19 @@ namespace AtsEx.Native.InputDevices
                 : PluginSourceSet.FromPluginUsing(PluginType.VehiclePlugin, true, vehicleConfig.PluginUsingPath);
 
             ScenarioService = new ScenarioService.AsInputDevice(AtsEx, pluginUsing, vehicleConfig, exVehicleSpec);
+            FrameSpan = new FrameSpan();
         }
 
         private void OnInitialize(object sender, AtsEx.AsInputDevice.ValueEventArgs<DefaultBrakePosition> e)
         {
             ScenarioService.Started((BrakePosition)e.Value);
+            FrameSpan.Initialize();
         }
 
         private void PreviewElapse(object sender, AtsEx.AsInputDevice.OnElapseEventArgs e)
         {
             TimeSpan now = TimeSpan.FromMilliseconds(e.VehicleState.Time);
-            TimeSpan elapsed = now - Time;
-            Time = now;
+            TimeSpan elapsed = FrameSpan.Tick(now);
 
             PluginHost.Native.VehicleState exVehicleState = new PluginHost.Native.VehicleState(
                 e.VehicleState.Location, e.VehicleState.Speed, TimeSpan.FromMilliseconds(e.VehicleState.Time),
