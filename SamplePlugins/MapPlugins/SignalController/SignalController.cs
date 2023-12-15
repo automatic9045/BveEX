@@ -51,9 +51,9 @@ namespace AtsEx.Samples.MapPlugins.SignalController
 
             Native.NativeKeys.AtsKeys[NativeAtsKeyName.D].Pressed -= OnDPressed;
             Native.NativeKeys.AtsKeys[NativeAtsKeyName.E].Pressed -= OnEPressed;
-            Native.NativeKeys.AtsKeys[NativeAtsKeyName.F].Pressed += OnFPressed;
-            Native.NativeKeys.AtsKeys[NativeAtsKeyName.G].Pressed += OnGPressed;
-            Native.NativeKeys.AtsKeys[NativeAtsKeyName.H].Pressed += OnHPressed;
+            Native.NativeKeys.AtsKeys[NativeAtsKeyName.F].Pressed -= OnFPressed;
+            Native.NativeKeys.AtsKeys[NativeAtsKeyName.G].Pressed -= OnGPressed;
+            Native.NativeKeys.AtsKeys[NativeAtsKeyName.H].Pressed -= OnHPressed;
         }
 
         public override TickResult Tick(TimeSpan elapsed) => new MapPluginTickResult();
