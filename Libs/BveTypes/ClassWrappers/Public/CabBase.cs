@@ -39,6 +39,7 @@ namespace BveTypes.ClassWrappers
         /// <param name="src">ラップするオリジナル オブジェクト。</param>
         /// <returns>オリジナル オブジェクトをラップした <see cref="CabBase"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
+        [Obsolete("実装型の " + nameof(FromSource) + " メソッドから直接生成するか、" + nameof(CreateFromSource) + " メソッドを使用してください。", true)]
         public static CabBase FromSource(object src) => src is null ? null : new CabBase(src);
 
         private static FastMethod HandlesGetMethod;

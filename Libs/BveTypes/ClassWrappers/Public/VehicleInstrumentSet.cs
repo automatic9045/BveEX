@@ -66,7 +66,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public CabBase Cab
         {
-            get => CabBase.FromSource(CabGetMethod.Invoke(Src, null));
+            get => (CabBase)ClassWrapperBase.CreateFromSource(CabGetMethod.Invoke(Src, null));
             internal set => CabSetMethod.Invoke(Src, new object[] { value.Src });
         }
 

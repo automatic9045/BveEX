@@ -674,6 +674,9 @@
 		</Property>
 	</Class>
 
+	<Class Wrapper="OneLeverCab" Original="c1">
+	</Class>
+
 	<Class Wrapper="Passenger" Original="a9">
 		<Children>
 			<Enum Wrapper="StationProcess" Original="a"/>
@@ -1192,6 +1195,9 @@
 
 	<Class Wrapper="Transform" Original="al">
 		<Field WrapperProperty="Matrix" Original="a"/>
+	</Class>
+
+	<Class Wrapper="TwoLeverCab" Original="ac">
 	</Class>
 
 	<Class Wrapper="UserVehicleLocationManager" Original="fu">
