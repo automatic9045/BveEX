@@ -13,7 +13,7 @@ using TypeWrapping;
 namespace BveTypes.ClassWrappers
 {
     /// <summary>
-    /// SlimDX で表示するための 2D および 3D モデルを表します。
+    /// Direct3D9 から表示可能な 3D モデルを表します。
     /// </summary>
     public class Model : ClassWrapperBase
     {
@@ -21,6 +21,8 @@ namespace BveTypes.ClassWrappers
         private static void Initialize(BveTypeSet bveTypes)
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<Model>();
+
+            FromXFileMethod = members.GetSourceMethodOf(nameof(FromXFile));
 
             MeshGetMethod = members.GetSourcePropertyGetterOf(nameof(Mesh));
             MeshSetMethod = members.GetSourcePropertySetterOf(nameof(Mesh));
@@ -46,6 +48,15 @@ namespace BveTypes.ClassWrappers
         /// <returns>オリジナル オブジェクトをラップした <see cref="Model"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
         public static Model FromSource(object src) => src is null ? null : new Model(src);
+
+        private static FastMethod FromXFileMethod;
+        /// <summary>
+        /// 指定した X ファイルからモデルを読み込みます。
+        /// </summary>
+        /// <param name="filePath">X ファイルのパス。</param>
+        /// <returns>読み込まれたモデルを表す <see cref="Model"/>。</returns>
+        public static Model FromXFile(string filePath)
+            => FromSource(FromXFileMethod.Invoke(null, new object[] { filePath }));
 
         private static FastMethod MeshGetMethod;
         private static FastMethod MeshSetMethod;

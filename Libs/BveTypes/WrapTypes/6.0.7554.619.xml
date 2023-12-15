@@ -604,6 +604,7 @@
 			<Setter Original="a"/>
 		</Property>
 
+		<Method Wrapper="FromXFile" WrapperParams="System.String" Original="a" IsWrapperStatic="true" IsOriginalStatic="true"/>
 		<Method Wrapper="Draw" WrapperParams="atsex:Direct3DProvider; System.Boolean" Original="a"/>
 	</Class>
 
