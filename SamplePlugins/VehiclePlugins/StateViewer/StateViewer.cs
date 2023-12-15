@@ -36,6 +36,7 @@ namespace AtsEx.Samples.VehiclePlugins.StateViewer
         public override void Dispose()
         {
             Form.Close();
+            MenuItem.Dispose();
         }
 
         public override TickResult Tick(TimeSpan elapsed)
