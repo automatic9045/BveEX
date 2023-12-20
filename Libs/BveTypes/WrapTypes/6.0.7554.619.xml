@@ -892,6 +892,9 @@
 		<Property Wrapper="Sections">
 			<Getter Original="i"/>
 		</Property>
+		<Property Wrapper="CurrentSectionSignalIndex">
+			<Getter Original="h"/>
+		</Property>
 		<Property Wrapper="CurrentSectionSpeedLimit">
 			<Getter Original="j"/>
 		</Property>

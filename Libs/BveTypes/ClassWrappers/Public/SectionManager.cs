@@ -21,6 +21,7 @@ namespace BveTypes.ClassWrappers
             ClassMemberSet members = bveTypes.GetClassInfoOf<SectionManager>();
 
             SectionsGetMethod = members.GetSourcePropertyGetterOf(nameof(Sections));
+            CurrentSectionSignalIndexGetMethod = members.GetSourcePropertyGetterOf(nameof(CurrentSectionSignalIndex));
             CurrentSectionSpeedLimitGetMethod = members.GetSourcePropertyGetterOf(nameof(CurrentSectionSpeedLimit));
             ForwardSectionSpeedLimitGetMethod = members.GetSourcePropertyGetterOf(nameof(ForwardSectionSpeedLimit));
             LastSectionGetMethod = members.GetSourcePropertyGetterOf(nameof(LastSection));
@@ -57,6 +58,12 @@ namespace BveTypes.ClassWrappers
         /// 閉塞の一覧を取得します。
         /// </summary>
         public MapFunctionList Sections => MapFunctionList.FromSource(SectionsGetMethod.Invoke(Src, null));
+
+        private static FastMethod CurrentSectionSignalIndexGetMethod;
+        /// <summary>
+        /// 現在の閉塞における信号インデックスを取得します。
+        /// </summary>
+        public int CurrentSectionSignalIndex => CurrentSectionSignalIndexGetMethod.Invoke(Src, null);
 
         private static FastMethod CurrentSectionSpeedLimitGetMethod;
         /// <summary>
