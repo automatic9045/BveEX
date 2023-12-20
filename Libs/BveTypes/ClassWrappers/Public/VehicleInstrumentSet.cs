@@ -27,6 +27,9 @@ namespace BveTypes.ClassWrappers
             CabGetMethod = members.GetSourcePropertyGetterOf(nameof(Cab));
             CabSetMethod = members.GetSourcePropertySetterOf(nameof(Cab));
 
+            AtsPluginGetMethod = members.GetSourcePropertyGetterOf(nameof(AtsPlugin));
+            AtsPluginSetMethod = members.GetSourcePropertySetterOf(nameof(AtsPlugin));
+
             PluginLoaderGetMethod = members.GetSourcePropertyGetterOf(nameof(PluginLoader));
             PluginLoaderSetMethod = members.GetSourcePropertySetterOf(nameof(PluginLoader));
         }
@@ -70,11 +73,23 @@ namespace BveTypes.ClassWrappers
             internal set => CabSetMethod.Invoke(Src, new object[] { value.Src });
         }
 
+        private static FastMethod AtsPluginGetMethod;
+        private static FastMethod AtsPluginSetMethod;
+        /// <summary>
+        /// ATS プラグインを表す <see cref="ClassWrappers.AtsPlugin"/> を取得します。
+        /// </summary>
+        public AtsPlugin AtsPlugin
+        {
+            get => ClassWrappers.AtsPlugin.FromSource(AtsPluginGetMethod.Invoke(Src, null));
+            internal set => AtsPluginSetMethod.Invoke(Src, new object[] { value.Src });
+        }
+
         private static FastMethod PluginLoaderGetMethod;
         private static FastMethod PluginLoaderSetMethod;
         /// <summary>
-        /// プラグインの読込機能を提供する <see cref="ClassWrappers.PluginLoader"/> を取得します。
+        /// 互換性のために残されている旧名のプロパティです。<see cref="AtsPlugin"/> を使用してください。
         /// </summary>
+        [Obsolete]
         public PluginLoader PluginLoader
         {
             get => ClassWrappers.PluginLoader.FromSource(PluginLoaderGetMethod.Invoke(Src, null));

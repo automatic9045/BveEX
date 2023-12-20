@@ -1319,6 +1319,10 @@
 			<Getter Original="e"/>
 			<Setter Original="a"/>
 		</Property>
+		<Property Wrapper="AtsPlugin">
+			<Getter Original="f"/>
+			<Setter Original="a"/>
+		</Property>
 		<Property Wrapper="PluginLoader">
 			<Getter Original="f"/>
 			<Setter Original="a"/>
