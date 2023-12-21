@@ -56,13 +56,15 @@
     <Compile Include="SchemaProvider.cs" />
     <Compile Include="TypeConverter.cs" />
     <Compile Include="TypeMemberSet\ClassMemberSet.cs" />
+    <Compile Include="TypeMemberSet\SimpleClassMemberSet.cs" />
+    <Compile Include="TypeMemberSet\ConstructedGenericClassMemberSet.cs" />
     <Compile Include="TypeMemberSet\DelegateMemberSet.cs" />
     <Compile Include="TypeMemberSet\EnumMemberSet.cs" />
     <Compile Include="TypeMemberSet\TypeMemberSetBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\ClassMemberSet.ja.resx" />
-    <Content Include="Resources\ClassMemberSet.resx" />
+    <Content Include="Resources\SimpleClassMemberSet.ja.resx" />
+    <Content Include="Resources\SimpleClassMemberSet.resx" />
     <Content Include="Resources\TypeParser.ja.resx" />
     <Content Include="Resources\TypeParser.resx" />
     <Content Include="Resources\WrapTypeSet\ElementParser.ja.resx" />

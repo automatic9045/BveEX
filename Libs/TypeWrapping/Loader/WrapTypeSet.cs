@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.Schema;
 
+using FastCaching;
 using UnembeddedResources;
 
 namespace TypeWrapping
@@ -34,6 +35,8 @@ namespace TypeWrapping
             _ = Resources.Value;
 #endif
         }
+
+        private readonly FastCache<Type, ConstructedGenericClassMemberSet> ConstructedGenericCache = new FastCache<Type, ConstructedGenericClassMemberSet>();
 
         public Dictionary<Type, TypeMemberSetBase> Types { get; }
         public TypeBridge Bridge { get; }
@@ -84,6 +87,21 @@ namespace TypeWrapping
         private static void DocumentValidation(object sender, ValidationEventArgs e)
         {
             throw e.Exception;
+        }
+
+        public ClassMemberSet MakeGenericType(Type constructedWrapperType)
+        {
+            Type definitionWrapperType = constructedWrapperType.GetGenericTypeDefinition();
+            SimpleClassMemberSet definitionMembers = (SimpleClassMemberSet)Types[definitionWrapperType];
+
+            ConstructedGenericClassMemberSet constructed = ConstructedGenericCache.GetOrAdd(constructedWrapperType, _ =>
+            {
+                Type constructedOriginalType = WrapperToOriginalConverter.Convert(constructedWrapperType);
+                ConstructedGenericClassMemberSet result = new ConstructedGenericClassMemberSet(constructedWrapperType, constructedOriginalType, definitionMembers);
+                return result;
+            });
+
+            return constructed;
         }
     }
 }

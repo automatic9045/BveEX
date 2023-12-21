@@ -185,7 +185,7 @@ namespace TypeWrapping
                         }
                     }
 
-                    ClassMemberSet members = new ClassMemberSet(wrapperType, originalType, propertyGetters, propertySetters, fields, events, constructors, methods);
+                    ClassMemberSet members = new SimpleClassMemberSet(wrapperType, originalType, propertyGetters, propertySetters, fields, events, constructors, methods);
 
                     LoadBridges(members);
                     return members;
