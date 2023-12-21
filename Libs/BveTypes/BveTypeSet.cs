@@ -93,7 +93,17 @@ namespace BveTypes
         /// <seealso cref="GetEnumInfoOf{TWrapper}"/>
         /// <seealso cref="GetEnumInfoOf(Type)"/>
         public TypeMemberSetBase GetTypeInfoOf(Type wrapperType)
-            => Types.Types.TryGetValue(wrapperType, out TypeMemberSetBase typeInfo) ? typeInfo : Types.Bridge[wrapperType];
+        {
+            if (wrapperType.IsConstructedGenericType)
+            {
+                TypeMemberSetBase members = Types.MakeGenericType(wrapperType);
+                return members;
+            }
+            else
+            {
+                return Types.Types.TryGetValue(wrapperType, out TypeMemberSetBase typeInfo) ? typeInfo : Types.Bridge[wrapperType];
+            }
+        }
 
 
         /// <summary>
