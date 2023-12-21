@@ -35,13 +35,23 @@ namespace TypeWrapping
 #endif
         }
 
-        public IEnumerable<TypeMemberSetBase> Types { get; }
+        public Dictionary<Type, TypeMemberSetBase> Types { get; }
         public TypeBridge Bridge { get; }
+
+        public TypeConverter OriginalToWrapperConverter { get; }
+        public TypeConverter WrapperToOriginalConverter { get; }
 
         private WrapTypeSet(IEnumerable<TypeMemberSetBase> types, TypeBridge bridge)
         {
-            Types = types;
+            Types = types.ToDictionary(type => type.WrapperType, type => type);
             Bridge = bridge;
+
+            Dictionary<Type, Type> originalToWrapper = types.ToDictionary(type => type.OriginalType, type => type.WrapperType);
+            Dictionary<Type, Type> bridgeDictionary = bridge.ToDictionary(x => x.Key, x => x.Value.WrapperType);
+            OriginalToWrapperConverter = new TypeConverter(originalToWrapper, bridgeDictionary);
+
+            Dictionary<Type, Type> wrapperToOriginal = Types.ToDictionary(x => x.Key, x => x.Value.OriginalType);
+            WrapperToOriginalConverter = new TypeConverter(wrapperToOriginal);
         }
 
         public static WrapTypeSet LoadXml(Stream docStream, Stream schemaStream,

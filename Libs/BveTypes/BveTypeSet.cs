@@ -40,15 +40,13 @@ namespace BveTypes
 #endif
         }
 
-        private readonly Dictionary<Type, TypeMemberSetBase> Types;
-        private readonly TypeBridge Bridge;
-        private readonly Dictionary<Type, Type> OriginalAndWrapperTypes;
+        private readonly WrapTypeSet Types;
         private readonly FastCache<Type, FastMethod> FromSourceMethodCache = new FastCache<Type, FastMethod>();
 
-        private BveTypeSet(IEnumerable<TypeMemberSetBase> types, TypeBridge bridge, Version profileVersion)
+        private BveTypeSet(WrapTypeSet types, Version profileVersion)
         {
 #if DEBUG
-            TypeMemberSetBase illegalType = types.FirstOrDefault(type =>
+            TypeMemberSetBase illegalType = types.Types.Values.FirstOrDefault(type =>
             {
                 if (type.WrapperType.IsInterface || type.WrapperType.IsSubclassOf(typeof(Delegate)) || type.WrapperType.IsEnum) return false;
 
@@ -63,14 +61,7 @@ namespace BveTypes
             }
 #endif
 
-            Types = types.ToDictionary(type => type.WrapperType, type => type);
-            Bridge = bridge;
-            OriginalAndWrapperTypes = types
-                .AsParallel()
-                .Select(type => (type.OriginalType, type.WrapperType))
-                .Concat(bridge.AsParallel().Select(x => (OriginalType: x.Key, x.Value.WrapperType)))
-                .ToDictionary(type => type.OriginalType, type => type.WrapperType);
-
+            Types = types;
             ProfileVersion = profileVersion;
         }
 
@@ -102,7 +93,7 @@ namespace BveTypes
         /// <seealso cref="GetEnumInfoOf{TWrapper}"/>
         /// <seealso cref="GetEnumInfoOf(Type)"/>
         public TypeMemberSetBase GetTypeInfoOf(Type wrapperType)
-            => Types.TryGetValue(wrapperType, out TypeMemberSetBase typeInfo) ? typeInfo : Bridge[wrapperType];
+            => Types.Types.TryGetValue(wrapperType, out TypeMemberSetBase typeInfo) ? typeInfo : Types.Bridge[wrapperType];
 
 
         /// <summary>
@@ -140,7 +131,8 @@ namespace BveTypes
         /// </summary>
         /// <param name="originalType">オリジナル型。</param>
         /// <returns><paramref name="originalType"/> のラッパー型。</returns>
-        public Type GetWrapperTypeOf(Type originalType) => OriginalAndWrapperTypes[originalType];
+        public Type GetWrapperTypeOf(Type originalType)
+            => TryGetWrapperTypeOf(originalType, out Type wrapperType) ? wrapperType : throw new KeyNotFoundException();
 
         /// <summary>
         /// <paramref name="originalType"/> に指定したオリジナル型のラッパー型を取得します。
@@ -148,7 +140,20 @@ namespace BveTypes
         /// <param name="originalType">オリジナル型。</param>
         /// <param name="wrapperType"><paramref name="originalType"/> のラッパー型が見つかった場合はラッパー型を表す <see cref="Type"/>、見つからなかった場合は <see langword="null"/> が格納されます。</param>
         /// <returns><paramref name="originalType"/> のラッパー型が見つかった場合は <see langword="true"/>、見つからなかった場合は <see langword="false"/>。</returns>
-        public bool TryGetWrapperTypeOf(Type originalType, out Type wrapperType) => OriginalAndWrapperTypes.TryGetValue(originalType, out wrapperType);
+        public bool TryGetWrapperTypeOf(Type originalType, out Type wrapperType)
+        {
+            Type result = Types.OriginalToWrapperConverter.Convert(originalType);
+            if (result == originalType)
+            {
+                wrapperType = null;
+                return false;
+            }
+            else
+            {
+                wrapperType = result;
+                return true;
+            }
+        }
 
 
         internal FastMethod GetCreateFromSourceMethod(Type wrapperType)

@@ -75,7 +75,7 @@ namespace BveTypes
                 }
             }
 
-            BveTypeSet result = new BveTypeSet(types.Types, types.Bridge, profileVersion);
+            BveTypeSet result = new BveTypeSet(types, profileVersion);
 
             ClassWrapperInitializer classWrapperInitializer = new ClassWrapperInitializer(result);
             classWrapperInitializer.InitializeAll();
