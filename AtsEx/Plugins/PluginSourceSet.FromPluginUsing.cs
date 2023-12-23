@@ -9,9 +9,6 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
 
-using FastMember.PInvoke;
-
-using AtsEx.Plugins.Native;
 using AtsEx.Plugins.Scripting;
 using AtsEx.PluginHost;
 using AtsEx.PluginHost.Plugins;
@@ -64,9 +61,6 @@ namespace AtsEx.Plugins
                     case "IronPython2":
                         return LoadScriptPluginPackage(ScriptLanguage.IronPython2, element, Path.GetDirectoryName(listPath));
 
-                    case "Native":
-                        return LoadNativePluginPackage(element, Path.GetDirectoryName(listPath));
-
                     default:
                         throw new NotImplementedException();
                 }
@@ -99,13 +93,6 @@ namespace AtsEx.Plugins
         {
             string packageManifestPath = element.Attribute("PackageManifestPath").Value;
             return ScriptPluginPackage.Load(GetIdentifier(element), scriptLanguage, Path.Combine(baseDirectory, packageManifestPath));
-        }
-
-        private static NativePluginPackage LoadNativePluginPackage(XElement element, string baseDirectory)
-        {
-            string relativePath = element.Attribute("Path").Value;
-            string path = Path.GetFullPath(Path.Combine(baseDirectory, relativePath));
-            return new NativePluginPackage(GetIdentifier(element), path);
         }
 
         private static Identifier GetIdentifier(XElement element)

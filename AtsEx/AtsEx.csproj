@@ -133,11 +133,6 @@
     <Compile Include="Panels\AtsPanelValueSet.cs" />
     <Compile Include="Plugins\AssemblyPluginPackage.cs" />
     <Compile Include="Plugins\IPluginPackage.cs" />
-    <Compile Include="Plugins\Native\AtsPluginVersionNotSupportedException.cs" />
-    <Compile Include="Plugins\Native\FunctionSet.cs" />
-    <Compile Include="Plugins\Native\NativePlugin.cs" />
-    <Compile Include="Plugins\Native\NativePluginPackage.cs" />
-    <Compile Include="Plugins\Native\Structs.cs" />
     <Compile Include="Plugins\PluginLoader.PluginLoadErrorQueue.cs" />
     <Compile Include="Main\TickCommandBuilder.cs" />
     <Compile Include="BveHacker\Services\MainFormHacker.cs" />
@@ -275,8 +270,6 @@
     <Content Include="Resources\BveTypeSetLoader.ja.resx" />
     <Content Include="Resources\VehicleConfig.ja.resx" />
     <Content Include="Resources\VehicleConfig.resx" />
-    <Content Include="Resources\AtsPluginVersionNotSupportedException.resx" />
-    <Content Include="Resources\AtsPluginVersionNotSupportedException.ja.resx" />
     <None Include="app.config" />
     <None Include="packages.config" />
     <EmbeddedResource Include="Plugins\AtsExVehicleConfigXmlSchema.xsd">
