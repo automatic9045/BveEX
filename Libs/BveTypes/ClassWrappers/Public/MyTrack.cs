@@ -57,7 +57,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 円曲線の開始距離程と半径のペアを表す <see cref="ValueNode{T}"/> (T は <see cref="double"/>) のリストを取得します。
         /// </summary>
-        public MapObjectList CurvePosts => MapObjectList.FromSource(CurvePostsGetMethod.Invoke(Src, null));
+        public MapObjectList CurvePosts => CurveList.FromSource(CurvePostsGetMethod.Invoke(Src, null));
 
         private static FastMethod CantsGetMethod;
         /// <summary>
