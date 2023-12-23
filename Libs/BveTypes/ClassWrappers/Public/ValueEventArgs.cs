@@ -19,7 +19,7 @@ namespace BveTypes.ClassWrappers
 
         private static void LoadMembers()
         {
-            ClassMemberSet members = BveTypes.GetClassInfoOf<ObjectPassedEventArgs>();
+            ClassMemberSet members = BveTypes.GetClassInfoOf<ValueEventArgs<T>>();
 
             ValueGetMethod = members.GetSourcePropertyGetterOf(nameof(Value));
         }
