@@ -12,7 +12,7 @@ namespace BveTypes.ClassWrappers
     /// <summary>
     /// 自軌道のカーブのリストを表します。
     /// </summary>
-    public class CurveList : MapObjectList
+    public class CurveList : InterpolatableMapObjectList
     {
         [InitializeClassWrapper]
         private static void Initialize(BveTypeSet bveTypes)
