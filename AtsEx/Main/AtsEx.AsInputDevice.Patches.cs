@@ -32,23 +32,23 @@ namespace AtsEx
                 public readonly HarmonyPatch PreviewElapsePatch;
                 public readonly HarmonyPatch PostElapsePatch;
 
-                public PatchSet(ClassMemberSet mainFormMembers, ClassMemberSet scenarioMembers, ClassMemberSet pluginLoaderMembers)
+                public PatchSet(ClassMemberSet mainFormMembers, ClassMemberSet scenarioMembers, ClassMemberSet atsPluginMembers)
                 {
                     LoadScenarioPatch = HarmonyPatch.Patch(nameof(AtsEx), mainFormMembers.GetSourceMethodOf(nameof(MainForm.LoadScenario)).Source, PatchType.Prefix);
                     DisposeScenarioPatch = HarmonyPatch.Patch(nameof(AtsEx), scenarioMembers.GetSourceMethodOf(nameof(Scenario.Dispose)).Source, PatchType.Prefix);
 
-                    OnSetBeaconDataPatch = HarmonyPatch.Patch(nameof(AtsEx), pluginLoaderMembers.GetSourceMethodOf(nameof(PluginLoader.OnSetBeaconData)).Source, PatchType.Prefix);
-                    OnKeyDownPatch = HarmonyPatch.Patch(nameof(AtsEx), pluginLoaderMembers.GetSourceMethodOf(nameof(PluginLoader.OnKeyDown)).Source, PatchType.Prefix);
-                    OnKeyUpPatch = HarmonyPatch.Patch(nameof(AtsEx), pluginLoaderMembers.GetSourceMethodOf(nameof(PluginLoader.OnKeyUp)).Source, PatchType.Prefix);
-                    OnDoorStateChangedPatch = HarmonyPatch.Patch(nameof(AtsEx), pluginLoaderMembers.GetSourceMethodOf(nameof(PluginLoader.OnDoorStateChanged)).Source, PatchType.Prefix);
-                    OnSetSignalPatch = HarmonyPatch.Patch(nameof(AtsEx), pluginLoaderMembers.GetSourceMethodOf(nameof(PluginLoader.OnSetSignal)).Source, PatchType.Prefix);
-                    OnSetReverserPatch = HarmonyPatch.Patch(nameof(AtsEx), pluginLoaderMembers.GetSourceMethodOf(nameof(PluginLoader.OnSetReverser)).Source, PatchType.Prefix);
-                    OnSetBrakePatch = HarmonyPatch.Patch(nameof(AtsEx), pluginLoaderMembers.GetSourceMethodOf(nameof(PluginLoader.OnSetBrake)).Source, PatchType.Prefix);
-                    OnSetPowerPatch = HarmonyPatch.Patch(nameof(AtsEx), pluginLoaderMembers.GetSourceMethodOf(nameof(PluginLoader.OnSetPower)).Source, PatchType.Prefix);
-                    OnSetVehicleSpecPatch = HarmonyPatch.Patch(nameof(AtsEx), pluginLoaderMembers.GetSourceMethodOf(nameof(PluginLoader.OnSetVehicleSpec)).Source, PatchType.Postfix);
-                    OnInitializePatch = HarmonyPatch.Patch(nameof(AtsEx), pluginLoaderMembers.GetSourceMethodOf(nameof(PluginLoader.OnInitialize)).Source, PatchType.Prefix);
-                    PreviewElapsePatch = HarmonyPatch.Patch(nameof(AtsEx), pluginLoaderMembers.GetSourceMethodOf(nameof(PluginLoader.OnElapse)).Source, PatchType.Prefix);
-                    PostElapsePatch = HarmonyPatch.Patch(nameof(AtsEx), pluginLoaderMembers.GetSourceMethodOf(nameof(PluginLoader.OnElapse)).Source, PatchType.Postfix);
+                    OnSetBeaconDataPatch = HarmonyPatch.Patch(nameof(AtsEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnSetBeaconData)).Source, PatchType.Prefix);
+                    OnKeyDownPatch = HarmonyPatch.Patch(nameof(AtsEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnKeyDown)).Source, PatchType.Prefix);
+                    OnKeyUpPatch = HarmonyPatch.Patch(nameof(AtsEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnKeyUp)).Source, PatchType.Prefix);
+                    OnDoorStateChangedPatch = HarmonyPatch.Patch(nameof(AtsEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnDoorStateChanged)).Source, PatchType.Prefix);
+                    OnSetSignalPatch = HarmonyPatch.Patch(nameof(AtsEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnSetSignal)).Source, PatchType.Prefix);
+                    OnSetReverserPatch = HarmonyPatch.Patch(nameof(AtsEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnSetReverser)).Source, PatchType.Prefix);
+                    OnSetBrakePatch = HarmonyPatch.Patch(nameof(AtsEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnSetBrake)).Source, PatchType.Prefix);
+                    OnSetPowerPatch = HarmonyPatch.Patch(nameof(AtsEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnSetPower)).Source, PatchType.Prefix);
+                    OnSetVehicleSpecPatch = HarmonyPatch.Patch(nameof(AtsEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnSetVehicleSpec)).Source, PatchType.Postfix);
+                    OnInitializePatch = HarmonyPatch.Patch(nameof(AtsEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnInitialize)).Source, PatchType.Prefix);
+                    PreviewElapsePatch = HarmonyPatch.Patch(nameof(AtsEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnElapse)).Source, PatchType.Prefix);
+                    PostElapsePatch = HarmonyPatch.Patch(nameof(AtsEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnElapse)).Source, PatchType.Postfix);
                 }
 
                 public void Dispose()

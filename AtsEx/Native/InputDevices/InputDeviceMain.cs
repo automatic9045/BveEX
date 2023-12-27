@@ -138,7 +138,7 @@ namespace AtsEx.Native.InputDevices
         {
             if (LastTickCommandBuilder is null) return;
 
-            BveTypes.ClassWrappers.HandleSet atsHandles = AtsEx.BveHacker.Scenario.Vehicle.Instruments.PluginLoader.AtsHandles;
+            BveTypes.ClassWrappers.HandleSet atsHandles = AtsEx.BveHacker.Scenario.Vehicle.Instruments.AtsPlugin.AtsHandles;
 
             HandlePositionSet atsHandlesOverrideBase = new HandlePositionSet(
                 atsHandles.PowerNotch,

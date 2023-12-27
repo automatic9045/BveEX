@@ -45,18 +45,18 @@ namespace AtsEx
 
                     Target.Patches.OnSetBeaconDataPatch.Invoked += (sender, e) =>
                     {
-                        PluginLoader pluginLoader = PluginLoader.FromSource(e.Instance);
+                        AtsPlugin atsPlugin = AtsPlugin.FromSource(e.Instance);
                         ObjectPassedEventArgs args = ObjectPassedEventArgs.FromSource(e.Args[1]);
 
                         Beacon beacon = (Beacon)args.MapObject;
                         Section section = beacon.TargetSectionIndex == int.MaxValue
-                            ? pluginLoader.SectionManager.LastSection
-                            : beacon.TargetSectionIndex >= 0 && pluginLoader.SectionManager.Sections.Count > beacon.TargetSectionIndex ? (Section)pluginLoader.SectionManager.Sections[beacon.TargetSectionIndex] : null;
+                            ? atsPlugin.SectionManager.LastSection
+                            : beacon.TargetSectionIndex >= 0 && atsPlugin.SectionManager.Sections.Count > beacon.TargetSectionIndex ? (Section)atsPlugin.SectionManager.Sections[beacon.TargetSectionIndex] : null;
 
                         BeaconData beaconData = new BeaconData()
                         {
                             Data = beacon.SendData,
-                            Z = section is null ? 0f : (float)(section.Location - pluginLoader.LocationManager.Location),
+                            Z = section is null ? 0f : (float)(section.Location - atsPlugin.LocationManager.Location),
                             Sig = section is null ? 0 : section.CurrentSignalIndex,
                             Num = beacon.Type,
                         };
@@ -115,9 +115,9 @@ namespace AtsEx
 
                     Target.Patches.OnDoorStateChangedPatch.Invoked += (sender, e) =>
                     {
-                        PluginLoader pluginLoader = PluginLoader.FromSource(e.Instance);
+                        AtsPlugin atsPlugin = AtsPlugin.FromSource(e.Instance);
 
-                        if (pluginLoader.Doors.AreAllClosingOrClosed)
+                        if (atsPlugin.Doors.AreAllClosingOrClosed)
                         {
                             Target.OnDoorClose?.Invoke(this, EventArgs.Empty);
                         }
@@ -130,8 +130,8 @@ namespace AtsEx
 
                     Target.Patches.OnSetSignalPatch.Invoked += (sender, e) =>
                     {
-                        PluginLoader pluginLoader = PluginLoader.FromSource(e.Instance);
-                        MapFunctionList sections = pluginLoader.SectionManager.Sections;
+                        AtsPlugin atsPlugin = AtsPlugin.FromSource(e.Instance);
+                        MapFunctionList sections = atsPlugin.SectionManager.Sections;
 
                         int currentSectionSignalIndex = sections.CurrentIndex < 0 ? int.MaxValue : ((Section)sections[sections.CurrentIndex]).CurrentSignalIndex;
 
@@ -141,32 +141,32 @@ namespace AtsEx
 
                     Target.Patches.OnSetReverserPatch.Invoked += (sender, e) =>
                     {
-                        PluginLoader pluginLoader = PluginLoader.FromSource(e.Instance);
+                        AtsPlugin atsPlugin = AtsPlugin.FromSource(e.Instance);
 
-                        Target.OnSetReverser?.Invoke(this, new ValueEventArgs<int>((int)pluginLoader.Handles.ReverserPosition));
+                        Target.OnSetReverser?.Invoke(this, new ValueEventArgs<int>((int)atsPlugin.Handles.ReverserPosition));
                         return new PatchInvokationResult(SkipModes.Continue);
                     };
 
                     Target.Patches.OnSetBrakePatch.Invoked += (sender, e) =>
                     {
-                        PluginLoader pluginLoader = PluginLoader.FromSource(e.Instance);
+                        AtsPlugin atsPlugin = AtsPlugin.FromSource(e.Instance);
 
-                        Target.OnSetBrake?.Invoke(this, new ValueEventArgs<int>(pluginLoader.Handles.BrakeNotch));
+                        Target.OnSetBrake?.Invoke(this, new ValueEventArgs<int>(atsPlugin.Handles.BrakeNotch));
                         return new PatchInvokationResult(SkipModes.Continue);
                     };
 
                     Target.Patches.OnSetPowerPatch.Invoked += (sender, e) =>
                     {
-                        PluginLoader pluginLoader = PluginLoader.FromSource(e.Instance);
+                        AtsPlugin atsPlugin = AtsPlugin.FromSource(e.Instance);
 
-                        Target.OnSetPower?.Invoke(this, new ValueEventArgs<int>(pluginLoader.Handles.PowerNotch));
+                        Target.OnSetPower?.Invoke(this, new ValueEventArgs<int>(atsPlugin.Handles.PowerNotch));
                         return new PatchInvokationResult(SkipModes.Continue);
                     };
 
                     Target.Patches.OnSetVehicleSpecPatch.Invoked += (sender, e) =>
                     {
-                        PluginLoader pluginLoader = PluginLoader.FromSource(e.Instance);
-                        if (!pluginLoader.IsPluginLoaded) return new PatchInvokationResult(SkipModes.Continue);
+                        AtsPlugin atsPlugin = AtsPlugin.FromSource(e.Instance);
+                        if (!atsPlugin.IsPluginLoaded) return new PatchInvokationResult(SkipModes.Continue);
 
                         NotchInfo notchInfo = NotchInfo.FromSource(e.Args[0]);
                         int carCount = (int)e.Args[1];
@@ -186,8 +186,8 @@ namespace AtsEx
 
                     Target.Patches.OnInitializePatch.Invoked += (sender, e) =>
                     {
-                        PluginLoader pluginLoader = PluginLoader.FromSource(e.Instance);
-                        if (!pluginLoader.IsPluginLoaded) return new PatchInvokationResult(SkipModes.Continue);
+                        AtsPlugin atsPlugin = AtsPlugin.FromSource(e.Instance);
+                        if (!atsPlugin.IsPluginLoaded) return new PatchInvokationResult(SkipModes.Continue);
 
                         BrakePosition brakePosition = (BrakePosition)e.Args[0];
 
@@ -197,30 +197,30 @@ namespace AtsEx
 
                     Target.Patches.PreviewElapsePatch.Invoked += (sender, e) =>
                     {
-                        PluginLoader pluginLoader = PluginLoader.FromSource(e.Instance);
-                        if (!pluginLoader.IsPluginLoaded) return new PatchInvokationResult(SkipModes.Continue);
+                        AtsPlugin atsPlugin = AtsPlugin.FromSource(e.Instance);
+                        if (!atsPlugin.IsPluginLoaded) return new PatchInvokationResult(SkipModes.Continue);
 
                         VehicleState vehicleState = new VehicleState()
                         {
-                            Location = pluginLoader.LocationManager.Location,
-                            Speed = (float)pluginLoader.StateStore.Speed[0],
+                            Location = atsPlugin.LocationManager.Location,
+                            Speed = (float)atsPlugin.StateStore.Speed[0],
                             Time = (int)e.Args[0],
-                            BcPressure = (float)pluginLoader.StateStore.BcPressure[0],
-                            MrPressure = (float)pluginLoader.StateStore.MrPressure[0],
-                            ErPressure = (float)pluginLoader.StateStore.ErPressure[0],
-                            BpPressure = (float)pluginLoader.StateStore.BpPressure[0],
-                            SapPressure = (float)pluginLoader.StateStore.SapPressure[0],
-                            Current = (float)pluginLoader.StateStore.Current[0],
+                            BcPressure = (float)atsPlugin.StateStore.BcPressure[0],
+                            MrPressure = (float)atsPlugin.StateStore.MrPressure[0],
+                            ErPressure = (float)atsPlugin.StateStore.ErPressure[0],
+                            BpPressure = (float)atsPlugin.StateStore.BpPressure[0],
+                            SapPressure = (float)atsPlugin.StateStore.SapPressure[0],
+                            Current = (float)atsPlugin.StateStore.Current[0],
                         };
 
-                        Target.PreviewElapse?.Invoke(this, new OnElapseEventArgs(vehicleState, pluginLoader.PanelArray, pluginLoader.SoundArray));
+                        Target.PreviewElapse?.Invoke(this, new OnElapseEventArgs(vehicleState, atsPlugin.PanelArray, atsPlugin.SoundArray));
                         return new PatchInvokationResult(SkipModes.Continue);
                     };
 
                     Target.Patches.PostElapsePatch.Invoked += (sender, e) =>
                     {
-                        PluginLoader pluginLoader = PluginLoader.FromSource(e.Instance);
-                        if (!pluginLoader.IsPluginLoaded) return new PatchInvokationResult(SkipModes.Continue);
+                        AtsPlugin atsPlugin = AtsPlugin.FromSource(e.Instance);
+                        if (!atsPlugin.IsPluginLoaded) return new PatchInvokationResult(SkipModes.Continue);
 
                         Target.PostElapse?.Invoke(this, EventArgs.Empty);
                         return new PatchInvokationResult(SkipModes.Continue);

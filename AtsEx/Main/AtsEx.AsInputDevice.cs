@@ -41,9 +41,9 @@ namespace AtsEx
             {
                 ClassMemberSet mainFormMembers = BveHacker.BveTypes.GetClassInfoOf<MainForm>();
                 ClassMemberSet scenarioMembers = BveHacker.BveTypes.GetClassInfoOf<Scenario>();
-                ClassMemberSet pluginLoaderMembers = BveHacker.BveTypes.GetClassInfoOf<PluginLoader>();
+                ClassMemberSet atsPluginMembers = BveHacker.BveTypes.GetClassInfoOf<AtsPlugin>();
 
-                Patches = new PatchSet(mainFormMembers, scenarioMembers, pluginLoaderMembers);
+                Patches = new PatchSet(mainFormMembers, scenarioMembers, atsPluginMembers);
 
                 PatchEventInitializer patchEventInitializer = new PatchEventInitializer(this);
                 patchEventInitializer.InitializeEvents();
