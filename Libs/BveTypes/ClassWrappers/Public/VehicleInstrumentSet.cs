@@ -30,8 +30,10 @@ namespace BveTypes.ClassWrappers
             AtsPluginGetMethod = members.GetSourcePropertyGetterOf(nameof(AtsPlugin));
             AtsPluginSetMethod = members.GetSourcePropertySetterOf(nameof(AtsPlugin));
 
+#pragma warning disable CS0612 // 型またはメンバーが旧型式です
             PluginLoaderGetMethod = members.GetSourcePropertyGetterOf(nameof(PluginLoader));
             PluginLoaderSetMethod = members.GetSourcePropertySetterOf(nameof(PluginLoader));
+#pragma warning restore CS0612 // 型またはメンバーが旧型式です
         }
 
         /// <summary>
