@@ -1005,7 +1005,7 @@
 			<Getter Original="g"/>
 			<Setter Original="c" IsOriginalNonPublic="true"/>
 		</Property>
-		<Property Wrapper="DepertureTimeMilliseconds">
+		<Property Wrapper="DepartureTimeMilliseconds">
 			<Getter Original="m"/>
 			<Setter Original="b" IsOriginalNonPublic="true"/>
 		</Property>
@@ -1033,7 +1033,7 @@
 			<Getter Original="o"/>
 			<Setter Original="f"/>
 		</Property>
-		<Property Wrapper="DepertureSound">
+		<Property Wrapper="DepartureSound">
 			<Getter Original="h"/>
 			<Setter Original="b"/>
 		</Property>
@@ -1169,10 +1169,10 @@
 		<Field WrapperProperty="Model" Original="j" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="NameTexts" Original="b" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="ArrivalTimeTexts" Original="c" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="DepertureTimeTexts" Original="d" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="DepartureTimeTexts" Original="d" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="NameTextWidths" Original="e" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="ArrivalTimeTextWidths" Original="f" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="DepertureTimeTextWidths" Original="g" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="DepartureTimeTextWidths" Original="g" IsOriginalNonPublic="true"/>
 		<Method Wrapper="Update" WrapperParams="void" Original="a" IsOriginalNonPublic="true"/>
 	</Class>
 

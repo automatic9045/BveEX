@@ -28,8 +28,8 @@ namespace BveTypes.ClassWrappers
             ArrivalTimeGetMethod = members.GetSourcePropertyGetterOf(nameof(ArrivalTimeMilliseconds));
             ArrivalTimeSetMethod = members.GetSourcePropertySetterOf(nameof(ArrivalTimeMilliseconds));
 
-            DepertureTimeGetMethod = members.GetSourcePropertyGetterOf(nameof(DepertureTimeMilliseconds));
-            DepertureTimeSetMethod = members.GetSourcePropertySetterOf(nameof(DepertureTimeMilliseconds));
+            DepartureTimeGetMethod = members.GetSourcePropertyGetterOf(nameof(DepertureTimeMilliseconds));
+            DepartureTimeSetMethod = members.GetSourcePropertySetterOf(nameof(DepertureTimeMilliseconds));
 
             DoorCloseTimeGetMethod = members.GetSourcePropertyGetterOf(nameof(DoorCloseTimeMilliseconds));
             DoorCloseTimeSetMethod = members.GetSourcePropertySetterOf(nameof(DoorCloseTimeMilliseconds));
@@ -49,8 +49,8 @@ namespace BveTypes.ClassWrappers
             DoorSideGetMethod = members.GetSourcePropertyGetterOf(nameof(DoorSide));
             DoorSideSetMethod = members.GetSourcePropertySetterOf(nameof(DoorSide));
 
-            DepertureSoundGetMethod = members.GetSourcePropertyGetterOf(nameof(DepertureSound));
-            DepertureSoundSetMethod = members.GetSourcePropertySetterOf(nameof(DepertureSound));
+            DepartureSoundGetMethod = members.GetSourcePropertyGetterOf(nameof(DepertureSound));
+            DepartureSoundSetMethod = members.GetSourcePropertySetterOf(nameof(DepertureSound));
 
             ArrivalSoundGetMethod = members.GetSourcePropertyGetterOf(nameof(ArrivalSound));
             ArrivalSoundSetMethod = members.GetSourcePropertySetterOf(nameof(ArrivalSound));
@@ -147,16 +147,35 @@ namespace BveTypes.ClassWrappers
             set => ArrivalTimeMilliseconds = (int)value.TotalMilliseconds;
         }
 
-        private static FastMethod DepertureTimeGetMethod;
-        private static FastMethod DepertureTimeSetMethod;
+        private static FastMethod DepartureTimeGetMethod;
+        private static FastMethod DepartureTimeSetMethod;
         /// <summary>
         /// 発車時刻または通過時刻をミリ秒単位で取得・設定します。
         /// </summary>
         /// <value>0 時丁度から発車時刻または通過時刻までに経過したミリ秒数 [ms]。</value>
+        public int DepartureTimeMilliseconds
+        {
+            get => DepartureTimeGetMethod.Invoke(Src, null);
+            set => DepartureTimeSetMethod.Invoke(Src, new object[] { value });
+        }
+
+        /// <summary>
+        /// 互換性のために残されている旧名のプロパティです。<see cref="DepartureTimeMilliseconds"/> を使用してください。
+        /// </summary>
+        [Obsolete]
         public int DepertureTimeMilliseconds
         {
-            get => DepertureTimeGetMethod.Invoke(Src, null);
-            set => DepertureTimeSetMethod.Invoke(Src, new object[] { value });
+            get => DepartureTimeMilliseconds;
+            set => DepartureTimeMilliseconds = value;
+        }
+
+        /// <summary>
+        /// 発車時刻または通過時刻を取得・設定します。
+        /// </summary>
+        public TimeSpan DepartureTime
+        {
+            get => TimeSpan.FromMilliseconds(DepartureTimeMilliseconds);
+            set => DepartureTimeMilliseconds = (int)value.TotalMilliseconds;
         }
 
         /// <summary>
@@ -164,8 +183,8 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public TimeSpan DepertureTime
         {
-            get => TimeSpan.FromMilliseconds(DepertureTimeMilliseconds);
-            set => DepertureTimeMilliseconds = (int)value.TotalMilliseconds;
+            get => DepartureTime;
+            set => DepartureTime = value;
         }
 
         private static FastMethod DoorCloseTimeGetMethod;
@@ -299,15 +318,25 @@ namespace BveTypes.ClassWrappers
             }
         }
 
-        private static FastMethod DepertureSoundGetMethod;
-        private static FastMethod DepertureSoundSetMethod;
+        private static FastMethod DepartureSoundGetMethod;
+        private static FastMethod DepartureSoundSetMethod;
         /// <summary>
-        /// <see cref="DepertureTime"/> の <see cref="StoppageTime"/> 前の時刻に再生されるサウンドを取得・設定します。
+        /// <see cref="DepartureTime"/> の <see cref="StoppageTime"/> 前の時刻に再生されるサウンドを取得・設定します。
         /// </summary>
+        public Sound DepartureSound
+        {
+            get => Sound.FromSource(DepartureSoundGetMethod.Invoke(Src, null));
+            set => DepartureSoundSetMethod.Invoke(Src, new object[] { value.Src });
+        }
+
+        /// <summary>
+        /// 互換性のために残されている旧名のプロパティです。<see cref="DepartureSound"/> を使用してください。
+        /// </summary>
+        [Obsolete]
         public Sound DepertureSound
         {
-            get => Sound.FromSource(DepertureSoundGetMethod.Invoke(Src, null));
-            set => DepertureSoundSetMethod.Invoke(Src, new object[] { value.Src });
+            get => DepartureSound;
+            set => DepartureSound = value;
         }
 
         private static FastMethod ArrivalSoundGetMethod;
@@ -324,7 +353,7 @@ namespace BveTypes.ClassWrappers
         private static FastMethod SignalFlagGetMethod;
         private static FastMethod SignalFlagSetMethod;
         /// <summary>
-        /// <see cref="DepertureTime"/> の <see cref="StoppageTime"/> 前の時刻まで出発信号が停止を現示するかどうかを取得・設定します。
+        /// <see cref="DepartureTime"/> の <see cref="StoppageTime"/> 前の時刻まで出発信号が停止を現示するかどうかを取得・設定します。
         /// </summary>
         public bool SignalFlag
         {

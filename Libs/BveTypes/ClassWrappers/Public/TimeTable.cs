@@ -25,10 +25,10 @@ namespace BveTypes.ClassWrappers
             ModelField = members.GetSourceFieldOf(nameof(Model));
             NameTextsField = members.GetSourceFieldOf(nameof(NameTexts));
             ArrivalTimeTextsField = members.GetSourceFieldOf(nameof(ArrivalTimeTexts));
-            DepertureTimeTextsField = members.GetSourceFieldOf(nameof(DepertureTimeTexts));
+            DepartureTimeTextsField = members.GetSourceFieldOf(nameof(DepartureTimeTexts));
             NameTextWidthsField = members.GetSourceFieldOf(nameof(NameTextWidths));
             ArrivalTimeTextWidthsField = members.GetSourceFieldOf(nameof(ArrivalTimeTextWidths));
-            DepertureTimeTextWidthsField = members.GetSourceFieldOf(nameof(DepertureTimeTextWidths));
+            DepartureTimeTextWidthsField = members.GetSourceFieldOf(nameof(DepertureTimeTextWidths));
 
             UpdateMethod = members.GetSourceMethodOf(nameof(Update));
         }
@@ -87,18 +87,28 @@ namespace BveTypes.ClassWrappers
             set => ArrivalTimeTextsField.SetValue(Src, value);
         }
 
-        private static FastField DepertureTimeTextsField;
+        private static FastField DepartureTimeTextsField;
         /// <summary>
         /// 表示する発車時刻または通過時刻の配列を取得・設定します。
         /// </summary>
         /// <remarks>
         /// 初めの見出し行 ("発(通)") も含まれます。
         /// </remarks>
-        /// <seealso cref="DepertureTimeTextWidths"/>
+        /// <seealso cref="DepartureTimeTextWidths"/>
+        public string[] DepartureTimeTexts
+        {
+            get => DepartureTimeTextsField.GetValue(Src);
+            set => DepartureTimeTextsField.SetValue(Src, value);
+        }
+
+        /// <summary>
+        /// 互換性のために残されている旧名のプロパティです。<see cref="DepartureTimeTexts"/> を使用してください。
+        /// </summary>
+        [Obsolete]
         public string[] DepertureTimeTexts
         {
-            get => DepertureTimeTextsField.GetValue(Src);
-            set => DepertureTimeTextsField.SetValue(Src, value);
+            get => DepartureTimeTexts;
+            set => DepartureTimeTexts = value;
         }
 
         private static FastField NameTextWidthsField;
@@ -129,7 +139,7 @@ namespace BveTypes.ClassWrappers
             set => ArrivalTimeTextWidthsField.SetValue(Src, value);
         }
 
-        private static FastField DepertureTimeTextWidthsField;
+        private static FastField DepartureTimeTextWidthsField;
         /// <summary>
         /// 発車時刻または通過時刻の表示幅の配列を取得・設定します。ここで設定した数値を基に、列全体の幅が決定されます。
         /// </summary>
@@ -137,10 +147,20 @@ namespace BveTypes.ClassWrappers
         /// 初めの見出し行 ("発(通)") も含まれます。
         /// </remarks>
         /// <seealso cref="DepertureTimeTexts"/>
+        public int[] DepartureTimeTextWidths
+        {
+            get => DepartureTimeTextWidthsField.GetValue(Src);
+            set => DepartureTimeTextWidthsField.SetValue(Src, value);
+        }
+
+        /// <summary>
+        /// 互換性のために残されている旧名のプロパティです。<see cref="DepartureTimeTexts"/> を使用してください。
+        /// </summary>
+        [Obsolete]
         public int[] DepertureTimeTextWidths
         {
-            get => DepertureTimeTextWidthsField.GetValue(Src);
-            set => DepertureTimeTextWidthsField.SetValue(Src, value);
+            get => DepartureTimeTextWidths;
+            set => DepartureTimeTextWidths = value;
         }
 
         private static FastMethod UpdateMethod;
