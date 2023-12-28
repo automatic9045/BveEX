@@ -13,7 +13,7 @@ namespace BveTypes.ClassWrappers
     /// <summary>
     /// <see cref="Cant"/> のリストを表します。
     /// </summary>
-    public class CantList : MapObjectList
+    public class CantList : InterpolatableMapObjectList
     {
         [InitializeClassWrapper]
         private static void Initialize(BveTypeSet bveTypes)
