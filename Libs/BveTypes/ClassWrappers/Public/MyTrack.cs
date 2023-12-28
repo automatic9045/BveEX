@@ -25,6 +25,8 @@ namespace BveTypes.ClassWrappers
 
             CurvePostsGetMethod = members.GetSourcePropertyGetterOf(nameof(CurvePosts));
 
+            GradientsGetMethod = members.GetSourcePropertyGetterOf(nameof(Gradients));
+
             CantsGetMethod = members.GetSourcePropertyGetterOf(nameof(Cants));
 
             GetDirectionAtMethod = members.GetSourceMethodOf(nameof(GetDirectionAt));
@@ -58,6 +60,12 @@ namespace BveTypes.ClassWrappers
         /// 円曲線の開始距離程と半径のペアを表す <see cref="ValueNode{T}"/> (T は <see cref="double"/>) のリストを取得します。
         /// </summary>
         public MapObjectList CurvePosts => CurveList.FromSource(CurvePostsGetMethod.Invoke(Src, null));
+
+        private static FastMethod GradientsGetMethod;
+        /// <summary>
+        /// 勾配の開始距離程とその値のペアを表す <see cref="ValueNode{T}"/> (T は <see cref="double"/>) のリストを取得します。
+        /// </summary>
+        public InterpolatableMapObjectList Gradients => InterpolatableMapObjectList.FromSource(GradientsGetMethod.Invoke(Src, null));
 
         private static FastMethod CantsGetMethod;
         /// <summary>

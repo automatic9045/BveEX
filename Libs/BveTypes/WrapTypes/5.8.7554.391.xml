@@ -615,6 +615,9 @@
 		<Property Wrapper="CurvePosts">
 			<Getter Original="c"/>
 		</Property>
+		<Property Wrapper="Gradients">
+			<Getter Original="d"/>
+		</Property>
 		<Property Wrapper="Cants">
 			<Getter Original="a"/>
 		</Property>
