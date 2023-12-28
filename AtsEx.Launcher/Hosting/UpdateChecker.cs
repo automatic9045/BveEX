@@ -49,7 +49,7 @@ namespace AtsEx.Launcher.Hosting
                     DialogResult confirm = dialog.ShowDialog();
                     if (confirm == DialogResult.OK)
                     {
-                        Process.Start("https://github.com/automatic9045/AtsEX/releases");
+                        Process.Start("https://automatic9045.github.io/AtsEX/download/");
                     }
 
                     if (dialog.DoNotShowAgain)
