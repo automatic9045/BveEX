@@ -51,7 +51,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public GameState State
         {
-            get => StateGetMethod.Invoke(Src, null);
+            get => (GameState)StateGetMethod.Invoke(Src, null);
             set => StateSetMethod.Invoke(Src, new object[] { value });
         }
 
