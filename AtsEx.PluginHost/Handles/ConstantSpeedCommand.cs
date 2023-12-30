@@ -10,9 +10,9 @@ namespace AtsEx.PluginHost.Handles
 {
     public enum ConstantSpeedCommand
     {
-        Enable,
-        Disable,
-        Continue,
+        Continue = 0,
+        Enable = 1,
+        Disable = 2,
     }
 
     public static class ConstantSpeedCommandExtensions
