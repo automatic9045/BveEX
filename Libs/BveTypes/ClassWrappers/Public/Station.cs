@@ -28,8 +28,8 @@ namespace BveTypes.ClassWrappers
             ArrivalTimeGetMethod = members.GetSourcePropertyGetterOf(nameof(ArrivalTimeMilliseconds));
             ArrivalTimeSetMethod = members.GetSourcePropertySetterOf(nameof(ArrivalTimeMilliseconds));
 
-            DepartureTimeGetMethod = members.GetSourcePropertyGetterOf(nameof(DepertureTimeMilliseconds));
-            DepartureTimeSetMethod = members.GetSourcePropertySetterOf(nameof(DepertureTimeMilliseconds));
+            DepartureTimeGetMethod = members.GetSourcePropertyGetterOf(nameof(DepartureTimeMilliseconds));
+            DepartureTimeSetMethod = members.GetSourcePropertySetterOf(nameof(DepartureTimeMilliseconds));
 
             DoorCloseTimeGetMethod = members.GetSourcePropertyGetterOf(nameof(DoorCloseTimeMilliseconds));
             DoorCloseTimeSetMethod = members.GetSourcePropertySetterOf(nameof(DoorCloseTimeMilliseconds));
@@ -49,8 +49,8 @@ namespace BveTypes.ClassWrappers
             DoorSideGetMethod = members.GetSourcePropertyGetterOf(nameof(DoorSide));
             DoorSideSetMethod = members.GetSourcePropertySetterOf(nameof(DoorSide));
 
-            DepartureSoundGetMethod = members.GetSourcePropertyGetterOf(nameof(DepertureSound));
-            DepartureSoundSetMethod = members.GetSourcePropertySetterOf(nameof(DepertureSound));
+            DepartureSoundGetMethod = members.GetSourcePropertyGetterOf(nameof(DepartureSound));
+            DepartureSoundSetMethod = members.GetSourcePropertySetterOf(nameof(DepartureSound));
 
             ArrivalSoundGetMethod = members.GetSourcePropertyGetterOf(nameof(ArrivalSound));
             ArrivalSoundSetMethod = members.GetSourcePropertySetterOf(nameof(ArrivalSound));

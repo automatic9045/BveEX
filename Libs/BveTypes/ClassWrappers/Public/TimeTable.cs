@@ -28,7 +28,7 @@ namespace BveTypes.ClassWrappers
             DepartureTimeTextsField = members.GetSourceFieldOf(nameof(DepartureTimeTexts));
             NameTextWidthsField = members.GetSourceFieldOf(nameof(NameTextWidths));
             ArrivalTimeTextWidthsField = members.GetSourceFieldOf(nameof(ArrivalTimeTextWidths));
-            DepartureTimeTextWidthsField = members.GetSourceFieldOf(nameof(DepertureTimeTextWidths));
+            DepartureTimeTextWidthsField = members.GetSourceFieldOf(nameof(DepartureTimeTextWidths));
 
             UpdateMethod = members.GetSourceMethodOf(nameof(Update));
         }
