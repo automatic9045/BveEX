@@ -349,6 +349,25 @@
 		<Method Wrapper="OnTick" WrapperParams="System.Object; System.EventArgs" Original="a" IsOriginalNonPublic="true"/>
 	</Class>
 
+	<Class Wrapper="ConstantSpeedRelay" Original="dq">
+		<Property Wrapper="NeutralControlMode">
+			<Getter Original="d"/>
+			<Setter Original="c"/>
+		</Property>
+		<Property Wrapper="PowerControlMode">
+			<Getter Original="g"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="BrakeControlMode">
+			<Getter Original="e"/>
+			<Setter Original="b"/>
+		</Property>
+		<Property Wrapper="MinSpeed">
+			<Getter Original="c"/>
+			<Setter Original="a"/>
+		</Property>
+	</Class>
+
 	<Class Wrapper="Curve" Original="s">
 		<Property Wrapper="Curvature">
 			<Getter Original="a"/>
@@ -1312,6 +1331,9 @@
 	</Class>
 
 	<Class Wrapper="VehicleInstrumentSet" Original="ck">
+		<Property Wrapper="ConstantSpeedRelay">
+			<Getter Original="c"/>
+		</Property>
 		<Property Wrapper="BrakeSystem">
 			<Getter Original="b"/>
 		</Property>

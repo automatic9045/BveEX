@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,6 +18,8 @@ namespace BveTypes.ClassWrappers
         private static void Initialize(BveTypeSet bveTypes)
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<VehicleInstrumentSet>();
+
+            ConstantSpeedRelayGetMethod = members.GetSourcePropertyGetterOf(nameof(ConstantSpeedRelay));
 
             BrakeSystemGetMethod = members.GetSourcePropertyGetterOf(nameof(BrakeSystem));
 
@@ -51,6 +52,12 @@ namespace BveTypes.ClassWrappers
         /// <returns>オリジナル オブジェクトをラップした <see cref="VehicleInstrumentSet"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
         public static VehicleInstrumentSet FromSource(object src) => src is null ? null : new VehicleInstrumentSet(src);
+
+        private static FastMethod ConstantSpeedRelayGetMethod;
+        /// <summary>
+        /// 定速制御を行う <see cref="ClassWrappers.ConstantSpeedRelay"/> を取得します。
+        /// </summary>
+        public ConstantSpeedRelay ConstantSpeedRelay => ClassWrappers.ConstantSpeedRelay.FromSource(ConstantSpeedRelayGetMethod.Invoke(Src, null));
 
         private static FastMethod BrakeSystemGetMethod;
         /// <summary>
