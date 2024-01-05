@@ -86,38 +86,39 @@ namespace AtsEx.MapStatements
                         privateHeaders.Add(readDepthHeader);
                         int.TryParse(readDepthHeader.Argument, out readDepth);
                     }
-                    else if (includePath.StartsWith(HeaderNameOpenBracket) && headerCloseBracketIndex != -1)
+                    else
                     {
-                        if (1 <= includeStatementCount && !useAtsEx) break;
+                        if (!useAtsEx) break;
 
-                        string headerFullName = includePath.Substring(HeaderNameOpenBracket.Length, headerCloseBracketIndex - HeaderNameOpenBracket.Length);
-                        string headerArgument = includePath.Substring(headerCloseBracketIndex + HeaderNameCloseBracket.Length);
-
-                        Identifier identifier = Identifier.Parse(headerFullName);
-                        Header header = new Header(identifier, headerArgument, filePath, s.LineIndex, s.CharIndex);
-                        if (header.Name.Namespace is null || !header.Name.Namespace.IsChildOf(Namespace.Root)) continue;
-
-                        List<Header> list = headers.GetOrAdd(identifier, new List<Header>()) as List<Header>;
-                        list.Add(header);
-                    }
-                    else if (0 < readDepth)
-                    {
-                        if (1 <= includeStatementCount && !useAtsEx) break;
-
-                        string includeRelativePath = includePath;
-                        string includeAbsolutePath = Path.Combine(Path.GetDirectoryName(filePath), includeRelativePath);
-
-                        if (!File.Exists(includeAbsolutePath)) continue;
-
-                        (IDictionary<Identifier, IReadOnlyList<Header>> headersInIncludedMap, IReadOnlyList<Header> privateHeadersInIncludedMap) = Load(includeAbsolutePath, readDepth - 1);
-
-                        foreach (KeyValuePair<Identifier, IReadOnlyList<Header>> pair in headersInIncludedMap)
+                        if (includePath.StartsWith(HeaderNameOpenBracket) && headerCloseBracketIndex != -1)
                         {
-                            List<Header> list = headers.GetOrAdd(pair.Key, new List<Header>()) as List<Header>;
-                            list.AddRange(pair.Value);
-                        }
+                            string headerFullName = includePath.Substring(HeaderNameOpenBracket.Length, headerCloseBracketIndex - HeaderNameOpenBracket.Length);
+                            string headerArgument = includePath.Substring(headerCloseBracketIndex + HeaderNameCloseBracket.Length);
 
-                        privateHeaders.AddRange(privateHeadersInIncludedMap);
+                            Identifier identifier = Identifier.Parse(headerFullName);
+                            Header header = new Header(identifier, headerArgument, filePath, s.LineIndex, s.CharIndex);
+                            if (header.Name.Namespace is null || !header.Name.Namespace.IsChildOf(Namespace.Root)) continue;
+
+                            List<Header> list = headers.GetOrAdd(identifier, new List<Header>()) as List<Header>;
+                            list.Add(header);
+                        }
+                        else if (0 < readDepth)
+                        {
+                            string includeRelativePath = includePath;
+                            string includeAbsolutePath = Path.Combine(Path.GetDirectoryName(filePath), includeRelativePath);
+
+                            if (!File.Exists(includeAbsolutePath)) continue;
+
+                            (IDictionary<Identifier, IReadOnlyList<Header>> headersInIncludedMap, IReadOnlyList<Header> privateHeadersInIncludedMap) = Load(includeAbsolutePath, readDepth - 1);
+
+                            foreach (KeyValuePair<Identifier, IReadOnlyList<Header>> pair in headersInIncludedMap)
+                            {
+                                List<Header> list = headers.GetOrAdd(pair.Key, new List<Header>()) as List<Header>;
+                                list.AddRange(pair.Value);
+                            }
+
+                            privateHeaders.AddRange(privateHeadersInIncludedMap);
+                        }
                     }
 
                     includeStatementCount++;
