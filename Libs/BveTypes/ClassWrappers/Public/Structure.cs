@@ -46,7 +46,7 @@ namespace BveTypes.ClassWrappers
 
         private static FastConstructor Constructor1;
         private Structure(double location, string trackKey, double x, double y, double z, double dx, double dy, double dz, int tilt, double span, Model model)
-            : this(Constructor1.Invoke(new object[] { location, trackKey, x, y, z, dx, dy, dz, tilt, span, model }))
+            : this(Constructor1.Invoke(new object[] { location, trackKey, x, y, z, dx, dy, dz, tilt, span, model.Src }))
         {
         }
 
@@ -71,7 +71,7 @@ namespace BveTypes.ClassWrappers
 
         private static FastConstructor Constructor2;
         private Structure(double location, string trackKey, int tilt, double span, Model model)
-            : this(Constructor2.Invoke(new object[] { location, trackKey, tilt, span, model }))
+            : this(Constructor2.Invoke(new object[] { location, trackKey, tilt, span, model.Src }))
         {
         }
 
