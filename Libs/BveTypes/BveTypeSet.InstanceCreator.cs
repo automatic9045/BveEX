@@ -28,21 +28,6 @@ namespace BveTypes
         /// <exception cref="ArgumentException"></exception>
         public static BveTypeSet Load(Assembly bveAssembly, Version bveVersion, bool allowLoadProfileForDifferentBveVersion, Action<Version> profileForDifferentBveVersionLoaded = null)
         {
-            AppDomain.CurrentDomain.AssemblyResolve += (sender, e) =>
-            {
-                AssemblyName assemblyName = new AssemblyName(e.Name);
-                if (assemblyName.Name == "SlimDX")
-                {
-                    Assembly[] loadedAssemblies = AppDomain.CurrentDomain.GetAssemblies();
-                    foreach (Assembly asm in loadedAssemblies)
-                    {
-                        if (asm.GetName().Name == "SlimDX") return asm;
-                    }
-                }
-
-                return null;
-            };
-
             Assembly assembly = Assembly.GetExecutingAssembly();
 
             IEnumerable<Type> classWrapperTypes = assembly.GetExportedTypes().Where(t => t.Namespace.StartsWith(typeof(ClassWrapperBase).Namespace, StringComparison.Ordinal));
@@ -71,7 +56,9 @@ namespace BveTypes
 
                 using (Stream schema = SchemaProvider.GetSchemaStream())
                 {
-                    types = WrapTypeSet.LoadXml(profile.Stream, schema, classWrapperTypes, bveTypes, additionalWrapTypes);
+                    types = AssemblyResolver.WithResolve(()
+                        => WrapTypeSet.LoadXml(profile.Stream, schema, classWrapperTypes, bveTypes, additionalWrapTypes),
+                        "SlimDX");
                 }
             }
 

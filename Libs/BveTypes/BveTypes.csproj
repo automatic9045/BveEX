@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdditionalTypeWrapperAttribute.cs" />
+    <Compile Include="AssemblyResolver.cs" />
     <Compile Include="BveTypeSet.cs" />
     <Compile Include="BveTypeSet.InstanceCreator.cs" />
     <Compile Include="ClassInitializer\BveTypesSetter.cs" />
