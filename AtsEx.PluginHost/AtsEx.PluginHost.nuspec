@@ -8,6 +8,7 @@
 		
 		<projectUrl>https://github.com/automatic9045/AtsEX</projectUrl>
 		<license type="expression">MIT</license>
+		<readme>docs\README_NuGet.md</readme>
 		<copyright>Copyright © 2022 AtsEX Project</copyright>
 		<tags>bve bve5 bve6</tags>
 		<repository type="git" url="https://github.com/automatic9045/AtsEX.git" />
@@ -20,6 +21,7 @@
 		</dependencies>
 	</metadata>
 	<files>
+		<file src="README_NuGet.md" target="docs" />
 		<file src="bin\Release\AtsEx.PluginHost.dll" target="lib" />
 		<file src="bin\Release\AtsEx.PluginHost.xml" target="lib" />
 		<file src="bin\Release\BveTypes.dll" target="lib" />
