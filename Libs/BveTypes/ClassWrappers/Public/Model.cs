@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -23,6 +24,7 @@ namespace BveTypes.ClassWrappers
             ClassMemberSet members = bveTypes.GetClassInfoOf<Model>();
 
             FromXFileMethod = members.GetSourceMethodOf(nameof(FromXFile));
+            CreateRectangleWithTextureMethod = members.GetSourceMethodOf(nameof(CreateRectangleWithTexture));
 
             MeshGetMethod = members.GetSourcePropertyGetterOf(nameof(Mesh));
             MeshSetMethod = members.GetSourcePropertySetterOf(nameof(Mesh));
@@ -57,6 +59,18 @@ namespace BveTypes.ClassWrappers
         /// <returns>読み込まれたモデルを表す <see cref="Model"/>。</returns>
         public static Model FromXFile(string filePath)
             => FromSource(FromXFileMethod.Invoke(null, new object[] { filePath }));
+
+        private static FastMethod CreateRectangleWithTextureMethod;
+        /// <summary>
+        /// XY 平面に平行な、テクスチャが貼り付けられた長方形のモデルを作成します。
+        /// </summary>
+        /// <param name="rectangle">長方形のサイズ。</param>
+        /// <param name="z">モデルの Z 座標。</param>
+        /// <param name="transparentColor">透過色として使用する色を表す ARGB 値。<paramref name="texturePath"/> で指定するテクスチャが bmp 形式の場合のみ有効です。</param>
+        /// <param name="texturePath">テクスチャファイルのパス。</param>
+        /// <returns>読み込まれたモデルを表す <see cref="Model"/>。</returns>
+        public static Model CreateRectangleWithTexture(RectangleF rectangle, float z, int transparentColor, string texturePath)
+            => FromSource(CreateRectangleWithTextureMethod.Invoke(null, new object[] { rectangle, z, transparentColor, texturePath }));
 
         private static FastMethod MeshGetMethod;
         private static FastMethod MeshSetMethod;

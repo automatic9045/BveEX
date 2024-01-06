@@ -58,7 +58,7 @@ namespace BveTypes
                 {
                     types = AssemblyResolver.WithResolve(()
                         => WrapTypeSet.LoadXml(profile.Stream, schema, classWrapperTypes, bveTypes, additionalWrapTypes),
-                        "SlimDX");
+                        "System.Drawing", "SlimDX");
                 }
             }
 
