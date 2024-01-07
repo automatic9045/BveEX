@@ -38,6 +38,14 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/AtsEX/fonts/Poppins-Regular.woff2") format("woff2"), url("/AtsEX/fonts/Poppins-Regular.woff2") format("woff");
+    font-display: swap;
+}
+
 * {
     box-sizing: border-box;
 }
