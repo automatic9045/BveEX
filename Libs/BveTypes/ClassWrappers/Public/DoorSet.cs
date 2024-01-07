@@ -24,7 +24,7 @@ namespace BveTypes.ClassWrappers
             StandardCloseTimeGetMethod = members.GetSourcePropertyGetterOf(nameof(StandardCloseTime));
             StandardCloseTimeSetMethod = members.GetSourcePropertySetterOf(nameof(StandardCloseTime));
 
-            AreAllClosingOrClosedGetMethod = members.GetSourcePropertyGetterOf(nameof(AreAllClosingOrClosed));
+            AreAllClosedGetMethod = members.GetSourcePropertyGetterOf(nameof(AreAllClosed));
 
             GetSideMethod = members.GetSourceMethodOf(nameof(GetSide));
             SetCarLengthMethod = members.GetSourceMethodOf(nameof(SetCarLength));
@@ -67,11 +67,17 @@ namespace BveTypes.ClassWrappers
             set => StandardCloseTimeSetMethod.Invoke(Src, new object[] { value });
         }
 
-        private static FastMethod AreAllClosingOrClosedGetMethod;
+        private static FastMethod AreAllClosedGetMethod;
         /// <summary>
-        /// 全てのドアが閉動作中もしくは閉まっているかどうかを取得します。
+        /// 全てのドアが閉まり切っているかどうかを取得します。
         /// </summary>
-        public bool AreAllClosingOrClosed => AreAllClosingOrClosedGetMethod.Invoke(Src, null);
+        public bool AreAllClosed => AreAllClosedGetMethod.Invoke(Src, null);
+
+        /// <summary>
+        /// 互換性のために残されている旧名のプロパティです。<see cref="AreAllClosed"/> を使用してください。
+        /// </summary>
+        [Obsolete]
+        public bool AreAllClosingOrClosed => AreAllClosed;
 
         private static FastMethod GetSideMethod;
         private SideDoorSet GetSide(int doorSide) => SideDoorSet.FromSource(GetSideMethod.Invoke(Src, new object[] { doorSide }));

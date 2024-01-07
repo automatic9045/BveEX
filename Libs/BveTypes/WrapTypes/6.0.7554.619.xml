@@ -407,7 +407,7 @@
 			<Getter Original="a"/>
 			<Setter Original="b"/>
 		</Property>
-		<Property Wrapper="AreAllClosingOrClosed">
+		<Property Wrapper="AreAllClosed">
 			<Getter Original="b"/>
 		</Property>
 

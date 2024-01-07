@@ -117,7 +117,7 @@ namespace AtsEx
                     {
                         AtsPlugin atsPlugin = AtsPlugin.FromSource(e.Instance);
 
-                        if (atsPlugin.Doors.AreAllClosingOrClosed)
+                        if (atsPlugin.Doors.AreAllClosed)
                         {
                             Target.OnDoorClose?.Invoke(this, EventArgs.Empty);
                         }

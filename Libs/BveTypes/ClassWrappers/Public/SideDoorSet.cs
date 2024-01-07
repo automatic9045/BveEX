@@ -74,7 +74,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// この側のドアのうち、ひとつでも開いているものがあるかどうかを取得します。
         /// </summary>
-        /// <seealso cref="DoorSet.AreAllClosingOrClosed"/>
+        /// <seealso cref="DoorSet.AreAllClosed"/>
         public bool IsOpen => IsOpenGetMethod.Invoke(Src, null);
 
         private static FastMethod SetCarLengthMethod;

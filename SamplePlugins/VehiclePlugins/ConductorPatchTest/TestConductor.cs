@@ -42,7 +42,7 @@ namespace AtsEx.Samples.VehiclePlugins.ConductorPatchTest
 
         protected override MethodOverrideMode OnDoorStateChanged()
         {
-            if (Original.Doors.AreAllClosingOrClosed && HasStopPositionChecked)
+            if (Original.Doors.AreAllClosed && HasStopPositionChecked)
             {
                 HasStopPositionChecked = false;
                 Original.Stations.GoTo(Original.Stations.CurrentIndex + 1);
