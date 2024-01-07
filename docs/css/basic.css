@@ -374,6 +374,12 @@ a {
             object-fit: cover;
             object-position: left;
             filter: saturate(0.5) opacity(0.2);
+            transition: all ease 300ms;
+        }
+
+        a.card:hover > img.card-image {
+            width: 250px;
+            filter: saturate(0.6) opacity(0.2);
         }
 
         a.card > div.card-index {
