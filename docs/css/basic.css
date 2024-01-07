@@ -326,6 +326,19 @@ a {
             transform: scale(1.1);
         }
 
+        a.card > img.card-image {
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 240px;
+            max-width: 48%;
+            height: 100%;
+            object-fit: cover;
+            object-position: left;
+            filter: saturate(0.5) opacity(0.2);
+        }
+
         a.card > div.card-index {
             position: absolute;
             top: 8px;
