@@ -81,7 +81,36 @@ body {
 }
 
 div#content {
+    position: relative;
 }
+
+    div#content > div.title-accent {
+        position: absolute;
+        top: -32px;
+        right: 40px;
+        width: auto;
+        height: auto;
+        font: 400 4em Poppins, sans-serif;
+        text-align: right;
+        color: #00000020;
+    }
+
+        div#content > div.title-accent::first-letter {
+            font-size: 1.5em;
+            color: var(--main-very-dark-color);
+            opacity: 25%;
+        }
+
+        div#content > div.title-accent::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -40px;
+            width: 200px;
+            height: 200px;
+            clip-path: polygon(0 0, 100% 0, 100% 100%);
+            background-color: #00000010;
+        }
 
     div#content > section, div#content > div > section {
         margin: 0 auto;
@@ -592,6 +621,10 @@ img.icon-download {
 }
 
 @media screen and (max-width: 1279px) {
+    div#content > div.title-accent {
+        display: none;
+    }
+
     div#content > section, div#content > div > section {
         width: 100%;
     }
