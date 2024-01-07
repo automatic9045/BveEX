@@ -207,14 +207,14 @@ namespace BveTypes.ClassWrappers
 
         private static FastMethod GetTrackMatrixMethod;
         /// <summary>
-        /// ストラクチャーを軌道上の指定した距離程へ配置するためのワールド変換行列を取得します。
+        /// ストラクチャーを軌道上に配置するための行列を、設置先の距離程と基準点とする距離程を指定して計算します。
         /// </summary>
         /// <param name="mapObject">配置するストラクチャーを表す <see cref="LocatableMapObject"/>。</param>
-        /// <param name="location">配置先の距離程 [m]。</param>
-        /// <param name="targetBlockLocation">配置先のストラクチャー描画ブロックの距離程 [m]。</param>
+        /// <param name="to">設置先の距離程 [m]。</param>
+        /// <param name="from">基準点とする距離程 [m]。</param>
         /// <returns>ワールド変換行列を表す <see cref="Matrix"/>。</returns>
-        public Matrix GetTrackMatrix(LocatableMapObject mapObject, double location, double targetBlockLocation)
-            => GetTrackMatrixMethod.Invoke(Src, new object[] { mapObject.Src, location, targetBlockLocation });
+        public Matrix GetTrackMatrix(LocatableMapObject mapObject, double to, double from)
+            => GetTrackMatrixMethod.Invoke(Src, new object[] { mapObject.Src, to, from });
 
         private class Sounds3DConverter : ITwoWayConverter<object, Sound[]>
         {
