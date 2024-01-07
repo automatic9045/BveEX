@@ -12,7 +12,7 @@
             position: absolute;
             left: 0;
             top: 0;
-            font: 700 1em NotoSansJPLight, sans-serif;
+            font: 700 1em NotoSansJP, sans-serif;
             line-height: 1;
             color: var(--accent-color);
         }
@@ -31,7 +31,7 @@
             position: absolute;
             left: 0;
             top: -0.1em;
-            font: 700 2.5em NotoSansJPLight, sans-serif;
+            font: 700 2.5em NotoSansJP, sans-serif;
             line-height: 1;
             color: #ff000040;
         }
