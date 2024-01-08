@@ -64,7 +64,7 @@ namespace AtsEx
             AtsEx.VersionFormProvider.SetScenario(plugins.Select(item => item.Value));
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             AtsEx.VersionFormProvider.UnsetScenario();
             _PluginService.Dispose();

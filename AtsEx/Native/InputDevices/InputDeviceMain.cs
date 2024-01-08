@@ -205,8 +205,11 @@ namespace AtsEx.Native.InputDevices
             ScenarioService?.BeaconPassed(args);
         }
 
-        private void OnScenarioClosed(object sender, EventArgs e)
+        private void OnScenarioClosed(object sender, AtsEx.AsInputDevice.ValueEventArgs<Scenario> e)
         {
+            // Scenario クラスのデストラクタ由来の場合
+            if (e.Value != ScenarioService?.Target) return;
+
             ScenarioService?.Dispose();
             ScenarioService = null;
 

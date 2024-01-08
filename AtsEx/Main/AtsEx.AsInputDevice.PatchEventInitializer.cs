@@ -38,7 +38,9 @@ namespace AtsEx
 
                     Target.Patches.DisposeScenarioPatch.Invoked += (sender, e) =>
                     {
-                        Target.ScenarioClosed?.Invoke(this, EventArgs.Empty);
+                        Scenario scenario = Scenario.FromSource(e.Instance);
+
+                        Target.ScenarioClosed?.Invoke(this, new ValueEventArgs<Scenario>(scenario));
                         return new PatchInvokationResult(SkipModes.Continue);
                     };
 

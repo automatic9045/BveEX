@@ -20,7 +20,7 @@ namespace AtsEx
             private readonly PatchSet Patches;
 
             public event EventHandler<ValueEventArgs<ScenarioInfo>> ScenarioOpened;
-            public event EventHandler ScenarioClosed;
+            public event EventHandler<ValueEventArgs<Scenario>> ScenarioClosed;
 
             public event EventHandler<ValueEventArgs<VehicleSpec>> OnSetVehicleSpec;
             public event EventHandler<ValueEventArgs<DefaultBrakePosition>> OnInitialize;
