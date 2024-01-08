@@ -83,6 +83,12 @@ namespace BveTypes.ClassWrappers
             return CreateFromSource(wrapperType, src);
         }
 
+        /// <inheritdoc/>
+        public static bool operator ==(ClassWrapperBase left, ClassWrapperBase right) => left.Equals(right);
+
+        /// <inheritdoc/>
+        public static bool operator !=(ClassWrapperBase left, ClassWrapperBase right) => !(left == right);
+
         /// <summary>
         /// ラップされているオリジナル オブジェクトを取得します。
         /// </summary>
