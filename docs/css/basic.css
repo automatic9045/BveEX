@@ -363,6 +363,11 @@ a {
             transform: scale(1.1);
         }
 
+        a.card.disabled {
+            pointer-events: none;
+            opacity: 50%;
+        }
+
         a.card > img.card-image {
             display: block;
             position: absolute;
