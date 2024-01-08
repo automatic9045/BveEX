@@ -22,11 +22,9 @@ namespace AtsEx.BveHackerServices
         private readonly MainForm MainForm;
 
         private readonly HarmonyPatch LoadPatch;
-        private readonly HarmonyPatch DisposePatch;
+        private readonly HarmonyPatch UnloadPatch;
         private readonly HarmonyPatch InitializeTimeAndLocationMethodPatch;
         private readonly HarmonyPatch InitializeMethodPatch;
-
-        private ScenarioInfo TargetScenarioInfo = null;
 
         public ScenarioInfo CurrentScenarioInfo
         {
@@ -52,17 +50,18 @@ namespace AtsEx.BveHackerServices
             ClassMemberSet scenarioMembers = bveTypes.GetClassInfoOf<Scenario>();
 
             FastMethod loadMethod = mainFormMembers.GetSourceMethodOf(nameof(BveTypes.ClassWrappers.MainForm.LoadScenario));
-            FastMethod disposeMethod = scenarioMembers.GetSourceMethodOf(nameof(Scenario.Dispose));
+            FastMethod unloadMethod = mainFormMembers.GetSourceMethodOf(nameof(BveTypes.ClassWrappers.MainForm.UnloadScenario));
+
             FastMethod initializeTimeAndLocationMethod = scenarioMembers.GetSourceMethodOf(nameof(Scenario.InitializeTimeAndLocation));
             FastMethod initializeMethod = scenarioMembers.GetSourceMethodOf(nameof(Scenario.Initialize));
 
             LoadPatch = CreateAndSetupPatch(loadMethod.Source);
-            DisposePatch = CreateAndSetupPatch(disposeMethod.Source);
+            UnloadPatch = CreateAndSetupPatch(unloadMethod.Source);
             InitializeTimeAndLocationMethodPatch = CreateAndSetupPatch(initializeTimeAndLocationMethod.Source, PatchType.Postfix);
             InitializeMethodPatch = CreateAndSetupPatch(initializeMethod.Source, PatchType.Postfix);
 
             LoadPatch.Invoked += OnLoaded;
-            DisposePatch.Invoked += OnDisposed;
+            UnloadPatch.Invoked += OnDisposed;
 
 
             HarmonyPatch CreateAndSetupPatch(MethodBase original, PatchType patchType = PatchType.Prefix)
@@ -74,10 +73,10 @@ namespace AtsEx.BveHackerServices
 
         private PatchInvokationResult OnLoaded(object sender, PatchInvokedEventArgs e)
         {
-            ScenarioInfo scenarioInfo = ScenarioInfo.FromSource(e.Args[0]);
-            if (!(scenarioInfo is null) && scenarioInfo != TargetScenarioInfo) ScenarioClosed?.Invoke(EventArgs.Empty);
-            TargetScenarioInfo = scenarioInfo;
+            // 再読込の場合は MainForm.UnloadScenario が呼ばれない
+            if (!(CurrentScenario is null)) ScenarioClosed?.Invoke(EventArgs.Empty);
 
+            ScenarioInfo scenarioInfo = ScenarioInfo.FromSource(e.Args[0]);
             ScenarioOpened?.Invoke(new ScenarioOpenedEventArgs(scenarioInfo));
 
             return PatchInvokationResult.DoNothing(e);
@@ -85,19 +84,14 @@ namespace AtsEx.BveHackerServices
 
         private PatchInvokationResult OnDisposed(object sender, PatchInvokedEventArgs e)
         {
-            if (CurrentScenarioInfo == TargetScenarioInfo)
-            {
-                TargetScenarioInfo = null;
-                ScenarioClosed?.Invoke(EventArgs.Empty);
-            }
-
+            ScenarioClosed?.Invoke(EventArgs.Empty);
             return PatchInvokationResult.DoNothing(e);
         }
 
         public void Dispose()
         {
             LoadPatch.Dispose();
-            DisposePatch.Dispose();
+            UnloadPatch.Dispose();
             InitializeTimeAndLocationMethodPatch.Dispose();
             InitializeMethodPatch.Dispose();
         }
