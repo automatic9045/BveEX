@@ -84,6 +84,17 @@ div#content {
     position: relative;
 }
 
+    div#content > div.subheader-image {
+        height: 320px;
+        margin-bottom: 40px;
+    }
+
+        div#content > div.subheader-image > img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
     div#content > div.title-accent {
         position: absolute;
         top: -32px;
@@ -645,6 +656,10 @@ img.icon-download {
     div#content {
         font-size: 14px;
     }
+
+        div#content > div.subheader-image {
+            max-height: 70vw;
+        }
 
     code {
         font-size: 1em;
