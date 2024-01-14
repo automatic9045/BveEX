@@ -115,7 +115,7 @@ div#content {
             line-height: 1;
             text-align: right;
             color: black;
-            opacity: 0.25;
+            opacity: 0.4;
         }
 
             div#content > div.subheader-image > span::first-letter {
