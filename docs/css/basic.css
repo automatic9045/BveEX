@@ -42,7 +42,7 @@
     font-family: "Poppins";
     font-style: normal;
     font-weight: 400;
-    src: url("/AtsEX/fonts/Poppins-Regular.woff2") format("woff2"), url("/AtsEX/fonts/Poppins-Regular.woff2") format("woff");
+    src: url("/AtsEX/fonts/Poppins-Regular.woff2") format("woff2"), url("/AtsEX/fonts/Poppins-Regular.woff") format("woff");
     font-display: swap;
 }
 
