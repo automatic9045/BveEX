@@ -93,8 +93,10 @@ div#content {
 }
 
     div#content > div.subheader-image {
+        position: relative;
         height: 320px;
         margin-bottom: 40px;
+        overflow-y: hidden;
     }
 
         div#content > div.subheader-image > img {
@@ -102,6 +104,48 @@ div#content {
             height: 100%;
             object-fit: cover;
         }
+
+        div#content > div.subheader-image > span {
+            position: absolute;
+            bottom: -0.05em;
+            right: 0;
+            width: auto;
+            height: auto;
+            font: 500 6em Poppins, sans-serif;
+            line-height: 1;
+            text-align: right;
+            color: black;
+            opacity: 0.25;
+        }
+
+            div#content > div.subheader-image > span::first-letter {
+                font-size: 1.5em;
+                color: var(--main-very-dark-color);
+            }
+
+            div#content > div.subheader-image > span::before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                width: 80%;
+                height: 70%;
+                background-color: white;
+                z-index: -1;
+                opacity: 0.65;
+            }
+
+            div#content > div.subheader-image > span::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 60%;
+                height: 70%;
+                background-color: white;
+                z-index: -1;
+                opacity: 0.75;
+            }
 
     div#content > div.title-accent {
         position: absolute;
@@ -651,6 +695,10 @@ img.icon-download {
 }
 
 @media screen and (max-width: 1279px) {
+    div#content > div.subheader-image > span {
+        font-size: 4.5em;
+    }
+
     div#content > div.title-accent {
         display: none;
     }
@@ -668,6 +716,9 @@ img.icon-download {
         div#content > div.subheader-image {
             max-height: 70vw;
         }
+            div#content > div.subheader-image > span {
+                display: none;
+            }
 
     code {
         font-size: 1em;
