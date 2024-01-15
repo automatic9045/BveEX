@@ -580,10 +580,14 @@ img, video {
     max-width: 100%;
 }
 
-img.small, video.small {
-    max-width: 100%;
-    width: 640px;
-}
+    img.small, video.small {
+        max-width: 100%;
+        width: 640px;
+    }
+
+    img.two-contents, video.two-contents {
+        max-width: calc((100% - 16px) / 2);
+    }
 
 img.icon-download {
     height: 1em;
@@ -730,5 +734,9 @@ img.icon-download {
 
     span.except-wbr {
         display: none;
+    }
+
+    img.two-contents, video.two-contents {
+        max-width: 100%;
     }
 }
