@@ -55,6 +55,11 @@
             display: inline;
         }
 
+a.fanbox > img {
+    max-width: 240px;
+    margin: 8px 0;
+}
+
 @media screen and (max-width: 1279px) {
     div.eyecatch > img {
         bottom: 12px;
