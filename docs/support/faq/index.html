@@ -61,8 +61,9 @@
                     <li><a href="support/faq/#install-addons">AtsEXを搭載している車両・路線の導入方法を教えてください。</a></li>
                     <li><a href="support/faq/#pi-dont-work">AtsEXプラグインが動作しません。</a></li>
                     <li><a href="support/faq/#bve5-support">AtsEXはBVE5にも対応していますか?</a></li>
+                    <li><a href="support/faq/#other-inputdevices">AtsEXを導入したところ、他の入力デバイスプラグインが動作しなくなりました。</a></li>
                     <li><a href="support/faq/#edit-bve">AtsEXはBVEの実行ファイル (exe) を書きかえますか?</a></li>
-                    <li><a href="support/faq/#compability">AtsEXを一度使用したBVEでは、従来のATSプラグインを読み込めなくなりますか?</a></li>
+                    <li><a href="support/faq/#compatibility">AtsEXを一度使用したBVEでは、従来のATSプラグインを読み込めなくなりますか?</a></li>
                     <li><a href="support/faq/#case">"AtsEx"と"AtsEX"、どちらが正しい表記なのでしょうか?</a></li>
                     <li><a href="support/faq/#official">BVEの内部を操作することには、倫理的な問題がありませんか?</a></li>
                 </ul>
@@ -205,6 +206,17 @@
             </div>
 
             <div class="q-and-a">
+                <h3 id="other-inputdevices">AtsEXを導入したところ、他の入力デバイスプラグインが動作しなくなりました。</h3>
+                <p>
+                    その入力デバイスプラグインに対してもゾーン識別子の削除を行ってください。
+                </p>
+            </div>
+            <p>
+                入力デバイスプラグインにゾーン識別子が残存していると、それまではエラーが発生していなくても、AtsEX併用時にエラーとなる場合があります。<br />
+                そのプラグインのDLLファイルのゾーン識別子も削除してください。方法は<a href="download/installation-guide/other.html">AtsEX本体のゾーン識別子を削除する際と同様です</a>。
+            </p>
+
+            <div class="q-and-a">
                 <h3 id="edit-bve">AtsEXはBVEの実行ファイル (exe) を書きかえますか?</h3>
                 <p>
                     AtsEXを使用してもBVEの実行ファイルは一切書きかえられません。
@@ -215,7 +227,7 @@
             </p>
 
             <div class="q-and-a">
-                <h3 id="compability">AtsEXを一度使用したBVEでは、従来のATSプラグインを読み込めなくなりますか?</h3>
+                <h3 id="compatibility">AtsEXを一度使用したBVEでは、従来のATSプラグインを読み込めなくなりますか?</h3>
                 <p>
                     全ての従来のATSプラグインを引き続き読み込むことができます。
                 </p>
