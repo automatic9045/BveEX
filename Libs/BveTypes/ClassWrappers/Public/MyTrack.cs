@@ -31,6 +31,7 @@ namespace BveTypes.ClassWrappers
 
             GetDirectionAtMethod = members.GetSourceMethodOf(nameof(GetDirectionAt));
             GetPositionMethod = members.GetSourceMethodOf(nameof(GetPosition));
+            GetTransformMethod = members.GetSourceMethodOf(nameof(GetTransform));
         }
 
         /// <summary>
@@ -89,5 +90,14 @@ namespace BveTypes.ClassWrappers
         /// <param name="locationFrom">基点とする距離程 [m]。</param>
         /// <returns>距離程 <paramref name="locationFrom"/> を基点とした、距離程 <paramref name="locationTo"/> における自軌道の位置ベクトル。</returns>
         public Vector3 GetPosition(double locationTo, double locationFrom) => GetPositionMethod.Invoke(Src, new object[] { locationTo, locationFrom });
+
+        private static FastMethod GetTransformMethod;
+        /// <summary>
+        /// 指定した距離程から目標距離程への自軌道の射影行列 [m] を求めます。
+        /// </summary>
+        /// <param name="locationTo">目標距離程 [m]。</param>
+        /// <param name="locationFrom">基点とする距離程 [m]。</param>
+        /// <returns>距離程 <paramref name="locationFrom"/> から距離程 <paramref name="locationTo"/> への自軌道の射影行列。</returns>
+        public Matrix GetTransform(double locationTo, double locationFrom) => GetTransformMethod.Invoke(Src, new object[] { locationTo, locationFrom });
     }
 }

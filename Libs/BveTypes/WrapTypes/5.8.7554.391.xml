@@ -648,6 +648,7 @@
 
 		<Method Wrapper="GetDirectionAt" WrapperParams="System.Int32" Original="a"/>
 		<Method Wrapper="GetPosition" WrapperParams="System.Double; System.Double" Original="c"/>
+		<Method Wrapper="GetTransform" WrapperParams="System.Double; System.Double" Original="b"/>
 	</Class>
 
 	<Class Wrapper="NotchInfo" Original="e9">
