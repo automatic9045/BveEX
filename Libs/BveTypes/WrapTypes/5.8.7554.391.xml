@@ -15,11 +15,13 @@
 		<Field WrapperProperty="IsErrorCritical" Original="a" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="ErrorCount" Original="b" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Panel" Original="e" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="ProgressBar" Original="h" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="ErrorListView" Original="p" IsOriginalNonPublic="true"/>
 
 		<Method Wrapper="ThrowError" WrapperParams="System.String; System.String; System.Int32; System.Int32" Original="a"/>
 		<Method Wrapper="ThrowError" WrapperParams="atsex:LoadError" Original="a"/>
 		<Method Wrapper="ThrowErrors" WrapperParams="System.Collections.Generic.IEnumerable`1[atsex:LoadError]" Original="a"/>
+		<Method Wrapper="SetProgress" WrapperParams="System.Double" Original="a"/>
 	</Class>
 
 	<Class Wrapper="MainForm" Original="bz">

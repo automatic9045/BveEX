@@ -24,11 +24,13 @@ namespace BveTypes.ClassWrappers
             IsErrorCriticalField = members.GetSourceFieldOf(nameof(IsErrorCritical));
             ErrorCountField = members.GetSourceFieldOf(nameof(ErrorCount));
             PanelField = members.GetSourceFieldOf(nameof(Panel));
+            ProgressBarField = members.GetSourceFieldOf(nameof(ProgressBar));
             ErrorListViewField = members.GetSourceFieldOf(nameof(ErrorListView));
 
             ThrowErrorMethod1 = members.GetSourceMethodOf(nameof(ThrowError), new Type[] { typeof(string), typeof(string), typeof(int), typeof(int) });
             ThrowErrorMethod2 = members.GetSourceMethodOf(nameof(ThrowError), new Type[] { typeof(LoadError) });
             ThrowErrorsMethod = members.GetSourceMethodOf(nameof(ThrowErrors), new Type[] { typeof(IEnumerable<LoadError>) });
+            SetProgressMethod = members.GetSourceMethodOf(nameof(SetProgress));
         }
 
         /// <summary>
@@ -68,6 +70,16 @@ namespace BveTypes.ClassWrappers
         private static FastField PanelField;
         public Panel Panel => PanelField.GetValue(Src);
 
+        private static FastField ProgressBarField;
+        /// <summary>
+        /// プログレスバーを取得・設定します。
+        /// </summary>
+        public ProgressBar ProgressBar
+        {
+            get => ProgressBarField.GetValue(Src);
+            set => ProgressBarField.SetValue(Src, value);
+        }
+
         private static FastField ErrorListViewField;
         public ListView ErrorListView => ErrorListViewField.GetValue(Src);
 
@@ -106,5 +118,12 @@ namespace BveTypes.ClassWrappers
         /// 通常は <see cref="LoadErrorManager.Throw(LoadError)"/> メソッドを使用してください。
         /// </remarks>
         public void ThrowErrors(IEnumerable<LoadError> errors) => ThrowErrorsMethod.Invoke(Src, new object[] { errors.Select(error => error.Src) });
+
+        private static FastMethod SetProgressMethod;
+        /// <summary>
+        /// プログレスバーの値を更新します。
+        /// </summary>
+        /// <param name="progress">新しいプログレスバーの値 (0 ～ 1)。</param>
+        public void SetProgress(double progress) => SetProgressMethod.Invoke(Src, new object[] { progress });
     }
 }
