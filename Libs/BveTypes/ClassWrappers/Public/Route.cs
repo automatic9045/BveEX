@@ -33,6 +33,12 @@ namespace BveTypes.ClassWrappers
             StructuresGetMethod = members.GetSourcePropertyGetterOf(nameof(Structures));
             StructuresField = members.GetSourceFieldOf(nameof(Structures));
 
+            RollingNoiseObjectsGetMethod = members.GetSourcePropertyGetterOf(nameof(RollingNoiseObjects));
+
+            FlangeNoiseObjectsGetMethod = members.GetSourcePropertyGetterOf(nameof(FlangeNoiseObjects));
+
+            JointNoiseObjectsGetMethod = members.GetSourcePropertyGetterOf(nameof(JointNoiseObjects));
+
             CabIlluminanceObjectsGetMethod = members.GetSourcePropertyGetterOf(nameof(CabIlluminanceObjects));
 
             StationsGetMethod = members.GetSourcePropertyGetterOf(nameof(Stations));
@@ -108,6 +114,24 @@ namespace BveTypes.ClassWrappers
             get => StructureSet.FromSource(StructuresGetMethod.Invoke(Src, null));
             set => StructuresField.SetValue(Src, value.Src);
         }
+
+        private static FastMethod RollingNoiseObjectsGetMethod;
+        /// <summary>
+        /// 設定した車輪転動音のリストを取得します。
+        /// </summary>
+        public MapFunctionList RollingNoiseObjects => MapFunctionList.FromSource(RollingNoiseObjectsGetMethod.Invoke(Src, null));
+
+        private static FastMethod FlangeNoiseObjectsGetMethod;
+        /// <summary>
+        /// 設定したフランジきしり音のリストを取得します。
+        /// </summary>
+        public MapFunctionList FlangeNoiseObjects => MapFunctionList.FromSource(FlangeNoiseObjectsGetMethod.Invoke(Src, null));
+
+        private static FastMethod JointNoiseObjectsGetMethod;
+        /// <summary>
+        /// 設定した分岐器通過音のリストを取得します。
+        /// </summary>
+        public MapFunctionList JointNoiseObjects => MapFunctionList.FromSource(JointNoiseObjectsGetMethod.Invoke(Src, null));
 
         private static FastMethod CabIlluminanceObjectsGetMethod;
         /// <summary>

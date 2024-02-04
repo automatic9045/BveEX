@@ -776,6 +776,15 @@
 		<Property Wrapper="Structures">
 			<Getter Original="y"/>
 		</Property>
+		<Property Wrapper="RollingNoiseObjects">
+			<Getter Original="q"/>
+		</Property>
+		<Property Wrapper="FlangeNoiseObjects">
+			<Getter Original="a"/>
+		</Property>
+		<Property Wrapper="JointNoiseObjects">
+			<Getter Original="m"/>
+		</Property>
 		<Property Wrapper="CabIlluminanceObjects">
 			<Getter Original="d"/>
 		</Property>
