@@ -10,7 +10,7 @@ namespace AtsEx.MapStatements
     {
         public static IEnumerable<TextWithPosition> GetStatementsFromText(string text)
         {
-            string trimmedLine = text.ToLower();
+            string trimmedText = text.ToLowerInvariant();
 
             {
                 bool isInString = false;
@@ -19,13 +19,13 @@ namespace AtsEx.MapStatements
                 int notTrimmedLastLineBreakIndex = -1;
 
                 int lastStatementEndIndex = -1;
-                int notTrimmedLastStatementEndIndex = trimmedLine.Length - trimmedLine.TrimStart().Length - 1;
+                int notTrimmedLastStatementEndIndex = trimmedText.Length - trimmedText.TrimStart().Length - 1;
 
                 int i = 0;
                 int n = 0;
-                while (i < trimmedLine.Length)
+                while (i < trimmedText.Length)
                 {
-                    switch (trimmedLine[i])
+                    switch (trimmedText[i])
                     {
                         case '\n':
                             isInString = false;
@@ -63,7 +63,7 @@ namespace AtsEx.MapStatements
                         case '\t':
                             if (!isInString)
                             {
-                                trimmedLine = trimmedLine.Remove(i, 1);
+                                trimmedText = trimmedText.Remove(i, 1);
                                 i--;
                             }
                             break;
@@ -71,11 +71,11 @@ namespace AtsEx.MapStatements
                         case ';':
                             if (!isInString)
                             {
-                                trimmedLine = trimmedLine.Remove(i, 1);
+                                trimmedText = trimmedText.Remove(i, 1);
                                 i--;
                                 if (i != lastStatementEndIndex)
                                 {
-                                    string statementText = trimmedLine.Substring(lastStatementEndIndex + 1, i - lastStatementEndIndex);
+                                    string statementText = trimmedText.Substring(lastStatementEndIndex + 1, i - lastStatementEndIndex);
                                     string notTrimmedStatementText = text.Substring(notTrimmedLastStatementEndIndex + 1, n - notTrimmedLastStatementEndIndex);
 
                                     int headSpaceCount = notTrimmedStatementText.Length - notTrimmedStatementText.TrimStart().Length;
