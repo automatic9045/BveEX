@@ -396,6 +396,9 @@
 			<Getter Original="f"/>
 		</Property>
 
+		<Field WrapperProperty="HasDeviceLost" Original="e" IsOriginalNonPublic="true"/>
+
+		<Method Wrapper="InitializeStates" WrapperParams="System.Void" Original="a" IsOriginalNonPublic="true"/>
 		<Method Wrapper="Render" WrapperParams="atsex:IDrawable" Original="a"/>
 	</Class>
 
