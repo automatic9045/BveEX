@@ -16,7 +16,7 @@ namespace BveTypes.ClassWrappers
     /// <summary>
     /// Direct3D9 から表示可能な 3D モデルを表します。
     /// </summary>
-    public class Model : ClassWrapperBase
+    public class Model : ClassWrapperBase, IDisposable
     {
         [InitializeClassWrapper]
         private static void Initialize(BveTypeSet bveTypes)
@@ -25,6 +25,7 @@ namespace BveTypes.ClassWrappers
 
             FromXFileMethod = members.GetSourceMethodOf(nameof(FromXFile));
             CreateRectangleWithTextureMethod = members.GetSourceMethodOf(nameof(CreateRectangleWithTexture));
+            DisposeMethod = members.GetSourceMethodOf(nameof(Dispose));
 
             MeshGetMethod = members.GetSourcePropertyGetterOf(nameof(Mesh));
             MeshSetMethod = members.GetSourcePropertySetterOf(nameof(Mesh));
@@ -71,6 +72,10 @@ namespace BveTypes.ClassWrappers
         /// <returns>読み込まれたモデルを表す <see cref="Model"/>。</returns>
         public static Model CreateRectangleWithTexture(RectangleF rectangle, float z, int transparentColor, string texturePath)
             => FromSource(CreateRectangleWithTextureMethod.Invoke(null, new object[] { rectangle, z, transparentColor, texturePath }));
+
+        private static FastMethod DisposeMethod;
+        /// <inheritdoc/>
+        public void Dispose() => DisposeMethod.Invoke(Src, null);
 
         private static FastMethod MeshGetMethod;
         private static FastMethod MeshSetMethod;

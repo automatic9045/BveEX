@@ -629,6 +629,7 @@
 
 		<Method Wrapper="FromXFile" WrapperParams="System.String" Original="a" IsWrapperStatic="true" IsOriginalStatic="true"/>
 		<Method Wrapper="CreateRectangleWithTexture" WrapperParams="System.Drawing.RectangleF, System.Drawing; System.Single; System.Int32; System.String" Original="a" IsWrapperStatic="true" IsOriginalStatic="true"/>
+		<Method Wrapper="Dispose" WrapperParams="void" Original="Dispose"/>
 		<Method Wrapper="Draw" WrapperParams="atsex:Direct3DProvider; System.Boolean" Original="a"/>
 	</Class>
 
