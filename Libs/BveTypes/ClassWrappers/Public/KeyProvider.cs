@@ -23,6 +23,10 @@ namespace BveTypes.ClassWrappers
             ClassMemberSet members = bveTypes.GetClassInfoOf<KeyProvider>();
 
             InputDevicesGetMethod = members.GetSourcePropertyGetterOf(nameof(InputDevices));
+
+            LeverMovedEvent = members.GetSourceEventOf(nameof(LeverMoved));
+            KeyDownEvent = members.GetSourceEventOf(nameof(KeyDown));
+            KeyUpEvent = members.GetSourceEventOf(nameof(KeyUp));
         }
 
         /// <summary>
@@ -45,5 +49,50 @@ namespace BveTypes.ClassWrappers
         /// 読み込まれている入力デバイスプラグインを取得します。
         /// </summary>
         public Dictionary<string, IInputDevice> InputDevices => InputDevicesGetMethod.Invoke(Src, null);
+
+        private static FastEvent LeverMovedEvent;
+        /// <summary>
+        /// 運転台レバーが操作されたときに発生します。
+        /// </summary>
+        public event InputEventHandler LeverMoved
+        {
+            add => LeverMovedEvent.Add(Src, value);
+            remove => LeverMovedEvent.Remove(Src, value);
+        }
+        /// <summary>
+        /// <see cref="LeverMoved"/> イベントを実行します。
+        /// </summary>
+        /// <param name="args">対象となるキーの情報。</param>
+        public void LeverMoved_Invoke(InputEventArgs args) => LeverMovedEvent.Invoke(Src, new object[] { (object)Src, args });
+
+        private static FastEvent KeyDownEvent;
+        /// <summary>
+        /// キーが押されたときに発生します。
+        /// </summary>
+        public event InputEventHandler KeyDown
+        {
+            add => KeyDownEvent.Add(Src, value);
+            remove => KeyDownEvent.Remove(Src, value);
+        }
+        /// <summary>
+        /// <see cref="KeyDown"/> イベントを実行します。
+        /// </summary>
+        /// <param name="args">対象となるキーの情報。</param>
+        public void KeyDown_Invoke(InputEventArgs args) => KeyDownEvent.Invoke(Src, new object[] { (object)Src, args });
+
+        private static FastEvent KeyUpEvent;
+        /// <summary>
+        /// 押されていたキーが離されたときに発生します。
+        /// </summary>
+        public event InputEventHandler KeyUp
+        {
+            add => KeyUpEvent.Add(Src, value);
+            remove => KeyUpEvent.Remove(Src, value);
+        }
+        /// <summary>
+        /// <see cref="KeyUp"/> イベントを実行します。
+        /// </summary>
+        /// <param name="args">対象となるキーの情報。</param>
+        public void KeyUp_Invoke(InputEventArgs args) => KeyUpEvent.Invoke(Src, new object[] { Src, args });
     }
 }

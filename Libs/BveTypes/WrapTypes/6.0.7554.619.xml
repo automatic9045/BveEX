@@ -508,6 +508,10 @@
 		<Property Wrapper="InputDevices">
 			<Getter Original="c"/>
 		</Property>
+
+		<Event Wrapper="LeverMoved" OriginalAddAccessor="c" OriginalRemoveAccessor="f" OriginalDelegateField="d"/>
+		<Event Wrapper="KeyDown" OriginalAddAccessor="e" OriginalRemoveAccessor="d" OriginalDelegateField="e"/>
+		<Event Wrapper="KeyUp" OriginalAddAccessor="b" OriginalRemoveAccessor="a" OriginalDelegateField="f"/>
 	</Class>
 
 	<Class Wrapper="LeverText" Original="ci">
