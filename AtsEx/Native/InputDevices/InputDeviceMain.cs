@@ -6,10 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using BveTypes;
 using BveTypes.ClassWrappers;
 using FastMember;
 using ObjectiveHarmonyPatch;
 using TypeWrapping;
+using UnembeddedResources;
 
 using AtsEx.Handles;
 using AtsEx.Native.Ats;
@@ -20,12 +22,32 @@ using AtsEx.PluginHost.Input.Native;
 using AtsEx.PluginHost.Native;
 using AtsEx.PluginHost.Plugins;
 
-using BveTypes;
-
 namespace AtsEx.Native.InputDevices
 {
     public class InputDeviceMain : IDisposable
     {
+        private class ResourceSet
+        {
+            private readonly ResourceLocalizer Localizer = ResourceLocalizer.FromResXOfType<InputDeviceMain>("Core");
+
+            [ResourceStringHolder(nameof(Localizer))] public Resource<string> RequiresReboot { get; private set; }
+            [ResourceStringHolder(nameof(Localizer))] public Resource<string> LaunchingFailed { get; private set; }
+
+            public ResourceSet()
+            {
+                ResourceLoader.LoadAndSetAll(this);
+            }
+        }
+
+        private static readonly Lazy<ResourceSet> Resources = new Lazy<ResourceSet>();
+
+        static InputDeviceMain()
+        {
+#if DEBUG
+            _ = Resources.Value;
+#endif
+        }
+
         private readonly CallerInfo CallerInfo;
 
         private AtsEx.AsInputDevice AtsEx = null;
@@ -43,29 +65,38 @@ namespace AtsEx.Native.InputDevices
 
             AppInitializer.Initialize(CallerInfo, LaunchMode.InputDevice);
 
+            if (Application.OpenForms.Count > 0)
+            {
+                string confirmMessage = string.Format(Resources.Value.RequiresReboot.Value, App.Instance.ProductShortName);
+                if (MessageBox.Show(confirmMessage, App.Instance.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    Application.OpenForms[0].Close();
+                }
+                else
+                {
+                    string errorMessage = string.Format(Resources.Value.LaunchingFailed.Value, App.Instance.ProductShortName);
+                    MessageBox.Show(errorMessage, App.Instance.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                return;
+            }
+
             BveTypeSetLoader bveTypesLoader = new BveTypeSetLoader();
             BveTypeSet bveTypes = bveTypesLoader.Load();
 
-            if (CanInitializeAtsEx())
+            ClassMemberSet mainFormMembers = bveTypes.GetClassInfoOf<MainForm>();
+            FastMethod createDirectXDevicesMethod = mainFormMembers.GetSourceMethodOf(nameof(MainForm.CreateDirectXDevices));
+
+            HarmonyPatch createDirectXDevicesPatch = HarmonyPatch.Patch(nameof(InputDeviceMain), createDirectXDevicesMethod.Source, PatchType.Prefix);
+            createDirectXDevicesPatch.Invoked += OnCreateDirectXDevices;
+
+
+            PatchInvokationResult OnCreateDirectXDevices(object sender, PatchInvokedEventArgs e)
             {
+                createDirectXDevicesPatch.Invoked -= OnCreateDirectXDevices;
+
                 InitializeAtsEx();
-            }
-            else
-            {
-                ClassMemberSet mainFormMembers = bveTypes.GetClassInfoOf<MainForm>();
-                FastMethod createDirectXDevicesMethod = mainFormMembers.GetSourceMethodOf(nameof(MainForm.CreateDirectXDevices));
-
-                HarmonyPatch createDirectXDevicesPatch = HarmonyPatch.Patch(nameof(InputDeviceMain), createDirectXDevicesMethod.Source, PatchType.Prefix);
-                createDirectXDevicesPatch.Invoked += OnCreateDirectXDevices;
-
-
-                PatchInvokationResult OnCreateDirectXDevices(object sender, PatchInvokedEventArgs e)
-                {
-                    createDirectXDevicesPatch.Invoked -= OnCreateDirectXDevices;
-
-                    InitializeAtsEx();
-                    return new PatchInvokationResult(SkipModes.Continue);
-                }
+                return new PatchInvokationResult(SkipModes.Continue);
             }
 
             AtsMain.LoadedAsInputDevice();
@@ -74,9 +105,6 @@ namespace AtsEx.Native.InputDevices
                 LoadedVehiclePluginUsing = e.VehiclePluginUsing;
                 LoadedVehicleConfig = e.VehicleConfig;
             };
-
-
-            bool CanInitializeAtsEx() => Application.OpenForms.Count > 0;
 
             void InitializeAtsEx()
             {
