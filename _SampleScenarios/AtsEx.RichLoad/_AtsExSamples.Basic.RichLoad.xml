@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<RichLoadConfig>
+	<StaticImage Path="..\AtsEx.Samples\Thumbnails\Basic\RichLoad.Default.png" Width="2048" Height="1152" />
+</RichLoadConfig>
