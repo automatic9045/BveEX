@@ -201,6 +201,13 @@
   <ItemGroup>
     <Content Include="Resources\MemberNotInitializedException.resx" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\LaunchModeConverter.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\LaunchModeConverter.ja.resx" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy /y /i "$(TargetDir)" "$(SolutionDir)_SampleScenarios\AtsEx\Debug\"
