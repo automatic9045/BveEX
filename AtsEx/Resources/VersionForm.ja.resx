@@ -121,7 +121,7 @@
     <value>{0} バージョン情報・プラグイン一覧</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>{0}　Version {1}</value>
+    <value>{0}　Version {1}　{2}</value>
   </data>
   <data name="License" xml:space="preserve">
     <value>ライセンス</value>
