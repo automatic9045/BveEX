@@ -140,6 +140,7 @@
     <Compile Include="Sound\Native\IAtsSoundSet.cs" />
     <Compile Include="Sound\Native\IAtsSound.cs" />
     <Compile Include="Sound\PlayState.cs" />
+    <Compile Include="Troubleshooting\ITroubleshooter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\PropertyNotInitializedException.resx" />

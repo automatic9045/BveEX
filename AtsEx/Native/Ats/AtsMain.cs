@@ -14,6 +14,7 @@ using UnembeddedResources;
 
 using AtsEx.Handles;
 using AtsEx.Plugins;
+using AtsEx.Troubleshooting;
 using AtsEx.PluginHost;
 using AtsEx.PluginHost.Input.Native;
 using AtsEx.PluginHost.Native;
@@ -47,6 +48,7 @@ namespace AtsEx.Native.Ats
 
         private static bool IsLoadedAsInputDevice = false;
         private static CallerInfo CallerInfo;
+        private static TroubleshooterSet Troubleshooters;
 
         private static string VersionWarningText;
 
@@ -81,6 +83,8 @@ namespace AtsEx.Native.Ats
 
             AppInitializer.Initialize(CallerInfo, LaunchMode.Ats);
 
+            Troubleshooters = TroubleshooterSet.Load();
+
             BveTypeSetLoader bveTypesLoader = new BveTypeSetLoader();
             BveTypeSetLoader.ProfileForDifferentVersionBveLoadedEventArgs args = null;
             bveTypesLoader.ProfileForDifferentVersionBveLoaded += (sender, e) => args = e;
@@ -107,6 +111,9 @@ namespace AtsEx.Native.Ats
 
             AtsEx?.Dispose();
             AtsEx = null;
+
+            Troubleshooters?.Dispose();
+            Troubleshooters = null;
         }
 
         public static void SetVehicleSpec(VehicleSpec vehicleSpec)

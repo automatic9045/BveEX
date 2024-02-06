@@ -191,6 +191,7 @@
     <Compile Include="Sound\AtsSoundCommand.cs" />
     <Compile Include="Sound\AtsSoundCommandQueue.cs" />
     <Compile Include="Sound\AtsSoundSet.cs" />
+    <Compile Include="Troubleshooting\TroubleshooterSet.cs" />
     <Compile Include="Utilities\EnumerableInDictionaryEnumerator.cs" />
     <Compile Include="VersionForm\VersionForm.cs">
       <SubType>Form</SubType>

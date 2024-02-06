@@ -16,6 +16,7 @@ using UnembeddedResources;
 using AtsEx.Handles;
 using AtsEx.Native.Ats;
 using AtsEx.Plugins;
+using AtsEx.Troubleshooting;
 using AtsEx.PluginHost;
 using AtsEx.PluginHost.Handles;
 using AtsEx.PluginHost.Input.Native;
@@ -49,6 +50,7 @@ namespace AtsEx.Native.InputDevices
         }
 
         private readonly CallerInfo CallerInfo;
+        private readonly TroubleshooterSet Troubleshooters;
 
         private AtsEx.AsInputDevice AtsEx = null;
         private ScenarioService.AsInputDevice ScenarioService = null;
@@ -80,6 +82,8 @@ namespace AtsEx.Native.InputDevices
 
                 return;
             }
+
+            Troubleshooters = TroubleshooterSet.Load();
 
             BveTypeSetLoader bveTypesLoader = new BveTypeSetLoader();
             BveTypeSet bveTypes = bveTypesLoader.Load();
@@ -249,6 +253,7 @@ namespace AtsEx.Native.InputDevices
         {
             ScenarioService?.Dispose();
             AtsEx?.Dispose();
+            Troubleshooters?.Dispose();
         }
 
         public void Configure(IWin32Window owner) => AtsEx.VersionFormProvider.ShowForm();
