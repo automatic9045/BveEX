@@ -37,7 +37,20 @@ namespace AtsEx.Caller
                 AppDomain.CurrentDomain.AssemblyResolve += (sender, e) =>
                 {
                     AssemblyName assemblyName = new AssemblyName(e.Name);
-                    return assemblyName.Name == LauncherName ? Assembly.LoadFrom(launcherLocation) : null;
+                    if (assemblyName.Name == LauncherName)
+                    {
+                        if (!File.Exists(launcherLocation))
+                        {
+                            throw new FileNotFoundException("AtsEX が見つからないため、AtsEX Caller による要求を続行できません。" +
+                                "AtsEX をインストールしてください。インストール済の場合は、有効化されているか、またパスの指定が誤っていないかご確認ください。");
+                        }
+
+                        return Assembly.LoadFrom(launcherLocation);
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 };
 
                 CheckCallerCompatibility(launcherLocation);
