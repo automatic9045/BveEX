@@ -14,6 +14,7 @@ include '..\..\BaseMap.txt';
 0;
 	Train['test'].Load('TestTrain.txt', '1', 1);
 	Train['test_ex_1'].Load('Bus.txt', '0', 1);
+	Train['test_ex_2'].Load('Bus.txt', '0', 1);
 
 12.5;
 	structure['Info_Ex'].Put('1', -0.7, 4, 0, 0, -10, 0, 0, 0);
