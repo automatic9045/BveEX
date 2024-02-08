@@ -14,10 +14,10 @@ using AtsEx.PluginHost.Input;
 using AtsEx.PluginHost.Input.Native;
 using AtsEx.PluginHost.Plugins;
 
-namespace AtsEx.Samples.MapPlugins.TrainControllerEx
+namespace AtsEx.Samples.MapPlugins.TrainControllerEx.Manual
 {
     [PluginType(PluginType.MapPlugin)]
-    public class TrainController : AssemblyPluginBase
+    public class PluginMain : AssemblyPluginBase
     {
         private Train Train;
         private TrainLocator TrainLocator;
@@ -26,7 +26,7 @@ namespace AtsEx.Samples.MapPlugins.TrainControllerEx
         private float RotationSpeedFactor = 0; // -1 ～ 1
         private float Speed = 15 / 3.6f; // 初速度 15 [km/h] = (15 / 3.6) [m/s]
 
-        public TrainController(PluginBuilder builder) : base(builder)
+        public PluginMain(PluginBuilder builder) : base(builder)
         {
             BveHacker.ScenarioCreated += OnScenarioCreated;
         }
@@ -39,19 +39,19 @@ namespace AtsEx.Samples.MapPlugins.TrainControllerEx
 
         private void OnScenarioCreated(ScenarioCreatedEventArgs e)
         {
-            if (!e.Scenario.Trains.ContainsKey("test_ex"))
+            if (!e.Scenario.Trains.ContainsKey("test_ex_1"))
             {
-                throw new BveFileLoadException("キーが 'test_ex' の他列車が見つかりませんでした。", "TrainControllerEx");
+                throw new BveFileLoadException("キーが 'test_ex_1' の他列車が見つかりませんでした。", "TrainControllerEx.Manual");
             }
 
-            Train = e.Scenario.Trains["test_ex"];
+            Train = e.Scenario.Trains["test_ex_1"];
 
             Vector3 initialLocation = new Vector3(15, 0, 30); // 初期位置はワールド座標系で (15, 0, 30)
             float initialDirection = (float)(Math.PI * 0.5); // 回転の基点は手前方向、右回りを正とする。初期状態は π/2 = 左向き
 
             TrainLocator = new TrainLocator(Train, initialLocation, initialDirection, 0.2f, 0.01f,
                 () => BveHacker.Scenario.Route.MyTrack.GetTransform(0, BveHacker.Scenario.LocationManager.BlockIndex * 25));
-            Patch = Extensions.GetExtension<ITrainDrawPatchFactory>().Patch(nameof(TrainControllerEx), Train, TrainLocator.Draw);
+            Patch = Extensions.GetExtension<ITrainDrawPatchFactory>().Patch(nameof(Manual), Train, TrainLocator.Draw);
         }
 
         public override TickResult Tick(TimeSpan elapsed)

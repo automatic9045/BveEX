@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Samples.MapPlugins.Tr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Samples.VehiclePlugins.SimpleAts", "SamplePlugins\VehiclePlugins\SimpleAts\AtsEx.Samples.VehiclePlugins.SimpleAts.csproj", "{68D8C868-7775-42DB-A696-CF8DEF486A89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Samples.MapPlugins.TrainControllerEx", "SamplePlugins\MapPlugins\TrainControllerEx\AtsEx.Samples.MapPlugins.TrainControllerEx.csproj", "{9E5A6C98-1F14-460A-AC42-8138196AA3AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Samples.MapPlugins.TrainControllerEx.Manual", "SamplePlugins\MapPlugins\TrainControllerEx.Manual\AtsEx.Samples.MapPlugins.TrainControllerEx.Manual.csproj", "{9E5A6C98-1F14-460A-AC42-8138196AA3AE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Samples.MapPlugins.DXDynamicTextureTest", "SamplePlugins\MapPlugins\DXDynamicTextureTest\AtsEx.Samples.MapPlugins.DXDynamicTextureTest.csproj", "{C84BDF1C-D390-4A77-A3ED-35FBAAB2ED6F}"
 EndProject
