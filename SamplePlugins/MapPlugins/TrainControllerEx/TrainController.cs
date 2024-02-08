@@ -23,7 +23,7 @@ namespace AtsEx.Samples.MapPlugins.TrainControllerEx
         private TrainLocator TrainLocator;
         private TrainDrawPatch Patch;
 
-        private float RotationSpeedRatio = 0; // -1 ～ 1
+        private float RotationSpeedFactor = 0; // -1 ～ 1
         private float Speed = 15 / 3.6f; // 初速度 15 [km/h] = (15 / 3.6) [m/s]
 
         public TrainController(PluginBuilder builder) : base(builder)
@@ -46,25 +46,24 @@ namespace AtsEx.Samples.MapPlugins.TrainControllerEx
 
             Train = e.Scenario.Trains["test_ex"];
 
-            float GetBlockIndexFunc() => (float)e.Scenario.LocationManager.BlockIndex;
-            float GetMaxDrawDistanceFunc() => (float)e.Scenario.ObjectDrawer.DrawDistanceManager.DrawDistance;
             Vector3 initialLocation = new Vector3(15, 0, 30); // 初期位置はワールド座標系で (15, 0, 30)
             float initialDirection = (float)(Math.PI * 0.5); // 回転の基点は手前方向、右回りを正とする。初期状態は π/2 = 左向き
 
-            TrainLocator = new TrainLocator(Train, GetBlockIndexFunc, GetMaxDrawDistanceFunc, initialLocation, initialDirection, 0.2f, 0.01f);
-            Patch = Extensions.GetExtension<ITrainDrawPatchFactory>().Patch(nameof(Patch), Train, TrainLocator.CreateDrawDelegate());
+            TrainLocator = new TrainLocator(Train, initialLocation, initialDirection, 0.2f, 0.01f,
+                () => BveHacker.Scenario.Route.MyTrack.GetTransform(0, BveHacker.Scenario.LocationManager.BlockIndex * 25));
+            Patch = Extensions.GetExtension<ITrainDrawPatchFactory>().Patch(nameof(TrainControllerEx), Train, TrainLocator.Draw);
         }
 
         public override TickResult Tick(TimeSpan elapsed)
         {
             IReadOnlyDictionary<NativeAtsKeyName, KeyBase> atsKeys = Native.NativeKeys.AtsKeys;
 
-            RotationSpeedRatio = Math.Min(1, Math.Max(-1, CalculateSpeed(RotationSpeedRatio, 2, 1, elapsed, atsKeys[NativeAtsKeyName.H].IsPressed, atsKeys[NativeAtsKeyName.I].IsPressed)));
+            RotationSpeedFactor = Math.Min(1, Math.Max(-1, CalculateSpeed(RotationSpeedFactor, 2, 1, elapsed, atsKeys[NativeAtsKeyName.H].IsPressed, atsKeys[NativeAtsKeyName.I].IsPressed)));
 
             float maxSpeed = 60 / 3.6f; // 60 [km/h] = (60 / 3.6) [m/s]
             Speed = Math.Min(maxSpeed, Math.Max(-maxSpeed, CalculateSpeed(Speed, 5, 3, elapsed, atsKeys[NativeAtsKeyName.J].IsPressed, atsKeys[NativeAtsKeyName.K].IsPressed)));
 
-            TrainLocator.Tick(RotationSpeedRatio, Speed, elapsed);
+            TrainLocator.Tick(RotationSpeedFactor, Speed, elapsed);
 
             return new MapPluginTickResult();
         }
@@ -83,18 +82,16 @@ namespace AtsEx.Samples.MapPlugins.TrainControllerEx
         {
             float newSpeed = currentSpeed;
 
-            if (isAccelerating) newSpeed -= accelerationFactor * elapsed.Ticks / TimeSpan.TicksPerMillisecond / 1000;
-            if (isDecelerating) newSpeed += accelerationFactor * elapsed.Ticks / TimeSpan.TicksPerMillisecond / 1000;
+            if (isAccelerating) newSpeed -= accelerationFactor * (float)elapsed.TotalSeconds;
+            if (isDecelerating) newSpeed += accelerationFactor * (float)elapsed.TotalSeconds;
 
             if (newSpeed > 0)
             {
-                newSpeed -= attenuationFactor * elapsed.Ticks / TimeSpan.TicksPerMillisecond / 1000;
-                if (newSpeed < 0) newSpeed = 0;
+                newSpeed = Math.Max(0, newSpeed - attenuationFactor * (float)elapsed.TotalSeconds);
             }
             else if (newSpeed < 0)
             {
-                newSpeed += attenuationFactor * elapsed.Ticks / TimeSpan.TicksPerMillisecond / 1000;
-                if (newSpeed > 0) newSpeed = 0;
+                newSpeed = Math.Min(0, newSpeed + attenuationFactor * (float)elapsed.TotalSeconds);
             }
 
             return newSpeed;
