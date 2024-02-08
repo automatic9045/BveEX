@@ -27,6 +27,12 @@ obj
 /_SampleScenarios/AtsEx/*/Extensions/*.xml
 /_SampleScenarios/AtsEx/*/Extensions/Resources
 
+/_SampleScenarios/AtsEx/*/Troubleshooters/*.dll
+/_SampleScenarios/AtsEx/*/Troubleshooters/*.pdb
+/_SampleScenarios/AtsEx/*/Troubleshooters/*.dll.config
+/_SampleScenarios/AtsEx/*/Troubleshooters/*.xml
+/_SampleScenarios/AtsEx/*/Troubleshooters/Resources
+
 /_SampleScenarios/AtsEx.Samples/Maps/Basic/Samples/*/MapPlugins/*.dll
 /_SampleScenarios/AtsEx.Samples/Maps/Basic/Samples/*/MapPlugins/*.pdb
 /_SampleScenarios/AtsEx.Samples/Maps/Basic/Samples/*/MapPlugins/*.dll.config
