@@ -17,7 +17,7 @@
 
 		<dependencies>
 			<dependency id="AtsEx.PluginHost" version="1.0.0-rc1" />
-			<dependency id="ObjectiveHarmonyPatch" version="1.0.0" />
+			<dependency id="ObjectiveHarmonyPatch" version="1.1.0" />
 		</dependencies>
 	</metadata>
 	<files>

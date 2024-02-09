@@ -37,8 +37,8 @@
       <HintPath>..\..\packages\Lib.Harmony.2.2.2\lib\net48\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="ObjectiveHarmonyPatch, Version=1.0.30529.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ObjectiveHarmonyPatch.1.0.0\lib\ObjectiveHarmonyPatch.dll</HintPath>
+    <Reference Include="ObjectiveHarmonyPatch, Version=1.1.40209.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ObjectiveHarmonyPatch.1.1.0\lib\ObjectiveHarmonyPatch.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="SlimDX, Version=4.0.13.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9, processorArchitecture=x86">
