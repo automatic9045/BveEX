@@ -33,6 +33,7 @@ namespace BveTypes.ClassWrappers
             ViewPointGetMethod = members.GetSourcePropertyGetterOf(nameof(ViewPoint));
             ViewPointSetMethod = members.GetSourcePropertySetterOf(nameof(ViewPoint));
 
+            PassengerField = members.GetSourceFieldOf(nameof(Passenger));
             VerticalSpringsField = members.GetSourceFieldOf(nameof(VerticalSprings));
 
             TickMethod = members.GetSourceMethodOf(nameof(Tick));
@@ -93,6 +94,16 @@ namespace BveTypes.ClassWrappers
         {
             get => SixDof.FromSource(ViewPointGetMethod.Invoke(Src, null));
             set => ViewPointSetMethod.Invoke(Src, new object[] { value.Src });
+        }
+
+        private static FastField PassengerField;
+        /// <summary>
+        /// 自列車の乗客を取得・設定します。
+        /// </summary>
+        public Passenger Passenger
+        {
+            get => ClassWrappers.Passenger.FromSource(PassengerField.GetValue(Src));
+            set => PassengerField.SetValue(Src, value.Src);
         }
 
         private static FastField VerticalSpringsField;

@@ -34,6 +34,9 @@ namespace BveTypes.ClassWrappers
             DynamicsGetMethod = members.GetSourcePropertyGetterOf(nameof(Dynamics));
             DynamicsSetMethod = members.GetSourcePropertySetterOf(nameof(Dynamics));
 
+            PassengerGetMethod = members.GetSourcePropertyGetterOf(nameof(Passenger));
+            PassengerSetMethod = members.GetSourcePropertySetterOf(nameof(Passenger));
+
             CameraLocationField = members.GetSourceFieldOf(nameof(CameraLocation));
         }
 
@@ -101,6 +104,17 @@ namespace BveTypes.ClassWrappers
         {
             get => VehicleDynamics.FromSource(DynamicsGetMethod.Invoke(Src, null));
             set => DynamicsSetMethod.Invoke(Src, new object[] { value.Src });
+        }
+
+        private static FastMethod PassengerGetMethod;
+        private static FastMethod PassengerSetMethod;
+        /// <summary>
+        /// 自列車の乗客を取得・設定します。
+        /// </summary>
+        public Passenger Passenger
+        {
+            get => ClassWrappers.Passenger.FromSource(PassengerGetMethod.Invoke(Src, null));
+            set => PassengerSetMethod.Invoke(Src, new object[] { value.Src });
         }
 
         private static FastField CameraLocationField;

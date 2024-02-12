@@ -1298,6 +1298,10 @@
 			<Getter Original="g"/>
 			<Setter Original="a"/>
 		</Property>
+		<Property Wrapper="Passenger">
+			<Getter Original="a"/>
+			<Setter Original="a"/>
+		</Property>
 
 		<Field WrapperProperty="CameraLocation" Original="q" IsOriginalNonPublic="true"/>
 	</Class>
@@ -1532,6 +1536,7 @@
 			<Setter Original="a"/>
 		</Property>
 
+		<Field WrapperProperty="Passenger" Original="d" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="VerticalSprings" Original="ad" IsOriginalNonPublic="true"/>
 
 		<Method Wrapper="Tick" WrapperParams="System.Double" Original="c"/>
