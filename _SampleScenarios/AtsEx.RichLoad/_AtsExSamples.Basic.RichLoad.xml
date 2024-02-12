@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
-<RichLoadConfig>
+<?xml version="1.0" encoding="utf-8"?>
+<RichLoadConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<StaticImage Path="..\AtsEx.Samples\Thumbnails\Basic\RichLoad.Default.png" Width="2048" Height="1152" />
 </RichLoadConfig>
