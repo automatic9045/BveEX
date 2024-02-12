@@ -20,6 +20,11 @@ namespace BveTypes.ClassWrappers
             ClassMemberSet members = bveTypes.GetClassInfoOf<Passenger>();
 
             StateGetMethod = members.GetSourcePropertyGetterOf(nameof(State));
+
+            CapacityGetMethod = members.GetSourcePropertyGetterOf(nameof(Capacity));
+            CapacitySetMethod = members.GetSourcePropertySetterOf(nameof(Capacity));
+
+            CountField = members.GetSourceFieldOf(nameof(Count));
         }
 
         /// <summary>
@@ -43,5 +48,26 @@ namespace BveTypes.ClassWrappers
         /// 停車場における乗降の進捗を取得します。
         /// </summary>
         public StationProcess State => (StationProcess)StateGetMethod.Invoke(Src, null);
+
+        private static FastMethod CapacityGetMethod;
+        private static FastMethod CapacitySetMethod;
+        /// <summary>
+        /// 1 両当たりの定員を取得・設定します。
+        /// </summary>
+        public double Capacity
+        {
+            get => CapacityGetMethod.Invoke(Src, null);
+            set => CapacitySetMethod.Invoke(Src, new object[] { value });
+        }
+
+        private static FastField CountField;
+        /// <summary>
+        /// 現在の 1 両当たりの乗車人数を取得・設定します。
+        /// </summary>
+        public double Count
+        {
+            get => CountField.GetValue(Src);
+            set => CountField.SetValue(Src, value);
+        }
     }
 }

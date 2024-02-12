@@ -720,6 +720,13 @@
 		<Property Wrapper="State">
 			<Getter Original="g"/>
 		</Property>
+
+		<Property Wrapper="Capacity">
+			<Getter Original="d"/>
+			<Setter Original="b"/>
+		</Property>
+
+		<Field WrapperProperty="Count" Original="j" IsOriginalNonPublic="true"/>
 	</Class>
 
 	<Class Wrapper="PreTrainObjectList" Original="e6">
