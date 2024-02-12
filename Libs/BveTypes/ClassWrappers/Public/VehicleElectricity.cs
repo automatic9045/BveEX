@@ -21,13 +21,17 @@ namespace BveTypes.ClassWrappers
 
             PerformanceGetMethod = members.GetSourcePropertyGetterOf(nameof(Performance));
 
+            MotorStateGetMethod = members.GetSourcePropertyGetterOf(nameof(MotorState));
+
             RegenerationLimitGetMethod = members.GetSourcePropertyGetterOf(nameof(RegenerationLimit));
             RegenerationLimitSetMethod = members.GetSourcePropertySetterOf(nameof(RegenerationLimit));
 
+            PowerReAdhesionGetMethod = members.GetSourcePropertyGetterOf(nameof(PowerReAdhesion));
+
+            JerkRegulatorGetMethod = members.GetSourcePropertyGetterOf(nameof(JerkRegulator));
+
             SlipVelocityCoefficientGetMethod = members.GetSourcePropertyGetterOf(nameof(SlipVelocityCoefficient));
             SlipVelocityCoefficientSetMethod = members.GetSourcePropertySetterOf(nameof(SlipVelocityCoefficient));
-
-            PowerReAdhesionGetMethod = members.GetSourcePropertyGetterOf(nameof(PowerReAdhesion));
         }
 
         /// <summary>
@@ -52,6 +56,12 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public VehiclePerformance Performance => VehiclePerformance.FromSource(PerformanceGetMethod.Invoke(Src, null));
 
+        private static FastMethod MotorStateGetMethod;
+        /// <summary>
+        /// 自列車のモーターの状態を取得します。
+        /// </summary>
+        public VehicleMotorState MotorState => VehicleMotorState.FromSource(MotorStateGetMethod.Invoke(Src, null));
+
         private static FastMethod RegenerationLimitGetMethod;
         private static FastMethod RegenerationLimitSetMethod;
         /// <summary>
@@ -68,6 +78,12 @@ namespace BveTypes.ClassWrappers
         /// 自列車の主制御装置の空転・滑走再粘着制御機構を取得します。
         /// </summary>
         public ReAdhesionControl PowerReAdhesion => ReAdhesionControl.FromSource(PowerReAdhesionGetMethod.Invoke(Src, null));
+
+        private static FastMethod JerkRegulatorGetMethod;
+        /// <summary>
+        /// 自列車のジャーク制御機構を取得します。
+        /// </summary>
+        public JerkRegulator JerkRegulator => ClassWrappers.JerkRegulator.FromSource(JerkRegulatorGetMethod.Invoke(Src, null));
 
         private static FastMethod SlipVelocityCoefficientGetMethod;
         private static FastMethod SlipVelocityCoefficientSetMethod;

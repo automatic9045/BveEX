@@ -109,6 +109,8 @@
     <Compile Include="ClassWrappers\Public\DrawDistanceManager.cs" />
     <Compile Include="ClassWrappers\Public\Ecb.cs" />
     <Compile Include="ClassWrappers\Public\IDrawable.cs" />
+    <Compile Include="ClassWrappers\Public\ITickable.cs" />
+    <Compile Include="ClassWrappers\Public\JerkRegulator.cs" />
     <Compile Include="ClassWrappers\Public\TwoLeverCab.cs" />
     <Compile Include="ClassWrappers\Public\OneLeverCab.cs" />
     <Compile Include="ClassWrappers\Public\ReAdhesionControl.cs" />
@@ -184,6 +186,7 @@
     <Compile Include="ClassWrappers\Public\Vehicle.cs" />
     <Compile Include="ClassWrappers\Public\VehicleDynamics.cs" />
     <Compile Include="ClassWrappers\Public\VehicleInstrumentSet.cs" />
+    <Compile Include="ClassWrappers\Public\VehicleMotorState.cs" />
     <Compile Include="ClassWrappers\Public\VehiclePerformance.cs" />
     <Compile Include="ClassWrappers\Public\VehiclePerformanceBase.cs" />
     <Compile Include="ClassWrappers\Public\VehiclePositioner.cs" />

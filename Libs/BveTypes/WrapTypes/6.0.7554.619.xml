@@ -509,6 +509,19 @@
 		<Method Wrapper="GetValueAt" WrapperParams="System.Double" Original="b"/>
 	</Class>
 
+	<Class Wrapper="ITickable" Original="fi">
+	</Class>
+
+	<Class Wrapper="JerkRegulator" Original="eh">
+		<Property Wrapper="MotorState">
+			<Getter Original="c"/>
+		</Property>
+
+		<Method Wrapper="Initialize" WrapperParams="void" Original="n"/>
+		<Method Wrapper="CalculateRawCurrent" WrapperParams="void" Original="a" IsOriginalNonPublic="true"/>
+		<Method Wrapper="Tick" WrapperParams="System.Double" Original="ag"/>
+	</Class>
+
 	<Class Wrapper="KeyProvider" Original="ag">
 		<Property Wrapper="InputDevices">
 			<Getter Original="c"/>
@@ -1349,12 +1362,18 @@
 		<Property Wrapper="Performance">
 			<Getter Original="j"/>
 		</Property>
+		<Property Wrapper="MotorState">
+			<Getter Original="c"/>
+		</Property>
 		<Property Wrapper="RegenerationLimit">
 			<Getter Original="e"/>
 			<Setter Original="b"/>
 		</Property>
 		<Property Wrapper="PowerReAdhesion">
 			<Getter Original="l"/>
+		</Property>
+		<Property Wrapper="JerkRegulator">
+			<Getter Original="a"/>
 		</Property>
 		<Property Wrapper="SlipVelocityCoefficient">
 			<Getter Original="b"/>
@@ -1384,6 +1403,12 @@
 			<Getter Original="f"/>
 			<Setter Original="a"/>
 		</Property>
+	</Class>
+
+	<Class Wrapper="VehicleMotorState" Original="i">
+		<Field WrapperProperty="CarForce" Original="a"/>
+		<Field WrapperProperty="Current" Original="b"/>
+		<Field WrapperProperty="TorqueCurrent" Original="c"/>
 	</Class>
 
 	<Class Wrapper="VehiclePerformance" Original="fz">
