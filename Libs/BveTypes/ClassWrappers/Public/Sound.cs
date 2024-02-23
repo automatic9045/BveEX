@@ -35,6 +35,7 @@ namespace BveTypes.ClassWrappers
             PlayMethod2 = members.GetSourceMethodOf(nameof(Play), new Type[] { typeof(double), typeof(double), typeof(int), typeof(int) });
             PlayLoopingMethod = members.GetSourceMethodOf(nameof(PlayLooping));
             StopMethod = members.GetSourceMethodOf(nameof(Stop));
+            SetVolumeAndPitchMethod = members.GetSourceMethodOf(nameof(SetVolumeAndPitch));
         }
 
         /// <summary>
@@ -118,6 +119,15 @@ namespace BveTypes.ClassWrappers
         /// <param name="playPositionBytes">音声の再生を開始する位置 [bytes]。</param>
         public void PlayLooping(double volume, double pitch, int fadeTimeMilliseconds, int playPositionBytes)
             => PlayLoopingMethod.Invoke(Src, new object[] { volume, pitch, fadeTimeMilliseconds, playPositionBytes });
+
+        private static FastMethod SetVolumeAndPitchMethod;
+        /// <summary>
+        /// 音声を再生する音量とピッチを設定します。
+        /// </summary>
+        /// <param name="volume">音声を再生する音量。</param>
+        /// <param name="pitch">音声を再生するピッチ。</param>
+        public void SetVolumeAndPitch(double volume, double pitch)
+            => SetVolumeAndPitchMethod.Invoke(Src, new object[] { volume, pitch });
 
         private static FastMethod StopMethod;
         /// <summary>
