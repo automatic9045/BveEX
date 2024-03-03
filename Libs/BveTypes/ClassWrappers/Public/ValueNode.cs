@@ -21,6 +21,8 @@ namespace BveTypes.ClassWrappers
         {
             ClassMemberSet members = BveTypes.GetClassInfoOf<ValueNode<T>>();
 
+            Constructor = members.GetSourceConstructor(new Type[] { typeof(double), typeof(ValueNode<>).GetGenericArguments()[0] });
+
             ValueGetMethod = members.GetSourcePropertyGetterOf(nameof(Value));
             ValueSetMethod = members.GetSourcePropertySetterOf(nameof(Value));
         }
@@ -45,6 +47,29 @@ namespace BveTypes.ClassWrappers
         /// <returns>オリジナル オブジェクトをラップした <see cref="ValueNode{T}"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
         public static ValueNode<T> FromSource(object src) => src is null ? null : new ValueNode<T>(src);
+
+        private static FastConstructor Constructor;
+        /// <summary>
+        /// <see cref="ValueNode{T}"/> クラスの新しいインスタンスを初期化します。
+        /// </summary>
+        /// <param name="location">設置する距離程 [m]。</param>
+        /// <param name="value">格納するデータ。</param>
+        public ValueNode(double location, T value)
+            : this(ConstructWithLoadMembers(location, value))
+        {
+        }
+
+        private static object ConstructWithLoadMembers(double location, T value)
+        {
+            if (BveTypes is null)
+            {
+                BveTypes = ClassWrapperInitializer.LazyInitialize();
+                LoadMembers();
+            }
+
+            object obj = Constructor.Invoke(new object[] { location, value });
+            return obj;
+        }
 
         private static FastMethod ValueGetMethod;
         private static FastMethod ValueSetMethod;
