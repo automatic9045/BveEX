@@ -37,27 +37,23 @@ namespace AtsEx.Caller
                 AppDomain.CurrentDomain.AssemblyResolve += (sender, e) =>
                 {
                     AssemblyName assemblyName = new AssemblyName(e.Name);
-                    if (assemblyName.Name == LauncherName)
+                    if (assemblyName.Name != LauncherName) return null;
+                    if (!File.Exists(launcherLocation))
                     {
-                        if (!File.Exists(launcherLocation))
-                        {
-                            throw new FileNotFoundException("AtsEX が見つからないため、AtsEX Caller による要求を続行できません。" +
-                                "AtsEX をインストールしてください。インストール済の場合は、有効化されているか、またパスの指定が誤っていないかご確認ください。");
-                        }
-
-                        return Assembly.LoadFrom(launcherLocation);
-                    }
-                    else
-                    {
+                        MessageBox.Show("AtsEX を読み込めませんでした。\n\n" +
+                            "・AtsEX がインストールされているか\n・入力デバイスの一覧でチェックが付いているか\n・パスの指定が誤っていないか\n\n" +
+                            "ご確認ください。", "Cannot find AtsEX - AtsEX Caller", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return null;
                     }
+
+                    return Assembly.LoadFrom(launcherLocation);
                 };
 
                 CheckCallerCompatibility(launcherLocation);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Failed to run AtsEX Launcher.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), "Failed to run AtsEX Launcher - AtsEX Caller", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
 
