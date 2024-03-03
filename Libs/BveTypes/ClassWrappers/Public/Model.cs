@@ -23,6 +23,8 @@ namespace BveTypes.ClassWrappers
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<Model>();
 
+            SetAlphaMethod = members.GetSourceMethodOf(nameof(SetAlpha));
+
             FromXFileMethod = members.GetSourceMethodOf(nameof(FromXFile));
             CreateRectangleWithTextureMethod = members.GetSourceMethodOf(nameof(CreateRectangleWithTexture));
             DisposeMethod = members.GetSourceMethodOf(nameof(Dispose));
@@ -51,6 +53,14 @@ namespace BveTypes.ClassWrappers
         /// <returns>オリジナル オブジェクトをラップした <see cref="Model"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
         public static Model FromSource(object src) => src is null ? null : new Model(src);
+
+        private static FastMethod SetAlphaMethod;
+        /// <summary>
+        /// アルファ値を設定します。
+        /// </summary>
+        /// <param name="alpha">アルファ値 (0 ～ 255)。</param>
+        public void SetAlpha(int alpha)
+            => SetAlphaMethod.Invoke(Src, new object[] { alpha });
 
         private static FastMethod FromXFileMethod;
         /// <summary>
