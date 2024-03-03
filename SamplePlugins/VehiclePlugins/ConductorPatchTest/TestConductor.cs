@@ -30,12 +30,12 @@ namespace AtsEx.Samples.VehiclePlugins.ConductorPatchTest
         {
             HasStopPositionChecked = false;
 
-            Original.Stations.GoTo(stationIndex - 1);
+            Original.Stations.GoToByIndex(stationIndex - 1);
             Original.Doors.SetState(DoorState.Close, DoorState.Close);
 
             Station currentStation = Original.Stations.Count <= stationIndex ? null : Original.Stations[stationIndex] as Station;
             int doorSide = currentStation is null || currentStation.Pass || isDoorClosed ? 0 : currentStation.DoorSide;
-            if (doorSide == 0) Original.Stations.GoTo(stationIndex);
+            if (doorSide == 0) Original.Stations.GoToByIndex(stationIndex);
 
             return MethodOverrideMode.SkipOriginal;
         }
@@ -45,7 +45,7 @@ namespace AtsEx.Samples.VehiclePlugins.ConductorPatchTest
             if (Original.Doors.AreAllClosed && HasStopPositionChecked)
             {
                 HasStopPositionChecked = false;
-                Original.Stations.GoTo(Original.Stations.CurrentIndex + 1);
+                Original.Stations.GoToByIndex(Original.Stations.CurrentIndex + 1);
                 DoorClosed(this, EventArgs.Empty);
             }
 
@@ -62,7 +62,7 @@ namespace AtsEx.Samples.VehiclePlugins.ConductorPatchTest
                     double location = Original.LocationManager.Location;
 					if ((Math.Abs(Original.LocationManager.SpeedMeterPerSecond) < 0.01f && location >= nextStation.MinStopPosition) || location >= nextStation.MaxStopPosition)
 					{
-                        Original.Stations.GoTo(Original.Stations.CurrentIndex + 1);
+                        Original.Stations.GoToByIndex(Original.Stations.CurrentIndex + 1);
 					}
 				}
 			}

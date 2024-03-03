@@ -31,7 +31,9 @@ namespace BveTypes.ClassWrappers
             ObjectPassedEvent = members.GetSourceEventOf(nameof(ObjectPassed));
 
             GoToAndGetCurrentMethod = members.GetSourceMethodOf(nameof(GoToAndGetCurrent));
-            GoToMethod = members.GetSourceMethodOf(nameof(GoTo));
+            GoToMethod1 = members.GetSourceMethodOf(nameof(GoTo), new Type[] { typeof(double) });
+            GoToMethod2 = members.GetSourceMethodOf(nameof(GoTo), new Type[] { typeof(double), typeof(double) });
+            GoToByIndexMethod = members.GetSourceMethodOf(nameof(GoToByIndex));
         }
 
         /// <summary>
@@ -81,7 +83,7 @@ namespace BveTypes.ClassWrappers
 
         private static FastMethod GoToAndGetCurrentMethod;
         /// <summary>
-        /// コレクションの指定した距離程に対応する要素へ移動し、それを取得します。
+        /// 指定した距離程へ移動し、その距離程に対応するコレクションの要素を取得します。
         /// </summary>
         /// <param name="location">移動先の距離程 [m]。</param>
         public MapObjectBase GoToAndGetCurrent(double location)
@@ -90,12 +92,35 @@ namespace BveTypes.ClassWrappers
             return src is null ? null : (MapObjectBase)CreateFromSource(src);
         }
 
-        private static FastMethod GoToMethod;
+        private static FastMethod GoToMethod1;
+        /// <summary>
+        /// 指定した距離程へ移動します。
+        /// </summary>
+        /// <param name="newLocation">自列車の新たな距離程 [m]。</param>
+        public void GoTo(double newLocation) => GoToMethod1.Invoke(Src, new object[] { newLocation });
+
+        private static FastMethod GoToMethod2;
+        /// <summary>
+        /// 指定した距離程へ移動します。
+        /// </summary>
+        /// <param name="newLocation">自列車の新たな距離程 [m]。</param>
+        /// <param name="displacement">自列車の移動した距離 [m]。</param>
+        public void GoTo(double newLocation, double displacement) => GoToMethod2.Invoke(Src, new object[] { newLocation, displacement });
+
+        private static FastMethod GoToByIndexMethod;
         /// <summary>
         /// 指定したインデックスへ移動します。
         /// </summary>
         /// <param name="index">移動先のインデックス。</param>
-        public void GoTo(int index) => GoToMethod.Invoke(Src, new object[] { index });
+        public void GoToByIndex(int index) => GoToByIndexMethod.Invoke(Src, new object[] { index });
+
+        /// <summary>
+        /// <see cref="GoTo(double)"/> メソッドと紛らわしいため、<see cref="GoToByIndex(int)"/> メソッドを使用してください。
+        /// </summary>
+        /// <seealso cref="GoToByIndex(int)"/>
+        /// <param name="index">移動先のインデックス。</param>
+        [Obsolete("指定した距離程へ移動する GoTo メソッドと紛らわしいため、GoToByIndex メソッドを使用してください。", true)]
+        public void GoTo(int index) => GoToByIndex(index);
 
 
         public delegate void ObjectPassedEventHandler(object sender, ObjectPassedEventArgs e);

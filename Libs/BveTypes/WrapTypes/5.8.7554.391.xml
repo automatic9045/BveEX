@@ -617,7 +617,9 @@
 		<Event Wrapper="ObjectPassed" OriginalAddAccessor="b" OriginalRemoveAccessor="a" OriginalDelegateField="b"/>
 
 		<Method Wrapper="GoToAndGetCurrent" WrapperParams="System.Double" Original="c"/>
-		<Method Wrapper="GoTo" WrapperParams="System.Int32" Original="f"/>
+		<Method Wrapper="GoTo" WrapperParams="System.Double" Original="u"/>
+		<Method Wrapper="GoTo" WrapperParams="System.Double; System.Double" Original="ae" IsOriginalNonPublic="true"/>
+		<Method Wrapper="GoToByIndex" WrapperParams="System.Int32" Original="f"/>
 	</Class>
 
 	<Class Wrapper="MaterialInfo" Original="e0">
