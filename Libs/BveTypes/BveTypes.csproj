@@ -111,6 +111,7 @@
     <Compile Include="ClassWrappers\Public\IDrawable.cs" />
     <Compile Include="ClassWrappers\Public\ITickable.cs" />
     <Compile Include="ClassWrappers\Public\JerkRegulator.cs" />
+    <Compile Include="ClassWrappers\Public\SpeedLimitList.cs" />
     <Compile Include="ClassWrappers\Public\TwoLeverCab.cs" />
     <Compile Include="ClassWrappers\Public\OneLeverCab.cs" />
     <Compile Include="ClassWrappers\Public\ReAdhesionControl.cs" />

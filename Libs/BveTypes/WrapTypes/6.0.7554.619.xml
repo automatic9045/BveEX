@@ -840,6 +840,9 @@
 			<Getter Original="s"/>
 			<Setter Original="a"/>
 		</Property>
+		<Property Wrapper="SpeedLimits">
+			<Getter Original="w"/>
+		</Property>
 		<Property Wrapper="DrawDistanceObjects">
 			<Getter Original="j"/>
 		</Property>
@@ -1043,6 +1046,12 @@
 	<Class Wrapper="SoundSet" Original="g">
 		<Property Wrapper="Items">
 			<Getter Original="a"/>
+		</Property>
+	</Class>
+
+	<Class Wrapper="SpeedLimitList" Original="fg">
+		<Property Wrapper="CurrentLimit">
+			<Getter Original="b"/>
 		</Property>
 	</Class>
 

@@ -57,6 +57,8 @@ namespace BveTypes.ClassWrappers
 
             StructureModelsGetMethod = members.GetSourcePropertyGetterOf(nameof(StructureModels));
 
+            SpeedLimitsGetMethod = members.GetSourcePropertyGetterOf(nameof(SpeedLimits));
+
             DrawDistanceObjectsGetMethod = members.GetSourcePropertyGetterOf(nameof(DrawDistanceObjects));
 
             GetTrackMatrixMethod = members.GetSourceMethodOf(nameof(GetTrackMatrix));
@@ -223,9 +225,15 @@ namespace BveTypes.ClassWrappers
             }
         }
 
+        private static FastMethod SpeedLimitsGetMethod;
+        /// <summary>
+        /// 速度制限のリストを取得します。
+        /// </summary>
+        public SpeedLimitList SpeedLimits => SpeedLimitList.FromSource(SpeedLimitsGetMethod.Invoke(Src, null));
+
         private static FastMethod DrawDistanceObjectsGetMethod;
         /// <summary>
-        /// DrawDistance.Change ステートメントにより設置された、最長描画距離を指定するためのオブジェクトを取得します。
+        /// DrawDistance.Change ステートメントにより設置された、最長描画距離を指定するためのオブジェクトのリストを取得します。
         /// </summary>
         public MapFunctionList DrawDistanceObjects => MapFunctionList.FromSource(DrawDistanceObjectsGetMethod.Invoke(Src, null));
 
