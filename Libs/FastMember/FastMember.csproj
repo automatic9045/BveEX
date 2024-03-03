@@ -45,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FastConstructor.cs" />
+    <Compile Include="FastConstructor.Generic.cs" />
+    <Compile Include="FastConstructor.NonGeneric.cs" />
     <Compile Include="FastEvent.cs" />
     <Compile Include="FastField.cs" />
     <Compile Include="FastMethod.NonGeneric.cs" />
@@ -76,6 +78,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\DynamicFastMethod.ja.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\FastConstructor.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\FastConstructor.ja.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

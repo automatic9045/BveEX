@@ -5,27 +5,38 @@ using System.Text;
 using System.Reflection;
 using System.Threading.Tasks;
 
+using UnembeddedResources;
+
 namespace FastMember
 {
-    public class FastConstructor
+    public abstract partial class FastConstructor
     {
-        private readonly Func<object[], object> Invoker;
-
-        public ConstructorInfo Source { get; }
-
-        protected FastConstructor(ConstructorInfo source, Func<object[], object> invoker)
+        private class ResourceSet
         {
-            Source = source;
-            Invoker = invoker;
+            private readonly ResourceLocalizer Localizer = ResourceLocalizer.FromResXOfType<FastConstructor>(@"FastMember");
+
+            [ResourceStringHolder(nameof(Localizer))] public Resource<string> GenericTypeArgumentsMismatch { get; private set; }
+
+            public ResourceSet()
+            {
+                ResourceLoader.LoadAndSetAll(this);
+            }
         }
+
+        private static readonly Lazy<ResourceSet> Resources = new Lazy<ResourceSet>();
+
+        static FastConstructor()
+        {
+#if DEBUG
+            _ = Resources.Value;
+#endif
+        }
+
+        public abstract ConstructorInfo Source { get; }
 
         public static FastConstructor Create(ConstructorInfo source)
-        {
-            Func<object[], object> invoker = ReflectionExpressionGenerator.GenerateConstructorInvoker(source);
+            => source.DeclaringType.IsGenericTypeDefinition ? new Generic(source) : new NonGeneric(source) as FastConstructor;
 
-            return new FastConstructor(source, invoker);
-        }
-
-        public object Invoke(object[] args) => Invoker(args);
+        public abstract object Invoke(object[] args, Type[] genericTypeArguments = null);
     }
 }
