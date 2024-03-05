@@ -1039,6 +1039,9 @@
 			<Setter Original="a"/>
 		</Property>
 
+		<Field WrapperProperty="Buffers" Original="b" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="CurrentBufferIndex" Original="m" IsOriginalNonPublic="true"/>
+
 		<Method Wrapper="Play" WrapperParams="System.Double; System.Double; System.Int32" Original="a"/>
 		<Method Wrapper="Play" WrapperParams="System.Double; System.Double; System.Int32; System.Int32" Original="a"/>
 		<Method Wrapper="PlayLooping" WrapperParams="System.Double; System.Double; System.Int32; System.Int32" Original="b"/>

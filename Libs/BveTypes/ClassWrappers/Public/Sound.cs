@@ -31,6 +31,9 @@ namespace BveTypes.ClassWrappers
             SpeedInBlockGetMethod = members.GetSourcePropertyGetterOf(nameof(SpeedInBlock));
             SpeedInBlockSetMethod = members.GetSourcePropertySetterOf(nameof(SpeedInBlock));
 
+            BuffersField = members.GetSourceFieldOf(nameof(Buffers));
+            CurrentBufferIndexField = members.GetSourceFieldOf(nameof(CurrentBufferIndex));
+
             PlayMethod1 = members.GetSourceMethodOf(nameof(Play), new Type[] { typeof(double), typeof(double), typeof(int) });
             PlayMethod2 = members.GetSourceMethodOf(nameof(Play), new Type[] { typeof(double), typeof(double), typeof(int), typeof(int) });
             PlayLoopingMethod = members.GetSourceMethodOf(nameof(PlayLooping));
@@ -86,6 +89,26 @@ namespace BveTypes.ClassWrappers
         {
             get => SpeedInBlockGetMethod.Invoke(Src, null);
             set => SpeedInBlockSetMethod.Invoke(Src, new object[] { value });
+        }
+
+        private static FastField BuffersField;
+        /// <summary>
+        /// この音声の再生に使用するバッファの一覧を取得・設定します。
+        /// </summary>
+        public SecondarySoundBuffer[] Buffers
+        {
+            get => BuffersField.GetValue(Src);
+            set => BuffersField.SetValue(Src, value);
+        }
+
+        private static FastField CurrentBufferIndexField;
+        /// <summary>
+        /// 最後に再生したサウンドバッファの <see cref="Buffers"/> におけるインデックスを取得・設定します。
+        /// </summary>
+        public int CurrentBufferIndex
+        {
+            get => CurrentBufferIndexField.GetValue(Src);
+            set => CurrentBufferIndexField.SetValue(Src, value);
         }
 
         private static FastMethod PlayMethod1;
