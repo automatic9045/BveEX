@@ -698,6 +698,10 @@ img.icon-download {
     text-align: right;
 }
 
+.hidden-counter {
+    display: none;
+}
+
 @media screen and (max-width: 1279px) {
     div#content > div.subheader-image > span {
         font-size: 4.5em;
