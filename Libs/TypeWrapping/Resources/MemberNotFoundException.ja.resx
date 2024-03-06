@@ -118,33 +118,33 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FieldWrapperPropertyNotFound" xml:space="preserve">
-    <value>A field wrapper {0} property '{1}' does not exist in the wrapper type '{2}.'</value>
+    <value>フィールドのラッパー{0}プロパティ '{1}' はラッパー型 '{2}' に存在しません。</value>
   </data>
   <data name="Instance" xml:space="preserve">
-    <value>instance</value>
+    <value>インスタンス</value>
   </data>
   <data name="NonPublic" xml:space="preserve">
-    <value>non-public </value>
+    <value>パブリックでない</value>
   </data>
   <data name="OriginalFieldNotFound" xml:space="preserve">
-    <value>A {0} field '{1}' does not exist in the original type '{3},' wrapped by the type '{2}.'</value>
+    <value>{0}フィールド '{1}' はラッパー型 '{2}' のオリジナル型 '{3}' に存在しません。</value>
   </data>
   <data name="OriginalMethodNotFound" xml:space="preserve">
-    <value>A {1} method named '{2}' with parameter(s) '{0}' does not exist int the original type '{4},' wrapped by the type '{3}.'</value>
+    <value>パラメータ '{4}' をもつ{0}メソッド '{1}' はラッパー型 '{2}' のオリジナル型 '{3}' に存在しません。</value>
   </data>
   <data name="Public" xml:space="preserve">
-    <value>public </value>
+    <value>パブリック</value>
   </data>
   <data name="Static" xml:space="preserve">
-    <value>static</value>
+    <value>静的</value>
   </data>
   <data name="WrapperEventNotFound" xml:space="preserve">
-    <value>A {0} event '{1}' does not exist in the wrapper type '{2}.'</value>
+    <value>{0}イベント '{1}' はラッパー型 '{2}' に存在しません。</value>
   </data>
   <data name="WrapperMethodNotFound" xml:space="preserve">
-    <value>A {1} method named '{2}' with parameter(s) '{0}' does not exist int the wrapper type '{3}.'</value>
+    <value>パラメータ '{4}' をもつ{0}メソッド '{1}' はラッパー型 '{2}' に存在しません。</value>
   </data>
   <data name="WrapperPropertyNotFound" xml:space="preserve">
-    <value>A {0} property '{1}' does not exist in the wrapper type '{2}.'</value>
+    <value>{0}プロパティ '{1}' はラッパー型 '{2}' に存在しません。</value>
   </data>
 </root>

@@ -44,6 +44,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MemberNotFoundException.cs" />
+    <Compile Include="MemberCategory.cs" />
+    <Compile Include="MemberKind.cs" />
+    <Compile Include="MemberNotFoundException.MessageFactory.cs" />
     <Compile Include="TypeBridge.cs" />
     <Compile Include="Loader\MemberParser.cs" />
     <Compile Include="Loader\TypeParser.cs" />
@@ -67,8 +71,8 @@
     <Content Include="Resources\SimpleClassMemberSet.resx" />
     <Content Include="Resources\TypeParser.ja.resx" />
     <Content Include="Resources\TypeParser.resx" />
-    <Content Include="Resources\WrapTypeSet\ElementParser.ja.resx" />
-    <Content Include="Resources\WrapTypeSet\ElementParser.resx" />
+    <Content Include="Resources\MemberNotFoundException.ja.resx" />
+    <Content Include="Resources\MemberNotFoundException.resx" />
     <Content Include="Resources\WrapTypeSet\MemberLoader.ja.resx" />
     <Content Include="Resources\WrapTypeSet\MemberLoader.resx" />
     <Content Include="Resources\TypeConverter.ja.resx" />
