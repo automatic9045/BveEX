@@ -147,6 +147,10 @@ div#content {
                 opacity: 0.75;
             }
 
+        div#content > div.subheader-image.bottom > img {
+            object-position: bottom;
+        }
+
     div#content > div.title-accent {
         position: absolute;
         top: -32px;
