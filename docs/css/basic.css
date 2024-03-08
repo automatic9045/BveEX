@@ -580,6 +580,13 @@ span.wbr {
     display: none;
 }
 
+iframe.youtube {
+    max-width: 100%;
+    width: 560px;
+    max-height: 60vw;
+    height: 315px;
+}
+
 img, video {
     max-width: 100%;
 }
