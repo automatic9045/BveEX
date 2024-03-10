@@ -61,6 +61,14 @@
                     BVE内部では、カーブ・カントや勾配などの線形に合わせて常に自列車の車体の向きを計算しています。
                     AtsEXからその処理に介入し、車体へ追加で傾斜をかけることで、特急型車両に搭載されている<mark>車体傾斜装置や振り子装置</mark>を実装することが可能です。
                 </p>
+                <p>
+                    以下の映像では、E353系の車体傾斜装置を物理演算によって精密に再現しています。<br />
+                    列車が急なカーブ（15:05、18:05など）に差し掛かると、装置の動作音が鳴り、少しずつ車体が傾いていくのがお判りいただけるかと思います。
+                </p>
+                <p>
+                    <iframe class="youtube small" src="https://www.youtube.com/embed/8iQQopZg0Dw?si=-WpQ_TDQJReIVGQw&amp;start=905" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><br />
+                    <small>車両データ制作：Mc_1323氏、タピオカ丸氏 / 路線データ制作：大糸線研究会 / 車体傾斜プラグインの開発にあたり、一部コードの提供および実装の支援をさせていただきました。</small>
+                </p>
                 <h3 class="header-accent">BVE本体標準の音声再生機能をプラグインから呼び出す</h3>
                 <p>
                     モーター音やエンジン音をこだわりたい場合や、ATSサウンドのインデックスが枯渇するほど多数の音声を再生したい場合は、BVEの標準機能では足りず、特殊なプラグインを開発することになります。
