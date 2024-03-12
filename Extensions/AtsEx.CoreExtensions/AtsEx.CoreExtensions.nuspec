@@ -6,7 +6,7 @@
 		<description>BVE Trainsim 5/6 用 AtsEX プラグインの開発に便利な拡張機能のセットです。</description>
 		<authors>AtsEX Project</authors>
 
-		<projectUrl>https://automatic9045.github.io/AtsEX/</projectUrl>
+		<projectUrl>https://www.okaoka-depot.com/AtsEX/</projectUrl>
 		<license type="expression">MIT</license>
 		<icon>images\Icon_NuGet.png</icon>
 		<readme>docs\README_NuGet.md</readme>

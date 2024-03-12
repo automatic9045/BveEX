@@ -156,7 +156,7 @@ namespace AtsEx
                         break;
 
                     case nameof(HomepageLink):
-                        link = "https://automatic9045.github.io/contents/bve/AtsEX/";
+                        link = "https://www.okaoka-depot.com/AtsEX/";
                         break;
 
                     case nameof(RepositoryLink):
