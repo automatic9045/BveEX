@@ -8,7 +8,6 @@ using System.Windows.Forms;
 
 using BveTypes;
 
-using AtsEx.Native;
 using AtsEx.PluginHost;
 
 namespace AtsEx
@@ -33,11 +32,13 @@ namespace AtsEx
 
                 if (GetNormalizedPath(launcherAssemblyLocation) != GetNormalizedPath(legalLauncherAssemblyLocation))
                 {
-                    string warningText = string.Format(Resources.Value.AtsExAssemblyLocationIllegal.Value,
-                        App.Instance.ProductShortName, launcherAssemblyLocation, legalLauncherAssemblyLocation);
+                    string warningText = string.Format(Resources.Value.AtsExAssemblyLocationIllegal.Value, App.Instance.ProductShortName, launcherAssemblyLocation, legalLauncherAssemblyLocation);
+                    string sender = Path.GetFileName(launcherAssemblyLocation);
 
-                    BveHacker.LoadErrorManager.Throw(warningText.Replace("\n", ""), Path.GetFileName(launcherAssemblyLocation));
-                    if (MessageBox.Show($"{warningText}\n\n{Resources.Value.IgnoreAndContinue.Value}", App.Instance.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                    BveHacker.LoadErrorManager.Throw(warningText.Replace("\n", ""), sender);
+                    ErrorDialog.Show(warningText);
+
+                    if (MessageBox.Show(Resources.Value.IgnoreAndContinue.Value, App.Instance.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                     {
                         Environment.Exit(0);
                     }

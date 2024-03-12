@@ -74,8 +74,8 @@ namespace AtsEx.Native.Ats
             Version callerVersion = CallerInfo.AtsExCallerAssembly.GetName().Version;
             if (callerVersion < new Version(0, 16))
             {
-                string errorMessage = $"読み込まれた AtsEX Caller (バージョン {callerVersion}) は現在の AtsEX ではサポートされていません。\nbeta0.16 (バージョン 0.16) 以降の Ats Caller をご利用下さい。";
-                MessageBox.Show(errorMessage, "AtsEX Caller バージョンエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string errorMessage = $"読み込まれた AtsEX Caller (バージョン {callerVersion}) は現在の AtsEX ではサポートされていません。\nbeta0.16 (バージョン 0.16) 以降の AtsEX Caller をご利用下さい。";
+                ErrorDialog.Show(errorMessage);
                 throw new NotSupportedException(errorMessage.Replace("\n", ""));
             }
 

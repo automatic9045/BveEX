@@ -97,6 +97,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AtsEx.Diagnostics\AtsEx.Diagnostics.csproj">
+      <Project>{bec38da8-37e2-4db6-80ff-33fe4e25e1a9}</Project>
+      <Name>AtsEx.Diagnostics</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AtsEx\AtsEx.csproj">
       <Project>{15f8005b-285b-4b98-b4d8-13978ad876f8}</Project>
       <Name>AtsEx</Name>

@@ -77,7 +77,7 @@ namespace AtsEx.Native.InputDevices
                 else
                 {
                     string errorMessage = string.Format(Resources.Value.LaunchingFailed.Value, App.Instance.ProductShortName);
-                    MessageBox.Show(errorMessage, App.Instance.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ErrorDialog.Show(errorMessage);
                 }
 
                 return;

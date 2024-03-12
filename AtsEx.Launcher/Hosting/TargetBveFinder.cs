@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+
+using AtsEx.Diagnostics;
 
 namespace AtsEx.Launcher.Hosting
 {
@@ -29,30 +29,21 @@ namespace AtsEx.Launcher.Hosting
         {
             if (TargetAssembly is null)
             {
-                ShowErrorDialog("BVE 本体が読み込めないフォーマットです。");
+                ShowErrorDialog("BVE 本体の読込に失敗しました。Assembly.GetEntryAssembly が null を返しました。",
+                    "想定されない方法で AtsEX を起動しています。BVE 本体と異なるプロセス上で AtsEX を実行していませんか?");
             }
             else if (!TargetAssembly.GetTypes().Any(t => t.Namespace == "Mackoy.Bvets"))
             {
-                ShowErrorDialog("BVE 本体と異なるプロセスで実行することはできません。", "https://automatic9045.github.io/contents/bve/AtsEX/faq/#diff-process");
-            }
-        }
-
-        private void ShowErrorDialog(string message, string faqUrl = null)
-        {
-            if (faqUrl is null)
-            {
-                MessageBox.Show(message, $"エラー - AtsEX", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                DialogResult dialogResult = MessageBox.Show($"{message}\n\nこのエラーに関する情報を表示しますか？\n（ブラウザで Web サイトが開きます）", $"エラー - AtsEX", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    Process.Start(faqUrl);
-                }
+                ShowErrorDialog("同一プロセス上に BVE 本体が見つかりませんでした。",
+                    "想定されない方法で AtsEX を起動しています。BVE 本体と異なるプロセス上で AtsEX を実行していませんか?");
             }
 
-            throw new NotSupportedException(message);
+
+            void ShowErrorDialog(string message, string approach)
+            {
+                ErrorDialog.Show(message, "AtsEX Launcher", approach);
+                throw new NotSupportedException(message);
+            }
         }
     }
 }

@@ -75,7 +75,7 @@ namespace AtsEx.Native
                 if (slimDXAssemblies.Count() > 1)
                 {
                     string locationText = string.Join("\n", slimDXAssemblies.Select(assembly => "・" + assembly.Location));
-                    MessageBox.Show(string.Format(Resources.Value.IllegalSlimDXDetected.Value, locationText), App.Instance.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    ErrorDialog.Show(string.Format(Resources.Value.IllegalSlimDXDetected.Value, locationText));
                 }
             }
         }

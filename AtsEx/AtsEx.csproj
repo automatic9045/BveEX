@@ -113,6 +113,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ErrorDialog.cs" />
     <Compile Include="ExceptionResolver.cs" />
     <Compile Include="Main\AtsEx.AsInputDevice.cs" />
     <Compile Include="Main\AtsEx.AsInputDevice.Patches.cs" />
@@ -202,6 +203,11 @@
     <Compile Include="VersionForm\VersionFormProvider.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AtsEx.Diagnostics\AtsEx.Diagnostics.csproj">
+      <Project>{bec38da8-37e2-4db6-80ff-33fe4e25e1a9}</Project>
+      <Name>AtsEx.Diagnostics</Name>
+      <Private>False</Private>
+    </ProjectReference>
     <ProjectReference Include="..\AtsEx.PluginHost\AtsEx.PluginHost.csproj">
       <Project>{ac6ebf16-d22b-4da8-a0be-5afb729ea2e4}</Project>
       <Name>AtsEx.PluginHost</Name>
