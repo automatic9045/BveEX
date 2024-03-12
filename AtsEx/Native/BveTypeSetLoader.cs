@@ -20,7 +20,8 @@ namespace AtsEx.Native
         {
             private readonly ResourceLocalizer Localizer = ResourceLocalizer.FromResXOfType<BveTypeSetLoader>("Core");
 
-            [ResourceStringHolder(nameof(Localizer))] public Resource<string> IllegalSlimDXDetected { get; private set; }
+            [ResourceStringHolder(nameof(Localizer))] public Resource<string> IllegalSlimDXDetectedMessage { get; private set; }
+            [ResourceStringHolder(nameof(Localizer))] public Resource<string> IllegalSlimDXDetectedApproach { get; private set; }
 
             public ResourceSet()
             {
@@ -75,7 +76,7 @@ namespace AtsEx.Native
                 if (slimDXAssemblies.Count() > 1)
                 {
                     string locationText = string.Join("\n", slimDXAssemblies.Select(assembly => "・" + assembly.Location));
-                    ErrorDialog.Show(string.Format(Resources.Value.IllegalSlimDXDetected.Value, locationText));
+                    ErrorDialog.Show(3, Resources.Value.IllegalSlimDXDetectedMessage.Value, string.Format(Resources.Value.IllegalSlimDXDetectedApproach.Value, locationText));
                 }
             }
         }

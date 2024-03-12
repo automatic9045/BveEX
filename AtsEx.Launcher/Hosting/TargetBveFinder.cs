@@ -29,20 +29,20 @@ namespace AtsEx.Launcher.Hosting
         {
             if (TargetAssembly is null)
             {
-                ShowErrorDialog("BVE 本体の読込に失敗しました。Assembly.GetEntryAssembly が null を返しました。",
+                ShowErrorDialog(1, "BVE 本体の読込に失敗しました。Assembly.GetEntryAssembly が null を返しました。",
                     "想定されない方法で AtsEX を起動しています。BVE 本体と異なるプロセス上で AtsEX を実行していませんか?");
             }
             else if (!TargetAssembly.GetTypes().Any(t => t.Namespace == "Mackoy.Bvets"))
             {
-                ShowErrorDialog("同一プロセス上に BVE 本体が見つかりませんでした。",
+                ShowErrorDialog(2, "同一プロセス上に BVE 本体が見つかりませんでした。",
                     "想定されない方法で AtsEX を起動しています。BVE 本体と異なるプロセス上で AtsEX を実行していませんか?");
             }
 
 
-            void ShowErrorDialog(string message, string approach)
+            void ShowErrorDialog(int id, string message, string approach)
             {
-                ErrorDialog.Show(message, "AtsEX Launcher", approach);
-                throw new NotSupportedException(message);
+                ErrorDialog.Show($"エラーコード L-{id}\n{message}", "AtsEX Launcher", approach, $"https://www.okaoka-depot.com/AtsEX.Docs/support/errors/#L-{id}");
+                throw new NotSupportedException();
             }
         }
     }

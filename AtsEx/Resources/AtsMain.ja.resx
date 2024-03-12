@@ -120,4 +120,7 @@
   <data name="BveVersionNotSupported" xml:space="preserve">
     <value>BVE バージョン {0} には対応していません。{1} 向けのプロファイルで代用しますが、{2} による拡張機能は正常に動作しない可能性があります。</value>
   </data>
+  <data name="CallerVersionNotSupported" xml:space="preserve">
+    <value>読み込まれた {0} Caller (バージョン {1}) は現在の {0} ではサポートされていません。beta0.16 (バージョン 0.16) 以降の {0} Caller をご利用ください。</value>
+  </data>
 </root>

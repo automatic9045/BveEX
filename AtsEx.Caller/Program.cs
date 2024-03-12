@@ -40,9 +40,9 @@ namespace AtsEx.Caller
                     if (assemblyName.Name != LauncherName) return null;
                     if (!File.Exists(launcherLocation))
                     {
-                        MessageBox.Show("AtsEX を読み込めませんでした。\n\n" +
+                        MessageBox.Show("エラーコード CA-1: AtsEX を読み込めませんでした。\n\n" +
                             "・AtsEX がインストールされているか\n・入力デバイスの一覧でチェックが付いているか\n・パスの指定が誤っていないか\n\n" +
-                            "ご確認ください。", "Cannot find AtsEX - AtsEX Caller", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            "ご確認ください。このエラーについて、詳しくは HP をご覧ください。", "Cannot find AtsEX - AtsEX Caller", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return null;
                     }
 
@@ -65,7 +65,8 @@ namespace AtsEx.Caller
                 if (compatibilityVersionAttribute.Version != CallerVersion)
                 {
                     Version assemblyVersion = Assembly.GetName().Version;
-                    throw new NotSupportedException($"読み込まれた AtsEX Caller (バージョン {assemblyVersion}) は現在の AtsEX ではサポートされていません。");
+                    throw new NotSupportedException($"エラーコード CA-2: 読み込まれた AtsEX Caller (バージョン {assemblyVersion}) は現在の AtsEX ではサポートされていません。" +
+                        "このエラーについて、詳しくは HP をご覧ください。");
                 }
             }
         }

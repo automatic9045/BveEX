@@ -117,11 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AtsExAssemblyLocationIllegal" xml:space="preserve">
-    <value>The location of the {0} main assembly '{1}' is illegal.
-
-Due to keeping your {1} always in the latest version, you should place only one {1} package in each Scenarios directory; you should not embed {1} in each map or vehicle.
-The legal location to place is '{2}'.</value>
+  <data name="AtsExAssemblyLocationIllegalApproach" xml:space="preserve">
+    <value>Due to keeping your {0} always in the latest version, you should place only one {0} package in each Scenarios directory; you should not embed {0} in each map or vehicle.
+The legal location to place is '{1}'.</value>
+  </data>
+  <data name="AtsExAssemblyLocationIllegalMessage" xml:space="preserve">
+    <value>The location of the {0} main assembly '{1}' is illegal.</value>
   </data>
   <data name="ExtensionTickResultTypeInvalid" xml:space="preserve">
     <value>The {0} method of extensions must return {1}.</value>

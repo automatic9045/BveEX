@@ -117,12 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="IllegalSlimDXDetected" xml:space="preserve">
-    <value>SlimDX.dll(s) not included by BVE were detected.
-SlimDX.dlls loaded are the following:
+  <data name="IllegalSlimDXDetectedApproach" xml:space="preserve">
+    <value>SlimDX.dlls loaded are the following:
 
 {0}
 
 If plugins include some SlimDX.dll(s), please delete them, as loading multiple SlimDX.dlls will cause some problems.</value>
+  </data>
+  <data name="IllegalSlimDXDetectedMessage" xml:space="preserve">
+    <value>SlimDX.dll(s) not included by BVE were detected.</value>
   </data>
 </root>

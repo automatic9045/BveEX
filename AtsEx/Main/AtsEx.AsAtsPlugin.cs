@@ -32,11 +32,12 @@ namespace AtsEx
 
                 if (GetNormalizedPath(launcherAssemblyLocation) != GetNormalizedPath(legalLauncherAssemblyLocation))
                 {
-                    string warningText = string.Format(Resources.Value.AtsExAssemblyLocationIllegal.Value, App.Instance.ProductShortName, launcherAssemblyLocation, legalLauncherAssemblyLocation);
+                    string message = string.Format(Resources.Value.AtsExAssemblyLocationIllegalMessage.Value, App.Instance.ProductShortName, launcherAssemblyLocation);
+                    string approach = string.Format(Resources.Value.AtsExAssemblyLocationIllegalApproach.Value, App.Instance.ProductShortName, legalLauncherAssemblyLocation);
                     string sender = Path.GetFileName(launcherAssemblyLocation);
 
-                    BveHacker.LoadErrorManager.Throw(warningText.Replace("\n", ""), sender);
-                    ErrorDialog.Show(warningText);
+                    BveHacker.LoadErrorManager.Throw(message, sender);
+                    ErrorDialog.Show(1, message, approach);
 
                     if (MessageBox.Show(Resources.Value.IgnoreAndContinue.Value, App.Instance.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                     {

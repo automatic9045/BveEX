@@ -117,13 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="IllegalSlimDXDetected" xml:space="preserve">
-    <value>BVE 本体に同梱されているものではない SlimDX.dll が読み込まれています。
-読み込まれている SlimDX.dll の一覧は以下の通りです:
+  <data name="IllegalSlimDXDetectedApproach" xml:space="preserve">
+    <value>読み込まれている SlimDX.dll の一覧は以下の通りです:
 
 {0}
 
 BVE 本体に同梱されているもの以外の SlimDX.dll の読込は不具合の原因となる可能性があります。
 プラグインに SlimDX.dll が同梱されている場合は削除してください。</value>
+  </data>
+  <data name="IllegalSlimDXDetectedMessage" xml:space="preserve">
+    <value>BVE 本体に同梱されているものではない SlimDX.dll が読み込まれています。</value>
   </data>
 </root>

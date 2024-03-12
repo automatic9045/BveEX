@@ -279,6 +279,8 @@
     <Content Include="Resources\VehicleConfig.resx" />
     <Content Include="Resources\InputDeviceMain.ja.resx" />
     <Content Include="Resources\InputDeviceMain.resx" />
+    <Content Include="Resources\ErrorDialog.ja.resx" />
+    <Content Include="Resources\ErrorDialog.resx" />
     <None Include="app.config" />
     <None Include="packages.config" />
     <EmbeddedResource Include="Plugins\AtsExVehicleConfigXmlSchema.xsd">

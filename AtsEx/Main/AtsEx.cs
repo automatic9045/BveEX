@@ -23,7 +23,8 @@ namespace AtsEx
         {
             private readonly ResourceLocalizer Localizer = ResourceLocalizer.FromResXOfType<AtsEx>("Core");
 
-            [ResourceStringHolder(nameof(Localizer))] public Resource<string> AtsExAssemblyLocationIllegal { get; private set; }
+            [ResourceStringHolder(nameof(Localizer))] public Resource<string> AtsExAssemblyLocationIllegalMessage { get; private set; }
+            [ResourceStringHolder(nameof(Localizer))] public Resource<string> AtsExAssemblyLocationIllegalApproach { get; private set; }
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> IgnoreAndContinue { get; private set; }
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> ExtensionTickResultTypeInvalid { get; private set; }
 

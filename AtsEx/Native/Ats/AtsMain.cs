@@ -30,6 +30,7 @@ namespace AtsEx.Native.Ats
             private readonly ResourceLocalizer Localizer = ResourceLocalizer.FromResXOfType(typeof(AtsMain), "Core");
 
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> BveVersionNotSupported { get; private set; }
+            [ResourceStringHolder(nameof(Localizer))] public Resource<string> CallerVersionNotSupported { get; private set; }
 
             public ResourceSet()
             {
@@ -74,8 +75,8 @@ namespace AtsEx.Native.Ats
             Version callerVersion = CallerInfo.AtsExCallerAssembly.GetName().Version;
             if (callerVersion < new Version(0, 16))
             {
-                string errorMessage = $"読み込まれた AtsEX Caller (バージョン {callerVersion}) は現在の AtsEX ではサポートされていません。\nbeta0.16 (バージョン 0.16) 以降の AtsEX Caller をご利用下さい。";
-                ErrorDialog.Show(errorMessage);
+                string errorMessage = string.Format(Resources.Value.CallerVersionNotSupported.Value, "AtsEX", callerVersion);
+                ErrorDialog.Show(2, errorMessage);
                 throw new NotSupportedException(errorMessage.Replace("\n", ""));
             }
 
