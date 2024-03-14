@@ -76,7 +76,7 @@ namespace AtsEx.Sound
         {
             if (index < MinIndex || MaxIndex < index) throw new IndexOutOfRangeException();
 
-            AtsSound atsSound = new AtsSound();
+            AtsSound atsSound = new AtsSound(() => RegisteredSounds.Remove(index));
 
             RegisteredSounds.Add(index, atsSound);
             return atsSound;

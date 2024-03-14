@@ -12,13 +12,17 @@ namespace AtsEx.Sound
 {
     internal sealed class AtsSound : IAtsSound
     {
+        private readonly Action Disposer;
         private readonly AtsSoundCommandQueue CommandQueue = new AtsSoundCommandQueue();
 
         public PlayState PlayState { get; private set; }
 
-        public AtsSound()
+        public AtsSound(Action disposer)
         {
+            Disposer = disposer;
         }
+
+        public void Dispose() => Disposer();
 
         public int Tick() => CommandQueue.Tick().SerializedValue;
 
