@@ -174,6 +174,29 @@
 		</Property>
 	</Class>
 
+	<Class Wrapper="BrakeBlenderBase" Original="e3">
+		<Bridges>
+			<Bridge Wrapper="ElectroPneumaticBlendedBrakingControlBase"/>
+		</Bridges>
+
+		<Property Wrapper="InitialPressure">
+			<Getter Original="k"/>
+			<Setter Original="e"/>
+		</Property>
+		<Property Wrapper="MaximumPressure">
+			<Getter Original="l"/>
+			<Setter Original="f"/>
+		</Property>
+		<Property Wrapper="SapBcRatio">
+			<Getter Original="g"/>
+			<Setter Original="g"/>
+		</Property>
+		<Property Wrapper="SapBcOffset">
+			<Getter Original="h"/>
+			<Setter Original="i"/>
+		</Property>
+	</Class>
+
 	<Class Wrapper="BrakeControllerBase" Original="a1">
 		<Property Wrapper="MaximumPressure">
 			<Getter Original="e"/>
@@ -268,7 +291,11 @@
 	<Class Wrapper="CantList" Original="bn">
 	</Class>
 
-	<Class Wrapper="CarBc" Original="d6">
+	<Class Wrapper="CarBrake" Original="d6">
+		<Bridges>
+			<Bridge Wrapper="CarBc"/>
+		</Bridges>
+
 		<Property Wrapper="BasicBrake">
 			<Getter Original="b"/>
 		</Property>
@@ -439,25 +466,6 @@
 	</Class>
 
 	<Class Wrapper="Ecb" Original="ew">
-	</Class>
-
-	<Class Wrapper="ElectroPneumaticBlendedBrakingControlBase" Original="e3">
-		<Property Wrapper="InitialPressure">
-			<Getter Original="k"/>
-			<Setter Original="e"/>
-		</Property>
-		<Property Wrapper="MaximumPressure">
-			<Getter Original="l"/>
-			<Setter Original="f"/>
-		</Property>
-		<Property Wrapper="SapBcRatio">
-			<Getter Original="g"/>
-			<Setter Original="g"/>
-		</Property>
-		<Property Wrapper="SapBcOffset">
-			<Getter Original="h"/>
-			<Setter Original="i"/>
-		</Property>
 	</Class>
 
 	<Class Wrapper="GraphCurve" Original="be">

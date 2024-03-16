@@ -4,25 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using FastMember;
-using TypeWrapping;
-
 namespace BveTypes.ClassWrappers
 {
     /// <summary>
-    /// ブレーキシリンダーの圧力調整弁を表します。
+    /// 互換性のために残されている旧名のクラスです。<see cref="CarBrake"/> を使用してください。
     /// </summary>
-    public class CarBc : ClassWrapperBase
+    [Obsolete]
+    public class CarBc : CarBrake
     {
-        [InitializeClassWrapper]
-        private static void Initialize(BveTypeSet bveTypes)
-        {
-            ClassMemberSet members = bveTypes.GetClassInfoOf<CarBc>();
-
-            BasicBrakeGetMethod = members.GetSourcePropertyGetterOf(nameof(BasicBrake));
-            BrakeReAdhesionGetMethod = members.GetSourcePropertyGetterOf(nameof(BrakeReAdhesion));
-        }
-
         /// <summary>
         /// オリジナル オブジェクトから <see cref="CarBc"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
@@ -37,18 +26,6 @@ namespace BveTypes.ClassWrappers
         /// <param name="src">ラップするオリジナル オブジェクト。</param>
         /// <returns>オリジナル オブジェクトをラップした <see cref="CarBc"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
-        public static CarBc FromSource(object src) => src is null ? null : new CarBc(src);
-
-        private static FastMethod BasicBrakeGetMethod;
-        /// <summary>
-        /// 基礎ブレーキ装置を表す <see cref="ClassWrappers.BasicBrake"/> を取得します。
-        /// </summary>
-        public BasicBrake BasicBrake => ClassWrappers.BasicBrake.FromSource(BasicBrakeGetMethod.Invoke(Src, null));
-
-        private static FastMethod BrakeReAdhesionGetMethod;
-        /// <summary>
-        /// 基礎ブレーキ装置の滑走再粘着制御機構を取得します。
-        /// </summary>
-        public ReAdhesionControl BrakeReAdhesion => ReAdhesionControl.FromSource(BrakeReAdhesionGetMethod.Invoke(Src, null));
+        public static new CarBc FromSource(object src) => src is null ? null : new CarBc(src);
     }
 }
