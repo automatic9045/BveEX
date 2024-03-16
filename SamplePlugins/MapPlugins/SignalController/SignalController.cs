@@ -14,7 +14,7 @@ using AtsEx.Extensions.SignalPatch;
 
 namespace AtsEx.Samples.MapPlugins.SignalController
 {
-    [PluginType(PluginType.MapPlugin)]
+    [Plugin(PluginType.MapPlugin)]
     public class SignalController : AssemblyPluginBase
     {
         private SignalPatch SignalPatch;

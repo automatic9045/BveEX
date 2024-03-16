@@ -11,8 +11,7 @@ using AtsEx.PluginHost.Plugins.Extensions;
 
 namespace AtsEx.Extensions.DXDynamicTexture
 {
-    [PluginType(PluginType.Extension)]
-    [DoNotUseBveHacker]
+    [Plugin(PluginType.Extension)]
     [HideExtensionMain]
     public class ExtensionMain : AssemblyPluginBase, IExtension
     {

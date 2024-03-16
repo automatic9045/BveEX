@@ -12,7 +12,7 @@ using AtsEx.PluginHost.Plugins;
 
 namespace AtsEx.Samples.MapPlugins.TrainController
 {
-    [PluginType(PluginType.MapPlugin)]
+    [Plugin(PluginType.MapPlugin)]
     public class TrainController : AssemblyPluginBase
     {
         private Train Train;

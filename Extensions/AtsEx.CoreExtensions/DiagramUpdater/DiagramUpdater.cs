@@ -12,7 +12,7 @@ using AtsEx.PluginHost.Plugins.Extensions;
 
 namespace AtsEx.Extensions.DiagramUpdater
 {
-    [PluginType(PluginType.Extension)]
+    [Plugin(PluginType.Extension)]
     [ExtensionMainDisplayType(typeof(IDiagramUpdater))]
     internal sealed class DiagramUpdater : AssemblyPluginBase, IDiagramUpdater
     {

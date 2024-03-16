@@ -15,7 +15,7 @@ using AtsEx.PluginHost.Plugins.Extensions;
 
 namespace AtsEx.Extensions.TrainDrawPatch
 {
-    [PluginType(PluginType.Extension)]
+    [Plugin(PluginType.Extension)]
     [ExtensionMainDisplayType(typeof(ITrainDrawPatchFactory))]
     internal sealed class TrainDrawPatchFactory : AssemblyPluginBase, ITrainDrawPatchFactory
     {

@@ -15,7 +15,7 @@ using AtsEx.PluginHost.Sound.Native;
 
 namespace AtsEx.Samples.VehiclePlugins.SimpleAts
 {
-    [PluginType(PluginType.VehiclePlugin)]
+    [Plugin(PluginType.VehiclePlugin)]
     public class SimpleAts : AssemblyPluginBase
     {
         private readonly IAtsSound AtsSound;

@@ -14,7 +14,7 @@ using AtsEx.PluginHost.Plugins.Extensions;
 
 namespace AtsEx.Extensions.AtsArrayExtender
 {
-    [PluginType(PluginType.Extension)]
+    [Plugin(PluginType.Extension)]
     [HideExtensionMain]
     internal class ExtensionMain : AssemblyPluginBase, IExtension
     {

@@ -15,7 +15,7 @@ using AtsEx.Extensions.ConductorPatch;
 
 namespace AtsEx.Samples.VehiclePlugins.ConductorPatchTest
 {
-    [PluginType(PluginType.VehiclePlugin)]
+    [Plugin(PluginType.VehiclePlugin)]
     public class PluginMain : AssemblyPluginBase
     {
         private TestConductor Conductor = null;

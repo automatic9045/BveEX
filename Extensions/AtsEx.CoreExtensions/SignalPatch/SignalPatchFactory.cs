@@ -13,7 +13,7 @@ using AtsEx.PluginHost.Plugins.Extensions;
 
 namespace AtsEx.Extensions.SignalPatch
 {
-    [PluginType(PluginType.Extension)]
+    [Plugin(PluginType.Extension)]
     [ExtensionMainDisplayType(typeof(ISignalPatchFactory))]
     internal sealed class SignalPatchFactory : AssemblyPluginBase, ISignalPatchFactory
     {

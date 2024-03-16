@@ -15,7 +15,7 @@ using AtsEx.PluginHost.Plugins.Extensions;
 
 namespace AtsEx.Extensions.PreTrainPatch
 {
-    [PluginType(PluginType.Extension)]
+    [Plugin(PluginType.Extension)]
     [ExtensionMainDisplayType(typeof(IPreTrainPatchFactory))]
     internal class PreTrainPatchFactory : AssemblyPluginBase, IPreTrainPatchFactory
     {

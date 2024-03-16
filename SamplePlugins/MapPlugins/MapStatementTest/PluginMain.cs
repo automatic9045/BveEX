@@ -15,7 +15,7 @@ using AtsEx.PluginHost.Plugins;
 
 namespace AtsEx.Samples.MapPlugins.MapStatementTest
 {
-    [PluginType(PluginType.MapPlugin)]
+    [Plugin(PluginType.MapPlugin)]
     public class PluginMain : AssemblyPluginBase
     {
         private static readonly string AssemblyFileName = Path.GetFileName(Assembly.GetExecutingAssembly().Location);

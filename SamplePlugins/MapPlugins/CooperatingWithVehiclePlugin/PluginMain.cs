@@ -11,7 +11,7 @@ using VehiclePlugin = AtsEx.Samples.VehiclePlugins.CooperatingWithMapPlugin.Plug
 
 namespace AtsEx.Samples.MapPlugins.CooperatingWithVehiclePlugin
 {
-    [PluginType(PluginType.MapPlugin)]
+    [Plugin(PluginType.MapPlugin)]
     public class PluginMain : AssemblyPluginBase
     {
         public PluginMain(PluginBuilder builder) : base(builder)

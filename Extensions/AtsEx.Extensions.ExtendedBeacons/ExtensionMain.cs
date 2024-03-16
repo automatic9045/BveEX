@@ -16,7 +16,7 @@ using AtsEx.Scripting.CSharp;
 
 namespace AtsEx.Extensions.ExtendedBeacons
 {
-    [PluginType(PluginType.Extension)]
+    [Plugin(PluginType.Extension)]
     [ExtensionMainDisplayType(typeof(IExtensionMain))]
     internal class ExtensionMain : AssemblyPluginBase, IExtensionMain
     {

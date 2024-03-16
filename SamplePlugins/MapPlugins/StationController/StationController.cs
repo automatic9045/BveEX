@@ -11,7 +11,7 @@ using AtsEx.PluginHost.Plugins;
 
 namespace AtsEx.Samples.MapPlugins.StationController
 {
-    [PluginType(PluginType.MapPlugin)]
+    [Plugin(PluginType.MapPlugin)]
     public class StationController : AssemblyPluginBase
     {
         private readonly ControllerForm Form;

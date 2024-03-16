@@ -13,7 +13,7 @@ using AtsEx.PluginHost.Plugins.Extensions;
 
 namespace AtsEx.Extensions.StructureModelFinder
 {
-    [PluginType(PluginType.Extension)]
+    [Plugin(PluginType.Extension)]
     [ExtensionMainDisplayType(typeof(IStructureModelFinder))]
     internal class StructureModelFinder : AssemblyPluginBase, IStructureModelFinder
     {

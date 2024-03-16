@@ -10,7 +10,7 @@ using AtsEx.PluginHost.Plugins.Extensions;
 
 namespace AtsEx.Extensions.ContextMenuHacker
 {
-    [PluginType(PluginType.Extension)]
+    [Plugin(PluginType.Extension)]
     [ExtensionMainDisplayType(typeof(IContextMenuHacker))]
     internal sealed class ContextMenuHacker : AssemblyPluginBase, IContextMenuHacker
     {

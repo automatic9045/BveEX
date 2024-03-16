@@ -15,7 +15,7 @@ using AtsEx.PluginHost.Plugins;
 
 namespace AtsEx.Samples.MapPlugins.TrainControllerEx.Automatic
 {
-    [PluginType(PluginType.MapPlugin)]
+    [Plugin(PluginType.MapPlugin)]
     public class PluginMain : AssemblyPluginBase
     {
         private Train Train;

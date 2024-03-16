@@ -8,7 +8,7 @@ using AtsEx.PluginHost.Plugins;
 
 namespace AtsEx.Samples.VehiclePlugins.CooperatingWithMapPlugin
 {
-    [PluginType(PluginType.VehiclePlugin)]
+    [Plugin(PluginType.VehiclePlugin)]
     public class PluginMain : AssemblyPluginBase
     {
         public int SharedValue { get; } = 123;

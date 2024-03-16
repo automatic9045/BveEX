@@ -12,7 +12,7 @@ using AtsEx.PluginHost.Plugins.Extensions;
 
 namespace AtsEx.Extensions.ConductorPatch
 {
-    [PluginType(PluginType.Extension)]
+    [Plugin(PluginType.Extension)]
     [ExtensionMainDisplayType(typeof(IConductorPatchFactory))]
     internal class ConductorPatchFactory : AssemblyPluginBase, IConductorPatchFactory
     {
