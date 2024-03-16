@@ -48,7 +48,10 @@ namespace AtsEx.PluginHost
             AtsExLauncherAssembly = launcherAssembly;
             AtsExAssembly = atsExAssembly;
             AtsExPluginHostAssembly = Assembly.GetExecutingAssembly();
+
+            AtsExVersion = AtsExAssembly.GetName().Version;
             BveVersion = BveAssembly.GetName().Version;
+
             LaunchMode = launchMode;
         }
 
@@ -75,6 +78,11 @@ namespace AtsEx.PluginHost
         public Process Process { get; }
 
         /// <summary>
+        /// 実行元の BVE の <see cref="Assembly"/> を取得します。
+        /// </summary>
+        public Assembly BveAssembly { get; }
+
+        /// <summary>
         /// AtsEX Launcher の <see cref="Assembly"/> を取得します。
         /// </summary>
         public Assembly AtsExLauncherAssembly { get; }
@@ -90,9 +98,9 @@ namespace AtsEx.PluginHost
         public Assembly AtsExPluginHostAssembly { get; }
 
         /// <summary>
-        /// 実行元の BVE の <see cref="Assembly"/> を取得します。
+        /// AtsEX のバージョンを取得します。
         /// </summary>
-        public Assembly BveAssembly { get; }
+        public Version AtsExVersion { get; }
 
         /// <summary>
         /// 実行元の BVE のバージョンを取得します。
