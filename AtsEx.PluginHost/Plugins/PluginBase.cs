@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 using UnembeddedResources;
 
@@ -48,6 +46,11 @@ namespace AtsEx.PluginHost.Plugins
         /// この AtsEX プラグインの種類を取得します。
         /// </summary>
         public PluginType PluginType { get; }
+
+        /// <summary>
+        /// この AtsEX プラグインが必要とする AtsEX 本体の最低バージョンを取得します。最低バージョンが設定されていない場合は <see langword="null"/> を返します。
+        /// </summary>
+        public Version MinRequiredVersion { get; }
 
         /// <summary>
         /// この AtsEX プラグインが AtsEX 独自の特殊機能拡張 (<see cref="IBveHacker"/>、マッププラグインなど) を利用するかどうかを取得します。
@@ -135,43 +138,79 @@ namespace AtsEx.PluginHost.Plugins
         /// </summary>
         public abstract string Copyright { get; }
 
-        /// <summary>
-        /// AtsEX プラグインの新しいインスタンスを初期化します。
-        /// </summary>
-        /// <param name="builder">AtsEX から渡される BVE、AtsEX の情報。</param>
-        /// <param name="pluginType">AtsEX プラグインの種類。</param>
-        /// <param name="useBveHacker">AtsEX 独自の特殊機能拡張 (<see cref="IBveHacker"/>、マッププラグインなど) を利用するか。<br/>
-        /// <see langword="false"/> を指定すると、<see cref="BveHacker"/> が取得できなくなる代わりに、BVE のバージョンの問題で AtsEX 拡張機能の読込に失敗した場合でもシナリオを開始できるようになります。<br/>
-        /// マッププラグインでは <see langword="false"/> を指定することはできません。</param>
-        public PluginBase(PluginBuilder builder, PluginType pluginType, bool useBveHacker)
+        private PluginBase(PluginBuilder builder, PluginAttribute info, bool allowInfoIsNull)
         {
-            PluginType = pluginType;
-            UseBveHacker = useBveHacker;
-
             Native = builder.Native;
             Extensions = builder.Extensions;
             Plugins = builder.Plugins;
             _BveHacker = builder.BveHacker;
             Identifier = builder.Identifier;
+
+            if (info is null)
+            {
+                if (allowInfoIsNull)
+                {
+                    return;
+                }
+                else
+                {
+                    throw new ArgumentNullException(nameof(info));
+                }
+            }
+
+            PluginType = info.PluginType;
+            MinRequiredVersion = info.MinRequiredVersion;
+            UseBveHacker = info.UseBveHacker;
+        }
+
+        /// <summary>
+        /// 動的に作成された <see cref="PluginAttribute"/> 属性を参照して、AtsEX プラグインの新しいインスタンスを初期化します。
+        /// </summary>
+        /// <param name="builder">AtsEX から渡される BVE、AtsEX の情報。</param>
+        /// <param name="info">プラグインの詳細な仕様を指定する <see cref="PluginAttribute"/>。</param>
+        public PluginBase(PluginBuilder builder, PluginAttribute info) : this(builder, info, false)
+        {
         }
 
         /// <summary>
         /// AtsEX プラグインの新しいインスタンスを初期化します。
         /// </summary>
         /// <remarks>
-        /// <see cref="PluginTypeAttribute"/> を付加して、プラグインの種類を指定してください。<br/>
-        /// AtsEX 拡張機能を利用しないプラグインであることを指定するには、<see cref="DoNotUseBveHackerAttribute"/> を付加してください。
+        /// 互換性のために残されているコンストラクタです。パラメータに <see cref="PluginAttribute"/> を指定するオーバーロードを使用してください。
         /// </remarks>
         /// <param name="builder">AtsEX から渡される BVE、AtsEX の情報。</param>
-        public PluginBase(PluginBuilder builder) : this(builder, default, default)
+        /// <param name="pluginType">AtsEX プラグインの種類。</param>
+        /// <param name="useBveHacker">AtsEX 独自の特殊機能拡張 (<see cref="IBveHacker"/>、マッププラグインなど) を利用するか。<br/>
+        /// <see langword="false"/> を指定すると、<see cref="BveHacker"/> が取得できなくなる代わりに、BVE のバージョンの問題で AtsEX 拡張機能の読込に失敗した場合でもシナリオを開始できるようになります。<br/>
+        /// マッププラグインでは <see langword="false"/> を指定することはできません。</param>
+        [Obsolete]
+        public PluginBase(PluginBuilder builder, PluginType pluginType, bool useBveHacker) : this(builder, new PluginAttribute(pluginType, useBveHacker: useBveHacker))
         {
-            Type type = GetType();
+        }
+
+        /// <summary>
+        /// クラスに付加されている <see cref="PluginAttribute"/> 属性を参照して、AtsEX プラグインの新しいインスタンスを初期化します。
+        /// </summary>
+        /// <remarks>
+        /// <see cref="PluginAttribute"/> を付加して、プラグインの詳細な仕様を指定してください。
+        /// </remarks>
+        /// <param name="builder">AtsEX から渡される BVE、AtsEX の情報。</param>
+        public PluginBase(PluginBuilder builder) : this(builder, null, true)
+        {
             PluginType? pluginType = null;
+            Version minRequiredVersion = null;
             bool useBveHacker = true;
-            foreach (Attribute attribute in type.GetCustomAttributes())
+            foreach (Attribute attribute in GetType().GetCustomAttributes())
             {
                 switch (attribute)
                 {
+                    case PluginAttribute pluginAttribute:
+                        pluginType = pluginAttribute.PluginType;
+                        minRequiredVersion = pluginAttribute.MinRequiredVersion;
+                        useBveHacker = pluginAttribute.UseBveHacker;
+                        break;
+
+#pragma warning disable CS0612 // 型またはメンバーが旧型式です
                     case PluginTypeAttribute pluginTypeAttribute:
                         pluginType = pluginTypeAttribute.PluginType;
                         break;
@@ -179,11 +218,12 @@ namespace AtsEx.PluginHost.Plugins
                     case DoNotUseBveHackerAttribute doNotUseBveHackerAttribute:
                         useBveHacker = false;
                         break;
+#pragma warning restore CS0612 // 型またはメンバーが旧型式です
                 }
             }
-            if (pluginType is null) throw new InvalidOperationException(string.Format(Resources.Value.PluginTypeNotSpecified.Value, typeof(PluginTypeAttribute).FullName));
 
-            PluginType = (PluginType)pluginType;
+            PluginType = pluginType ?? throw new InvalidOperationException(string.Format(Resources.Value.PluginTypeNotSpecified.Value, typeof(PluginAttribute).FullName));
+            MinRequiredVersion = minRequiredVersion;
             UseBveHacker = useBveHacker;
         }
 

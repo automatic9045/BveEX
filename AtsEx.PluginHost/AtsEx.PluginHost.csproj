@@ -116,6 +116,7 @@
     <Compile Include="Plugins\Extensions\IExtensionSet.cs" />
     <Compile Include="Plugins\Extensions\ExtensionTickResult.cs" />
     <Compile Include="Plugins\IPluginSet.cs" />
+    <Compile Include="Plugins\PluginAttribute.cs" />
     <Compile Include="Plugins\PluginBuilder.cs" />
     <Compile Include="Native\VehicleSpec.cs" />
     <Compile Include="Native\VehicleState.cs" />

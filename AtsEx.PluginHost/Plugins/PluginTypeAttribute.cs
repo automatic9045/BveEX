@@ -9,6 +9,10 @@ namespace AtsEx.PluginHost.Plugins
     /// <summary>
     /// AtsEX プラグインの種類を指定します。
     /// </summary>
+    /// <remarks>
+    /// 互換性のために残されている旧名のクラスです。<see cref="PluginAttribute"/> を使用してください。
+    /// </remarks>
+    [Obsolete]
     public class PluginTypeAttribute : Attribute
     {
         /// <summary>

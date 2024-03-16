@@ -10,10 +10,9 @@ namespace AtsEx.PluginHost.Plugins
     /// AtsEX 独自の特殊機能拡張 (<see cref="IBveHacker"/>、マッププラグインなど) を利用しないプラグインであることを指定します。
     /// </summary>
     /// <remarks>
-    /// この属性を付加した <see cref="PluginBase"/> では、<see cref="PluginBase.BveHacker"/> が取得できなくなる代わりに、
-    /// BVE のバージョンの問題で AtsEX の特殊機能拡張の読込に失敗した場合でもシナリオを開始できるようになります。<br/>
-    /// マッププラグインではこの属性を指定することはできません。
+    /// 互換性のために残されている旧名のクラスです。<see cref="PluginAttribute"/> を使用してください。
     /// </remarks>
+    [Obsolete]
     public class DoNotUseBveHackerAttribute : Attribute
     {
         /// <summary>
