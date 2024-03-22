@@ -58,7 +58,8 @@
                 <h3>ユーザー向けQ&A</h3>
                 <ul>
                     <li><a href="support/faq/#install-atsex">AtsEX本体のインストール方法を教えてください。</a></li>
-                    <li><a href="support/faq/#install-addons">AtsEXを搭載している車両・路線の導入方法を教えてください。</a></li>
+                    <li><a href="support/faq/#install-addons">AtsEX対応車両・路線の導入方法を教えてください。</a></li>
+                    <li><a href="support/faq/#vanilla">AtsEX対応車両・路線を、AtsEX本体を導入せずに遊ぶことはできますか?</a></li>
                     <li><a href="support/faq/#pi-dont-work">AtsEXプラグインが動作しません。</a></li>
                     <li><a href="support/faq/#bve5-support">AtsEXはBVE5にも対応していますか?</a></li>
                     <li><a href="support/faq/#other-inputdevices">AtsEXを導入したところ、他の入力デバイスプラグインが動作しなくなりました。</a></li>
@@ -75,6 +76,7 @@
                 <ul>
                     <li><a href="support/faq/#with-other-pi">車両データで、AtsEX車両プラグインと従来のATSプラグインを両立させることはできますか?</a></li>
                     <li><a href="support/faq/#conflict">AtsEXはその他のプラグインと競合しますか?</a></li>
+                    <li><a href="support/faq/#official">AtsEX本体を導入せずにAtsEX対応車両・路線を遊ぶことはできますか?</a></li>
                 </ul>
 
                 <h3>プラグイン開発者向け</h3>
@@ -105,7 +107,7 @@
             </a>
 
             <div class="q-and-a">
-                <h3 id="install-addons">AtsEXを搭載している車両・路線の導入方法を教えてください。</h3>
+                <h3 id="install-addons">AtsEX対応車両・路線の導入方法を教えてください。</h3>
                 <p>
                     別途AtsEX本体のダウンロードが必要です。また、BVE5で使用する場合はさらに追加で作業が必要です。
                 </p>
@@ -129,6 +131,34 @@
                     このページではBVE本体の加工の手順を説明します。
                 </p>
             </a>
+
+            <div class="q-and-a">
+                <h3 id="vanilla">AtsEX対応車両・路線を、AtsEX本体を導入せずに遊ぶことはできますか?</h3>
+                <p>
+                    AtsEX本体を導入しなくても動作する場合があります。
+                </p>
+            </div>
+            <p>
+                AtsEX本体が導入されていない状態では、車両や路線に埋め込まれたAtsEXプラグインはただ全く読み込まれなくなるのみで、<mark>車両・路線データが完全に読み込めなくなることはありません</mark>。
+                そのため、<mark>AtsEXプラグインによる+αのこだわり演出はなされなくなるものの、ある程度の水準では動作するケースが多くあります</mark>。
+            </p>
+            <p>
+                AtsEX本体を導入できない事情がある場合は、まずは希望のデータがAtsEX本体未導入でも動作するかどうか一度試してみることをお勧めします。
+            </p>
+            <div class="note note-info">
+                <h4>AtsEX未導入ではデータが一切動作しなくなるケースの例</h4>
+                <p>
+                    AtsEXプラグインと通常のATSプラグインとの間でデータのやり取りをしている場合などでは、ATSプラグイン側の実装によっては読込自体が失敗してしまうこともあります。
+                </p>
+            </div>
+            <div class="note note-warn">
+                <h4>車両・路線の利用規約を確認しましょう</h4>
+                <p>
+                    もしデータが読み込めたとしても、AtsEXプラグインが実行されていない状態というのはすなわち作者からすればデータを<strong>不完全な状態</strong>でプレイしていることになります。<br />
+                    データの利用規約によって、そういった不完全な状態でプレイした動画のYouTubeなどへの投稿が禁止されていたり、あるいは不完全な状態でプレイすること自体が禁止されている場合もありますから、
+                    規約をしっかり読んで禁止事項に抵触しないようにしましょう。
+                </p>
+            </div>
 
             <div class="q-and-a">
                 <h3 id="pi-dont-work">AtsEXプラグインが動作しません。</h3>
