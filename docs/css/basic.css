@@ -353,6 +353,7 @@ table {
         table.with-border td {
             padding: 4px 8px;
             border: 1px solid var(--separator-color);
+            background-color: var(--background-color);
         }
 
         table.with-border tr:nth-child(2n) td {
