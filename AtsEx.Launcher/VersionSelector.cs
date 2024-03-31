@@ -47,8 +47,16 @@ namespace AtsEx.Launcher
             AppDomain.CurrentDomain.AssemblyResolve += (sender, e) =>
             {
                 AssemblyName assemblyName = new AssemblyName(e.Name);
-                string path = Path.Combine(atsExAssemblyDirectory, assemblyName.Name + ".dll");
-                return File.Exists(path) ? Assembly.LoadFrom(path) : null;
+                switch (assemblyName.Name)
+                {
+                    case "AtsEx.Diagnostics":
+                        string diagnosticsPath = Path.Combine(rootDirectory, assemblyName.Name + ".dll");
+                        return Assembly.LoadFrom(diagnosticsPath);
+
+                    default:
+                        string path = Path.Combine(atsExAssemblyDirectory, assemblyName.Name + ".dll");
+                        return File.Exists(path) ? Assembly.LoadFrom(path) : null;
+                }
             };
 
             UpdateChecker.CheckUpdates();
