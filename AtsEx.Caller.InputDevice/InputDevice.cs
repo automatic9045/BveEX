@@ -30,7 +30,19 @@ namespace AtsEx.Caller.InputDevice
 #if DEBUG
             if (!Debugger.IsAttached) Debugger.Launch();
 #endif
-            string launcherLocation = Path.Combine(Path.GetDirectoryName(Assembly.Location), "AtsEx", LauncherName + ".dll");
+            string callerDirectory = Path.GetDirectoryName(Assembly.Location);
+            string textPath = Path.Combine(callerDirectory, "AtsEx.Caller.InputDevice.txt");
+
+            string atsExDirectory = Path.Combine(callerDirectory, "AtsEx");
+            if (File.Exists(textPath))
+            {
+                using (StreamReader sr = new StreamReader(textPath))
+                {
+                    atsExDirectory = sr.ReadLine();
+                }
+            }
+
+            string launcherLocation = Path.Combine(atsExDirectory, LauncherName + ".dll");
             AppDomain.CurrentDomain.AssemblyResolve += (sender, e) =>
             {
                 AssemblyName assemblyName = new AssemblyName(e.Name);
