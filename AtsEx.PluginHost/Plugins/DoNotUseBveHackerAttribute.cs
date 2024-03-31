@@ -7,12 +7,9 @@ using System.Threading.Tasks;
 namespace AtsEx.PluginHost.Plugins
 {
     /// <summary>
-    /// AtsEX 独自の特殊機能拡張 (<see cref="IBveHacker"/>、マッププラグインなど) を利用しないプラグインであることを指定します。
+    /// 使用できません。
     /// </summary>
-    /// <remarks>
-    /// 互換性のために残されている旧名のクラスです。<see cref="PluginAttribute"/> を使用してください。
-    /// </remarks>
-    [Obsolete]
+    [Obsolete("DoNotUseBveHacker 機能は廃止されました。", true)]
     public class DoNotUseBveHackerAttribute : Attribute
     {
         /// <summary>

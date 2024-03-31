@@ -126,9 +126,6 @@
   <data name="MaybeBecauseBuiltForDifferentVersion" xml:space="preserve">
     <value>初期化に失敗しました。古いバージョン (バージョン {0}) の {1} に準拠していることが原因の可能性があります。</value>
   </data>
-  <data name="MustUseExtensions" xml:space="preserve">
-    <value>{0}では {1} の拡張機能を使用しないプラグインを開発することはできません。</value>
-  </data>
   <data name="PluginClassNotFound" xml:space="preserve">
     <value>{0} を継承しているクラスが見つかりませんでした。{1} プラグインではない可能性があります。{1} プラグインとして認識されるには、{0} を継承しているクラスが必要です。</value>
   </data>

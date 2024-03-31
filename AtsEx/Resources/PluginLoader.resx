@@ -126,9 +126,6 @@
   <data name="MaybeBecauseBuiltForDifferentVersion" xml:space="preserve">
     <value>Failed to load; this might be because it is built for the old version (Version {0}) of {1}.</value>
   </data>
-  <data name="MustUseExtensions" xml:space="preserve">
-    <value>The {0} must use {1} extensions.</value>
-  </data>
   <data name="PluginClassNotFound" xml:space="preserve">
     <value>Found no class subclass of {0}. It may not be a {1} plugin. The {1} plugin must have at least one class subclass of {0}.</value>
   </data>

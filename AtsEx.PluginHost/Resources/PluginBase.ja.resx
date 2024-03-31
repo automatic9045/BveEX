@@ -117,8 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CannotUseAtsExExtensions" xml:space="preserve">
-    <value>{0} が false に設定されています。</value>
   </data>
   <data name="PluginTypeNotSpecified" xml:space="preserve">
     <value>{0} が付加されておらず、プラグインの種類を特定できません。</value>

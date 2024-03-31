@@ -55,7 +55,7 @@ namespace AtsEx.Plugins.Scripting
         private readonly IPluginScript<StartedGlobals> OnStartedScript;
         private readonly IPluginScript<TickResult, TickGlobals> TickScript;
 
-        protected ScriptPluginBase(ScriptPluginBuilder builder, PluginType pluginType, bool useBveHacker) : base(builder, new PluginAttribute(pluginType, useBveHacker: useBveHacker))
+        protected ScriptPluginBase(ScriptPluginBuilder builder, PluginType pluginType) : base(builder, new PluginAttribute(pluginType))
         {
             Location = builder.Location;
             Title = builder.Title;

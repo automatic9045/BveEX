@@ -15,7 +15,7 @@ namespace AtsEx.Plugins.Scripting.IronPython2
 {
     internal sealed class IronPython2Plugin : ScriptPluginBase
     {
-        private IronPython2Plugin(ScriptPluginBuilder builder, PluginType pluginType) : base(builder, pluginType, true)
+        private IronPython2Plugin(ScriptPluginBuilder builder, PluginType pluginType) : base(builder, pluginType)
         {
         }
 

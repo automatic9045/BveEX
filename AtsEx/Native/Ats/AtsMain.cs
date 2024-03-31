@@ -51,8 +51,6 @@ namespace AtsEx.Native.Ats
         private static CallerInfo CallerInfo;
         private static TroubleshooterSet Troubleshooters;
 
-        private static string VersionWarningText;
-
         private static AtsEx.AsAtsPlugin AtsEx;
         private static ScenarioService.AsAtsPlugin ScenarioService;
         private static FrameSpan FrameSpan;
@@ -96,8 +94,8 @@ namespace AtsEx.Native.Ats
 
             if (!(args is null))
             {
-                VersionWarningText = string.Format(Resources.Value.BveVersionNotSupported.Value, args.BveVersion, args.ProfileVersion, App.Instance.ProductShortName);
-                AtsEx.BveHacker.LoadErrorManager.Throw(VersionWarningText);
+                string versionWarningText = string.Format(Resources.Value.BveVersionNotSupported.Value, args.BveVersion, args.ProfileVersion, App.Instance.ProductShortName);
+                AtsEx.BveHacker.LoadErrorManager.Throw(versionWarningText);
             }
         }
 
@@ -139,7 +137,7 @@ namespace AtsEx.Native.Ats
             PluginHost.Native.VehicleSpec exVehicleSpec = new PluginHost.Native.VehicleSpec(
                 vehicleSpec.BrakeNotches, vehicleSpec.PowerNotches, vehicleSpec.AtsNotch, vehicleSpec.B67Notch, vehicleSpec.Cars);
 
-            ScenarioService = new ScenarioService.AsAtsPlugin(AtsEx, vehiclePluginUsing, vehicleConfig, exVehicleSpec, VersionWarningText);
+            ScenarioService = new ScenarioService.AsAtsPlugin(AtsEx, vehiclePluginUsing, vehicleConfig, exVehicleSpec);
             FrameSpan = new FrameSpan();
         }
 

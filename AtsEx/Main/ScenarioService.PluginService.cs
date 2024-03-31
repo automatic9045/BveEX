@@ -18,14 +18,10 @@ namespace AtsEx
             private readonly PluginSet Plugins;
             private readonly HandleSet Handles;
 
-            public bool UseAtsExExtensions { get; }
-
             public PluginService(PluginSet plugins, HandleSet handles)
             {
                 Plugins = plugins;
                 Handles = handles;
-
-                UseAtsExExtensions = Plugins.Any(item => item.Value.UseBveHacker);
             }
 
             public void Dispose()

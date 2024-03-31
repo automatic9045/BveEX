@@ -9,7 +9,7 @@ using AtsEx.PluginHost.Plugins;
 
 namespace AtsEx.Samples.VehiclePlugins.AtsPanelValueTest
 {
-    [Plugin(PluginType.VehiclePlugin, useBveHacker: false)]
+    [Plugin(PluginType.VehiclePlugin)]
     public class PluginMain : AssemblyPluginBase
     {
         private readonly IAtsPanelValue<bool> Ats0;

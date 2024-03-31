@@ -29,7 +29,6 @@ namespace AtsEx.Plugins
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> ConstructorNotFound { get; private set; }
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> CannotSetIdentifier { get; private set; }
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> WrongPluginType { get; private set; }
-            [ResourceStringHolder(nameof(Localizer))] public Resource<string> MustUseExtensions { get; private set; }
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> MaybeBecauseBuiltForDifferentVersion { get; private set; }
 
             public ResourceSet()
@@ -186,10 +185,6 @@ namespace AtsEx.Plugins
                     if (pluginInstance.PluginType != pluginType)
                     {
                         throw new InvalidOperationException(string.Format(Resources.Value.WrongPluginType.Value, pluginType.GetTypeString(), pluginInstance.PluginType.GetTypeString()));
-                    }
-                    else if (pluginInstance.PluginType == PluginType.MapPlugin && !pluginInstance.UseBveHacker)
-                    {
-                        throw new NotSupportedException(string.Format(Resources.Value.MustUseExtensions.Value, pluginInstance.PluginType.GetTypeString(), App.Instance.ProductShortName));
                     }
 
                     return pluginInstance;

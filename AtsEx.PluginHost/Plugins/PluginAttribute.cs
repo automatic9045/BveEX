@@ -19,26 +19,14 @@ namespace AtsEx.PluginHost.Plugins
         public Version MinRequiredVersion { get; }
 
         /// <summary>
-        /// この AtsEX プラグインが AtsEX 独自の特殊機能拡張 (<see cref="IBveHacker"/>、マッププラグインなど) を利用するかどうかを取得します。
-        /// </summary>
-        /// <remarks>
-        /// このプロパティの値が <see langword="true"/> の場合、<see cref="PluginBase.BveHacker"/> が取得できなくなる代わりに、
-        /// BVE のバージョンの問題で AtsEX の特殊機能拡張の読込に失敗した場合でもシナリオを開始できるようになります。<br/>
-        /// マッププラグインではこの属性を指定することはできません。
-        /// </remarks>
-        public bool UseBveHacker { get; }
-
-        /// <summary>
         /// <see cref="PluginAttribute"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         /// <param name="pluginType">AtsEX プラグインの種類。</param>
         /// <param name="minRequiredVersion">この AtsEX プラグインが必要とする AtsEX 本体の最低バージョンを表す文字列。
         /// テキストは <see cref="Version"/> クラスのコンストラクタがサポートするフォーマットに則っている必要があります。</param>
-        /// <param name="useBveHacker">この AtsEX プラグインが AtsEX 独自の特殊機能拡張 (<see cref="IBveHacker"/>、マッププラグインなど) を利用するかどうか。</param>
-        public PluginAttribute(PluginType pluginType, string minRequiredVersion = null, bool useBveHacker = true) : base(pluginType)
+        public PluginAttribute(PluginType pluginType, string minRequiredVersion = null) : base(pluginType)
         {
             MinRequiredVersion = minRequiredVersion is null ? null : new Version(minRequiredVersion);
-            UseBveHacker = useBveHacker;
         }
     }
 }

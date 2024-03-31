@@ -18,17 +18,9 @@ namespace AtsEx
     {
         internal sealed class AsAtsPlugin : ScenarioService
         {
-            public AsAtsPlugin(AtsEx.AsAtsPlugin atsEx, PluginSourceSet vehiclePluginUsing, VehicleConfig vehicleConfig, VehicleSpec vehicleSpec, string versionWarningText)
+            public AsAtsPlugin(AtsEx.AsAtsPlugin atsEx, PluginSourceSet vehiclePluginUsing, VehicleConfig vehicleConfig, VehicleSpec vehicleSpec)
                 : base(atsEx, vehiclePluginUsing, vehicleConfig, vehicleSpec)
             {
-                if (BveHacker.BveTypes.ProfileVersion != App.Instance.BveVersion && !_PluginService.UseAtsExExtensions)
-                {
-                    LoadError removeTargetError = BveHacker.LoadErrorManager.Errors.FirstOrDefault(error => error.Text == versionWarningText);
-                    if (!(removeTargetError is null))
-                    {
-                        BveHacker.LoadErrorManager.Errors.Remove(removeTargetError);
-                    }
-                }
             }
         }
     }
