@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 using UnembeddedResources;
 
+using AtsEx.Diagnostics;
 using AtsEx.PluginHost.Plugins.Extensions;
 
 namespace AtsEx.PluginHost.Plugins
@@ -24,6 +26,7 @@ namespace AtsEx.PluginHost.Plugins
         {
             private readonly ResourceLocalizer Localizer = ResourceLocalizer.FromResXOfType<PluginBase>("PluginHost");
 
+            [ResourceStringHolder(nameof(Localizer))] public Resource<string> AtsExVersionTooOld { get; private set; }
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> PluginTypeNotSpecified { get; private set; }
 
             public ResourceSet()
@@ -155,6 +158,8 @@ namespace AtsEx.PluginHost.Plugins
 
             PluginType = info.PluginType;
             MinRequiredVersion = info.MinRequiredVersion;
+
+            Validate();
         }
 
         /// <summary>
@@ -210,6 +215,17 @@ namespace AtsEx.PluginHost.Plugins
 
             PluginType = pluginType ?? throw new InvalidOperationException(string.Format(Resources.Value.PluginTypeNotSpecified.Value, typeof(PluginAttribute).FullName));
             MinRequiredVersion = minRequiredVersion;
+
+            Validate();
+        }
+
+        private void Validate()
+        {
+            if (!(MinRequiredVersion is null) && App.Instance.AtsExVersion < MinRequiredVersion)
+            {
+                string message = string.Format(Resources.Value.AtsExVersionTooOld.Value, App.Instance.ProductShortName, MinRequiredVersion, App.Instance.AtsExVersion);
+                ErrorDialog.Show(message, sender: Path.GetFileName(GetType().Assembly.Location));
+            }
         }
 
         /// <inheritdoc/>

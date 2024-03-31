@@ -181,6 +181,11 @@
     <Content Include="Resources\IdentifierToEnumConverter`1.resx" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AtsEx.Diagnostics\AtsEx.Diagnostics.csproj">
+      <Project>{bec38da8-37e2-4db6-80ff-33fe4e25e1a9}</Project>
+      <Name>AtsEx.Diagnostics</Name>
+      <Private>False</Private>
+    </ProjectReference>
     <ProjectReference Include="..\Libs\BveTypes\BveTypes.csproj">
       <Project>{3658ede1-0c3e-4104-a351-64981e4f82df}</Project>
       <Name>BveTypes</Name>
