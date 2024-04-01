@@ -14,7 +14,7 @@ jobs:
           ref: ${{ github.head_ref }}
       
       - name: Add msbuild to PATH
-        uses: microsoft/setup-msbuild@v1
+        uses: microsoft/setup-msbuild@v2
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v2
       - name: Restore project
@@ -56,7 +56,7 @@ jobs:
         run: |
           .\package.bat
       - name: Upload artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: AtsEx-InputPlugin-release
           path: ./bin/*
