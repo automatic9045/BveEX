@@ -18,7 +18,9 @@ jobs:
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v2
       - name: Restore project
-        run: msbuild AtsEx.sln /t:Restore /p:Configuration=Release
+        run: |
+          msbuild AtsEx.sln /t:Restore /p:Configuration=Release
+          nuget restore AtsEx.sln
       - name: Restore dependencies
         id: cache-dependencies
         uses: actions/cache/restore@v4
