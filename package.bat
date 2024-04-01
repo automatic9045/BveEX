@@ -1,0 +1,14 @@
+7z a bin\AtsEx.zip ..\AtsEx\AtsEx\bin\Release\*.dll -r
+7z a bin\AtsEx.zip ..\AtsEx\AtsEx\bin\Release\*.xml -r
+7z a bin\AtsEx.zip ..\AtsEx\AtsEx.PluginHost\bin\Release\*.dll -r
+7z a bin\AtsEx.zip ..\AtsEx\AtsEx.PluginHost\bin\Release\*.xml -r
+7z a bin\AtsEx.zip ..\AtsEx\AtsEx.Scripting\bin\Release\*.dll -r
+7z a bin\AtsEx.zip ..\AtsEx\AtsEx.Scripting\bin\Release\*.xml -r
+7z a bin\AtsEx.Launcher.zip ..\AtsEx\AtsEx.Launcher\bin\Release\*.dll -r
+7z a bin\AtsEx.Launcher.zip ..\AtsEx\AtsEx.Launcher\bin\Release\*.dll.config -r
+7z a bin\AtsEx.Launcher.zip ..\AtsEx\AtsEx.Launcher\bin\Release\*.xml -r
+7z a bin\AtsEx.Caller.InputDevice.zip ..\AtsEx\AtsEx.Caller.InputDevice\bin\Release\*.dll -r
+7z a bin\AtsEx.Caller.InputDevice.zip ..\AtsEx\AtsEx.Caller.InputDevice\bin\Release\*.xml -r
+7z a bin\AtsEx.SamplePlugins.zip ..\AtsEx\SamplePlugins\*\bin\Release\*.dll -r
+7z a bin\AtsEx.Extensions.zip ..\AtsEx\Extensions\*\bin\Release\*.dll -r
+7z a bin\AtsEx.Extensions.zip ..\AtsEx\Extensions\*\bin\Release\*.dll.config -r

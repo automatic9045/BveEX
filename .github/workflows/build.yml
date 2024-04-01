@@ -1,0 +1,52 @@
+name: Build
+on:
+  pull_request:
+  push:
+jobs:
+  test:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      
+      - name: Add msbuild to PATH
+        if: ${{ matrix.job.os == 'windows-latest' }}
+        uses: microsoft/setup-msbuild@v1
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+      - name: Restore project
+        run: msbuild AtsEx.sln /t:Restore /p:Configuration=Release
+      - name: Cache dependencies
+        id: cache-dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            AtsEx.PluginHost\LocalReferences\BveTs\Mackoy.IInputDevice.DLL
+            AtsEx.PluginHost\LocalReferences\BveTs\Mackoy.XmlInterfaces.DLL
+          key: dependencies-1.0.0.0
+      - name: Setup dependencies
+        if: steps.cache-dependencies.outputs.cache-hit != 'true'
+        run: |
+          curl -OL https://bvets.net/archives/bvets6-msi.zip
+          7z x -obvets6 bvets6-msi.zip
+          msiexec /a bvets6\BveTs6Setup.msi /qn
+          copy C:\Program Files\mackoy\BveTs6\Mackoy.IInputDevice.DLL AtsEx.PluginHost\LocalReferences\BveTs\Mackoy.IInputDevice.DLL
+          copy C:\Program Files\mackoy\BveTs6\Mackoy.XmlInterfaces.DLL AtsEx.PluginHost\LocalReferences\BveTs\Mackoy.XmlInterfaces.DLL
+      - name: Setup DllExport
+        run: |
+          curl -OL https://github.com/3F/DllExport/releases/download/v1.7.4/DllExport.bat
+          .\DllExport.bat -action Restore
+      - name: Build
+        run: msbuild AtsEx.sln /p:Configuration=Release
+      - name: Package
+        run: |
+          .\package.bat
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: AtsEx-release
+          path: ./bin/*.zip
