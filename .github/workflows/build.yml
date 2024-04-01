@@ -3,7 +3,7 @@ on:
   pull_request:
   push:
 jobs:
-  test:
+  build:
     runs-on: windows-latest
     strategy:
       fail-fast: false
@@ -14,7 +14,6 @@ jobs:
           ref: ${{ github.head_ref }}
       
       - name: Add msbuild to PATH
-        if: ${{ matrix.job.os == 'windows-latest' }}
         uses: microsoft/setup-msbuild@v1
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v2
