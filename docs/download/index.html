@@ -77,13 +77,10 @@
                         <span class="light-text">情報を取得中...</span>
                     </div>
                     <h3>AtsEX本体+サンプルシナリオ</h3>
-                    <p>
-                        特に理由がなければ、導入が簡単な<mark>入力デバイスプラグイン版、できればその中でもexeインストーラー版</mark>をおすすめしています。
-                    </p>
                     <p class="button-and-text">
                         <a class="button dark-green release-package-inputdevice-installer-button disabled" href="javascript:void(0);" tabindex="-1">
                             <script>setAsInputDeviceInstallerPackageLinkTo('release-package-inputdevice-installer-button');</script>
-                            入力デバイスプラグイン・exeインストーラー版<small>をダウンロード</small>
+                            ダウンロード<small>（入力デバイスプラグイン・exeインストーラー版）</small>
                             <img class="icon-download" src="img/download-white.svg" />
                         </a>
                         <span class="release-package-inputdevice">
@@ -91,44 +88,43 @@
                             <span class="light-text">情報を取得中...</span>
                         </span>
                     </p>
-                    <p class="button-and-text">
-                        <a class="button with-border white-when-hover release-package-inputdevice-button disabled" href="javascript:void(0);" tabindex="-1">
-                            <script>setAsInputDevicePackageLinkTo('release-package-inputdevice-button');</script>
-                            入力デバイスプラグイン・7z手動インストール版<small>をダウンロード</small>
-                            <img class="icon-download" src="img/download-black.svg" />
-                        </a>
-                        <span class="release-package-inputdevice">
-                            <script>setAsInputDevicePackageInfoTo('release-package-inputdevice');</script>
-                            <span class="light-text">情報を取得中...</span>
-                        </span>
-                    </p>
-                    <p class="button-and-text">
-                        <a class="button with-border white-when-hover release-package-ats-button disabled" href="javascript:void(0);" tabindex="-1">
-                            <script>setAsAtsPluginPackageLinkTo('release-package-ats-button');</script>
-                            ATSプラグイン版<small>をダウンロード</small>
-                            <img class="icon-download" src="img/download-black.svg" />
-                        </a>
-                        <span class="release-package-ats">
-                            <script>setAsAtsPluginPackageInfoTo('release-package-ats');</script>
-                            <span class="light-text">情報を取得中...</span>
-                        </span>
-                    </p>
                     <div class="note note-info">
-                        <h4>ATSプラグイン版が必要になるケース</h4>
+                        <h4>インストーラーが利用できないケース</h4>
                         <p>
-                            入力デバイスプラグイン版をインストールできないケースが存在します。以下はその例です（ご自身の環境が該当していても、場合によっては入力デバイスプラグイン版をインストールできることもあります）。
+                            以下はその例です（ご自身の環境が該当していても、場合によっては利用できることもあります）。
                         </p>
                         <ul>
-                            <li>
-                                BVE本体をProgram Filesフォルダ内にインストールしており、かつPCの管理者権限がない場合
-                                <ul>
-                                    <li>お子様がご両親のPCを借りてBVEをプレイしている場合はこれに該当することがあります。</li>
-                                </ul>
-                            </li>
-                            <li>
-                                LinuxやMacなどWindows以外のOSのPCで、Wineを介してBVEをプレイしている場合
-                            </li>
+                            <li>LinuxやMacなどWindows以外のOSのPCで、Wineを介してBVEをプレイしている場合</li>
+                            <li><strong>※管理者権限は不要になりました！</strong>（ver1.0-RC8～）</li>
                         </ul>
+                        <p>
+                            インストーラーが利用できない場合は、以下の「高度なインストールオプション」をご利用ください。
+                        </p>
+                        <details>
+                            <summary>高度なインストールオプション（非推奨）</summary>
+                            <p class="button-and-text">
+                                <a class="button with-border white-when-hover release-package-inputdevice-button disabled" href="javascript:void(0);" tabindex="-1">
+                                    <script>setAsInputDevicePackageLinkTo('release-package-inputdevice-button');</script>
+                                    入力デバイスプラグイン・7z手動インストール版<small>をダウンロード</small>
+                                    <img class="icon-download" src="img/download-black.svg" />
+                                </a>
+                                <span class="release-package-inputdevice">
+                                    <script>setAsInputDevicePackageInfoTo('release-package-inputdevice');</script>
+                                    <span class="light-text">情報を取得中...</span>
+                                </span>
+                            </p>
+                            <p class="button-and-text">
+                                <a class="button with-border white-when-hover release-package-ats-button disabled" href="javascript:void(0);" tabindex="-1">
+                                    <script>setAsAtsPluginPackageLinkTo('release-package-ats-button');</script>
+                                    ATSプラグイン版<small>をダウンロード</small>
+                                    <img class="icon-download" src="img/download-black.svg" />
+                                </a>
+                                <span class="release-package-ats">
+                                    <script>setAsAtsPluginPackageInfoTo('release-package-ats');</script>
+                                    <span class="light-text">情報を取得中...</span>
+                                </span>
+                            </p>
+                        </details>
                     </div>
                     <h3 id="sdk">AtsEX SDK</h3>
                     <p>
