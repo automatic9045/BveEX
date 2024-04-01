@@ -32,7 +32,7 @@ jobs:
         run: |
           curl -OL https://bvets.net/archives/bvets6-msi.zip
           7z x -obvets6 bvets6-msi.zip
-          msiexec /a bvets6\BveTs6Setup.msi /qn
+          cmd.exe /c start /wait msiexec /a bvets6\BveTs6Setup.msi /qn
           mkdir AtsEx.PluginHost\LocalReferences\BveTs
           copy "C:\Program Files\mackoy\BveTs6\Mackoy.IInputDevice.DLL" AtsEx.PluginHost\LocalReferences\BveTs\Mackoy.IInputDevice.DLL
           copy "C:\Program Files\mackoy\BveTs6\Mackoy.XmlInterfaces.DLL" AtsEx.PluginHost\LocalReferences\BveTs\Mackoy.XmlInterfaces.DLL
