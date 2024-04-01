@@ -19,9 +19,9 @@ jobs:
         uses: NuGet/setup-nuget@v2
       - name: Restore project
         run: msbuild AtsEx.sln /t:Restore /p:Configuration=Release
-      - name: Cache dependencies
+      - name: Restore dependencies
         id: cache-dependencies
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
           path: |
             AtsEx.PluginHost\LocalReferences\BveTs\Mackoy.IInputDevice.DLL
@@ -36,6 +36,13 @@ jobs:
           mkdir AtsEx.PluginHost\LocalReferences\BveTs
           copy "C:\Program Files\mackoy\BveTs6\Mackoy.IInputDevice.DLL" AtsEx.PluginHost\LocalReferences\BveTs\Mackoy.IInputDevice.DLL
           copy "C:\Program Files\mackoy\BveTs6\Mackoy.XmlInterfaces.DLL" AtsEx.PluginHost\LocalReferences\BveTs\Mackoy.XmlInterfaces.DLL
+      - name: Cache dependencies
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            AtsEx.PluginHost\LocalReferences\BveTs\Mackoy.IInputDevice.DLL
+            AtsEx.PluginHost\LocalReferences\BveTs\Mackoy.XmlInterfaces.DLL
+          key: dependencies-1.0.0.0
       - name: Setup DllExport
         run: |
           curl -OL https://github.com/3F/DllExport/releases/download/v1.7.4/DllExport.bat
