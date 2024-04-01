@@ -39,6 +39,7 @@ jobs:
           copy "C:\Program Files\mackoy\BveTs6\Mackoy.IInputDevice.DLL" AtsEx.PluginHost\LocalReferences\BveTs\Mackoy.IInputDevice.DLL
           copy "C:\Program Files\mackoy\BveTs6\Mackoy.XmlInterfaces.DLL" AtsEx.PluginHost\LocalReferences\BveTs\Mackoy.XmlInterfaces.DLL
       - name: Cache dependencies
+        if: steps.cache-dependencies.outputs.cache-hit != 'true'
         uses: actions/cache/save@v4
         with:
           path: |
