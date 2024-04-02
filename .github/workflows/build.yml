@@ -31,8 +31,10 @@ jobs:
           key: dependencies-1.0.0.0
       - name: Setup dependencies
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
+        env:
+          BVETS6: ${{ secrets.BveTs6 }}
         run: |
-          curl -OL https://bvets.net/archives/bvets6-msi.zip
+          curl -OL "$env:BVETS6"
           7z x -obvets6 bvets6-msi.zip
           cmd.exe /c start /wait msiexec /a bvets6\BveTs6Setup.msi /qn
           mkdir AtsEx.PluginHost\LocalReferences\BveTs
