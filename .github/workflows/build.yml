@@ -35,7 +35,7 @@ jobs:
         env:
           BVETS6: ${{ secrets.BveTs6 }}
         run: |
-          curl -OL "$env:BVETS6"
+          curl -L "$env:BVETS6" -o bvets6-msi.zip
           7z x -obvets6 bvets6-msi.zip
           cmd.exe /c start /wait msiexec /a bvets6\BveTs6Setup.msi /qn
           mkdir AtsEx.PluginHost\LocalReferences\BveTs
