@@ -61,5 +61,5 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: AtsEx-AsInputPlugin-release-${{ env.GIT_HASH }}
+          name: AtsEx-AsInputDevice-release-${{ env.GIT_HASH }}
           path: ./bin/*
