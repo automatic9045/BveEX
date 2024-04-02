@@ -58,7 +58,7 @@ jobs:
       - name: Package
         run: |
           .\package.bat
-          $Env:GITHUB_ENV += "`nGIT_HASH=" + (git rev-parse --short HEAD)
+          Add-Content -Path $env:GITHUB_ENV -Value "GIT_HASH=$(git rev-parse --short HEAD)"
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
