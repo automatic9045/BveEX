@@ -218,9 +218,6 @@
 		<Property Wrapper="LockoutValve">
 			<Getter Original="d"/>
 		</Property>
-		<Property Wrapper="MotorCarBc">
-			<Getter Original="l"/>
-		</Property>
 		<Property Wrapper="BrakeController">
 			<Getter Original="i"/>
 		</Property>
@@ -233,10 +230,13 @@
 		<Property Wrapper="Cl">
 			<Getter Original="c"/>
 		</Property>
-		<Property Wrapper="TrailerCarBc">
+		<Property Wrapper="MotorCarBrake">
+			<Getter Original="l"/>
+		</Property>
+		<Property Wrapper="TrailerCarBrake">
 			<Getter Original="m"/>
 		</Property>
-		<Property Wrapper="FirstCarBc">
+		<Property Wrapper="FirstCarBrake">
 			<Getter Original="j"/>
 			<Setter Original="a"/>
 		</Property>

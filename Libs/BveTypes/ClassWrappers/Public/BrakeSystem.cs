@@ -28,12 +28,12 @@ namespace BveTypes.ClassWrappers
             SmeeGetMethod = members.GetSourcePropertyGetterOf(nameof(Smee));
             ClGetMethod = members.GetSourcePropertyGetterOf(nameof(Cl));
 
-            MotorCarBcGetMethod = members.GetSourcePropertyGetterOf(nameof(MotorCarBc));
+            MotorCarBrakeGetMethod = members.GetSourcePropertyGetterOf(nameof(MotorCarBrake));
 
-            TrailerCarBcGetMethod = members.GetSourcePropertyGetterOf(nameof(TrailerCarBc));
+            TrailerCarBrakeGetMethod = members.GetSourcePropertyGetterOf(nameof(TrailerCarBrake));
 
-            FirstCarBcGetMethod = members.GetSourcePropertyGetterOf(nameof(FirstCarBc));
-            FirstCarBcSetMethod = members.GetSourcePropertySetterOf(nameof(FirstCarBc));
+            FirstCarBrakeGetMethod = members.GetSourcePropertyGetterOf(nameof(FirstCarBrake));
+            FirstCarBrakeSetMethod = members.GetSourcePropertySetterOf(nameof(FirstCarBrake));
         }
 
         /// <summary>
@@ -100,27 +100,49 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Cl Cl => ClassWrappers.Cl.FromSource(ClGetMethod.Invoke(Src, null));
 
-        private static FastMethod MotorCarBcGetMethod;
+        private static FastMethod MotorCarBrakeGetMethod;
         /// <summary>
-        /// 動力車のブレーキシリンダーの圧力調整弁を表す <see cref="CarBc"/> を取得します。
+        /// 動力車のブレーキを表す <see cref="CarBrake"/> を取得します。
         /// </summary>
-        public CarBc MotorCarBc => CarBc.FromSource(MotorCarBcGetMethod.Invoke(Src, null));
+        public CarBrake MotorCarBrake => CarBrake.FromSource(MotorCarBrakeGetMethod.Invoke(Src, null));
 
-        private static FastMethod TrailerCarBcGetMethod;
         /// <summary>
-        /// 付随車のブレーキシリンダーの圧力調整弁を表す <see cref="CarBc"/> を取得します。
+        /// 互換性のために残されている旧名のプロパティです。<see cref="MotorCarBrake"/> を使用してください。
         /// </summary>
-        public CarBc TrailerCarBc => CarBc.FromSource(TrailerCarBcGetMethod.Invoke(Src, null));
+        [Obsolete]
+        public CarBc MotorCarBc => CarBc.FromSource(MotorCarBrake.Src);
 
-        private static FastMethod FirstCarBcGetMethod;
-        private static FastMethod FirstCarBcSetMethod;
+        private static FastMethod TrailerCarBrakeGetMethod;
         /// <summary>
-        /// 先頭車両のブレーキシリンダーの圧力調整弁を表す <see cref="CarBc"/> を取得・設定します。
+        /// 付随車のブレーキを表す <see cref="CarBrake"/> を取得します。
         /// </summary>
+        public CarBrake TrailerCarBrake => CarBrake.FromSource(TrailerCarBrakeGetMethod.Invoke(Src, null));
+
+        /// <summary>
+        /// 互換性のために残されている旧名のプロパティです。<see cref="TrailerCarBrake"/> を使用してください。
+        /// </summary>
+        [Obsolete]
+        public CarBc TrailerCarBc => CarBc.FromSource(TrailerCarBrake.Src);
+
+        private static FastMethod FirstCarBrakeGetMethod;
+        private static FastMethod FirstCarBrakeSetMethod;
+        /// <summary>
+        /// 先頭車両のブレーキを表す <see cref="CarBrake"/> を取得・設定します。
+        /// </summary>
+        public CarBrake FirstCarBrake
+        {
+            get => CarBrake.FromSource(FirstCarBrakeGetMethod.Invoke(Src, null));
+            set => FirstCarBrakeSetMethod.Invoke(Src, value.Src);
+        }
+
+        /// <summary>
+        /// 互換性のために残されている旧名のプロパティです。<see cref="FirstCarBrake"/> を使用してください。
+        /// </summary>
+        [Obsolete]
         public CarBc FirstCarBc
         {
-            get => CarBc.FromSource(FirstCarBcGetMethod.Invoke(Src, null));
-            set => FirstCarBcSetMethod.Invoke(Src, value.Src);
+            get => CarBc.FromSource(FirstCarBrake.Src);
+            set => FirstCarBrake = CarBrake.FromSource(value.Src);
         }
     }
 }
