@@ -19,6 +19,7 @@ namespace BveTypes.ClassWrappers
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<CarBrake>();
 
+            BcValveGetMethod = members.GetSourcePropertyGetterOf(nameof(BcValve));
             BasicBrakeGetMethod = members.GetSourcePropertyGetterOf(nameof(BasicBrake));
             BrakeReAdhesionGetMethod = members.GetSourcePropertyGetterOf(nameof(BrakeReAdhesion));
         }
@@ -38,6 +39,12 @@ namespace BveTypes.ClassWrappers
         /// <returns>オリジナル オブジェクトをラップした <see cref="CarBrake"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
         public static CarBrake FromSource(object src) => src is null ? null : new CarBrake(src);
+
+        private static FastMethod BcValveGetMethod;
+        /// <summary>
+        /// ブレーキシリンダ電磁弁を表す <see cref="ClassWrappers.BcValve"/> を取得します。
+        /// </summary>
+        public BcValve BcValve => ClassWrappers.BcValve.FromSource(BcValveGetMethod.Invoke(Src, null));
 
         private static FastMethod BasicBrakeGetMethod;
         /// <summary>

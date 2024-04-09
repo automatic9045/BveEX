@@ -159,6 +159,9 @@
 		</Property>
 	</Class>
 
+	<Class Wrapper="BcValve" Original="az">
+	</Class>
+
 	<Class Wrapper="Beacon" Original="fm">
 		<Property Wrapper="TargetSectionIndex">
 			<Getter Original="a"/>
@@ -296,6 +299,9 @@
 			<Bridge Wrapper="CarBc"/>
 		</Bridges>
 
+		<Property Wrapper="BcValve">
+			<Getter Original="d"/>
+		</Property>
 		<Property Wrapper="BasicBrake">
 			<Getter Original="b"/>
 		</Property>
@@ -1302,6 +1308,13 @@
 		<Method Wrapper="SetLocation" WrapperParams="System.Double; System.Boolean" Original="a"/>
 	</Class>
 
+	<Class Wrapper="ValueContainer" Original="bs">
+		<Property Wrapper="Value">
+			<Getter Original="aj"/>
+			<Setter Original="ak"/>
+		</Property>
+	</Class>
+
 	<Class Wrapper="ValueEventArgs`1" Original="ValueEventArgs`1">
 		<Property Wrapper="Value">
 			<Getter Original="a"/>
@@ -1313,6 +1326,14 @@
 			<Getter Original="a"/>
 			<Setter Original="a"/>
 		</Property>
+	</Class>
+
+	<Class Wrapper="Valve" Original="fr">
+		<Field WrapperProperty="MrPressure" Original="a" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="TargetPressure" Original="b" IsOriginalNonPublic="true"/>
+
+		<Method Wrapper="Initialize" WrapperParams="void" Original="n"/>
+		<Method Wrapper="Tick" WrapperParams="System.Double" Original="ag"/>
 	</Class>
 
 	<Class Wrapper="Vehicle" Original="f">

@@ -77,6 +77,9 @@
     <Compile Include="ClassWrappers\Helpers\DoorSide.cs" />
     <Compile Include="ClassWrappers\Helpers\ReverserPosition.cs" />
     <Compile Include="ClassWrappers\Helpers\TiltOptions.cs" />
+    <Compile Include="ClassWrappers\Public\BcValve.cs" />
+    <Compile Include="ClassWrappers\Public\ValueContainer.cs" />
+    <Compile Include="ClassWrappers\Public\Valve.cs" />
     <Compile Include="ClassWrappers\Public\BrakeBlenderBase.cs" />
     <Compile Include="ClassWrappers\Public\CarBrake.cs" />
     <Compile Include="ClassWrappers\Public\ConstantSpeedRelay.cs" />
