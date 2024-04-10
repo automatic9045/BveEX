@@ -38,6 +38,7 @@
 		<Field WrapperProperty="ContextMenu" Original="y" IsOriginalNonPublic="true"/>
 
 		<Method Wrapper="CreateDirectXDevices" WrapperParams="void" Original="e"/>
+		<Method Wrapper="OpenScenario" WrapperParams="System.String" Original="b" IsOriginalNonPublic="true"/>
 		<Method Wrapper="LoadScenario" WrapperParams="atsex:ScenarioInfo; System.Boolean" Original="a" IsOriginalNonPublic="true"/>
 		<Method Wrapper="UnloadScenario" WrapperParams="void" Original="b" IsOriginalNonPublic="true"/>
 		<Method Wrapper="Draw" WrapperParams="void" Original="o"/>

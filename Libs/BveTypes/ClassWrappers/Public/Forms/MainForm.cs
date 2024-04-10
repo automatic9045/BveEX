@@ -38,6 +38,7 @@ namespace BveTypes.ClassWrappers
             ContextMenuField = members.GetSourceFieldOf(nameof(ContextMenu));
 
             CreateDirectXDevicesMethod = members.GetSourceMethodOf(nameof(CreateDirectXDevices));
+            OpenScenarioMethod = members.GetSourceMethodOf(nameof(OpenScenario));
             LoadScenarioMethod = members.GetSourceMethodOf(nameof(LoadScenario));
             UnloadScenarioMethod = members.GetSourceMethodOf(nameof(UnloadScenario));
             DrawMethod = members.GetSourceMethodOf(nameof(Draw));
@@ -161,6 +162,13 @@ namespace BveTypes.ClassWrappers
         /// シナリオを閉じます。
         /// </summary>
         public void CreateDirectXDevices() => CreateDirectXDevicesMethod.Invoke(Src, null);
+
+        private static FastMethod OpenScenarioMethod;
+        /// <summary>
+        /// シナリオを開き、読み込みます。既に開かれているシナリオがあれば閉じられます。
+        /// </summary>
+        /// <param name="scenarioFilePath">シナリオファイルのパス。<see langword="null"/> を指定すると、「シナリオの選択」フォームが表示されます。</param>
+        public void OpenScenario(string scenarioFilePath) => OpenScenarioMethod.Invoke(Src, new object[] { scenarioFilePath });
 
         private static FastMethod LoadScenarioMethod;
         /// <summary>
