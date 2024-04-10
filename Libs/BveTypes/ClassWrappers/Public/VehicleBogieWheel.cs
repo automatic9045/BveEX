@@ -21,7 +21,7 @@ namespace BveTypes.ClassWrappers
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<VehicleBogieWheel>();
 
-            PositionInBlockGetMethod = members.GetSourcePropertyGetterOf(nameof(PositionInBlock));
+            PositionInBlockField = members.GetSourceFieldOf(nameof(PositionInBlock));
         }
 
         /// <summary>
@@ -40,10 +40,14 @@ namespace BveTypes.ClassWrappers
         [CreateClassWrapperFromSource]
         public static VehicleBogieWheel FromSource(object src) => src is null ? null : new VehicleBogieWheel(src);
 
-        private static FastMethod PositionInBlockGetMethod;
+        private static FastField PositionInBlockField;
         /// <summary>
-        /// 現在自列車が走行しているマップ ブロックの原点に対する、この車輪の位置ベクトル [m] を取得します。
+        /// 現在自列車が走行しているマップ ブロックの原点に対する、この車輪の位置ベクトル [m] を取得・設定します。
         /// </summary>
-        public Vector3 PositionInBlock => PositionInBlockGetMethod.Invoke(Src, null);
+        public Vector3 PositionInBlock
+        {
+            get => PositionInBlockField.GetValue(Src);
+            set => PositionInBlockField.SetValue(Src, value);
+        }
     }
 }

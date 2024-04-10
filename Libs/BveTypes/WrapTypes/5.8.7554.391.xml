@@ -1366,9 +1366,7 @@
 	</Class>
 
 	<Class Wrapper="VehicleBogieWheel" Original="b7">
-		<Property Wrapper="PositionInBlock">
-			<Getter Original="d"/>
-		</Property>
+		<Field WrapperProperty="PositionInBlock" Original="h" IsOriginalNonPublic="true"/>
 	</Class>
 
 	<Class Wrapper="VehicleDynamics" Original="b2">
