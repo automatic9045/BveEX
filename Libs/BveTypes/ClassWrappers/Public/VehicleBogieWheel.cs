@@ -21,7 +21,13 @@ namespace BveTypes.ClassWrappers
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<VehicleBogieWheel>();
 
+            LocationInCarField = members.GetSourceFieldOf(nameof(LocationInCar));
+            XField = members.GetSourceFieldOf(nameof(X));
+            YField = members.GetSourceFieldOf(nameof(Y));
+            RotationZField = members.GetSourceFieldOf(nameof(RotationZ));
             PositionInBlockField = members.GetSourceFieldOf(nameof(PositionInBlock));
+
+            OnLocationChangedMethod = members.GetSourceMethodOf(nameof(OnLocationChanged));
         }
 
         /// <summary>
@@ -40,6 +46,46 @@ namespace BveTypes.ClassWrappers
         [CreateClassWrapperFromSource]
         public static VehicleBogieWheel FromSource(object src) => src is null ? null : new VehicleBogieWheel(src);
 
+        private static FastField LocationInCarField;
+        /// <summary>
+        /// 自列車の進行方向を Z 軸正方向とした左手系における、この車輪の Z 座標 [m] を取得・設定します。
+        /// </summary>
+        public double LocationInCar
+        {
+            get => LocationInCarField.GetValue(Src);
+            set => LocationInCarField.SetValue(Src, value);
+        }
+
+        private static FastField XField;
+        /// <summary>
+        /// 自列車の進行方向を Z 軸正方向とした左手系における、この車輪の運動の X 成分 [m] を取得・設定します。
+        /// </summary>
+        public Physical X
+        {
+            get => Physical.FromSource(XField.GetValue(Src));
+            set => XField.SetValue(Src, value.Src);
+        }
+
+        private static FastField YField;
+        /// <summary>
+        /// 自列車の進行方向を Z 軸正方向とした左手系における、この車輪の運動の Y 成分 [m] を取得・設定します。
+        /// </summary>
+        public Physical Y
+        {
+            get => Physical.FromSource(YField.GetValue(Src));
+            set => YField.SetValue(Src, value.Src);
+        }
+
+        private static FastField RotationZField;
+        /// <summary>
+        /// 自列車の進行方向を Z 軸正方向とした左手系における、この車輪の Z 軸まわりの回転運動 [rad] を取得・設定します。
+        /// </summary>
+        public Physical RotationZ
+        {
+            get => Physical.FromSource(RotationZField.GetValue(Src));
+            set => RotationZField.SetValue(Src, value.Src);
+        }
+
         private static FastField PositionInBlockField;
         /// <summary>
         /// 現在自列車が走行しているマップ ブロックの原点に対する、この車輪の位置ベクトル [m] を取得・設定します。
@@ -49,5 +95,15 @@ namespace BveTypes.ClassWrappers
             get => PositionInBlockField.GetValue(Src);
             set => PositionInBlockField.SetValue(Src, value);
         }
+
+        private static FastMethod OnLocationChangedMethod;
+        private void OnLocationChanged(object sender, ValueEventArgs<double> e) => OnLocationChangedMethod.Invoke(Src, new object[] { sender, e.Src });
+
+        /// <summary>
+        /// 自列車が移動したときに呼び出されます。
+        /// </summary>
+        /// <param name="sender">イベントのソース。</param>
+        /// <param name="e">イベントデータを格納している <see cref="ValueEventArgs{T}"/> (T は <see cref="double"/>)。<see cref="ValueEventArgs{T}.Value"/> は自列車の走行距離程の変位 [m] です。</param>
+        public void OnLocationChanged(VehicleBogieWheel sender, ValueEventArgs<double> e) => OnLocationChanged(sender.Src, e);
     }
 }

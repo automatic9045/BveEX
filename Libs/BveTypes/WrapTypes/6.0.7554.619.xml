@@ -760,6 +760,16 @@
 		<Field WrapperProperty="Count" Original="j" IsOriginalNonPublic="true"/>
 	</Class>
 
+	<Class Wrapper="Physical" Original="ao">
+		<Field WrapperProperty="Displacement" Original="a"/>
+		<Field WrapperProperty="Velocity" Original="b"/>
+		<Field WrapperProperty="Acceleration" Original="c"/>
+
+		<Method Wrapper="Add" WrapperParams="atsex:Physical; atsex:Physical" Original="e" IsWrapperNonPublic="true" IsWrapperStatic="true" IsOriginalStatic="true"/>
+		<Method Wrapper="Subtract" WrapperParams="atsex:Physical; atsex:Physical" Original="e" IsWrapperNonPublic="true" IsWrapperStatic="true" IsOriginalStatic="true"/>
+		<Method Wrapper="Multiply" WrapperParams="System.Double; atsex:Physical" Original="d" IsWrapperNonPublic="true" IsWrapperStatic="true" IsOriginalStatic="true"/>
+	</Class>
+
 	<Class Wrapper="PreTrainObjectList" Original="e6">
 		<Method Wrapper="GetPreTrainLocation" WrapperParams="System.Int32" Original="a"/>
 	</Class>
@@ -1366,7 +1376,13 @@
 	</Class>
 
 	<Class Wrapper="VehicleBogieWheel" Original="b7">
+		<Field WrapperProperty="LocationInCar" Original="d" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="X" Original="e" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Y" Original="f" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="RotationZ" Original="g" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="PositionInBlock" Original="h" IsOriginalNonPublic="true"/>
+
+		<Method Wrapper="OnLocationChanged" WrapperParams="System.Object; atsex:ValueEventArgs`1[System.Double]" Original="a" IsWrapperNonPublic="true"/>
 	</Class>
 
 	<Class Wrapper="VehicleDynamics" Original="b2">
