@@ -56,6 +56,10 @@ namespace AtsEx.Extensions.ContextMenuHacker
             foreach (KeyValuePair<int, List<ToolStripItem>> x in AddedItems)
             {
                 if (x.Key > itemTypeNum) break;
+
+                List<ToolStripItem> disposedItems = x.Value.FindAll(y => y.IsDisposed);
+                disposedItems.ForEach(disposedItem => x.Value.Remove(disposedItem));
+
                 targetIndex += x.Value.Count;
             }
 
