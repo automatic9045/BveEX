@@ -44,15 +44,17 @@ namespace AtsEx.PluginHost.Plugins
 #endif
         }
 
+        private readonly PluginAttribute Info;
+
         /// <summary>
         /// この AtsEX プラグインの種類を取得します。
         /// </summary>
-        public PluginType PluginType { get; }
+        public PluginType PluginType => Info.PluginType;
 
         /// <summary>
         /// この AtsEX プラグインが必要とする AtsEX 本体の最低バージョンを取得します。最低バージョンが設定されていない場合は <see langword="null"/> を返します。
         /// </summary>
-        public Version MinRequiredVersion { get; }
+        public Version MinRequiredVersion => Info.MinRequiredVersion;
 
         /// <summary>
         /// 使用できません。常に <see langword="true"/> を返します。
@@ -144,21 +146,9 @@ namespace AtsEx.PluginHost.Plugins
             BveHacker = builder.BveHacker;
             Identifier = builder.Identifier;
 
-            if (info is null)
-            {
-                if (allowInfoIsNull)
-                {
-                    return;
-                }
-                else
-                {
-                    throw new ArgumentNullException(nameof(info));
-                }
-            }
+            if (info is null && !allowInfoIsNull) throw new ArgumentNullException(nameof(info));
 
-            PluginType = info.PluginType;
-            MinRequiredVersion = info.MinRequiredVersion;
-
+            Info = info;
             Validate();
         }
 
@@ -194,28 +184,23 @@ namespace AtsEx.PluginHost.Plugins
         /// <param name="builder">AtsEX から渡される BVE、AtsEX の情報。</param>
         public PluginBase(PluginBuilder builder) : this(builder, null, true)
         {
-            PluginType? pluginType = null;
-            Version minRequiredVersion = null;
             foreach (Attribute attribute in GetType().GetCustomAttributes())
             {
                 switch (attribute)
                 {
                     case PluginAttribute pluginAttribute:
-                        pluginType = pluginAttribute.PluginType;
-                        minRequiredVersion = pluginAttribute.MinRequiredVersion;
+                        Info = pluginAttribute;
                         break;
 
 #pragma warning disable CS0612 // 型またはメンバーが旧型式です
                     case PluginTypeAttribute pluginTypeAttribute:
-                        pluginType = pluginTypeAttribute.PluginType;
+                        Info = PluginAttribute.FromPluginTypeAttribute(pluginTypeAttribute);
                         break;
 #pragma warning restore CS0612 // 型またはメンバーが旧型式です
                 }
             }
 
-            PluginType = pluginType ?? throw new InvalidOperationException(string.Format(Resources.Value.PluginTypeNotSpecified.Value, typeof(PluginAttribute).FullName));
-            MinRequiredVersion = minRequiredVersion;
-
+            if (Info is null) throw new InvalidOperationException(string.Format(Resources.Value.PluginTypeNotSpecified.Value, typeof(PluginAttribute).FullName));
             Validate();
         }
 

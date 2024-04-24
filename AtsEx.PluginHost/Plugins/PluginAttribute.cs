@@ -32,5 +32,10 @@ namespace AtsEx.PluginHost.Plugins
             PluginType = pluginType;
             MinRequiredVersion = minRequiredVersion is null ? null : new Version(minRequiredVersion);
         }
+
+#pragma warning disable CS0612 // 型またはメンバーが旧型式です
+        internal static PluginAttribute FromPluginTypeAttribute(PluginTypeAttribute source)
+#pragma warning restore CS0612 // 型またはメンバーが旧型式です
+            => new PluginAttribute(source.PluginType);
     }
 }
