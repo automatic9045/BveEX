@@ -147,6 +147,10 @@ div#content {
                 opacity: 0.75;
             }
 
+        div#content > div.subheader-image.top > img {
+            object-position: top;
+        }
+
         div#content > div.subheader-image.bottom > img {
             object-position: bottom;
         }
