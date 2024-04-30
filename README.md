@@ -1,3 +1,5 @@
+![GitHub Release](https://img.shields.io/github/v/release/automatic9045/AtsEX?include_prereleases&display_name=release) ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/automatic9045/AtsEX/total) ![NuGet Version](https://img.shields.io/nuget/vpre/AtsEx.PluginHost?logo=nuget&label=nuget%20(AtsEx.PluginHost)) ![NuGet Version](https://img.shields.io/nuget/vpre/AtsEx.CoreExtensions?logo=nuget&label=nuget%20(AtsEx.CoreExtensions))
+
 # AtsEX
 【BVE5・6向け】ATSプラグインの機能を拡張するプラグインです。
 
