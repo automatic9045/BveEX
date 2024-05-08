@@ -15,7 +15,7 @@ namespace BveTypes.ClassWrappers
     /// <summary>
     /// サウンドを表します。
     /// </summary>
-    public partial class Sound : ClassWrapperBase
+    public partial class Sound : ClassWrapperBase, IDisposable
     {
         [InitializeClassWrapper]
         private static void Initialize(BveTypeSet bveTypes)
@@ -31,6 +31,15 @@ namespace BveTypes.ClassWrappers
             SpeedInBlockGetMethod = members.GetSourcePropertyGetterOf(nameof(SpeedInBlock));
             SpeedInBlockSetMethod = members.GetSourcePropertySetterOf(nameof(SpeedInBlock));
 
+            MinRadiusGetMethod = members.GetSourcePropertyGetterOf(nameof(MinRadius));
+            MinRadiusSetMethod = members.GetSourcePropertySetterOf(nameof(MinRadius));
+
+            MaxFrequencyGetMethod = members.GetSourcePropertyGetterOf(nameof(MaxFrequency));
+            MaxFrequencySetMethod = members.GetSourcePropertySetterOf(nameof(MaxFrequency));
+
+            MinFrequencyGetMethod = members.GetSourcePropertyGetterOf(nameof(MinFrequency));
+            MinFrequencySetMethod = members.GetSourcePropertySetterOf(nameof(MinFrequency));
+
             BuffersField = members.GetSourceFieldOf(nameof(Buffers));
             CurrentBufferIndexField = members.GetSourceFieldOf(nameof(CurrentBufferIndex));
 
@@ -38,6 +47,7 @@ namespace BveTypes.ClassWrappers
             PlayMethod2 = members.GetSourceMethodOf(nameof(Play), new Type[] { typeof(double), typeof(double), typeof(int), typeof(int) });
             PlayLoopingMethod = members.GetSourceMethodOf(nameof(PlayLooping));
             StopMethod = members.GetSourceMethodOf(nameof(Stop));
+            DisposeMethod = members.GetSourceMethodOf(nameof(Dispose));
             SetVolumeAndPitchMethod = members.GetSourceMethodOf(nameof(SetVolumeAndPitch));
         }
 
@@ -72,7 +82,7 @@ namespace BveTypes.ClassWrappers
         private static FastMethod PositionInBlockGetMethod;
         private static FastMethod PositionInBlockSetMethod;
         /// <summary>
-        /// 現在自列車が走行しているマップ ブロックの原点に対する、この音声の再生位置の位置ベクトル [m] を取得します。
+        /// 現在自列車が走行しているマップ ブロックの原点に対する、この音声の再生位置の位置ベクトル [m] を取得・設定します。
         /// </summary>
         public Vector3 PositionInBlock
         {
@@ -83,12 +93,48 @@ namespace BveTypes.ClassWrappers
         private static FastMethod SpeedInBlockGetMethod;
         private static FastMethod SpeedInBlockSetMethod;
         /// <summary>
-        /// 現在自列車が走行しているマップ ブロックに対する、この音声の速度ベクトル [m/s] を取得します。
+        /// 現在自列車が走行しているマップ ブロックに対する、この音声の速度ベクトル [m/s] を取得・設定します。
         /// </summary>
         public Vector3 SpeedInBlock
         {
             get => SpeedInBlockGetMethod.Invoke(Src, null);
             set => SpeedInBlockSetMethod.Invoke(Src, new object[] { value });
+        }
+
+        private static FastMethod MinRadiusGetMethod;
+        private static FastMethod MinRadiusSetMethod;
+        /// <summary>
+        /// 視点からの最小距離 [m] を取得・設定します。
+        /// </summary>
+        /// <remarks>
+        /// この値は音量の計算に使用されます。
+        /// </remarks>
+        public double MinRadius
+        {
+            get => MinRadiusGetMethod.Invoke(Src, null);
+            set => MinRadiusSetMethod.Invoke(Src, new object[] { value });
+        }
+
+        private static FastMethod MaxFrequencyGetMethod;
+        private static FastMethod MaxFrequencySetMethod;
+        /// <summary>
+        /// 周波数の上限 [Hz] を取得・設定します。
+        /// </summary>
+        public int MaxFrequency
+        {
+            get => MaxFrequencyGetMethod.Invoke(Src, null);
+            set => MaxFrequencySetMethod.Invoke(Src, new object[] { value });
+        }
+
+        private static FastMethod MinFrequencyGetMethod;
+        private static FastMethod MinFrequencySetMethod;
+        /// <summary>
+        /// 周波数の下限 [Hz] を取得・設定します。
+        /// </summary>
+        public int MinFrequency
+        {
+            get => MinFrequencyGetMethod.Invoke(Src, null);
+            set => MinFrequencySetMethod.Invoke(Src, new object[] { value });
         }
 
         private static FastField BuffersField;
@@ -143,6 +189,19 @@ namespace BveTypes.ClassWrappers
         public void PlayLooping(double volume, double pitch, int fadeTimeMilliseconds, int playPositionBytes)
             => PlayLoopingMethod.Invoke(Src, new object[] { volume, pitch, fadeTimeMilliseconds, playPositionBytes });
 
+        private static FastMethod StopMethod;
+        /// <summary>
+        /// 音声の再生を停止します。
+        /// </summary>
+        /// <param name="fadeTimeMilliseconds">音量のフェードアウトにかける時間 [ms]。</param>
+        public void Stop(int fadeTimeMilliseconds)
+            => StopMethod.Invoke(Src, new object[] { fadeTimeMilliseconds });
+
+        private static FastMethod DisposeMethod;
+        /// <inheritdoc/>
+        public void Dispose()
+            => DisposeMethod.Invoke(Src, null);
+
         private static FastMethod SetVolumeAndPitchMethod;
         /// <summary>
         /// 音声を再生する音量とピッチを設定します。
@@ -151,13 +210,5 @@ namespace BveTypes.ClassWrappers
         /// <param name="pitch">音声を再生するピッチ。</param>
         public void SetVolumeAndPitch(double volume, double pitch)
             => SetVolumeAndPitchMethod.Invoke(Src, new object[] { volume, pitch });
-
-        private static FastMethod StopMethod;
-        /// <summary>
-        /// 音声の再生を停止します。
-        /// </summary>
-        /// <param name="fadeTimeMilliseconds">音量のフェードアウトにかける時間 [ms]。</param>
-        public void Stop(int fadeTimeMilliseconds)
-            => StopMethod.Invoke(Src, new object[] { fadeTimeMilliseconds });
     }
 }

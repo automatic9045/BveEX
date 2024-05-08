@@ -1063,6 +1063,18 @@
 			<Getter Original="c"/>
 			<Setter Original="a"/>
 		</Property>
+		<Property Wrapper="MinRadius">
+			<Getter Original="f"/>
+			<Setter Original="b"/>
+		</Property>
+		<Property Wrapper="MaxFrequency">
+			<Getter Original="d"/>
+			<Setter Original="d"/>
+		</Property>
+		<Property Wrapper="MinFrequency">
+			<Getter Original="e"/>
+			<Setter Original="c"/>
+		</Property>
 
 		<Field WrapperProperty="Buffers" Original="b" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="CurrentBufferIndex" Original="m" IsOriginalNonPublic="true"/>
