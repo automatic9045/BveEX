@@ -1086,6 +1086,13 @@
 		<Method Wrapper="SetVolumeAndPitch" WrapperParams="System.Double; System.Double" Original="a"/>
 	</Class>
 
+	<Class Wrapper="SoundObject" Original="ea">
+		<Property Wrapper="Source">
+			<Getter Original="b"/>
+			<Setter Original="a"/>
+		</Property>
+	</Class>
+
 	<Class Wrapper="SoundSet" Original="g">
 		<Property Wrapper="Items">
 			<Getter Original="a"/>
