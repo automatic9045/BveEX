@@ -78,6 +78,8 @@
     <Compile Include="SignalPatch\ISignalPatchFactory.cs" />
     <Compile Include="SignalPatch\SignalPatch.cs" />
     <Compile Include="SignalPatch\SignalPatchFactory.cs" />
+    <Compile Include="SoundFactory\ISoundFactory.cs" />
+    <Compile Include="SoundFactory\SoundFactory.cs" />
     <Compile Include="StructureModelFinder\IStructureModelFinder.cs" />
     <Compile Include="StructureModelFinder\StructureModelFinder.cs" />
     <Compile Include="TrainDrawPatch\ITrainDrawPatchFactory.cs" />
