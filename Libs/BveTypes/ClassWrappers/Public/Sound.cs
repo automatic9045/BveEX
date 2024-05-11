@@ -69,13 +69,13 @@ namespace BveTypes.ClassWrappers
 
         private static FastConstructor Constructor1;
         public Sound(TimeManager timeManager, CameraLocation cameraLocation, SecondarySoundBuffer buffer, double minRadius, SoundPosition position)
-            : this(Constructor1.Invoke(new object[] { timeManager, cameraLocation, buffer, minRadius, position }))
+            : this(Constructor1.Invoke(new object[] { timeManager.Src, cameraLocation.Src, buffer, minRadius, position }))
         {
         }
 
         private static FastConstructor Constructor2;
         public Sound(TimeManager timeManager, CameraLocation cameraLocation, SecondarySoundBuffer[] buffers, double minRadius, SoundPosition position)
-            : this(Constructor2.Invoke(new object[] { timeManager, cameraLocation, buffers, minRadius, position }))
+            : this(Constructor2.Invoke(new object[] { timeManager.Src, cameraLocation.Src, buffers, minRadius, position }))
         {
         }
 
