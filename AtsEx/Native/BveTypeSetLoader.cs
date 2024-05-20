@@ -20,8 +20,8 @@ namespace AtsEx.Native
         {
             private readonly ResourceLocalizer Localizer = ResourceLocalizer.FromResXOfType<BveTypeSetLoader>("Core");
 
-            [ResourceStringHolder(nameof(Localizer))] public Resource<string> IllegalSlimDXDetectedMessage { get; private set; }
-            [ResourceStringHolder(nameof(Localizer))] public Resource<string> IllegalSlimDXDetectedApproach { get; private set; }
+            [ResourceStringHolder(nameof(Localizer))] public Resource<string> MultipleSlimDXLoadedMessage { get; private set; }
+            [ResourceStringHolder(nameof(Localizer))] public Resource<string> MultipleSlimDXLoadedApproach { get; private set; }
 
             public ResourceSet()
             {
@@ -57,15 +57,18 @@ namespace AtsEx.Native
             }
             catch (Exception ex)
             {
-                if (ex is KeyNotFoundException)
+                try
+                {
+                    ExceptionResolver exceptionResolver = new ExceptionResolver();
+                    string senderName = Path.GetFileName(typeof(BveTypeSet).Assembly.Location);
+                    exceptionResolver.Resolve(senderName, ex);
+                    throw;
+                }
+                catch (KeyNotFoundException)
                 {
                     CheckSlimDX();
+                    throw;
                 }
-
-                ExceptionResolver exceptionResolver = new ExceptionResolver();
-                string senderName = Path.GetFileName(typeof(BveTypeSet).Assembly.Location);
-                exceptionResolver.Resolve(senderName, ex);
-                throw;
             }
 
 
@@ -75,8 +78,10 @@ namespace AtsEx.Native
 
                 if (slimDXAssemblies.Count() > 1)
                 {
-                    string locationText = string.Join("\n", slimDXAssemblies.Select(assembly => "・" + assembly.Location));
-                    ErrorDialog.Show(3, Resources.Value.IllegalSlimDXDetectedMessage.Value, string.Format(Resources.Value.IllegalSlimDXDetectedApproach.Value, locationText));
+                    string message = string.Format(Resources.Value.MultipleSlimDXLoadedMessage.Value, nameof(BveTypes));
+                    string locationText = string.Join("\n", slimDXAssemblies.Select(assembly => $"・{assembly.Location} (バージョン {assembly.GetName().Version})"));
+                    string approach = string.Format(Resources.Value.MultipleSlimDXLoadedApproach.Value, locationText, App.Instance.ProductShortName);
+                    ErrorDialog.Show(3, message, approach);
                 }
             }
         }
