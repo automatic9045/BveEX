@@ -38,7 +38,8 @@ namespace AtsEx.Caller.InputDevice
             {
                 using (StreamReader sr = new StreamReader(textPath))
                 {
-                    atsExDirectory = sr.ReadLine();
+                    string line = sr.ReadLine();
+                    atsExDirectory = Path.Combine(callerDirectory, line);
                 }
             }
 
