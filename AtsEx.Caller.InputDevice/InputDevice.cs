@@ -18,6 +18,7 @@ namespace AtsEx.Caller.InputDevice
     {
         private static readonly Assembly Assembly = Assembly.GetExecutingAssembly();
         private const string LauncherName = "AtsEx.Launcher";
+        private const string ErrorCaption = "読込エラー - AtsEX Caller 入力デバイスプラグイン版";
 
         private VersionSelector.AsInputDevice VersionSelector;
 
@@ -44,6 +45,11 @@ namespace AtsEx.Caller.InputDevice
             }
 
             string launcherLocation = Path.Combine(atsExDirectory, LauncherName + ".dll");
+            if (!File.Exists(launcherLocation))
+            {
+                MessageBox.Show($"エラーコード CI-1: AtsEX Launcher が見つかりません。\n\n指定された場所:\n{launcherLocation}", ErrorCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
             AppDomain.CurrentDomain.AssemblyResolve += (sender, e) =>
             {
                 AssemblyName assemblyName = new AssemblyName(e.Name);
@@ -56,7 +62,7 @@ namespace AtsEx.Caller.InputDevice
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "読込エラー - AtsEX Caller 入力デバイスプラグイン版", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), ErrorCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             void Load()
