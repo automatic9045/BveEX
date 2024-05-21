@@ -117,14 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MultipleSlimDXLoadedApproach" xml:space="preserve">
-    <value>SlimDX.dlls loaded are following:
-
-{0}
-
-Loading multiple SlimDX.dlls will cause some problems; uninstall SlimDX SDKs and Runtimes that are not required by BVE or {1}, or remove SlimDX.dlls bundled with plugins.</value>
+  <data name="BveVersionNotSupported" xml:space="preserve">
+    <value>Loaded the profile for BVE version {1} instead of current version {0}, which is not supported. It may cause some features not to work well.</value>
   </data>
-  <data name="MultipleSlimDXLoadedMessage" xml:space="preserve">
-    <value>Failed to load {0}. This may be due to multiple SlimDX.dll(s) being loaded.</value>
+  <data name="MultipleSlimDXLoadedApproach" xml:space="preserve">
+    <value>The required version of SlimDX cannot be found. Try installing {0} again.</value>
   </data>
 </root>

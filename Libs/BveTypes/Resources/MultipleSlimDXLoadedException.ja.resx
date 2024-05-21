@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CallerVersionNotSupported" xml:space="preserve">
-    <value>読み込まれた {0} Caller (バージョン {1}) は現在の {0} ではサポートされていません。beta0.16 (バージョン 0.16) 以降の {0} Caller をご利用ください。</value>
+  <data name="Message" xml:space="preserve">
+    <value>{0} の読込に失敗しました。複数の SlimDX.dll が読み込まれていることが原因の可能性があります。</value>
   </data>
 </root>

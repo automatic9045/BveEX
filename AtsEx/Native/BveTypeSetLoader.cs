@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 using BveTypes;
 using UnembeddedResources;
@@ -20,7 +18,7 @@ namespace AtsEx.Native
         {
             private readonly ResourceLocalizer Localizer = ResourceLocalizer.FromResXOfType<BveTypeSetLoader>("Core");
 
-            [ResourceStringHolder(nameof(Localizer))] public Resource<string> MultipleSlimDXLoadedMessage { get; private set; }
+            [ResourceStringHolder(nameof(Localizer))] public Resource<string> BveVersionNotSupported { get; private set; }
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> MultipleSlimDXLoadedApproach { get; private set; }
 
             public ResourceSet()
@@ -38,73 +36,50 @@ namespace AtsEx.Native
 #endif
         }
 
-        public event EventHandler<ProfileForDifferentVersionBveLoadedEventArgs> ProfileForDifferentVersionBveLoaded;
+        private readonly BveTypeSetFactory Factory;
+
+        public event EventHandler<DifferentVersionProfileLoadedEventArgs> DifferentVersionProfileLoaded;
 
         public BveTypeSetLoader()
         {
+            Factory = new BveTypeSetFactory();
+            Factory.DifferentVersionProfileLoaded += (sender, e) =>
+            {
+                DifferentVersionProfileLoadedEventArgs args = new DifferentVersionProfileLoadedEventArgs(e);
+                DifferentVersionProfileLoaded?.Invoke(this, args);
+            };
         }
 
         public BveTypeSet Load()
         {
             try
             {
-                Version bveVersion = App.Instance.BveVersion;
-                BveTypeSet bveTypes = BveTypeSet.Load(
-                    App.Instance.BveAssembly, bveVersion, true,
-                    profileVersion => ProfileForDifferentVersionBveLoaded?.Invoke(this, new ProfileForDifferentVersionBveLoadedEventArgs(bveVersion, profileVersion)));
-
+                BveTypeSet bveTypes = Factory.Load();
                 return bveTypes;
+            }
+            catch (MultipleSlimDXLoadedException ex)
+            {
+                string approach = string.Format(Resources.Value.MultipleSlimDXLoadedApproach.Value, App.Instance.ProductShortName);
+                ErrorDialog.Show(3, ex.Message, approach);
+                throw;
             }
             catch (Exception ex)
             {
-                try
-                {
-                    ExceptionResolver exceptionResolver = new ExceptionResolver();
-                    string senderName = Path.GetFileName(typeof(BveTypeSet).Assembly.Location);
-                    exceptionResolver.Resolve(senderName, ex);
-                    throw;
-                }
-                catch (KeyNotFoundException)
-                {
-                    CheckSlimDX();
-                    throw;
-                }
-            }
-
-
-            void CheckSlimDX()
-            {
-                IEnumerable<Assembly> slimDXAssemblies = AppDomain.CurrentDomain.GetAssemblies().Where(asm => asm.GetName().Name == "SlimDX");
-
-                if (slimDXAssemblies.Count() > 1)
-                {
-                    string message = string.Format(Resources.Value.MultipleSlimDXLoadedMessage.Value, nameof(BveTypes));
-                    string locationText = string.Join("\n", slimDXAssemblies.Select(assembly => $"・{assembly.Location} (バージョン {assembly.GetName().Version})"));
-                    string approach = string.Format(Resources.Value.MultipleSlimDXLoadedApproach.Value, locationText, App.Instance.ProductShortName);
-                    ErrorDialog.Show(3, message, approach);
-                }
+                ExceptionResolver exceptionResolver = new ExceptionResolver();
+                string senderName = Path.GetFileName(typeof(BveTypeSet).Assembly.Location);
+                exceptionResolver.Resolve(senderName, ex);
+                throw;
             }
         }
 
-        public class ProfileForDifferentVersionBveLoadedEventArgs : EventArgs
+
+        internal class DifferentVersionProfileLoadedEventArgs : BveTypes.DifferentVersionProfileLoadedEventArgs
         {
-            public Version BveVersion { get; }
-            public Version ProfileVersion { get; }
+            public string Message => string.Format(Resources.Value.BveVersionNotSupported.Value, BveVersion, ProfileVersion);
 
-            public ProfileForDifferentVersionBveLoadedEventArgs(Version bveVersion, Version profileVersion)
+            public DifferentVersionProfileLoadedEventArgs(BveTypes.DifferentVersionProfileLoadedEventArgs source)
+                : base(source.BveVersion, source.ProfileVersion)
             {
-                BveVersion = bveVersion;
-                ProfileVersion = profileVersion;
-            }
-        }
-
-        public class IllegalSlimDXDetectedEventArgs : EventArgs
-        {
-            public IEnumerable<string> AssemblyLocations { get; }
-
-            public IllegalSlimDXDetectedEventArgs(IEnumerable<string> assemblyLocations)
-            {
-                AssemblyLocations = assemblyLocations;
             }
         }
     }

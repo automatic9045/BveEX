@@ -43,7 +43,7 @@ namespace BveTypes
         private readonly WrapTypeSet Types;
         private readonly FastCache<Type, FastMethod> FromSourceMethodCache = new FastCache<Type, FastMethod>();
 
-        private BveTypeSet(WrapTypeSet types, Version profileVersion)
+        internal BveTypeSet(WrapTypeSet types, Version profileVersion)
         {
 #if DEBUG
             TypeMemberSetBase illegalType = types.Types.Values.FirstOrDefault(type =>
@@ -53,6 +53,7 @@ namespace BveTypes
                 bool isClassWrapperBaseSubclass = type.WrapperType.IsClass && type.WrapperType.IsSubclassOf(typeof(ClassWrapperBase));
                 return !isClassWrapperBaseSubclass;
             });
+
             if (!(illegalType is null))
             {
                 throw new ArgumentException(

@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BveVersionNotSupported" xml:space="preserve">
-    <value>Loaded the profile for BVE version {1} instead of current version {0}, which is not supported. It may cause some extensions of {2} not to work well.</value>
-  </data>
   <data name="CallerVersionNotSupported" xml:space="preserve">
     <value>This {0} does not support {0} Caller loaded (version {1}). Use {0} Caller beta0.16 (version 0.16) or newer.</value>
   </data>

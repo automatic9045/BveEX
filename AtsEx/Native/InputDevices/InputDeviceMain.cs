@@ -85,6 +85,11 @@ namespace AtsEx.Native.InputDevices
             Troubleshooters = TroubleshooterSet.Load();
 
             BveTypeSetLoader bveTypesLoader = new BveTypeSetLoader();
+            bveTypesLoader.DifferentVersionProfileLoaded += (sender, e) =>
+            {
+                // TODO
+            };
+
             BveTypeSet bveTypes = bveTypesLoader.Load();
 
             ClassMemberSet mainFormMembers = bveTypes.GetClassInfoOf<MainForm>();

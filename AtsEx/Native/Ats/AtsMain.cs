@@ -29,7 +29,6 @@ namespace AtsEx.Native.Ats
         {
             private readonly ResourceLocalizer Localizer = ResourceLocalizer.FromResXOfType(typeof(AtsMain), "Core");
 
-            [ResourceStringHolder(nameof(Localizer))] public Resource<string> BveVersionNotSupported { get; private set; }
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> CallerVersionNotSupported { get; private set; }
 
             public ResourceSet()
@@ -85,18 +84,14 @@ namespace AtsEx.Native.Ats
             Troubleshooters = TroubleshooterSet.Load();
 
             BveTypeSetLoader bveTypesLoader = new BveTypeSetLoader();
-            BveTypeSetLoader.ProfileForDifferentVersionBveLoadedEventArgs args = null;
-            bveTypesLoader.ProfileForDifferentVersionBveLoaded += (sender, e) => args = e;
+            bveTypesLoader.DifferentVersionProfileLoaded += (sender, e) =>
+            {
+                string message = e.Message;
+                AtsEx.BveHacker.LoadErrorManager.Throw(message, App.Instance.ProductShortName);
+            };
 
             BveTypeSet bveTypes = bveTypesLoader.Load();
-
             AtsEx = new AtsEx.AsAtsPlugin(bveTypes);
-
-            if (!(args is null))
-            {
-                string versionWarningText = string.Format(Resources.Value.BveVersionNotSupported.Value, args.BveVersion, args.ProfileVersion, App.Instance.ProductShortName);
-                AtsEx.BveHacker.LoadErrorManager.Throw(versionWarningText);
-            }
         }
 
         public static void Dispose()
