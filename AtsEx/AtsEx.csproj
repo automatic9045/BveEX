@@ -113,7 +113,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ErrorDialog.cs" />
-    <Compile Include="ExceptionResolver.cs" />
     <Compile Include="Main\AtsEx.AsInputDevice.cs" />
     <Compile Include="Main\AtsEx.AsInputDevice.Patches.cs" />
     <Compile Include="Main\AtsEx.AsInputDevice.PatchEventInitializer.cs" />

@@ -11,14 +11,14 @@ using Microsoft.CodeAnalysis.Text;
 
 using UnembeddedResources;
 
+using AtsEx.Diagnostics;
 using AtsEx.PluginHost;
-using AtsEx.Scripting.CSharp;
-
 using AtsEx.PluginHost.LoadErrorManager;
+using AtsEx.Scripting.CSharp;
 
 namespace AtsEx.Plugins
 {
-    internal class PluginLoadErrorResolver : ExceptionResolver
+    internal class PluginLoadErrorResolver : WrapperExceptionExtractor
     {
         private class ResourceSet
         {

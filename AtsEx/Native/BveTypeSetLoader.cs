@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using BveTypes;
 using UnembeddedResources;
 
+using AtsEx.Diagnostics;
 using AtsEx.PluginHost;
 
 namespace AtsEx.Native
@@ -65,9 +66,9 @@ namespace AtsEx.Native
             }
             catch (Exception ex)
             {
-                ExceptionResolver exceptionResolver = new ExceptionResolver();
+                WrapperExceptionExtractor exceptionExtractor = new WrapperExceptionExtractor();
                 string senderName = Path.GetFileName(typeof(BveTypeSet).Assembly.Location);
-                exceptionResolver.Resolve(senderName, ex);
+                exceptionExtractor.Resolve(senderName, ex);
                 throw;
             }
         }
