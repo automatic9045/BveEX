@@ -16,6 +16,7 @@ namespace AtsEx
     {
         protected Label Title;
 
+        protected Label LongName;
         protected Label Description;
         protected Label Copyright;
 
@@ -50,14 +51,23 @@ namespace AtsEx
             Controls.Add(Title);
 
 
-            Description = new Label()
+            LongName = new Label()
             {
                 Left = 16,
                 Top = 88,
                 Width = 480,
-                UseMnemonic = false,
-                Text = string.Format(Resources.Value.Description.Value, App.Instance.ProductName,
-                    App.Instance.AtsExAssembly.GetName().Version, App.Instance.LaunchMode.GetTypeString()),
+                Height = 15,
+                Text = App.Instance.ProductName,
+            };
+            Controls.Add(LongName);
+
+            Description = new Label()
+            {
+                Left = 16,
+                Top = 103,
+                Width = 480,
+                Height = 15,
+                Text = string.Format(Resources.Value.Description.Value, App.Instance.AtsExAssembly.GetName().Version, App.Instance.LaunchMode.GetTypeString()),
             };
             Controls.Add(Description);
 
@@ -65,8 +75,9 @@ namespace AtsEx
             Copyright = new Label()
             {
                 Left = 16,
-                Top = 108,
+                Top = 133,
                 Width = 400,
+                Height = 15,
                 Text = $"Copyright ©  {(year == 2022 ? "2022" : $"2022-{year}")}  おーとま (automatic9045)",
             };
             Controls.Add(Copyright);
@@ -76,7 +87,7 @@ namespace AtsEx
             {
                 Name = nameof(LicenseLink),
                 Left = 16,
-                Top = 148,
+                Top = 163,
                 Width = 56,
                 Text = Resources.Value.License.Value,
             };
@@ -87,7 +98,7 @@ namespace AtsEx
             {
                 Name = nameof(HomepageLink),
                 Left = 96,
-                Top = 148,
+                Top = 163,
                 Width = 176,
                 Text = string.Format(Resources.Value.Website.Value, App.Instance.ProductShortName),
             };
@@ -98,7 +109,7 @@ namespace AtsEx
             {
                 Name = nameof(RepositoryLink),
                 Left = 296,
-                Top = 148,
+                Top = 163,
                 Width = 128,
                 Text = Resources.Value.Repository.Value,
             };
@@ -109,7 +120,7 @@ namespace AtsEx
             PluginListHeader = new Label()
             {
                 Left = 16,
-                Top = 192,
+                Top = 193,
                 Width = 400,
                 Text = Resources.Value.PluginListHeader.Value,
             };

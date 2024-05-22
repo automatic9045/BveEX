@@ -121,7 +121,7 @@
     <value>{0} Version Information and Loaded Plugins</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>{0}  Version {1}  {2}</value>
+    <value>Version {0}  {1}</value>
   </data>
   <data name="License" xml:space="preserve">
     <value>License</value>
