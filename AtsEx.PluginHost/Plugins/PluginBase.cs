@@ -146,10 +146,15 @@ namespace AtsEx.PluginHost.Plugins
             BveHacker = builder.BveHacker;
             Identifier = builder.Identifier;
 
-            if (info is null && !allowInfoIsNull) throw new ArgumentNullException(nameof(info));
-
-            Info = info;
-            Validate();
+            if (info is null)
+            {
+                if (!allowInfoIsNull) throw new ArgumentNullException(nameof(info));
+            }
+            else
+            {
+                Info = info;
+                Validate();
+            }
         }
 
         /// <summary>
