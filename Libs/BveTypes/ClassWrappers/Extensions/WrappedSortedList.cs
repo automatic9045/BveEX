@@ -44,7 +44,6 @@ namespace BveTypes.ClassWrappers.Extensions
 
         private static BveTypeSet BveTypes = null;
 
-        private readonly IDictionary Src;
         private readonly dynamic SrcAsDynamic;
         private readonly ITwoWayConverter<object, TValueWrapper> ValueConverter;
 
@@ -57,6 +56,11 @@ namespace BveTypes.ClassWrappers.Extensions
         private int Version => (int)VersionField.GetValue(Src);
         private TKey[] KeyArray => KeysField.GetValue(Src) as TKey[];
         private Array ValueArray => ValuesField.GetValue(Src) as Array;
+
+        /// <summary>
+        /// ラップされているオリジナル オブジェクトを取得します。
+        /// </summary>
+        public IDictionary Src { get; }
 
         /// <summary>
         /// オリジナル オブジェクトからラッパーのインスタンスを生成します。
