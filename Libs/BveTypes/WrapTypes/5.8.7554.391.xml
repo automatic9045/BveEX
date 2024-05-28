@@ -619,6 +619,30 @@
 		</Property>
 	</Class>
 
+	<Class Wrapper="MapLoader" Original="p">
+		<Field WrapperProperty="LoadingProgressForm" Original="b" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="TimeManager" Original="c" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Route" Original="d" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="DirectSound" Original="e" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Variables" Original="g" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Stations" Original="h" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="CurrentLocation" Original="k" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="FilePath" Original="p" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Directory" Original="q" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="CameraLocation" Original="t" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Statements" Original="x" IsOriginalNonPublic="true"/>
+
+		<Method Wrapper="Load" WrapperParams="void" Original="d"/>
+		<Method Wrapper="RegisterFile" WrapperParams="System.String" Original="k" IsOriginalNonPublic="true"/>
+		<Method Wrapper="ParseStatement" WrapperParams="atsex:WrappedList`1[atsex:MapStatementClause]" Original="aa" IsOriginalNonPublic="true"/>
+		<Method Wrapper="LoadSound3DList" WrapperParams="System.String" Original="j" IsOriginalNonPublic="true"/>
+		<Method Wrapper="LoadSoundList" WrapperParams="System.String" Original="i" IsOriginalNonPublic="true"/>
+		<Method Wrapper="LoadSignalList" WrapperParams="System.String" Original="h" IsOriginalNonPublic="true"/>
+		<Method Wrapper="LoadStructureList" WrapperParams="System.String" Original="g" IsOriginalNonPublic="true"/>
+		<Method Wrapper="LoadStationList" WrapperParams="System.String" Original="f" IsOriginalNonPublic="true"/>
+		<Method Wrapper="Include" WrapperParams="System.String" Original="b"/>
+	</Class>
+
 	<Class Wrapper="MapObjectList" Original="b6">
 		<Children>
 			<Delegate Wrapper="ObjectPassedEventHandler" Original="a"/>
@@ -635,6 +659,44 @@
 		<Method Wrapper="GoTo" WrapperParams="System.Double" Original="u"/>
 		<Method Wrapper="GoTo" WrapperParams="System.Double; System.Double" Original="ae" IsOriginalNonPublic="true"/>
 		<Method Wrapper="GoToByIndex" WrapperParams="System.Int32" Original="f"/>
+	</Class>
+
+	<Class Wrapper="MapStatement" Original="em">
+		<Property Wrapper="Location">
+			<Getter Original="a"/>
+		</Property>
+		<Property Wrapper="Clauses">
+			<Getter Original="c"/>
+		</Property>
+		<Property Wrapper="FileName">
+			<Getter Original="b"/>
+		</Property>
+	</Class>
+
+	<Class Wrapper="MapStatementClause" Original="bb">
+		<Property Wrapper="Name">
+			<Getter Original="d"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="Args">
+			<Getter Original="c"/>
+			<Setter Original="b"/>
+		</Property>
+		<Property Wrapper="Keys">
+			<Getter Original="b"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="LineIndex">
+			<Getter Original="e"/>
+			<Setter Original="b"/>
+		</Property>
+		<Property Wrapper="CharIndex">
+			<Getter Original="a"/>
+			<Setter Original="a"/>
+		</Property>
+	</Class>
+
+	<Class Wrapper="MapStatementList" Original="b0">
 	</Class>
 
 	<Class Wrapper="MaterialInfo" Original="e0">
