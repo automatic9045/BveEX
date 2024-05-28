@@ -63,8 +63,11 @@ namespace AtsEx.MapStatements
             int includeStatementCount = 0;
             bool useAtsEx = false;
             IEnumerable<MapTextParser.TextWithPosition> statements = MapTextParser.GetStatementsFromText(text);
+            int i = -1;
             foreach (MapTextParser.TextWithPosition s in statements)
             {
+                i++;
+
                 if (s.Text.StartsWith("include'") && s.Text.EndsWith("'") && s.Text.Length - s.Text.Replace("'", "").Length == 2)
                 {
                     string includePath = s.Text.Split('\'')[1];
@@ -138,6 +141,8 @@ namespace AtsEx.MapStatements
                         return null;
                     }
                 }
+
+                if (!useAtsEx && 10 - 1 <= i) break;
             }
 
             return (headers, privateHeaders);
