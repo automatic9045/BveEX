@@ -25,6 +25,6 @@ namespace BveTypes.ClassWrappers
             }
         }
 
-        public object ConvertBack(T value) => (value as ClassWrapperBase).Src;
+        public object ConvertBack(T value) => value == null ? null : (value as ClassWrapperBase).Src;
     }
 }
