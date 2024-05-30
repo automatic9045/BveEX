@@ -29,7 +29,6 @@ namespace AtsEx
                 public readonly HarmonyPatch OnSetPowerPatch;
                 public readonly HarmonyPatch OnSetVehicleSpecPatch;
                 public readonly HarmonyPatch OnInitializePatch;
-                public readonly HarmonyPatch PreviewElapsePatch;
                 public readonly HarmonyPatch PostElapsePatch;
 
                 public PatchSet(ClassMemberSet mainFormMembers, ClassMemberSet scenarioMembers, ClassMemberSet atsPluginMembers)
@@ -47,7 +46,6 @@ namespace AtsEx
                     OnSetPowerPatch = HarmonyPatch.Patch(nameof(AtsEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnSetPower)).Source, PatchType.Prefix);
                     OnSetVehicleSpecPatch = HarmonyPatch.Patch(nameof(AtsEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnSetVehicleSpec)).Source, PatchType.Postfix);
                     OnInitializePatch = HarmonyPatch.Patch(nameof(AtsEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnInitialize)).Source, PatchType.Prefix);
-                    PreviewElapsePatch = HarmonyPatch.Patch(nameof(AtsEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnElapse)).Source, PatchType.Prefix);
                     PostElapsePatch = HarmonyPatch.Patch(nameof(AtsEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnElapse)).Source, PatchType.Postfix);
                 }
 
@@ -66,7 +64,6 @@ namespace AtsEx
                     OnSetPowerPatch.Dispose();
                     OnSetVehicleSpecPatch.Dispose();
                     OnInitializePatch.Dispose();
-                    PreviewElapsePatch.Dispose();
                     PostElapsePatch.Dispose();
                 }
             }

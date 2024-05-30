@@ -24,8 +24,7 @@ namespace AtsEx
 
             public event EventHandler<ValueEventArgs<VehicleSpec>> OnSetVehicleSpec;
             public event EventHandler<ValueEventArgs<DefaultBrakePosition>> OnInitialize;
-            public event EventHandler<OnElapseEventArgs> PreviewElapse;
-            public event EventHandler PostElapse;
+            public event EventHandler<OnElapseEventArgs> PostElapse;
             public event EventHandler<ValueEventArgs<int>> OnSetPower;
             public event EventHandler<ValueEventArgs<int>> OnSetBrake;
             public event EventHandler<ValueEventArgs<int>> OnSetReverser;

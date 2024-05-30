@@ -44,13 +44,6 @@ namespace AtsEx
         {
         }
 
-        public HandlePositionSet Compile(HandlePositionSet overrideBase)
-            => new HandlePositionSet(
-                AtsPowerNotch ?? overrideBase.Power,
-                AtsBrakeNotch ?? overrideBase.Brake,
-                AtsReverserPosition ?? overrideBase.ReverserPosition,
-                AtsConstantSpeedCommand ?? overrideBase.ConstantSpeed);
-
         public HandlePositionSet Compile()
             => new HandlePositionSet(
                 AtsPowerNotch ?? PowerNotch,

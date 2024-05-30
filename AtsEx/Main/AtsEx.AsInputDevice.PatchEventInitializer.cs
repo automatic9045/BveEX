@@ -197,7 +197,7 @@ namespace AtsEx
                         return new PatchInvokationResult(SkipModes.Continue);
                     };
 
-                    Target.Patches.PreviewElapsePatch.Invoked += (sender, e) =>
+                    Target.Patches.PostElapsePatch.Invoked += (sender, e) =>
                     {
                         AtsPlugin atsPlugin = AtsPlugin.FromSource(e.Instance);
                         if (!atsPlugin.IsPluginLoaded) return new PatchInvokationResult(SkipModes.Continue);
@@ -215,16 +215,7 @@ namespace AtsEx
                             Current = (float)atsPlugin.StateStore.Current[0],
                         };
 
-                        Target.PreviewElapse?.Invoke(this, new OnElapseEventArgs(vehicleState, atsPlugin.PanelArray, atsPlugin.SoundArray));
-                        return new PatchInvokationResult(SkipModes.Continue);
-                    };
-
-                    Target.Patches.PostElapsePatch.Invoked += (sender, e) =>
-                    {
-                        AtsPlugin atsPlugin = AtsPlugin.FromSource(e.Instance);
-                        if (!atsPlugin.IsPluginLoaded) return new PatchInvokationResult(SkipModes.Continue);
-
-                        Target.PostElapse?.Invoke(this, EventArgs.Empty);
+                        Target.PostElapse?.Invoke(this, new OnElapseEventArgs(vehicleState, atsPlugin.PanelArray, atsPlugin.SoundArray));
                         return new PatchInvokationResult(SkipModes.Continue);
                     };
                 }
