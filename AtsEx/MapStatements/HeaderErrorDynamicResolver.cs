@@ -7,18 +7,17 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.MapStatements;
 using AtsEx.Plugins;
 using AtsEx.PluginHost.LoadErrorManager;
 
-namespace AtsEx
+namespace AtsEx.MapStatements
 {
-    internal class HeaderErrorResolver
+    internal class HeaderErrorDynamicResolver
     {
         private readonly ILoadErrorManager LoadErrorManager;
         private readonly IEnumerable<Header> Headers;
 
-        public HeaderErrorResolver(ILoadErrorManager loadErrorManager, IEnumerable<Header> headers)
+        public HeaderErrorDynamicResolver(ILoadErrorManager loadErrorManager, IEnumerable<Header> headers)
         {
             LoadErrorManager = loadErrorManager;
             Headers = headers;

@@ -116,7 +116,8 @@
     <Compile Include="Main\AtsEx.AsInputDevice.cs" />
     <Compile Include="Main\AtsEx.AsInputDevice.Patches.cs" />
     <Compile Include="Main\AtsEx.AsInputDevice.PatchEventInitializer.cs" />
-    <Compile Include="MapStatements\HeaderErrorResolver.cs" />
+    <Compile Include="MapStatements\HeaderErrorDynamicResolver.cs" />
+    <Compile Include="MapStatements\HeaderErrorPreResolver.cs" />
     <Compile Include="MapStatements\HeaderParser.cs" />
     <Compile Include="Native\AppInitializer.cs" />
     <Compile Include="Native\BveTypeSetLoader.cs" />

@@ -14,6 +14,7 @@ using TypeWrapping;
 using UnembeddedResources;
 
 using AtsEx.Handles;
+using AtsEx.MapStatements;
 using AtsEx.Native.Ats;
 using AtsEx.Plugins;
 using AtsEx.Troubleshooting;
@@ -51,6 +52,7 @@ namespace AtsEx.Native.InputDevices
 
         private readonly CallerInfo CallerInfo;
         private readonly TroubleshooterSet Troubleshooters;
+        private readonly HeaderErrorPreResolver HeaderErrorPreResolver;
 
         private AtsEx.AsInputDevice AtsEx = null;
         private ScenarioService.AsInputDevice ScenarioService = null;
@@ -89,12 +91,20 @@ namespace AtsEx.Native.InputDevices
             };
 
             BveTypeSet bveTypes = bveTypesLoader.Load();
+            HeaderErrorPreResolver = MapStatements.HeaderErrorPreResolver.Patch(bveTypes);
 
             ClassMemberSet mainFormMembers = bveTypes.GetClassInfoOf<MainForm>();
             FastMethod createDirectXDevicesMethod = mainFormMembers.GetSourceMethodOf(nameof(MainForm.CreateDirectXDevices));
 
             HarmonyPatch createDirectXDevicesPatch = HarmonyPatch.Patch(nameof(InputDeviceMain), createDirectXDevicesMethod.Source, PatchType.Prefix);
             createDirectXDevicesPatch.Invoked += OnCreateDirectXDevices;
+
+            AtsMain.LoadedAsInputDevice();
+            AtsMain.VehiclePluginUsingLoaded += (sender, e) =>
+            {
+                LoadedVehiclePluginUsing = e.VehiclePluginUsing;
+                LoadedVehicleConfig = e.VehicleConfig;
+            };
 
 
             PatchInvokationResult OnCreateDirectXDevices(object sender, PatchInvokedEventArgs e)
@@ -104,13 +114,6 @@ namespace AtsEx.Native.InputDevices
                 InitializeAtsEx();
                 return new PatchInvokationResult(SkipModes.Continue);
             }
-
-            AtsMain.LoadedAsInputDevice();
-            AtsMain.VehiclePluginUsingLoaded += (sender, e) =>
-            {
-                LoadedVehiclePluginUsing = e.VehiclePluginUsing;
-                LoadedVehicleConfig = e.VehicleConfig;
-            };
 
             void InitializeAtsEx()
             {
@@ -245,6 +248,7 @@ namespace AtsEx.Native.InputDevices
         {
             ScenarioService?.Dispose();
             AtsEx?.Dispose();
+            HeaderErrorPreResolver?.Dispose();
             Troubleshooters?.Dispose();
         }
 
