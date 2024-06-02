@@ -69,6 +69,14 @@
     <Compile Include="ContextMenuHacker\IContextMenuHacker.cs" />
     <Compile Include="DiagramUpdater\IDiagramUpdater.cs" />
     <Compile Include="DiagramUpdater\DiagramUpdater.cs" />
+    <Compile Include="MapStatements\Builtin\BuiltinProcess.cs" />
+    <Compile Include="MapStatements\ClauseFilter.cs" />
+    <Compile Include="MapStatements\ClauseType.cs" />
+    <Compile Include="MapStatements\IStatementSet.cs" />
+    <Compile Include="MapStatements\Statement.cs" />
+    <Compile Include="MapStatements\StatementLoadedEventArgs.cs" />
+    <Compile Include="MapStatements\StatementSet.cs" />
+    <Compile Include="MapStatements\SyntaxException.cs" />
     <Compile Include="MethodOverrideMode.cs" />
     <Compile Include="PreTrainPatch\IPreTrainLocationConverter.cs" />
     <Compile Include="PreTrainPatch\IPreTrainPatchFactory.cs" />
