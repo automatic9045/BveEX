@@ -108,12 +108,12 @@ namespace AtsEx
 
         public void KeyDown(NativeAtsKeyName key)
         {
-            (Native.NativeKeys.AtsKeys[key] as NativeAtsKey).NotifyPressed();
+            ((NativeKeySet)Native.NativeKeys).NotifyPressed(key);
         }
 
         public void KeyUp(NativeAtsKeyName key)
         {
-            (Native.NativeKeys.AtsKeys[key] as NativeAtsKey).NotifyReleased();
+            ((NativeKeySet)Native.NativeKeys).NotifyReleased(key);
         }
 
         public void DoorOpened(DoorEventArgs args)

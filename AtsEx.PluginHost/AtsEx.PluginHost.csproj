@@ -74,6 +74,7 @@
     <Compile Include="EventArgs\ScenarioOpenedEventArgs.cs" />
     <Compile Include="Exceptions\ConflictException.cs" />
     <Compile Include="Exceptions\MemberNotInitializedException.cs" />
+    <Compile Include="Input\Native\NativeKeyEventArgs.cs" />
     <Compile Include="ITwoWayConverter.cs" />
     <Compile Include="MapStatements\IdentifierToEnumConverter.cs" />
     <Compile Include="LoadErrorManager\ILoadErrorManager.cs" />

@@ -16,5 +16,15 @@ namespace AtsEx.PluginHost.Input.Native
         /// ATS キーの入力情報を取得します。
         /// </summary>
         ReadOnlyDictionary<NativeAtsKeyName, KeyBase> AtsKeys { get; }
+
+        /// <summary>
+        /// いずれかのキーが押された瞬間に発生します。
+        /// </summary>
+        event EventHandler<NativeKeyEventArgs> AnyKeyPressed;
+
+        /// <summary>
+        /// いずれかのキーが離された瞬間に発生します。
+        /// </summary>
+        event EventHandler<NativeKeyEventArgs> AnyKeyReleased;
     }
 }
