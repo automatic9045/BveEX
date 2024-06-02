@@ -46,10 +46,6 @@ namespace AtsEx
 
                 PatchEventInitializer patchEventInitializer = new PatchEventInitializer(this);
                 patchEventInitializer.InitializeEvents();
-
-                // TODO:
-                // ・マップエラーをもとより表示しないように
-                // ・シナリオロード済の状態で呼ばれたら再起動するようにする
             }
 
             public override void Dispose()
