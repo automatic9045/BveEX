@@ -70,6 +70,10 @@
     <Compile Include="DiagramUpdater\IDiagramUpdater.cs" />
     <Compile Include="DiagramUpdater\DiagramUpdater.cs" />
     <Compile Include="MapStatements\Builtin\BuiltinProcess.cs" />
+    <Compile Include="MapStatements\Builtin\Condition.cs" />
+    <Compile Include="MapStatements\Builtin\IParser.cs" />
+    <Compile Include="MapStatements\Builtin\Preprocess\IBlockParser.cs" />
+    <Compile Include="MapStatements\Builtin\Preprocess\IfBlock.cs" />
     <Compile Include="MapStatements\ClauseFilter.cs" />
     <Compile Include="MapStatements\ClauseType.cs" />
     <Compile Include="MapStatements\IStatementSet.cs" />
