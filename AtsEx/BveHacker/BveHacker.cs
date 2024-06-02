@@ -153,6 +153,7 @@ namespace AtsEx
         IHeaderSet IBveHacker.MapHeaders => MapHeaders;
 
         public StatementSet MapStatements { get; private set; } = null;
+        [Obsolete]
         IStatementSet IBveHacker.MapStatements => MapStatements;
 
         private readonly MapLoaderHacker MapLoaderHacker;

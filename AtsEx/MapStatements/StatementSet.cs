@@ -10,6 +10,7 @@ using AtsEx.PluginHost.MapStatements;
 
 namespace AtsEx.MapStatements
 {
+#pragma warning disable CS0612 // 型またはメンバーが旧型式です
     internal sealed partial class StatementSet : IStatementSet, IEnumerable<Statement>
     {
         private readonly IDictionary<Identifier, IReadOnlyList<Statement>> Statements;
@@ -32,4 +33,5 @@ namespace AtsEx.MapStatements
             foreach (Statement statement in this) statement.Tick(vehicleLocation, preTrainLocation);
         }
     }
+#pragma warning restore CS0612 // 型またはメンバーが旧型式です
 }

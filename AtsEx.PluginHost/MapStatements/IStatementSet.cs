@@ -9,6 +9,10 @@ namespace AtsEx.PluginHost.MapStatements
     /// <summary>
     /// ユーザーが独自に定義したステートメントの一覧を表します。
     /// </summary>
+    /// <remarks>
+    /// 互換性のために残されている古い機能です。AtsEx.CoreExtensions のマップステートメント機能をご利用ください。
+    /// </remarks>
+    [Obsolete]
     public interface IStatementSet
     {
         /// <summary>
