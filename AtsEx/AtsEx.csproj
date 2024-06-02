@@ -112,6 +112,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BveHacker\Services\MapLoaderHacker.cs" />
     <Compile Include="ErrorDialog.cs" />
     <Compile Include="Main\AtsEx.AsInputDevice.cs" />
     <Compile Include="Main\AtsEx.AsInputDevice.Patches.cs" />

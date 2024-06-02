@@ -51,6 +51,7 @@ namespace AtsEx
             BveTypes = bveTypes;
 
             MainFormHacker = new MainFormHacker(App.Instance.Process);
+            MapLoaderHacker = new MapLoaderHacker(BveTypes);
             ScenarioHacker = new ScenarioHacker(MainFormHacker, BveTypes);
 
             StructureSetLifeProlonger = new StructureSetLifeProlonger(this);
@@ -92,10 +93,10 @@ namespace AtsEx
             }
         }
 
-        /// <inheritdoc/>
         public void Dispose()
         {
             StructureSetLifeProlonger.Dispose();
+            MapLoaderHacker.Dispose();
             ScenarioHacker.Dispose();
         }
 
@@ -154,8 +155,8 @@ namespace AtsEx
         public StatementSet MapStatements { get; private set; } = null;
         IStatementSet IBveHacker.MapStatements => MapStatements;
 
-
-
+        private readonly MapLoaderHacker MapLoaderHacker;
+        public MapLoader MapLoader => MapLoaderHacker.MapLoader;
 
         private readonly ScenarioHacker ScenarioHacker;
 

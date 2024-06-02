@@ -148,6 +148,15 @@ namespace AtsEx.PluginHost
 
 
         /// <summary>
+        /// 現在実行中のシナリオの読込に使用されている <see cref="BveTypes.ClassWrappers.MapLoader"/> を取得します。
+        /// </summary>
+        /// <remarks>
+        /// ATS プラグイン版には対応していません。また、シナリオが読み込まれていない時は <see langword="null"/> になります。
+        /// </remarks>
+        MapLoader MapLoader { get; }
+
+
+        /// <summary>
         /// シナリオが選択され、読込を開始したときに発生します。
         /// </summary>
         /// <remarks>
@@ -176,7 +185,7 @@ namespace AtsEx.PluginHost
         event ScenarioCreatedEventHandler ScenarioCreated;
 
         /// <summary>
-        /// 現在読込中または実行中のシナリオの情報を取得・設定します。
+        /// 現在読込中または実行中のシナリオの情報を取得します。
         /// </summary>
         ScenarioInfo ScenarioInfo { get; }
 
