@@ -159,6 +159,8 @@ namespace AtsEx.Native.InputDevices
 
         private void PostElapse(object sender, AtsEx.AsInputDevice.OnElapseEventArgs e)
         {
+            ScenarioService?.PreviewTick();
+
             TimeSpan now = TimeSpan.FromMilliseconds(e.VehicleState.Time);
             TimeSpan elapsed = FrameSpan.Tick(now);
 
@@ -168,6 +170,8 @@ namespace AtsEx.Native.InputDevices
 
             AtsEx.Tick(elapsed);
             _ = ScenarioService?.Tick(elapsed, exVehicleState, e.Panel, e.Sound);
+
+            ScenarioService?.PostTick();
         }
 
         private void OnSetPower(object sender, AtsEx.AsInputDevice.ValueEventArgs<int> e)

@@ -41,6 +41,9 @@ namespace AtsEx
         public void InvokeSignalUpdated(int signalIndex) => SignalUpdated?.Invoke(new SignalUpdatedEventArgs(signalIndex));
         public void InvokeBeaconPassed(BeaconPassedEventArgs args) => BeaconPassed?.Invoke(args);
 
+        public void InvokePreviewTick() => PreviewTick?.Invoke(this, EventArgs.Empty);
+        public void InvokePostTick() => PostTick?.Invoke(this, EventArgs.Empty);
+
         public PluginHost.Handles.HandleSet Handles { get; }
 
         public IAtsPanelValueSet AtsPanelValues { get; }
@@ -58,5 +61,8 @@ namespace AtsEx
         public event DoorEventHandler DoorClosed;
         public event SignalUpdatedEventHandler SignalUpdated;
         public event BeaconPassedEventHandler BeaconPassed;
+
+        public event EventHandler PreviewTick;
+        public event EventHandler PostTick;
     }
 }

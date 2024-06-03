@@ -76,6 +76,16 @@ namespace AtsEx
             Native.InvokeStarted(defaultBrakePosition);
         }
 
+        public void PreviewTick()
+        {
+            Native.InvokePreviewTick();
+        }
+
+        public void PostTick()
+        {
+            Native.InvokePostTick();
+        }
+
         public HandlePositionSet Tick(TimeSpan elapsed, VehicleState vehicleState, IList<int> panel, IList<int> sound)
         {
             HandleSet atsHandles = AtsEx.BveHacker.Scenario.Vehicle.Instruments.AtsPlugin.AtsHandles;

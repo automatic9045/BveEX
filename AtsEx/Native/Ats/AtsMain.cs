@@ -149,6 +149,8 @@ namespace AtsEx.Native.Ats
                 return DoNothingHandles;
             }
 
+            ScenarioService?.PreviewTick();
+
             AtsIoArray panelArray = new AtsIoArray(panel);
             AtsIoArray soundArray = new AtsIoArray(sound);
 
@@ -161,6 +163,8 @@ namespace AtsEx.Native.Ats
 
             AtsEx.Tick(elapsed);
             HandlePositionSet handlePositionSet = ScenarioService?.Tick(elapsed, exVehicleState, panelArray, soundArray);
+
+            ScenarioService?.PostTick();
 
             return new AtsHandles()
             {
