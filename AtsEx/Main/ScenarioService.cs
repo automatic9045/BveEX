@@ -76,34 +76,61 @@ namespace AtsEx
             Native.InvokeStarted(defaultBrakePosition);
         }
 
-        public TickCommandBuilder Tick(TimeSpan elapsed, VehicleState vehicleState, IList<int> panel, IList<int> sound)
+        public HandlePositionSet Tick(TimeSpan elapsed, VehicleState vehicleState, IList<int> panel, IList<int> sound)
         {
-            Native.VehicleState = vehicleState;
+            HandleSet atsHandles = AtsEx.BveHacker.Scenario.Vehicle.Instruments.AtsPlugin.AtsHandles;
+            NotifyHandleUpdated();
 
+            Native.VehicleState = vehicleState;
             (Native.AtsPanelValues as AtsPanelValueSet).PreTick(panel);
 
             BveHacker.Tick(elapsed);
-            TickCommandBuilder tickResult = _PluginService.Tick(elapsed);
+            HandlePositionSet lastHandlePositionSet = _PluginService.Tick(elapsed, handlePositionSet =>
+            {
+                atsHandles.PowerNotch = handlePositionSet.Power;
+                atsHandles.BrakeNotch = handlePositionSet.Brake;
+                atsHandles.ReverserPosition = handlePositionSet.ReverserPosition;
+                atsHandles.ConstantSpeedMode = handlePositionSet.ConstantSpeed;
+
+                NotifyHandleUpdated();
+            });
 
             (Native.AtsPanelValues as AtsPanelValueSet).Tick(panel);
             (Native.AtsSounds as AtsSoundSet).Tick(sound);
 
-            return tickResult;
+            return lastHandlePositionSet;
+
+
+            void NotifyHandleUpdated()
+            {
+                SetPower(atsHandles.PowerNotch, false);
+                SetBrake(atsHandles.BrakeNotch, false);
+                SetReverser(atsHandles.ReverserPosition, false);
+            }
         }
 
-        public void SetPower(int notch)
+        public void SetPower(int notch, bool forceInvokeEvent)
         {
-            (Native.Handles.Power as PowerHandle).Notch = notch;
+            PowerHandle powerHandle = (PowerHandle)Native.Handles.Power;
+            int oldNotch = powerHandle.Notch;
+            powerHandle.Notch = notch;
+            if (forceInvokeEvent && notch == oldNotch) powerHandle.InvokeNotchChanged();
         }
 
-        public void SetBrake(int notch)
+        public void SetBrake(int notch, bool forceInvokeEvent)
         {
-            (Native.Handles.Brake as BrakeHandle).Notch = notch;
+            BrakeHandle brakeHandle = (BrakeHandle)Native.Handles.Brake;
+            int oldNotch = brakeHandle.Notch;
+            brakeHandle.Notch = notch;
+            if (forceInvokeEvent && notch == oldNotch) brakeHandle.InvokeNotchChanged();
         }
 
-        public void SetReverser(ReverserPosition position)
+        public void SetReverser(ReverserPosition position, bool forceInvokeEvent)
         {
-            (Native.Handles.Reverser as Reverser).Position = position;
+            Reverser reverser = (Reverser)Native.Handles.Reverser;
+            ReverserPosition oldPosition = reverser.Position;
+            reverser.Position = position;
+            if (forceInvokeEvent && position == oldPosition) reverser.InvokePositionChanged();
         }
 
         public void KeyDown(NativeAtsKeyName key)

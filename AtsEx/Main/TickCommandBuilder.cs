@@ -14,41 +14,44 @@ namespace AtsEx
 {
     internal sealed class TickCommandBuilder
     {
-        private readonly int PowerNotch;
-        private readonly int BrakeNotch;
-        private readonly ReverserPosition ReverserPosition;
+        private readonly int CabPowerNotch;
+        private readonly int CabBrakeNotch;
+        private readonly ReverserPosition CabReverserPosition;
 
         private int? AtsPowerNotch = null;
         private int? AtsBrakeNotch = null;
         private ReverserPosition? AtsReverserPosition = null;
-        private ConstantSpeedCommand? AtsConstantSpeedCommand = null;
+        private ConstantSpeedMode? AtsConstantSpeedMode = null;
+
+        public HandlePositionSet LatestHandlePositionSet { get; private set; }
 
         public TickCommandBuilder(PluginHost.Handles.HandleSet handles)
         {
-            PowerNotch = handles.Power.Notch;
-            BrakeNotch = handles.Brake.Notch;
-            ReverserPosition = handles.Reverser.Position;
+            CabPowerNotch = handles.Power.Notch;
+            CabBrakeNotch = handles.Brake.Notch;
+            CabReverserPosition = handles.Reverser.Position;
+
+            LatestHandlePositionSet = new HandlePositionSet(CabPowerNotch, CabBrakeNotch, CabReverserPosition, ConstantSpeedMode.Continue);
         }
 
         public void Override(VehiclePluginTickResult tickResult)
         {
             HandleCommandSet commandSet = tickResult.HandleCommandSet;
 
-            if (AtsPowerNotch is null) AtsPowerNotch = commandSet.PowerCommand.GetOverridenNotch(PowerNotch);
-            if (AtsBrakeNotch is null) AtsBrakeNotch = commandSet.BrakeCommand.GetOverridenNotch(BrakeNotch);
-            if (AtsReverserPosition is null) AtsReverserPosition = commandSet.ReverserCommand.GetOverridenPosition(ReverserPosition);
-            if (AtsConstantSpeedCommand is null) AtsConstantSpeedCommand = commandSet.ConstantSpeedCommand;
+            AtsPowerNotch = commandSet.PowerCommand.GetOverridenNotch(AtsPowerNotch ?? CabPowerNotch) ?? AtsPowerNotch;
+            AtsBrakeNotch = commandSet.BrakeCommand.GetOverridenNotch(AtsBrakeNotch ?? CabBrakeNotch) ?? AtsBrakeNotch;
+            AtsReverserPosition = commandSet.ReverserCommand.GetOverridenPosition(AtsReverserPosition ?? CabReverserPosition) ?? AtsReverserPosition;
+            AtsConstantSpeedMode = commandSet.ConstantSpeedCommand?.ToConstantSpeedMode() ?? AtsConstantSpeedMode;
+
+            LatestHandlePositionSet = new HandlePositionSet(
+                AtsPowerNotch ?? CabPowerNotch,
+                AtsBrakeNotch ?? CabBrakeNotch,
+                AtsReverserPosition ?? CabReverserPosition,
+                AtsConstantSpeedMode ?? ConstantSpeedMode.Continue);
         }
 
         public void Override(MapPluginTickResult tickResult)
         {
         }
-
-        public HandlePositionSet Compile()
-            => new HandlePositionSet(
-                AtsPowerNotch ?? PowerNotch,
-                AtsBrakeNotch ?? BrakeNotch,
-                AtsReverserPosition ?? ReverserPosition,
-                AtsConstantSpeedCommand ?? ConstantSpeedCommand.Continue);
     }
 }

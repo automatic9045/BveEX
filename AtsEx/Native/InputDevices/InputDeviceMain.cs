@@ -162,38 +162,27 @@ namespace AtsEx.Native.InputDevices
             TimeSpan now = TimeSpan.FromMilliseconds(e.VehicleState.Time);
             TimeSpan elapsed = FrameSpan.Tick(now);
 
-            BveTypes.ClassWrappers.HandleSet atsHandles = AtsEx.BveHacker.Scenario.Vehicle.Instruments.AtsPlugin.AtsHandles;
-            ScenarioService?.SetPower(atsHandles.PowerNotch);
-            ScenarioService?.SetBrake(atsHandles.BrakeNotch);
-            ScenarioService?.SetReverser(atsHandles.ReverserPosition);
-
             PluginHost.Native.VehicleState exVehicleState = new PluginHost.Native.VehicleState(
                 e.VehicleState.Location, e.VehicleState.Speed, TimeSpan.FromMilliseconds(e.VehicleState.Time),
                 e.VehicleState.BcPressure, e.VehicleState.MrPressure, e.VehicleState.ErPressure, e.VehicleState.BpPressure, e.VehicleState.SapPressure, e.VehicleState.Current);
 
             AtsEx.Tick(elapsed);
-            TickCommandBuilder tickCommandBuilder = ScenarioService?.Tick(elapsed, exVehicleState, e.Panel, e.Sound);
-            HandlePositionSet outHandles = tickCommandBuilder.Compile();
-
-            atsHandles.BrakeNotch = outHandles.Brake;
-            atsHandles.PowerNotch = outHandles.Power;
-            atsHandles.ReverserPosition = outHandles.ReverserPosition;
-            atsHandles.ConstantSpeedMode = outHandles.ConstantSpeed.ToConstantSpeedMode();
+            _ = ScenarioService?.Tick(elapsed, exVehicleState, e.Panel, e.Sound);
         }
 
         private void OnSetPower(object sender, AtsEx.AsInputDevice.ValueEventArgs<int> e)
         {
-            ScenarioService?.SetPower(e.Value);
+            ScenarioService?.SetPower(e.Value, true);
         }
 
         private void OnSetBrake(object sender, AtsEx.AsInputDevice.ValueEventArgs<int> e)
         {
-            ScenarioService?.SetBrake(e.Value);
+            ScenarioService?.SetBrake(e.Value, true);
         }
 
         private void OnSetReverser(object sender, AtsEx.AsInputDevice.ValueEventArgs<int> e)
         {
-            ScenarioService?.SetReverser((ReverserPosition)e.Value);
+            ScenarioService?.SetReverser((ReverserPosition)e.Value, true);
         }
 
         private void OnKeyDown(object sender, AtsEx.AsInputDevice.ValueEventArgs<ATSKeys> e)

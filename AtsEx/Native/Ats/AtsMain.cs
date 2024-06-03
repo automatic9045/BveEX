@@ -54,9 +54,7 @@ namespace AtsEx.Native.Ats
         private static ScenarioService.AsAtsPlugin ScenarioService;
         private static FrameSpan FrameSpan;
 
-        private static int Power;
-        private static int Brake;
-        private static int Reverser;
+        private static AtsHandles DoNothingHandles;
 
         internal static event EventHandler<VehiclePluginUsingLoadedEventArgs> VehiclePluginUsingLoaded;
 
@@ -148,13 +146,7 @@ namespace AtsEx.Native.Ats
         {
             if (IsLoadedAsInputDevice)
             {
-                return new AtsHandles()
-                {
-                    Brake = Brake,
-                    Power = Power,
-                    Reverser = Reverser,
-                    ConstantSpeed = 0,
-                };
+                return DoNothingHandles;
             }
 
             AtsIoArray panelArray = new AtsIoArray(panel);
@@ -168,9 +160,7 @@ namespace AtsEx.Native.Ats
                 vehicleState.BcPressure, vehicleState.MrPressure, vehicleState.ErPressure, vehicleState.BpPressure, vehicleState.SapPressure, vehicleState.Current);
 
             AtsEx.Tick(elapsed);
-            TickCommandBuilder tickResult = ScenarioService?.Tick(elapsed, exVehicleState, panelArray, soundArray);
-
-            HandlePositionSet handlePositionSet = tickResult.Compile();
+            HandlePositionSet handlePositionSet = ScenarioService?.Tick(elapsed, exVehicleState, panelArray, soundArray);
 
             return new AtsHandles()
             {
@@ -183,29 +173,44 @@ namespace AtsEx.Native.Ats
 
         public static void SetPower(int notch)
         {
-            Power = notch;
+            DoNothingHandles = new AtsHandles()
+            {
+                Brake = DoNothingHandles.Brake,
+                Power = notch,
+                Reverser = DoNothingHandles.Reverser,
+            };
 
             if (IsLoadedAsInputDevice) return;
 
-            ScenarioService?.SetPower(notch);
+            ScenarioService?.SetPower(notch, true);
         }
 
         public static void SetBrake(int notch)
         {
-            Brake = notch;
+            DoNothingHandles = new AtsHandles()
+            {
+                Brake = notch,
+                Power = DoNothingHandles.Power,
+                Reverser = DoNothingHandles.Reverser,
+            };
 
             if (IsLoadedAsInputDevice) return;
 
-            ScenarioService?.SetBrake(notch);
+            ScenarioService?.SetBrake(notch, true);
         }
 
         public static void SetReverser(int position)
         {
-            Reverser = position;
+            DoNothingHandles = new AtsHandles()
+            {
+                Brake = DoNothingHandles.Brake,
+                Power = DoNothingHandles.Power,
+                Reverser = position,
+            };
 
             if (IsLoadedAsInputDevice) return;
 
-            ScenarioService?.SetReverser((ReverserPosition)position);
+            ScenarioService?.SetReverser((ReverserPosition)position, true);
         }
 
         public static void KeyDown(ATSKeys atsKeyCode)

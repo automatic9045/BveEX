@@ -27,13 +27,15 @@ namespace AtsEx.Handles
                     : MaxNotch < value ? throw new ArgumentOutOfRangeException(nameof(value))
                     : value;
 
-                if (Notch != oldNotch) NotchChanged?.Invoke(this, EventArgs.Empty);
+                if (Notch != oldNotch) InvokeNotchChanged();
             }
         }
 
         public event EventHandler NotchChanged;
 
         public void ProhibitNotchesOutOfRange() => CanSetNotchOutOfRange = false;
+
+        public void InvokeNotchChanged() => NotchChanged?.Invoke(this, EventArgs.Empty);
 
         /// <summary>
         /// <see cref="HandleBase"/> クラスの新しいインスタンスを初期化します。

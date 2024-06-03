@@ -32,7 +32,7 @@ namespace AtsEx
                 }
             }
 
-            public TickCommandBuilder Tick(TimeSpan elapsed)
+            public HandlePositionSet Tick(TimeSpan elapsed, Action<HandlePositionSet> onHandleOverriden)
             {
                 TickCommandBuilder commandBuilder = new TickCommandBuilder(Handles);
 
@@ -46,6 +46,7 @@ namespace AtsEx
                     }
 
                     commandBuilder.Override(vehiclePluginTickResult);
+                    onHandleOverriden(commandBuilder.LatestHandlePositionSet);
                 }
 
                 foreach (PluginBase plugin in Plugins[PluginType.MapPlugin].Values)
@@ -60,7 +61,7 @@ namespace AtsEx
                     commandBuilder.Override(mapPluginTickResult);
                 }
 
-                return commandBuilder;
+                return commandBuilder.LatestHandlePositionSet;
             }
         }
     }

@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.PluginHost.Handles;
-
 namespace AtsEx.Handles
 {
     internal class HandlePositionSet
@@ -15,14 +13,14 @@ namespace AtsEx.Handles
         public int Power { get; }
         public int Brake { get; }
         public ReverserPosition ReverserPosition { get; }
-        public ConstantSpeedCommand ConstantSpeed { get; }
+        public ConstantSpeedMode ConstantSpeed { get; }
 
-        public HandlePositionSet(int power, int brake, ReverserPosition reverserPosition, ConstantSpeedCommand constantSpeedCommand)
+        public HandlePositionSet(int power, int brake, ReverserPosition reverserPosition, ConstantSpeedMode constantSpeedMode)
         {
             Power = power;
             Brake = brake;
             ReverserPosition = reverserPosition;
-            ConstantSpeed = constantSpeedCommand;
+            ConstantSpeed = constantSpeedMode;
         }
     }
 }

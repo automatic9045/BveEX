@@ -30,5 +30,7 @@ namespace AtsEx.Handles
         public Reverser()
         {
         }
+
+        public void InvokePositionChanged() => PositionChanged?.Invoke(this, EventArgs.Empty);
     }
 }
