@@ -208,22 +208,22 @@ namespace AtsEx.Native.InputDevices
 
         private void OnHornBlow(object sender, AtsEx.AsInputDevice.ValueEventArgs<HornType> e)
         {
-
+            ScenarioService?.HornBlow((PluginHost.Native.HornType)e.Value);
         }
 
         private void OnDoorOpen(object sender, EventArgs e)
         {
-            ScenarioService?.DoorOpened(new DoorEventArgs());
+            ScenarioService?.DoorOpened();
         }
 
         private void OnDoorClose(object sender, EventArgs e)
         {
-            ScenarioService?.DoorClosed(new DoorEventArgs());
+            ScenarioService?.DoorClosed();
         }
 
         private void OnSetSignal(object sender, AtsEx.AsInputDevice.ValueEventArgs<int> e)
         {
-
+            ScenarioService?.SetSignal(e.Value);
         }
 
         private void OnSetBeaconData(object sender, AtsEx.AsInputDevice.ValueEventArgs<BeaconData> e)

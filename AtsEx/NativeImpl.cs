@@ -34,16 +34,11 @@ namespace AtsEx
             AtsSounds = new AtsSoundSet(vehicleConfigOptions.DetectSoundIndexConflict);
         }
 
-        public void InvokeStarted(BrakePosition defaultBrakePosition)
-        {
-            StartedEventArgs e = new StartedEventArgs(defaultBrakePosition);
-            Started?.Invoke(e);
-        }
-
-        public void InvokeDoorOpened(DoorEventArgs args) => DoorOpened?.Invoke(args);
-
-        public void InvokeDoorClosed(DoorEventArgs args) => DoorClosed?.Invoke(args);
-
+        public void InvokeStarted(BrakePosition defaultBrakePosition) => Started?.Invoke(new StartedEventArgs(defaultBrakePosition));
+        public void InvokeHornBlown(HornType hornType) => HornBlown?.Invoke(new HornBlownEventArgs(hornType));
+        public void InvokeDoorOpened() => DoorOpened?.Invoke(new DoorEventArgs());
+        public void InvokeDoorClosed() => DoorClosed?.Invoke(new DoorEventArgs());
+        public void InvokeSignalUpdated(int signalIndex) => SignalUpdated?.Invoke(new SignalUpdatedEventArgs(signalIndex));
         public void InvokeBeaconPassed(BeaconPassedEventArgs args) => BeaconPassed?.Invoke(args);
 
         public PluginHost.Handles.HandleSet Handles { get; }
@@ -58,10 +53,10 @@ namespace AtsEx
         public VehicleState VehicleState { get; set; } = null;
 
         public event StartedEventHandler Started;
-
+        public event HornBlownEventHandler HornBlown;
         public event DoorEventHandler DoorOpened;
         public event DoorEventHandler DoorClosed;
-
+        public event SignalUpdatedEventHandler SignalUpdated;
         public event BeaconPassedEventHandler BeaconPassed;
     }
 }

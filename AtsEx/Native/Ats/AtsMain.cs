@@ -226,21 +226,25 @@ namespace AtsEx.Native.Ats
         {
             if (IsLoadedAsInputDevice) return;
 
-            ScenarioService?.DoorOpened(new DoorEventArgs());
+            ScenarioService?.DoorOpened();
         }
         public static void DoorClose()
         {
             if (IsLoadedAsInputDevice) return;
 
-            ScenarioService?.DoorClosed(new DoorEventArgs());
+            ScenarioService?.DoorClosed();
         }
         public static void HornBlow(HornType hornType)
         {
+            if (IsLoadedAsInputDevice) return;
 
+            ScenarioService?.HornBlow((PluginHost.Native.HornType)hornType);
         }
         public static void SetSignal(int signal)
         {
+            if (IsLoadedAsInputDevice) return;
 
+            ScenarioService?.SetSignal(signal);
         }
         public static void SetBeaconData(BeaconData beaconData)
         {

@@ -116,19 +116,29 @@ namespace AtsEx
             ((NativeKeySet)Native.NativeKeys).NotifyReleased(key);
         }
 
-        public void DoorOpened(DoorEventArgs args)
+        public void HornBlow(HornType hornType)
         {
-            Native.InvokeDoorOpened(args);
+            Native.InvokeHornBlown(hornType);
         }
 
-        public void DoorClosed(DoorEventArgs args)
+        public void DoorOpened()
         {
-            Native.InvokeDoorClosed(args);
+            Native.InvokeDoorOpened();
+        }
+
+        public void DoorClosed()
+        {
+            Native.InvokeDoorClosed();
         }
 
         public void BeaconPassed(BeaconPassedEventArgs args)
         {
             Native.InvokeBeaconPassed(args);
+        }
+
+        public void SetSignal(int signalIndex)
+        {
+            Native.InvokeSignalUpdated(signalIndex);
         }
     }
 }

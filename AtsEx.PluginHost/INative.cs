@@ -63,6 +63,11 @@ namespace AtsEx.PluginHost
         event StartedEventHandler Started;
 
         /// <summary>
+        /// 警笛が吹鳴された時に発生します。ネイティブ ATS プラグインの HornBlow(int hornType) に当たります。
+        /// </summary>
+        event HornBlownEventHandler HornBlown;
+
+        /// <summary>
         /// 客室ドアが開いた時に発生します。ネイティブ ATS プラグインの DoorOpen() に当たります。
         /// </summary>
         event DoorEventHandler DoorOpened;
@@ -71,6 +76,11 @@ namespace AtsEx.PluginHost
         /// 客室ドアが閉まった時に発生します。ネイティブ ATS プラグインの DoorClose() に当たります。
         /// </summary>
         event DoorEventHandler DoorClosed;
+
+        /// <summary>
+        /// 現在の閉そくの信号インデックスが変化した時に発生します。ネイティブ ATS プラグインの SetSignal(int signal) に当たります。
+        /// </summary>
+        event SignalUpdatedEventHandler SignalUpdated;
 
         /// <summary>
         /// 地上子上を通過した時に発生します。ネイティブ ATS プラグインの SendBeaconData(ATS_BEACONDATA beaconData) に当たります。
