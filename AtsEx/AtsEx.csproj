@@ -135,6 +135,12 @@
     <Compile Include="Panels\AtsPanelValueSet.cs" />
     <Compile Include="Plugins\AssemblyPluginPackage.cs" />
     <Compile Include="Plugins\IPluginPackage.cs" />
+    <Compile Include="Plugins\Native\Imports.cs" />
+    <Compile Include="Plugins\Native\Library.cs" />
+    <Compile Include="Plugins\Native\LibraryProcedure.cs" />
+    <Compile Include="Plugins\Native\NativePlugin.cs" />
+    <Compile Include="Plugins\Native\NativePluginBuilder.cs" />
+    <Compile Include="Plugins\Native\NativePluginPackage.cs" />
     <Compile Include="Plugins\PluginLoader.PluginLoadErrorQueue.cs" />
     <Compile Include="Main\TickCommandBuilder.cs" />
     <Compile Include="BveHacker\Services\MainFormHacker.cs" />
@@ -282,6 +288,8 @@
     <Content Include="Resources\InputDeviceMain.resx" />
     <Content Include="Resources\ErrorDialog.ja.resx" />
     <Content Include="Resources\ErrorDialog.resx" />
+    <Content Include="Resources\Plugins\Native\Library.ja.resx" />
+    <Content Include="Resources\Plugins\Native\Library.resx" />
     <None Include="app.config" />
     <None Include="packages.config" />
     <EmbeddedResource Include="Plugins\AtsExVehicleConfigXmlSchema.xsd">

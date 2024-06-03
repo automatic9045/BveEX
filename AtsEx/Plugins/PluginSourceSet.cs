@@ -22,6 +22,7 @@ namespace AtsEx.Plugins
             private readonly ResourceLocalizer Localizer = ResourceLocalizer.FromResXOfType<PluginSourceSet>("Core");
 
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> BadImageFormat { get; private set; }
+            [ResourceStringHolder(nameof(Localizer))] public Resource<string> NativeIsOnlyForVehicle { get; private set; }
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> XmlSchemaValidation { get; private set; }
 
             public ResourceSet()

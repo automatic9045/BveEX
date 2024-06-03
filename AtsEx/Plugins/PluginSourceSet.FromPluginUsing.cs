@@ -9,6 +9,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
 
+using AtsEx.Plugins.Native;
 using AtsEx.Plugins.Scripting;
 using AtsEx.PluginHost;
 using AtsEx.PluginHost.Plugins;
@@ -61,6 +62,17 @@ namespace AtsEx.Plugins
                     case "IronPython2":
                         return LoadScriptPluginPackage(ScriptLanguage.IronPython2, element, Path.GetDirectoryName(listPath));
 
+                    case "Native":
+                        if (pluginType != PluginType.VehiclePlugin)
+                        {
+                            IXmlLineInfo lineInfo = element;
+                            throw new BveFileLoadException(
+                                string.Format(Resources.Value.NativeIsOnlyForVehicle.Value, PluginType.VehiclePlugin.GetTypeString()),
+                                Path.GetFileName(listPath), lineInfo.LineNumber, lineInfo.LinePosition);
+                        }
+
+                        return LoadNativePluginPackage(element, Path.GetDirectoryName(listPath));
+
                     default:
                         throw new NotImplementedException();
                 }
@@ -93,6 +105,12 @@ namespace AtsEx.Plugins
         {
             string packageManifestPath = element.Attribute("PackageManifestPath").Value;
             return ScriptPluginPackage.Load(GetIdentifier(element), scriptLanguage, Path.Combine(baseDirectory, packageManifestPath));
+        }
+
+        private static NativePluginPackage LoadNativePluginPackage(XElement element, string baseDirectory)
+        {
+            string libraryPath = element.Attribute("Path").Value;
+            return new NativePluginPackage(GetIdentifier(element), Path.Combine(baseDirectory, libraryPath));
         }
 
         private static Identifier GetIdentifier(XElement element)

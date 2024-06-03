@@ -117,13 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BadImageFormat" xml:space="preserve">
-    <value>Failed loading '{0}': of which the target platform is invalid (trying to load the {2} plugin for BVE version {1} with version {3}) or which is not a .NET assembly (not a {2} plugin).</value>
+  <data name="CannotCheckVersion" xml:space="preserve">
+    <value>ネイティブプラグインのバージョンが確認できませんでした。{0} 関数の読込に失敗しました。</value>
   </data>
-  <data name="NativeIsOnlyForVehicle" xml:space="preserve">
-    <value>Native plugins can be used only as {0}.</value>
-  </data>
-  <data name="XmlSchemaValidation" xml:space="preserve">
-    <value>The format of the schema of plugin-using XML is invalid.</value>
+  <data name="VersionNotSupported" xml:space="preserve">
+    <value>バージョン '{0}' のネイティブプラグインはサポートされません。</value>
   </data>
 </root>

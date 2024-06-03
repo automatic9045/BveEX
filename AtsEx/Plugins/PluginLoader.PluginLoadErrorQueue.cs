@@ -50,6 +50,11 @@ namespace AtsEx.Plugins
                 ExceptionsToResolve.Enqueue(new PluginException(scriptPluginPackage.Title, ex));
             }
 
+            public void OnFailedToLoadNativePlugin(string fileName, Exception ex)
+            {
+                ExceptionsToResolve.Enqueue(new PluginException(fileName, ex));
+            }
+
             public void Resolve()
             {
                 while (ExceptionsToResolve.Count > 0)

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 using UnembeddedResources;
 
-using AtsEx.Native;
+using AtsEx.Plugins.Native;
 using AtsEx.Plugins.Scripting;
 using AtsEx.Plugins.Scripting.CSharp;
 using AtsEx.Plugins.Scripting.IronPython2;
@@ -115,7 +115,28 @@ namespace AtsEx.Plugins
                         break;
                     }
 
-                    // TODO: ここで他の種類のプラグイン（ネイティブなど）を読み込む
+                    case NativePluginPackage nativePluginPackage:
+                    {
+                        try
+                        {
+                            PluginBuilder pluginBuilder = new PluginBuilder(Native, BveHacker, Extensions, Plugins, nativePluginPackage.Identifier.Text);
+                            NativePluginBuilder nativePluginBuilder = new NativePluginBuilder(pluginBuilder)
+                            {
+                                LibraryPath = nativePluginPackage.LibraryPath,
+                            };
+
+                            NativePlugin plugin = new NativePlugin(nativePluginBuilder);
+                            plugins[nativePluginPackage.Identifier.Text] = plugin;
+                        }
+                        catch (Exception ex)
+                        {
+                            loadErrorQueue.OnFailedToLoadNativePlugin(nativePluginPackage.LibraryPath, ex);
+                        }
+
+                        break;
+                    }
+
+                    // TODO: ここで他の種類のプラグインを読み込む
 
                     default:
                         throw new NotImplementedException();
