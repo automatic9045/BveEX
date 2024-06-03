@@ -32,6 +32,11 @@ namespace AtsEx.PluginHost.Handles
         int Notch { get; }
 
         /// <summary>
+        /// <see cref="Notch"/> の値が更新された時に発生します。
+        /// </summary>
+        event EventHandler NotchChanged;
+
+        /// <summary>
         /// <see cref="MaxNotch"/> を超えたノッチを設定すると例外をスローするようにします。
         /// </summary>
         /// <remarks>

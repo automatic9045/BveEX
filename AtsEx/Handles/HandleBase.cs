@@ -21,12 +21,17 @@ namespace AtsEx.Handles
             get => _Notch;
             set
             {
+                int oldNotch = Notch;
                 _Notch = CanSetNotchOutOfRange ? value
                     : value < MinNotch ? throw new ArgumentOutOfRangeException(nameof(value))
                     : MaxNotch < value ? throw new ArgumentOutOfRangeException(nameof(value))
                     : value;
+
+                if (Notch != oldNotch) NotchChanged?.Invoke(this, EventArgs.Empty);
             }
         }
+
+        public event EventHandler NotchChanged;
 
         public void ProhibitNotchesOutOfRange() => CanSetNotchOutOfRange = false;
 

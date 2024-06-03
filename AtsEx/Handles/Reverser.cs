@@ -12,7 +12,20 @@ namespace AtsEx.Handles
 {
     internal class Reverser : IReverser
     {
-        public ReverserPosition Position { get; set; } = ReverserPosition.N;
+        private ReverserPosition _Position = ReverserPosition.N;
+        public ReverserPosition Position
+        {
+            get => _Position;
+            set
+            {
+                ReverserPosition oldPosition = Position;
+                _Position = value;
+
+                if (_Position != oldPosition) PositionChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        public event EventHandler PositionChanged;
 
         public Reverser()
         {
