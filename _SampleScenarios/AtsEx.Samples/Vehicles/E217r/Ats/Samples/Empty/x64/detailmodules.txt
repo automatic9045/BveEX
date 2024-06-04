@@ -1,7 +1,0 @@
-..\..\..\x64\EB.dll
-..\..\..\x64\E217_ATC_ATS.dll
-..\..\..\x64\TIMS_MON_Disp.dll
-..\..\..\x64\DoorInterlock.dll
-..\..\..\x64\ConstSpdCtrl.dll
-
-..\AtsEx\AtsEx.Caller.x64.dll

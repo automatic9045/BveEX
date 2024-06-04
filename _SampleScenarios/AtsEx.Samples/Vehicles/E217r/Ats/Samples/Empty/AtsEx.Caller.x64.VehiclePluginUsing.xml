@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AtsExPluginUsing xmlns="http://automatic9045.github.io/ns/xmlschemas/AtsExPluginUsingXmlSchema.xsd">
+	<Native Path="..\..\x64\EB.dll" />
+	<Native Path="..\..\x64\E217_ATC_ATS.dll" />
+	<Native Path="..\..\x64\TIMS_MON_Disp.dll" />
+	<Native Path="..\..\x64\DoorInterlock.dll" />
+	<Native Path="..\..\x64\ConstSpdCtrl.dll" />
+</AtsExPluginUsing>

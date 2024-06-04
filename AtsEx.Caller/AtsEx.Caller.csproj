@@ -68,8 +68,11 @@ if exist "$(TargetDir)x64\$(TargetName).pdb" echo F | xcopy /y /i "$(TargetDir)x
 echo F | xcopy /y /i "$(TargetDir)x64\$(TargetName).dll" "$(SolutionDir)_SampleScenarios\AtsEx.Samples\Vehicles\Basic\Ats_CooperatingWithMapPlugin\$(TargetName).x64.dll"
 if exist "$(TargetDir)x64\$(TargetName).pdb" echo F | xcopy /y /i "$(TargetDir)x64\$(TargetName).pdb" "$(SolutionDir)_SampleScenarios\AtsEx.Samples\Vehicles\Basic\Ats_CooperatingWithMapPlugin\$(TargetName).x64.pdb"
 
-echo F | xcopy /y /i "$(TargetDir)x64\$(TargetName).dll" "$(SolutionDir)_SampleScenarios\AtsEx.Samples\Vehicles\E217r\Ats\Samples\ConductorPatchTest\AtsEx\$(TargetName).x64.dll"
-if exist "$(TargetDir)x64\$(TargetName).pdb" echo F | xcopy /y /i "$(TargetDir)x64\$(TargetName).pdb" "$(SolutionDir)_SampleScenarios\AtsEx.Samples\Vehicles\E217r\Ats\Samples\ConductorPatchTest\AtsEx\$(TargetName).x64.pdb"
+echo F | xcopy /y /i "$(TargetDir)x64\$(TargetName).dll" "$(SolutionDir)_SampleScenarios\AtsEx.Samples\Vehicles\E217r\Ats\Samples\Empty\$(TargetName).x64.dll"
+if exist "$(TargetDir)x64\$(TargetName).pdb" echo F | xcopy /y /i "$(TargetDir)x64\$(TargetName).pdb" "$(SolutionDir)_SampleScenarios\AtsEx.Samples\Vehicles\E217r\Ats\Samples\Empty\$(TargetName).x64.pdb"
+
+echo F | xcopy /y /i "$(TargetDir)x64\$(TargetName).dll" "$(SolutionDir)_SampleScenarios\AtsEx.Samples\Vehicles\E217r\Ats\Samples\ConductorPatchTest\$(TargetName).x64.dll"
+if exist "$(TargetDir)x64\$(TargetName).pdb" echo F | xcopy /y /i "$(TargetDir)x64\$(TargetName).pdb" "$(SolutionDir)_SampleScenarios\AtsEx.Samples\Vehicles\E217r\Ats\Samples\ConductorPatchTest\$(TargetName).x64.pdb"
 
 echo F | xcopy /y /i "$(TargetDir)x86\$(TargetName).dll" "$(SolutionDir)_SampleScenarios\AtsEx.Samples\Vehicles\Basic\Ats_Empty\$(TargetName).x86.dll"
 if exist "$(TargetDir)x86\$(TargetName).pdb" echo F | xcopy /y /i "$(TargetDir)x86\$(TargetName).pdb" "$(SolutionDir)_SampleScenarios\AtsEx.Samples\Vehicles\Basic\Ats_Empty\$(TargetName).x86.pdb"
@@ -83,8 +86,11 @@ if exist "$(TargetDir)x86\$(TargetName).pdb" echo F | xcopy /y /i "$(TargetDir)x
 echo F | xcopy /y /i "$(TargetDir)x86\$(TargetName).dll" "$(SolutionDir)_SampleScenarios\AtsEx.Samples\Vehicles\Basic\Ats_CooperatingWithMapPlugin\$(TargetName).x86.dll"
 if exist "$(TargetDir)x86\$(TargetName).pdb" echo F | xcopy /y /i "$(TargetDir)x86\$(TargetName).pdb" "$(SolutionDir)_SampleScenarios\AtsEx.Samples\Vehicles\Basic\Ats_CooperatingWithMapPlugin\$(TargetName).x86.pdb"
 
-echo F | xcopy /y /i "$(TargetDir)x86\$(TargetName).dll" "$(SolutionDir)_SampleScenarios\AtsEx.Samples\Vehicles\E217r\Ats\Samples\ConductorPatchTest\AtsEx\$(TargetName).x86.dll"
-if exist "$(TargetDir)x86\$(TargetName).pdb" echo F | xcopy /y /i "$(TargetDir)x64\$(TargetName).pdb" "$(SolutionDir)_SampleScenarios\AtsEx.Samples\Vehicles\E217r\Ats\Samples\ConductorPatchTest\AtsEx\$(TargetName).x86.pdb"</PostBuildEvent>
+echo F | xcopy /y /i "$(TargetDir)x86\$(TargetName).dll" "$(SolutionDir)_SampleScenarios\AtsEx.Samples\Vehicles\E217r\Ats\Samples\Empty\$(TargetName).x86.dll"
+if exist "$(TargetDir)x86\$(TargetName).pdb" echo F | xcopy /y /i "$(TargetDir)x64\$(TargetName).pdb" "$(SolutionDir)_SampleScenarios\AtsEx.Samples\Vehicles\E217r\Ats\Samples\Empty\$(TargetName).x86.pdb"
+
+echo F | xcopy /y /i "$(TargetDir)x86\$(TargetName).dll" "$(SolutionDir)_SampleScenarios\AtsEx.Samples\Vehicles\E217r\Ats\Samples\ConductorPatchTest\$(TargetName).x86.dll"
+if exist "$(TargetDir)x86\$(TargetName).pdb" echo F | xcopy /y /i "$(TargetDir)x64\$(TargetName).pdb" "$(SolutionDir)_SampleScenarios\AtsEx.Samples\Vehicles\E217r\Ats\Samples\ConductorPatchTest\$(TargetName).x86.pdb"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <DllExportIdent>4A280499-AC2B-4B03-B316-BA94266E244D</DllExportIdent>
