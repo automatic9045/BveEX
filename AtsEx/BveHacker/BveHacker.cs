@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,7 @@ namespace AtsEx
             private readonly ResourceLocalizer Localizer = ResourceLocalizer.FromResXOfType<BveHacker>("Core");
 
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> CannotGetScenario { get; private set; }
+            [ResourceStringHolder(nameof(Localizer))] public Resource<string> NoPluginLoaded { get; private set; }
 
             public ResourceSet()
             {
@@ -112,6 +114,12 @@ namespace AtsEx
 
             Handles = new PluginHost.Handles.HandleSet(brake, power, reverser);
 
+            AtsPlugin atsPlugin = e.Scenario.Vehicle.Instruments.AtsPlugin;
+            if (!atsPlugin.IsPluginLoaded)
+            {
+                string fileName = Path.GetFileName(ScenarioInfo.VehicleFiles.SelectedFile.Path);
+                throw new BveFileLoadException(string.Format(Resources.Value.NoPluginLoaded.Value, App.Instance.ProductShortName), fileName);
+            }
         }
 
         public void Tick(TimeSpan elapsed)
