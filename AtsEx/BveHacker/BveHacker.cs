@@ -58,11 +58,21 @@ namespace AtsEx
 
             StructureSetLifeProlonger = new StructureSetLifeProlonger(this);
 
-            ScenarioHacker.ScenarioCreated += e => PreviewScenarioCreated?.Invoke(e);
-            ScenarioHacker.ScenarioCreated += OnScenarioCreated;
-            ScenarioHacker.ScenarioCreated += e => ScenarioCreated?.Invoke(e);
-
             LoadErrorManager = new LoadErrorManager.LoadErrorManager(LoadingProgressForm);
+
+            ScenarioHacker.ScenarioCreated += e =>
+            {
+                try
+                {
+                    PreviewScenarioCreated?.Invoke(e);
+                    OnScenarioCreated(e);
+                    ScenarioCreated?.Invoke(e);
+                }
+                catch (BveFileLoadException ex)
+                {
+                    LoadErrorManager.Throw(ex.Message, ex.SenderFileName, ex.LineIndex, ex.CharIndex);
+                }
+            };
 
             switch (App.Instance.LaunchMode)
             {
