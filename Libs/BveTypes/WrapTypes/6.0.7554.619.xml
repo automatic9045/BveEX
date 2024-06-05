@@ -124,6 +124,7 @@
 		</Property>
 
 		<Field WrapperProperty="IsPluginLoaded" Original="a" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="HModule" Original="b" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Handles" Original="c" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="_PanelArray" Original="d" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="_SoundArray" Original="e" IsOriginalNonPublic="true"/>
@@ -142,6 +143,8 @@
 		<Method Wrapper="OnSetReverser" WrapperParams="System.Object; System.EventArgs" Original="a" IsOriginalNonPublic="true"/>
 		<Method Wrapper="OnSetBrake" WrapperParams="System.Object; atsex:ValueEventArgs`1[System.Int32]" Original="b" IsOriginalNonPublic="true"/>
 		<Method Wrapper="OnSetPower" WrapperParams="System.Object; atsex:ValueEventArgs`1[System.Int32]" Original="a" IsOriginalNonPublic="true"/>
+		<Method Wrapper="Dispose" WrapperParams="void" Original="Dispose"/>
+		<Method Wrapper="LoadLibrary" WrapperParams="System.String" Original="a"/>
 		<Method Wrapper="OnSetVehicleSpec" WrapperParams="atsex:NotchInfo; System.Int32" Original="a"/>
 		<Method Wrapper="OnInitialize" WrapperParams="atsex:BrakePosition" Original="a"/>
 		<Method Wrapper="OnElapse" WrapperParams="System.Int32" Original="a"/>

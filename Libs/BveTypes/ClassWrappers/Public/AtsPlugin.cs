@@ -14,7 +14,7 @@ namespace BveTypes.ClassWrappers
     /// <summary>
     /// ATS プラグインを表します。
     /// </summary>
-    public class AtsPlugin : ClassWrapperBase
+    public class AtsPlugin : ClassWrapperBase, IDisposable
     {
         [InitializeClassWrapper]
         private static void Initialize(BveTypeSet bveTypes)
@@ -27,6 +27,7 @@ namespace BveTypes.ClassWrappers
             SoundArrayGetMethod = members.GetSourcePropertyGetterOf(nameof(SoundArray));
 
             IsPluginLoadedField = members.GetSourceFieldOf(nameof(IsPluginLoaded));
+            HModuleField = members.GetSourceFieldOf(nameof(HModule));
             HandlesField = members.GetSourceFieldOf(nameof(Handles));
             _PanelArrayField = members.GetSourceFieldOf(nameof(_PanelArray));
             _SoundArrayField = members.GetSourceFieldOf(nameof(_SoundArray));
@@ -45,6 +46,8 @@ namespace BveTypes.ClassWrappers
             OnSetReverserMethod = members.GetSourceMethodOf(nameof(OnSetReverser));
             OnSetBrakeMethod = members.GetSourceMethodOf(nameof(OnSetBrake));
             OnSetPowerMethod = members.GetSourceMethodOf(nameof(OnSetPower));
+            DisposeMethod = members.GetSourceMethodOf(nameof(Dispose));
+            LoadLibraryMethod = members.GetSourceMethodOf(nameof(LoadLibrary));
             OnSetVehicleSpecMethod = members.GetSourceMethodOf(nameof(OnSetVehicleSpec));
             OnInitializeMethod = members.GetSourceMethodOf(nameof(OnInitialize));
             OnElapseMethod = members.GetSourceMethodOf(nameof(OnElapse));
@@ -92,6 +95,16 @@ namespace BveTypes.ClassWrappers
         {
             get => IsPluginLoadedField.GetValue(Src);
             set => IsPluginLoadedField.SetValue(Src, value);
+        }
+
+        private static FastField HModuleField;
+        /// <summary>
+        /// ATS プラグインのモジュール (DLL) へのハンドルを取得・設定します。
+        /// </summary>
+        public IntPtr HModule
+        {
+            get => HModuleField.GetValue(Src);
+            set => HModuleField.SetValue(Src, value);
         }
 
         private static FastField HandlesField;
@@ -253,6 +266,17 @@ namespace BveTypes.ClassWrappers
         /// <param name="sender">イベントのソース。</param>
         /// <param name="e">イベント データを格納しているオブジェクト。</param>
         public void OnSetPower(object sender, ValueEventArgs<int> e) => OnSetPowerMethod.Invoke(Src, new object[] { sender, e.Src });
+
+        private static FastMethod DisposeMethod;
+        /// <inheritdoc/>
+        public void Dispose() => DisposeMethod.Invoke(Src, null);
+
+        private static FastMethod LoadLibraryMethod;
+        /// <summary>
+        /// ATS プラグインのライブラリ (DLL) を読み込みます。
+        /// </summary>
+        /// <param name="path"></param>
+        public void LoadLibrary(string path) => LoadLibraryMethod.Invoke(Src, new object[] { path });
 
         private static FastMethod OnSetVehicleSpecMethod;
         /// <summary>
