@@ -61,6 +61,7 @@
 body {
     --background-color: #fdfefe; /* H=210, S=16, L=254 */
     --background-darker-color: #f7f8f8; /* H=210, S=16, L=248 */
+    --background-dark-color: #dee0e1; /* H=210, S=16, L=224 */
     --header-background-color: #fdfefee0;
     --footer-background-color: #eff0f0; /* H=210, S=16, L=240 */
     --separator-dark-color: #abb0b4; /* H=210, S=16, L=176 */

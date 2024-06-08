@@ -1,7 +1,6 @@
 ﻿div.eyecatch {
     position: relative;
     height: 480px;
-    max-height: 480px;
     background-image: url('../eyecatch.jpg');
     background-size: cover;
     background-position: center;
@@ -55,6 +54,39 @@
             display: inline;
         }
 
+    div.eyecatch > div {
+        bottom: 32px;
+        right: 64px;
+    }
+
+        div.eyecatch > div > a.button {
+            min-width: 480px;
+            font-weight: 700;
+            border: 1px solid var(--background-dark-color);
+            border-radius: 6px;
+        }
+
+            div.eyecatch > div > a.button:hover {
+                filter: none;
+            }
+
+            div.eyecatch > div > a.button > span {
+                font-size: 1.75em;
+            }
+
+                div.eyecatch > div > a.button > span > span.green-text {
+                    color: var(--main-darker-color);
+                }
+
+            div.eyecatch > div > a.button > small {
+                font-weight: 400;
+                color: var(--background-dark-color);
+            }
+
+                div.eyecatch > div > a.button > small > span.release-version-eyecatch > strong {
+                    font-weight: 400;
+                }
+
 a.fanbox > img {
     max-width: 240px;
     margin: 8px 0;
@@ -75,6 +107,12 @@ a.fanbox > img {
 @media screen and (max-width: 959px) {
     div.eyecatch > span {
         font-size: 2.5em;
+    }
+}
+
+@media screen and (max-width: 899px) {
+    div.eyecatch > div {
+        display: none;
     }
 }
 
