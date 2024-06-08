@@ -496,6 +496,17 @@ a {
             clip-path: polygon(0 0, 100% 0, 100% 100%);
         }
 
+div.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 12px;
+}
+
+    div.card-container > a.card {
+        margin: 0;
+        width: calc(50% - 6px);
+    }
+
 div.note {
     --note-icon-height: 32px;
     --note-icon-text: "";
@@ -746,6 +757,10 @@ img.icon-download {
 
     code {
         font-size: 1em;
+    }
+
+    div.card-container > a.card {
+        width: 100%;
     }
 
     span.wbr {
