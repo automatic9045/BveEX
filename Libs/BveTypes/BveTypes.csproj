@@ -78,6 +78,7 @@
     <Compile Include="ClassWrappers\Helpers\ReverserPosition.cs" />
     <Compile Include="ClassWrappers\Helpers\TiltOptions.cs" />
     <Compile Include="ClassWrappers\Public\BcValve.cs" />
+    <Compile Include="ClassWrappers\Public\Forms\ConfigForm.cs" />
     <Compile Include="ClassWrappers\Public\MapLoader.cs" />
     <Compile Include="ClassWrappers\Public\MapStatement.cs" />
     <Compile Include="ClassWrappers\Public\MapStatementClause.cs" />

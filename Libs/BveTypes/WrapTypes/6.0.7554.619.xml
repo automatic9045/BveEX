@@ -11,6 +11,10 @@
 	<Class Wrapper="ChartForm" Original="bj">
 	</Class>
 
+	<Class Wrapper="ConfigForm" Original="d">
+		<Method Wrapper="Dispose" WrapperParams="void" Original="Dispose"/>
+	</Class>
+
 	<Class Wrapper="LoadingProgressForm" Original="dt">
 		<Field WrapperProperty="IsErrorCritical" Original="a" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="ErrorCount" Original="b" IsOriginalNonPublic="true"/>
@@ -920,6 +924,9 @@
 		<Property Wrapper="Sections">
 			<Getter Original="n"/>
 		</Property>
+		<Property Wrapper="SoundObjects">
+			<Getter Original="g"/>
+		</Property>
 		<Property Wrapper="IrregularityObjects">
 			<Getter Original="z"/>
 		</Property>
@@ -1157,6 +1164,9 @@
 			<Getter Original="b"/>
 			<Setter Original="a"/>
 		</Property>
+	</Class>
+
+	<Class Wrapper="SoundObjectList" Original="y">
 	</Class>
 
 	<Class Wrapper="SoundSet" Original="g">
