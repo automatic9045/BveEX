@@ -62,6 +62,28 @@ namespace AtsEx.PluginHost
 
 
         /// <summary>
+        /// BVE の「設定」フォームが表示できる状態にあるかどうかを取得します。
+        /// </summary>
+        bool IsConfigFormReady { get; }
+
+        /// <summary>
+        /// BVE の「設定」フォームの <see cref="Form"/> インスタンスを取得します。
+        /// </summary>
+        /// <remarks>
+        /// 表示中以外は <see langword="null"/> を返します。また、再表示する度に異なるインスタンスとなるため注意してください。
+        /// </remarks>
+        Form ConfigFormSource { get; }
+
+        /// <summary>
+        /// BVE の「設定」フォームを取得します。
+        /// </summary>
+        /// <remarks>
+        /// 表示中以外は <see langword="null"/> を返します。また、再表示する度に異なるインスタンスとなるため注意してください。
+        /// </remarks>
+        ConfigForm ConfigForm { get; }
+
+
+        /// <summary>
         /// BVE の「シナリオの選択」フォームの <see cref="Form"/> インスタンスを取得します。
         /// </summary>
         Form ScenarioSelectionFormSource { get; }

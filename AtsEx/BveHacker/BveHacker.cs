@@ -53,6 +53,7 @@ namespace AtsEx
             BveTypes = bveTypes;
 
             MainFormHacker = new MainFormHacker(App.Instance.Process);
+            ConfigFormHacker = new ConfigFormHacker(BveTypes);
             MapLoaderHacker = new MapLoaderHacker(BveTypes);
             ScenarioHacker = new ScenarioHacker(MainFormHacker, BveTypes);
 
@@ -150,6 +151,11 @@ namespace AtsEx
         public IntPtr MainFormHandle => MainFormHacker.TargetFormHandle;
         public Form MainFormSource => MainFormHacker.TargetFormSource;
         public MainForm MainForm => MainFormHacker.TargetForm;
+
+        private readonly ConfigFormHacker ConfigFormHacker;
+        public bool IsConfigFormReady => ConfigFormHacker.IsReady;
+        public Form ConfigFormSource => ConfigFormHacker.FormSource;
+        public ConfigForm ConfigForm => ConfigFormHacker.Form;
 
         public Form ScenarioSelectionFormSource => ScenarioSelectionForm.Src;
         public ScenarioSelectionForm ScenarioSelectionForm => MainForm.ScenarioSelectForm;
