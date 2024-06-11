@@ -8,8 +8,8 @@ using BveTypes;
 using BveTypes.ClassWrappers;
 using TypeWrapping;
 
+using AtsEx.MapStatements;
 using AtsEx.Native;
-using AtsEx.PluginHost;
 
 namespace AtsEx
 {
@@ -18,6 +18,7 @@ namespace AtsEx
         internal sealed partial class AsInputDevice : AtsEx
         {
             private readonly PatchSet Patches;
+            private readonly HeaderErrorPreResolver HeaderErrorPreResolver;
 
             public event EventHandler<ValueEventArgs<ScenarioInfo>> ScenarioOpened;
             public event EventHandler<ValueEventArgs<Scenario>> ScenarioClosed;
@@ -43,14 +44,15 @@ namespace AtsEx
                 ClassMemberSet atsPluginMembers = BveHacker.BveTypes.GetClassInfoOf<AtsPlugin>();
 
                 Patches = new PatchSet(mainFormMembers, scenarioMembers, atsPluginMembers);
+                ListenPatchEvents();
 
-                PatchEventInitializer patchEventInitializer = new PatchEventInitializer(this);
-                patchEventInitializer.InitializeEvents();
+                HeaderErrorPreResolver = HeaderErrorPreResolver.Patch(bveTypes);
             }
 
             public override void Dispose()
             {
                 Patches.Dispose();
+                HeaderErrorPreResolver?.Dispose();
                 base.Dispose();
             }
 

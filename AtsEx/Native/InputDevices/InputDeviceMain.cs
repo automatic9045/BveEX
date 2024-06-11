@@ -13,13 +13,10 @@ using ObjectiveHarmonyPatch;
 using TypeWrapping;
 using UnembeddedResources;
 
-using AtsEx.Handles;
-using AtsEx.MapStatements;
 using AtsEx.Native.Ats;
 using AtsEx.Plugins;
 using AtsEx.Troubleshooting;
 using AtsEx.PluginHost;
-using AtsEx.PluginHost.Handles;
 using AtsEx.PluginHost.Input.Native;
 using AtsEx.PluginHost.Native;
 using AtsEx.PluginHost.Plugins;
@@ -52,7 +49,6 @@ namespace AtsEx.Native.InputDevices
 
         private readonly CallerInfo CallerInfo;
         private readonly TroubleshooterSet Troubleshooters;
-        private readonly HeaderErrorPreResolver HeaderErrorPreResolver;
 
         private AtsEx.AsInputDevice AtsEx = null;
         private ScenarioService.AsInputDevice ScenarioService = null;
@@ -91,7 +87,6 @@ namespace AtsEx.Native.InputDevices
             };
 
             BveTypeSet bveTypes = bveTypesLoader.Load();
-            HeaderErrorPreResolver = MapStatements.HeaderErrorPreResolver.Patch(bveTypes);
 
             ClassMemberSet mainFormMembers = bveTypes.GetClassInfoOf<MainForm>();
             FastMethod createDirectXDevicesMethod = mainFormMembers.GetSourceMethodOf(nameof(MainForm.CreateDirectXDevices));
@@ -241,7 +236,6 @@ namespace AtsEx.Native.InputDevices
         {
             ScenarioService?.Dispose();
             AtsEx?.Dispose();
-            HeaderErrorPreResolver?.Dispose();
             Troubleshooters?.Dispose();
         }
 

@@ -115,8 +115,8 @@
     <Compile Include="BveHacker\Services\MapLoaderHacker.cs" />
     <Compile Include="ErrorDialog.cs" />
     <Compile Include="Main\AtsEx.AsInputDevice.cs" />
-    <Compile Include="Main\AtsEx.AsInputDevice.Patches.cs" />
-    <Compile Include="Main\AtsEx.AsInputDevice.PatchEventInitializer.cs" />
+    <Compile Include="Main\AtsEx.AsInputDevice.PatchEvents.cs" />
+    <Compile Include="Main\PatchSet.cs" />
     <Compile Include="MapStatements\HeaderErrorDynamicResolver.cs" />
     <Compile Include="MapStatements\HeaderErrorPreResolver.cs" />
     <Compile Include="MapStatements\HeaderParser.cs" />
