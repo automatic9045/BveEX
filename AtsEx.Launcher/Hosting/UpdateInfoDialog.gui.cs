@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -176,17 +178,20 @@ namespace AtsEx.Launcher.Hosting
                 Bitmap bitmap = new Bitmap(HeaderBackground.Width, HeaderBackground.Height);
                 using (Graphics g = Graphics.FromImage(bitmap))
                 {
-                    float scale = g.DpiX / 96f;
-
                     using (LinearGradientBrush brush = new LinearGradientBrush(g.VisibleClipBounds, Color.Black, Color.FromArgb(0, 0xC0, 0xC0), LinearGradientMode.Horizontal))
                     {
                         g.FillRectangle(brush, g.VisibleClipBounds);
                     }
 
-                    using (SolidBrush brush = new SolidBrush(Color.FromArgb(64, Color.Black)))
+                    Assembly assembly = Assembly.GetExecutingAssembly();
+                    using (Stream logoStream = assembly.GetManifestResourceStream(typeof(UpdateInfoDialog), "Logo.png"))
                     {
-                        Font logoFont = new Font(Font.FontFamily, 56 / scale, FontStyle.Bold);
-                        g.DrawString("AtsEX", logoFont, brush, new Point((int)g.VisibleClipBounds.Width - 210, 0));
+                        Image logo = Image.FromStream(logoStream);
+
+                        float logoHeight = 56;
+                        SizeF size = new SizeF(logoHeight * logo.Width / logo.Height, logoHeight);
+                        PointF point = new PointF(g.VisibleClipBounds.Width - size.Width - 15, g.VisibleClipBounds.Height - size.Height);
+                        g.DrawImage(logo, new RectangleF(point, size));
                     }
                 }
 
