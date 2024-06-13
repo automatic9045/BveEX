@@ -35,6 +35,9 @@ namespace AtsEx.Launcher.Hosting
 
         private void InitializeComponent(Version currentVersion, Version newVersion, string updateDetailsHtml)
         {
+            SuspendLayout();
+
+            AutoScaleDimensions = new Size(96, 96);
             AutoScaleMode = AutoScaleMode.Dpi;
 
             Text = "アップデート情報 - AtsEX";
@@ -55,7 +58,6 @@ namespace AtsEx.Launcher.Hosting
                 BackColor = Color.Transparent,
                 BackgroundImageLayout = ImageLayout.Center,
             };
-            RedrawHeaderBackground();
             Controls.Add(HeaderBackground);
 
             Header = new Label()
@@ -67,11 +69,9 @@ namespace AtsEx.Launcher.Hosting
                 ForeColor = Color.White,
             };
             HeaderBackground.Controls.Add(Header);
-            Header.Top = HeaderBackground.Height - Header.PreferredSize.Height - VerticalMargin / 2;
 
             CurrentVersionKey = new Label()
             {
-                Top = HeaderBackground.Bottom + VerticalMargin,
                 Left = HorizonalMargin,
                 AutoSize = true,
                 Anchor = AnchorStyles.Left | AnchorStyles.Top,
@@ -81,8 +81,6 @@ namespace AtsEx.Launcher.Hosting
 
             CurrentVersionValue = new Label()
             {
-                Top = CurrentVersionKey.Top - 3,
-                Left = CurrentVersionKey.Right + HorizonalMargin,
                 AutoSize = true,
                 Anchor = AnchorStyles.Left | AnchorStyles.Top,
                 Text = currentVersion.ToString(),
@@ -92,8 +90,6 @@ namespace AtsEx.Launcher.Hosting
 
             NewVersionKey = new Label()
             {
-                Top = CurrentVersionKey.Top,
-                Left = CurrentVersionValue.Right + HorizonalMargin * 4,
                 AutoSize = true,
                 Anchor = AnchorStyles.Left | AnchorStyles.Top,
                 Text = "利用可能なバージョン",
@@ -102,8 +98,6 @@ namespace AtsEx.Launcher.Hosting
 
             NewVersionValue = new Label()
             {
-                Top = CurrentVersionValue.Top,
-                Left = NewVersionKey.Right + HorizonalMargin,
                 AutoSize = true,
                 Anchor = AnchorStyles.Left | AnchorStyles.Top,
                 Text = newVersion.ToString(),
@@ -113,12 +107,42 @@ namespace AtsEx.Launcher.Hosting
 
             Details = new Label()
             {
-                Top = CurrentVersionKey.Bottom + VerticalMargin,
                 Left = HorizonalMargin,
                 AutoSize = true,
                 Anchor = AnchorStyles.Left | AnchorStyles.Top,
                 Text = "アップデートの詳細:",
             };
+            Controls.Add(Details);
+
+            InfoBrowser = new WebBrowser()
+            {
+                Left = 0,
+                Width = ClientSize.Width,
+                Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Bottom,
+                DocumentText = "<font face='Yu Gothic UI'>" + updateDetailsHtml,
+                AllowNavigation = false,
+                AllowWebBrowserDrop = false,
+            };
+            Controls.Add(InfoBrowser);
+
+            DoNotShowAgainCheckBox = new CheckBox()
+            {
+                Left = HorizonalMargin,
+                AutoSize = true,
+                Anchor = AnchorStyles.Left | AnchorStyles.Bottom,
+                Text = "この案内を今後 12 時間のあいだ表示しない",
+            };
+            Controls.Add(DoNotShowAgainCheckBox);
+
+            NoThanksButton = new Button()
+            {
+                Height = 40,
+                Width = 100,
+                Anchor = AnchorStyles.Right | AnchorStyles.Bottom,
+                Text = "スキップ",
+                DialogResult = DialogResult.Cancel,
+            };
+            Controls.Add(NoThanksButton);
 
             GoToDownloadPageButton = new Button()
             {
@@ -128,47 +152,32 @@ namespace AtsEx.Launcher.Hosting
                 Text = "ダウンロードページへ",
                 DialogResult = DialogResult.OK,
             };
+            Controls.Add(GoToDownloadPageButton);
+
+
+            ResumeLayout(false);
+            RedrawHeaderBackground();
+
+            Header.Top = HeaderBackground.Height - Header.PreferredSize.Height - VerticalMargin / 2;
+
+            CurrentVersionKey.Top = HeaderBackground.Bottom + VerticalMargin;
+            CurrentVersionValue.Top = CurrentVersionKey.Top - 3;
+            CurrentVersionValue.Left = CurrentVersionKey.Right + HorizonalMargin;
+            NewVersionKey.Top = CurrentVersionKey.Top;
+            NewVersionKey.Left = CurrentVersionValue.Right + HorizonalMargin * 4;
+            NewVersionValue.Top = CurrentVersionValue.Top;
+            NewVersionValue.Left = NewVersionKey.Right + HorizonalMargin;
+
+            Details.Top = CurrentVersionKey.Bottom + VerticalMargin;
+
             GoToDownloadPageButton.Top = ClientSize.Height - VerticalMargin - GoToDownloadPageButton.Height;
             GoToDownloadPageButton.Left = ClientSize.Width - HorizonalMargin - GoToDownloadPageButton.Width;
-
-            NoThanksButton = new Button()
-            {
-                Top = GoToDownloadPageButton.Top,
-                Height = 40,
-                Width = 100,
-                Anchor = AnchorStyles.Right | AnchorStyles.Bottom,
-                Text = "スキップ",
-                DialogResult = DialogResult.Cancel,
-            };
+            NoThanksButton.Top = GoToDownloadPageButton.Top;
             NoThanksButton.Left = GoToDownloadPageButton.Left - HorizonalMargin - NoThanksButton.Width;
-
-            DoNotShowAgainCheckBox = new CheckBox()
-            {
-                Left = HorizonalMargin,
-                AutoSize = true,
-                Anchor = AnchorStyles.Left | AnchorStyles.Bottom,
-                Text = "この案内を今後 12 時間のあいだ表示しない",
-            };
             DoNotShowAgainCheckBox.Top = ClientSize.Height - VerticalMargin - DoNotShowAgainCheckBox.Height;
 
-            InfoBrowser = new WebBrowser()
-            {
-                Top = Details.Bottom + VerticalMargin / 2,
-                Left = 0,
-                Height = GoToDownloadPageButton.Top - VerticalMargin - (Details.Bottom + VerticalMargin),
-                Width = ClientSize.Width,
-                Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Bottom,
-                DocumentText = "<font face='Yu Gothic UI'>" + updateDetailsHtml,
-                AllowNavigation = false,
-                AllowWebBrowserDrop = false,
-            };
-
-            Controls.Add(Details);
-            Controls.Add(InfoBrowser);
-
-            Controls.Add(DoNotShowAgainCheckBox);
-            Controls.Add(NoThanksButton);
-            Controls.Add(GoToDownloadPageButton);
+            InfoBrowser.Top = Details.Bottom + VerticalMargin / 2;
+            InfoBrowser.Height = GoToDownloadPageButton.Top - VerticalMargin - (Details.Bottom + VerticalMargin);
 
             Resize += (sender, e) => RedrawHeaderBackground();
 
@@ -188,9 +197,11 @@ namespace AtsEx.Launcher.Hosting
                     {
                         Image logo = Image.FromStream(logoStream);
 
-                        float logoHeight = 56;
+                        float scale = g.DpiX / 96;
+                        float logoHeight = 56 * scale;
                         SizeF size = new SizeF(logoHeight * logo.Width / logo.Height, logoHeight);
-                        PointF point = new PointF(g.VisibleClipBounds.Width - size.Width - 15, g.VisibleClipBounds.Height - size.Height);
+                        PointF point = new PointF(g.VisibleClipBounds.Width - size.Width - 15 * scale, g.VisibleClipBounds.Height - size.Height);
+
                         g.DrawImage(logo, new RectangleF(point, size));
                     }
                 }

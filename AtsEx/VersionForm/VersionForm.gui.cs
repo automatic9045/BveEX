@@ -31,9 +31,13 @@ namespace AtsEx
 
         protected void InitializeComponent()
         {
+            SuspendLayout();
+
+            AutoScaleDimensions = new Size(96, 96);
+            AutoScaleMode = AutoScaleMode.Dpi;
+
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
-            AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(800, 480);
             Font = new Font("Yu Gothic UI", 9);
             Text = string.Format(Resources.Value.Caption.Value, App.Instance.ProductShortName);
@@ -45,6 +49,7 @@ namespace AtsEx
                 Top = 16,
                 Width = 160,
                 Height = 48,
+                AutoSize = true,
                 Font = new Font("Yu Gothic UI", 28, FontStyle.Bold),
                 Text = App.Instance.ProductShortName,
             };
@@ -57,6 +62,7 @@ namespace AtsEx
                 Top = 88,
                 Width = 480,
                 Height = 15,
+                AutoSize = true,
                 Text = App.Instance.ProductName,
             };
             Controls.Add(LongName);
@@ -67,6 +73,7 @@ namespace AtsEx
                 Top = 103,
                 Width = 480,
                 Height = 15,
+                AutoSize = true,
                 Text = string.Format(Resources.Value.Description.Value, App.Instance.AtsExAssembly.GetName().Version, App.Instance.LaunchMode.GetTypeString()),
             };
             Controls.Add(Description);
@@ -78,6 +85,7 @@ namespace AtsEx
                 Top = 133,
                 Width = 400,
                 Height = 15,
+                AutoSize = true,
                 Text = $"Copyright ©  {(year == 2022 ? "2022" : $"2022-{year}")}  おーとま (automatic9045)",
             };
             Controls.Add(Copyright);
@@ -89,6 +97,7 @@ namespace AtsEx
                 Left = 16,
                 Top = 163,
                 Width = 56,
+                AutoSize = true,
                 Text = Resources.Value.License.Value,
             };
             LicenseLink.LinkClicked += LinkClicked;
@@ -100,6 +109,7 @@ namespace AtsEx
                 Left = 96,
                 Top = 163,
                 Width = 176,
+                AutoSize = true,
                 Text = string.Format(Resources.Value.Website.Value, App.Instance.ProductShortName),
             };
             HomepageLink.LinkClicked += LinkClicked;
@@ -111,6 +121,7 @@ namespace AtsEx
                 Left = 296,
                 Top = 163,
                 Width = 128,
+                AutoSize = true,
                 Text = Resources.Value.Repository.Value,
             };
             RepositoryLink.LinkClicked += LinkClicked;
@@ -122,6 +133,7 @@ namespace AtsEx
                 Left = 16,
                 Top = 193,
                 Width = 400,
+                AutoSize = true,
                 Text = Resources.Value.PluginListHeader.Value,
             };
             Controls.Add(PluginListHeader);
@@ -151,6 +163,9 @@ namespace AtsEx
             };
             OK.Click += (sender, e) => Hide();
             Controls.Add(OK);
+
+
+            ResumeLayout(false);
         }
 
         private void LinkClicked(object sender, EventArgs e)
