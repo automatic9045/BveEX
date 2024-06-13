@@ -45,6 +45,13 @@ namespace AtsEx.Launcher
             atsExAssemblyDirectory = atsExAssemblies.Last().Directory; // TODO: バージョンを選択できるようにする
 #endif
 
+            if (!Directory.Exists(atsExAssemblyDirectory))
+            {
+                ErrorDialog.Show(3, $"AtsEX 本体の読込に失敗しました。フォルダ '{atsExAssemblyDirectory}' が見つかりませんでした。",
+                    "AtsEX を再インストールしてください。");
+                throw new NotSupportedException();
+            }
+
             AppDomain.CurrentDomain.AssemblyResolve += (sender, e) =>
             {
                 AssemblyName assemblyName = new AssemblyName(e.Name);
