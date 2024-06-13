@@ -213,8 +213,11 @@ namespace AtsEx.PluginHost.Plugins
         {
             if (!(MinRequiredVersion is null) && App.Instance.AtsExVersion < MinRequiredVersion)
             {
+                string sender = Path.GetFileName(GetType().Assembly.Location);
                 string message = string.Format(Resources.Value.AtsExVersionTooOld.Value, App.Instance.ProductShortName, MinRequiredVersion, App.Instance.AtsExVersion);
-                ErrorDialog.Show(message, sender: Path.GetFileName(GetType().Assembly.Location));
+                ErrorDialogInfo errorDialogInfo = new ErrorDialogInfo(null, sender, message);
+
+                ErrorDialog.Show(errorDialogInfo);
             }
         }
 

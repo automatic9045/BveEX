@@ -10,7 +10,17 @@ namespace AtsEx.Launcher
     {
         public static void Show(int id, string message, string approach)
         {
-            Diagnostics.ErrorDialog.Show($"エラーコード L-{id}\n{message}", Resources.Name, approach, $"https://www.okaoka-depot.com/AtsEX.Docs/support/errors/#L-{id}");
+            string code = $"L-{id}";
+
+            string header = $"{Resources.Name} でエラーが発生しました ({code})";
+            string messageWithCode = $"エラーコード {code}\n{message}";
+            Diagnostics.ErrorDialogInfo errorDialogInfo = new Diagnostics.ErrorDialogInfo(header, Resources.Name, messageWithCode)
+            {
+                Approach = approach,
+                HelpLink = new Uri($"https://www.okaoka-depot.com/AtsEX.Docs/support/errors/#{code}"),
+            };
+
+            Diagnostics.ErrorDialog.Show(errorDialogInfo);
         }
     }
 }

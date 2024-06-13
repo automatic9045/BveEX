@@ -120,4 +120,7 @@
   <data name="ErrorCode" xml:space="preserve">
     <value>エラーコード</value>
   </data>
+  <data name="Header" xml:space="preserve">
+    <value>{0} でエラーが発生しました ({1})</value>
+  </data>
 </root>
