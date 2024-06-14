@@ -42,6 +42,13 @@ namespace AtsEx.Launcher
                 .Select(x => (x.Directory, AssemblyName: AssemblyName.GetAssemblyName(x.Location)))
                 .OrderBy(x => x.AssemblyName.Version);
 
+            if (!atsExAssemblies.Any())
+            {
+                ErrorDialog.Show(4, $"AtsEX 本体の読込に失敗しました。候補となる AtsEX 本体フォルダが見つかりませんでした。",
+                    "AtsEX を再インストールしてください。");
+                throw new NotSupportedException();
+            }
+
             atsExAssemblyDirectory = atsExAssemblies.Last().Directory; // TODO: バージョンを選択できるようにする
 #endif
 
