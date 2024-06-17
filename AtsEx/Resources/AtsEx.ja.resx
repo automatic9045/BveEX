@@ -130,4 +130,12 @@
   <data name="IgnoreAndContinue" xml:space="preserve">
     <value>無視して読込を続行しますか？</value>
   </data>
+  <data name="ManualDisposeHeader" xml:space="preserve">
+    <value>{0} に問題がありましたか?</value>
+  </data>
+  <data name="ManualDisposeMessage" xml:space="preserve">
+    <value>ご不便をおかけし申し訳ございません。
+{0} は本来、いかなるシナリオに対しても正常に動作することを想定しています。もし「特定シナリオをプレイするためには {0} を無効化する必要がある」などのケースが存在するようでしたら、それは {0} の不具合である可能性があります。
+今後の機能向上のため、{0} 有効時に動作しないシナリオを開発者までご報告いただけませんでしょうか。[(?) ヘルプ] ボタンを押すと報告ページが表示されます。</value>
+  </data>
 </root>

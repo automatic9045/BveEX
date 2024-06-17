@@ -8,6 +8,9 @@ using BveTypes;
 using BveTypes.ClassWrappers;
 using TypeWrapping;
 
+using AtsEx.Diagnostics;
+using AtsEx.PluginHost;
+
 using AtsEx.MapStatements;
 using AtsEx.Native;
 
@@ -51,6 +54,18 @@ namespace AtsEx
 
             public override void Dispose()
             {
+                if (BveHacker.IsConfigFormReady)
+                {
+                    string header = string.Format(Resources.Value.ManualDisposeHeader.Value, App.Instance.ProductShortName);
+                    string message = string.Format(Resources.Value.ManualDisposeMessage.Value, App.Instance.ProductShortName);
+                    ErrorDialogInfo dialogInfo = new ErrorDialogInfo(header, App.Instance.ProductShortName, message)
+                    {
+                        HelpLink = new Uri("https://www.okaoka-depot.com/AtsEX.Docs/support/report/"),
+                    };
+
+                    Diagnostics.ErrorDialog.Show(dialogInfo);
+                }
+
                 Patches.Dispose();
                 HeaderErrorPreResolver?.Dispose();
                 base.Dispose();

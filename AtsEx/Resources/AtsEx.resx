@@ -130,4 +130,11 @@ The legal location to place is '{1}'.</value>
   <data name="IgnoreAndContinue" xml:space="preserve">
     <value>Ignore and continue loading?</value>
   </data>
+  <data name="ManualDisposeHeader" xml:space="preserve">
+    <value>Any scenario that doesn't work with {0}?</value>
+  </data>
+  <data name="ManualDisposeMessage" xml:space="preserve">
+    <value>Sorry for any inconvenience. For future improvement, please report to the developer the scenarios that do not work when {0} is enabled. Click [(?) ヘルプ] button to open the report page.
+{0} is intended to work properly for any scenario. If you need to disable {0} to play a particular scenario, it may be due to a bug in {0}.</value>
+  </data>
 </root>
