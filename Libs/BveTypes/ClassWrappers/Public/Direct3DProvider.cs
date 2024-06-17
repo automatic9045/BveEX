@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 using SlimDX.Direct3D9;
 
@@ -24,12 +26,13 @@ namespace BveTypes.ClassWrappers
 
             InstanceGetMethod = members.GetSourcePropertyGetterOf(nameof(Instance));
 
-            DeviceGetMethod = members.GetSourcePropertyGetterOf(nameof(Device));
-            PresentParametersGetMethod = members.GetSourcePropertyGetterOf(nameof(PresentParameters));
             Direct3DGetMethod = members.GetSourcePropertyGetterOf(nameof(Direct3D));
 
+            DeviceField = members.GetSourceFieldOf(nameof(Device));
+            PresentParametersField = members.GetSourceFieldOf(nameof(PresentParameters));
             HasDeviceLostField = members.GetSourceFieldOf(nameof(HasDeviceLost));
 
+            CreateDeviceMethod = members.GetSourceMethodOf(nameof(CreateDevice));
             InitializeStatesMethod = members.GetSourceMethodOf(nameof(InitializeStates));
             RenderMethod = members.GetSourceMethodOf(nameof(Render));
         }
@@ -56,23 +59,31 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public static Direct3DProvider Instance => FromSource(InstanceGetMethod.Invoke(null, null));
 
-        private static FastMethod DeviceGetMethod;
-        /// <summary>
-        /// <see cref="SlimDX.Direct3D9.Device"/> を取得します。
-        /// </summary>
-        public Device Device => (Device)DeviceGetMethod.Invoke(Src, null);
-
-        private static FastMethod PresentParametersGetMethod;
-        /// <summary>
-        /// <see cref="Device"/> の生成に使用した <see cref="SlimDX.Direct3D9.PresentParameters"/> を取得します。
-        /// </summary>
-        public PresentParameters PresentParameters => (PresentParameters)PresentParametersGetMethod.Invoke(Src, null);
-
         private static FastMethod Direct3DGetMethod;
         /// <summary>
         /// <see cref="SlimDX.Direct3D9.Direct3D"/> を取得します。
         /// </summary>
         public Direct3D Direct3D => (Direct3D)Direct3DGetMethod.Invoke(Src, null);
+
+        private static FastField DeviceField;
+        /// <summary>
+        /// <see cref="SlimDX.Direct3D9.Device"/> を取得・設定します。
+        /// </summary>
+        public Device Device
+        {
+            get => DeviceField.GetValue(Src);
+            set => DeviceField.SetValue(Src, value);
+        }
+
+        private static FastField PresentParametersField;
+        /// <summary>
+        /// <see cref="Device"/> の生成に使用した <see cref="SlimDX.Direct3D9.PresentParameters"/> を取得します。
+        /// </summary>
+        public PresentParameters PresentParameters
+        {
+            get => PresentParametersField.GetValue(Src);
+            set => PresentParametersField.SetValue(Src, value);
+        }
 
         private static FastField HasDeviceLostField;
         /// <summary>
@@ -83,6 +94,16 @@ namespace BveTypes.ClassWrappers
             get => HasDeviceLostField.GetValue(Src);
             set => HasDeviceLostField.SetValue(Src, value);
         }
+
+        private static FastMethod CreateDeviceMethod;
+        /// <summary>
+        /// 描画対象を指定して Direct3D9 デバイスを作成します。
+        /// </summary>
+        /// <param name="deviceWindow">描画対象の Windows Forms コントロール。</param>
+        /// <param name="isWindowed">ウィンドウモードかどうか。</param>
+        /// <param name="windowSize">描画対象のウィンドウのサイズ。</param>
+        public void CreateDevice(Control deviceWindow, bool isWindowed, Size windowSize)
+            => CreateDeviceMethod.Invoke(Src, new object[] { deviceWindow, isWindowed, windowSize });
 
         private static FastMethod InitializeStatesMethod;
         /// <summary>

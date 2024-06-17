@@ -429,18 +429,15 @@
 		<Property Wrapper="Instance" IsWrapperStatic="true">
 			<Getter Original="d" IsOriginalStatic="true"/>
 		</Property>
-		<Property Wrapper="Device">
-			<Getter Original="e"/>
-		</Property>
-		<Property Wrapper="PresentParameters">
-			<Getter Original="g"/>
-		</Property>
 		<Property Wrapper="Direct3D">
 			<Getter Original="f"/>
 		</Property>
 
+		<Field WrapperProperty="Device" Original="c" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="PresentParameters" Original="d" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="HasDeviceLost" Original="e" IsOriginalNonPublic="true"/>
 
+		<Method Wrapper="CreateDevice" WrapperParams="System.Windows.Forms.Control, System.Windows.Forms; System.Boolean; System.Drawing.Size, System.Drawing" Original="a"/>
 		<Method Wrapper="InitializeStates" WrapperParams="System.Void" Original="a" IsOriginalNonPublic="true"/>
 		<Method Wrapper="Render" WrapperParams="atsex:IDrawable" Original="a"/>
 	</Class>
