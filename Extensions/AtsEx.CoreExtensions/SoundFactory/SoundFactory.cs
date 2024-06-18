@@ -21,6 +21,9 @@ namespace AtsEx.Extensions.SoundFactory
     {
         private Scenario Scenario;
 
+        public override string Title { get; } = nameof(SoundFactory);
+        public override string Description { get; } = "プラグインから音声を簡単に読み込めるようにします。";
+
         public SoundFactory(PluginBuilder builder) : base(builder)
         {
             BveHacker.ScenarioCreated += OnScenarioCreated;
