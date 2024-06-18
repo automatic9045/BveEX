@@ -118,9 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DisplayTypeNotExtension" xml:space="preserve">
-    <value>{0} '{1}' does not implement '{2}.'</value>
+    <value>{0} '{1}' does not implement {2} interface.</value>
   </data>
   <data name="NotSubclassOfDisplayType" xml:space="preserve">
     <value>The extension '{0}' is not a type subclass of {1} '{2}.'</value>
+  </data>
+  <data name="TogglableAttributeNotApplied" xml:space="preserve">
+    <value>The extension '{0}' implements {1} interface, but {2} is not applied to the extension.</value>
+  </data>
+  <data name="TogglableInterfaceNotImplemented" xml:space="preserve">
+    <value>{2} is applied to the extension '{0},' but the extension does not implement {1} interface.</value>
   </data>
 </root>

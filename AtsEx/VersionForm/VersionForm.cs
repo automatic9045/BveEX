@@ -26,11 +26,6 @@ namespace AtsEx
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> Website { get; private set; }
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> Repository { get; private set; }
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> PluginListHeader { get; private set; }
-            [ResourceStringHolder(nameof(Localizer))] public Resource<string> PluginListColumnFileName { get; private set; }
-            [ResourceStringHolder(nameof(Localizer))] public Resource<string> PluginListColumnName { get; private set; }
-            [ResourceStringHolder(nameof(Localizer))] public Resource<string> PluginListColumnType { get; private set; }
-            [ResourceStringHolder(nameof(Localizer))] public Resource<string> PluginListColumnVersion { get; private set; }
-            [ResourceStringHolder(nameof(Localizer))] public Resource<string> PluginListColumnDescription { get; private set; }
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> OK { get; private set; }
 
             public ResourceSet()
@@ -54,43 +49,9 @@ namespace AtsEx
             InitializeComponent();
         }
 
-        public void SetPluginDetails(IEnumerable<PluginBase> plugins)
+        public void SetPluginDetails(PluginType pluginType, IEnumerable<PluginBase> plugins)
         {
-            ListViewItem[] listViewItems = plugins.Select(plugin =>
-            {
-                Assembly pluginAssembly = plugin.GetType().Assembly;
-
-                Resource<string> typeResource = plugin.PluginType.GetTypeStringResource();
-                string type = typeResource.Culture.TextInfo.ToTitleCase(typeResource.Value);
-                Color typeColor = plugin.PluginType.GetTypeColor();
-
-                ListViewItem item = new ListViewItem
-                {
-                    Text = plugin.Name,
-                    ToolTipText = plugin.Location,
-                };
-                item.SubItems.Add(plugin.Title);
-                item.SubItems.Add(CreateColoredSubItem(type, typeColor));
-                item.SubItems.Add(plugin.Version);
-                item.SubItems.Add(plugin.Description);
-
-                return item;
-            }).ToArray();
-
-            PluginList.Items.Clear();
-            PluginList.Items.AddRange(listViewItems);
-
-
-            ListViewItem.ListViewSubItem CreateColoredSubItem(string text, Color backgroundColor)
-            {
-                ListViewItem.ListViewSubItem subItem = new ListViewItem.ListViewSubItem()
-                {
-                    Text = text,
-                    BackColor = backgroundColor,
-                };
-
-                return subItem;
-            }
+            PluginListPages[(int)pluginType].SetPluginDetails(plugins);
         }
     }
 }

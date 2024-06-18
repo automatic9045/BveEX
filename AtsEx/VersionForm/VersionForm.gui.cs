@@ -3,33 +3,36 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using UnembeddedResources;
+
 using AtsEx.PluginHost;
+using AtsEx.PluginHost.Plugins;
 
 namespace AtsEx
 {
     internal partial class VersionForm : Form
     {
-        protected Label Title;
+        private Label Title;
 
-        protected Label LongName;
-        protected Label Description;
-        protected Label Copyright;
+        private Label LongName;
+        private Label Description;
+        private Label Copyright;
 
-        protected LinkLabel LicenseLink;
-        protected LinkLabel HomepageLink;
-        protected LinkLabel RepositoryLink;
+        private LinkLabel LicenseLink;
+        private LinkLabel HomepageLink;
+        private LinkLabel RepositoryLink;
 
-        protected Label PluginListHeader;
-        protected ListView PluginList;
+        private Label PluginListHeader;
+        private Dictionary<int, PluginListTabPage> PluginListPages;
+        private TabControl PluginList;
 
-        protected Button OK;
+        private Button OK;
 
-        protected void InitializeComponent()
+        private void InitializeComponent()
         {
             SuspendLayout();
 
@@ -138,20 +141,22 @@ namespace AtsEx
             };
             Controls.Add(PluginListHeader);
 
-            PluginList = new ListView()
+            PluginListPages = ((PluginType[])Enum.GetValues(typeof(PluginType))).ToDictionary(x => (int)x, x =>
             {
-                View = View.Details,
-                GridLines = true,
+                Resource<string> typeResource = x.GetTypeStringResource();
+                string typeText = typeResource.Culture.TextInfo.ToTitleCase(typeResource.Value);
+
+                return new PluginListTabPage(typeText, x == PluginType.Extension);
+            });
+
+            PluginList = new TabControl()
+            {
                 Left = 16,
                 Top = 216,
                 Width = 768,
                 Height = 224,
             };
-            PluginList.Columns.Add(Resources.Value.PluginListColumnFileName.Value, 128);
-            PluginList.Columns.Add(Resources.Value.PluginListColumnName.Value, 192);
-            PluginList.Columns.Add(Resources.Value.PluginListColumnType.Value, 96);
-            PluginList.Columns.Add(Resources.Value.PluginListColumnVersion.Value, 96);
-            PluginList.Columns.Add(Resources.Value.PluginListColumnDescription.Value, 224);
+            PluginList.TabPages.AddRange(PluginListPages.Values.ToArray());
             Controls.Add(PluginList);
 
 

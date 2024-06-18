@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -23,6 +22,8 @@ namespace AtsEx.Plugins.Extensions
 
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> DisplayTypeNotExtension { get; private set; }
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> NotSubclassOfDisplayType { get; private set; }
+            [ResourceStringHolder(nameof(Localizer))] public Resource<string> TogglableInterfaceNotImplemented { get; private set; }
+            [ResourceStringHolder(nameof(Localizer))] public Resource<string> TogglableAttributeNotApplied { get; private set; }
 
             public ResourceSet()
             {
@@ -39,7 +40,7 @@ namespace AtsEx.Plugins.Extensions
 #endif
         }
 
-        private Dictionary<Type, ExtensionDefinitionInfo> Items = null;
+        private Dictionary<Type, ExtensionInfo> Items = null;
 
         public event EventHandler AllExtensionsLoaded;
 
@@ -57,6 +58,7 @@ namespace AtsEx.Plugins.Extensions
 
                 Type displayType = type;
                 bool hide = false;
+                bool canToggle = false;
                 foreach (Attribute attribute in type.GetCustomAttributes())
                 {
                     switch (attribute)
@@ -68,12 +70,15 @@ namespace AtsEx.Plugins.Extensions
                         case ExtensionMainDisplayTypeAttribute displayTypeAttribute:
                             displayType = displayTypeAttribute.DisplayType;
                             break;
+
+                        case TogglableAttribute togglableAttribute:
+                            canToggle = true;
+                            break;
                     }
                 }
 
-                return new ExtensionDefinitionInfo(x, hide, displayType);
+                return new ExtensionInfo(x, hide, displayType, canToggle);
             }).ToDictionary(x => x.DisplayType, x => x);
-
             AllExtensionsLoaded?.Invoke(this, EventArgs.Empty);
         }
 
@@ -81,7 +86,7 @@ namespace AtsEx.Plugins.Extensions
         {
             if (Items is null) throw new MemberNotInitializedException();
 
-            ExtensionDefinitionInfo result = Items[typeof(TExtension)];
+            ExtensionInfo result = Items[typeof(TExtension)];
             return !result.Hide && result.Body is TExtension extension ? extension : throw new KeyNotFoundException();
         }
 
@@ -89,28 +94,42 @@ namespace AtsEx.Plugins.Extensions
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
 
-        private class ExtensionDefinitionInfo
+        private class ExtensionInfo
         {
             public PluginBase Body { get; }
             public bool Hide { get; }
             public Type DisplayType { get; }
+            public bool CanToggle { get; }
 
-            public ExtensionDefinitionInfo(PluginBase body, bool hide, Type displayType)
+            public ExtensionInfo(PluginBase body, bool hide, Type displayType, bool canToggle)
             {
                 if (!displayType.GetInterfaces().Contains(typeof(IExtension)))
                 {
-                    throw new InvalidCastException(string.Format(Resources.Value.DisplayTypeNotExtension.Value, nameof(displayType), displayType.FullName, typeof(IExtension).FullName));
+                    string message = string.Format(Resources.Value.DisplayTypeNotExtension.Value,
+                        nameof(displayType), displayType.FullName, typeof(IExtension).FullName);
+                    throw new InvalidCastException(message);
                 }
 
                 Type bodyType = body.GetType();
                 if (bodyType != displayType && !bodyType.GetInterfaces().Contains(displayType) && !bodyType.IsSubclassOf(displayType))
                 {
-                    throw new InvalidCastException(string.Format(Resources.Value.NotSubclassOfDisplayType.Value, body.GetType().FullName, nameof(displayType), displayType.FullName));
+                    string message = string.Format(Resources.Value.NotSubclassOfDisplayType.Value,
+                        body.GetType().FullName, nameof(displayType), displayType.FullName);
+                    throw new InvalidCastException(message);
+                }
+
+                if (canToggle != displayType.GetInterfaces().Contains(typeof(ITogglableExtension)))
+                {
+                    Resource<string> resource = canToggle ? Resources.Value.TogglableInterfaceNotImplemented : Resources.Value.TogglableAttributeNotApplied;
+                    string message = string.Format(resource.Value,
+                        body.GetType().FullName, typeof(ITogglableExtension).FullName, typeof(TogglableAttribute).FullName);
+                    throw new InvalidCastException(message);
                 }
 
                 Body = body;
                 Hide = hide;
                 DisplayType = displayType;
+                CanToggle = canToggle;
             }
         }
     }

@@ -56,7 +56,7 @@ namespace AtsEx
             MenuItem = contextMenuHacker.AddClickableMenuItem(versionInfoMenuItemText, MenuItemClick, ContextMenuItemType.CoreAndExtensions);
 
             Form = new VersionForm();
-            Form.SetPluginDetails(Extensions);
+            Form.SetPluginDetails(PluginType.Extension, Extensions);
             Form.FormClosing += FormClosing;
         }
 
@@ -78,9 +78,17 @@ namespace AtsEx
 
         public void ShowForm() => Form.Show(MainFormSource);
 
-        public void SetScenario(IEnumerable<PluginBase> plugins) => Form.SetPluginDetails(Extensions.Concat(plugins));
+        public void SetScenario(IEnumerable<PluginBase> vehiclePlugins, IEnumerable<PluginBase> mapPlugins)
+        {
+            Form.SetPluginDetails(PluginType.VehiclePlugin, vehiclePlugins);
+            Form.SetPluginDetails(PluginType.MapPlugin, mapPlugins);
+        }
 
-        public void UnsetScenario() => Form.SetPluginDetails(Extensions);
+        public void UnsetScenario()
+        {
+            Form.SetPluginDetails(PluginType.VehiclePlugin, Enumerable.Empty<PluginBase>());
+            Form.SetPluginDetails(PluginType.MapPlugin, Enumerable.Empty<PluginBase>());
+        }
 
         public void Dispose()
         {

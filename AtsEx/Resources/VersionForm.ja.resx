@@ -129,21 +129,6 @@
   <data name="OK" xml:space="preserve">
     <value>OK</value>
   </data>
-  <data name="PluginListColumnDescription" xml:space="preserve">
-    <value>説明</value>
-  </data>
-  <data name="PluginListColumnFileName" xml:space="preserve">
-    <value>ファイル名</value>
-  </data>
-  <data name="PluginListColumnName" xml:space="preserve">
-    <value>名前</value>
-  </data>
-  <data name="PluginListColumnType" xml:space="preserve">
-    <value>種別</value>
-  </data>
-  <data name="PluginListColumnVersion" xml:space="preserve">
-    <value>バージョン</value>
-  </data>
   <data name="PluginListHeader" xml:space="preserve">
     <value>読み込まれたプラグインの詳細：</value>
   </data>

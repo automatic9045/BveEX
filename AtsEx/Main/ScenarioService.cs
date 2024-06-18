@@ -15,6 +15,7 @@ using AtsEx.Plugins;
 using AtsEx.Sound;
 using AtsEx.PluginHost.Input.Native;
 using AtsEx.PluginHost.Native;
+using AtsEx.PluginHost.Plugins;
 
 namespace AtsEx
 {
@@ -62,7 +63,7 @@ namespace AtsEx
             HeaderErrorDynamicResolver headerErrorResolver = new HeaderErrorDynamicResolver(BveHacker.LoadErrorManager, BveHacker.MapHeaders);
             headerErrorResolver.Resolve();
 
-            AtsEx.VersionFormProvider.SetScenario(plugins.Select(item => item.Value));
+            AtsEx.VersionFormProvider.SetScenario(plugins[PluginType.VehiclePlugin].Values, plugins[PluginType.MapPlugin].Values);
         }
 
         public virtual void Dispose()

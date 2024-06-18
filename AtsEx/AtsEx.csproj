@@ -202,6 +202,12 @@
     <Compile Include="Sound\AtsSoundSet.cs" />
     <Compile Include="Troubleshooting\TroubleshooterSet.cs" />
     <Compile Include="Utilities\EnumerableInDictionaryEnumerator.cs" />
+    <Compile Include="VersionForm\PluginListTabPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VersionForm\PluginListItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="VersionForm\VersionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -291,6 +297,8 @@
     <Content Include="Resources\ErrorDialog.resx" />
     <Content Include="Resources\Plugins\Native\Library.ja.resx" />
     <Content Include="Resources\Plugins\Native\Library.resx" />
+    <Content Include="Resources\PluginListTabPage.resx" />
+    <Content Include="Resources\PluginListTabPage.ja.resx" />
     <None Include="app.config" />
     <None Include="packages.config" />
     <EmbeddedResource Include="Plugins\AtsExVehicleConfigXmlSchema.xsd">

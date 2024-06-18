@@ -116,6 +116,8 @@
     <Compile Include="Plugins\DoNotUseBveHackerAttribute.cs" />
     <Compile Include="Plugins\Extensions\AllExtensionsLoadedEventArgs.cs" />
     <Compile Include="Plugins\Extensions\AllExtensionsLoadedEventHandler.cs" />
+    <Compile Include="Plugins\Extensions\ITogglableExtension.cs" />
+    <Compile Include="Plugins\Extensions\TogglableAttribute.cs" />
     <Compile Include="Plugins\Extensions\ExtensionMainDisplayTypeAttribute.cs" />
     <Compile Include="Plugins\Extensions\HideExtensionMainAttribute.cs" />
     <Compile Include="Plugins\Extensions\IExtension.cs" />

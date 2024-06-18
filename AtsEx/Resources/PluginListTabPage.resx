@@ -117,25 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Caption" xml:space="preserve">
-    <value>{0} Version Information and Loaded Plugins</value>
+  <data name="ColumnDescription" xml:space="preserve">
+    <value>Description</value>
   </data>
-  <data name="Description" xml:space="preserve">
-    <value>Version {0}  {1}</value>
+  <data name="ColumnFileName" xml:space="preserve">
+    <value>File Name</value>
   </data>
-  <data name="License" xml:space="preserve">
-    <value>License</value>
+  <data name="ColumnName" xml:space="preserve">
+    <value>Name</value>
   </data>
-  <data name="OK" xml:space="preserve">
-    <value>OK</value>
+  <data name="ColumnState" xml:space="preserve">
+    <value>State</value>
   </data>
-  <data name="PluginListHeader" xml:space="preserve">
-    <value>Loaded Plugin Details:</value>
+  <data name="ColumnVersion" xml:space="preserve">
+    <value>Version</value>
   </data>
-  <data name="Repository" xml:space="preserve">
-    <value>Repository (GitHub)</value>
+  <data name="Disable" xml:space="preserve">
+    <value>Disable</value>
   </data>
-  <data name="Website" xml:space="preserve">
-    <value>{0} Inrtoduction (Oka-Oka Depot)</value>
+  <data name="Disabled" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="Enable" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>Enabled</value>
   </data>
 </root>
