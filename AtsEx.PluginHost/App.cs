@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 using UnembeddedResources;
-
-using AtsEx.PluginHost.Plugins;
 
 namespace AtsEx.PluginHost
 {
@@ -48,6 +46,7 @@ namespace AtsEx.PluginHost
             AtsExLauncherAssembly = launcherAssembly;
             AtsExAssembly = atsExAssembly;
             AtsExPluginHostAssembly = Assembly.GetExecutingAssembly();
+            ExtensionDirectory = Path.Combine(Path.GetDirectoryName(AtsExAssembly.Location), "Extensions");
 
             AtsExVersion = AtsExAssembly.GetName().Version;
             BveVersion = BveAssembly.GetName().Version;
@@ -96,6 +95,11 @@ namespace AtsEx.PluginHost
         /// AtsEX プラグインホストの <see cref="Assembly"/> を取得します。
         /// </summary>
         public Assembly AtsExPluginHostAssembly { get; }
+
+        /// <summary>
+        /// AtsEX 拡張機能の配置先として使用するディレクトリを取得します。
+        /// </summary>
+        public string ExtensionDirectory { get; }
 
         /// <summary>
         /// AtsEX のバージョンを取得します。

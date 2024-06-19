@@ -31,7 +31,7 @@ namespace AtsEx
                 ExtensionSet extensions = new ExtensionSet();
                 PluginLoader pluginLoader = new PluginLoader(null, BveHacker, extensions, null);
 
-                string extensionsDirectory = Path.Combine(Path.GetDirectoryName(App.Instance.AtsExAssembly.Location), "Extensions");
+                string extensionsDirectory = App.Instance.ExtensionDirectory;
                 Directory.CreateDirectory(extensionsDirectory);
 
                 string pluginUsingPath = Path.Combine(extensionsDirectory, "PluginUsing.xml");
