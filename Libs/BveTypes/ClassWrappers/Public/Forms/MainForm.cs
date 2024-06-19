@@ -175,8 +175,8 @@ namespace BveTypes.ClassWrappers
         /// シナリオを読み込みます。
         /// </summary>
         /// <param name="scenarioInfo">シナリオを指定する <see cref="ScenarioInfo"/>。</param>
-        /// <param name="reload">同一のシナリオの再読込であるか。<see langword="true"/> を指定した場合、現時点で読み込まれているストラクチャーを流用します。</param>
-        public void LoadScenario(ScenarioInfo scenarioInfo, bool reload) => LoadScenarioMethod.Invoke(Src, new object[] { scenarioInfo.Src, reload });
+        /// <param name="skipReloadStructures">ストラクチャーの読込をスキップするかどうか。<see langword="true"/> を指定した場合、現時点で読み込まれているストラクチャーを流用します。</param>
+        public void LoadScenario(ScenarioInfo scenarioInfo, bool skipReloadStructures) => LoadScenarioMethod.Invoke(Src, new object[] { scenarioInfo.Src, skipReloadStructures });
 
         private static FastMethod UnloadScenarioMethod;
         /// <summary>
