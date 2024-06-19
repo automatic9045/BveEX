@@ -11,6 +11,8 @@ using AtsEx.Extensions.ContextMenuHacker;
 using AtsEx.PluginHost.Plugins;
 using AtsEx.PluginHost.Plugins.Extensions;
 
+using AtsEx.Plugins.Extensions;
+
 namespace AtsEx
 {
     internal abstract partial class AtsEx : IDisposable
@@ -64,6 +66,8 @@ namespace AtsEx
 
         public virtual void Dispose()
         {
+            ((ExtensionSet)Extensions).SaveStates();
+
             VersionFormProvider.Dispose();
             _ExtensionService.Dispose();
             BveHacker.Dispose();

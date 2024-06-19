@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 using UnembeddedResources;
 
@@ -39,6 +41,7 @@ namespace AtsEx.Plugins.Extensions
             _ = Resources.Value;
 #endif
         }
+
 
         private Dictionary<Type, ExtensionInfo> Items = null;
 
@@ -79,6 +82,18 @@ namespace AtsEx.Plugins.Extensions
 
                 return new ExtensionInfo(x, hide, displayType, canToggle);
             }).ToDictionary(x => x.DisplayType, x => x);
+
+            Data.LoadedExtensions loadedExtensions = Data.LoadedExtensions.Load();
+            foreach (Data.Extension item in loadedExtensions.Extensions)
+            {
+                ExtensionInfo extension = Items.Values.FirstOrDefault(
+                    x => x.CanToggle && x.Body.GetType().FullName == item.Class && ExtensionPath.GetRelativePath(x.Body.Location) == item.Path);
+                if (!(extension is null))
+                {
+                    ((ITogglableExtension)extension.Body).IsEnabled = item.IsEnabled;
+                }
+            }
+
             AllExtensionsLoaded?.Invoke(this, EventArgs.Empty);
         }
 
@@ -88,6 +103,15 @@ namespace AtsEx.Plugins.Extensions
 
             ExtensionInfo result = Items[typeof(TExtension)];
             return !result.Hide && result.Body is TExtension extension ? extension : throw new KeyNotFoundException();
+        }
+
+        internal void SaveStates()
+        {
+            if (Items is null) return;
+
+            IEnumerable<PluginBase> extensions = Items.Where(x => x.Value.CanToggle).Select(x => x.Value.Body);
+            Data.LoadedExtensions data = Data.LoadedExtensions.Create(extensions);
+            data.Save();
         }
 
         public IEnumerator<PluginBase> GetEnumerator() => Items is null ? throw new MemberNotInitializedException() : Items.Values.Select(x => x.Body).GetEnumerator();
