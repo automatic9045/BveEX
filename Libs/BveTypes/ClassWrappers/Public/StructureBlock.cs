@@ -120,9 +120,9 @@ namespace BveTypes.ClassWrappers
         /// 描画範囲内のストラクチャーを描画します。
         /// </summary>
         /// <param name="direct3DProvider">描画に使用する <see cref="Direct3DProvider"/>。</param>
-        /// <param name="additionalWorldMatrix">ワールド変換行列の後に追加で掛ける行列。</param>
-        /// <param name="isZDisabled">Z バッファを無効にして描画するかどうか。</param>
-        public void Draw(Direct3DProvider direct3DProvider, Matrix additionalWorldMatrix, bool isZDisabled)
-            => DrawMethod.Invoke(Src, new object[] { direct3DProvider.Src, additionalWorldMatrix, isZDisabled });
+        /// <param name="view">ビュー変換行列。</param>
+        /// <param name="skipZWrite">深度バッファーへの書き込みをスキップするか。</param>
+        public void Draw(Direct3DProvider direct3DProvider, Matrix view, bool skipZWrite)
+            => DrawMethod.Invoke(Src, new object[] { direct3DProvider.Src, view, skipZWrite });
     }
 }
