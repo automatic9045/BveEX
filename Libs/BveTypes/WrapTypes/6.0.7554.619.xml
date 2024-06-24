@@ -364,6 +364,33 @@
 		<Field WrapperProperty="IsSlipping" Original="n" IsOriginalNonPublic="true"/>
 	</Class>
 
+	<Class Wrapper="CircularGauge" Original="en">
+		<Property Wrapper="Radius">
+			<Getter Original="i"/>
+			<Setter Original="f"/>
+		</Property>
+		<Property Wrapper="InitialAngle">
+			<Getter Original="g"/>
+			<Setter Original="d"/>
+		</Property>
+		<Property Wrapper="LastAngle">
+			<Getter Original="f"/>
+			<Setter Original="e"/>
+		</Property>
+		<Property Wrapper="Max">
+			<Getter Original="h"/>
+			<Setter Original="h"/>
+		</Property>
+		<Property Wrapper="Min">
+			<Getter Original="e"/>
+			<Setter Original="g"/>
+		</Property>
+		<Property Wrapper="Tilt">
+			<Getter Original="d"/>
+			<Setter Original="a"/>
+		</Property>
+	</Class>
+
 	<Class Wrapper="Cl" Original="dv">
 		<Property Wrapper="BpInitialPressure">
 			<Getter Original="c"/>
@@ -443,6 +470,20 @@
 	</Class>
 
 	<Class Wrapper="DetailText" Original="de">
+	</Class>
+
+	<Class Wrapper="DigitalGauge" Original="cd">
+		<Property Wrapper="Step">
+			<Getter Original="a"/>
+			<Setter Original="b"/>
+		</Property>
+	</Class>
+
+	<Class Wrapper="DigitalNumber" Original="eg">
+		<Property Wrapper="Interval">
+			<Getter Original="a"/>
+			<Setter Original="a"/>
+		</Property>
 	</Class>
 
 	<Class Wrapper="DoorSet" Original="cc">
@@ -754,6 +795,24 @@
 		<Method Wrapper="GetTransform" WrapperParams="System.Double; System.Double" Original="b"/>
 	</Class>
 
+	<Class Wrapper="Needle" Original="cb">
+		<Property Wrapper="Origin">
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="NaturalFrequency">
+			<Getter Original="a"/>
+			<Setter Original="b"/>
+		</Property>
+		<Property Wrapper="DampingRatio">
+			<Getter Original="c"/>
+			<Setter Original="c"/>
+		</Property>
+		<Property Wrapper="IsStopPinEnabled">
+			<Getter Original="b"/>
+			<Setter Original="a"/>
+		</Property>
+	</Class>
+
 	<Class Wrapper="NotchInfo" Original="e9">
 		<Property Wrapper="PowerNotchCount">
 			<Getter Original="d"/>
@@ -834,6 +893,9 @@
 		<Method Wrapper="Add" WrapperParams="atsex:Physical; atsex:Physical" Original="e" IsWrapperNonPublic="true" IsWrapperStatic="true" IsOriginalStatic="true"/>
 		<Method Wrapper="Subtract" WrapperParams="atsex:Physical; atsex:Physical" Original="e" IsWrapperNonPublic="true" IsWrapperStatic="true" IsOriginalStatic="true"/>
 		<Method Wrapper="Multiply" WrapperParams="System.Double; atsex:Physical" Original="d" IsWrapperNonPublic="true" IsWrapperStatic="true" IsOriginalStatic="true"/>
+	</Class>
+
+	<Class Wrapper="PilotLamp" Original="ap">
 	</Class>
 
 	<Class Wrapper="PreTrainObjectList" Original="e6">
@@ -1448,6 +1510,9 @@
 			<Getter Original="c"/>
 			<Setter Original="a"/>
 		</Property>
+		<Property Wrapper="Panel">
+			<Getter Original="h"/>
+		</Property>
 		<Property Wrapper="Conductor">
 			<Getter Original="e"/>
 		</Property>
@@ -1561,6 +1626,87 @@
 		<Field WrapperProperty="CarForce" Original="a"/>
 		<Field WrapperProperty="Current" Original="b"/>
 		<Field WrapperProperty="TorqueCurrent" Original="c"/>
+	</Class>
+
+	<Class Wrapper="VehiclePanel" Original="bf">
+		<Property Wrapper="Perspective">
+			<Getter Original="g"/>
+			<Setter Original="c"/>
+		</Property>
+		<Property Wrapper="DistanceFromDriver">
+			<Getter Original="c"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="StateStore">
+			<Getter Original="i"/>
+		</Property>
+		<Property Wrapper="Border">
+			<Getter Original="f"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="Center">
+			<Getter Original="e"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="Origin">
+			<Getter Original="a"/>
+			<Setter Original="b"/>
+		</Property>
+		<Property Wrapper="Brightness">
+			<Setter Original="b"/>
+		</Property>
+		<Property Wrapper="Resolution">
+			<Getter Original="h"/>
+			<Setter Original="d"/>
+		</Property>
+		<Property Wrapper="Elements">
+			<Getter Original="b"/>
+			<Setter Original="a"/>
+		</Property>
+
+		<Method Wrapper="Draw" WrapperParams="void" Original="o"/>
+		<Method Wrapper="OnDeviceLost" WrapperParams="void" Original="s"/>
+		<Method Wrapper="OnDeviceReset" WrapperParams="void" Original="t"/>
+		<Method Wrapper="Dispose" WrapperParams="void" Original="Dispose"/>
+	</Class>
+
+	<Class Wrapper="VehiclePanelElement" Original="bo">
+		<Property Wrapper="Color">
+			<Getter Original="j"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="Layer">
+			<Getter Original="n"/>
+			<Setter Original="j"/>
+		</Property>
+		<Property Wrapper="Subject">
+			<Getter Original="m"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="SubjectIndex">
+			<Getter Original="l"/>
+			<Setter Original="b"/>
+		</Property>
+		<Property Wrapper="ImageLocation">
+			<Setter Original="b"/>
+		</Property>
+		<Property Wrapper="ImageRectangle">
+			<Getter Original="k"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="Brightness">
+			<Setter Original="i"/>
+		</Property>
+
+		<Field WrapperProperty="DaytimeImageModel" Original="b" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="DaytimeImagePath" Original="c" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="NighttimeImageModel" Original="d" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="NighttimeImagePath" Original="e" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Matrix" Original="l" IsOriginalNonPublic="true"/>
+
+		<Method Wrapper="CreateModels" WrapperParams="void" Original="aa"/>
+		<Method Wrapper="Draw" WrapperParams="atsex:Direct3DProvider; SlimDX.Matrix, SlimDX" Original="m"/>
+		<Method Wrapper="Dispose" WrapperParams="void" Original="Dispose"/>
 	</Class>
 
 	<Class Wrapper="VehiclePerformance" Original="fz">

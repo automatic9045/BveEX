@@ -78,11 +78,16 @@
     <Compile Include="ClassWrappers\Helpers\ReverserPosition.cs" />
     <Compile Include="ClassWrappers\Helpers\TiltOptions.cs" />
     <Compile Include="ClassWrappers\Public\BcValve.cs" />
+    <Compile Include="ClassWrappers\Public\CircularGauge.cs" />
+    <Compile Include="ClassWrappers\Public\DigitalGauge.cs" />
+    <Compile Include="ClassWrappers\Public\DigitalNumber.cs" />
     <Compile Include="ClassWrappers\Public\Forms\ConfigForm.cs" />
     <Compile Include="ClassWrappers\Public\MapLoader.cs" />
     <Compile Include="ClassWrappers\Public\MapStatement.cs" />
     <Compile Include="ClassWrappers\Public\MapStatementClause.cs" />
     <Compile Include="ClassWrappers\Public\MapStatementList.cs" />
+    <Compile Include="ClassWrappers\Public\Needle.cs" />
+    <Compile Include="ClassWrappers\Public\PilotLamp.cs" />
     <Compile Include="ClassWrappers\Public\SoundObject.cs" />
     <Compile Include="ClassWrappers\Public\ValueContainer.cs" />
     <Compile Include="ClassWrappers\Public\Valve.cs" />
@@ -200,6 +205,8 @@
     <Compile Include="ClassWrappers\Public\VehicleDynamics.cs" />
     <Compile Include="ClassWrappers\Public\VehicleInstrumentSet.cs" />
     <Compile Include="ClassWrappers\Public\VehicleMotorState.cs" />
+    <Compile Include="ClassWrappers\Public\VehiclePanel.cs" />
+    <Compile Include="ClassWrappers\Public\VehiclePanelElement.cs" />
     <Compile Include="ClassWrappers\Public\VehiclePerformance.cs" />
     <Compile Include="ClassWrappers\Public\VehiclePerformanceBase.cs" />
     <Compile Include="ClassWrappers\Public\VehiclePositioner.cs" />

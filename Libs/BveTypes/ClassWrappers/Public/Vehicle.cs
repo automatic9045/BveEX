@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,7 +10,7 @@ using TypeWrapping;
 namespace BveTypes.ClassWrappers
 {
     /// <summary>
-    /// 自車両に関する情報にアクセスするための機能を提供します。
+    /// 自列車を表します。
     /// </summary>
     public class Vehicle : ClassWrapperBase
     {
@@ -25,6 +24,8 @@ namespace BveTypes.ClassWrappers
 
             VibrationManagerGetMethod = members.GetSourcePropertyGetterOf(nameof(VibrationManager));
             VibrationManagerSetMethod = members.GetSourcePropertySetterOf(nameof(VibrationManager));
+
+            PanelGetMethod = members.GetSourcePropertyGetterOf(nameof(Panel));
 
             ConductorGetMethod = members.GetSourcePropertyGetterOf(nameof(Conductor));
 
@@ -77,6 +78,12 @@ namespace BveTypes.ClassWrappers
             get => VehicleVibrationManager.FromSource(VibrationManagerGetMethod.Invoke(Src, null));
             set => VibrationManagerSetMethod.Invoke(Src, new object[] { value.Src });
         }
+
+        private static FastMethod PanelGetMethod;
+        /// <summary>
+        /// 自列車の運転台パネルを取得・設定します。
+        /// </summary>
+        public VehiclePanel Panel => VehiclePanel.FromSource(PanelGetMethod.Invoke(Src, null));
 
         private static FastMethod ConductorGetMethod;
         /// <summary>

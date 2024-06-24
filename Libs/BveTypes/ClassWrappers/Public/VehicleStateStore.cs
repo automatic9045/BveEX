@@ -12,9 +12,6 @@ namespace BveTypes.ClassWrappers
     /// <summary>
     /// 自列車の状態に関する情報を提供します。
     /// </summary>
-    /// <remarks>
-    /// このクラスは試験的に実装されたものであり、仕様が変更となる可能性があります。
-    /// </remarks>
     public class VehicleStateStore : ClassWrapperBase
     {
         [InitializeClassWrapper]
