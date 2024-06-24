@@ -89,6 +89,7 @@
     <Compile Include="ClassWrappers\Public\Needle.cs" />
     <Compile Include="ClassWrappers\Public\PilotLamp.cs" />
     <Compile Include="ClassWrappers\Public\SoundObject.cs" />
+    <Compile Include="ClassWrappers\Public\SoundObjectList.cs" />
     <Compile Include="ClassWrappers\Public\ValueContainer.cs" />
     <Compile Include="ClassWrappers\Public\Valve.cs" />
     <Compile Include="ClassWrappers\Public\BrakeBlenderBase.cs" />

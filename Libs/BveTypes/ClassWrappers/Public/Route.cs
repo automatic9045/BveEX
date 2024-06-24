@@ -49,6 +49,8 @@ namespace BveTypes.ClassWrappers
 
             SectionsGetMethod = members.GetSourcePropertyGetterOf(nameof(Sections));
 
+            SoundObjectsGetMethod = members.GetSourcePropertyGetterOf(nameof(SoundObjects));
+
             IrregularityObjectsGetMethod = members.GetSourcePropertyGetterOf(nameof(IrregularityObjects));
 
             SoundsGetMethod = members.GetSourcePropertyGetterOf(nameof(Sounds));
@@ -164,6 +166,12 @@ namespace BveTypes.ClassWrappers
         /// 閉塞の一覧を取得します。
         /// </summary>
         public MapFunctionList Sections => MapFunctionList.FromSource(SectionsGetMethod.Invoke(Src, null));
+
+        private static FastMethod SoundObjectsGetMethod;
+        /// <summary>
+        /// サウンド マップ オブジェクトの一覧を取得します。
+        /// </summary>
+        public SoundObjectList SoundObjects => SoundObjectList.FromSource(SoundObjectsGetMethod.Invoke(Src, null));
 
         private static FastMethod IrregularityObjectsGetMethod;
         /// <summary>
