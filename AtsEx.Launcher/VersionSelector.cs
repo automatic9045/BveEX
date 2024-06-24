@@ -7,6 +7,7 @@ using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 using AtsEx.Launcher.Hosting;
 
@@ -23,11 +24,25 @@ namespace AtsEx.Launcher
 #endif
         }
 
+        private readonly SplashForm SplashForm;
+
         [Obsolete]
         public CoreHost CoreHost { get; }
 
         public VersionSelector()
         {
+            SplashForm = new SplashForm();
+            if (0 < Application.OpenForms.Count)
+            {
+                SplashForm.Show(Application.OpenForms[0]);
+            }
+            else
+            {
+                SplashForm.Show();
+            }
+
+            SplashForm.ProgressText = "AtsEX を探しています...";
+
             Assembly launcherAssembly = Assembly.GetExecutingAssembly();
             string rootDirectory = Path.GetDirectoryName(launcherAssembly.Location);
 
@@ -73,6 +88,8 @@ namespace AtsEx.Launcher
                         return File.Exists(path) ? Assembly.LoadFrom(path) : null;
                 }
             };
+
+            SplashForm.ProgressText = "アップデートを確認しています...";
 
             if (ServicePointManager.SecurityProtocol.HasFlag(SecurityProtocolType.Tls) || ServicePointManager.SecurityProtocol.HasFlag(SecurityProtocolType.Tls11))
             {

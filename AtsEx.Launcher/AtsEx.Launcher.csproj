@@ -70,6 +70,12 @@
     <Compile Include="LauncherCompatibilityVersionAttribute.cs" />
     <Compile Include="LauncherVersionChecker.cs" />
     <Compile Include="Resources.cs" />
+    <Compile Include="SplashForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SplashForm.gui.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="VersionSelector.AsInputDevice.cs" />
     <Compile Include="VersionSelector.AsAtsPlugin.cs" />
     <Compile Include="VersionSelector.cs" />

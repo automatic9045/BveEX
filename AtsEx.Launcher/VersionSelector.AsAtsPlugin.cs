@@ -15,7 +15,15 @@ namespace AtsEx.Launcher
 
             public AsAtsPlugin(Assembly callerAssembly) : base()
             {
-                CoreHost = new CoreHost(callerAssembly, BveFinder);
+                SplashForm.ProgressText = "AtsEX ATS プラグイン版を起動しています...";
+                try
+                {
+                    CoreHost = new CoreHost(callerAssembly, BveFinder);
+                }
+                finally
+                {
+                    SplashForm.Close();
+                }
             }
         }
     }

@@ -15,7 +15,15 @@ namespace AtsEx.Launcher
 
             public AsInputDevice(Assembly callerAssembly) : base()
             {
-                CoreHost = new CoreHostAsInputDevice(callerAssembly, BveFinder);
+                SplashForm.ProgressText = "AtsEX 入力デバイスプラグイン版を起動しています...";
+                try
+                {
+                    CoreHost = new CoreHostAsInputDevice(callerAssembly, BveFinder);
+                }
+                finally
+                {
+                    SplashForm.Close();
+                }
             }
         }
     }
