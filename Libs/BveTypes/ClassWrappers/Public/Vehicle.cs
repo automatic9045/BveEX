@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using SlimDX.DirectSound;
+
 using FastMember;
 using TypeWrapping;
 
@@ -18,6 +20,8 @@ namespace BveTypes.ClassWrappers
         private static void Initialize(BveTypeSet bveTypes)
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<Vehicle>();
+
+            Constructor = members.GetSourceConstructor();
 
             InstrumentsGetMethod = members.GetSourcePropertyGetterOf(nameof(Instruments));
             InstrumentsSetMethod = members.GetSourcePropertySetterOf(nameof(Instruments));
@@ -56,6 +60,23 @@ namespace BveTypes.ClassWrappers
         /// <returns>オリジナル オブジェクトをラップした <see cref="Vehicle"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
         public static Vehicle FromSource(object src) => src is null ? null : new Vehicle(src);
+
+        private static FastConstructor Constructor;
+        /// <summary>
+        /// <see cref="Vehicle"/> クラスの新しいインスタンスを初期化します。
+        /// </summary>
+        /// <param name="assistantDrawer">補助表示を描画するための <see cref="AssistantDrawer"/>。</param>
+        /// <param name="directSound">DirectSound デバイス。</param>
+        /// <param name="keyProvider">キー入力を管理するための <see cref="KeyProvider"/>。</param>
+        /// <param name="timeManager">時間に関する処理を行う <see cref="TimeManager"/>。</param>
+        /// <param name="locationManager">自列車の位置情報に関する処理を行う <see cref="UserVehicleLocationManager"/>。</param>
+        /// <param name="cameraLocation">カメラの位置に関する情報を提供する <see cref="CameraLocation"/>。</param>
+        /// <param name="route">使用するマップ。</param>
+        /// <param name="sectionManager">閉そくを制御するための <see cref="SectionManager" />。</param>
+        public Vehicle(AssistantDrawer assistantDrawer, DirectSound directSound, KeyProvider keyProvider, TimeManager timeManager, UserVehicleLocationManager locationManager, CameraLocation cameraLocation, Route route, SectionManager sectionManager)
+            : this(Constructor.Invoke(new object[] { assistantDrawer.Src, directSound, keyProvider.Src, timeManager.Src, locationManager.Src, cameraLocation.Src, route.Src, sectionManager.Src }))
+        {
+        }
 
         private static FastMethod InstrumentsGetMethod;
         private static FastMethod InstrumentsSetMethod;
