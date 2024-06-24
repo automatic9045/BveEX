@@ -90,7 +90,7 @@ namespace TypeWrapping
                     (string name, bool isNonPublic, bool isStatic) = GetWrapperInfo(source);
                     MethodInfo method = WrapperMemberParser.GetMethod(name, types, isNonPublic, isStatic);
 
-                    return method ?? throw new MemberNotFoundException(WrapperType, OriginalType, MemberKind.EventOriginalDelegate, name, isNonPublic, isStatic, types);
+                    return method ?? throw new MemberNotFoundException(WrapperType, OriginalType, MemberKind.WrapperMethod, name, isNonPublic, isStatic, types);
                 }
 
                 public MethodInfo GetOriginalMethod(XElement source, Type[] types)
@@ -98,7 +98,7 @@ namespace TypeWrapping
                     (string name, bool isNonPublic, bool isStatic) = GetOriginalInfo(source);
                     MethodInfo method = OriginalMemberParser.GetMethod(name, types, isNonPublic, isStatic);
 
-                    return method ?? throw new MemberNotFoundException(WrapperType, OriginalType, MemberKind.EventOriginalDelegate, name, isNonPublic, isStatic, types);
+                    return method ?? throw new MemberNotFoundException(WrapperType, OriginalType, MemberKind.OriginalMethod, name, isNonPublic, isStatic, types);
                 }
 
 
