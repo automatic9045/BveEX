@@ -17,27 +17,33 @@ namespace AtsEx.Extensions.MapStatements.Builtin
                     {
                         case int num:
                             return num != 0;
-                        case float num:
+                        case double num:
                             return num != 0;
                         default:
                             throw new ArgumentException();
                     }
 
                 case 3:
+                    object left = args[0];
+                    if (left is int leftNum) left = Convert.ToDouble(leftNum);
+
+                    object right = args[2];
+                    if (right is int rightNum) right = Convert.ToDouble(rightNum);
+
                     switch (args[1])
                     {
                         case "==":
-                            return args[0].Equals(args[2]);
+                            return left.Equals(right);
                         case "!=":
-                            return !args[0].Equals(args[2]);
+                            return !left.Equals(right);
                         case "<":
-                            return Convert.ToDouble(args[0]) < Convert.ToDouble(args[2]);
+                            return Convert.ToDouble(left) < Convert.ToDouble(right);
                         case "<=":
-                            return Convert.ToDouble(args[0]) <= Convert.ToDouble(args[2]);
+                            return Convert.ToDouble(left) <= Convert.ToDouble(right);
                         case ">":
-                            return Convert.ToDouble(args[0]) > Convert.ToDouble(args[2]);
+                            return Convert.ToDouble(left) > Convert.ToDouble(right);
                         case ">=":
-                            return Convert.ToDouble(args[0]) >= Convert.ToDouble(args[2]);
+                            return Convert.ToDouble(left) >= Convert.ToDouble(right);
                         default:
                             throw new ArgumentException();
                     }
