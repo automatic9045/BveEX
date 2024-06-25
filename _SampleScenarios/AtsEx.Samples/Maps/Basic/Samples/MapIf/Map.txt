@@ -1,0 +1,34 @@
+BveTs Map 2.02:utf-8
+
+include '<AtsEx::USEATSEX>';
+include '<AtsEx::READDEPTH>1';
+
+Structure.Load('..\..\Structures.csv');
+Signal.Load('..\..\Signal.csv');
+Station.Load('Stations.csv');
+
+include '..\..\BaseMap.txt';
+
+50;
+	// BeginIf、ElseIf の引数には条件を記述します。
+	// (左辺, 比較演算子, 右辺) の形で、左辺・右辺には整数、倍精度浮動小数点数 (64bit 実数)、文字列が使用可能です。
+	// 比較演算子は '=='、'!='、'<'、'<='、'>'、'>=' が使用可能です。
+	$random = floor(rand() * 100);
+	AtsEx.If.BeginIf($random, '==', 0);
+		AtsEx.Dialog.Show('random はちょうど 0 です。'); // ダイアログを表示することができる構文です。変数の値のデバッグなどに便利です。
+	AtsEx.If.ElseIf($random, '<', 30);
+		AtsEx.Dialog.Show('random は 1 以上 30 未満です (' + $random + ')。');
+	AtsEx.If.ElseIf($random, '<', 60);
+		AtsEx.Dialog.Show('random は 30 以上 60 未満です (' + $random + ')。');
+	AtsEx.If.Else();
+		AtsEx.Dialog.Show('random は 60 以上 100 未満です (' + $random + ')。');
+	AtsEx.If.End();
+
+100;
+	// BeginIf、ElseIf の引数を 1 つのみ指定すると、その値が 0 以外なら true、0 なら false として処理されます。
+	$condition = 1;
+	AtsEx.If.BeginIf($condition);
+		AtsEx.Dialog.Show('このダイアログは必ず表示されます。ここの距離程は ' + distance + 'm です。');
+	AtsEx.If.Else();
+		AtsEx.Dialog.Show('このダイアログが表示されることはありません。');
+	AtsEx.If.End();
