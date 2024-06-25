@@ -13,75 +13,26 @@ Station.Load('Stations.csv');
 
 include '..\..\BaseMap.txt';
 
-0;
-	Train['test'].Load('TestTrain.txt', '1', 1);
-
-12.5;
-	structure['Info'].Put('1', -0.7, 4, 0, 0, -10, 0, 0, 0);
-
 50;
-	Station['Statement1'].Put(-1, 0.1, 0); // 見やすさのために設置しているだけで、独自ステートメントの定義には無関係です。
+	Station['Statement1'].Put(-1, 1, -1); // 見やすさのために設置しているだけで、マップステートメントの定義には無関係です。
 
-	// パターン 1：基本的な例
-
-	Repeater['AlertStatement1'].Begin0( // リピーターキーには任意の文字列を指定できます。ステートメント間の判別のために使うも、補足情報をプラグインへ渡すために使うも良しです。
-		'0', 0, 0, 0, // 連続ストラクチャーの設置先軌道は地上子の設置先軌道としてそのまま使用されます。
-		'AtsEx::User::Automatic9045::Alert::Alert.Put', // ステートメント名。「Station.Load」や「Beacon.Put」に当たる部分をここで指定します。
-		'AtsEx::User::Automatic9045::Alert::AlertType.Basic'); // 2 つめ以降のストラクチャーを使って、ステートメントに引数を持たせることができます。もちろん引数なしで良い場合は省略可。
-
-	// 《備考：引数を渡す 2 種類の方法》
-	// 
-	// ① 2 つめ以降のストラクチャーを使う
-	//  上の「パターン 1」で使った方法。
-	//  ストラクチャーとしてあらかじめ定義しておく必要があるので、あらかじめとり得る値が数通りに絞られているケースでは見やすくて便利ですが、
-	//  例えば「○○までの距離」など、とり得る値がほぼ無限にあるケースには不向きです。
-	//
-	// ② リピーターキーを使う
-	//  下の「パターン 2」で使っている方法。
-	//  ①とは異なり、とり得る値をストラクチャーとして定義しておく必要がないため、例えば「○○までの距離」などのとり得る値がほぼ無限にあるケースにも対応できます。
-	// ただし①と比べて少し読みづらいので、基本的には①の方法をとり、①で対応できない場合にのみ②の方法を使うことを推奨します。
-
-	Repeater['AlertStatement1'].End(); // 終了を忘れると BVE が重くなるので注意。特に設置間隔を 0m に設定した場合、継続不可能な程にまで重くなることがあります。
+	// パターン 1: 基本的な例
+	// BVE 組込のステートメントと同様、引数はいくつでも指定可能です。
+	AtsEx.User.Automatic9045.MapStatementTest.Greetings.Put();
+	AtsEx.User.Automatic9045.MapStatementTest.Greetings.Put('Hello world!');
+	AtsEx.User.Automatic9045.MapStatementTest.Greetings.Put(12345, 'Hello world!');
 
 150;
-	Station['Statement2'].Put(-1, 0.1, 0);
+	Station['Statement2'].Put(-1, 1, -1);
 
-	// パターン 2：とり得る値がほぼ無限にある引数を渡す (詳細は前述)
-
+	// パターン 2: 引数に変数を渡す
 	$random = rand(100);
-	$repeaterKey = 'AlertStatement2?value=' + $random;
-
-	Repeater[$repeaterKey].Begin0( // ここでは URL 風に指定していますが、AtsEX プラグイン側の実装次第でどんなフォーマットでも対応可能です。
-		'0', 0, 0, 0,
-		'AtsEx::User::Automatic9045::Alert::Alert.Put',
-		'AtsEx::User::Automatic9045::Alert::AlertType.ShowValue');
-
-	Repeater[$repeaterKey].End();
+	AtsEx.User.Automatic9045.MapStatementTest.Greetings.Put('変数 $random の値は ' + $random + 'です。');
 
 250;
-	Station['Statement3'].Put(-1, 0.1, 0);
+	Station['Statement3'].Put(-1, 1, -1);
 
-	// パターン 3：他軌道に設置する
-	// 注……この例にて設置先軌道上の通過のみを検知しているのは、サンプルプラグインにてそのように実装しているためです (詳細はサンプルプラグインのソースコードを参照)。独自ステートメントの仕様ではありません。
-
-	Repeater['AlertStatement3'].Begin0(
-		'1', 0, 0, 0, // 軌道 '1' に設置
-		'AtsEx::User::Automatic9045::Alert::Alert.Put',
-		'AtsEx::User::Automatic9045::Alert::AlertType.Basic');
-
-	Repeater['AlertStatement3'].End();
-
-350;
-	Station['Statement4-1'].Put(-1, 0.1, 0);
-
-	// パターン 4：ステートメントの配置位置に範囲を持たせる
-	// 独自ステートメントでは、列車がその範囲に入ったときと範囲から出たときを検出可能です (詳細はサンプルプラグインのソースコードを参照)。
-
-	Repeater['AlertStatement4'].Begin0(
-		'0', 0, 0, 10, // 配置間隔はここでは 10m に設置していますが、任意の値を設定可能です。ただし範囲を持たせている場合に 0m を指定すると BVE が極端に重くなることがあるため注意。
-		'AtsEx::User::Automatic9045::Alert::Alert.PutRange');
-
-400;
-	Station['Statement4-2'].Put(-1, 0.1, 0);
-
-	Repeater['AlertStatement4'].End(); // ステートメントの終わり
+	// パターン 3: キーを渡す
+	// BVE 組込のステートメントには例が存在しませんが、キーもいくつでも指定可能です。
+	AtsEx.User.Automatic9045.MapStatementTest.Greetings['The quick brown fox jumps'].Put('over the lazy dog.');
+	AtsEx.User.Automatic9045.MapStatementTest.Greetings[67890]['The quick brown fox jumps'].Put('over the lazy dog.');

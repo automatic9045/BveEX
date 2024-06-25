@@ -1,10 +1,10 @@
 BveTs Scenario 2.00 : UTF-8
 
-Title = 普通 一橋→六合【独自マップ構文サンプル】
+Title = 普通 一橋→六合【新・マップ構文サンプル】
 Route = AtsEx.Samples\Maps\Basic\Samples\MapStatements\Map.txt
 RouteTitle = ★AtsEX サンプル
 Vehicle = AtsEx.Samples\Vehicles\Basic\Vehicle_Simple.txt
 VehicleTitle = AtsEX 搭載サンプル車両
 Author = おーとま (automatic9045)
 Image = AtsEx.Samples\Thumbnails\Basic\Default.png
-Comment = 独自マップ構文を使用するサンプルです。
+Comment = 独自のマップ構文を定義し、プラグインから参照するサンプルです。

@@ -43,14 +43,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Argument.cs" />
-    <Compile Include="Identifiers.cs" />
+    <Compile Include="Headers.cs" />
     <Compile Include="PluginMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Statements.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\AtsEx.PluginHost\AtsEx.PluginHost.csproj">
       <Project>{ac6ebf16-d22b-4da8-a0be-5afb729ea2e4}</Project>
       <Name>AtsEx.PluginHost</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Extensions\AtsEx.CoreExtensions\AtsEx.CoreExtensions.csproj">
+      <Project>{fbe0c5ab-7271-4801-a862-af39dd32c829}</Project>
+      <Name>AtsEx.CoreExtensions</Name>
       <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Libs\BveTypes\BveTypes.csproj">
