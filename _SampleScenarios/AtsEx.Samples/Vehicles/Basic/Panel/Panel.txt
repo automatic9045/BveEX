@@ -28,7 +28,7 @@ NaturalFreq = 100
 
 [Needle]
 Subject = ats2
-Location = -320, 0
+Location = -360, 0
 DaytimeImage = ats2.png
 Origin = 16, 240
 Radius = 160
@@ -37,3 +37,20 @@ LastAngle = 135
 Minimum = -100
 Maximum = 100
 NaturalFreq = 100
+
+[Needle]
+Subject = true
+Location = -160, 0
+DaytimeImage = control3.png
+Origin = 16, 240
+Radius = 160
+InitialAngle = 0
+LastAngle = 135
+Minimum = 0
+Maximum = 200
+NaturalFreq = 100
+
+[PilotLamp]
+Subject = true
+Location = -160, -320
+DaytimeImage = control1.png

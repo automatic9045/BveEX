@@ -3,4 +3,5 @@
 	<Assembly Path="AtsEXPlugins\SimpleAts.dll" />
 	<Assembly Path="AtsEXPlugins\StateViewer.dll" />
 	<Assembly Path="AtsEXPlugins\AtsPanelValueTest.dll" />
+	<Assembly Path="AtsEXPlugins\PanelController.dll" />
 </AtsExPluginUsing>
