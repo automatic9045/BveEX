@@ -76,6 +76,6 @@
 xcopy /y /i "$(TargetDir)" "$(SolutionDir)_SampleScenarios\AtsEx.Samples\Maps\Basic\Samples\ControlTrains\MapPlugins\"
 xcopy /y /i "$(TargetDir)" "$(SolutionDir)_SampleScenarios\AtsEx.Samples\Maps\Basic\Samples\ControlTrainsEx\MapPlugins\"
 xcopy /y /i "$(TargetDir)" "$(SolutionDir)_SampleScenarios\AtsEx.Samples\Maps\Basic\Samples\ControlPreTrain\MapPlugins\"
-xcopy /y /i "$(TargetDir)" "$(SolutionDir)_SampleScenarios\AtsEx.Samples\Maps\Basic\Samples\MapStatements\MapPlugins\"</PostBuildEvent>
+</PostBuildEvent>
   </PropertyGroup>
 </Project>
