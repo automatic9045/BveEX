@@ -28,6 +28,9 @@ namespace AtsEx.Extensions.MapStatements
 
         private List<Statement> Statements = null;
 
+        public override string Title { get; } = nameof(MapStatements);
+        public override string Description { get; } = "プラグインからオリジナルのマップ構文を簡単に定義・参照できるようにします。";
+
         public event EventHandler<StatementLoadedEventArgs> StatementLoaded;
 
         public StatementSet(PluginBuilder builder) : base(builder)
