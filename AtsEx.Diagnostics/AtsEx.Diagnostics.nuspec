@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<id>AtsEx.Diagnostics</id>
-		<version></version>
+		<version>1.0.0-rc9</version>
 		<description>BVE Trainsim 5/6 用 AtsEX 及び AtsEX プラグインで発生したエラーを解析するための機能を提供します。</description>
 		<authors>AtsEX Project</authors>
 
