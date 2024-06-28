@@ -49,7 +49,7 @@ namespace AtsEx.Launcher.Hosting
                     DialogResult confirm = dialog.ShowDialog();
                     if (confirm == DialogResult.OK)
                     {
-                        Process.Start("https://www.okaoka-depot.com/AtsEX/download/");
+                        Process.Start("https://www.okaoka-depot.com/AtsEX.Docs/download/");
                     }
 
                     if (dialog.DoNotShowAgain)
