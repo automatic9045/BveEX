@@ -23,9 +23,9 @@ namespace AtsEx.Extensions.MapStatements
     [ExtensionMainDisplayType(typeof(IStatementSet))]
     internal class StatementSet : AssemblyPluginBase, IStatementSet
     {
-        private readonly BuiltinProcess BuiltinProcess;
         private readonly HarmonyPatch Patch;
 
+        private BuiltinProcess BuiltinProcess;
         private List<Statement> Statements = null;
 
         public override string Title { get; } = nameof(MapStatements);
@@ -35,8 +35,6 @@ namespace AtsEx.Extensions.MapStatements
 
         public StatementSet(PluginBuilder builder) : base(builder)
         {
-            BuiltinProcess = new BuiltinProcess();
-
             ClassMemberSet mapLoaderMembers = BveHacker.BveTypes.GetClassInfoOf<MapLoader>();
             FastMethod parseStatementMethod = mapLoaderMembers.GetSourceMethodOf(nameof(MapLoader.ParseStatement));
             Patch = HarmonyPatch.Patch(nameof(MapStatements), parseStatementMethod.Source, PatchType.Prefix);
@@ -70,11 +68,13 @@ namespace AtsEx.Extensions.MapStatements
 
         private void OnScenarioOpened(ScenarioOpenedEventArgs e)
         {
+            BuiltinProcess = new BuiltinProcess();
             Statements = new List<Statement>();
         }
 
         private void OnScenarioClosed(EventArgs e)
         {
+            BuiltinProcess = null;
             Statements = null;
         }
 

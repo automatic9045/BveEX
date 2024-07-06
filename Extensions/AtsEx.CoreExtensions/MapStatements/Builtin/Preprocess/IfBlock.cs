@@ -17,34 +17,15 @@ namespace AtsEx.Extensions.MapStatements.Builtin.Preprocess
         private static readonly ClauseFilter ElseFilter = new ClauseFilter("Else", ClauseType.Function);
         private static readonly ClauseFilter EndFilter = new ClauseFilter("End", ClauseType.Function);
 
-        private bool IsIn = false;
-        private bool HasMatched = false;
-        private bool Match = false;
-
-        private IfBlock Child = null;
-
-        public bool IgnoreStatement
-        {
-            get
-            {
-                if (!(Child is null)) return Child.IgnoreStatement;
-                if (IsIn) return !Match;
-                return false;
-            }
-        }
-
-        private event EventHandler BlockFinished;
+        /// <summary>
+        /// 各ネストの if ブロックにおいて、既にマッチする条件が出現したかどうか。
+        /// </summary>
+        private readonly Dictionary<int, bool> HasMatched = new Dictionary<int, bool>();
 
         public bool CanParse(Statement statement) => statement.FilterMatches(RootFilter);
 
-        public void Parse(Statement statement)
+        public BlockParseResult Parse(Statement statement, int nest, int ignoreNest)
         {
-            if (!(Child is null))
-            {
-                Child.Parse(statement);
-                return;
-            }
-
             IReadOnlyList<MapStatementClause> clauses = statement.Source.Clauses;
             if (clauses.Count != 3) throw new SyntaxException(statement);
             if (clauses[0].Keys.Count != 0) throw new SyntaxException(statement);
@@ -53,42 +34,39 @@ namespace AtsEx.Extensions.MapStatements.Builtin.Preprocess
 
             if (statement.FilterMatches(RootFilter, BeginIfFilter))
             {
-                if (IsIn)
-                {
-                    Child = new IfBlock();
-                    Child.BlockFinished += (sender, e) => Child = null;
-                }
-                else
-                {
-                    IsIn = true;
-                    HasMatched = false;
-                    SetMatch();
-                }
+                if (ignoreNest <= nest) return BlockParseResult.Ignored(BlockParseResult.NestOperationMode.Begin);
+
+                bool matches = Matches();
+                HasMatched.Add(nest + 1, matches);
+                return BlockParseResult.Effective(BlockParseResult.NestOperationMode.Begin, !matches);
             }
             else if (statement.FilterMatches(RootFilter, ElseIfFilter))
             {
-                if (!IsIn) throw new SyntaxException(statement);
+                if (ignoreNest < nest) return BlockParseResult.Ignored(BlockParseResult.NestOperationMode.Continue);
 
-                if (HasMatched)
-                {
-                    Match = false;
-                }
-                else
-                {
-                    SetMatch();
-                }
+                if (!HasMatched.ContainsKey(nest)) throw new SyntaxException(statement);
+                if (HasMatched[nest]) return BlockParseResult.Effective(BlockParseResult.NestOperationMode.Continue, true);
+
+                bool matches = Matches();
+                HasMatched[nest] = matches;
+                return BlockParseResult.Effective(BlockParseResult.NestOperationMode.Continue, !matches);
             }
             else if (statement.FilterMatches(RootFilter, ElseFilter))
             {
-                if (!IsIn) throw new SyntaxException(statement);
+                if (ignoreNest < nest) return BlockParseResult.Ignored(BlockParseResult.NestOperationMode.Continue);
 
-                Match = !HasMatched;
+                if (!HasMatched.ContainsKey(nest)) throw new SyntaxException(statement);
+
+                bool hasMatched = HasMatched[nest];
+                return BlockParseResult.Effective(BlockParseResult.NestOperationMode.Continue, hasMatched);
             }
             else if (statement.FilterMatches(RootFilter, EndFilter))
             {
-                if (!IsIn) throw new SyntaxException(statement);
+                if (ignoreNest < nest) return BlockParseResult.Ignored(BlockParseResult.NestOperationMode.End);
 
-                IsIn = false;
+                if (!HasMatched.Remove(nest)) throw new SyntaxException(statement);
+
+                return BlockParseResult.Effective(BlockParseResult.NestOperationMode.End, false);
             }
             else
             {
@@ -96,13 +74,12 @@ namespace AtsEx.Extensions.MapStatements.Builtin.Preprocess
             }
 
 
-            void SetMatch()
+            bool Matches()
             {
                 try
                 {
                     List<object> statementArgs = clauses[2].Args;
-                    Match = Condition.Parse(statementArgs);
-                    HasMatched |= Match;
+                    return Condition.Parse(statementArgs);
                 }
                 catch
                 {

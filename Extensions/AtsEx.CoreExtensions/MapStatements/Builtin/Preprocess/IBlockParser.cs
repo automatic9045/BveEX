@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace AtsEx.Extensions.MapStatements.Builtin.Preprocess
 {
-    internal interface IBlockParser : IParser
+    internal interface IBlockParser
     {
-        bool IgnoreStatement { get; }
+        bool CanParse(Statement statement);
+        BlockParseResult Parse(Statement statement, int nest, int ignoreNest);
     }
 }
