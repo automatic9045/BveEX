@@ -10,12 +10,12 @@ namespace AtsEx.Extensions.MapStatements.Builtin.Preprocess
 {
     internal class IfBlock : IBlockParser
     {
-        private static readonly ClauseFilter RootFilter = new ClauseFilter("If", ClauseType.Element);
+        private static readonly ClauseFilter RootFilter = ClauseFilter.Element("If", 0);
 
-        private static readonly ClauseFilter BeginIfFilter = new ClauseFilter("BeginIf", ClauseType.Function);
-        private static readonly ClauseFilter ElseIfFilter = new ClauseFilter("ElseIf", ClauseType.Function);
-        private static readonly ClauseFilter ElseFilter = new ClauseFilter("Else", ClauseType.Function);
-        private static readonly ClauseFilter EndFilter = new ClauseFilter("End", ClauseType.Function);
+        private static readonly ClauseFilter BeginIfFilter = ClauseFilter.Function("BeginIf", 1, 3);
+        private static readonly ClauseFilter ElseIfFilter = ClauseFilter.Function("ElseIf", 1, 3);
+        private static readonly ClauseFilter ElseFilter = ClauseFilter.Function("Else", 0);
+        private static readonly ClauseFilter EndFilter = ClauseFilter.Function("End", 0);
 
         /// <summary>
         /// 各ネストの if ブロックにおいて、既にマッチする条件が出現したかどうか。
@@ -28,9 +28,6 @@ namespace AtsEx.Extensions.MapStatements.Builtin.Preprocess
         {
             IReadOnlyList<MapStatementClause> clauses = statement.Source.Clauses;
             if (clauses.Count != 3) throw new SyntaxException(statement);
-            if (clauses[0].Keys.Count != 0) throw new SyntaxException(statement);
-            if (clauses[1].Keys.Count != 0) throw new SyntaxException(statement);
-            if (clauses[2].Keys.Count != 0) throw new SyntaxException(statement);
 
             if (statement.FilterMatches(RootFilter, BeginIfFilter))
             {

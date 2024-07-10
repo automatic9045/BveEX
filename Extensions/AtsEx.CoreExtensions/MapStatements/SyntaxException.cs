@@ -50,6 +50,13 @@ namespace AtsEx.Extensions.MapStatements
         {
         }
 
+        /// <summary>
+        /// 原因となるステートメントを指定せずに、<see cref="SyntaxException"/> クラスの新しいインスタンスを初期化します。
+        /// </summary>
+        public SyntaxException() : this(null)
+        {
+        }
+
         private static (int LineIndex, int CharIndex) GetPosition(Statement statement)
         {
             IList<MapStatementClause> clauses = statement.Source.Clauses;

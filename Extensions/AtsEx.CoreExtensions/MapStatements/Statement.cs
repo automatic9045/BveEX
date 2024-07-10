@@ -40,7 +40,18 @@ namespace AtsEx.Extensions.MapStatements
             foreach (ClauseFilter filter in filters)
             {
                 if (Source.Clauses.Count <= i) return false;
-                if (!filter.Matches(Source.Clauses[i])) return false;
+
+                bool matches;
+                try
+                {
+                    matches = filter.Matches(Source.Clauses[i]);
+                }
+                catch (SyntaxException)
+                {
+                    throw new SyntaxException(this);
+                }
+
+                if (!matches) return false;
 
                 i++;
             }
