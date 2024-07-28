@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -15,7 +16,7 @@ namespace BveTypes.ClassWrappers
     /// <summary>
     /// 他列車の情報を提供します。
     /// </summary>
-    public class TrainInfo : ClassWrapperBase
+    public class TrainInfo : MapObjectList
     {
         [InitializeClassWrapper]
         private static void Initialize(BveTypeSet bveTypes)
@@ -25,6 +26,7 @@ namespace BveTypes.ClassWrappers
             Constructor = members.GetSourceConstructor();
 
             StructuresGetMethod = members.GetSourcePropertyGetterOf(nameof(Structures));
+            SoundsGetMethod = members.GetSourcePropertyGetterOf(nameof(Sounds));
 
             TrackKeyGetMethod = members.GetSourcePropertyGetterOf(nameof(TrackKey));
             TrackKeySetMethod = members.GetSourcePropertySetterOf(nameof(TrackKey));
@@ -34,7 +36,7 @@ namespace BveTypes.ClassWrappers
         /// オリジナル オブジェクトから <see cref="TrainInfo"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         /// <param name="src">ラップするオリジナル オブジェクト。</param>
-        protected TrainInfo(object src) : base(src)
+        protected TrainInfo(IList src) : base(src)
         {
         }
 
@@ -44,14 +46,14 @@ namespace BveTypes.ClassWrappers
         /// <param name="src">ラップするオリジナル オブジェクト。</param>
         /// <returns>オリジナル オブジェクトをラップした <see cref="TrainInfo"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
-        public static TrainInfo FromSource(object src) => src is null ? null : new TrainInfo(src);
+        public static new TrainInfo FromSource(object src) => src is null ? null : new TrainInfo((IList)src);
 
         private static FastConstructor Constructor;
         /// <summary>
         /// <see cref="TrainInfo"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         public TrainInfo()
-            : this(Constructor.Invoke(null))
+            : this((IList)Constructor.Invoke(null))
         {
         }
 
@@ -59,7 +61,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// この他列車に紐づけるストラクチャーの一覧を取得・設定します。
         /// </summary>
-        public WrappedList<Structure> Structures => WrappedList<Structure>.FromSource(StructuresGetMethod.Invoke(Src, null));
+        public WrappedList<Structure> Structures => WrappedList<Structure>.FromSource((IList)StructuresGetMethod.Invoke(Src, null));
 
         private static FastMethod SoundsGetMethod;
         /// <summary>
