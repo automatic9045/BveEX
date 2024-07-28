@@ -1483,6 +1483,25 @@
 		</Property>
 	</Class>
 
+	<Class Wrapper="TrainStopObject" Original="cj">
+		<Property Wrapper="StopTimeMilliseconds">
+			<Getter Original="b"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="Acceleration">
+			<Getter Original="c"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="Deceleration">
+			<Getter Original="d"/>
+			<Setter Original="c"/>
+		</Property>
+		<Property Wrapper="Speed">
+			<Getter Original="a"/>
+			<Setter Original="b"/>
+		</Property>
+	</Class>
+
 	<Class Wrapper="Transform" Original="al">
 		<Field WrapperProperty="Matrix" Original="a"/>
 	</Class>
