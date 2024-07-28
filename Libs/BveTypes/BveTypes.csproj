@@ -88,6 +88,8 @@
     <Compile Include="ClassWrappers\Public\MapStatementList.cs" />
     <Compile Include="ClassWrappers\Public\Needle.cs" />
     <Compile Include="ClassWrappers\Public\PilotLamp.cs" />
+    <Compile Include="ClassWrappers\Public\Sound3DObject.cs" />
+    <Compile Include="ClassWrappers\Public\Sound3DObjectList.cs" />
     <Compile Include="ClassWrappers\Public\SoundObject.cs" />
     <Compile Include="ClassWrappers\Public\SoundObjectList.cs" />
     <Compile Include="ClassWrappers\Public\ValueContainer.cs" />

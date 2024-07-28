@@ -51,6 +51,8 @@ namespace BveTypes.ClassWrappers
 
             SoundObjectsGetMethod = members.GetSourcePropertyGetterOf(nameof(SoundObjects));
 
+            Sound3DObjectsGetMethod = members.GetSourcePropertyGetterOf(nameof(Sound3DObjects));
+
             IrregularityObjectsGetMethod = members.GetSourcePropertyGetterOf(nameof(IrregularityObjects));
 
             SoundsGetMethod = members.GetSourcePropertyGetterOf(nameof(Sounds));
@@ -172,6 +174,12 @@ namespace BveTypes.ClassWrappers
         /// サウンド マップ オブジェクトの一覧を取得します。
         /// </summary>
         public SoundObjectList SoundObjects => SoundObjectList.FromSource(SoundObjectsGetMethod.Invoke(Src, null));
+
+        private static FastMethod Sound3DObjectsGetMethod;
+        /// <summary>
+        /// 固定音源の一覧を取得します。
+        /// </summary>
+        public Sound3DObjectList Sound3DObjects => Sound3DObjectList.FromSource(Sound3DObjectsGetMethod.Invoke(Src, null));
 
         private static FastMethod IrregularityObjectsGetMethod;
         /// <summary>

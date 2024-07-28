@@ -986,6 +986,9 @@
 		<Property Wrapper="SoundObjects">
 			<Getter Original="g"/>
 		</Property>
+		<Property Wrapper="Sound3DObjects">
+			<Getter Original="i"/>
+		</Property>
 		<Property Wrapper="IrregularityObjects">
 			<Getter Original="z"/>
 		</Property>
@@ -1218,11 +1221,33 @@
 		<Method Wrapper="SetVolumeAndPitch" WrapperParams="System.Double; System.Double" Original="a"/>
 	</Class>
 
+	<Class Wrapper="Sound3DObject" Original="ee">
+		<Children>
+			<Enum Wrapper="SoundFunction" Original="a"/>
+		</Children>
+
+		<Property Wrapper="Source">
+			<Getter Original="c"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="DistanceToSourceFront">
+			<Getter Original="b"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="Function">
+			<Getter Original="a"/>
+			<Setter Original="a"/>
+		</Property>
+	</Class>
+
 	<Class Wrapper="SoundObject" Original="ea">
 		<Property Wrapper="Source">
 			<Getter Original="b"/>
 			<Setter Original="a"/>
 		</Property>
+	</Class>
+
+	<Class Wrapper="Sound3DObjectList" Original="co">
 	</Class>
 
 	<Class Wrapper="SoundObjectList" Original="y">
@@ -1448,6 +1473,9 @@
 	<Class Wrapper="TrainInfo" Original="fc">
 		<Property Wrapper="Structures">
 			<Getter Original="f"/>
+		</Property>
+		<Property Wrapper="Sounds">
+			<Getter Original="e"/>
 		</Property>
 		<Property Wrapper="TrackKey">
 			<Getter Original="c"/>

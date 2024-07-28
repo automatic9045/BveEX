@@ -61,13 +61,11 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public WrappedList<Structure> Structures => WrappedList<Structure>.FromSource(StructuresGetMethod.Invoke(Src, null));
 
-        /*
-        private static MethodInfo SoundsGetMethod;
+        private static FastMethod SoundsGetMethod;
         /// <summary>
         /// この他列車に紐づける音源の一覧を取得・設定します。
         /// </summary>
-        public WrappedList<Sound3DObject> Sounds => WrappedList<Sound3DObject>.FromSource(SoundsGetMethod.Invoke(Src, null));
-        */
+        public WrappedList<Sound3DObject> Sounds => WrappedList<Sound3DObject>.FromSource((IList)SoundsGetMethod.Invoke(Src, null));
 
         private static FastMethod TrackKeyGetMethod;
         private static FastMethod TrackKeySetMethod;
