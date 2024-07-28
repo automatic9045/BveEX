@@ -91,24 +91,10 @@ namespace AtsEx.Extensions.MapStatements
         public IEnumerator<Statement> GetEnumerator() => Statements.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        public IEnumerable<Statement> FindStatements(IEnumerable<ClauseFilter> clauses) => Statements.Where(statement => statement.FilterMatches(clauses));
-
         public Statement FindOfficialStatement(params ClauseFilter[] clauses) => FindOfficialStatements(clauses).FirstOrDefault();
-        public IEnumerable<Statement> FindOfficialStatements(params ClauseFilter[] clauses)
-        {
-            if (0 < clauses.Length && clauses[0].Name.ToLowerInvariant() == "user") throw new ArgumentException();
-            return FindStatements(clauses);
-        }
+        public IEnumerable<Statement> FindOfficialStatements(params ClauseFilter[] clauses) => Statements.Where(statement => statement.IsOfficialStatement(clauses));
 
         public Statement FindUserStatement(string userName, params ClauseFilter[] clauses) => FindUserStatements(userName, clauses).FirstOrDefault();
-        public IEnumerable<Statement> FindUserStatements(string userName, params ClauseFilter[] clauses)
-        {
-            ClauseFilter[] userClauses = new[]
-            {
-                new ClauseFilter("User", ClauseType.Element), new ClauseFilter(userName, ClauseType.Element),
-            };
-
-            return FindStatements(userClauses.Concat(clauses));
-        }
+        public IEnumerable<Statement> FindUserStatements(string userName, params ClauseFilter[] clauses) => Statements.Where(statement => statement.IsUserStatement(userName, clauses));
     }
 }

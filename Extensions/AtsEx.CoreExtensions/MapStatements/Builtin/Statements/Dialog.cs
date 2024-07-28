@@ -14,7 +14,7 @@ namespace AtsEx.Extensions.MapStatements.Builtin.Statements
         private static readonly ClauseFilter RootFilter = new ClauseFilter("Dialog", ClauseType.Element);
         private static readonly ClauseFilter ShowFilter = new ClauseFilter("Show", ClauseType.Function);
 
-        public bool CanParse(Statement statement) => statement.FilterMatches(RootFilter);
+        public bool CanParse(Statement statement) => statement.IsOfficialStatement(RootFilter);
 
         public void Parse(Statement statement)
         {
@@ -24,7 +24,7 @@ namespace AtsEx.Extensions.MapStatements.Builtin.Statements
             if (clauses[1].Keys.Count != 0) throw new SyntaxException(statement);
             if (clauses[2].Keys.Count != 0) throw new SyntaxException(statement);
 
-            if (statement.FilterMatches(RootFilter, ShowFilter))
+            if (statement.IsOfficialStatement(RootFilter, ShowFilter))
             {
                 if (clauses[2].Args.Count != 1) throw new SyntaxException(statement);
 

@@ -34,7 +34,7 @@ namespace AtsEx.Extensions.MapStatements
             return $"{position} {string.Join(".", Source.Clauses)};";
         }
 
-        internal bool FilterMatches(IEnumerable<ClauseFilter> filters)
+        private bool FilterMatches(IEnumerable<ClauseFilter> filters)
         {
             int i = 1;
             foreach (ClauseFilter filter in filters)
@@ -59,6 +59,37 @@ namespace AtsEx.Extensions.MapStatements
             return true;
         }
 
-        internal bool FilterMatches(params ClauseFilter[] filters) => FilterMatches((IEnumerable<ClauseFilter>)filters);
+        /// <summary>
+        /// 指定された条件に一致する AtsEX 公式のマップステートメントであるかどうかを判定します。
+        /// </summary>
+        /// <param name="filters">ステートメントの句の一覧 (前方一致)。
+        /// 「AtsEx」マップ要素 (<c>AtsEx.Hoge['a'].Fuga('b');</c> の AtsEx) は除きます。</param>
+        /// <returns>条件に一致した場合は <see langword="true"/>、一致しなかった場合は <see langword="false"/>。</returns>
+        public bool IsOfficialStatement(params ClauseFilter[] filters)
+        {
+            if (0 < filters.Length && filters[0].Name.ToLowerInvariant() == "user")
+            {
+                throw new ArgumentException();
+            }
+
+            return FilterMatches(filters);
+        }
+
+        /// <summary>
+        /// 指定された条件に一致する AtsEX ユーザーマップステートメントであるかどうかを判定します。
+        /// </summary>
+        /// <param name="userName">ステートメントのユーザー名。<c>AtsEx.User.FooBar.Hoge['a'].Fuga('b');</c> の FooBar が該当します。</param>
+        /// <param name="filters">ステートメントの句の一覧 (前方一致)。
+        /// ユーザー名以前のマップ要素 (<c>AtsEx.User.FooBar.Hoge['a'].Fuga('b');</c> の AtsEx、User、FooBar) は除きます。</param>
+        /// <returns>条件に一致した場合は <see langword="true"/>、一致しなかった場合は <see langword="false"/>。</returns>
+        public bool IsUserStatement(string userName, params ClauseFilter[] filters)
+        {
+            ClauseFilter[] userClauses = new ClauseFilter[]
+            {
+                new ClauseFilter("User", ClauseType.Element), new ClauseFilter(userName, ClauseType.Element),
+            };
+
+            return FilterMatches(userClauses.Concat(filters));
+        }
     }
 }

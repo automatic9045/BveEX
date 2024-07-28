@@ -22,14 +22,14 @@ namespace AtsEx.Extensions.MapStatements.Builtin.Preprocess
         /// </summary>
         private readonly Dictionary<int, bool> HasMatched = new Dictionary<int, bool>();
 
-        public bool CanParse(Statement statement) => statement.FilterMatches(RootFilter);
+        public bool CanParse(Statement statement) => statement.IsOfficialStatement(RootFilter);
 
         public BlockParseResult Parse(Statement statement, int nest, int ignoreNest)
         {
             IReadOnlyList<MapStatementClause> clauses = statement.Source.Clauses;
             if (clauses.Count != 3) throw new SyntaxException(statement);
 
-            if (statement.FilterMatches(RootFilter, BeginIfFilter))
+            if (statement.IsOfficialStatement(RootFilter, BeginIfFilter))
             {
                 if (ignoreNest <= nest) return BlockParseResult.Ignored(BlockParseResult.NestOperationMode.Begin);
 
@@ -37,7 +37,7 @@ namespace AtsEx.Extensions.MapStatements.Builtin.Preprocess
                 HasMatched.Add(nest + 1, matches);
                 return BlockParseResult.Effective(BlockParseResult.NestOperationMode.Begin, !matches);
             }
-            else if (statement.FilterMatches(RootFilter, ElseIfFilter))
+            else if (statement.IsOfficialStatement(RootFilter, ElseIfFilter))
             {
                 if (ignoreNest < nest) return BlockParseResult.Ignored(BlockParseResult.NestOperationMode.Continue);
 
@@ -48,7 +48,7 @@ namespace AtsEx.Extensions.MapStatements.Builtin.Preprocess
                 HasMatched[nest] = matches;
                 return BlockParseResult.Effective(BlockParseResult.NestOperationMode.Continue, !matches);
             }
-            else if (statement.FilterMatches(RootFilter, ElseFilter))
+            else if (statement.IsOfficialStatement(RootFilter, ElseFilter))
             {
                 if (ignoreNest < nest) return BlockParseResult.Ignored(BlockParseResult.NestOperationMode.Continue);
 
@@ -57,7 +57,7 @@ namespace AtsEx.Extensions.MapStatements.Builtin.Preprocess
                 bool hasMatched = HasMatched[nest];
                 return BlockParseResult.Effective(BlockParseResult.NestOperationMode.Continue, hasMatched);
             }
-            else if (statement.FilterMatches(RootFilter, EndFilter))
+            else if (statement.IsOfficialStatement(RootFilter, EndFilter))
             {
                 if (ignoreNest < nest) return BlockParseResult.Ignored(BlockParseResult.NestOperationMode.End);
 
