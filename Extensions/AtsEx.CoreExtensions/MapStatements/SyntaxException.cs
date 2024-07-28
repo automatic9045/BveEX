@@ -26,7 +26,7 @@ namespace AtsEx.Extensions.MapStatements
         /// <param name="statement">例外の原因となっているステートメント。</param>
         /// <param name="message">例外の概要を表すメッセージ。</param>
         public SyntaxException(Statement statement, string message)
-            : base(message, statement.Source.FileName, GetPosition(statement).LineIndex, GetPosition(statement).CharIndex)
+            : base(message, statement?.Source.FileName, GetPosition(statement).LineIndex, GetPosition(statement).CharIndex)
         {
             Statement = statement;
         }
@@ -59,6 +59,8 @@ namespace AtsEx.Extensions.MapStatements
 
         private static (int LineIndex, int CharIndex) GetPosition(Statement statement)
         {
+            if (statement is null) return (0, 0);
+
             IList<MapStatementClause> clauses = statement.Source.Clauses;
             return 0 < clauses.Count ? (clauses[0].LineIndex, clauses[0].CharIndex) : (0, 0);
         }
