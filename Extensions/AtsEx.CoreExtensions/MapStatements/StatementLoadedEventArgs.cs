@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using BveTypes.ClassWrappers;
+
 namespace AtsEx.Extensions.MapStatements
 {
     /// <summary>
@@ -17,12 +19,19 @@ namespace AtsEx.Extensions.MapStatements
         public Statement Statement { get; }
 
         /// <summary>
+        /// ステートメントの読込に使用された <see cref="BveTypes.ClassWrappers.MapLoader"/> を取得します。
+        /// </summary>
+        public MapLoader MapLoader { get; }
+
+        /// <summary>
         /// <see cref="StatementLoadedEventArgs"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         /// <param name="statement">読み込まれた AtsEX マップステートメント。</param>
-        public StatementLoadedEventArgs(Statement statement)
+        /// <param name="mapLoader">ステートメントの読込に使用された <see cref="BveTypes.ClassWrappers.MapLoader"/>。</param>
+        public StatementLoadedEventArgs(Statement statement, MapLoader mapLoader)
         {
             Statement = statement;
+            MapLoader = mapLoader;
         }
     }
 }

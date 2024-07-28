@@ -53,7 +53,7 @@ namespace AtsEx.Extensions.MapStatements
                     if (!isPreprocess && !BuiltinProcess.IgnoreStatement)
                     {
                         Statements.Add(statement);
-                        StatementLoaded?.Invoke(this, new StatementLoadedEventArgs(statement));
+                        StatementLoaded?.Invoke(this, new StatementLoadedEventArgs(statement, instance));
                     }
 
                     return new PatchInvokationResult(SkipModes.SkipOriginal);
