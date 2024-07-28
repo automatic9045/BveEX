@@ -1005,6 +1005,9 @@
 		<Property Wrapper="SpeedLimits">
 			<Getter Original="w"/>
 		</Property>
+		<Property Wrapper="TrainInfos">
+			<Getter Original="ac"/>
+		</Property>
 		<Property Wrapper="DrawDistanceObjects">
 			<Getter Original="j"/>
 		</Property>

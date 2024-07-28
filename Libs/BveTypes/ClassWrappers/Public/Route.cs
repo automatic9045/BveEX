@@ -63,6 +63,8 @@ namespace BveTypes.ClassWrappers
 
             SpeedLimitsGetMethod = members.GetSourcePropertyGetterOf(nameof(SpeedLimits));
 
+            TrainInfosGetMethod = members.GetSourcePropertyGetterOf(nameof(TrainInfos));
+
             DrawDistanceObjectsGetMethod = members.GetSourcePropertyGetterOf(nameof(DrawDistanceObjects));
 
             GetTrackMatrixMethod = members.GetSourceMethodOf(nameof(GetTrackMatrix));
@@ -246,6 +248,12 @@ namespace BveTypes.ClassWrappers
         /// 速度制限のリストを取得します。
         /// </summary>
         public SpeedLimitList SpeedLimits => SpeedLimitList.FromSource(SpeedLimitsGetMethod.Invoke(Src, null));
+
+        private static FastMethod TrainInfosGetMethod;
+        /// <summary>
+        /// 他列車の情報のリストを取得します。
+        /// </summary>
+        public WrappedSortedList<string, TrainInfo> TrainInfos => new WrappedSortedList<string, TrainInfo>(TrainInfosGetMethod.Invoke(Src, null));
 
         private static FastMethod DrawDistanceObjectsGetMethod;
         /// <summary>
