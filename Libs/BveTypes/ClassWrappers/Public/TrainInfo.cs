@@ -28,8 +28,17 @@ namespace BveTypes.ClassWrappers
             StructuresGetMethod = members.GetSourcePropertyGetterOf(nameof(Structures));
             SoundsGetMethod = members.GetSourcePropertyGetterOf(nameof(Sounds));
 
+            DirectionGetMethod = members.GetSourcePropertyGetterOf(nameof(Direction));
+            DirectionSetMethod = members.GetSourcePropertySetterOf(nameof(Direction));
+
             TrackKeyGetMethod = members.GetSourcePropertyGetterOf(nameof(TrackKey));
             TrackKeySetMethod = members.GetSourcePropertySetterOf(nameof(TrackKey));
+
+            EnableLocationGetMethod = members.GetSourcePropertyGetterOf(nameof(EnableLocation));
+            EnableLocationSetMethod = members.GetSourcePropertySetterOf(nameof(EnableLocation));
+
+            EnableTimeMillisecondsGetMethod = members.GetSourcePropertyGetterOf(nameof(EnableTimeMilliseconds));
+            EnableTimeMillisecondsSetMethod = members.GetSourcePropertySetterOf(nameof(EnableTimeMilliseconds));
         }
 
         /// <summary>
@@ -69,6 +78,17 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public WrappedList<Sound3DObject> Sounds => WrappedList<Sound3DObject>.FromSource((IList)SoundsGetMethod.Invoke(Src, null));
 
+        private static FastMethod DirectionGetMethod;
+        private static FastMethod DirectionSetMethod;
+        /// <summary>
+        /// この他列車の進行方向を取得・設定します。
+        /// </summary>
+        public int Direction
+        {
+            get => (int)DirectionGetMethod.Invoke(Src, null);
+            set => DirectionSetMethod.Invoke(Src, new object[] { value });
+        }
+
         private static FastMethod TrackKeyGetMethod;
         private static FastMethod TrackKeySetMethod;
         /// <summary>
@@ -78,6 +98,37 @@ namespace BveTypes.ClassWrappers
         {
             get => (string)TrackKeyGetMethod.Invoke(Src, null);
             set => TrackKeySetMethod.Invoke(Src, new object[] { value });
+        }
+
+        private static FastMethod EnableLocationGetMethod;
+        private static FastMethod EnableLocationSetMethod;
+        /// <summary>
+        /// この他列車の動作を有効にする距離程 [m] を取得・設定します。
+        /// </summary>
+        public double EnableLocation
+        {
+            get => (double)EnableLocationGetMethod.Invoke(Src, null);
+            set => EnableLocationSetMethod.Invoke(Src, new object[] { value });
+        }
+
+        private static FastMethod EnableTimeMillisecondsGetMethod;
+        private static FastMethod EnableTimeMillisecondsSetMethod;
+        /// <summary>
+        /// この他列車の動作を有効にする時刻をミリ秒単位で取得・設定します。
+        /// </summary>
+        public int EnableTimeMilliseconds
+        {
+            get => (int)EnableTimeMillisecondsGetMethod.Invoke(Src, null);
+            set => EnableTimeMillisecondsSetMethod.Invoke(Src, new object[] { value });
+        }
+
+        /// <summary>
+        /// この他列車の動作を有効にする時刻を取得・設定します。
+        /// </summary>
+        public TimeSpan EnableTime
+        {
+            get => TimeSpan.FromMilliseconds(EnableTimeMilliseconds);
+            set => EnableTimeMilliseconds = (int)value.TotalMilliseconds;
         }
     }
 }

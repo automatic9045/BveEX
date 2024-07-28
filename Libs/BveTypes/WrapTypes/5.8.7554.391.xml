@@ -1480,8 +1480,20 @@
 		<Property Wrapper="Sounds">
 			<Getter Original="e"/>
 		</Property>
+		<Property Wrapper="Direction">
+			<Getter Original="a"/>
+			<Setter Original="b"/>
+		</Property>
 		<Property Wrapper="TrackKey">
 			<Getter Original="c"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="EnableLocation">
+			<Getter Original="d"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="EnableTimeMilliseconds">
+			<Getter Original="b"/>
 			<Setter Original="a"/>
 		</Property>
 	</Class>
