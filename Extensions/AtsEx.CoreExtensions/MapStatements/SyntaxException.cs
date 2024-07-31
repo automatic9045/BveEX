@@ -16,6 +16,11 @@ namespace AtsEx.Extensions.MapStatements
     public class SyntaxException : BveFileLoadException
     {
         /// <summary>
+        /// 標準のエラーメッセージを取得します。
+        /// </summary>
+        public static readonly string DefaultMessage = $"Syntax error. ({App.Instance.ProductShortName})";
+
+        /// <summary>
         /// 例外の原因となっているステートメントを取得します。
         /// </summary>
         public Statement Statement { get; }
@@ -46,7 +51,7 @@ namespace AtsEx.Extensions.MapStatements
         /// 標準のエラーメッセージを使用して、<see cref="SyntaxException"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         /// <param name="statement">例外の原因となっているステートメント。</param>
-        public SyntaxException(Statement statement) : this(statement, $"Syntax error. ({App.Instance.ProductShortName})")
+        public SyntaxException(Statement statement) : this(statement, DefaultMessage)
         {
         }
 
