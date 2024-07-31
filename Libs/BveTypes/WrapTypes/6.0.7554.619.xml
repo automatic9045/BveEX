@@ -700,6 +700,7 @@
 
 		<Event Wrapper="ObjectPassed" OriginalAddAccessor="b" OriginalRemoveAccessor="a" OriginalDelegateField="b"/>
 
+		<Method Wrapper="Insert" WrapperParams="atsex:MapObjectBase" Original="a"/>
 		<Method Wrapper="GoToAndGetCurrent" WrapperParams="System.Double" Original="c"/>
 		<Method Wrapper="GoTo" WrapperParams="System.Double" Original="u"/>
 		<Method Wrapper="GoTo" WrapperParams="System.Double; System.Double" Original="ae" IsOriginalNonPublic="true"/>

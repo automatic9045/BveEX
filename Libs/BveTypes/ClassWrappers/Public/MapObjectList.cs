@@ -30,6 +30,7 @@ namespace BveTypes.ClassWrappers
 
             ObjectPassedEvent = members.GetSourceEventOf(nameof(ObjectPassed));
 
+            InsertMethod = members.GetSourceMethodOf(nameof(Insert), new Type[] { typeof(MapObjectBase) });
             GoToAndGetCurrentMethod = members.GetSourceMethodOf(nameof(GoToAndGetCurrent));
             GoToMethod1 = members.GetSourceMethodOf(nameof(GoTo), new Type[] { typeof(double) });
             GoToMethod2 = members.GetSourceMethodOf(nameof(GoTo), new Type[] { typeof(double), typeof(double) });
@@ -91,6 +92,13 @@ namespace BveTypes.ClassWrappers
             object src = GoToAndGetCurrentMethod.Invoke(Src, new object[] { location });
             return src is null ? null : (MapObjectBase)CreateFromSource(src);
         }
+
+        private static FastMethod InsertMethod;
+        /// <summary>
+        /// 距離程順に新しい項目を追加します。
+        /// </summary>
+        /// <param name="item">追加するマップ オブジェクト。</param>
+        public void Insert(MapObjectBase item) => InsertMethod.Invoke(Src, new object[] { item.Src });
 
         private static FastMethod GoToMethod1;
         /// <summary>
