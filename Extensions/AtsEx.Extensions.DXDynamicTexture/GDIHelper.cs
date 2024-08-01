@@ -29,11 +29,17 @@ namespace Zbx1425.DXDynamicTexture
         [DllImport("gdi32")]
         internal static extern IntPtr CreateSolidBrush(int crColor);
 
-        private readonly Dictionary<Bitmap, IntPtr> Images = new Dictionary<Bitmap, IntPtr>();
-        private readonly Dictionary<Color, IntPtr> Brushes = new Dictionary<Color, IntPtr>();
-        public Graphics Graphics;
+        private readonly Dictionary<Bitmap, ReferenceCountable<IntPtr>> Images = new Dictionary<Bitmap, ReferenceCountable<IntPtr>>();
+        private readonly Dictionary<Color, ReferenceCountable<IntPtr>> Brushes = new Dictionary<Color, ReferenceCountable<IntPtr>>();
 
+        private readonly Queue<Bitmap> ImageKeys = new Queue<Bitmap>();
+        private readonly Queue<Color> BrushKeys = new Queue<Color>();
+
+        public Graphics Graphics;
         public Bitmap Bitmap;
+
+        public int ImageCacheCapacity { get; set; } = 16;
+        public int BrushCacheCapacity { get; set; } = 16;
 
         public GDIHelper(Graphics g)
         {
@@ -100,28 +106,87 @@ namespace Zbx1425.DXDynamicTexture
 
         private IntPtr GetHBitmap(Bitmap image)
         {
-            new DateTime(152).ToShortTimeString();
-            if (!Images.ContainsKey(image)) Images.Add(image, image.GetHbitmap());
-            return Images[image];
+            if (Images.TryGetValue(image, out ReferenceCountable<IntPtr> value))
+            {
+                value.Reference();
+                return value.Value;
+            }
+            else
+            {
+                ReferenceCountable<IntPtr> newValue = new ReferenceCountable<IntPtr>(image.GetHbitmap());
+                Images.Add(image, newValue);
+                ImageKeys.Enqueue(image);
+                CollectGarbage(Images, ImageKeys, ImageCacheCapacity);
+                return newValue.Value;
+            }
         }
 
         private IntPtr GetSolidBrush(Color color)
         {
-            if (!Brushes.ContainsKey(color))
+            if (Brushes.TryGetValue(color, out ReferenceCountable<IntPtr> value))
             {
-                Brushes.Add(color, CreateSolidBrush(color.R | color.G << 8 | color.B << 16));
+                value.Reference();
+                return value.Value;
             }
-            return Brushes[color];
+            else
+            {
+                ReferenceCountable<IntPtr> newValue = new ReferenceCountable<IntPtr>(CreateSolidBrush(color.R | color.G << 8 | color.B << 16));
+                Brushes.Add(color, newValue);
+                BrushKeys.Enqueue(color);
+                CollectGarbage(Brushes, BrushKeys, BrushCacheCapacity);
+                return newValue.Value;
+            }
+        }
+
+        private void CollectGarbage<T>(Dictionary<T, ReferenceCountable<IntPtr>> dictionary, Queue<T> keys, int capacity)
+        {
+            while (capacity < dictionary.Count)
+            {
+                T keyToDelete = keys.Dequeue();
+                ReferenceCountable<IntPtr> valueToDelete = dictionary[keyToDelete];
+                if (valueToDelete.ReferencedCount == 0)
+                {
+                    DeleteObject(valueToDelete.Value);
+                    dictionary.Remove(keyToDelete);
+                }
+                else
+                {
+                    valueToDelete.Reset();
+                    keys.Enqueue(keyToDelete);
+                }
+            }
         }
 
         public void Dispose()
         {
             EndGDI();
             if (Bitmap != null) Bitmap.Dispose();
-            foreach (var pair in Images) DeleteObject(pair.Value);
+            foreach (var pair in Images) DeleteObject(pair.Value.Value);
             Images.Clear();
-            foreach (var pair in Brushes) DeleteObject(pair.Value);
+            foreach (var pair in Brushes) DeleteObject(pair.Value.Value);
             Brushes.Clear();
+        }
+
+
+        private class ReferenceCountable<T>
+        {
+            public T Value { get; }
+            public int ReferencedCount { get; private set; } = 0;
+
+            public ReferenceCountable(T value)
+            {
+                Value = value;
+            }
+
+            public void Reference()
+            {
+                ReferencedCount++;
+            }
+
+            public void Reset()
+            {
+                ReferencedCount = 0;
+            }
         }
     }
 }
