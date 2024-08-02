@@ -13,11 +13,19 @@ namespace BveTypes.ClassWrappers
     /// </summary>
     public enum BrakePosition
     {
-        /// <summary>常用ブレーキ位置 (B67)。</summary>
-        Service = 0,
-        /// <summary>非常ブレーキ位置。</summary>
-        Emergency = 1,
-        /// <summary>抜き取り位置。</summary>
-        Removed = 2,
+        /// <summary>
+        /// 緩解位置。
+        /// </summary>
+        Release = -2,
+
+        /// <summary>
+        /// 常用ブレーキ位置 (B67)。
+        /// </summary>
+        Service = -1,
+
+        /// <summary>
+        /// 非常ブレーキ位置。
+        /// </summary>
+        Emergency = 0,
     }
 }
