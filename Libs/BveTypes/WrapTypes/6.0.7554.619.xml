@@ -1470,8 +1470,13 @@
 		<Field WrapperProperty="DrawDistanceManager" Original="e" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Location" Original="g" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Speed" Original="h" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="EnabledTimeMilliseconds" Original="j" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="ViewZ" Original="l" IsOriginalNonPublic="true"/>
 
+		<Method Wrapper="Initialize" WrapperParams="void" Original="g"/>
 		<Method Wrapper="DrawCars" WrapperParams="atsex:Direct3DProvider; SlimDX.Matrix, SlimDX" Original="a"/>
+		<Method Wrapper="UpdateSound" WrapperParams="void" Original="c" IsOriginalNonPublic="true"/>
+		<Method Wrapper="UpdateLocationAndSpeed" WrapperParams="void" Original="b" IsOriginalNonPublic="true"/>
 	</Class>
 
 	<Class Wrapper="TrainInfo" Original="fc">

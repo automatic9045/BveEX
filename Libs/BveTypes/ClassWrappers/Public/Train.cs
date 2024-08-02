@@ -30,8 +30,13 @@ namespace BveTypes.ClassWrappers
             DrawDistanceManagerField = members.GetSourceFieldOf(nameof(DrawDistanceManager));
             LocationField = members.GetSourceFieldOf(nameof(Location));
             SpeedField = members.GetSourceFieldOf(nameof(Speed));
+            EnabledTimeMillisecondsField = members.GetSourceFieldOf(nameof(EnabledTimeMilliseconds));
+            ViewZField = members.GetSourceFieldOf(nameof(ViewZ));
 
+            InitializeMethod = members.GetSourceMethodOf(nameof(Initialize));
             DrawCarsMethod = members.GetSourceMethodOf(nameof(DrawCars));
+            UpdateSoundMethod = members.GetSourceMethodOf(nameof(UpdateSound));
+            UpdateLocationAndSpeedMethod = members.GetSourceMethodOf(nameof(UpdateLocationAndSpeed));
         }
 
         /// <summary>
@@ -92,7 +97,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public double Location
         {
-            get => (double)LocationField.GetValue(Src);
+            get => LocationField.GetValue(Src);
             set => LocationField.SetValue(Src, value);
         }
 
@@ -106,9 +111,56 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public double Speed
         {
-            get => (double)SpeedField.GetValue(Src);
+            get => SpeedField.GetValue(Src);
             set => SpeedField.SetValue(Src, value);
         }
+
+        private static FastField EnabledTimeMillisecondsField;
+        /// <summary>
+        /// この他列車が実際に有効化された時刻をミリ秒単位で取得・設定します。
+        /// </summary>
+        /// <remarks>
+        /// まだ有効化されていない場合は -1 を返します。既に有効化されているかどうかを取得するには <see cref="IsEnabled"/> プロパティを使用してください。
+        /// </remarks>
+        public int EnabledTimeMilliseconds
+        {
+            get => EnabledTimeMillisecondsField.GetValue(Src);
+            set => EnabledTimeMillisecondsField.SetValue(Src, value);
+        }
+
+        /// <summary>
+        /// この他列車が実際に有効化された時刻を取得・設定します。
+        /// </summary>
+        /// <remarks>
+        /// まだ有効化されていない場合は -1 [ms] を返します。既に有効化されているかどうかを取得するには <see cref="IsEnabled"/> プロパティを使用してください。
+        /// </remarks>
+        public TimeSpan EnabledTime
+        {
+            get => TimeSpan.FromMilliseconds(EnabledTimeMilliseconds);
+            set => EnabledTimeMilliseconds = (int)value.TotalMilliseconds;
+        }
+
+        /// <summary>
+        /// この他列車が既に有効化されているかどうかを取得します。
+        /// </summary>
+        public bool IsEnabled => 0 <= EnabledTimeMilliseconds;
+
+        private static FastField ViewZField;
+        /// <summary>
+        /// 運転士視点の Z 座標 [m] を取得・設定します。
+        /// </summary>
+        public double ViewZ
+        {
+            get => ViewZField.GetValue(Src);
+            set => ViewZField.SetValue(Src, value);
+        }
+
+        private static FastMethod InitializeMethod;
+        /// <summary>
+        /// この他列車を初期化します。
+        /// </summary>
+        public double Initialize()
+            => InitializeMethod.Invoke(Src, null);
 
         private static FastMethod DrawCarsMethod;
         /// <summary>
@@ -118,5 +170,19 @@ namespace BveTypes.ClassWrappers
         /// <param name="additionalWorldMatrix">ワールド変換行列の後に追加で掛ける行列。</param>
         public void DrawCars(Direct3DProvider direct3DProvider, Matrix additionalWorldMatrix)
             => DrawCarsMethod.Invoke(Src, new object[] { direct3DProvider.Src, additionalWorldMatrix });
+
+        private static FastMethod UpdateSoundMethod;
+        /// <summary>
+        /// この他列車に紐づいている音源の状態を更新します。
+        /// </summary>
+        public void UpdateSound()
+            => UpdateSoundMethod.Invoke(Src, null);
+
+        private static FastMethod UpdateLocationAndSpeedMethod;
+        /// <summary>
+        /// この他列車の位置と速度を更新します。
+        /// </summary>
+        public void UpdateLocationAndSpeed()
+            => UpdateLocationAndSpeedMethod.Invoke(Src, null);
     }
 }
