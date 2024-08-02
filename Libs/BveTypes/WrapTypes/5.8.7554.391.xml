@@ -1593,6 +1593,8 @@
 		</Property>
 
 		<Field WrapperProperty="CameraLocation" Original="q" IsOriginalNonPublic="true"/>
+
+		<Method Wrapper="Initialize" WrapperParams="atsex:BrakePosition" Original="a"/>
 	</Class>
 
 	<Class Wrapper="VehicleBogieWheel" Original="b7">

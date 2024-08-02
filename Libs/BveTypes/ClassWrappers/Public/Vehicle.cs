@@ -43,6 +43,8 @@ namespace BveTypes.ClassWrappers
             PassengerSetMethod = members.GetSourcePropertySetterOf(nameof(Passenger));
 
             CameraLocationField = members.GetSourceFieldOf(nameof(CameraLocation));
+
+            InitializeMethod = members.GetSourceMethodOf(nameof(Initialize));
         }
 
         /// <summary>
@@ -154,5 +156,12 @@ namespace BveTypes.ClassWrappers
             get => ClassWrappers.CameraLocation.FromSource(CameraLocationField.GetValue(Src));
             set => CameraLocationField.SetValue(Src, value.Src);
         }
+
+        private static FastMethod InitializeMethod;
+        /// <summary>
+        /// 自列車を初期化します。
+        /// </summary>
+        /// <param name="brakePosition">ブレーキハンドルの位置。</param>
+        public void Initialize(BrakePosition brakePosition) => InitializeMethod.Invoke(Src, new object[] { brakePosition });
     }
 }
