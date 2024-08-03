@@ -1468,15 +1468,18 @@
 		<Field WrapperProperty="Route" Original="c" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="TrainInfo" Original="d" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="DrawDistanceManager" Original="e" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Schedules" Original="f" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Location" Original="g" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Speed" Original="h" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="EnabledTimeMilliseconds" Original="j" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="ScheduleIndex" Original="k" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="ViewZ" Original="l" IsOriginalNonPublic="true"/>
 
 		<Method Wrapper="Initialize" WrapperParams="void" Original="g"/>
 		<Method Wrapper="DrawCars" WrapperParams="atsex:Direct3DProvider; SlimDX.Matrix, SlimDX" Original="a"/>
 		<Method Wrapper="UpdateSound" WrapperParams="void" Original="c" IsOriginalNonPublic="true"/>
 		<Method Wrapper="UpdateLocationAndSpeed" WrapperParams="void" Original="b" IsOriginalNonPublic="true"/>
+		<Method Wrapper="CompileToSchedules" WrapperParams="void" Original="a" IsOriginalNonPublic="true"/>
 	</Class>
 
 	<Class Wrapper="TrainInfo" Original="fc">
@@ -1502,6 +1505,17 @@
 			<Getter Original="b"/>
 			<Setter Original="a"/>
 		</Property>
+	</Class>
+
+	<Class Wrapper="TrainSchedule" Original="ca">
+		<Field WrapperProperty="StartTimeMilliseconds" Original="a" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="OriginTimeMilliseconds" Original="b" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Location" Original="c" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Speed" Original="d" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Acceleration" Original="e" IsOriginalNonPublic="true"/>
+
+		<Method Wrapper="GetLocation" WrapperParams="System.Int32" Original="b"/>
+		<Method Wrapper="GetSpeed" WrapperParams="System.Int32" Original="a"/>
 	</Class>
 
 	<Class Wrapper="TrainStopObject" Original="cj">

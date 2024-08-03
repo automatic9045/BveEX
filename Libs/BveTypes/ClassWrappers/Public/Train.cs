@@ -10,6 +10,8 @@ using SlimDX;
 using FastMember;
 using TypeWrapping;
 
+using BveTypes.ClassWrappers.Extensions;
+
 namespace BveTypes.ClassWrappers
 {
     /// <summary>
@@ -28,15 +30,18 @@ namespace BveTypes.ClassWrappers
             RouteField = members.GetSourceFieldOf(nameof(Route));
             TrainInfoField = members.GetSourceFieldOf(nameof(TrainInfo));
             DrawDistanceManagerField = members.GetSourceFieldOf(nameof(DrawDistanceManager));
+            SchedulesField = members.GetSourceFieldOf(nameof(Schedules));
             LocationField = members.GetSourceFieldOf(nameof(Location));
             SpeedField = members.GetSourceFieldOf(nameof(Speed));
             EnabledTimeMillisecondsField = members.GetSourceFieldOf(nameof(EnabledTimeMilliseconds));
+            ScheduleIndexField = members.GetSourceFieldOf(nameof(ScheduleIndex));
             ViewZField = members.GetSourceFieldOf(nameof(ViewZ));
 
             InitializeMethod = members.GetSourceMethodOf(nameof(Initialize));
             DrawCarsMethod = members.GetSourceMethodOf(nameof(DrawCars));
             UpdateSoundMethod = members.GetSourceMethodOf(nameof(UpdateSound));
             UpdateLocationAndSpeedMethod = members.GetSourceMethodOf(nameof(UpdateLocationAndSpeed));
+            CompileToSchedulesMethod = members.GetSourceMethodOf(nameof(CompileToSchedules));
         }
 
         /// <summary>
@@ -87,6 +92,16 @@ namespace BveTypes.ClassWrappers
 
         private static FastField DrawDistanceManagerField;
         public DrawDistanceManager DrawDistanceManager => ClassWrappers.DrawDistanceManager.FromSource(DrawDistanceManagerField.GetValue(Src));
+
+        private static FastField SchedulesField;
+        /// <summary>
+        /// この他列車の運行スケジュールの一覧を取得・設定します。
+        /// </summary>
+        public WrappedList<TrainSchedule> Schedules
+        {
+            get => WrappedList<TrainSchedule>.FromSource(SchedulesField.GetValue(Src));
+            set => SchedulesField.SetValue(Src, value.Src);
+        }
 
         private static FastField LocationField;
         /// <summary>
@@ -145,6 +160,16 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public bool IsEnabled => 0 <= EnabledTimeMilliseconds;
 
+        private static FastField ScheduleIndexField;
+        /// <summary>
+        /// 現在使用しているスケジュールの <see cref="Schedules"/> プロパティにおけるインデックスを取得・設定します。
+        /// </summary>
+        public int ScheduleIndex
+        {
+            get => ScheduleIndexField.GetValue(Src);
+            set => ScheduleIndexField.SetValue(Src, value);
+        }
+
         private static FastField ViewZField;
         /// <summary>
         /// 運転士視点の Z 座標 [m] を取得・設定します。
@@ -184,5 +209,12 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public void UpdateLocationAndSpeed()
             => UpdateLocationAndSpeedMethod.Invoke(Src, null);
+
+        private static FastMethod CompileToSchedulesMethod;
+        /// <summary>
+        /// <see cref="TrainInfo"/> プロパティに設定された <see cref="TrainStopObject"/> のリストを <see cref="TrainSchedule"/> にコンパイルし、<see cref="Schedules"/> プロパティへ格納します。
+        /// </summary>
+        public void CompileToSchedules()
+            => CompileToSchedulesMethod.Invoke(Src, null);
     }
 }

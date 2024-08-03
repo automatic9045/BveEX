@@ -92,6 +92,7 @@
     <Compile Include="ClassWrappers\Public\Sound3DObjectList.cs" />
     <Compile Include="ClassWrappers\Public\SoundObject.cs" />
     <Compile Include="ClassWrappers\Public\SoundObjectList.cs" />
+    <Compile Include="ClassWrappers\Public\TrainSchedule.cs" />
     <Compile Include="ClassWrappers\Public\TrainStopObject.cs" />
     <Compile Include="ClassWrappers\Public\ValueContainer.cs" />
     <Compile Include="ClassWrappers\Public\Valve.cs" />
