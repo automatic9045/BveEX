@@ -4,9 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using SlimDX;
-using SlimDX.Direct3D9;
-
 using BveTypes.ClassWrappers;
 using FastMember;
 using ObjectiveHarmonyPatch;
@@ -45,11 +42,11 @@ namespace AtsEx.Extensions.PreTrainPatch
         }
 
         private static void UpdatePreTrainLocation(SectionManager sectionManager, IPreTrainLocationConverter converter)
-		{
-			MapObjectList preTrainPassObjects = sectionManager.PreTrainPassObjects;
+        {
+            MapObjectList passObjects = sectionManager.PreTrainPassObjects;
 
             PreTrainLocation source;
-            if (preTrainPassObjects.Count == 0 || sectionManager.Sections.Count == 0)
+            if (passObjects.Count == 0 || sectionManager.Sections.Count == 0)
             {
                 source = new PreTrainLocation(-1, sectionManager.Sections.Count - 1);
             }
@@ -57,31 +54,31 @@ namespace AtsEx.Extensions.PreTrainPatch
             {
                 int timeMilliseconds = sectionManager.TimeManager.TimeMilliseconds;
 
-                while (preTrainPassObjects.CurrentIndex >= 0 && ((ValueNode<int>)preTrainPassObjects[preTrainPassObjects.CurrentIndex]).Value > timeMilliseconds)
+                while (passObjects.CurrentIndex >= 0 && ((ValueNode<int>)passObjects[passObjects.CurrentIndex]).Value > timeMilliseconds)
                 {
-                    preTrainPassObjects.CurrentIndex--;
+                    passObjects.CurrentIndex--;
                 }
-                while (preTrainPassObjects.CurrentIndex + 1 < preTrainPassObjects.Count && ((ValueNode<int>)preTrainPassObjects[preTrainPassObjects.CurrentIndex + 1]).Value <= timeMilliseconds)
+                while (passObjects.CurrentIndex + 1 < passObjects.Count && ((ValueNode<int>)passObjects[passObjects.CurrentIndex + 1]).Value <= timeMilliseconds)
                 {
-                    preTrainPassObjects.CurrentIndex++;
+                    passObjects.CurrentIndex++;
                 }
-
-                ValueNode<int> currentObject = (ValueNode<int>)preTrainPassObjects[preTrainPassObjects.CurrentIndex];
-                ValueNode<int> nextObject = (ValueNode<int>)preTrainPassObjects[preTrainPassObjects.CurrentIndex + 1];
 
                 double newPreTrainLocation;
-                if (preTrainPassObjects.CurrentIndex < 0)
+                if (passObjects.CurrentIndex < 0)
                 {
-                    newPreTrainLocation = preTrainPassObjects[0].Location;
+                    newPreTrainLocation = passObjects[0].Location;
                 }
-                else if (preTrainPassObjects.CurrentIndex >= preTrainPassObjects.Count - 1)
+                else if (passObjects.Count - 2 <= passObjects.CurrentIndex)
                 {
-                    newPreTrainLocation = preTrainPassObjects[preTrainPassObjects.Count - 1].Location;
+                    newPreTrainLocation = passObjects[passObjects.Count - 1].Location;
                 }
                 else
                 {
-                    double timePassingRate = (double)(timeMilliseconds - currentObject.Value) / (nextObject.Value - currentObject.Value);
-                    newPreTrainLocation = (1.0 - timePassingRate) * currentObject.Location + timePassingRate * nextObject.Location;
+                    ValueNode<int> prev = (ValueNode<int>)passObjects[passObjects.CurrentIndex];
+                    ValueNode<int> next = (ValueNode<int>)passObjects[passObjects.CurrentIndex + 1];
+
+                    double timePassingRate = (double)(timeMilliseconds - prev.Value) / (next.Value - prev.Value);
+                    newPreTrainLocation = (1.0 - timePassingRate) * prev.Location + timePassingRate * next.Location;
                 }
 
                 source = PreTrainLocation.FromLocation(newPreTrainLocation, sectionManager);
