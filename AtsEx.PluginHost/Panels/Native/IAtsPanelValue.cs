@@ -36,5 +36,11 @@ namespace AtsEx.PluginHost.Panels.Native
         /// <see cref="Value"/> の値が変更されたときに発生します。
         /// </summary>
         event EventHandler ValueChanged;
+
+        /// <summary>
+        /// 解放処理は不要になりました。
+        /// </summary>
+        [Obsolete]
+        new void Dispose();
     }
 }

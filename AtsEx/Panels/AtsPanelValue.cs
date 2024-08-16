@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using UnembeddedResources;
-
 using AtsEx.PluginHost;
 using AtsEx.PluginHost.Binding;
 using AtsEx.PluginHost.Panels.Native;
@@ -15,7 +13,6 @@ namespace AtsEx.Panels
     internal class AtsPanelValue<T> : IAtsPanelValue<T>
     {
         private readonly ITwoWayConverter<T, int> ValueSerializer;
-        private readonly Action Disposer;
 
         private T _Value;
         public T Value
@@ -38,16 +35,17 @@ namespace AtsEx.Panels
 
         public event EventHandler ValueChanged;
 
-        public AtsPanelValue(T initialValue, ITwoWayConverter<T, int> valueSerializer, Action disposer, BindingMode mode)
+        public AtsPanelValue(T initialValue, ITwoWayConverter<T, int> valueSerializer, BindingMode mode)
         {
             ValueSerializer = valueSerializer;
-            Disposer = disposer;
 
             Value = initialValue;
             Mode = mode;
         }
 
-        public void Dispose() => Disposer();
+        public void Dispose()
+        {
+        }
 
         public void SetValueExternally(int source) => Value = ValueSerializer.ConvertBack(source);
     }

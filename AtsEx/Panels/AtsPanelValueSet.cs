@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 using UnembeddedResources;
 
-using AtsEx.Native.Ats;
 using AtsEx.PluginHost;
 using AtsEx.PluginHost.Binding;
 using AtsEx.PluginHost.Panels.Native;
@@ -43,7 +42,7 @@ namespace AtsEx.Panels
         }
         private readonly bool DetectConflict;
 
-        private readonly Dictionary<int, IAtsPanelValueWithChangeLog> RegisteredValues = new Dictionary<int, IAtsPanelValueWithChangeLog>();
+        private readonly Dictionary<int, List<IAtsPanelValueWithChangeLog>> RegisteredValues = new Dictionary<int, List<IAtsPanelValueWithChangeLog>>();
         private readonly Dictionary<int, int> OldValues = new Dictionary<int, int>();
 
         public AtsPanelValueSet(bool detectConflict)
@@ -53,34 +52,40 @@ namespace AtsEx.Panels
 
         public void PreTick(IList<int> source)
         {
-            foreach (KeyValuePair<int, IAtsPanelValueWithChangeLog> x in RegisteredValues)
+            foreach (KeyValuePair<int, List<IAtsPanelValueWithChangeLog>> x in RegisteredValues)
             {
                 if (OldValues.TryGetValue(x.Key, out int oldValue) && source[x.Key] != oldValue)
                 {
-                    if (DetectConflict)
+                    foreach (IAtsPanelValueWithChangeLog item in x.Value)
                     {
-                        if (x.Value.Mode == BindingMode.OneWay)
+                        if (DetectConflict)
                         {
-                            string senderName = $"ats{x.Key}";
-                            throw new ConflictException(string.Format(Resources.Value.ChangeConflicted.Value, senderName), senderName);
+                            if (item.Mode == BindingMode.OneWay)
+                            {
+                                string senderName = $"ats{x.Key}";
+                                throw new ConflictException(string.Format(Resources.Value.ChangeConflicted.Value, senderName), senderName);
+                            }
                         }
-                    }
 
-                    x.Value.SerializedValue = source[x.Key];
+                        item.SerializedValue = source[x.Key];
+                    }
                 }
             }
         }
 
         public void Tick(IList<int> source)
         {
-            foreach (KeyValuePair<int, IAtsPanelValueWithChangeLog> x in RegisteredValues)
+            foreach (KeyValuePair<int, List<IAtsPanelValueWithChangeLog>> x in RegisteredValues)
             {
-                if (!x.Value.IsChanged || x.Value.Mode == BindingMode.OneWayToSource) continue;
+                foreach (IAtsPanelValueWithChangeLog item in x.Value)
+                {
+                    if (!item.IsChanged || item.Mode == BindingMode.OneWayToSource) continue;
 
-                source[x.Key] = x.Value.SerializedValue;
-                OldValues[x.Key] = x.Value.SerializedValue;
+                    source[x.Key] = item.SerializedValue;
+                    OldValues[x.Key] = item.SerializedValue;
 
-                x.Value.ApplyChanges();
+                    item.ApplyChanges();
+                }
             }
         }
 
@@ -88,10 +93,16 @@ namespace AtsEx.Panels
         {
             if (index < MinIndex || MaxIndex < index) throw new IndexOutOfRangeException();
 
-            AtsPanelValue<TValue> value = new AtsPanelValue<TValue>(initialValue, valueSerializer, () => RegisteredValues.Remove(index), mode);
-            AtsPanelValueWithChangeLog<TValue> valueWithChangeLog = new AtsPanelValueWithChangeLog<TValue>(value);
+            if (!RegisteredValues.TryGetValue(index, out List<IAtsPanelValueWithChangeLog> items))
+            {
+                items = new List<IAtsPanelValueWithChangeLog>();
+                RegisteredValues.Add(index, items);
+            }
 
-            RegisteredValues.Add(index, valueWithChangeLog);
+            AtsPanelValue<TValue> value = new AtsPanelValue<TValue>(initialValue, valueSerializer, mode);
+            AtsPanelValueWithChangeLog<TValue> valueWithChangeLog = new AtsPanelValueWithChangeLog<TValue>(value);
+            items.Add(valueWithChangeLog);
+
             return value;
         }
 
