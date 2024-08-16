@@ -74,6 +74,7 @@
     <Compile Include="EventArgs\ScenarioOpenedEventArgs.cs" />
     <Compile Include="Exceptions\ConflictException.cs" />
     <Compile Include="Exceptions\MemberNotInitializedException.cs" />
+    <Compile Include="Input\SystemKeyName.cs" />
     <Compile Include="Native\HornBlownEventArgs.cs" />
     <Compile Include="Native\HornBlownEventHandler.cs" />
     <Compile Include="Native\HornType.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Native\DoorEventArgs.cs" />
     <Compile Include="Native\DoorEventHandler.cs" />
     <Compile Include="LaunchMode.cs" />
+    <Compile Include="Input\InputEventArgsFactory.cs" />
     <Compile Include="Native\SignalUpdatedEventArgs.cs" />
     <Compile Include="Native\SignalUpdatedEventHandler.cs" />
     <Compile Include="Native\StartedEventHandler.cs" />

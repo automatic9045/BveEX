@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace AtsEx.PluginHost.Input.Native
 {
     /// <summary>
-    /// BVE が ATS プラグイン向けに提供する ATS キーを表します。
+    /// BVE が ATS プラグイン向けに提供する ATS キーの種類を指定します。
     /// </summary>
     public enum NativeAtsKeyName
     {
