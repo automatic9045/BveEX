@@ -87,10 +87,9 @@ namespace AtsEx.Extensions.PreTrainPatch
             PreTrainLocation converted = converter.Convert(source);
 
             sectionManager.PreTrainLocation = converted.Location;
-            sectionManager.PreTrainSectionIndex = converted.SectionIndex;
-
-            if (source.SectionIndex != converted.SectionIndex)
+            if (sectionManager.PreTrainSectionIndex != converted.SectionIndex)
             {
+                sectionManager.PreTrainSectionIndex = converted.SectionIndex;
                 sectionManager.OnSectionChanged();
             }
         }
