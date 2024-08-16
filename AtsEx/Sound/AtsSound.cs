@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using AtsEx.Native;
 using AtsEx.PluginHost.Sound;
 using AtsEx.PluginHost.Sound.Native;
 
@@ -12,17 +11,17 @@ namespace AtsEx.Sound
 {
     internal sealed class AtsSound : IAtsSound
     {
-        private readonly Action Disposer;
         private readonly AtsSoundCommandQueue CommandQueue = new AtsSoundCommandQueue();
 
         public PlayState PlayState { get; private set; }
 
-        public AtsSound(Action disposer)
+        public AtsSound()
         {
-            Disposer = disposer;
         }
 
-        public void Dispose() => Disposer();
+        public void Dispose()
+        {
+        }
 
         public int Tick() => CommandQueue.Tick().SerializedValue;
 

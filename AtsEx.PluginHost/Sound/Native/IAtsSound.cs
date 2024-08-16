@@ -12,6 +12,12 @@ namespace AtsEx.PluginHost.Sound.Native
     public interface IAtsSound : ISound, IDisposable
     {
         /// <summary>
+        /// 解放処理は不要になりました。
+        /// </summary>
+        [Obsolete]
+        new void Dispose();
+
+        /// <summary>
         /// 音量を指定してサウンドをループ再生します。
         /// </summary>
         /// <param name="volumeDecibel">下げる音量の符号付き大きさ [dB]。0 または負の値で指定してください。</param>
