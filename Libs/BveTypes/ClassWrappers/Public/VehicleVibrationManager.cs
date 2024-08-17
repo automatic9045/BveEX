@@ -88,7 +88,7 @@ namespace BveTypes.ClassWrappers
         private static FastMethod ViewPointGetMethod;
         private static FastMethod ViewPointSetMethod;
         /// <summary>
-        /// を取得・設定します。
+        /// 運転士視点の位置を取得・設定します。
         /// </summary>
         public SixDof ViewPoint
         {

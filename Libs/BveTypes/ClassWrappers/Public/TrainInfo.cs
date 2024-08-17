@@ -105,6 +105,9 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// この他列車の動作を有効にする距離程 [m] を取得・設定します。
         /// </summary>
+        /// <remarks>
+        /// 既定値は 0 です。
+        /// </remarks>
         public double EnableLocation
         {
             get => (double)EnableLocationGetMethod.Invoke(Src, null);
@@ -116,6 +119,9 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// この他列車の動作を有効にする時刻をミリ秒単位で取得・設定します。
         /// </summary>
+        /// <remarks>
+        /// 既定値は 0 です。
+        /// </remarks>
         public int EnableTimeMilliseconds
         {
             get => (int)EnableTimeMillisecondsGetMethod.Invoke(Src, null);
@@ -125,6 +131,9 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// この他列車の動作を有効にする時刻を取得・設定します。
         /// </summary>
+        /// <remarks>
+        /// 既定値は <see cref="TimeSpan.Zero"/> です。
+        /// </remarks>
         public TimeSpan EnableTime
         {
             get => TimeSpan.FromMilliseconds(EnableTimeMilliseconds);

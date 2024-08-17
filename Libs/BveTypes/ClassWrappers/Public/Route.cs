@@ -173,7 +173,7 @@ namespace BveTypes.ClassWrappers
 
         private static FastMethod SoundObjectsGetMethod;
         /// <summary>
-        /// サウンド マップ オブジェクトの一覧を取得します。
+        /// サウンド マップオブジェクトの一覧を取得します。
         /// </summary>
         public SoundObjectList SoundObjects => SoundObjectList.FromSource(SoundObjectsGetMethod.Invoke(Src, null));
 

@@ -11,7 +11,7 @@ using TypeWrapping;
 namespace BveTypes.ClassWrappers
 {
     /// <summary>
-    /// サウンド マップ オブジェクトのリストを表します。
+    /// サウンド マップオブジェクトのリストを表します。
     /// </summary>
     public class SoundObjectList : MapFunctionList
     {
