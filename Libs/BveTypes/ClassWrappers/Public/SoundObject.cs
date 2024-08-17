@@ -21,8 +21,8 @@ namespace BveTypes.ClassWrappers
 
             Constructor = members.GetSourceConstructor(new Type[] { typeof(double), typeof(int), typeof(Sound) });
 
-            PositionInBlockGetMethod = members.GetSourcePropertyGetterOf(nameof(Source));
-            PositionInBlockSetMethod = members.GetSourcePropertySetterOf(nameof(Source));
+            SourceGetMethod = members.GetSourcePropertyGetterOf(nameof(Source));
+            SourceSetMethod = members.GetSourcePropertySetterOf(nameof(Source));
         }
 
         /// <summary>
@@ -53,15 +53,15 @@ namespace BveTypes.ClassWrappers
         {
         }
 
-        private static FastMethod PositionInBlockGetMethod;
-        private static FastMethod PositionInBlockSetMethod;
+        private static FastMethod SourceGetMethod;
+        private static FastMethod SourceSetMethod;
         /// <summary>
         /// 自列車が通過した時に再生するサウンドを取得・設定します。
         /// </summary>
         public Sound Source
         {
-            get => Sound.FromSource(PositionInBlockGetMethod.Invoke(Src, null));
-            set => PositionInBlockSetMethod.Invoke(Src, new object[] { value.Src });
+            get => Sound.FromSource(SourceGetMethod.Invoke(Src, null));
+            set => SourceSetMethod.Invoke(Src, new object[] { value.Src });
         }
     }
 }
