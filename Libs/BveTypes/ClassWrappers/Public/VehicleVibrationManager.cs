@@ -23,6 +23,11 @@ namespace BveTypes.ClassWrappers
 
             CarBodyTransformGetMethod = members.GetSourcePropertyGetterOf(nameof(CarBodyTransform));
 
+            FrontAccelerationXGetMethod = members.GetSourcePropertyGetterOf(nameof(FrontAccelerationX));
+            RearAccelerationXGetMethod = members.GetSourcePropertyGetterOf(nameof(RearAccelerationX));
+            AccelerationZGetMethod = members.GetSourcePropertyGetterOf(nameof(AccelerationZ));
+
+            CarBodyAccelerationGetMethod = members.GetSourcePropertyGetterOf(nameof(CarBodyAcceleration));
             CarBodyDisplacementGetMethod = members.GetSourcePropertyGetterOf(nameof(CarBodyDisplacement));
 
             PositionerGetMethod = members.GetSourcePropertyGetterOf(nameof(Positioner));
@@ -58,13 +63,46 @@ namespace BveTypes.ClassWrappers
 
         private static FastMethod CarBodyTransformGetMethod;
         /// <summary>
-        /// 車体中心から運転士を取得します。
+        /// 車両中心原点・車両前方を基準とした座標系から運転士視点の座標系に変換する行列を格納している <see cref="Transform"/> を取得します。
         /// </summary>
         public Transform CarBodyTransform => Transform.FromSource(CarBodyTransformGetMethod.Invoke(Src, null));
 
+        private static FastMethod FrontAccelerationXGetMethod;
+        /// <summary>
+        /// 見かけ上の前台車上左右加速度 [m/s^2] を取得・設定します。
+        /// </summary>
+        /// <remarks>
+        /// 遠心力・重力成分を含みます。
+        /// </remarks>
+        public double FrontAccelerationX => FrontAccelerationXGetMethod.Invoke(Src, null);
+
+        private static FastMethod RearAccelerationXGetMethod;
+        /// <summary>
+        /// 見かけ上の後台車上左右加速度 [m/s^2] を取得・設定します。
+        /// </summary>
+        /// <remarks>
+        /// 遠心力・重力成分を含みます。
+        /// </remarks>
+        public double RearAccelerationX => RearAccelerationXGetMethod.Invoke(Src, null);
+
+        private static FastMethod AccelerationZGetMethod;
+        /// <summary>
+        /// 見かけ上の前後加速度 [m/s^2] を取得・設定します。
+        /// </summary>
+        /// <remarks>
+        /// 重力成分を含みます。
+        /// </remarks>
+        public double AccelerationZ => AccelerationZGetMethod.Invoke(Src, null);
+
+        private static FastMethod CarBodyAccelerationGetMethod;
+        /// <summary>
+        /// 車体の加速度 [m/s^2] を取得します。
+        /// </summary>
+        public SixDof CarBodyAcceleration => SixDof.FromSource(CarBodyAccelerationGetMethod.Invoke(Src, null));
+
         private static FastMethod CarBodyDisplacementGetMethod;
         /// <summary>
-        /// 車体中心から運転士を取得します。
+        /// 車体の変位 [m] を取得します。
         /// </summary>
         public SixDof CarBodyDisplacement => SixDof.FromSource(CarBodyDisplacementGetMethod.Invoke(Src, null));
 
@@ -77,7 +115,7 @@ namespace BveTypes.ClassWrappers
         private static FastMethod SpringHeightGetMethod;
         private static FastMethod SpringHeightSetMethod;
         /// <summary>
-        /// を取得・設定します。
+        /// 空気ばねの高さ [m] を取得・設定します。
         /// </summary>
         public double SpringHeight
         {

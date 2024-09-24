@@ -1935,6 +1935,18 @@
 		<Property Wrapper="CarBodyTransform">
 			<Getter Original="aa"/>
 		</Property>
+		<Property Wrapper="FrontAccelerationX">
+			<Getter Original="ad"/>
+		</Property>
+		<Property Wrapper="RearAccelerationX">
+			<Getter Original="f"/>
+		</Property>
+		<Property Wrapper="AccelerationZ">
+			<Getter Original="m"/>
+		</Property>
+		<Property Wrapper="CarBodyAcceleration">
+			<Getter Original="q"/>
+		</Property>
 		<Property Wrapper="CarBodyDisplacement">
 			<Getter Original="r"/>
 		</Property>
