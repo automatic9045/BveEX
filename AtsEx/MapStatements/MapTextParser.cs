@@ -53,7 +53,19 @@ namespace AtsEx.MapStatements
                             break;
 
                         case '#':
-                            yield break;
+                            if (!isInString)
+                            {
+                                int nextLineBreakIndex = text.IndexOf('\n', i);
+                                if (nextLineBreakIndex == -1)
+                                {
+                                    yield break;
+                                }
+                                else
+                                {
+                                    i = nextLineBreakIndex;
+                                }
+                            }
+                            break;
 
                         case '\'':
                             isInString = !isInString;
