@@ -21,6 +21,9 @@ namespace BveTypes.ClassWrappers
 
             MrPressureField = members.GetSourceFieldOf(nameof(MrPressure));
             TargetPressureField = members.GetSourceFieldOf(nameof(TargetPressure));
+            ApplySpeedField = members.GetSourceFieldOf(nameof(ApplySpeed));
+            ReleaseSpeedField = members.GetSourceFieldOf(nameof(ReleaseSpeed));
+            VolumeRatioField = members.GetSourceFieldOf(nameof(VolumeRatio));
 
             InitializeMethod = members.GetSourceMethodOf(nameof(Initialize));
             TickMethod = members.GetSourceMethodOf(nameof(Tick));
@@ -60,6 +63,39 @@ namespace BveTypes.ClassWrappers
         {
             get => ValueContainer.FromSource(TargetPressureField.GetValue(Src));
             set => TargetPressureField.SetValue(Src, value.Src);
+        }
+
+        private static FastField ApplySpeedField;
+        /// <summary>
+        /// 給気速度 [Pa^(1/2)/s] を取得・設定します。
+        /// </summary>
+        public double ApplySpeed
+        {
+            get => ApplySpeedField.GetValue(Src);
+            set => ApplySpeedField.SetValue(Src, value);
+        }
+
+        private static FastField ReleaseSpeedField;
+        /// <summary>
+        /// 排気速度 [Pa^(1/2)/s] を取得・設定します。
+        /// </summary>
+        public double ReleaseSpeed
+        {
+            get => ReleaseSpeedField.GetValue(Src);
+            set => ReleaseSpeedField.SetValue(Src, value);
+        }
+
+        private static FastField VolumeRatioField;
+        /// <summary>
+        /// 元空気溜めとの容積比を取得・設定します。
+        /// </summary>
+        /// <remarks>
+        /// 車両パラメーターファイルにて指定する VolumeRatio の逆数であることに注意してください。
+        /// </remarks>
+        public double VolumeRatio
+        {
+            get => VolumeRatioField.GetValue(Src);
+            set => VolumeRatioField.SetValue(Src, value);
         }
 
         private static FastMethod InitializeMethod;

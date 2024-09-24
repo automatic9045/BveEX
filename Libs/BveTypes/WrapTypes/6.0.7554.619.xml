@@ -168,6 +168,10 @@
 	</Class>
 
 	<Class Wrapper="BcValve" Original="az">
+		<Field WrapperProperty="ReleaseStartMargin" Original="b" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="ApplyStartMargin" Original="c" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="ReleaseStopMargin" Original="d" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="ApplyStopMargin" Original="e" IsOriginalNonPublic="true"/>
 	</Class>
 
 	<Class Wrapper="Beacon" Original="fm">
@@ -1578,6 +1582,9 @@
 	<Class Wrapper="Valve" Original="fr">
 		<Field WrapperProperty="MrPressure" Original="a" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="TargetPressure" Original="b" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="ApplySpeed" Original="c" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="ReleaseSpeed" Original="d" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="VolumeRatio" Original="e" IsOriginalNonPublic="true"/>
 
 		<Method Wrapper="Initialize" WrapperParams="void" Original="n"/>
 		<Method Wrapper="Tick" WrapperParams="System.Double" Original="ag"/>
