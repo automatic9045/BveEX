@@ -36,53 +36,44 @@ namespace AtsEx
                 PluginSet loadedPlugins = new PluginSet();
                 Plugins.PluginLoader pluginLoader = new Plugins.PluginLoader(Native, BveHacker, Extensions, loadedPlugins);
 
-                Dictionary<string, PluginBase> vehiclePlugins = null;
-                Dictionary<string, PluginBase> mapPlugins = null;
-
+                Dictionary<string, PluginBase> vehiclePlugins;
                 try
                 {
+                    vehiclePlugins = pluginLoader.Load(vehiclePluginUsing);
+                }
+                catch (Exception ex)
+                {
+                    vehiclePlugins = new Dictionary<string, PluginBase>();
+                    loadErrorResolver.Resolve(null, ex);
+                }
+
+                Dictionary<string, PluginBase> mapPlugins = new Dictionary<string, PluginBase>();
+                try
+                {
+                    PluginHost.MapStatements.Identifier mapPluginUsingIdentifier = new PluginHost.MapStatements.Identifier(Namespace.Root, "mappluginusing");
+                    IEnumerable<IHeader> mapPluginUsingHeaders = BveHacker.MapHeaders.GetAll(mapPluginUsingIdentifier);
+
+                    foreach (IHeader header in mapPluginUsingHeaders)
                     {
-                        vehiclePlugins = pluginLoader.Load(vehiclePluginUsing);
+                        string mapPluginUsingPath = Path.Combine(Path.GetDirectoryName(BveHacker.ScenarioInfo.RouteFiles.SelectedFile.Path), header.Argument);
+                        LoadMapPluginUsing(mapPluginUsingPath);
                     }
 
+
+                    void LoadMapPluginUsing(string path)
                     {
-                        PluginHost.MapStatements.Identifier mapPluginUsingIdentifier = new PluginHost.MapStatements.Identifier(Namespace.Root, "mappluginusing");
-                        IEnumerable<IHeader> mapPluginUsingHeaders = BveHacker.MapHeaders.GetAll(mapPluginUsingIdentifier);
+                        PluginSourceSet mapPluginUsing = PluginSourceSet.FromPluginUsing(PluginType.MapPlugin, false, path);
+                        Dictionary<string, PluginBase> plugins = pluginLoader.Load(mapPluginUsing);
 
-                        foreach (IHeader header in mapPluginUsingHeaders)
+                        foreach (KeyValuePair<string, PluginBase> plugin in plugins)
                         {
-                            string mapPluginUsingPath = Path.Combine(Path.GetDirectoryName(BveHacker.ScenarioInfo.RouteFiles.SelectedFile.Path), header.Argument);
-                            PluginSourceSet mapPluginUsing = PluginSourceSet.FromPluginUsing(PluginType.MapPlugin, false, mapPluginUsingPath);
-
-                            Dictionary<string, PluginBase> loadedMapPlugins = pluginLoader.Load(mapPluginUsing);
-                            AddRangeToMapPlugins(loadedMapPlugins);
-                        }
-
-
-                        void AddRangeToMapPlugins(Dictionary<string, PluginBase> plugins)
-                        {
-                            if (mapPlugins is null)
-                            {
-                                mapPlugins = plugins;
-                            }
-                            else
-                            {
-                                foreach (KeyValuePair<string, PluginBase> plugin in plugins)
-                                {
-                                    mapPlugins.Add(plugin.Key, plugin.Value);
-                                }
-                            }
+                            mapPlugins.Add(plugin.Key, plugin.Value);
                         }
                     }
                 }
                 catch (Exception ex)
                 {
                     loadErrorResolver.Resolve(null, ex);
-                }
-                finally
-                {
-                    if (vehiclePlugins is null) vehiclePlugins = new Dictionary<string, PluginBase>();
-                    if (mapPlugins is null) mapPlugins = new Dictionary<string, PluginBase>();
                 }
 
                 loadedPlugins.SetPlugins(vehiclePlugins, mapPlugins);
