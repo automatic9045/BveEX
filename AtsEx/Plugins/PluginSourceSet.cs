@@ -55,7 +55,7 @@ namespace AtsEx.Plugins
         public PluginType PluginType { get; }
         public bool AllowNonPluginAssembly { get; }
 
-        private PluginSourceSet(string name, PluginType pluginType, bool allowNonPluginAssembly, IList<IPluginPackage> pluginPackages) : base(pluginPackages)
+        public PluginSourceSet(string name, PluginType pluginType, bool allowNonPluginAssembly, IList<IPluginPackage> pluginPackages) : base(pluginPackages)
         {
             Name = name;
             PluginType = pluginType;

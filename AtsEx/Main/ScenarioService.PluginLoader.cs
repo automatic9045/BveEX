@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
+using BveTypes.ClassWrappers.Extensions;
 
-using AtsEx.Plugins;
-using AtsEx.PluginHost.MapStatements;
+using AtsEx.Extensions.MapStatements;
 using AtsEx.PluginHost.Plugins;
 using AtsEx.PluginHost.Plugins.Extensions;
+
+using AtsEx.Plugins;
 
 namespace AtsEx
 {
@@ -50,21 +53,57 @@ namespace AtsEx
                 Dictionary<string, PluginBase> mapPlugins = new Dictionary<string, PluginBase>();
                 try
                 {
-                    PluginHost.MapStatements.Identifier mapPluginUsingIdentifier = new PluginHost.MapStatements.Identifier(Namespace.Root, "mappluginusing");
-                    IEnumerable<IHeader> mapPluginUsingHeaders = BveHacker.MapHeaders.GetAll(mapPluginUsingIdentifier);
+                    string mapDirectory = Path.GetDirectoryName(BveHacker.ScenarioInfo.RouteFiles.SelectedFile.Path);
 
-                    foreach (IHeader header in mapPluginUsingHeaders)
                     {
-                        string mapPluginUsingPath = Path.Combine(Path.GetDirectoryName(BveHacker.ScenarioInfo.RouteFiles.SelectedFile.Path), header.Argument);
-                        LoadMapPluginUsing(mapPluginUsingPath);
+                        PluginHost.MapStatements.Identifier pluginUsingIdentifier = new PluginHost.MapStatements.Identifier(PluginHost.MapStatements.Namespace.Root, "mappluginusing");
+                        IEnumerable<PluginHost.MapStatements.IHeader> pluginUsingHeaders = BveHacker.MapHeaders.GetAll(pluginUsingIdentifier);
+                        foreach (PluginHost.MapStatements.IHeader header in pluginUsingHeaders)
+                        {
+                            string pluginUsingPath = Path.Combine(mapDirectory, header.Argument);
+                            LoadMapPluginUsing(pluginUsingPath);
+                        }
+                    }
+
+                    {
+                        IStatementSet statements = Extensions.GetExtension<IStatementSet>();
+                        ClauseFilter elementFilter = ClauseFilter.Element("MapPlugin", 0);
+
+                        IEnumerable<Statement> loadPluginUsingStatements = statements.FindOfficialStatements(elementFilter, ClauseFilter.Function("Load", 1));
+                        foreach (Statement statement in loadPluginUsingStatements)
+                        {
+                            WrappedList<MapStatementClause> clauses = statement.Source.Clauses;
+                            string pluginUsingPath = Path.Combine(mapDirectory, clauses[clauses.Count - 1].Args[0].ToString());
+                            LoadMapPluginUsing(pluginUsingPath);
+                        }
+
+                        IEnumerable<Statement> loadAssemblyStatements = statements.FindOfficialStatements(elementFilter, ClauseFilter.Function("LoadAssembly", 1, 2));
+                        foreach (Statement statement in loadAssemblyStatements)
+                        {
+                            WrappedList<MapStatementClause> clauses = statement.Source.Clauses;
+                            MapStatementClause functionClause = clauses[clauses.Count - 1];
+                            string assemblyPath = Path.Combine(mapDirectory, functionClause.Args[0].ToString());
+                            Identifier identifier = 2 <= functionClause.Args.Count ? new Identifier(functionClause.Args[1].ToString()) : new RandomIdentifier();
+
+                            PluginSourceSet pluginSources = new PluginSourceSet(Path.GetFileName(assemblyPath), PluginType.MapPlugin, false, new IPluginPackage[]
+                            {
+                                new AssemblyPluginPackage(identifier, Assembly.LoadFrom(assemblyPath)),
+                            });
+
+                            LoadMapPlugins(pluginSources);
+                        }
                     }
 
 
                     void LoadMapPluginUsing(string path)
                     {
                         PluginSourceSet mapPluginUsing = PluginSourceSet.FromPluginUsing(PluginType.MapPlugin, false, path);
-                        Dictionary<string, PluginBase> plugins = pluginLoader.Load(mapPluginUsing);
+                        LoadMapPlugins(mapPluginUsing);
+                    }
 
+                    void LoadMapPlugins(PluginSourceSet pluginSources)
+                    {
+                        Dictionary<string, PluginBase> plugins = pluginLoader.Load(pluginSources);
                         foreach (KeyValuePair<string, PluginBase> plugin in plugins)
                         {
                             mapPlugins.Add(plugin.Key, plugin.Value);

@@ -4,13 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using AtsEx.Plugins;
-using AtsEx.Plugins.Extensions;
-using AtsEx.Plugins.Scripting;
-
-using AtsEx.Extensions.ContextMenuHacker;
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.LoadErrorManager;
 using AtsEx.PluginHost.Plugins;
 using AtsEx.PluginHost.Plugins.Extensions;
 
