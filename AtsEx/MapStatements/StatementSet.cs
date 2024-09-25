@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using AtsEx.Utilities;
 using AtsEx.PluginHost.MapStatements;
 
 namespace AtsEx.MapStatements
@@ -24,7 +23,7 @@ namespace AtsEx.MapStatements
 
         public IReadOnlyList<IStatement> GetAll(Identifier identifier) => Statements.TryGetValue(identifier, out IReadOnlyList<Statement> result) ? result : new List<Statement>();
 
-        public IEnumerator<Statement> GetEnumerator() => new EnumerableInDictionaryEnumerator<Identifier, Statement>(Statements);
+        public IEnumerator<Statement> GetEnumerator() => Statements.Values.SelectMany(x => x).GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         public void Tick(double vehicleLocation, double preTrainLocation)

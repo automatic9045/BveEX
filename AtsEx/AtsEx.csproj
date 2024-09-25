@@ -204,7 +204,6 @@
     <Compile Include="Sound\AtsSoundCommandQueue.cs" />
     <Compile Include="Sound\AtsSoundSet.cs" />
     <Compile Include="Troubleshooting\TroubleshooterSet.cs" />
-    <Compile Include="Utilities\EnumerableInDictionaryEnumerator.cs" />
     <Compile Include="VersionForm\PluginListTabPage.cs">
       <SubType>Component</SubType>
     </Compile>

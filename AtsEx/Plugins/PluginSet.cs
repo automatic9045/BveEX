@@ -35,55 +35,8 @@ namespace AtsEx.Plugins
             AllPluginsLoaded?.Invoke(this, EventArgs.Empty);
         }
 
-        public IEnumerator<KeyValuePair<string, PluginBase>> GetEnumerator() => Items is null ? throw new MemberNotInitializedException() : new Enumerator(this);
+        public IEnumerator<KeyValuePair<string, PluginBase>> GetEnumerator()
+            => Items is null ? throw new MemberNotInitializedException() : Items.Values.SelectMany(x => x).GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-
-        private class Enumerator : IEnumerator<KeyValuePair<string, PluginBase>>
-        {
-            private readonly PluginSet Source;
-            private readonly IEnumerator<PluginType> KeyEnumerator;
-
-            private IEnumerator<KeyValuePair<string, PluginBase>> CurrentEnumerator = null;
-
-            public KeyValuePair<string, PluginBase> Current => CurrentEnumerator.Current;
-            object IEnumerator.Current => Current;
-
-            public Enumerator(PluginSet source)
-            {
-                Source = source;
-                KeyEnumerator = Source.Items.Keys.GetEnumerator();
-
-                Reset();
-            }
-
-            public void Dispose()
-            {
-                KeyEnumerator.Dispose();
-                CurrentEnumerator.Dispose();
-            }
-
-            public bool MoveNext()
-            {
-                while (!CurrentEnumerator.MoveNext())
-                {
-                    bool isKeyOver = !KeyEnumerator.MoveNext();
-                    if (isKeyOver) return false;
-
-                    CurrentEnumerator.Dispose();
-                    CurrentEnumerator = Source.Items[KeyEnumerator.Current].GetEnumerator();
-                }
-
-                return true;
-            }
-
-            public void Reset()
-            {
-                KeyEnumerator.Reset();
-                _ = KeyEnumerator.MoveNext();
-
-                CurrentEnumerator?.Dispose();
-                CurrentEnumerator = Source.Items[KeyEnumerator.Current].GetEnumerator();
-            }
-        }
     }
 }
