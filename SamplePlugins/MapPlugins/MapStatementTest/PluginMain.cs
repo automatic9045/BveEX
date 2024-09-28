@@ -15,7 +15,6 @@ namespace AtsEx.Samples.MapPlugins.MapStatementTest
     {
         public PluginMain(PluginBuilder builder) : base(builder)
         {
-            Headers.Load(BveHacker.MapHeaders);
             Statements.Load(Extensions.GetExtension<IStatementSet>());
         }
 

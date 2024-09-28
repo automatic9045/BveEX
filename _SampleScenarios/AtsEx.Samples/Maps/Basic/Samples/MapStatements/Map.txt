@@ -3,9 +3,11 @@ BveTs Map 2.02:utf-8
 include '<AtsEx::USEATSEX>';
 include '<AtsEx::READDEPTH>1';
 
-include '<AtsEx::MapPluginUsing>MapPluginUsing.xml'; // MapPluginUsing も独自ヘッダーの一種です。
+AtsEx.MapPlugin.Load('MapPluginUsing.xml');
+// -- または --
+// AtsEx.MapPlugin.LoadAssembly('MapPlugins\MapStatementTest.dll');
 
-include '<AtsEx::User::Automatic9045::Alert::HeaderAlert>このメッセージは独自ヘッダーから表示しています。';
+AtsEx.Dialog.Show('このメッセージはマップステートメントから表示しています。');
 
 Structure.Load('..\..\Structures.csv');
 Signal.Load('..\..\Signal.csv');
