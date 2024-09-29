@@ -33,6 +33,9 @@
     <DocumentationFile>bin\Release\BveTypes.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Irony, Version=1.1.0.0, Culture=neutral, PublicKeyToken=ca48ace7223ead47, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Irony.1.1.0\lib\net40\Irony.dll</HintPath>
+    </Reference>
     <Reference Include="Mackoy.IInputDevice">
       <HintPath>..\..\AtsEx.PluginHost\LocalReferences\BveTs\Mackoy.IInputDevice.DLL</HintPath>
     </Reference>
@@ -79,10 +82,13 @@
     <Compile Include="ClassWrappers\Helpers\TiltOptions.cs" />
     <Compile Include="ClassWrappers\Public\BcValve.cs" />
     <Compile Include="ClassWrappers\Public\CircularGauge.cs" />
+    <Compile Include="ClassWrappers\Public\ClassicMapParser.cs" />
     <Compile Include="ClassWrappers\Public\DigitalGauge.cs" />
     <Compile Include="ClassWrappers\Public\DigitalNumber.cs" />
     <Compile Include="ClassWrappers\Public\Forms\ConfigForm.cs" />
     <Compile Include="ClassWrappers\Public\MapLoader.cs" />
+    <Compile Include="ClassWrappers\Public\MapParser.cs" />
+    <Compile Include="ClassWrappers\Public\MapParserBase.cs" />
     <Compile Include="ClassWrappers\Public\MapStatement.cs" />
     <Compile Include="ClassWrappers\Public\MapStatementClause.cs" />
     <Compile Include="ClassWrappers\Public\MapStatementList.cs" />

@@ -402,6 +402,9 @@
 		</Property>
 	</Class>
 
+	<Class Wrapper="ClassicMapParser" Original="z">
+	</Class>
+
 	<Class Wrapper="ClockText" Original="e2">
 	</Class>
 
@@ -709,6 +712,16 @@
 		<Method Wrapper="GoTo" WrapperParams="System.Double" Original="u"/>
 		<Method Wrapper="GoTo" WrapperParams="System.Double; System.Double" Original="ae" IsOriginalNonPublic="true"/>
 		<Method Wrapper="GoToByIndex" WrapperParams="System.Int32" Original="f"/>
+	</Class>
+
+	<Class Wrapper="MapParser" Original="d0">
+		<Method Wrapper="Include" WrapperParams="Irony.Parsing.ParseTreeNode, Irony" Original="k" IsOriginalNonPublic="true"/>
+	</Class>
+
+	<Class Wrapper="MapParserBase" Original="do">
+		<Field WrapperProperty="FilePath" Original="c" IsOriginalNonPublic="true"/>
+
+		<Method Wrapper="Parse" WrapperParams="System.String; System.String" Original="g"/>
 	</Class>
 
 	<Class Wrapper="MapStatement" Original="em">
