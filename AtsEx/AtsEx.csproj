@@ -39,6 +39,10 @@
     <Reference Include="0Harmony, Version=2.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Lib.Harmony.2.2.2\lib\net48\0Harmony.dll</HintPath>
     </Reference>
+    <Reference Include="Irony, Version=1.1.0.0, Culture=neutral, PublicKeyToken=ca48ace7223ead47, processorArchitecture=MSIL">
+      <HintPath>..\packages\Irony.1.1.0\lib\net40\Irony.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Mackoy.IInputDevice">
       <HintPath>..\AtsEx.PluginHost\LocalReferences\BveTs\Mackoy.IInputDevice.DLL</HintPath>
       <Private>False</Private>
@@ -118,8 +122,6 @@
     <Compile Include="Main\AtsEx.AsInputDevice.cs" />
     <Compile Include="Main\AtsEx.AsInputDevice.PatchEvents.cs" />
     <Compile Include="Main\PatchSet.cs" />
-    <Compile Include="MapStatements\HeaderErrorDynamicResolver.cs" />
-    <Compile Include="MapStatements\HeaderErrorPreResolver.cs" />
     <Compile Include="MapStatements\HeaderParser.cs" />
     <Compile Include="Native\AppInitializer.cs" />
     <Compile Include="Native\BveTypeSetLoader.cs" />
@@ -173,7 +175,7 @@
     <Compile Include="MapStatements\MapTextParser.cs" />
     <Compile Include="MapStatements\StatementSet.Factory.cs" />
     <Compile Include="Plugins\PluginLoadErrorResolver.cs" />
-    <Compile Include="MapStatements\HeaderSet.Factory.cs" />
+    <Compile Include="MapStatements\HeaderSetFactory.cs" />
     <Compile Include="MapStatementIdentifiers.cs" />
     <Compile Include="Native\LauncherCompatibilityVersionAttribute.cs" />
     <Compile Include="Native\Ats\AtsMain.cs" />

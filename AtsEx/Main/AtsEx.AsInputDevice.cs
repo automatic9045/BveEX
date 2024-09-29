@@ -11,7 +11,6 @@ using TypeWrapping;
 using AtsEx.Diagnostics;
 using AtsEx.PluginHost;
 
-using AtsEx.MapStatements;
 using AtsEx.Native;
 
 namespace AtsEx
@@ -21,7 +20,6 @@ namespace AtsEx
         internal sealed partial class AsInputDevice : AtsEx
         {
             private readonly PatchSet Patches;
-            private readonly HeaderErrorPreResolver HeaderErrorPreResolver;
 
             public event EventHandler<ValueEventArgs<ScenarioInfo>> ScenarioOpened;
             public event EventHandler<ValueEventArgs<Scenario>> ScenarioClosed;
@@ -48,8 +46,6 @@ namespace AtsEx
 
                 Patches = new PatchSet(mainFormMembers, scenarioMembers, atsPluginMembers);
                 ListenPatchEvents();
-
-                HeaderErrorPreResolver = HeaderErrorPreResolver.Patch(bveTypes);
             }
 
             public override void Dispose()
@@ -67,7 +63,6 @@ namespace AtsEx
                 }
 
                 Patches.Dispose();
-                HeaderErrorPreResolver?.Dispose();
                 base.Dispose();
             }
 

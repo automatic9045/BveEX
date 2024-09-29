@@ -9,7 +9,6 @@ using UnembeddedResources;
 
 using AtsEx.Handles;
 using AtsEx.Input;
-using AtsEx.MapStatements;
 using AtsEx.Panels;
 using AtsEx.Plugins;
 using AtsEx.Sound;
@@ -59,9 +58,6 @@ namespace AtsEx
             PluginLoader pluginLoader = new PluginLoader(Native, BveHacker, AtsEx.Extensions);
             PluginSet plugins = pluginLoader.Load(vehiclePluginUsing);
             _PluginService = new PluginService(plugins, Native.Handles);
-
-            HeaderErrorDynamicResolver headerErrorResolver = new HeaderErrorDynamicResolver(BveHacker.LoadErrorManager, BveHacker.MapHeaders);
-            headerErrorResolver.Resolve();
 
             AtsEx.VersionFormProvider.SetScenario(plugins[PluginType.VehiclePlugin].Values, plugins[PluginType.MapPlugin].Values);
         }

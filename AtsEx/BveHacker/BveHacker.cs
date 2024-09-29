@@ -78,14 +78,12 @@ namespace AtsEx
             switch (App.Instance.LaunchMode)
             {
                 case LaunchMode.Ats:
-                    MapHeaders = HeaderSet.FromMap(ScenarioInfo.RouteFiles.SelectedFile.Path);
                     ScenarioHacker.BeginObserveInitialization();
                     break;
 
                 case LaunchMode.InputDevice:
                     ScenarioHacker.ScenarioOpened += e =>
                     {
-                        MapHeaders = HeaderSet.FromMap(e.ScenarioInfo.RouteFiles.SelectedFile.Path);
                         ScenarioHacker.BeginObserveInitialization();
 
                         ScenarioOpened?.Invoke(new ScenarioOpenedEventArgs(e.ScenarioInfo));
@@ -93,7 +91,7 @@ namespace AtsEx
 
                     ScenarioHacker.ScenarioClosed += e =>
                     {
-                        MapHeaders = null;
+                        MapLoaderHacker.Clear();
                         MapStatements = null;
 
                         ScenarioClosed?.Invoke(EventArgs.Empty);
@@ -173,7 +171,7 @@ namespace AtsEx
 
         public PluginHost.Handles.HandleSet Handles { get; private set; }
 
-        public HeaderSet MapHeaders { get; private set; } = null;
+        public HeaderSet MapHeaders => MapLoaderHacker.Headers;
         IHeaderSet IBveHacker.MapHeaders => MapHeaders;
 
         public StatementSet MapStatements { get; private set; } = null;
