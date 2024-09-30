@@ -25,9 +25,6 @@ namespace AtsEx.Samples.VehiclePlugins.AtsPanelValueTest
 
         public override void Dispose()
         {
-            Ats0.Dispose();
-            Ats1.Dispose();
-            Ats2.Dispose();
         }
 
         public override TickResult Tick(TimeSpan elapsed)

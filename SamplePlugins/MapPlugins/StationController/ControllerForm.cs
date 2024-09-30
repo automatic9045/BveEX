@@ -60,7 +60,7 @@ namespace AtsEx.Samples.MapPlugins.StationController
                     Location = int.Parse(LocationValue.Text),
                     DefaultTimeMilliseconds = ArrivalTimeValue.Text.ToTimeMilliseconds(),
                     ArrivalTimeMilliseconds = ArrivalTimeValue.Text.ToTimeMilliseconds(),
-                    DepertureTimeMilliseconds = Pass.Checked ? int.MaxValue : DepertureTimeValue.Text.ToTimeMilliseconds(),
+                    DepartureTimeMilliseconds = Pass.Checked ? int.MaxValue : DepertureTimeValue.Text.ToTimeMilliseconds(),
                     Pass = Pass.Checked,
                     IsTerminal = IsTerminal.Checked,
                 };

@@ -43,8 +43,8 @@ namespace AtsEx.Extensions.DiagramUpdater
             timeTable.NameTextWidths = new int[stations.Count + 1];
             timeTable.ArrivalTimeTexts = new string[stations.Count + 1];
             timeTable.ArrivalTimeTextWidths = new int[stations.Count + 1];
-            timeTable.DepertureTimeTexts = new string[stations.Count + 1];
-            timeTable.DepertureTimeTextWidths = new int[stations.Count + 1];
+            timeTable.DepartureTimeTexts = new string[stations.Count + 1];
+            timeTable.DepartureTimeTextWidths = new int[stations.Count + 1];
             timeTable.Update();
 
             TimePosForm.SetScenario(scenario);
