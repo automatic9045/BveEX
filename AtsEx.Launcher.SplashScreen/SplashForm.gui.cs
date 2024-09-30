@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AtsEx.Launcher
+namespace AtsEx.Launcher.SplashScreen
 {
     internal partial class SplashForm
     {
@@ -19,7 +19,7 @@ namespace AtsEx.Launcher
         private Label AtsExVersionLabel;
         private Label ProgressTextLabel;
 
-        private void InitializeComponent()
+        private void InitializeComponent(Version bveVersion, Version launcherVersion)
         {
             SuspendLayout();
 
@@ -30,7 +30,8 @@ namespace AtsEx.Launcher
             StartPosition = FormStartPosition.CenterScreen;
             Cursor = Cursors.WaitCursor;
             DoubleBuffered = true;
-            Text = "Splash Screen";
+            Text = "BVE Trainsim を起動中";
+            Icon = new Icon(Assembly.GetExecutingAssembly().GetManifestResourceStream(typeof(SplashForm), "icon.ico"));
             ClientSize = new Size(300, 150);
             Font = new Font("Yu Gothic UI", 9);
 
@@ -55,7 +56,7 @@ namespace AtsEx.Launcher
                 AutoSize = true,
                 Anchor = AnchorStyles.Left | AnchorStyles.Bottom,
                 BackColor = Color.Transparent,
-                Text = $"BVE version: {Assembly.GetEntryAssembly().GetName().Version}",
+                Text = $"BVE version: {bveVersion}",
             };
             Controls.Add(BveVersionLabel);
 
@@ -65,7 +66,7 @@ namespace AtsEx.Launcher
                 AutoSize = true,
                 Anchor = AnchorStyles.Left | AnchorStyles.Bottom,
                 BackColor = Color.Transparent,
-                Text = $"AtsEX Launcher version: {Assembly.GetExecutingAssembly().GetName().Version}",
+                Text = $"AtsEX Launcher version: {launcherVersion}",
             };
             Controls.Add(AtsExVersionLabel);
 

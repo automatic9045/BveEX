@@ -53,6 +53,7 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -70,12 +71,6 @@
     <Compile Include="LauncherCompatibilityVersionAttribute.cs" />
     <Compile Include="LauncherVersionChecker.cs" />
     <Compile Include="Resources.cs" />
-    <Compile Include="SplashForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SplashForm.gui.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="VersionSelector.AsInputDevice.cs" />
     <Compile Include="VersionSelector.AsAtsPlugin.cs" />
     <Compile Include="VersionSelector.cs" />
@@ -108,6 +103,10 @@
     <ProjectReference Include="..\AtsEx.Diagnostics\AtsEx.Diagnostics.csproj">
       <Project>{bec38da8-37e2-4db6-80ff-33fe4e25e1a9}</Project>
       <Name>AtsEx.Diagnostics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AtsEx.Launcher.SplashScreen\AtsEx.Launcher.SplashScreen.csproj">
+      <Project>{6b621f1a-289e-485a-9927-1a650afa49be}</Project>
+      <Name>AtsEx.Launcher.SplashScreen</Name>
     </ProjectReference>
     <ProjectReference Include="..\AtsEx\AtsEx.csproj">
       <Project>{15f8005b-285b-4b98-b4d8-13978ad876f8}</Project>

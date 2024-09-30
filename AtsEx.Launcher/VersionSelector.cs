@@ -5,11 +5,14 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Reflection;
+using System.Runtime.Remoting.Channels;
+using System.Runtime.Remoting.Channels.Ipc;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using AtsEx.Launcher.Hosting;
+using AtsEx.Launcher.SplashScreen;
 
 namespace AtsEx.Launcher
 {
@@ -22,29 +25,34 @@ namespace AtsEx.Launcher
 #if DEBUG
             if (!Debugger.IsAttached) Debugger.Launch();
 #endif
+
+            IpcClientChannel channel = new IpcClientChannel();
+            ChannelServices.RegisterChannel(channel, true);
         }
 
-        private readonly SplashForm SplashForm;
+        private readonly Process SplashProcess;
+        private readonly SplashFormInfo SplashForm;
 
         [Obsolete]
         public CoreHost CoreHost { get; }
 
         public VersionSelector()
         {
-            SplashForm = new SplashForm();
-            if (0 < Application.OpenForms.Count)
-            {
-                SplashForm.Show(Application.OpenForms[0]);
-            }
-            else
-            {
-                SplashForm.Show();
-            }
-
-            SplashForm.ProgressText = "AtsEX を探しています...";
-
             Assembly launcherAssembly = Assembly.GetExecutingAssembly();
             string rootDirectory = Path.GetDirectoryName(launcherAssembly.Location);
+
+            Version bveVersion = BveFinder.TargetAssembly.GetName().Version;
+            Version launcherVersion = launcherAssembly.GetName().Version;
+            Guid channelGuid = Guid.NewGuid();
+            SplashProcess = Process.Start(Path.Combine(rootDirectory, "AtsEx.Launcher.SplashScreen.exe"), $"{bveVersion} {launcherVersion} {channelGuid}");
+            while (SplashProcess.MainWindowHandle == IntPtr.Zero)
+            {
+                Task.Delay(10).Wait();
+                SplashProcess.Refresh();
+            }
+
+            SplashForm = (SplashFormInfo)Activator.GetObject(typeof(SplashFormInfo), $"ipc://{channelGuid}/{nameof(SplashFormInfo)}");
+            SplashForm.ProgressText = "AtsEX を探しています...";
 
             string atsExAssemblyDirectory;
 #if DEBUG

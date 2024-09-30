@@ -22,7 +22,7 @@ namespace AtsEx.Launcher
                 }
                 finally
                 {
-                    SplashForm.Close();
+                    SplashProcess.Kill();
                 }
             }
         }

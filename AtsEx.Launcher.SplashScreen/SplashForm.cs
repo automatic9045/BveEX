@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AtsEx.Launcher
+namespace AtsEx.Launcher.SplashScreen
 {
     internal partial class SplashForm : Form
     {
@@ -19,9 +19,9 @@ namespace AtsEx.Launcher
             }
         }
 
-        public SplashForm()
+        public SplashForm(Version bveVersion, Version launcherVersion)
         {
-            InitializeComponent();
+            InitializeComponent(bveVersion, launcherVersion);
         }
     }
 }

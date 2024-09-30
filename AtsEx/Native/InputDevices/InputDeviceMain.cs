@@ -63,7 +63,7 @@ namespace AtsEx.Native.InputDevices
 
             AppInitializer.Initialize(CallerInfo, LaunchMode.InputDevice);
 
-            if (Application.OpenForms.Count > 1)
+            if (Application.OpenForms.Count > 0)
             {
                 string confirmMessage = string.Format(Resources.Value.RequiresReboot.Value, App.Instance.ProductShortName);
                 if (MessageBox.Show(confirmMessage, App.Instance.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
