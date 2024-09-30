@@ -10,9 +10,11 @@ namespace AtsEx.PluginHost.MapStatements
     /// include ステートメントを使用して独自に定義する構文を表します。
     /// </summary>
     /// <remarks>
+    /// 互換性のために残されている古い機能です。AtsEx.CoreExtensions のマップステートメント機能をご利用ください。<br/>
     /// <see cref="IStatement"/> と異なりシナリオの読込完了以前から取得できますが、マップ変数を埋め込んだり、定義した距離程と関連付けたりすることはできません。<br/>
     /// 何らかの目的でファイルを読み込む際のパス指定など、宣言的な用途にお使いください。
     /// </remarks>
+    [Obsolete]
     public interface IHeader
     {
         /// <summary>

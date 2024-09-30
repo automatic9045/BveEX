@@ -172,6 +172,7 @@ namespace AtsEx
         public PluginHost.Handles.HandleSet Handles { get; private set; }
 
         public HeaderSet MapHeaders => MapLoaderHacker.Headers;
+        [Obsolete]
         IHeaderSet IBveHacker.MapHeaders => MapHeaders;
 
         public StatementSet MapStatements { get; private set; } = null;

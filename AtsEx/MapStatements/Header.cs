@@ -8,7 +8,9 @@ using AtsEx.PluginHost.MapStatements;
 
 namespace AtsEx.MapStatements
 {
+#pragma warning disable CS0612 // 型またはメンバーが旧型式です
     internal sealed class Header : IHeader
+#pragma warning restore CS0612 // 型またはメンバーが旧型式です
     {
         public Identifier Name { get; }
         public string Argument { get; }

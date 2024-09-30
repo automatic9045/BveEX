@@ -9,6 +9,7 @@ using AtsEx.PluginHost.MapStatements;
 
 namespace AtsEx.MapStatements
 {
+#pragma warning disable CS0612 // 型またはメンバーが旧型式です
     internal sealed class HeaderSet : IHeaderSet, IEnumerable<Header>
     {
         private readonly IReadOnlyDictionary<Identifier, IReadOnlyList<Header>> PublicHeaders;
@@ -26,4 +27,5 @@ namespace AtsEx.MapStatements
         public IEnumerator<Header> GetEnumerator() => PublicHeaders.Values.SelectMany(x => x).Concat(PrivateHeaders).GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
+#pragma warning restore CS0612 // 型またはメンバーが旧型式です
 }
