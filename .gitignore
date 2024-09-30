@@ -10,8 +10,10 @@ obj
 /_InputDevices
 
 /_SampleScenarios/AtsEx/*.dll
+/_SampleScenarios/AtsEx/*.exe
 /_SampleScenarios/AtsEx/*.pdb
 /_SampleScenarios/AtsEx/*.dll.config
+/_SampleScenarios/AtsEx/*.exe.config
 /_SampleScenarios/AtsEx/*.xml
 
 /_SampleScenarios/AtsEx/*/*.dll
