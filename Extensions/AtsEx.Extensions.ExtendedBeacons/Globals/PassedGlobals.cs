@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace AtsEx.Extensions.ExtendedBeacons
 {
+    [Obsolete]
     internal class PassedGlobals : ExtendedBeaconGlobalsBase<PassedEventArgs>
     {
         public PassedGlobals(INative native, PluginHost.IBveHacker bveHacker,

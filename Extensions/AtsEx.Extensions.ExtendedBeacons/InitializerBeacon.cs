@@ -10,6 +10,7 @@ using AtsEx.Scripting;
 
 namespace AtsEx.Extensions.ExtendedBeacons
 {
+    [Obsolete]
     internal class InitializerBeacon : Beacon
     {
         private bool IsFirstTime = true;

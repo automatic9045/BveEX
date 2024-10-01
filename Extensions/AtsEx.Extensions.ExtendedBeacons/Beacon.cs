@@ -10,6 +10,7 @@ using AtsEx.Scripting;
 
 namespace AtsEx.Extensions.ExtendedBeacons
 {
+    [Obsolete]
     internal class Beacon : ExtendedBeaconBase<PassedEventArgs>
     {
         private double OldLocation = 0d;

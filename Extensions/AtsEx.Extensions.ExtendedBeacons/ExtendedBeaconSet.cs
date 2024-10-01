@@ -22,6 +22,7 @@ using TrainObservingBeaconBase = AtsEx.Extensions.ExtendedBeacons.ExtendedBeacon
 
 namespace AtsEx.Extensions.ExtendedBeacons
 {
+    [Obsolete]
     internal partial class ExtendedBeaconSet : IExtendedBeaconSet
     {
         private class ResourceSet

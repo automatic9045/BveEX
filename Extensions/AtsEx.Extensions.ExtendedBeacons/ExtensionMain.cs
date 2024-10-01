@@ -18,6 +18,7 @@ namespace AtsEx.Extensions.ExtendedBeacons
 {
     [Plugin(PluginType.Extension)]
     [ExtensionMainDisplayType(typeof(IExtensionMain))]
+    [Obsolete]
     internal class ExtensionMain : AssemblyPluginBase, IExtensionMain
     {
         private ExtendedBeaconSet _ExtendedBeacons;

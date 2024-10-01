@@ -9,6 +9,7 @@ using AtsEx.Scripting;
 
 namespace AtsEx.Extensions.ExtendedBeacons
 {
+    [Obsolete]
     public abstract class ExtendedBeaconGlobalsBase<TPassedEventArgs> : Globals where TPassedEventArgs : PassedEventArgs
     {
 #pragma warning disable IDE1006 // 命名スタイル

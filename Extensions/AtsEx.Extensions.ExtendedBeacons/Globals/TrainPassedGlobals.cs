@@ -8,6 +8,7 @@ using AtsEx.PluginHost;
 
 namespace AtsEx.Extensions.ExtendedBeacons
 {
+    [Obsolete]
     internal class TrainPassedGlobals : ExtendedBeaconGlobalsBase<TrainPassedEventArgs>
     {
         public TrainPassedGlobals(INative native, IBveHacker bveHacker, ExtendedBeaconBase<TrainPassedEventArgs> sender, TrainPassedEventArgs eventArgs)

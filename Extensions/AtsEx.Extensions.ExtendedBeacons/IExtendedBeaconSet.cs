@@ -12,6 +12,7 @@ namespace AtsEx.Extensions.ExtendedBeacons
     /// <summary>
     /// 拡張地上子の一覧を表します。
     /// </summary>
+    [Obsolete]
     public interface IExtendedBeaconSet
     {
         /// <summary>

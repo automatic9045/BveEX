@@ -12,6 +12,7 @@ using AtsEx.Scripting;
 
 namespace AtsEx.Extensions.ExtendedBeacons
 {
+    [Obsolete]
     internal sealed class TrainObservingBeacon : ExtendedBeaconBase<TrainPassedEventArgs>
     {
         private readonly List<TrainInfo> TargetTrains;

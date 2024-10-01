@@ -16,6 +16,7 @@ namespace AtsEx.Extensions.ExtendedBeacons
     /// すべての拡張地上子の基本クラスを表します。
     /// </summary>
     /// <typeparam name="TPassedEventArgs"><see cref="Passed"/> イベントで使用する <see cref="EventArgs"/> の型。</typeparam>
+    [Obsolete]
     public abstract class ExtendedBeaconBase<TPassedEventArgs> : IExtendedBeacon, ICompilationErrorCheckable where TPassedEventArgs : PassedEventArgs
     {
         protected readonly INative Native;
@@ -85,6 +86,7 @@ namespace AtsEx.Extensions.ExtendedBeacons
     /// <summary>
     /// Repeater 構文によって定義される拡張地上子を表します。
     /// </summary>
+    [Obsolete]
     public interface IExtendedBeacon : IComparable<IExtendedBeacon>
     {
         /// <summary>
