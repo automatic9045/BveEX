@@ -1,4 +1,0 @@
-BveTs Train 1.01
-
-[Structure]
-Key = ShinkansenStop16
