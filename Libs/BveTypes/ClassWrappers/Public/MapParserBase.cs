@@ -19,7 +19,10 @@ namespace BveTypes.ClassWrappers
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<MapParserBase>();
 
+            VariablesField = members.GetSourceFieldOf(nameof(Variables));
             FilePathField = members.GetSourceFieldOf(nameof(FilePath));
+            StatementsField = members.GetSourceFieldOf(nameof(Statements));
+            LocationField = members.GetSourceFieldOf(nameof(Location));
 
             ParseMethod = members.GetSourceMethodOf(nameof(Parse));
         }
@@ -32,6 +35,16 @@ namespace BveTypes.ClassWrappers
         {
         }
 
+        private static FastField VariablesField;
+        /// <summary>
+        /// 変数の一覧を取得・設定します。
+        /// </summary>
+        public SortedList<string, object> Variables
+        {
+            get => VariablesField.GetValue(Src);
+            set => VariablesField.SetValue(Src, value);
+        }
+
         private static FastField FilePathField;
         /// <summary>
         /// 対象とするマップファイルのパスを取得・設定します。
@@ -40,6 +53,26 @@ namespace BveTypes.ClassWrappers
         {
             get => FilePathField.GetValue(Src);
             set => FilePathField.SetValue(Src, value);
+        }
+
+        private static FastField StatementsField;
+        /// <summary>
+        /// 読み込んだステートメントの一覧を取得・設定します。
+        /// </summary>
+        public MapStatementList Statements
+        {
+            get => MapStatementList.FromSource(StatementsField.GetValue(Src));
+            set => StatementsField.SetValue(Src, value.Src);
+        }
+
+        private static FastField LocationField;
+        /// <summary>
+        /// 距離程 [m] を取得・設定します。
+        /// </summary>
+        public double Location
+        {
+            get => LocationField.GetValue(Src);
+            set => LocationField.SetValue(Src, value);
         }
 
         private static FastMethod ParseMethod;

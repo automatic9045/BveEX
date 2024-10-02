@@ -716,10 +716,21 @@
 
 	<Class Wrapper="MapParser" Original="d0">
 		<Method Wrapper="Include" WrapperParams="Irony.Parsing.ParseTreeNode, Irony" Original="k" IsOriginalNonPublic="true"/>
+		<Method Wrapper="SetLocation" WrapperParams="Irony.Parsing.ParseTreeNode, Irony" Original="j" IsOriginalNonPublic="true"/>
+		<Method Wrapper="GetValue" WrapperParams="Irony.Parsing.ParseTreeNode, Irony" Original="i" IsOriginalNonPublic="true"/>
+		<Method Wrapper="SetUserVariable" WrapperParams="Irony.Parsing.ParseTreeNode, Irony" Original="h" IsOriginalNonPublic="true"/>
+		<Method Wrapper="GetUserVariable" WrapperParams="Irony.Parsing.ParseTreeNode, Irony" Original="f" IsOriginalNonPublic="true"/>
+		<Method Wrapper="GetSystemVariable" WrapperParams="atsex:WrappedList`1[atsex:MapStatementClause]; Irony.Parsing.ParseTreeNode, Irony" Original="b" IsOriginalNonPublic="true"/>
+		<Method Wrapper="InvokeFunction" WrapperParams="atsex:WrappedList`1[atsex:MapStatementClause]; Irony.Parsing.ParseTreeNode, Irony" Original="a" IsOriginalNonPublic="true"/>
+		<Method Wrapper="CalculateSign" WrapperParams="Irony.Parsing.ParseTreeNode, Irony" Original="b" IsOriginalNonPublic="true"/>
+		<Method Wrapper="CalculateOperator" WrapperParams="Irony.Parsing.ParseTreeNode, Irony" Original="a" IsOriginalNonPublic="true"/>
 	</Class>
 
 	<Class Wrapper="MapParserBase" Original="do">
+		<Field WrapperProperty="Variables" Original="b" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="FilePath" Original="c" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Statements" Original="d" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Location" Original="f" IsOriginalNonPublic="true"/>
 
 		<Method Wrapper="Parse" WrapperParams="System.String; System.String" Original="g"/>
 	</Class>
