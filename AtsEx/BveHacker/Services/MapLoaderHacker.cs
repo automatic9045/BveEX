@@ -54,21 +54,28 @@ namespace AtsEx.BveHackerServices
                 return PatchInvokationResult.DoNothing(e);
             };
 
-            ClassMemberSet mapParserMembets = bveTypes.GetClassInfoOf<MapParser>();
+            ClassMemberSet mapParserMembers = bveTypes.GetClassInfoOf<MapParser>();
 
-            FastMethod includeMethod = mapParserMembets.GetSourceMethodOf(nameof(MapParser.Include));
+            FastMethod includeMethod = mapParserMembers.GetSourceMethodOf(nameof(MapParser.Include));
             IncludePatch = HarmonyPatch.Patch(nameof(MapLoaderHacker), includeMethod.Source, PatchType.Prefix);
             IncludePatch.Invoked += (sender, e) =>
             {
                 MapParser instance = MapParser.FromSource(e.Instance);
 
                 ParseTreeNode node = (ParseTreeNode)e.Args[0];
-                string text = Convert.ToString(node.ChildNodes[1].Token.Value);
+                ParseTreeNode argNode = node.ChildNodes[1];
+                string argText = Convert.ToString(argNode.Token?.Value);
 
                 SourceLocation sourceLocation = node.Span.Location;
-                bool isHeader = HeadersFactory.Register(text.ToLowerInvariant(), instance.FilePath, sourceLocation.Line + 2, sourceLocation.Column + 1);
+                bool isHeader = HeadersFactory.Register(argText.ToLowerInvariant(), instance.FilePath, sourceLocation.Line + 2, sourceLocation.Column + 1);
 
-                return isHeader ? new PatchInvokationResult(SkipModes.SkipOriginal) : PatchInvokationResult.DoNothing(e);
+                if (!isHeader)
+                {
+                    object result = instance.GetValue(node.ChildNodes[1]);
+                    MapLoader.Include(Convert.ToString(result));
+                }
+
+                return new PatchInvokationResult(SkipModes.SkipOriginal);
             };
         }
 
