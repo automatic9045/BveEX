@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 using BveTypes;
 using BveTypes.ClassWrappers;
+using BveTypes.ClassWrappers.Extensions;
 using FastMember;
 using Irony.Parsing;
 using ObjectiveHarmonyPatch;
@@ -21,6 +23,7 @@ namespace AtsEx.BveHackerServices
         private readonly HarmonyPatch ConstructorPatch;
         private readonly HarmonyPatch RegisterFilePatch;
         private readonly HarmonyPatch IncludePatch;
+        private readonly HarmonyPatch GetSystemVariablePatch;
 
         private HeaderSetFactory HeadersFactory = null;
 
@@ -76,6 +79,34 @@ namespace AtsEx.BveHackerServices
                 }
 
                 return new PatchInvokationResult(SkipModes.SkipOriginal);
+            };
+
+            FastMethod getSystemVariableMethod = mapParserMembers.GetSourceMethodOf(nameof(MapParser.GetSystemVariable));
+            GetSystemVariablePatch = HarmonyPatch.Patch(nameof(MapLoaderHacker), getSystemVariableMethod.Source, PatchType.Prefix);
+            GetSystemVariablePatch.Invoked += (sender, e) =>
+            {
+                WrappedList<MapStatementClause> clauses = WrappedList<MapStatementClause>.FromSource((IList)e.Args[0]);
+                ParseTreeNode node = (ParseTreeNode)e.Args[1];
+
+                if (0 < clauses.Count) return PatchInvokationResult.DoNothing(e);
+
+                string key = ((string)node.Token.Value).ToLowerInvariant();
+                switch (key)
+                {
+                    case "relativedir":
+                        MapParser instance = MapParser.FromSource(e.Instance);
+
+                        Uri rootUri = new Uri(Path.GetDirectoryName(MapLoader.FilePath) + Path.DirectorySeparatorChar);
+                        Uri subUri = new Uri(Path.GetDirectoryName(instance.FilePath) + Path.DirectorySeparatorChar);
+
+                        Uri relativeUri = rootUri.MakeRelativeUri(subUri);
+                        string relativePath = relativeUri.ToString().Replace('/', Path.DirectorySeparatorChar);
+
+                        return new PatchInvokationResult(relativePath, SkipModes.SkipOriginal);
+
+                    default:
+                        return PatchInvokationResult.DoNothing(e);
+                }
             };
         }
 
