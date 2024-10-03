@@ -3,6 +3,9 @@ BveTs Map 2.02:utf-8
 include '[[AtsEx::NOMPI]] このマップでは AtsEX マッププラグインを使用しています。正常動作には AtsEX のインストールが必要です。詳細は https://automatic9045.github.io をご覧ください。';
 include '[[AtsEx::NOMPI]] This map requires to install AtsEX to execute map plugins. For more information, visit https://automatic9045.github.io';
 
+Structure.Load(relativedir + 'Structures.csv');
+Signal.Load(relativedir + 'Signal.csv');
+
 Curve.SetGauge(1.067);
 Curve.SetCenter(1.067 / 2);
 

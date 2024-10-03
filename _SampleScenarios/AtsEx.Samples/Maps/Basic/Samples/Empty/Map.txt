@@ -1,10 +1,5 @@
 BveTs Map 2.02:utf-8
 
-include '<AtsEx::USEATSEX>';
-include '<AtsEx::READDEPTH>1';
-
-Structure.Load('..\..\Structures.csv');
-Signal.Load('..\..\Signal.csv');
-Station.Load('Stations.csv');
-
 include '..\..\BaseMap.txt';
+
+Station.Load('Stations.csv');

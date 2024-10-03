@@ -1,19 +1,14 @@
 BveTs Map 2.02:utf-8
 
-include '<AtsEx::USEATSEX>';
-include '<AtsEx::READDEPTH>1';
+include '..\..\BaseMap.txt';
 
 AtsEx.MapPlugin.Load('MapPluginUsing.xml');
 // -- または --
 // AtsEx.MapPlugin.LoadAssembly('MapPlugins\MapStatementTest.dll');
+// -- または (古い形式) --
+// include '<AtsEx::MapPluginUsing>MapPluginUsing.xml';
 
-AtsEx.Dialog.Show('このメッセージはマップステートメントから表示しています。');
-
-Structure.Load('..\..\Structures.csv');
-Signal.Load('..\..\Signal.csv');
 Station.Load('Stations.csv');
-
-include '..\..\BaseMap.txt';
 
 50;
 	Station['Statement1'].Put(-1, 1, -1); // 見やすさのために設置しているだけで、マップステートメントの定義には無関係です。

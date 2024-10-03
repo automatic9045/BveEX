@@ -1,21 +1,16 @@
 BveTs Map 2.02:utf-8
 
-include '<AtsEx::USEATSEX>';
-include '<AtsEx::READDEPTH>1';
-
-include '<AtsEx::MapPluginUsing>MapPluginUsing.xml';
-
-Structure.Load('..\..\Structures.csv');
-Signal.Load('..\..\Signal.csv');
-Station.Load('Stations.csv');
-
 include '..\..\BaseMap.txt';
+
+AtsEx.MapPlugin.Load('MapPluginUsing.xml');
+Structure.Load('Structures.csv');
+Station.Load('Stations.csv');
 
 Section.SetSpeedLimit(0, 25, 45, 75, null);
 Section.Begin(0, 1, 2, 3, 99);
 
 12.5;
-	Structure['Info_Signal'].Put('1', -0.7, 4, 0, 0, -10, 0, 0, 0);
+	Structure['Info'].Put('1', -0.7, 4, 0, 0, -10, 0, 0, 0);
 	
 15;
 	Section.Begin(0, 1, 2, 3, 99);
