@@ -25,12 +25,6 @@
 
 ## プロジェクトの構成
 
-### ATS プラグイン版
-
-![AtsEX 構成図](SystemOverview.AtsPlugin.svg)
-
-### 入力デバイスプラグイン版
-
 ![AtsEX 構成図](SystemOverview.InputDevice.svg)
 
 ## 使用ライブラリ等（アルファベット順）
@@ -61,6 +55,10 @@ Copyright (c) 2017  Andreas Pardeike
 #### [IronPython](https://ironpython.net/) (Apache-2.0)
 
 Copyright (c) .NET Foundation and Contributors
+
+#### [Irony](https://github.com/IronyProject/Irony) (MIT)
+
+Copyright (c) 2019 Irony Project
 
 #### [Markdig](https://github.com/xoofx/markdig) (BSD-2-Clause)
 
