@@ -22,6 +22,8 @@ namespace AtsEx.Launcher.SplashScreen
         public SplashForm(Version bveVersion, Version launcherVersion)
         {
             InitializeComponent(bveVersion, launcherVersion);
+
+            FormClosing += (sender, e) => e.Cancel = true;
         }
     }
 }
