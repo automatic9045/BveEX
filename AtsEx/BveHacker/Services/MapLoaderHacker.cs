@@ -93,7 +93,7 @@ namespace AtsEx.BveHackerServices
                 string key = ((string)node.Token.Value).ToLowerInvariant();
                 switch (key)
                 {
-                    case "relativedir":
+                    case "ex_relativedir":
                         MapParser instance = MapParser.FromSource(e.Instance);
 
                         Uri rootUri = new Uri(Path.GetDirectoryName(MapLoader.FilePath) + Path.DirectorySeparatorChar);
