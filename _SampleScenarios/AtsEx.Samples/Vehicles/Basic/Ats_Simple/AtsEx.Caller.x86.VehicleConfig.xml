@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<AtsExVehicleConfig xmlns="http://automatic9045.github.io/ns/xmlschemas/AtsExVehicleConfigXmlSchema.xsd">
-    <DetectSoundIndexConflict>true</DetectSoundIndexConflict>
-    <DetectPanelValueIndexConflict>true</DetectPanelValueIndexConflict>
-</AtsExVehicleConfig>

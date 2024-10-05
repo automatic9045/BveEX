@@ -1,5 +1,3 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <AtsExPluginUsing xmlns="http://automatic9045.github.io/ns/xmlschemas/AtsExPluginUsingXmlSchema.xsd">
-	<Assembly Path="AtsEXPlugins\SimpleAts.dll" />
-	<Assembly Path="AtsEXPlugins\StateViewer.dll" />
 </AtsExPluginUsing>

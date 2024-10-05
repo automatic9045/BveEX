@@ -3,5 +3,5 @@ PerformanceCurve = Notch\Notch.txt
 Parameters = Parameters.txt
 Panel = Panel\Panel.txt
 Sound = Sound.txt
-Ats64 = Ats_WithPanel\AtsEx.Caller.x64.dll
-Ats32 = Ats_WithPanel\AtsEx.Caller.x86.dll
+Ats64 = DummyAts\DetailManager.x64.dll
+Ats32 = DummyAts\DetailManager.x86.dll

@@ -72,8 +72,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /y /i "$(TargetDir)" "$(SolutionDir)_SampleScenarios\AtsEx.Samples\Vehicles\Basic\Ats_Simple\AtsEXPlugins\"
-xcopy /y /i "$(TargetDir)" "$(SolutionDir)_SampleScenarios\AtsEx.Samples\Vehicles\Basic\Ats_WithPanel\AtsEXPlugins\"
-xcopy /y /i "$(TargetDir)" "$(SolutionDir)_SampleScenarios\AtsEx.Samples\Vehicles\Basic\Ats_CooperatingWithMapPlugin\AtsEXPlugins\"</PostBuildEvent>
+    <PostBuildEvent>xcopy /y /i "$(TargetDir)" "$(SolutionDir)_SampleScenarios\AtsEx.Samples\Vehicles\Basic\AtsExPlugins\"</PostBuildEvent>
   </PropertyGroup>
 </Project>

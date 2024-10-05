@@ -41,27 +41,15 @@ obj
 /_SampleScenarios/AtsEx.Samples/Maps/Basic/Samples/*/MapPlugins/*.xml
 /_SampleScenarios/AtsEx.Samples/Maps/Basic/Samples/*/MapPlugins/Resources
 
-/_SampleScenarios/AtsEx.Samples/Vehicles/Basic/Ats_*/*.dll
-/_SampleScenarios/AtsEx.Samples/Vehicles/Basic/Ats_*/*.pdb
-/_SampleScenarios/AtsEx.Samples/Vehicles/Basic/Ats_*/*.dll.config
-/_SampleScenarios/AtsEx.Samples/Vehicles/Basic/Ats_*/*.xml
-!/_SampleScenarios/AtsEx.Samples/Vehicles/Basic/Ats_*/*.VehiclePluginUsing.xml
-!/_SampleScenarios/AtsEx.Samples/Vehicles/Basic/Ats_*/*.VehicleConfig.xml
-/_SampleScenarios/AtsEx.Samples/Vehicles/Basic/Ats_*/AtsEXPlugins/*.dll
-/_SampleScenarios/AtsEx.Samples/Vehicles/Basic/Ats_*/AtsEXPlugins/*.pdb
-/_SampleScenarios/AtsEx.Samples/Vehicles/Basic/Ats_*/AtsEXPlugins/*.dll.config
-/_SampleScenarios/AtsEx.Samples/Vehicles/Basic/Ats_*/AtsEXPlugins/*.xml
-/_SampleScenarios/AtsEx.Samples/Vehicles/Basic/Ats_*/AtsEXPlugins/Resources
+/_SampleScenarios/AtsEx.Samples/Vehicles/Basic/AtsEXPlugins/*.dll
+/_SampleScenarios/AtsEx.Samples/Vehicles/Basic/AtsEXPlugins/*.pdb
+/_SampleScenarios/AtsEx.Samples/Vehicles/Basic/AtsEXPlugins/*.dll.config
+/_SampleScenarios/AtsEx.Samples/Vehicles/Basic/AtsEXPlugins/*.xml
+/_SampleScenarios/AtsEx.Samples/Vehicles/Basic/AtsEXPlugins/Resources
 
-/_SampleScenarios/AtsEx.Samples/Vehicles/E217r/Ats/Samples/*/*.dll
-/_SampleScenarios/AtsEx.Samples/Vehicles/E217r/Ats/Samples/*/*.pdb
-/_SampleScenarios/AtsEx.Samples/Vehicles/E217r/Ats/Samples/*/*.dll.config
-/_SampleScenarios/AtsEx.Samples/Vehicles/E217r/Ats/Samples/*/*.xml
-!/_SampleScenarios/AtsEx.Samples/Vehicles/E217r/Ats/Samples/*/*.VehiclePluginUsing.xml
-!/_SampleScenarios/AtsEx.Samples/Vehicles/E217r/Ats/Samples/*/*.VehicleConfig.xml
-/_SampleScenarios/AtsEx.Samples/Vehicles/E217r/Ats/Samples/*/AtsEXPlugins/*.dll
-/_SampleScenarios/AtsEx.Samples/Vehicles/E217r/Ats/Samples/*/AtsEXPlugins/*.pdb
-/_SampleScenarios/AtsEx.Samples/Vehicles/E217r/Ats/Samples/*/AtsEXPlugins/*.dll.config
-/_SampleScenarios/AtsEx.Samples/Vehicles/E217r/Ats/Samples/*/AtsEXPlugins/*.xml
+/_SampleScenarios/AtsEx.Samples/Vehicles/E217r/Ats/Samples/*.dll
+/_SampleScenarios/AtsEx.Samples/Vehicles/E217r/Ats/Samples/*.pdb
+/_SampleScenarios/AtsEx.Samples/Vehicles/E217r/Ats/Samples/*.dll.config
+/_SampleScenarios/AtsEx.Samples/Vehicles/E217r/Ats/Samples/*.xml
 
 /_SampleScenarios/Uchibo20
