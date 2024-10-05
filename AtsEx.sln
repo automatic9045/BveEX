@@ -17,8 +17,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MapPlugins", "MapPlugins", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Samples.MapPlugins.StationController", "SamplePlugins\MapPlugins\StationController\AtsEx.Samples.MapPlugins.StationController.csproj", "{9BF5F305-141D-4B74-B5FE-27DC09FF68A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Caller", "AtsEx.Caller\AtsEx.Caller.csproj", "{6CF027B6-6485-448D-BB15-F114587E62F9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Samples.MapPlugins.TrainController", "SamplePlugins\MapPlugins\TrainController\AtsEx.Samples.MapPlugins.TrainController.csproj", "{C737B63B-E1DC-4960-82C1-A6D885B26694}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Samples.VehiclePlugins.SimpleAts", "SamplePlugins\VehiclePlugins\SimpleAts\AtsEx.Samples.VehiclePlugins.SimpleAts.csproj", "{68D8C868-7775-42DB-A696-CF8DEF486A89}"
@@ -99,10 +97,6 @@ Global
 		{9BF5F305-141D-4B74-B5FE-27DC09FF68A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BF5F305-141D-4B74-B5FE-27DC09FF68A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BF5F305-141D-4B74-B5FE-27DC09FF68A5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6CF027B6-6485-448D-BB15-F114587E62F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6CF027B6-6485-448D-BB15-F114587E62F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6CF027B6-6485-448D-BB15-F114587E62F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6CF027B6-6485-448D-BB15-F114587E62F9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C737B63B-E1DC-4960-82C1-A6D885B26694}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C737B63B-E1DC-4960-82C1-A6D885B26694}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C737B63B-E1DC-4960-82C1-A6D885B26694}.Release|Any CPU.ActiveCfg = Release|Any CPU

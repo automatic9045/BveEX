@@ -4,7 +4,6 @@ bin
 obj
 *.tmp
 *.user
-/DllExport.bat
 /packages
 
 /_InputDevices
