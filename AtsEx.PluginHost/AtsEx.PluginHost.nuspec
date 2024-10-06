@@ -16,8 +16,6 @@
 		<title>AtsEX PluginHost</title>
 
 		<dependencies>
-			<dependency id="SlimDX" version="4.0.13.44" />
-			<dependency id="UnembeddedResources" version="1.0.0" />
 		</dependencies>
 	</metadata>
 	<files>
