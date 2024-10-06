@@ -62,14 +62,20 @@ namespace BveTypes
             {
                 Exception first = GetTypicalException(ex);
 
-                IEnumerable<Assembly> slimDXAssemblies = AppDomain.CurrentDomain.GetAssemblies().Where(asm => asm.GetName().Name == "SlimDX");
-                if (1 < slimDXAssemblies.Count())
-                {
-                    throw new MultipleSlimDXLoadedException(slimDXAssemblies, first);
-                }
+                IGrouping<string, Assembly> duplicatedAssemblies = AppDomain.CurrentDomain.GetAssemblies()
+                    .Where(asm => !asm.IsDynamic)
+                    .GroupBy(asm => Path.GetFileName(asm.Location))
+                    .FirstOrDefault(g => g.Skip(1).Any());
 
-                ExceptionDispatchInfo.Capture(ex).Throw();
-                throw;
+                if (duplicatedAssemblies is null)
+                {
+                    ExceptionDispatchInfo.Capture(ex).Throw();
+                    throw;
+                }
+                else
+                {
+                    throw new DuplicatedLibraryException(duplicatedAssemblies.Key, duplicatedAssemblies, first);
+                }
             }
 
 

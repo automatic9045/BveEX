@@ -118,6 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Message" xml:space="preserve">
-    <value>{0} の読込に失敗しました。複数の SlimDX.dll が読み込まれていることが原因の可能性があります。</value>
+    <value>Failed to load {0}. This may be due to multiple {1}(s) being loaded.</value>
   </data>
 </root>

@@ -120,7 +120,7 @@
   <data name="BveVersionNotSupported" xml:space="preserve">
     <value>Loaded the profile for BVE version {1} instead of current version {0}, which is not supported. It may cause some features not to work well.</value>
   </data>
-  <data name="MultipleSlimDXLoadedApproach" xml:space="preserve">
-    <value>The required version of SlimDX cannot be found. Try installing {0} again.</value>
+  <data name="LibraryDuplicatedApproach" xml:space="preserve">
+    <value>Installation seems to have failed. Try installing {0} again.</value>
   </data>
 </root>

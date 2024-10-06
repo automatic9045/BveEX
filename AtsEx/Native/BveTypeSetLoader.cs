@@ -20,7 +20,7 @@ namespace AtsEx.Native
             private readonly ResourceLocalizer Localizer = ResourceLocalizer.FromResXOfType<BveTypeSetLoader>("Core");
 
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> BveVersionNotSupported { get; private set; }
-            [ResourceStringHolder(nameof(Localizer))] public Resource<string> MultipleSlimDXLoadedApproach { get; private set; }
+            [ResourceStringHolder(nameof(Localizer))] public Resource<string> LibraryDuplicatedApproach { get; private set; }
 
             public ResourceSet()
             {
@@ -58,9 +58,9 @@ namespace AtsEx.Native
                 BveTypeSet bveTypes = Factory.Load();
                 return bveTypes;
             }
-            catch (MultipleSlimDXLoadedException ex)
+            catch (DuplicatedLibraryException ex)
             {
-                string approach = string.Format(Resources.Value.MultipleSlimDXLoadedApproach.Value, App.Instance.ProductShortName);
+                string approach = string.Format(Resources.Value.LibraryDuplicatedApproach.Value, App.Instance.ProductShortName);
                 ErrorDialog.Show(3, ex.Message, approach);
                 throw;
             }

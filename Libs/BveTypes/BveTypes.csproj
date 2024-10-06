@@ -229,15 +229,15 @@
     <Compile Include="Comparer.cs" />
     <Compile Include="ClassWrappers\Public\Conductor.cs" />
     <Compile Include="ITwoWayConverter.cs" />
-    <Compile Include="MultipleSlimDXLoadedException.cs" />
+    <Compile Include="DuplicatedLibraryException.cs" />
     <Compile Include="Profile.cs" />
     <Compile Include="DifferentVersionProfileLoadedEventArgs.cs" />
     <Compile Include="ProfileSelector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\MultipleSlimDXLoadedException.ja.resx" />
-    <Content Include="Resources\MultipleSlimDXLoadedException.resx" />
+    <Content Include="Resources\DuplicatedLibraryException.ja.resx" />
+    <Content Include="Resources\DuplicatedLibraryException.resx" />
     <EmbeddedResource Include="WrapTypes\5.8.7554.391.xml" />
   </ItemGroup>
   <ItemGroup>
