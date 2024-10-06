@@ -15,10 +15,11 @@ using AtsEx.Sound;
 using AtsEx.PluginHost.Input.Native;
 using AtsEx.PluginHost.Native;
 using AtsEx.PluginHost.Plugins;
+using AtsEx.PluginHost;
 
 namespace AtsEx
 {
-    internal abstract partial class ScenarioService : IDisposable
+    internal partial class ScenarioService : IDisposable
     {
         private class ResourceSet
         {
@@ -42,20 +43,22 @@ namespace AtsEx
 #endif
         }
 
+
         private readonly AtsEx AtsEx;
         private readonly NativeImpl Native;
-        private readonly BveHacker BveHacker;
 
         private readonly PluginService _PluginService;
 
-        protected ScenarioService(AtsEx atsEx, PluginSourceSet vehiclePluginUsing, VehicleConfig vehicleConfig, VehicleSpec vehicleSpec)
+        public Scenario Target { get; private set; } = null;
+
+        public ScenarioService(AtsEx atsEx, PluginSourceSet vehiclePluginUsing, VehicleConfig vehicleConfig, VehicleSpec vehicleSpec)
         {
             AtsEx = atsEx;
-            BveHacker = AtsEx.BveHacker;
+            AtsEx.BveHacker.ScenarioCreated += OnScenarioCreated;
 
             Native = new NativeImpl(vehicleSpec, vehicleConfig);
 
-            PluginLoader pluginLoader = new PluginLoader(Native, BveHacker, AtsEx.Extensions);
+            PluginLoader pluginLoader = new PluginLoader(Native, AtsEx.BveHacker, AtsEx.Extensions);
             PluginSet plugins = pluginLoader.Load(vehiclePluginUsing);
             _PluginService = new PluginService(plugins, Native.Handles);
 
@@ -64,8 +67,15 @@ namespace AtsEx
 
         public virtual void Dispose()
         {
+            AtsEx.BveHacker.ScenarioCreated -= OnScenarioCreated;
+
             AtsEx.VersionFormProvider.UnsetScenario();
             _PluginService.Dispose();
+        }
+
+        private void OnScenarioCreated(ScenarioCreatedEventArgs e)
+        {
+            Target = e.Scenario;
         }
 
         public void Started(BrakePosition defaultBrakePosition)
@@ -91,7 +101,7 @@ namespace AtsEx
             Native.VehicleState = vehicleState;
             (Native.AtsPanelValues as AtsPanelValueSet).PreTick(panel);
 
-            BveHacker.Tick(elapsed);
+            AtsEx.BveHacker.Tick(elapsed);
             HandlePositionSet lastHandlePositionSet = _PluginService.Tick(elapsed, handlePositionSet =>
             {
                 atsHandles.PowerNotch = handlePositionSet.Power;

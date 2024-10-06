@@ -119,17 +119,13 @@
     <Compile Include="BveHacker\Services\ConfigFormHacker.cs" />
     <Compile Include="BveHacker\Services\MapLoaderHacker.cs" />
     <Compile Include="ErrorDialog.cs" />
-    <Compile Include="Main\AtsEx.AsInputDevice.cs" />
-    <Compile Include="Main\AtsEx.AsInputDevice.PatchEvents.cs" />
+    <Compile Include="Main\AtsEx.PatchEvents.cs" />
     <Compile Include="Main\PatchSet.cs" />
     <Compile Include="MapStatements\HeaderParser.cs" />
-    <Compile Include="Native\AppInitializer.cs" />
     <Compile Include="Native\BveTypeSetLoader.cs" />
-    <Compile Include="Main\AtsEx.ExtensionLoader.cs" />
-    <Compile Include="Main\AtsEx.ExtensionService.cs" />
-    <Compile Include="Main\ScenarioService.AsInputDevice.cs" />
+    <Compile Include="Plugins\Extensions\ExtensionSetFactory.cs" />
+    <Compile Include="Main\ExtensionService.cs" />
     <Compile Include="MapStatements\ObservableTrain.cs" />
-    <Compile Include="Native\Ats\AtsIoArray.cs" />
     <Compile Include="Native\Export.cs" />
     <Compile Include="Native\CallerInfo.cs" />
     <Compile Include="Native\FrameSpan.cs" />
@@ -152,9 +148,7 @@
     <Compile Include="BveHacker\Services\MainFormHacker.cs" />
     <Compile Include="BveHacker\Services\ScenarioHacker.cs" />
     <Compile Include="BveHacker\Services\StructureSetLifeProlonger.cs" />
-    <Compile Include="Main\AtsEx.AsAtsPlugin.cs" />
     <Compile Include="Main\AtsEx.cs" />
-    <Compile Include="Main\ScenarioService.AsAtsPlugin.cs" />
     <Compile Include="Main\ScenarioService.cs" />
     <Compile Include="BveHacker\BveHacker.cs" />
     <Compile Include="Handles\BrakeHandle.cs" />
@@ -178,7 +172,6 @@
     <Compile Include="MapStatements\HeaderSetFactory.cs" />
     <Compile Include="MapStatementIdentifiers.cs" />
     <Compile Include="Native\LauncherCompatibilityVersionAttribute.cs" />
-    <Compile Include="Native\Ats\AtsMain.cs" />
     <Compile Include="Plugins\Extensions\ExtensionSet.cs" />
     <Compile Include="Plugins\VehicleConfig.cs" />
     <Compile Include="Plugins\PluginSourceSet.Concat.cs" />
@@ -289,8 +282,6 @@
     <Content Include="Resources\AtsPanelValueSet.resx" />
     <Content Include="Resources\AtsSoundSet.ja.resx" />
     <Content Include="Resources\AtsSoundSet.resx" />
-    <Content Include="Resources\AtsMain.ja.resx" />
-    <Content Include="Resources\AtsMain.resx" />
     <Content Include="Resources\BveTypeSetLoader.resx" />
     <Content Include="Resources\BveTypeSetLoader.ja.resx" />
     <Content Include="Resources\VehicleConfig.ja.resx" />
@@ -303,6 +294,8 @@
     <Content Include="Resources\Plugins\Native\Library.resx" />
     <Content Include="Resources\PluginListTabPage.resx" />
     <Content Include="Resources\PluginListTabPage.ja.resx" />
+    <Content Include="Resources\ExtensionService.ja.resx" />
+    <Content Include="Resources\ExtensionService.resx" />
     <None Include="app.config" />
     <None Include="packages.config" />
     <EmbeddedResource Include="Plugins\AtsExVehicleConfigXmlSchema.xsd">

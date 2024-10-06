@@ -63,7 +63,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CoreHost.cs" />
     <Compile Include="ErrorDialog.cs" />
     <Compile Include="Hosting\UpdateChecker.cs" />
     <Compile Include="CoreHostAsInputDevice.cs" />
@@ -72,7 +71,6 @@
     <Compile Include="LauncherVersionChecker.cs" />
     <Compile Include="Resources.cs" />
     <Compile Include="VersionSelector.AsInputDevice.cs" />
-    <Compile Include="VersionSelector.AsAtsPlugin.cs" />
     <Compile Include="VersionSelector.cs" />
     <Compile Include="Hosting\TargetBveFinder.cs" />
     <Compile Include="Hosting\AtsExRepositoryHost.cs" />

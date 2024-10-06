@@ -39,7 +39,7 @@ namespace AtsEx.PluginHost
 #endif
         }
 
-        private App(Process targetProcess, Assembly bveAssembly, Assembly launcherAssembly, Assembly atsExAssembly, LaunchMode launchMode)
+        private App(Process targetProcess, Assembly bveAssembly, Assembly launcherAssembly, Assembly atsExAssembly)
         {
             Process = targetProcess;
             BveAssembly = bveAssembly;
@@ -50,13 +50,11 @@ namespace AtsEx.PluginHost
 
             AtsExVersion = AtsExAssembly.GetName().Version;
             BveVersion = BveAssembly.GetName().Version;
-
-            LaunchMode = launchMode;
         }
 
-        public static void CreateInstance(Process targetProcess, Assembly bveAssembly, Assembly launcherAssembly, Assembly atsExAssembly, LaunchMode launchMode)
+        public static void CreateInstance(Process targetProcess, Assembly bveAssembly, Assembly launcherAssembly, Assembly atsExAssembly)
         {
-            Instance = new App(targetProcess, bveAssembly, launcherAssembly, atsExAssembly, launchMode);
+            Instance = new App(targetProcess, bveAssembly, launcherAssembly, atsExAssembly);
             IsInitialized = true;
         }
 
@@ -112,8 +110,9 @@ namespace AtsEx.PluginHost
         public Version BveVersion { get; }
 
         /// <summary>
-        /// AtsEX 本体の呼出モードを取得します。
+        /// 常に <see cref="LaunchMode.InputDevice"/> を返します。
         /// </summary>
-        public LaunchMode LaunchMode { get; }
+        [Obsolete]
+        public LaunchMode LaunchMode { get; } = LaunchMode.InputDevice;
     }
 }

@@ -9,7 +9,6 @@ using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Ipc;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 using AtsEx.Launcher.Hosting;
 using AtsEx.Launcher.SplashScreen;
@@ -33,10 +32,9 @@ namespace AtsEx.Launcher
         private readonly Process SplashProcess;
         private readonly SplashFormInfo SplashForm;
 
-        [Obsolete]
-        public CoreHost CoreHost { get; }
+        public CoreHostAsInputDevice CoreHost { get; }
 
-        public VersionSelector()
+        public VersionSelector(Assembly callerAssembly)
         {
             Assembly launcherAssembly = Assembly.GetExecutingAssembly();
             string rootDirectory = Path.GetDirectoryName(launcherAssembly.Location);
@@ -107,12 +105,17 @@ namespace AtsEx.Launcher
             }
 
             UpdateChecker.CheckUpdates();
-        }
 
-        [Obsolete]
-        public VersionSelector(Assembly callerAssembly) : this()
-        {
-            CoreHost = new CoreHost(callerAssembly, BveFinder);
+            SplashForm.ProgressText = "AtsEX 入力デバイスプラグイン版を起動しています...";
+
+            try
+            {
+                CoreHost = new CoreHostAsInputDevice(callerAssembly, BveFinder);
+            }
+            finally
+            {
+                SplashProcess.Kill();
+            }
         }
     }
 }

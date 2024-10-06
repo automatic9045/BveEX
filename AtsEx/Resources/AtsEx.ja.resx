@@ -124,9 +124,6 @@
   <data name="AtsExAssemblyLocationIllegalMessage" xml:space="preserve">
     <value>{0} のメインアセンブリの配置先 '{1}' は不正です。</value>
   </data>
-  <data name="ExtensionTickResultTypeInvalid" xml:space="preserve">
-    <value>拡張機能の {0} メソッドは {1} を返さなければなりません。</value>
-  </data>
   <data name="IgnoreAndContinue" xml:space="preserve">
     <value>無視して読込を続行しますか？</value>
   </data>

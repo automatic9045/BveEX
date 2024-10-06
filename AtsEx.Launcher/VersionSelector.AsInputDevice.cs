@@ -9,21 +9,11 @@ namespace AtsEx.Launcher
 {
     public partial class VersionSelector
     {
+        [Obsolete("ver1.0-RC10 以前の AtsEX Caller Input Device 向けです。")]
         public class AsInputDevice : VersionSelector
         {
-            public new CoreHostAsInputDevice CoreHost { get; }
-
-            public AsInputDevice(Assembly callerAssembly) : base()
+            public AsInputDevice(Assembly callerAssembly) : base(callerAssembly)
             {
-                SplashForm.ProgressText = "AtsEX 入力デバイスプラグイン版を起動しています...";
-                try
-                {
-                    CoreHost = new CoreHostAsInputDevice(callerAssembly, BveFinder);
-                }
-                finally
-                {
-                    SplashProcess.Kill();
-                }
             }
         }
     }

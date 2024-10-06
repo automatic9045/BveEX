@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CallerVersionNotSupported" xml:space="preserve">
-    <value>読み込まれた {0} Caller (バージョン {1}) は現在の {0} ではサポートされていません。beta0.16 (バージョン 0.16) 以降の {0} Caller をご利用ください。</value>
+  <data name="ExtensionTickResultTypeInvalid" xml:space="preserve">
+    <value>The {0} method of extensions must return {1}.</value>
   </data>
 </root>

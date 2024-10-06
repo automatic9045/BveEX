@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,7 +13,6 @@ using ObjectiveHarmonyPatch;
 using TypeWrapping;
 using UnembeddedResources;
 
-using AtsEx.Native.Ats;
 using AtsEx.Plugins;
 using AtsEx.Troubleshooting;
 using AtsEx.PluginHost;
@@ -47,11 +46,10 @@ namespace AtsEx.Native.InputDevices
 #endif
         }
 
-        private readonly CallerInfo CallerInfo;
         private readonly TroubleshooterSet Troubleshooters;
 
-        private AtsEx.AsInputDevice AtsEx = null;
-        private ScenarioService.AsInputDevice ScenarioService = null;
+        private AtsEx AtsEx = null;
+        private ScenarioService ScenarioService = null;
         private FrameSpan FrameSpan = null;
 
         private PluginSourceSet LoadedVehiclePluginUsing = null;
@@ -59,9 +57,8 @@ namespace AtsEx.Native.InputDevices
 
         public InputDeviceMain(CallerInfo callerInfo)
         {
-            CallerInfo = callerInfo;
-
-            AppInitializer.Initialize(CallerInfo, LaunchMode.InputDevice);
+            Assembly executingAssembly = Assembly.GetExecutingAssembly();
+            App.CreateInstance(callerInfo.Process, callerInfo.BveAssembly, callerInfo.AtsExLauncherAssembly, executingAssembly);
 
             if (Application.OpenForms.Count > 0)
             {
@@ -94,13 +91,6 @@ namespace AtsEx.Native.InputDevices
             HarmonyPatch createDirectXDevicesPatch = HarmonyPatch.Patch(nameof(InputDeviceMain), createDirectXDevicesMethod.Source, PatchType.Prefix);
             createDirectXDevicesPatch.Invoked += OnCreateDirectXDevices;
 
-            AtsMain.LoadedAsInputDevice();
-            AtsMain.VehiclePluginUsingLoaded += (sender, e) =>
-            {
-                LoadedVehiclePluginUsing = e.VehiclePluginUsing;
-                LoadedVehicleConfig = e.VehicleConfig;
-            };
-
 
             PatchInvokationResult OnCreateDirectXDevices(object sender, PatchInvokedEventArgs e)
             {
@@ -112,7 +102,7 @@ namespace AtsEx.Native.InputDevices
 
             void InitializeAtsEx()
             {
-                AtsEx = new AtsEx.AsInputDevice(bveTypes);
+                AtsEx = new AtsEx(bveTypes);
 
                 AtsEx.ScenarioClosed += OnScenarioClosed;
                 AtsEx.OnSetVehicleSpec += OnSetVehicleSpec;
@@ -131,7 +121,7 @@ namespace AtsEx.Native.InputDevices
             }
         }
 
-        private void OnSetVehicleSpec(object sender, AtsEx.AsInputDevice.ValueEventArgs<VehicleSpec> e)
+        private void OnSetVehicleSpec(object sender, AtsEx.ValueEventArgs<VehicleSpec> e)
         {
             PluginHost.Native.VehicleSpec exVehicleSpec = new PluginHost.Native.VehicleSpec(
                 e.Value.BrakeNotches, e.Value.PowerNotches, e.Value.AtsNotch, e.Value.B67Notch, e.Value.Cars);
@@ -142,17 +132,17 @@ namespace AtsEx.Native.InputDevices
                 : vehicleConfig.PluginUsingPath is null ? PluginSourceSet.ResolvePluginUsingToLoad(PluginType.VehiclePlugin, true, vehiclePath)
                 : PluginSourceSet.FromPluginUsing(PluginType.VehiclePlugin, true, vehicleConfig.PluginUsingPath);
 
-            ScenarioService = new ScenarioService.AsInputDevice(AtsEx, pluginUsing, vehicleConfig, exVehicleSpec);
+            ScenarioService = new ScenarioService(AtsEx, pluginUsing, vehicleConfig, exVehicleSpec);
             FrameSpan = new FrameSpan();
         }
 
-        private void OnInitialize(object sender, AtsEx.AsInputDevice.ValueEventArgs<DefaultBrakePosition> e)
+        private void OnInitialize(object sender, AtsEx.ValueEventArgs<DefaultBrakePosition> e)
         {
             ScenarioService.Started((BrakePosition)e.Value);
             FrameSpan.Initialize();
         }
 
-        private void PostElapse(object sender, AtsEx.AsInputDevice.OnElapseEventArgs e)
+        private void PostElapse(object sender, AtsEx.OnElapseEventArgs e)
         {
             ScenarioService?.PreviewTick();
 
@@ -169,32 +159,32 @@ namespace AtsEx.Native.InputDevices
             ScenarioService?.PostTick();
         }
 
-        private void OnSetPower(object sender, AtsEx.AsInputDevice.ValueEventArgs<int> e)
+        private void OnSetPower(object sender, AtsEx.ValueEventArgs<int> e)
         {
             ScenarioService?.SetPower(e.Value, true);
         }
 
-        private void OnSetBrake(object sender, AtsEx.AsInputDevice.ValueEventArgs<int> e)
+        private void OnSetBrake(object sender, AtsEx.ValueEventArgs<int> e)
         {
             ScenarioService?.SetBrake(e.Value, true);
         }
 
-        private void OnSetReverser(object sender, AtsEx.AsInputDevice.ValueEventArgs<int> e)
+        private void OnSetReverser(object sender, AtsEx.ValueEventArgs<int> e)
         {
             ScenarioService?.SetReverser((ReverserPosition)e.Value, true);
         }
 
-        private void OnKeyDown(object sender, AtsEx.AsInputDevice.ValueEventArgs<ATSKeys> e)
+        private void OnKeyDown(object sender, AtsEx.ValueEventArgs<ATSKeys> e)
         {
             ScenarioService?.KeyDown((NativeAtsKeyName)e.Value);
         }
 
-        private void OnKeyUp(object sender, AtsEx.AsInputDevice.ValueEventArgs<ATSKeys> e)
+        private void OnKeyUp(object sender, AtsEx.ValueEventArgs<ATSKeys> e)
         {
             ScenarioService?.KeyUp((NativeAtsKeyName)e.Value);
         }
 
-        private void OnHornBlow(object sender, AtsEx.AsInputDevice.ValueEventArgs<HornType> e)
+        private void OnHornBlow(object sender, AtsEx.ValueEventArgs<HornType> e)
         {
             ScenarioService?.HornBlow((PluginHost.Native.HornType)e.Value);
         }
@@ -209,18 +199,18 @@ namespace AtsEx.Native.InputDevices
             ScenarioService?.DoorClosed();
         }
 
-        private void OnSetSignal(object sender, AtsEx.AsInputDevice.ValueEventArgs<int> e)
+        private void OnSetSignal(object sender, AtsEx.ValueEventArgs<int> e)
         {
             ScenarioService?.SetSignal(e.Value);
         }
 
-        private void OnSetBeaconData(object sender, AtsEx.AsInputDevice.ValueEventArgs<BeaconData> e)
+        private void OnSetBeaconData(object sender, AtsEx.ValueEventArgs<BeaconData> e)
         {
             BeaconPassedEventArgs args = new BeaconPassedEventArgs(e.Value.Num, e.Value.Sig, e.Value.Z, e.Value.Data);
             ScenarioService?.BeaconPassed(args);
         }
 
-        private void OnScenarioClosed(object sender, AtsEx.AsInputDevice.ValueEventArgs<Scenario> e)
+        private void OnScenarioClosed(object sender, AtsEx.ValueEventArgs<Scenario> e)
         {
             // Scenario クラスのデストラクタ由来の場合
             if (e.Value != ScenarioService?.Target) return;

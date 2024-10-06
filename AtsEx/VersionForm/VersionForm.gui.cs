@@ -77,7 +77,7 @@ namespace AtsEx
                 Width = 480,
                 Height = 15,
                 AutoSize = true,
-                Text = string.Format(Resources.Value.Description.Value, App.Instance.AtsExAssembly.GetName().Version, App.Instance.LaunchMode.GetTypeString()),
+                Text = string.Format(Resources.Value.Description.Value, App.Instance.AtsExAssembly.GetName().Version),
             };
             Controls.Add(Description);
 

@@ -18,9 +18,9 @@ namespace AtsEx.Caller.InputDevice
     {
         private static readonly Assembly Assembly = Assembly.GetExecutingAssembly();
         private const string LauncherName = "AtsEx.Launcher";
-        private const string ErrorCaption = "読込エラー - AtsEX Caller 入力デバイスプラグイン版";
+        private const string ErrorCaption = "読込エラー - AtsEX Caller";
 
-        private VersionSelector.AsInputDevice VersionSelector;
+        private VersionSelector VersionSelector;
 
         public event InputEventHandler LeverMoved;
         public event InputEventHandler KeyDown;
@@ -67,7 +67,7 @@ namespace AtsEx.Caller.InputDevice
 
             void Load()
             {
-                VersionSelector = new VersionSelector.AsInputDevice(Assembly);
+                VersionSelector = new VersionSelector(Assembly);
 
                 VersionSelector.CoreHost.LeverMoved += (sender, e) => LeverMoved?.Invoke(this, new Mackoy.Bvets.InputEventArgs(e.Axis, e.Value));
                 VersionSelector.CoreHost.KeyDown += (sender, e) => KeyDown?.Invoke(this, new Mackoy.Bvets.InputEventArgs(e.Axis, e.Value));

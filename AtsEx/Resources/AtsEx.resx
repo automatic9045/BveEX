@@ -124,9 +124,6 @@ The legal location to place is '{1}'.</value>
   <data name="AtsExAssemblyLocationIllegalMessage" xml:space="preserve">
     <value>The location of the {0} main assembly '{1}' is illegal.</value>
   </data>
-  <data name="ExtensionTickResultTypeInvalid" xml:space="preserve">
-    <value>The {0} method of extensions must return {1}.</value>
-  </data>
   <data name="IgnoreAndContinue" xml:space="preserve">
     <value>Ignore and continue loading?</value>
   </data>

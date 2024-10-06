@@ -75,33 +75,20 @@ namespace AtsEx
                 }
             };
 
-            switch (App.Instance.LaunchMode)
+            ScenarioHacker.ScenarioOpened += e =>
             {
-                case LaunchMode.Ats:
-                    ScenarioHacker.BeginObserveInitialization();
-                    break;
+                ScenarioHacker.BeginObserveInitialization();
 
-                case LaunchMode.InputDevice:
-                    ScenarioHacker.ScenarioOpened += e =>
-                    {
-                        ScenarioHacker.BeginObserveInitialization();
+                ScenarioOpened?.Invoke(new ScenarioOpenedEventArgs(e.ScenarioInfo));
+            };
 
-                        ScenarioOpened?.Invoke(new ScenarioOpenedEventArgs(e.ScenarioInfo));
-                    };
+            ScenarioHacker.ScenarioClosed += e =>
+            {
+                MapLoaderHacker.Clear();
+                MapStatements = null;
 
-                    ScenarioHacker.ScenarioClosed += e =>
-                    {
-                        MapLoaderHacker.Clear();
-                        MapStatements = null;
-
-                        ScenarioClosed?.Invoke(EventArgs.Empty);
-                    };
-
-                    break;
-
-                default:
-                    throw new NotImplementedException();
-            }
+                ScenarioClosed?.Invoke(EventArgs.Empty);
+            };
         }
 
         public void Dispose()
