@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<id>AtsEx.PluginHost</id>
-		<version>1.0.0-rc10</version>
+		<version>1.0.0-rc.10</version>
 		<description>BVE Trainsim 5/6 用 AtsEX プラグインを開発するための基本ライブラリです。</description>
 		<authors>AtsEX Project</authors>
 		
