@@ -101,7 +101,6 @@ namespace AtsEx
             Native.VehicleState = vehicleState;
             (Native.AtsPanelValues as AtsPanelValueSet).PreTick(panel);
 
-            AtsEx.BveHacker.Tick(elapsed);
             HandlePositionSet lastHandlePositionSet = _PluginService.Tick(elapsed, handlePositionSet =>
             {
                 atsHandles.PowerNotch = handlePositionSet.Power;

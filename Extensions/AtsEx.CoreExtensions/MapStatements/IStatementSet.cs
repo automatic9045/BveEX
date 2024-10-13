@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using AtsEx.PluginHost.MapStatements;
 using AtsEx.PluginHost.Plugins.Extensions;
 
 namespace AtsEx.Extensions.MapStatements

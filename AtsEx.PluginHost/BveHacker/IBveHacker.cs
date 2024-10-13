@@ -162,16 +162,6 @@ namespace AtsEx.PluginHost
         [Obsolete]
         IHeaderSet MapHeaders { get; }
 
-        /// <summary>
-        /// マップに定義されているユーザー独自ステートメントの一覧を取得します。
-        /// </summary>
-        /// <remarks>
-        /// 互換性のために残されている古い機能です。AtsEx.CoreExtensions のマップステートメント機能をご利用ください。<br/>
-        /// シナリオが読み込まれていない時は <see langword="null"/> になります。
-        /// </remarks>
-        [Obsolete]
-        IStatementSet MapStatements { get; }
-
 
         /// <summary>
         /// 現在実行中のシナリオの読込に使用されている <see cref="BveTypes.ClassWrappers.MapLoader"/> を取得します。

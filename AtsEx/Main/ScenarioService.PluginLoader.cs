@@ -55,18 +55,6 @@ namespace AtsEx
                 {
                     string mapDirectory = Path.GetDirectoryName(BveHacker.ScenarioInfo.RouteFiles.SelectedFile.Path);
 
-#pragma warning disable CS0612 // 型またはメンバーが旧型式です
-                    {
-                        PluginHost.MapStatements.Identifier pluginUsingIdentifier = new PluginHost.MapStatements.Identifier(PluginHost.MapStatements.Namespace.Root, "mappluginusing");
-                        IEnumerable<PluginHost.MapStatements.IHeader> pluginUsingHeaders = BveHacker.MapHeaders.GetAll(pluginUsingIdentifier);
-                        foreach (PluginHost.MapStatements.IHeader header in pluginUsingHeaders)
-                        {
-                            string pluginUsingPath = Path.Combine(mapDirectory, header.Argument);
-                            LoadMapPluginUsing(pluginUsingPath);
-                        }
-                    }
-#pragma warning restore CS0612 // 型またはメンバーが旧型式です
-
                     {
                         IStatementSet statements = Extensions.GetExtension<IStatementSet>();
                         ClauseFilter elementFilter = ClauseFilter.Element("MapPlugin", 0);

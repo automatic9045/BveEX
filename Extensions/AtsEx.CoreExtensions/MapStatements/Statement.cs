@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.PluginHost.MapStatements;
-
 namespace AtsEx.Extensions.MapStatements
 {
     /// <summary>

@@ -84,12 +84,8 @@
     <Compile Include="LoadErrorManager\ILoadErrorManager.cs" />
     <Compile Include="MapStatements\Identifier.cs" />
     <Compile Include="MapStatements\IHeader.cs" />
-    <Compile Include="MapStatements\IStatementSet.cs" />
     <Compile Include="MapStatements\IHeaderSet.cs" />
-    <Compile Include="MapStatements\IStatement.cs" />
     <Compile Include="MapStatements\Namespace.cs" />
-    <Compile Include="MapStatements\PassedEventArgs.cs" />
-    <Compile Include="MapStatements\TrainPassedEventArgs.cs" />
     <Compile Include="Native\BeaconPassedEventArgs.cs" />
     <Compile Include="Native\BeaconPassedEventHandler.cs" />
     <Compile Include="Native\DoorEventArgs.cs" />

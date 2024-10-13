@@ -85,7 +85,6 @@ namespace AtsEx
             ScenarioHacker.ScenarioClosed += e =>
             {
                 MapLoaderHacker.Clear();
-                MapStatements = null;
 
                 ScenarioClosed?.Invoke(EventArgs.Empty);
             };
@@ -100,8 +99,6 @@ namespace AtsEx
 
         private void OnScenarioCreated(ScenarioCreatedEventArgs e)
         {
-            MapStatements = StatementSet.Create(e.Scenario.Route.Structures.Repeated, e.Scenario.Route.StructureModels, e.Scenario.Trains);
-
             NotchInfo notchInfo = e.Scenario.Vehicle.Instruments.Cab.Handles.NotchInfo;
 
             BrakeHandle brake = BrakeHandle.FromNotchInfo(notchInfo);
@@ -116,16 +113,6 @@ namespace AtsEx
                 string fileName = Path.GetFileName(ScenarioInfo.VehicleFiles.SelectedFile.Path);
                 throw new BveFileLoadException(string.Format(Resources.Value.NoPluginLoaded.Value, App.Instance.ProductShortName), fileName);
             }
-        }
-
-        public void Tick(TimeSpan elapsed)
-        {
-            if (MapStatements is null) return;
-
-            double vehicleLocation = Scenario.LocationManager.Location;
-            double preTrainLocation = Scenario.Route.PreTrainObjects.GetPreTrainLocation(Scenario.TimeManager.TimeMilliseconds);
-
-            MapStatements.Tick(vehicleLocation, preTrainLocation);
         }
 
 
@@ -161,10 +148,6 @@ namespace AtsEx
         public HeaderSet MapHeaders => MapLoaderHacker.Headers;
         [Obsolete]
         IHeaderSet IBveHacker.MapHeaders => MapHeaders;
-
-        public StatementSet MapStatements { get; private set; } = null;
-        [Obsolete]
-        IStatementSet IBveHacker.MapStatements => MapStatements;
 
         private readonly MapLoaderHacker MapLoaderHacker;
         public MapLoader MapLoader => MapLoaderHacker.MapLoader;
