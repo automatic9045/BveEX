@@ -57,12 +57,6 @@ namespace AtsEx.PluginHost.Plugins
         public Version MinRequiredVersion => Info.MinRequiredVersion;
 
         /// <summary>
-        /// 使用できません。常に <see langword="true"/> を返します。
-        /// </summary>
-        [Obsolete]
-        public bool UseBveHacker { get; } = true;
-
-        /// <summary>
         /// BVE が標準で提供する ATS プラグイン向けの機能のラッパーを取得します。
         /// </summary>
         /// <remarks>
@@ -167,20 +161,6 @@ namespace AtsEx.PluginHost.Plugins
         }
 
         /// <summary>
-        /// AtsEX プラグインの新しいインスタンスを初期化します。
-        /// </summary>
-        /// <remarks>
-        /// 互換性のために残されているコンストラクタです。パラメータに <see cref="PluginAttribute"/> を指定するオーバーロードを使用してください。
-        /// </remarks>
-        /// <param name="builder">AtsEX から渡される BVE、AtsEX の情報。</param>
-        /// <param name="pluginType">AtsEX プラグインの種類。</param>
-        /// <param name="useBveHacker">使用されません。</param>
-        [Obsolete]
-        public PluginBase(PluginBuilder builder, PluginType pluginType, bool useBveHacker) : this(builder, new PluginAttribute(pluginType))
-        {
-        }
-
-        /// <summary>
         /// クラスに付加されている <see cref="PluginAttribute"/> 属性を参照して、AtsEX プラグインの新しいインスタンスを初期化します。
         /// </summary>
         /// <remarks>
@@ -196,12 +176,6 @@ namespace AtsEx.PluginHost.Plugins
                     case PluginAttribute pluginAttribute:
                         Info = pluginAttribute;
                         break;
-
-#pragma warning disable CS0612 // 型またはメンバーが旧型式です
-                    case PluginTypeAttribute pluginTypeAttribute:
-                        Info = PluginAttribute.FromPluginTypeAttribute(pluginTypeAttribute);
-                        break;
-#pragma warning restore CS0612 // 型またはメンバーが旧型式です
                 }
             }
 

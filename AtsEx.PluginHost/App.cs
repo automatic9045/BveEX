@@ -108,11 +108,5 @@ namespace AtsEx.PluginHost
         /// 実行元の BVE のバージョンを取得します。
         /// </summary>
         public Version BveVersion { get; }
-
-        /// <summary>
-        /// 常に <see cref="LaunchMode.InputDevice"/> を返します。
-        /// </summary>
-        [Obsolete]
-        public LaunchMode LaunchMode { get; } = LaunchMode.InputDevice;
     }
 }

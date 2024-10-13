@@ -12,7 +12,7 @@ namespace AtsEx.PluginHost.Panels.Native
     /// ATS プラグインによって制御可能な運転台パネルの状態量 (例えば「ats12」など、subjectKey が「ats」から始まる状態量) を表します。
     /// </summary>
     /// <typeparam name="T">状態量の型。</typeparam>
-    public interface IAtsPanelValue<T> : IBinding<T>, IDisposable
+    public interface IAtsPanelValue<T> : IBinding<T>
     {
         /// <summary>
         /// 状態量を取得・設定します。
@@ -36,11 +36,5 @@ namespace AtsEx.PluginHost.Panels.Native
         /// <see cref="Value"/> の値が変更されたときに発生します。
         /// </summary>
         event EventHandler ValueChanged;
-
-        /// <summary>
-        /// 解放処理は不要になりました。
-        /// </summary>
-        [Obsolete]
-        new void Dispose();
     }
 }

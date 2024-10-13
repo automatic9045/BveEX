@@ -70,7 +70,6 @@
     <Compile Include="LauncherCompatibilityVersionAttribute.cs" />
     <Compile Include="LauncherVersionChecker.cs" />
     <Compile Include="Resources.cs" />
-    <Compile Include="VersionSelector.AsInputDevice.cs" />
     <Compile Include="VersionSelector.cs" />
     <Compile Include="Hosting\TargetBveFinder.cs" />
     <Compile Include="Hosting\AtsExRepositoryHost.cs" />

@@ -19,10 +19,6 @@ namespace AtsEx.Sound
         {
         }
 
-        public void Dispose()
-        {
-        }
-
         public int Tick() => CommandQueue.Tick().SerializedValue;
 
         public void Play()

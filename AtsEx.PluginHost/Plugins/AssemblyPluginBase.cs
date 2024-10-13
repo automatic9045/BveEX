@@ -35,8 +35,7 @@ namespace AtsEx.PluginHost.Plugins
         /// AtsEX プラグインの新しいインスタンスを初期化します。
         /// </summary>
         /// <remarks>
-        /// <see cref="PluginTypeAttribute"/> を付加して、プラグインの種類を指定してください。<br/>
-        /// AtsEX 拡張機能を利用しないプラグインであることを指定するには、<see cref="DoNotUseBveHackerAttribute"/> を付加してください。
+        /// <see cref="PluginAttribute"/> を付加して、プラグインの種類を指定してください。
         /// </remarks>
         /// <param name="builder">AtsEX から渡される BVE、AtsEX の情報。</param>
         public AssemblyPluginBase(PluginBuilder builder) : base(builder)

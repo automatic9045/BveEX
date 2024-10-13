@@ -9,14 +9,8 @@ namespace AtsEx.PluginHost.Sound.Native
     /// <summary>
     /// ATS プラグインから制御可能な ATS サウンドを表します。
     /// </summary>
-    public interface IAtsSound : ISound, IDisposable
+    public interface IAtsSound : ISound
     {
-        /// <summary>
-        /// 解放処理は不要になりました。
-        /// </summary>
-        [Obsolete]
-        new void Dispose();
-
         /// <summary>
         /// 音量を指定してサウンドをループ再生します。
         /// </summary>

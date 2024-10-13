@@ -15,7 +15,7 @@ using AtsEx.Launcher.SplashScreen;
 
 namespace AtsEx.Launcher
 {
-    public partial class VersionSelector
+    public class VersionSelector
     {
         private static readonly TargetBveFinder BveFinder = new TargetBveFinder();
 

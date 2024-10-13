@@ -43,10 +43,6 @@ namespace AtsEx.Panels
             Mode = mode;
         }
 
-        public void Dispose()
-        {
-        }
-
         public void SetValueExternally(int source) => Value = ValueSerializer.ConvertBack(source);
     }
 }

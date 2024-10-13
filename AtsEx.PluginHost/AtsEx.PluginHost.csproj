@@ -85,7 +85,6 @@
     <Compile Include="Native\BeaconPassedEventHandler.cs" />
     <Compile Include="Native\DoorEventArgs.cs" />
     <Compile Include="Native\DoorEventHandler.cs" />
-    <Compile Include="LaunchMode.cs" />
     <Compile Include="Input\InputEventArgsFactory.cs" />
     <Compile Include="Native\SignalUpdatedEventArgs.cs" />
     <Compile Include="Native\SignalUpdatedEventHandler.cs" />
@@ -106,7 +105,6 @@
     <Compile Include="Plugins\AllPluginsLoadedEventHandler.cs" />
     <Compile Include="Plugins\AssemblyPluginBase.cs" />
     <Compile Include="Handles\NotchCommandBase.cs" />
-    <Compile Include="Plugins\DoNotUseBveHackerAttribute.cs" />
     <Compile Include="Plugins\Extensions\AllExtensionsLoadedEventArgs.cs" />
     <Compile Include="Plugins\Extensions\AllExtensionsLoadedEventHandler.cs" />
     <Compile Include="Plugins\Extensions\ITogglableExtension.cs" />
@@ -132,7 +130,6 @@
     <Compile Include="Input\KeyBase.cs" />
     <Compile Include="Input\Native\INativeKeySet.cs" />
     <Compile Include="Input\Native\NativeAtsKeyName.cs" />
-    <Compile Include="Plugins\PluginTypeAttribute.cs" />
     <Compile Include="Plugins\ScriptLanguage.cs" />
     <Compile Include="Plugins\TickResult\MapPluginTickResult.cs" />
     <Compile Include="Plugins\TickResult\TickResult.cs" />
