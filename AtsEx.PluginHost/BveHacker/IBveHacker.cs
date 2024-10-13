@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,7 +11,6 @@ using BveTypes;
 using BveTypes.ClassWrappers;
 
 using AtsEx.PluginHost.LoadErrorManager;
-using AtsEx.PluginHost.MapStatements;
 
 namespace AtsEx.PluginHost
 {
@@ -150,17 +148,6 @@ namespace AtsEx.PluginHost
         /// </remarks>
         /// <seealso cref="INative.Handles"/>
         Handles.HandleSet Handles { get; }
-
-
-        /// <summary>
-        /// マップに定義されているヘッダーの一覧を取得します。
-        /// </summary>
-        /// <remarks>
-        /// 互換性のために残されている古い機能です。AtsEx.CoreExtensions のマップステートメント機能をご利用ください。<br/>
-        /// シナリオが読み込まれていない時は <see langword="null"/> になります。
-        /// </remarks>
-        [Obsolete]
-        IHeaderSet MapHeaders { get; }
 
 
         /// <summary>

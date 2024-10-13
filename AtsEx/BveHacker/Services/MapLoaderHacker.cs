@@ -14,21 +14,15 @@ using Irony.Parsing;
 using ObjectiveHarmonyPatch;
 using TypeWrapping;
 
-using AtsEx.MapStatements;
-
 namespace AtsEx.BveHackerServices
 {
     internal class MapLoaderHacker : IDisposable
     {
         private readonly HarmonyPatch ConstructorPatch;
-        private readonly HarmonyPatch RegisterFilePatch;
         private readonly HarmonyPatch IncludePatch;
         private readonly HarmonyPatch GetSystemVariablePatch;
 
-        private HeaderSetFactory HeadersFactory = null;
-
         public MapLoader MapLoader { get; private set; } = null;
-        public HeaderSet Headers { get; private set; } = null;
 
         public MapLoaderHacker(BveTypeSet bveTypes)
         {
@@ -38,21 +32,7 @@ namespace AtsEx.BveHackerServices
             ConstructorPatch = HarmonyPatch.Patch(nameof(MapLoaderHacker), constructor.Source, PatchType.Postfix);
             ConstructorPatch.Invoked += (sender, e) =>
             {
-                HeadersFactory = new HeaderSetFactory();
                 MapLoader = MapLoader.FromSource(e.Instance);
-
-                return PatchInvokationResult.DoNothing(e);
-            };
-
-            FastMethod registerFileMethod = mapLoaderMembers.GetSourceMethodOf(nameof(MapLoader.RegisterFile));
-            RegisterFilePatch = HarmonyPatch.Patch(nameof(MapLoaderHacker), registerFileMethod.Source, PatchType.Postfix);
-            RegisterFilePatch.Invoked += (sender, e) =>
-            {
-                string filePath = (string)e.Args[0];
-                if (filePath == MapLoader.FilePath)
-                {
-                    Headers = HeadersFactory.Build();
-                }
 
                 return PatchInvokationResult.DoNothing(e);
             };
@@ -66,13 +46,9 @@ namespace AtsEx.BveHackerServices
                 MapParser instance = MapParser.FromSource(e.Instance);
 
                 ParseTreeNode node = (ParseTreeNode)e.Args[0];
-                ParseTreeNode argNode = node.ChildNodes[1];
-                string argText = Convert.ToString(argNode.Token?.Value);
+                string argText = Convert.ToString(node.ChildNodes[1].Token?.Value);
 
-                SourceLocation sourceLocation = node.Span.Location;
-                bool isHeader = HeadersFactory.Register(argText.ToLowerInvariant(), instance.FilePath, sourceLocation.Line + 2, sourceLocation.Column + 1);
-
-                if (!isHeader)
+                if (!HeaderParser.IsNoMapPluginHeader(argText))
                 {
                     object result = instance.GetValue(node.ChildNodes[1]);
                     MapLoader.Include(Convert.ToString(result));
@@ -113,15 +89,12 @@ namespace AtsEx.BveHackerServices
         public void Dispose()
         {
             ConstructorPatch.Dispose();
-            RegisterFilePatch.Dispose();
             IncludePatch.Dispose();
         }
 
         public void Clear()
         {
-            HeadersFactory = null;
             MapLoader = null;
-            Headers = null;
         }
     }
 }

@@ -121,7 +121,7 @@
     <Compile Include="ErrorDialog.cs" />
     <Compile Include="Main\AtsEx.PatchEvents.cs" />
     <Compile Include="Main\PatchSet.cs" />
-    <Compile Include="MapStatements\HeaderParser.cs" />
+    <Compile Include="BveHacker\Services\HeaderParser.cs" />
     <Compile Include="Native\BveTypeSetLoader.cs" />
     <Compile Include="Plugins\Extensions\ExtensionSetFactory.cs" />
     <Compile Include="Main\ExtensionService.cs" />
@@ -161,11 +161,7 @@
     <Compile Include="LoadErrorManager\LoadErrorManager.cs" />
     <Compile Include="Main\ScenarioService.PluginLoader.cs" />
     <Compile Include="Main\ScenarioService.PluginService.cs" />
-    <Compile Include="MapStatements\Header.cs" />
-    <Compile Include="MapStatements\HeaderSet.cs" />
-    <Compile Include="MapStatements\MapTextParser.cs" />
     <Compile Include="Plugins\PluginLoadErrorResolver.cs" />
-    <Compile Include="MapStatements\HeaderSetFactory.cs" />
     <Compile Include="Native\LauncherCompatibilityVersionAttribute.cs" />
     <Compile Include="Plugins\Extensions\ExtensionSet.cs" />
     <Compile Include="Plugins\VehicleConfig.cs" />

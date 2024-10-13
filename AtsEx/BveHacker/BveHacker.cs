@@ -14,11 +14,9 @@ using UnembeddedResources;
 
 using AtsEx.BveHackerServices;
 using AtsEx.Handles;
-using AtsEx.MapStatements;
 
 using AtsEx.PluginHost;
 using AtsEx.PluginHost.LoadErrorManager;
-using AtsEx.PluginHost.MapStatements;
 
 namespace AtsEx
 {
@@ -144,10 +142,6 @@ namespace AtsEx
         public ILoadErrorManager LoadErrorManager { get; }
 
         public PluginHost.Handles.HandleSet Handles { get; private set; }
-
-        public HeaderSet MapHeaders => MapLoaderHacker.Headers;
-        [Obsolete]
-        IHeaderSet IBveHacker.MapHeaders => MapHeaders;
 
         private readonly MapLoaderHacker MapLoaderHacker;
         public MapLoader MapLoader => MapLoaderHacker.MapLoader;
