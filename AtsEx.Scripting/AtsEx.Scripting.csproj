@@ -109,7 +109,6 @@
     <Compile Include="CSharp\PluginScript.cs" />
     <Compile Include="CSharp\ScriptResult.cs" />
     <Compile Include="Globals.cs" />
-    <Compile Include="ICompilationErrorCheckable.cs" />
     <Compile Include="IPluginScript.cs" />
     <Compile Include="IronPython2\PluginScript.cs" />
     <Compile Include="IronPython2\ScriptEngineProvider.cs" />
