@@ -304,6 +304,18 @@
 	</Class>
 
 	<Class Wrapper="CantList" Original="bn">
+		<Property Wrapper="RotationZ">
+			<Getter Original="a"/>
+			<Setter Original="b"/>
+		</Property>
+		<Property Wrapper="Y">
+			<Getter Original="c"/>
+			<Setter Original="c"/>
+		</Property>
+		<Property Wrapper="X">
+			<Getter Original="d"/>
+			<Setter Original="a"/>
+		</Property>
 	</Class>
 
 	<Class Wrapper="CarBrake" Original="d6">
