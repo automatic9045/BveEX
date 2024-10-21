@@ -23,8 +23,8 @@
 		<Field WrapperProperty="ErrorListView" Original="p" IsOriginalNonPublic="true"/>
 
 		<Method Wrapper="ThrowError" WrapperParams="System.String; System.String; System.Int32; System.Int32" Original="a"/>
-		<Method Wrapper="ThrowError" WrapperParams="atsex:LoadError" Original="a"/>
-		<Method Wrapper="ThrowErrors" WrapperParams="System.Collections.Generic.IEnumerable`1[atsex:LoadError]" Original="a"/>
+		<Method Wrapper="ThrowError" WrapperParams="ex:LoadError" Original="a"/>
+		<Method Wrapper="ThrowErrors" WrapperParams="System.Collections.Generic.IEnumerable`1[ex:LoadError]" Original="a"/>
 		<Method Wrapper="SetProgress" WrapperParams="System.Double" Original="a"/>
 	</Class>
 
@@ -43,7 +43,7 @@
 
 		<Method Wrapper="CreateDirectXDevices" WrapperParams="void" Original="e"/>
 		<Method Wrapper="OpenScenario" WrapperParams="System.String" Original="b" IsOriginalNonPublic="true"/>
-		<Method Wrapper="LoadScenario" WrapperParams="atsex:ScenarioInfo; System.Boolean" Original="a" IsOriginalNonPublic="true"/>
+		<Method Wrapper="LoadScenario" WrapperParams="ex:ScenarioInfo; System.Boolean" Original="a" IsOriginalNonPublic="true"/>
 		<Method Wrapper="UnloadScenario" WrapperParams="void" Original="b" IsOriginalNonPublic="true"/>
 		<Method Wrapper="Draw" WrapperParams="void" Original="o"/>
 		<Method Wrapper="OnDeviceLost" WrapperParams="void" Original="s"/>
@@ -54,7 +54,7 @@
 	</Class>
 
 	<Class Wrapper="TimePosForm" Original="aj">
-		<Method Wrapper="SetScenario" WrapperParams="atsex:Scenario" Original="a"/>
+		<Method Wrapper="SetScenario" WrapperParams="ex:Scenario" Original="a"/>
 		<Method Wrapper="Draw" WrapperParams="void" Original="d" IsOriginalNonPublic="true"/>
 	</Class>
 	<!-- Forms END -->
@@ -139,25 +139,25 @@
 		<Field WrapperProperty="Doors" Original="k" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="AtsHandles" Original="l" IsOriginalNonPublic="true"/>
 
-		<Method Wrapper="OnSetBeaconData" WrapperParams="System.Object; atsex:ObjectPassedEventArgs" Original="a" IsOriginalNonPublic="true"/>
+		<Method Wrapper="OnSetBeaconData" WrapperParams="System.Object; ex:ObjectPassedEventArgs" Original="a" IsOriginalNonPublic="true"/>
 		<Method Wrapper="OnKeyDown" WrapperParams="System.Object; Mackoy.Bvets.InputEventArgs, Mackoy.IInputDevice" Original="b" IsOriginalNonPublic="true"/>
 		<Method Wrapper="OnKeyUp" WrapperParams="System.Object; Mackoy.Bvets.InputEventArgs, Mackoy.IInputDevice" Original="a" IsOriginalNonPublic="true"/>
 		<Method Wrapper="OnDoorStateChanged" WrapperParams="System.Object; System.EventArgs" Original="c" IsOriginalNonPublic="true"/>
 		<Method Wrapper="OnSetSignal" WrapperParams="System.Object; System.EventArgs" Original="b" IsOriginalNonPublic="true"/>
 		<Method Wrapper="OnSetReverser" WrapperParams="System.Object; System.EventArgs" Original="a" IsOriginalNonPublic="true"/>
-		<Method Wrapper="OnSetBrake" WrapperParams="System.Object; atsex:ValueEventArgs`1[System.Int32]" Original="b" IsOriginalNonPublic="true"/>
-		<Method Wrapper="OnSetPower" WrapperParams="System.Object; atsex:ValueEventArgs`1[System.Int32]" Original="a" IsOriginalNonPublic="true"/>
+		<Method Wrapper="OnSetBrake" WrapperParams="System.Object; ex:ValueEventArgs`1[System.Int32]" Original="b" IsOriginalNonPublic="true"/>
+		<Method Wrapper="OnSetPower" WrapperParams="System.Object; ex:ValueEventArgs`1[System.Int32]" Original="a" IsOriginalNonPublic="true"/>
 		<Method Wrapper="Dispose" WrapperParams="void" Original="Dispose"/>
 		<Method Wrapper="LoadLibrary" WrapperParams="System.String" Original="a"/>
-		<Method Wrapper="OnSetVehicleSpec" WrapperParams="atsex:NotchInfo; System.Int32" Original="a"/>
-		<Method Wrapper="OnInitialize" WrapperParams="atsex:BrakePosition" Original="a"/>
+		<Method Wrapper="OnSetVehicleSpec" WrapperParams="ex:NotchInfo; System.Int32" Original="a"/>
+		<Method Wrapper="OnInitialize" WrapperParams="ex:BrakePosition" Original="a"/>
 		<Method Wrapper="OnElapse" WrapperParams="System.Int32" Original="a"/>
 	</Class>
 
 	<Class Wrapper="Background" Original="ch">
 		<Field WrapperProperty="BackgroundObjects" Original="a" IsOriginalNonPublic="true"/>
 
-		<Method Wrapper="Draw" WrapperParams="atsex:Direct3DProvider; SlimDX.Matrix, SlimDX" Original="a"/>
+		<Method Wrapper="Draw" WrapperParams="ex:Direct3DProvider; SlimDX.Matrix, SlimDX" Original="a"/>
 	</Class>
 
 	<Class Wrapper="BasicBrake" Original="bw">
@@ -304,6 +304,18 @@
 	</Class>
 
 	<Class Wrapper="CantList" Original="bn">
+		<Property Wrapper="RotationZ">
+			<Getter Original="a"/>
+			<Setter Original="b"/>
+		</Property>
+		<Property Wrapper="Y">
+			<Getter Original="c"/>
+			<Setter Original="c"/>
+		</Property>
+		<Property Wrapper="X">
+			<Getter Original="d"/>
+			<Setter Original="a"/>
+		</Property>
 	</Class>
 
 	<Class Wrapper="CarBrake" Original="d6">
@@ -334,7 +346,7 @@
 		<Field WrapperProperty="TimeLeftToCompleteClosing" Original="c" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="State" Original="e" IsOriginalNonPublic="true"/>
 
-		<Method Wrapper="SetState" WrapperParams="atsex:DoorState" Original="a"/>
+		<Method Wrapper="SetState" WrapperParams="ex:DoorState" Original="a"/>
 		<Method Wrapper="Open" WrapperParams="void" Original="e"/>
 		<Method Wrapper="Close" WrapperParams="System.Int32" Original="b"/>
 	</Class>
@@ -473,7 +485,7 @@
 
 		<Method Wrapper="CreateDevice" WrapperParams="System.Windows.Forms.Control, System.Windows.Forms; System.Boolean; System.Drawing.Size, System.Drawing" Original="a"/>
 		<Method Wrapper="InitializeStates" WrapperParams="System.Void" Original="a" IsOriginalNonPublic="true"/>
-		<Method Wrapper="Render" WrapperParams="atsex:IDrawable" Original="a"/>
+		<Method Wrapper="Render" WrapperParams="ex:IDrawable" Original="a"/>
 	</Class>
 
 	<Class Wrapper="DetailText" Original="de">
@@ -504,7 +516,7 @@
 
 		<Method Wrapper="GetSide" IsWrapperNonPublic="true" WrapperParams="System.Int32" Original="c"/>
 		<Method Wrapper="SetCarLength" WrapperParams="System.Int32" Original="a"/>
-		<Method Wrapper="SetState" WrapperParams="atsex:DoorState; atsex:DoorState" Original="a"/>
+		<Method Wrapper="SetState" WrapperParams="ex:DoorState; ex:DoorState" Original="a"/>
 	</Class>
 
 	<Class Wrapper="DrawDistanceManager" Original="et">
@@ -686,7 +698,7 @@
 
 		<Method Wrapper="Load" WrapperParams="void" Original="d"/>
 		<Method Wrapper="RegisterFile" WrapperParams="System.String" Original="k" IsOriginalNonPublic="true"/>
-		<Method Wrapper="ParseStatement" WrapperParams="atsex:WrappedList`1[atsex:MapStatementClause]" Original="aa" IsOriginalNonPublic="true"/>
+		<Method Wrapper="ParseStatement" WrapperParams="ex:WrappedList`1[ex:MapStatementClause]" Original="aa" IsOriginalNonPublic="true"/>
 		<Method Wrapper="LoadSound3DList" WrapperParams="System.String" Original="j" IsOriginalNonPublic="true"/>
 		<Method Wrapper="LoadSoundList" WrapperParams="System.String" Original="i" IsOriginalNonPublic="true"/>
 		<Method Wrapper="LoadSignalList" WrapperParams="System.String" Original="h" IsOriginalNonPublic="true"/>
@@ -707,7 +719,7 @@
 
 		<Event Wrapper="ObjectPassed" OriginalAddAccessor="b" OriginalRemoveAccessor="a" OriginalDelegateField="b"/>
 
-		<Method Wrapper="Insert" WrapperParams="atsex:MapObjectBase" Original="a"/>
+		<Method Wrapper="Insert" WrapperParams="ex:MapObjectBase" Original="a"/>
 		<Method Wrapper="GoToAndGetCurrent" WrapperParams="System.Double" Original="c"/>
 		<Method Wrapper="GoTo" WrapperParams="System.Double" Original="u"/>
 		<Method Wrapper="GoTo" WrapperParams="System.Double; System.Double" Original="ae" IsOriginalNonPublic="true"/>
@@ -720,8 +732,8 @@
 		<Method Wrapper="GetValue" WrapperParams="Irony.Parsing.ParseTreeNode, Irony" Original="i" IsOriginalNonPublic="true"/>
 		<Method Wrapper="SetUserVariable" WrapperParams="Irony.Parsing.ParseTreeNode, Irony" Original="h" IsOriginalNonPublic="true"/>
 		<Method Wrapper="GetUserVariable" WrapperParams="Irony.Parsing.ParseTreeNode, Irony" Original="f" IsOriginalNonPublic="true"/>
-		<Method Wrapper="GetSystemVariable" WrapperParams="atsex:WrappedList`1[atsex:MapStatementClause]; Irony.Parsing.ParseTreeNode, Irony" Original="b" IsOriginalNonPublic="true"/>
-		<Method Wrapper="InvokeFunction" WrapperParams="atsex:WrappedList`1[atsex:MapStatementClause]; Irony.Parsing.ParseTreeNode, Irony" Original="a" IsOriginalNonPublic="true"/>
+		<Method Wrapper="GetSystemVariable" WrapperParams="ex:WrappedList`1[ex:MapStatementClause]; Irony.Parsing.ParseTreeNode, Irony" Original="b" IsOriginalNonPublic="true"/>
+		<Method Wrapper="InvokeFunction" WrapperParams="ex:WrappedList`1[ex:MapStatementClause]; Irony.Parsing.ParseTreeNode, Irony" Original="a" IsOriginalNonPublic="true"/>
 		<Method Wrapper="CalculateSign" WrapperParams="Irony.Parsing.ParseTreeNode, Irony" Original="b" IsOriginalNonPublic="true"/>
 		<Method Wrapper="CalculateOperator" WrapperParams="Irony.Parsing.ParseTreeNode, Irony" Original="a" IsOriginalNonPublic="true"/>
 	</Class>
@@ -802,7 +814,7 @@
 		<Method Wrapper="FromXFile" WrapperParams="System.String" Original="a" IsWrapperStatic="true" IsOriginalStatic="true"/>
 		<Method Wrapper="CreateRectangleWithTexture" WrapperParams="System.Drawing.RectangleF, System.Drawing; System.Single; System.Int32; System.String" Original="a" IsWrapperStatic="true" IsOriginalStatic="true"/>
 		<Method Wrapper="Dispose" WrapperParams="void" Original="Dispose"/>
-		<Method Wrapper="Draw" WrapperParams="atsex:Direct3DProvider; System.Boolean" Original="a"/>
+		<Method Wrapper="Draw" WrapperParams="ex:Direct3DProvider; System.Boolean" Original="a"/>
 	</Class>
 
 	<Class Wrapper="MyTrack" Original="b3">
@@ -884,7 +896,7 @@
 		<Field WrapperProperty="StructureDrawer" Original="b" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="DrawDistanceManager" Original="g" IsOriginalNonPublic="true"/>
 
-		<Method Wrapper="SetRoute" WrapperParams="atsex:Route" Original="a"/>
+		<Method Wrapper="SetRoute" WrapperParams="ex:Route" Original="a"/>
 		<Method Wrapper="Draw" WrapperParams="void" Original="o"/>
 	</Class>
 
@@ -919,9 +931,9 @@
 		<Field WrapperProperty="Velocity" Original="b"/>
 		<Field WrapperProperty="Acceleration" Original="c"/>
 
-		<Method Wrapper="Add" WrapperParams="atsex:Physical; atsex:Physical" Original="e" IsWrapperNonPublic="true" IsWrapperStatic="true" IsOriginalStatic="true"/>
-		<Method Wrapper="Subtract" WrapperParams="atsex:Physical; atsex:Physical" Original="e" IsWrapperNonPublic="true" IsWrapperStatic="true" IsOriginalStatic="true"/>
-		<Method Wrapper="Multiply" WrapperParams="System.Double; atsex:Physical" Original="d" IsWrapperNonPublic="true" IsWrapperStatic="true" IsOriginalStatic="true"/>
+		<Method Wrapper="Add" WrapperParams="ex:Physical; ex:Physical" Original="e" IsWrapperNonPublic="true" IsWrapperStatic="true" IsOriginalStatic="true"/>
+		<Method Wrapper="Subtract" WrapperParams="ex:Physical; ex:Physical" Original="e" IsWrapperNonPublic="true" IsWrapperStatic="true" IsOriginalStatic="true"/>
+		<Method Wrapper="Multiply" WrapperParams="System.Double; ex:Physical" Original="d" IsWrapperNonPublic="true" IsWrapperStatic="true" IsOriginalStatic="true"/>
 	</Class>
 
 	<Class Wrapper="PilotLamp" Original="ap">
@@ -1043,7 +1055,7 @@
 
 		<Field WrapperProperty="Structures" Original="d" IsOriginalNonPublic="true"/>
 
-		<Method Wrapper="GetTrackMatrix" WrapperParams="atsex:LocatableMapObject; System.Double; System.Double" Original="a"/>
+		<Method Wrapper="GetTrackMatrix" WrapperParams="ex:LocatableMapObject; System.Double; System.Double" Original="a"/>
 	</Class>
 
 	<Class Wrapper="Scenario" Original="er">
@@ -1074,7 +1086,7 @@
 		<Method Wrapper="Dispose" WrapperParams="void" Original="Dispose"/>
 		<Method Wrapper="InitializeTimeAndLocation" WrapperParams="System.Double; System.Int32" Original="a" IsOriginalNonPublic="true"/>
 		<Method Wrapper="Initialize" WrapperParams="System.Int32" Original="a"/>
-		<Method Wrapper="Draw" WrapperParams="atsex:Direct3DProvider" Original="a"/>
+		<Method Wrapper="Draw" WrapperParams="ex:Direct3DProvider" Original="a"/>
 	</Class>
 
 	<Class Wrapper="ScenarioInfo" Original="ek">
@@ -1189,7 +1201,7 @@
 		</Property>
 
 		<Method Wrapper="SetCarLength" WrapperParams="System.Int32" Original="c"/>
-		<Method Wrapper="SetState" WrapperParams="atsex:DoorState" Original="a"/>
+		<Method Wrapper="SetState" WrapperParams="ex:DoorState" Original="a"/>
 		<Method Wrapper="OpenDoors" WrapperParams="void" Original="c"/>
 		<Method Wrapper="CloseDoors" WrapperParams="System.Int32" Original="b"/>
 	</Class>
@@ -1205,8 +1217,8 @@
 		<Field WrapperProperty="RotationY" Original="e"/>
 		<Field WrapperProperty="RotationZ" Original="f"/>
 
-		<Method Wrapper="Add" WrapperParams="atsex:SixDof; atsex:SixDof" Original="g" IsWrapperNonPublic="true" IsWrapperStatic="true" IsOriginalStatic="true"/>
-		<Method Wrapper="Multiply" WrapperParams="System.Double; atsex:SixDof" Original="g" IsWrapperNonPublic="true" IsWrapperStatic="true" IsOriginalStatic="true"/>
+		<Method Wrapper="Add" WrapperParams="ex:SixDof; ex:SixDof" Original="g" IsWrapperNonPublic="true" IsWrapperStatic="true" IsOriginalStatic="true"/>
+		<Method Wrapper="Multiply" WrapperParams="System.Double; ex:SixDof" Original="g" IsWrapperNonPublic="true" IsWrapperStatic="true" IsOriginalStatic="true"/>
 	</Class>
 
 	<Class Wrapper="Smee" Original="ce">
@@ -1397,7 +1409,7 @@
 	</Class>
 
 	<Class Wrapper="StationList" Original="dp">
-		<Method Wrapper="Insert" WrapperParams="atsex:Station" Original="a"/>
+		<Method Wrapper="Insert" WrapperParams="ex:Station" Original="a"/>
 		<Method Wrapper="GetStandardTime" WrapperParams="System.Double" Original="a"/>
 	</Class>
 
@@ -1430,7 +1442,7 @@
 			<Getter Original="f"/>
 			<Setter Original="a"/>
 		</Property>
-		<Method Wrapper="Draw" WrapperParams="atsex:Direct3DProvider; SlimDX.Matrix, SlimDX; System.Boolean" Original="a"/>
+		<Method Wrapper="Draw" WrapperParams="ex:Direct3DProvider; SlimDX.Matrix, SlimDX; System.Boolean" Original="a"/>
 	</Class>
 
 	<Class Wrapper="StructureDrawer" Original="ey">
@@ -1440,7 +1452,7 @@
 		<Field WrapperProperty="MinDrawBlockIndex" Original="b" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="MaxDrawBlockIndexPlus1" Original="c" IsOriginalNonPublic="true"/>
 		<Method Wrapper="OnDrawLocationRangeUpdated" WrapperParams="System.Object; System.EventArgs" Original="a" IsOriginalNonPublic="true"/>
-		<Method Wrapper="Draw" WrapperParams="atsex:Direct3DProvider; SlimDX.Matrix, SlimDX" Original="a"/>
+		<Method Wrapper="Draw" WrapperParams="ex:Direct3DProvider; SlimDX.Matrix, SlimDX" Original="a"/>
 	</Class>
 
 	<Class Wrapper="StructureSet" Original="dn">
@@ -1504,7 +1516,7 @@
 		<Field WrapperProperty="ViewZ" Original="l" IsOriginalNonPublic="true"/>
 
 		<Method Wrapper="Initialize" WrapperParams="void" Original="g"/>
-		<Method Wrapper="DrawCars" WrapperParams="atsex:Direct3DProvider; SlimDX.Matrix, SlimDX" Original="a"/>
+		<Method Wrapper="DrawCars" WrapperParams="ex:Direct3DProvider; SlimDX.Matrix, SlimDX" Original="a"/>
 		<Method Wrapper="UpdateSound" WrapperParams="void" Original="c" IsOriginalNonPublic="true"/>
 		<Method Wrapper="UpdateLocationAndSpeed" WrapperParams="void" Original="b" IsOriginalNonPublic="true"/>
 		<Method Wrapper="CompileToSchedules" WrapperParams="void" Original="a" IsOriginalNonPublic="true"/>
@@ -1644,7 +1656,7 @@
 
 		<Field WrapperProperty="CameraLocation" Original="q" IsOriginalNonPublic="true"/>
 
-		<Method Wrapper="Initialize" WrapperParams="atsex:BrakePosition" Original="a"/>
+		<Method Wrapper="Initialize" WrapperParams="ex:BrakePosition" Original="a"/>
 	</Class>
 
 	<Class Wrapper="VehicleBogieWheel" Original="b7">
@@ -1654,7 +1666,7 @@
 		<Field WrapperProperty="RotationZ" Original="g" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="PositionInBlock" Original="h" IsOriginalNonPublic="true"/>
 
-		<Method Wrapper="OnLocationChanged" WrapperParams="System.Object; atsex:ValueEventArgs`1[System.Double]" Original="a" IsWrapperNonPublic="true"/>
+		<Method Wrapper="OnLocationChanged" WrapperParams="System.Object; ex:ValueEventArgs`1[System.Double]" Original="a" IsWrapperNonPublic="true"/>
 	</Class>
 
 	<Class Wrapper="VehicleDynamics" Original="b2">
@@ -1820,7 +1832,7 @@
 		<Field WrapperProperty="Matrix" Original="l" IsOriginalNonPublic="true"/>
 
 		<Method Wrapper="CreateModels" WrapperParams="void" Original="aa"/>
-		<Method Wrapper="Draw" WrapperParams="atsex:Direct3DProvider; SlimDX.Matrix, SlimDX" Original="m"/>
+		<Method Wrapper="Draw" WrapperParams="ex:Direct3DProvider; SlimDX.Matrix, SlimDX" Original="m"/>
 		<Method Wrapper="Dispose" WrapperParams="void" Original="Dispose"/>
 	</Class>
 
@@ -1857,7 +1869,7 @@
 
 		<Field WrapperProperty="PositionInBlock" Original="g" IsOriginalNonPublic="true"/>
 
-		<Method Wrapper="OnLocationChanged" WrapperParams="System.Object; atsex:ValueEventArgs`1[System.Double]" Original="a" IsWrapperNonPublic="true" IsOriginalNonPublic="true"/>
+		<Method Wrapper="OnLocationChanged" WrapperParams="System.Object; ex:ValueEventArgs`1[System.Double]" Original="a" IsWrapperNonPublic="true" IsOriginalNonPublic="true"/>
 	</Class>
 
 	<Class Wrapper="VehicleStateStore" Original="fb">

@@ -67,7 +67,7 @@ namespace TypeWrapping
             schemaSet.Add(schema);
             doc.Validate(schemaSet, DocumentValidation);
 
-            TypeParser wrapperTypeParser = new TypeParser("atsex", wrapperTypes);
+            TypeParser wrapperTypeParser = new TypeParser("ex", wrapperTypes);
             TypeParser originalTypeParser = new TypeParser("bve", originalTypes);
 
             string targetNamespace = $"{{{schema.TargetNamespace}}}";
