@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx", "AtsEx\AtsEx.csproj", "{15F8005B-285B-4B98-B4D8-13978AD876F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx", "BveEx\AtsEx.csproj", "{15F8005B-285B-4B98-B4D8-13978AD876F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.PluginHost", "AtsEx.PluginHost\AtsEx.PluginHost.csproj", "{AC6EBF16-D22B-4DA8-A0BE-5AFB729EA2E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.PluginHost", "BveEx.PluginHost\AtsEx.PluginHost.csproj", "{AC6EBF16-D22B-4DA8-A0BE-5AFB729EA2E4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Samples.VehiclePlugins.StateViewer", "SamplePlugins\VehiclePlugins\StateViewer\AtsEx.Samples.VehiclePlugins.StateViewer.csproj", "{9205EC14-287D-413E-9E1C-64C92D58D1F2}"
 EndProject
@@ -31,19 +31,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastMember", "Libs\FastMemb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypeWrapping", "Libs\TypeWrapping\TypeWrapping.csproj", "{28FC1147-DB95-42F0-AEB3-AE8AE93F0179}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Scripting", "AtsEx.Scripting\AtsEx.Scripting.csproj", "{47E87F46-20FC-4094-A733-EDD30819F1D5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Scripting", "BveEx.Scripting\AtsEx.Scripting.csproj", "{47E87F46-20FC-4094-A733-EDD30819F1D5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", "{D8B1A356-B814-470B-9C6B-C8D0DFAD6D5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Extensions.DXDynamicTexture", "Extensions\AtsEx.Extensions.DXDynamicTexture\AtsEx.Extensions.DXDynamicTexture.csproj", "{725E0C18-0857-4BB1-A559-882A1EE2B892}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Extensions.DXDynamicTexture", "Extensions\BveEx.Extensions.DXDynamicTexture\AtsEx.Extensions.DXDynamicTexture.csproj", "{725E0C18-0857-4BB1-A559-882A1EE2B892}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BveTypes", "Libs\BveTypes\BveTypes.csproj", "{3658EDE1-0C3E-4104-A351-64981E4F82DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.CoreExtensions", "Extensions\AtsEx.CoreExtensions\AtsEx.CoreExtensions.csproj", "{FBE0C5AB-7271-4801-A862-AF39DD32C829}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.CoreExtensions", "Extensions\BveEx.CoreExtensions\AtsEx.CoreExtensions.csproj", "{FBE0C5AB-7271-4801-A862-AF39DD32C829}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastCaching", "Libs\FastCaching\FastCaching.csproj", "{54A911B0-4B7A-4F49-AC5F-4EFC5761F1F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Launcher", "AtsEx.Launcher\AtsEx.Launcher.csproj", "{A4645E87-8E06-4687-A7C8-9D015E5567F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Launcher", "BveEx.Launcher\AtsEx.Launcher.csproj", "{A4645E87-8E06-4687-A7C8-9D015E5567F2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Samples.MapPlugins.PreTrainController", "SamplePlugins\MapPlugins\PreTrainController\AtsEx.Samples.MapPlugins.PreTrainController.csproj", "{381AF3E4-97FF-42AD-84C5-67111A2B482A}"
 EndProject
@@ -57,21 +57,21 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Samples.VehiclePlugin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Samples.MapPlugins.CooperatingWithVehiclePlugin", "SamplePlugins\MapPlugins\CooperatingWithVehiclePlugin\AtsEx.Samples.MapPlugins.CooperatingWithVehiclePlugin.csproj", "{944AEC7A-6F9A-4D24-B8C4-B95B84220985}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Caller.InputDevice", "AtsEx.Caller.InputDevice\AtsEx.Caller.InputDevice.csproj", "{23B1CB7F-B82F-49FA-9F2B-4A78547D71C2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Caller.InputDevice", "BveEx.Caller.InputDevice\AtsEx.Caller.InputDevice.csproj", "{23B1CB7F-B82F-49FA-9F2B-4A78547D71C2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Samples.VehiclePlugins.ConductorPatchTest", "SamplePlugins\VehiclePlugins\ConductorPatchTest\AtsEx.Samples.VehiclePlugins.ConductorPatchTest.csproj", "{A7E2204D-F68E-4638-89C4-A8ABD2A2A90C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Extensions.AtsArrayExtender", "Extensions\AtsEx.Extensions.AtsArrayExtender\AtsEx.Extensions.AtsArrayExtender.csproj", "{EA213D83-BD73-4890-A77B-7171FC3469A9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Extensions.AtsArrayExtender", "Extensions\BveEx.Extensions.AtsArrayExtender\AtsEx.Extensions.AtsArrayExtender.csproj", "{EA213D83-BD73-4890-A77B-7171FC3469A9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Samples.MapPlugins.TrainControllerEx.Automatic", "SamplePlugins\MapPlugins\TrainControllerEx.Automatic\AtsEx.Samples.MapPlugins.TrainControllerEx.Automatic.csproj", "{BEA93F96-510A-4ED8-8C48-5BE3A8C7A59F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Diagnostics", "AtsEx.Diagnostics\AtsEx.Diagnostics.csproj", "{BEC38DA8-37E2-4DB6-80FF-33FE4E25E1A9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Diagnostics", "BveEx.Diagnostics\AtsEx.Diagnostics.csproj", "{BEC38DA8-37E2-4DB6-80FF-33FE4E25E1A9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Samples.MapPlugins.SoundFactoryTest", "SamplePlugins\MapPlugins\SoundFactoryTest\AtsEx.Samples.MapPlugins.SoundFactoryTest.csproj", "{637CDEEB-4E42-41EA-9179-02DE33FF4C59}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Samples.VehiclePlugins.PanelController", "SamplePlugins\VehiclePlugins\PanelController\AtsEx.Samples.VehiclePlugins.PanelController.csproj", "{F715E19A-BFF1-418D-B6D2-40F54C6BB71F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Launcher.SplashScreen", "AtsEx.Launcher.SplashScreen\AtsEx.Launcher.SplashScreen.csproj", "{6B621F1A-289E-485A-9927-1A650AFA49BE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Launcher.SplashScreen", "BveEx.Launcher.SplashScreen\AtsEx.Launcher.SplashScreen.csproj", "{6B621F1A-289E-485A-9927-1A650AFA49BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
