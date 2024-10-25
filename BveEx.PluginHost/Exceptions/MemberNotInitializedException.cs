@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 using UnembeddedResources;
 
-namespace AtsEx.PluginHost
+namespace BveEx.PluginHost
 {
     /// <summary>
     /// まだ初期化されておらず取得できないプロパティを取得しようとしたときにスローされる例外です。

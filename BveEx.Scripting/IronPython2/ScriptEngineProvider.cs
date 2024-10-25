@@ -11,9 +11,9 @@ using IronPython.Hosting;
 
 using Microsoft.Scripting.Hosting;
 
-using AtsEx.PluginHost;
+using BveEx.PluginHost;
 
-namespace AtsEx.Scripting.IronPython2
+namespace BveEx.Scripting.IronPython2
 {
     public static class ScriptEngineProvider
     {
@@ -21,7 +21,7 @@ namespace AtsEx.Scripting.IronPython2
 
         static ScriptEngineProvider()
         {
-            PluginHostNamespaces = App.Instance.AtsExPluginHostAssembly.GetTypes().Select(t => t.Namespace).Distinct().Where(n => !(n is null));
+            PluginHostNamespaces = App.Instance.BveExPluginHostAssembly.GetTypes().Select(t => t.Namespace).Distinct().Where(n => !(n is null));
         }
 
         public static ScriptEngine CreateEngine(ICollection<string> searchPaths)
@@ -31,11 +31,11 @@ namespace AtsEx.Scripting.IronPython2
             Assembly executingAssembly = Assembly.GetExecutingAssembly();
 
             scriptEngine.Runtime.LoadAssembly(typeof(Form).Assembly);
-            scriptEngine.Runtime.LoadAssembly(App.Instance.AtsExPluginHostAssembly);
+            scriptEngine.Runtime.LoadAssembly(App.Instance.BveExPluginHostAssembly);
             scriptEngine.Runtime.LoadAssembly(executingAssembly);
 
             AddImportsFromArray("System", "System.Collections.Generic", "System.Text", "System.Windows.Forms");
-            AddImportsFromAssembly(App.Instance.AtsExPluginHostAssembly);
+            AddImportsFromAssembly(App.Instance.BveExPluginHostAssembly);
             AddImportsFromAssembly(executingAssembly);
 
             ICollection<string> engineSearchPaths = scriptEngine.GetSearchPaths();

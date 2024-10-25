@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Input.Native;
-using AtsEx.PluginHost.Plugins;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Input.Native;
+using BveEx.PluginHost.Plugins;
 
-namespace AtsEx.Samples.MapPlugins.TrainController
+namespace BveEx.Samples.MapPlugins.TrainController
 {
     [Plugin(PluginType.MapPlugin)]
     public class TrainController : AssemblyPluginBase

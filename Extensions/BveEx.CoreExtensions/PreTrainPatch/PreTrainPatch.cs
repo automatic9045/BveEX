@@ -8,7 +8,7 @@ using BveTypes.ClassWrappers;
 using FastMember;
 using ObjectiveHarmonyPatch;
 
-namespace AtsEx.Extensions.PreTrainPatch
+namespace BveEx.Extensions.PreTrainPatch
 {
     /// <summary>
     /// 先行列車の走行位置を自由に変更できるようにするパッチを表します。

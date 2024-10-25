@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-namespace AtsEx.PluginHost.LoadErrorManager
+namespace BveEx.PluginHost.LoadErrorManager
 {
     /// <summary>
     /// シナリオ読込時のエラーを編集するための機能を提供します。

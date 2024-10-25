@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.PluginHost.Plugins.Extensions;
+using BveEx.PluginHost.Plugins.Extensions;
 
-namespace AtsEx.Extensions.SignalPatch
+namespace BveEx.Extensions.SignalPatch
 {
     /// <summary>
     /// <see cref="SignalPatch"/> クラスの新しいインスタンスを初期化するたのファクトリを表します。

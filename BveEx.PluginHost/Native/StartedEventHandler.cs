@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.PluginHost.Native
+namespace BveEx.PluginHost.Native
 {
     /// <summary>
     /// <see cref="INative.Started"/> イベントを処理するメソッドを表します。

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<AtsExPluginUsing xmlns="http://automatic9045.github.io/ns/xmlschemas/AtsExPluginUsingXmlSchema.xsd">
-	<Assembly Path="AtsEXPlugins\AtsPanelValueTest.dll" />
-	<Assembly Path="AtsEXPlugins\PanelController.dll" />
-	<Assembly Path="AtsExPlugins\SimpleAts.dll" />
-	<Assembly Path="AtsExPlugins\StateViewer.dll" />
-</AtsExPluginUsing>
+<BveExPluginUsing>
+	<Assembly Path="BveExPlugins\AtsPanelValueTest.dll" />
+	<Assembly Path="BveExPlugins\PanelController.dll" />
+	<Assembly Path="BveExPlugins\SimpleAts.dll" />
+	<Assembly Path="BveExPlugins\StateViewer.dll" />
+</BveExPluginUsing>

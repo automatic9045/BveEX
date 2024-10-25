@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace AtsEx.Plugins.Extensions.Data
+namespace BveEx.Plugins.Extensions.Data
 {
     [XmlRoot]
     public class Extension

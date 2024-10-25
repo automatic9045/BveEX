@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using AtsEx.Scripting;
+using BveEx.Scripting;
 
-namespace AtsEx.Plugins.Scripting
+namespace BveEx.Plugins.Scripting
 {
     public class TickGlobals : Globals
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.Scripting
+namespace BveEx.Scripting
 {
     public interface IPluginScript<TGlobals> : ICloneable where TGlobals : Globals
     {

@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using AtsEx.PluginHost;
+using BveEx.PluginHost;
 
-namespace AtsEx.Samples.VehiclePlugins.StateViewer
+namespace BveEx.Samples.VehiclePlugins.StateViewer
 {
     public partial class StateForm : Form
     {
@@ -47,7 +47,7 @@ namespace AtsEx.Samples.VehiclePlugins.StateViewer
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(640, 352);
             Font = new Font("Yu Gothic UI", 9);
-            Text = "AtsEX 車両プラグイン 状態取得・設定サンプル";
+            Text = "BveEX 車両プラグイン 状態取得・設定サンプル";
 
 
             ScenarioPathKey = new Label()

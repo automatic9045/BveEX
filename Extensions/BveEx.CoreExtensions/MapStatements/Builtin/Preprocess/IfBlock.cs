@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-namespace AtsEx.Extensions.MapStatements.Builtin.Preprocess
+namespace BveEx.Extensions.MapStatements.Builtin.Preprocess
 {
     internal class IfBlock : IBlockParser
     {

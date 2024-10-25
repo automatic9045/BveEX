@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.BveHackerServices
+namespace BveEx.BveHackerServices
 {
     internal static class HeaderParser
     {
         public static bool IsNoMapPluginHeader(string text)
         {
-            return text.StartsWith("[[atsex::nompi]]", StringComparison.OrdinalIgnoreCase);
+            return text.StartsWith("[[bveex::nompi]]", StringComparison.OrdinalIgnoreCase);
         }
     }
 }

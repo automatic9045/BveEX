@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AtsEx.Diagnostics
+namespace BveEx.Diagnostics
 {
     /// <summary>
     /// ユーザーに対してエラーが発生したことを知らせるダイアログを表します。

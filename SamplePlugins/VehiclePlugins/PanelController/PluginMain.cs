@@ -10,10 +10,10 @@ using SlimDX;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Plugins;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Plugins;
 
-namespace AtsEx.Samples.VehiclePlugins.PanelController
+namespace BveEx.Samples.VehiclePlugins.PanelController
 {
     [Plugin(PluginType.VehiclePlugin)]
     public class PluginMain : AssemblyPluginBase

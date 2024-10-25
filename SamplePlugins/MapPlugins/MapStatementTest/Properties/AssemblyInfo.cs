@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // アセンブリに関する一般情報は以下の属性セットをとおして制御されます。
 // 制御されます。アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更してください。
-[assembly: AssemblyTitle("AtsEX マッププラグイン：独自マップ構文サンプル")]
-[assembly: AssemblyDescription("AtsEX の機能「独自マップ構文」を使用するサンプル")]
+[assembly: AssemblyTitle("BveEX マッププラグイン：独自マップ構文サンプル")]
+[assembly: AssemblyDescription("BveEX の機能「独自マップ構文」を使用するサンプル")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("AtsEX Project")]
-[assembly: AssemblyProduct("AtsEX")]
+[assembly: AssemblyCompany("AtsEX & BveEX Project")]
+[assembly: AssemblyProduct("BveEX")]
 [assembly: AssemblyCopyright("Copyright © 2023 automatic9045")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

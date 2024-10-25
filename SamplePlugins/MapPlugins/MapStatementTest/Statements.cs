@@ -8,10 +8,10 @@ using System.Windows.Forms;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.Extensions.MapStatements;
-using AtsEx.PluginHost;
+using BveEx.Extensions.MapStatements;
+using BveEx.PluginHost;
 
-namespace AtsEx.Samples.MapPlugins.MapStatementTest
+namespace BveEx.Samples.MapPlugins.MapStatementTest
 {
     internal static class Statements
     {

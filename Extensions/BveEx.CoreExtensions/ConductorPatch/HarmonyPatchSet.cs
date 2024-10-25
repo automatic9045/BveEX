@@ -9,7 +9,7 @@ using BveTypes.ClassWrappers;
 using ObjectiveHarmonyPatch;
 using TypeWrapping;
 
-namespace AtsEx.Extensions.ConductorPatch
+namespace BveEx.Extensions.ConductorPatch
 {
     internal class HarmonyPatchSet : IDisposable
     {

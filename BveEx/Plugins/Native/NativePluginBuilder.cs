@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using AtsEx.PluginHost.Plugins;
+using BveEx.PluginHost.Plugins;
 
-namespace AtsEx.Plugins.Native
+namespace BveEx.Plugins.Native
 {
     internal class NativePluginBuilder : PluginBuilder
     {

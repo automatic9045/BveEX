@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Plugins.Extensions;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Plugins.Extensions;
 
-namespace AtsEx.Extensions.ConductorPatch
+namespace BveEx.Extensions.ConductorPatch
 {
     /// <summary>
     /// <see cref="ConductorPatch"/> クラスの新しいインスタンスを初期化するたのファクトリを表します。

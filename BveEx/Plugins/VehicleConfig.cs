@@ -10,7 +10,7 @@ using System.Xml.Schema;
 
 using UnembeddedResources;
 
-namespace AtsEx.Plugins
+namespace BveEx.Plugins
 {
     internal class VehicleConfig
     {
@@ -29,7 +29,6 @@ namespace AtsEx.Plugins
         private static readonly Lazy<ResourceSet> Resources = new Lazy<ResourceSet>();
 
         private static readonly XmlSchemaSet SchemaSet = new XmlSchemaSet();
-        private static readonly string TargetNamespace;
 
         public static readonly VehicleConfig Default = new VehicleConfig();
 
@@ -39,10 +38,9 @@ namespace AtsEx.Plugins
             _ = Resources.Value;
 #endif
 
-            using (Stream schemaStream = Assembly.GetExecutingAssembly().GetManifestResourceStream($"{typeof(VehicleConfig).Namespace}.AtsExVehicleConfigXmlSchema.xsd"))
+            using (Stream schemaStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(typeof(VehicleConfig), "BveExVehicleConfigXmlSchema.xsd"))
             {
                 XmlSchema schema = XmlSchema.Read(schemaStream, SchemaValidation);
-                TargetNamespace = $"{{{schema.TargetNamespace}}}";
                 SchemaSet.Add(schema);
             }
         }
@@ -84,13 +82,13 @@ namespace AtsEx.Plugins
             XDocument doc = XDocument.Load(path, LoadOptions.SetLineInfo);
             doc.Validate(SchemaSet, DocumentValidation);
 
-            XElement root = doc.Element(TargetNamespace + "AtsExVehicleConfig");
+            XElement root = doc.Element("BveExVehicleConfig");
 
             VehicleConfig result = new VehicleConfig()
             {
-                DetectSoundIndexConflict = (bool?)root.Element(TargetNamespace + "DetectSoundIndexConflict") ?? false,
-                DetectPanelValueIndexConflict = (bool?)root.Element(TargetNamespace + "DetectPanelValueIndexConflict") ?? false,
-                PluginUsingPath = (string)root.Element(TargetNamespace + "PluginUsingPath"),
+                DetectSoundIndexConflict = (bool?)root.Element("DetectSoundIndexConflict") ?? false,
+                DetectPanelValueIndexConflict = (bool?)root.Element("DetectPanelValueIndexConflict") ?? false,
+                PluginUsingPath = (string)root.Element("PluginUsingPath"),
             };
 
             return result;

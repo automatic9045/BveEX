@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.Launcher
+namespace BveEx.Launcher
 {
     /// <summary>
-    /// AtsEX Caller の互換性バージョンを取得します。
+    /// BveEX Caller の互換性バージョンを取得します。
     /// </summary>
     public class CallerCompatibilityVersionAttribute : Attribute
     {

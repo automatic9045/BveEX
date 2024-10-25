@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.PluginHost.Plugins.Extensions;
+using BveEx.PluginHost.Plugins.Extensions;
 
-namespace AtsEx.Extensions.StructureModelFinder
+namespace BveEx.Extensions.StructureModelFinder
 {
     /// <summary>
     /// ストラクチャーの 3D モデルを簡単に検索するための機能を提供します。

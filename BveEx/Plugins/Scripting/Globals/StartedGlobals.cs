@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using AtsEx.PluginHost.Native;
-using AtsEx.Scripting;
+using BveEx.PluginHost.Native;
+using BveEx.Scripting;
 
-namespace AtsEx.Plugins.Scripting
+namespace BveEx.Plugins.Scripting
 {
     public class StartedGlobals : Globals
     {

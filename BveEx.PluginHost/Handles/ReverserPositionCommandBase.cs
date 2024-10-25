@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-namespace AtsEx.PluginHost.Handles
+namespace BveEx.PluginHost.Handles
 {
     /// <summary>
     /// プラグインから逆転器の位置の出力を編集するためのコマンドを表します。

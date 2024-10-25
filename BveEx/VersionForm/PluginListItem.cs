@@ -8,10 +8,10 @@ using System.Windows.Forms;
 
 using UnembeddedResources;
 
-using AtsEx.PluginHost.Plugins;
-using AtsEx.PluginHost.Plugins.Extensions;
+using BveEx.PluginHost.Plugins;
+using BveEx.PluginHost.Plugins.Extensions;
 
-namespace AtsEx
+namespace BveEx
 {
     internal partial class PluginListTabPage
     {

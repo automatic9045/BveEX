@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.PluginHost.Handles
+namespace BveEx.PluginHost.Handles
 {
     /// <summary>
     /// ブレーキなどのハンドルを表します。

@@ -7,7 +7,7 @@ using System.Runtime.Remoting.Channels.Ipc;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AtsEx.Launcher.SplashScreen
+namespace BveEx.Launcher.SplashScreen
 {
     internal static class Program
     {

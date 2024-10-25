@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 using UnembeddedResources;
 
-namespace AtsEx.Plugins.Native
+namespace BveEx.Plugins.Native
 {
     internal class Library : IDisposable
     {

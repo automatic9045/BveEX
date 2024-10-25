@@ -8,9 +8,9 @@ using SlimDX;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.PluginHost.Plugins.Extensions;
+using BveEx.PluginHost.Plugins.Extensions;
 
-namespace AtsEx.Extensions.TrainDrawPatch
+namespace BveEx.Extensions.TrainDrawPatch
 {
     /// <summary>
     /// <see cref="TrainDrawPatch"/> クラスの新しいインスタンスを初期化するたのファクトリを表します。

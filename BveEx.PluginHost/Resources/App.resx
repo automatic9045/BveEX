@@ -118,9 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ProductName" xml:space="preserve">
-    <value>AtsEX - BVE 拡張キット</value>
+    <value>BveEX - BVE 拡張キット</value>
   </data>
   <data name="ProductShortName" xml:space="preserve">
-    <value>AtsEX</value>
+    <value>BveEX</value>
   </data>
 </root>

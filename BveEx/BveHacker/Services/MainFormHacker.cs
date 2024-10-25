@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 using BveTypes.ClassWrappers;
 
-namespace AtsEx.BveHackerServices
+namespace BveEx.BveHackerServices
 {
     internal sealed class MainFormHacker
     {

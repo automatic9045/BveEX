@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Plugins;
-using AtsEx.PluginHost.Plugins.Extensions;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Plugins;
+using BveEx.PluginHost.Plugins.Extensions;
 
-namespace AtsEx.Extensions.DiagramUpdater
+namespace BveEx.Extensions.DiagramUpdater
 {
     /// <summary>
     /// 時刻表、ダイヤグラムなどの行路に関わるオブジェクトの更新機能を提供します。

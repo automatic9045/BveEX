@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using SlimDX;
 
-namespace AtsEx.Extensions
+namespace BveEx.Extensions
 {
     /// <summary>
     /// 行列の変換機能を提供します。

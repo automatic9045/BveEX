@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 using Markdig;
 
-using AtsEx.Launcher.Properties;
+using BveEx.Launcher.Properties;
 
-namespace AtsEx.Launcher.Hosting
+namespace BveEx.Launcher.Hosting
 {
     internal static class UpdateChecker
     {
@@ -37,7 +37,7 @@ namespace AtsEx.Launcher.Hosting
 
             try
             {
-                AtsExRepositoryHost repositoryHost = new AtsExRepositoryHost();
+                BveExRepositoryHost repositoryHost = new BveExRepositoryHost();
 
                 ReleaseInfo latestRelease = repositoryHost.GetLatestReleaseAsync().Result;
                 Version currentVersion = Assembly.GetExecutingAssembly().GetName().Version;

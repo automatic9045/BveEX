@@ -10,11 +10,11 @@ using System.Xml.Serialization;
 
 using UnembeddedResources;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Plugins;
-using AtsEx.PluginHost.Plugins.Extensions;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Plugins;
+using BveEx.PluginHost.Plugins.Extensions;
 
-namespace AtsEx.Plugins.Extensions
+namespace BveEx.Plugins.Extensions
 {
     internal class ExtensionSet : IExtensionSet
     {

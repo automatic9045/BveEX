@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.PluginHost
+namespace BveEx.PluginHost
 {
     /// <summary>
     /// <see cref="IDictionary{TKey, TValue}"/> の LINQ 操作機能を拡張します。

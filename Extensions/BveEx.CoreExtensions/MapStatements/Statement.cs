@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-namespace AtsEx.Extensions.MapStatements
+namespace BveEx.Extensions.MapStatements
 {
     /// <summary>
-    /// AtsEX 由来のステートメント (マップ構文) を表します。
+    /// BveEX 由来のステートメント (マップ構文) を表します。
     /// </summary>
     public class Statement
     {
@@ -58,10 +58,10 @@ namespace AtsEx.Extensions.MapStatements
         }
 
         /// <summary>
-        /// 指定された条件に一致する AtsEX 公式のマップステートメントであるかどうかを判定します。
+        /// 指定された条件に一致する BveEX 公式のマップステートメントであるかどうかを判定します。
         /// </summary>
         /// <param name="filters">ステートメントの句の一覧 (前方一致)。
-        /// 「AtsEx」マップ要素 (<c>AtsEx.Hoge['a'].Fuga('b');</c> の AtsEx) は除きます。</param>
+        /// 「BveEx」マップ要素 (<c>BveEx.Hoge['a'].Fuga('b');</c> の BveEx) は除きます。</param>
         /// <returns>条件に一致した場合は <see langword="true"/>、一致しなかった場合は <see langword="false"/>。</returns>
         public bool IsOfficialStatement(params ClauseFilter[] filters)
         {
@@ -74,11 +74,11 @@ namespace AtsEx.Extensions.MapStatements
         }
 
         /// <summary>
-        /// 指定された条件に一致する AtsEX ユーザーマップステートメントであるかどうかを判定します。
+        /// 指定された条件に一致する BveEX ユーザーマップステートメントであるかどうかを判定します。
         /// </summary>
-        /// <param name="userName">ステートメントのユーザー名。<c>AtsEx.User.FooBar.Hoge['a'].Fuga('b');</c> の FooBar が該当します。</param>
+        /// <param name="userName">ステートメントのユーザー名。<c>BveEx.User.FooBar.Hoge['a'].Fuga('b');</c> の FooBar が該当します。</param>
         /// <param name="filters">ステートメントの句の一覧 (前方一致)。
-        /// ユーザー名以前のマップ要素 (<c>AtsEx.User.FooBar.Hoge['a'].Fuga('b');</c> の AtsEx、User、FooBar) は除きます。</param>
+        /// ユーザー名以前のマップ要素 (<c>BveEx.User.FooBar.Hoge['a'].Fuga('b');</c> の BveEx、User、FooBar) は除きます。</param>
         /// <returns>条件に一致した場合は <see langword="true"/>、一致しなかった場合は <see langword="false"/>。</returns>
         public bool IsUserStatement(string userName, params ClauseFilter[] filters)
         {

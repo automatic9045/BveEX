@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using AtsEx.PluginHost.Input;
+using BveEx.PluginHost.Input;
 
-namespace AtsEx.Input
+namespace BveEx.Input
 {
     internal sealed class NativeAtsKey : KeyBase
     {

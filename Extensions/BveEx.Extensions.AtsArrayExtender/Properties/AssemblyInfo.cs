@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // アセンブリに関する一般情報は以下の属性セットをとおして制御されます。
 // 制御されます。アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更してください。
-[assembly: AssemblyTitle("AtsArrayExtender (AtsEX 拡張機能版)")]
-[assembly: AssemblyDescription("AtsEX 拡張機能として実装した AtsArrayExtender です。ATS サウンド、パネルの配列の長さを 1024 に拡張します。")]
+[assembly: AssemblyTitle("AtsArrayExtender (BveEX 拡張機能版)")]
+[assembly: AssemblyDescription("BveEX 拡張機能として実装した AtsArrayExtender です。ATS サウンド、パネルの配列の長さを 1024 に拡張します。")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("AtsEX Project")]
-[assembly: AssemblyProduct("AtsEX")]
+[assembly: AssemblyCompany("AtsEX & BveEX Project")]
+[assembly: AssemblyProduct("BveEX")]
 [assembly: AssemblyCopyright("Copyright © 2024 automatic9045")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

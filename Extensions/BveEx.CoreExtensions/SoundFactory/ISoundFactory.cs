@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.PluginHost.Plugins.Extensions;
+using BveEx.PluginHost.Plugins.Extensions;
 
-namespace AtsEx.Extensions.SoundFactory
+namespace BveEx.Extensions.SoundFactory
 {
     /// <summary>
     /// BVE で利用可能な音声を簡単に読み込むための機能を提供します。

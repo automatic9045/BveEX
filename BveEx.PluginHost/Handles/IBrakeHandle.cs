@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using UnembeddedResources;
 
-namespace AtsEx.PluginHost.Handles
+namespace BveEx.PluginHost.Handles
 {
     /// <summary>
     /// ブレーキハンドルを表します。

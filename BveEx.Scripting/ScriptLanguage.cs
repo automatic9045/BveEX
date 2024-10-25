@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.Scripting
+namespace BveEx.Scripting
 {
     /// <summary>
     /// スクリプトの言語を指定します。

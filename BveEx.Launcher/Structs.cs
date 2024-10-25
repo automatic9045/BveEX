@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.Launcher
+namespace BveEx.Launcher
 {
     /// <summary>列車のスペックに関する構造体</summary>
     [StructLayout(LayoutKind.Sequential)]

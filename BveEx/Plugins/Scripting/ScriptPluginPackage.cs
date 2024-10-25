@@ -12,9 +12,9 @@ using System.Xml.Schema;
 
 using UnembeddedResources;
 
-using AtsEx.PluginHost.Plugins;
+using BveEx.PluginHost.Plugins;
 
-namespace AtsEx.Plugins.Scripting
+namespace BveEx.Plugins.Scripting
 {
     internal partial class ScriptPluginPackage : IPluginPackage
     {
@@ -33,7 +33,6 @@ namespace AtsEx.Plugins.Scripting
         private static readonly Lazy<ResourceSet> Resources = new Lazy<ResourceSet>();
 
         protected static readonly XmlSchemaSet SchemaSet = new XmlSchemaSet();
-        protected static readonly string TargetNamespace;
 
         static ScriptPluginPackage()
         {
@@ -41,18 +40,15 @@ namespace AtsEx.Plugins.Scripting
             _ = Resources.Value;
 #endif
 
-            using (Stream schemaStream = Assembly.GetExecutingAssembly().GetManifestResourceStream($"{typeof(ScriptPluginPackage).Namespace}.AtsExScriptPluginPackageManifestXmlSchema.xsd"))
+            using (Stream schemaStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(typeof(ScriptPluginPackage), "BveExScriptPluginPackageManifestXmlSchema.xsd"))
             {
                 XmlSchema schema = XmlSchema.Read(schemaStream, SchemaValidation);
-                TargetNamespace = $"{{{schema.TargetNamespace}}}";
                 SchemaSet.Add(schema);
             }
         }
 
         public Identifier Identifier { get; }
         public ScriptLanguage ScriptLanguage { get; }
-
-        public bool UseAtsExExtensions { get; }
 
         public string Location { get; }
         public string Title { get; }
@@ -66,12 +62,10 @@ namespace AtsEx.Plugins.Scripting
         public string OnStartedScriptPath { get; }
         public string TickScriptPath { get; }
 
-        protected ScriptPluginPackage(Identifier identifier, ScriptLanguage scriptLanguage, InformationBuilder informationBuilder, ScriptsBuilder scriptsBuilder, bool useAtsExExtensions)
+        protected ScriptPluginPackage(Identifier identifier, ScriptLanguage scriptLanguage, InformationBuilder informationBuilder, ScriptsBuilder scriptsBuilder)
         {
             Identifier = identifier;
             ScriptLanguage = scriptLanguage;
-
-            UseAtsExExtensions = useAtsExExtensions;
 
             Location = informationBuilder.Location;
             Title = informationBuilder.Title;
@@ -91,16 +85,15 @@ namespace AtsEx.Plugins.Scripting
             XDocument doc = XDocument.Load(path, LoadOptions.SetLineInfo);
             doc.Validate(SchemaSet, DocumentValidation);
 
-            XElement root = doc.Element(TargetNamespace + "AtsExScriptPluginPackageManifest");
+            XElement root = doc.Element("BveExScriptPluginPackageManifest");
 
-            XElement infoElement = root.Element(TargetNamespace + "Info");
+            XElement infoElement = root.Element("Info");
             InformationBuilder informationBuilder = CreateInformationBuilder(infoElement, path);
 
-            XElement scriptsElement = root.Element(TargetNamespace + "Scripts");
-            bool useAtsExExtensions = (bool?)scriptsElement.Attribute("UseAtsExExtensions") ?? true;
+            XElement scriptsElement = root.Element("Scripts");
             ScriptsBuilder scriptsBuilder = CreateScriptsBuilder(scriptsElement, Path.GetDirectoryName(path));
 
-            return new ScriptPluginPackage(identifier, scriptLanguage, informationBuilder, scriptsBuilder, useAtsExExtensions);
+            return new ScriptPluginPackage(identifier, scriptLanguage, informationBuilder, scriptsBuilder);
         }
 
         private static InformationBuilder CreateInformationBuilder(XElement infoElement, string path)
@@ -116,7 +109,7 @@ namespace AtsEx.Plugins.Scripting
             return builder;
 
 
-            string GetElementValue(string name) => (string)infoElement.Element(TargetNamespace + name);
+            string GetElementValue(string name) => (string)infoElement.Element(name);
         }
 
         private static ScriptsBuilder CreateScriptsBuilder(XElement scriptsElement, string baseDirectory)
@@ -134,7 +127,7 @@ namespace AtsEx.Plugins.Scripting
 
             string GetElementPath(string name)
             {
-                string path = (string)scriptsElement.Element(TargetNamespace + name)?.Attribute("Path");
+                string path = (string)scriptsElement.Element(name)?.Attribute("Path");
                 return path is null ? null : Path.Combine(baseDirectory, path);
             }
         }

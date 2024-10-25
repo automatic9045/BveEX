@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // アセンブリに関する一般情報は以下の属性セットをとおして制御されます。
 // 制御されます。アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更してください。
-[assembly: AssemblyTitle("AtsEX 拡張機能：DXDynamicTexture")]
-[assembly: AssemblyDescription("DXDynamicTexture を AtsEX から利用するためのラッパー")]
+[assembly: AssemblyTitle("BveEX 拡張機能：DXDynamicTexture")]
+[assembly: AssemblyDescription("DXDynamicTexture を BveEX から利用するためのラッパー")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("AtsEX Project")]
-[assembly: AssemblyProduct("AtsEX")]
+[assembly: AssemblyCompany("AtsEX & BveEX Project")]
+[assembly: AssemblyProduct("BveEX")]
 [assembly: AssemblyCopyright("Copyright © 2022 automatic9045")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

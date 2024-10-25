@@ -8,7 +8,7 @@ using BveTypes.ClassWrappers;
 using FastMember;
 using ObjectiveHarmonyPatch;
 
-namespace AtsEx.Extensions.SignalPatch
+namespace BveEx.Extensions.SignalPatch
 {
     /// <summary>
     /// 特定の閉塞の信号現示を自由に変更できるようにするパッチを表します。

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-namespace AtsEx.PluginHost
+namespace BveEx.PluginHost
 {
     /// <summary>
     /// <see cref="IBveHacker.ScenarioOpened"/> イベントのデータを提供します。

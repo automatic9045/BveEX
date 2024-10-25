@@ -9,11 +9,11 @@ using SlimDX.Multimedia;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Plugins;
-using AtsEx.PluginHost.Plugins.Extensions;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Plugins;
+using BveEx.PluginHost.Plugins.Extensions;
 
-namespace AtsEx.Extensions.SoundFactory
+namespace BveEx.Extensions.SoundFactory
 {
     [Plugin(PluginType.Extension)]
     [ExtensionMainDisplayType(typeof(ISoundFactory))]

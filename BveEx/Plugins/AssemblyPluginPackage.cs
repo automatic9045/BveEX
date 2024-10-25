@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.Plugins
+namespace BveEx.Plugins
 {
     internal class AssemblyPluginPackage : IPluginPackage
     {

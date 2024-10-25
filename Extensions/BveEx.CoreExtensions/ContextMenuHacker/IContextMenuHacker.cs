@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using AtsEx.PluginHost.Plugins.Extensions;
+using BveEx.PluginHost.Plugins.Extensions;
 
-namespace AtsEx.Extensions.ContextMenuHacker
+namespace BveEx.Extensions.ContextMenuHacker
 {
     /// <summary>
     /// メインフォームの右クリックメニューを編集するための機能を提供します。

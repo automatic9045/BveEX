@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.PluginHost;
+using BveEx.PluginHost;
 
-namespace AtsEx.Extensions.MapStatements
+namespace BveEx.Extensions.MapStatements
 {
     /// <summary>
-    /// AtsEX マップステートメントの文法エラーによる例外を表します。
+    /// BveEX マップステートメントの文法エラーによる例外を表します。
     /// </summary>
     public class SyntaxException : BveFileLoadException
     {

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 using UnembeddedResources;
 
-using AtsEx.PluginHost.Plugins;
+using BveEx.PluginHost.Plugins;
 
-namespace AtsEx
+namespace BveEx
 {
     internal partial class VersionForm : Form
     {

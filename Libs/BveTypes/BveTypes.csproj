@@ -38,10 +38,10 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Mackoy.IInputDevice">
-      <HintPath>..\..\AtsEx.PluginHost\LocalReferences\BveTs\Mackoy.IInputDevice.DLL</HintPath>
+      <HintPath>..\..\LocalReferences\BveTs\Mackoy.IInputDevice.DLL</HintPath>
     </Reference>
     <Reference Include="Mackoy.XmlInterfaces">
-      <HintPath>..\..\AtsEx.PluginHost\LocalReferences\BveTs\Mackoy.XmlInterfaces.DLL</HintPath>
+      <HintPath>..\..\LocalReferences\BveTs\Mackoy.XmlInterfaces.DLL</HintPath>
     </Reference>
     <Reference Include="SlimDX, Version=4.0.13.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9, processorArchitecture=x86">
       <HintPath>..\..\packages\SlimDX.4.0.13.44\lib\NET40\SlimDX.dll</HintPath>
@@ -269,6 +269,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /e /y /i "$(ProjectDir)Resources\" "$(SolutionDir)_SampleScenarios\AtsEx\Debug\Resources\BveTypes\"</PostBuildEvent>
+    <PostBuildEvent>xcopy /e /y /i "$(ProjectDir)Resources\" "$(SolutionDir)_SampleScenarios\BveEx\Debug\Resources\BveTypes\"</PostBuildEvent>
   </PropertyGroup>
 </Project>

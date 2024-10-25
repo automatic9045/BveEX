@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-namespace AtsEx.Extensions.MapStatements
+namespace BveEx.Extensions.MapStatements
 {
     /// <summary>
     /// マップステートメントの句を検索する際の絞り込み条件を表します。

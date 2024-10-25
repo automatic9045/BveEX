@@ -9,11 +9,11 @@ using System.Windows.Forms;
 
 using UnembeddedResources;
 
-using AtsEx.Extensions.ContextMenuHacker;
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Plugins;
+using BveEx.Extensions.ContextMenuHacker;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Plugins;
 
-namespace AtsEx
+namespace BveEx
 {
     internal sealed class VersionFormProvider : IDisposable
     {

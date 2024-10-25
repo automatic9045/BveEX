@@ -9,10 +9,10 @@ using FastMember;
 using ObjectiveHarmonyPatch;
 using TypeWrapping;
 
-using AtsEx.PluginHost.Plugins;
-using AtsEx.PluginHost.Plugins.Extensions;
+using BveEx.PluginHost.Plugins;
+using BveEx.PluginHost.Plugins.Extensions;
 
-namespace AtsEx.Extensions.AtsArrayExtender
+namespace BveEx.Extensions.AtsArrayExtender
 {
     [Plugin(PluginType.Extension)]
     [HideExtensionMain]

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.PluginHost.Plugins.Extensions
+namespace BveEx.PluginHost.Plugins.Extensions
 {
     /// <summary>
     /// 拡張機能の <see cref="PluginBase.Tick(TimeSpan)"/> メソッドの実行結果を表します。

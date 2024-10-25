@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.Extensions.ConductorPatch
+namespace BveEx.Extensions.ConductorPatch
 {
     /// <summary>
     /// 車掌動作を上書きするパッチを表します。

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.Extensions.ContextMenuHacker
+namespace BveEx.Extensions.ContextMenuHacker
 {
     /// <summary>
     /// 右クリックメニューの項目の種類を指定します。
@@ -12,7 +12,7 @@ namespace AtsEx.Extensions.ContextMenuHacker
     public enum ContextMenuItemType
     {
         /// <summary>
-        /// AtsEX 本体、または拡張機能によるものであることを指定します。
+        /// BveEX 本体、または拡張機能によるものであることを指定します。
         /// </summary>
         CoreAndExtensions,
 

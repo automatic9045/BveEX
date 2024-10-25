@@ -9,7 +9,7 @@ using Microsoft.CodeAnalysis;
 
 using UnembeddedResources;
 
-namespace AtsEx.Scripting.CSharp
+namespace BveEx.Scripting.CSharp
 {
     public sealed class CompilationException : Exception
     {

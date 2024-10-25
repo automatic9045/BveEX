@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.Native
+namespace BveEx.Native
 {
     internal class FrameSpan
     {

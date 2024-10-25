@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 using UnembeddedResources;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Binding;
-using AtsEx.PluginHost.Panels.Native;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Binding;
+using BveEx.PluginHost.Panels.Native;
 
-namespace AtsEx.Panels
+namespace BveEx.Panels
 {
     internal sealed class AtsPanelValueSet : IAtsPanelValueSet
     {

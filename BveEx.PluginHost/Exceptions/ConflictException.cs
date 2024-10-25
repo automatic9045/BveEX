@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using UnembeddedResources;
 
-namespace AtsEx.PluginHost
+namespace BveEx.PluginHost
 {
     /// <summary>
     /// 他のプラグインとの競合を検出した場合にスローされます。

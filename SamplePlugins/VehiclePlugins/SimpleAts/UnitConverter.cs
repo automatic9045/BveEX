@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.Samples.VehiclePlugins.SimpleAts
+namespace BveEx.Samples.VehiclePlugins.SimpleAts
 {
     internal static class UnitConverter
     {

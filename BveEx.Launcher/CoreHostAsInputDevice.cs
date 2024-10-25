@@ -6,12 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using AtsEx.Launcher.Hosting;
+using BveEx.Launcher.Hosting;
 
-using AtsEx.Native;
-using AtsEx.Native.InputDevices;
+using BveEx.Native;
+using BveEx.Native.InputDevices;
 
-namespace AtsEx.Launcher
+namespace BveEx.Launcher
 {
     public class CoreHostAsInputDevice : IDisposable
     {

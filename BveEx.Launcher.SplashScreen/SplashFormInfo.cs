@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.Launcher.SplashScreen
+namespace BveEx.Launcher.SplashScreen
 {
     public class SplashFormInfo : MarshalByRefObject
     {

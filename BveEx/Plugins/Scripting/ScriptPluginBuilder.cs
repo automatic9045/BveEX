@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using AtsEx.PluginHost.Plugins;
-using AtsEx.PluginHost.Plugins.Extensions;
-using AtsEx.Scripting;
+using BveEx.PluginHost.Plugins;
+using BveEx.PluginHost.Plugins.Extensions;
+using BveEx.Scripting;
 
-namespace AtsEx.Plugins.Scripting
+namespace BveEx.Plugins.Scripting
 {
     internal sealed class ScriptPluginBuilder : PluginBuilder
     {

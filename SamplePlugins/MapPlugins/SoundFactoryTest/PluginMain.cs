@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Plugins;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Plugins;
 
-using AtsEx.Extensions.SoundFactory;
+using BveEx.Extensions.SoundFactory;
 
-namespace AtsEx.Samples.MapPlugins.SoundFactoryTest
+namespace BveEx.Samples.MapPlugins.SoundFactoryTest
 {
     [Plugin(PluginType.MapPlugin)]
     public class PluginMain : AssemblyPluginBase

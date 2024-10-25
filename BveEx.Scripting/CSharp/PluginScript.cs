@@ -12,9 +12,9 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Scripting;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 
-using AtsEx.PluginHost;
+using BveEx.PluginHost;
 
-namespace AtsEx.Scripting.CSharp
+namespace BveEx.Scripting.CSharp
 {
     public class PluginScript<TGlobals> : IPluginScript<TGlobals> where TGlobals : Globals
     {
@@ -29,7 +29,7 @@ namespace AtsEx.Scripting.CSharp
                     .WithImports("System", "System.Collections.Generic", "System.Linq", "System.Text", "System.Windows.Forms");
 
                 AddReferenceAndImports(Assembly.GetExecutingAssembly());
-                AddReferenceAndImports(App.Instance.AtsExPluginHostAssembly);
+                AddReferenceAndImports(App.Instance.BveExPluginHostAssembly);
 
                 ScriptOptions = scriptOptions;
 

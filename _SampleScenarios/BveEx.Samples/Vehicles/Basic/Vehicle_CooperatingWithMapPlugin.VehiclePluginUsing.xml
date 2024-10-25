@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<AtsExPluginUsing xmlns="http://automatic9045.github.io/ns/xmlschemas/AtsExPluginUsingXmlSchema.xsd">
-	<Assembly Path="AtsExPlugins\CooperatingWithMapPlugin.dll" />
-	<Assembly Path="AtsExPlugins\SimpleAts.dll" />
-	<Assembly Path="AtsExPlugins\StateViewer.dll" />
-</AtsExPluginUsing>
+<BveExPluginUsing>
+	<Assembly Path="BveExPlugins\CooperatingWithMapPlugin.dll" />
+	<Assembly Path="BveExPlugins\SimpleAts.dll" />
+	<Assembly Path="BveExPlugins\StateViewer.dll" />
+</BveExPluginUsing>

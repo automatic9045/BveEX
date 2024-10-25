@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AtsEx.Launcher.SplashScreen
+namespace BveEx.Launcher.SplashScreen
 {
     internal partial class SplashForm
     {
@@ -16,7 +16,7 @@ namespace AtsEx.Launcher.SplashScreen
 
         private Label LoadingLabel;
         private Label BveVersionLabel;
-        private Label AtsExVersionLabel;
+        private Label BveExVersionLabel;
         private Label ProgressTextLabel;
 
         private void InitializeComponent(Version bveVersion, Version launcherVersion)
@@ -60,15 +60,15 @@ namespace AtsEx.Launcher.SplashScreen
             };
             Controls.Add(BveVersionLabel);
 
-            AtsExVersionLabel = new Label()
+            BveExVersionLabel = new Label()
             {
                 Left = HorizonalMargin,
                 AutoSize = true,
                 Anchor = AnchorStyles.Left | AnchorStyles.Bottom,
                 BackColor = Color.Transparent,
-                Text = $"AtsEX Launcher version: {launcherVersion}",
+                Text = $"BveEX Launcher version: {launcherVersion}",
             };
-            Controls.Add(AtsExVersionLabel);
+            Controls.Add(BveExVersionLabel);
 
             ProgressTextLabel = new Label()
             {
@@ -84,8 +84,8 @@ namespace AtsEx.Launcher.SplashScreen
             ResumeLayout(false);
 
             ProgressTextLabel.Top = ClientSize.Height - VerticalMargin - ProgressTextLabel.Height;
-            AtsExVersionLabel.Top = ProgressTextLabel.Top - VerticalMargin / 2 - AtsExVersionLabel.Height;
-            BveVersionLabel.Top = AtsExVersionLabel.Top - BveVersionLabel.Height;
+            BveExVersionLabel.Top = ProgressTextLabel.Top - VerticalMargin / 2 - BveExVersionLabel.Height;
+            BveVersionLabel.Top = BveExVersionLabel.Top - BveVersionLabel.Height;
         }
     }
 }

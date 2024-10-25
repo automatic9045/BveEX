@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using AtsEx.PluginHost.Binding;
+using BveEx.PluginHost.Binding;
 
-namespace AtsEx.PluginHost.Panels.Native
+namespace BveEx.PluginHost.Panels.Native
 {
     /// <summary>
     /// ATS プラグインによって制御可能な運転台パネルの状態量 (例えば「ats12」など、subjectKey が「ats」から始まる状態量) を表します。

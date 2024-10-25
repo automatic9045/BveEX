@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.PluginHost.Binding
+namespace BveEx.PluginHost.Binding
 {
     /// <summary>
     /// ターゲットとデータソースとのバインディングのデータ同期の方向を指定します。

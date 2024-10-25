@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AtsEx.Launcher.Hosting
+namespace BveEx.Launcher.Hosting
 {
     internal partial class UpdateInfoDialog : Form
     {
@@ -40,7 +40,7 @@ namespace AtsEx.Launcher.Hosting
             AutoScaleDimensions = new Size(96, 96);
             AutoScaleMode = AutoScaleMode.Dpi;
 
-            Text = "アップデート情報 - AtsEX";
+            Text = "アップデート情報 - BveEX";
             Height = 600;
             Width = 800;
             Font = new Font("Yu Gothic UI", 10);

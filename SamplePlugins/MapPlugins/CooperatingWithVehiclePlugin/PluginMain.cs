@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using AtsEx.PluginHost.Plugins;
+using BveEx.PluginHost.Plugins;
 
-using VehiclePlugin = AtsEx.Samples.VehiclePlugins.CooperatingWithMapPlugin.PluginMain;
+using VehiclePlugin = BveEx.Samples.VehiclePlugins.CooperatingWithMapPlugin.PluginMain;
 
-namespace AtsEx.Samples.MapPlugins.CooperatingWithVehiclePlugin
+namespace BveEx.Samples.MapPlugins.CooperatingWithVehiclePlugin
 {
     [Plugin(PluginType.MapPlugin)]
     public class PluginMain : AssemblyPluginBase
@@ -22,7 +22,7 @@ namespace AtsEx.Samples.MapPlugins.CooperatingWithVehiclePlugin
         private void OnAllPluginsLoaded(object sender, EventArgs e)
         {
             VehiclePlugin vehiclePlugin = Plugins[PluginType.VehiclePlugin]["TestPlugin"] as VehiclePlugin;
-            MessageBox.Show($"車両プラグインから値を取得しました: {vehiclePlugin.SharedValue}", "AtsEX マッププラグイン：車両プラグイン連携サンプル");
+            MessageBox.Show($"車両プラグインから値を取得しました: {vehiclePlugin.SharedValue}", "BveEX マッププラグイン：車両プラグイン連携サンプル");
         }
 
         public override void Dispose()

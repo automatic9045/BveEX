@@ -10,15 +10,15 @@ using System.Windows.Forms;
 
 using Mackoy.Bvets;
 
-using AtsEx.Launcher;
+using BveEx.Launcher;
 
-namespace AtsEx.Caller.InputDevice
+namespace BveEx.Caller.InputDevice
 {
     public class InputDevice : IInputDevice
     {
         private static readonly Assembly Assembly = Assembly.GetExecutingAssembly();
-        private const string LauncherName = "AtsEx.Launcher";
-        private const string ErrorCaption = "読込エラー - AtsEX Caller";
+        private const string LauncherName = "BveEx.Launcher";
+        private const string ErrorCaption = "読込エラー - BveEX Caller";
 
         private VersionSelector VersionSelector;
 
@@ -32,22 +32,22 @@ namespace AtsEx.Caller.InputDevice
             if (!Debugger.IsAttached) Debugger.Launch();
 #endif
             string callerDirectory = Path.GetDirectoryName(Assembly.Location);
-            string textPath = Path.Combine(callerDirectory, "AtsEx.Caller.InputDevice.txt");
+            string textPath = Path.Combine(callerDirectory, "BveEx.Caller.InputDevice.txt");
 
-            string atsExDirectory = Path.Combine(callerDirectory, "AtsEx");
+            string bveExDirectory = Path.Combine(callerDirectory, "BveEx");
             if (File.Exists(textPath))
             {
                 using (StreamReader sr = new StreamReader(textPath))
                 {
                     string line = sr.ReadLine();
-                    atsExDirectory = Path.Combine(callerDirectory, line);
+                    bveExDirectory = Path.Combine(callerDirectory, line);
                 }
             }
 
-            string launcherLocation = Path.Combine(atsExDirectory, LauncherName + ".dll");
+            string launcherLocation = Path.Combine(bveExDirectory, LauncherName + ".dll");
             if (!File.Exists(launcherLocation))
             {
-                MessageBox.Show($"エラーコード CI-1: AtsEX Launcher が見つかりません。\n\n指定された場所:\n{launcherLocation}", ErrorCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"エラーコード CI-1: BveEX Launcher が見つかりません。\n\n指定された場所:\n{launcherLocation}", ErrorCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             AppDomain.CurrentDomain.AssemblyResolve += (sender, e) =>

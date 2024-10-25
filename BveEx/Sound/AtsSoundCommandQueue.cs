@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.Sound
+namespace BveEx.Sound
 {
     internal sealed class AtsSoundCommandQueue
     {

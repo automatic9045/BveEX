@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using AtsEx.PluginHost.Panels.Native;
-using AtsEx.PluginHost.Plugins;
+using BveEx.PluginHost.Panels.Native;
+using BveEx.PluginHost.Plugins;
 
-namespace AtsEx.Samples.VehiclePlugins.AtsPanelValueTest
+namespace BveEx.Samples.VehiclePlugins.AtsPanelValueTest
 {
     [Plugin(PluginType.VehiclePlugin)]
     public class PluginMain : AssemblyPluginBase

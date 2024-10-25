@@ -9,10 +9,10 @@ using System.Windows.Forms;
 
 using UnembeddedResources;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Plugins;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Plugins;
 
-namespace AtsEx
+namespace BveEx
 {
     internal partial class VersionForm : Form
     {
@@ -77,7 +77,7 @@ namespace AtsEx
                 Width = 480,
                 Height = 15,
                 AutoSize = true,
-                Text = string.Format(Resources.Value.Description.Value, App.Instance.AtsExAssembly.GetName().Version),
+                Text = string.Format(Resources.Value.Description.Value, App.Instance.BveExAssembly.GetName().Version),
             };
             Controls.Add(Description);
 

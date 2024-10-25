@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.Extensions.PreTrainPatch
+namespace BveEx.Extensions.PreTrainPatch
 {
     /// <summary>
     /// 先行列車の走行位置の変換機能を提供します。

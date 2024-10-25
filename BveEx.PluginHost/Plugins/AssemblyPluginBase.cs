@@ -6,10 +6,10 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.PluginHost.Plugins
+namespace BveEx.PluginHost.Plugins
 {
     /// <summary>
-    /// アセンブリ (.dll) 形式の AtsEX プラグインを表します。
+    /// アセンブリ (.dll) 形式の BveEX プラグインを表します。
     /// </summary>
     public abstract class AssemblyPluginBase : PluginBase
     {
@@ -32,12 +32,12 @@ namespace AtsEx.PluginHost.Plugins
         public override string Copyright { get; }
 
         /// <summary>
-        /// AtsEX プラグインの新しいインスタンスを初期化します。
+        /// BveEX プラグインの新しいインスタンスを初期化します。
         /// </summary>
         /// <remarks>
         /// <see cref="PluginAttribute"/> を付加して、プラグインの種類を指定してください。
         /// </remarks>
-        /// <param name="builder">AtsEX から渡される BVE、AtsEX の情報。</param>
+        /// <param name="builder">BveEX から渡される BVE、BveEX の情報。</param>
         public AssemblyPluginBase(PluginBuilder builder) : base(builder)
         {
             Assembly pluginAssembly = GetType().Assembly;

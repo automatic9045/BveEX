@@ -5,9 +5,9 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-using AtsEx.Plugins.Scripting;
+using BveEx.Plugins.Scripting;
 
-namespace AtsEx.Plugins
+namespace BveEx.Plugins
 {
     internal sealed partial class PluginSourceSet
     {

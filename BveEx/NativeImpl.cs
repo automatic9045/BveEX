@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.Handles;
-using AtsEx.Input;
-using AtsEx.Panels;
-using AtsEx.Plugins;
-using AtsEx.Sound;
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Input.Native;
-using AtsEx.PluginHost.Native;
-using AtsEx.PluginHost.Panels.Native;
-using AtsEx.PluginHost.Sound.Native;
+using BveEx.Handles;
+using BveEx.Input;
+using BveEx.Panels;
+using BveEx.Plugins;
+using BveEx.Sound;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Input.Native;
+using BveEx.PluginHost.Native;
+using BveEx.PluginHost.Panels.Native;
+using BveEx.PluginHost.Sound.Native;
 
-namespace AtsEx
+namespace BveEx
 {
     internal class NativeImpl : INative
     {

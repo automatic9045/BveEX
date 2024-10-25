@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-namespace AtsEx.Extensions.PreTrainPatch
+namespace BveEx.Extensions.PreTrainPatch
 {
     /// <summary>
     /// 先行列車の走行位置を表します。

@@ -1,0 +1,10 @@
+BveTs Scenario 2.00 : UTF-8
+
+Title = 普通 一橋→六合【運転台パネル関連サンプル】
+Route = BveEx.Samples\Maps\Basic\Samples\Empty\Map.txt
+RouteTitle = ★BveEX サンプル
+Vehicle = BveEx.Samples\Vehicles\Basic\Vehicle_WithPanel.txt
+VehicleTitle = BveEX 搭載サンプル車両
+Author = おーとま (automatic9045)
+Image = BveEx.Samples\Thumbnails\Basic\Default.png
+Comment = 運転台パネル関連のサンプルのセットです。BveEX プラグインから「Elapse 関数の panel 引数」を編集するサンプル、計器要素を直接操作するサンプルが含まれます。

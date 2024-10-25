@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 using UnembeddedResources;
 
-using AtsEx.PluginHost;
+using BveEx.PluginHost;
 
-namespace AtsEx
+namespace BveEx
 {
     internal static class ErrorDialog
     {

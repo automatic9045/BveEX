@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AtsEx.Launcher.Hosting
+namespace BveEx.Launcher.Hosting
 {
     internal sealed partial class UpdateInfoDialog : Form
     {

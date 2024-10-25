@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Input.Native;
-using AtsEx.PluginHost.Plugins;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Input.Native;
+using BveEx.PluginHost.Plugins;
 
-using AtsEx.Extensions.SignalPatch;
+using BveEx.Extensions.SignalPatch;
 
-namespace AtsEx.Samples.MapPlugins.SignalController
+namespace BveEx.Samples.MapPlugins.SignalController
 {
     [Plugin(PluginType.MapPlugin)]
     public class SignalController : AssemblyPluginBase

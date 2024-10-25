@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-namespace AtsEx.PluginHost.Native
+namespace BveEx.PluginHost.Native
 {
     /// <summary>
     /// <see cref="INative.BeaconPassed"/> イベントのデータを表します。

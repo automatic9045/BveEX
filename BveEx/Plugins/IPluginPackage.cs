@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.Plugins
+namespace BveEx.Plugins
 {
     internal interface IPluginPackage
     {

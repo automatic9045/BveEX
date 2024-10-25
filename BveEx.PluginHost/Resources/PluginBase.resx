@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AtsExVersionTooOld" xml:space="preserve">
+  <data name="BveExVersionTooOld" xml:space="preserve">
     <value>This {0} plugin supports {0} version {1} or later; {0} installed (version {2}) is not supported.</value>
   </data>
   <data name="PluginTypeNotSpecified" xml:space="preserve">

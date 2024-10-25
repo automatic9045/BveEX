@@ -2,7 +2,7 @@ BveTs Map 2.02:utf-8
 
 include '..\..\BaseMap.txt';
 
-AtsEx.MapPlugin.Load('MapPluginUsing.xml');
+BveEx.MapPlugin.Load('MapPluginUsing.xml');
 Structure.Load('Structures.csv');
 Station.Load('Stations.csv');
 
@@ -12,4 +12,4 @@ Station.Load('Stations.csv');
 	Train['test_ex_2'].Load('Bus.txt', '0', 1);
 
 12.5;
-	structure['Info'].Put('1', -0.7, 4, 0, 0, -10, 0, 0, 0);
+	Structure['Info'].Put('1', -0.7, 4, 0, 0, -10, 0, 0, 0);

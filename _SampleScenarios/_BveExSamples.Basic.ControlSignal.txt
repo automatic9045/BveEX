@@ -1,0 +1,10 @@
+BveTs Scenario 2.00 : UTF-8
+
+Title = 普通 一橋→六合【信号操作サンプル】
+Route = BveEx.Samples\Maps\Basic\Samples\ControlSignal\Map.txt
+RouteTitle = ★BveEX サンプル
+Vehicle = BveEx.Samples\Vehicles\Basic\Vehicle_Simple.txt
+VehicleTitle = BveEX 搭載サンプル車両
+Author = おーとま (automatic9045)
+Image = BveEx.Samples\Thumbnails\Basic\Default.png
+Comment = 特定閉塞の信号現示を操作するサンプルです。

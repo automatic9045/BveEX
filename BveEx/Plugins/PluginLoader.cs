@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 using UnembeddedResources;
 
-using AtsEx.Plugins.Native;
-using AtsEx.Plugins.Scripting;
-using AtsEx.Plugins.Scripting.CSharp;
-using AtsEx.Plugins.Scripting.IronPython2;
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Plugins;
-using AtsEx.PluginHost.Plugins.Extensions;
+using BveEx.Plugins.Native;
+using BveEx.Plugins.Scripting;
+using BveEx.Plugins.Scripting.CSharp;
+using BveEx.Plugins.Scripting.IronPython2;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Plugins;
+using BveEx.PluginHost.Plugins.Extensions;
 
-namespace AtsEx.Plugins
+namespace BveEx.Plugins
 {
     internal partial class PluginLoader
     {
@@ -151,7 +151,7 @@ namespace AtsEx.Plugins
             {
                 string fileName = Path.GetFileName(assembly.Location);
 
-                Version pluginHostVersion = App.Instance.AtsExPluginHostAssembly.GetName().Version;
+                Version pluginHostVersion = App.Instance.BveExPluginHostAssembly.GetName().Version;
                 AssemblyName referencedPluginHost = assembly.GetReferencedPluginHost();
                 if (referencedPluginHost is null)
                 {

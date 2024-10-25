@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // アセンブリに関する一般情報は以下の属性セットをとおして制御されます。
 // 制御されます。アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更してください。
-[assembly: AssemblyTitle("AtsEx.Scripting")]
+[assembly: AssemblyTitle("BveEX Scripting")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Dynabook")]
-[assembly: AssemblyProduct("AtsEx.Scripting")]
-[assembly: AssemblyCopyright("Copyright © Dynabook 2022")]
+[assembly: AssemblyCompany("AtsEX & BveEX Project")]
+[assembly: AssemblyProduct("BveEX")]
+[assembly: AssemblyCopyright("Copyright © 2022 automatic9045")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

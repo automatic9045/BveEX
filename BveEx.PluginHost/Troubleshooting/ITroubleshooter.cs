@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.PluginHost.Troubleshooting
+namespace BveEx.PluginHost.Troubleshooting
 {
     /// <summary>
     /// トラブルシューティングプラグインを表します。

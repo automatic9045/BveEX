@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.PluginHost.LoadErrorManager;
+using BveEx.PluginHost.LoadErrorManager;
 
-namespace AtsEx.LoadErrorManager
+namespace BveEx.LoadErrorManager
 {
     internal sealed class LoadErrorManager : ILoadErrorManager
     {

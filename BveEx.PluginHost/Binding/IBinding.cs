@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.PluginHost.Binding
+namespace BveEx.PluginHost.Binding
 {
     /// <summary>
     /// ターゲットと任意のデータソースを接続するデータバインディングを表します。

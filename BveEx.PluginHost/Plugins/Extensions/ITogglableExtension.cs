@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.PluginHost.Plugins.Extensions
+namespace BveEx.PluginHost.Plugins.Extensions
 {
     /// <summary>
-    /// バージョン情報ダイアログから有効・無効が切替可能な AtsEX 拡張機能を表します。
+    /// バージョン情報ダイアログから有効・無効が切替可能な BveEX 拡張機能を表します。
     /// </summary>
     public interface ITogglableExtension : IExtension
     {

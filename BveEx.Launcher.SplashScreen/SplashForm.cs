@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AtsEx.Launcher.SplashScreen
+namespace BveEx.Launcher.SplashScreen
 {
     internal partial class SplashForm : Form
     {

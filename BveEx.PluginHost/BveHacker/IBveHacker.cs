@@ -10,9 +10,9 @@ using Mackoy.Bvets;
 using BveTypes;
 using BveTypes.ClassWrappers;
 
-using AtsEx.PluginHost.LoadErrorManager;
+using BveEx.PluginHost.LoadErrorManager;
 
-namespace AtsEx.PluginHost
+namespace BveEx.PluginHost
 {
     /// <summary>
     /// <see cref="IBveHacker.ScenarioOpened"/> イベントを処理するメソッドを表します。

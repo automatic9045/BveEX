@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using AtsEx.PluginHost.Handles;
+using BveEx.PluginHost.Handles;
 
-namespace AtsEx.Handles
+namespace BveEx.Handles
 {
     internal abstract class HandleBase : IHandle
     {

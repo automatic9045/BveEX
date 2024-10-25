@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 using BveTypes.ClassWrappers;
 using BveTypes.ClassWrappers.Extensions;
 
-using AtsEx.Extensions.MapStatements;
-using AtsEx.PluginHost.Plugins;
-using AtsEx.PluginHost.Plugins.Extensions;
+using BveEx.Extensions.MapStatements;
+using BveEx.PluginHost.Plugins;
+using BveEx.PluginHost.Plugins.Extensions;
 
-using AtsEx.Plugins;
+using BveEx.Plugins;
 
-namespace AtsEx
+namespace BveEx
 {
     internal partial class ScenarioService
     {

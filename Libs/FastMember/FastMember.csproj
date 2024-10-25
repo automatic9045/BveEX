@@ -87,6 +87,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /e /y /i "$(ProjectDir)Resources\" "$(SolutionDir)_SampleScenarios\AtsEx\Debug\Resources\FastMember\"</PostBuildEvent>
+    <PostBuildEvent>xcopy /e /y /i "$(ProjectDir)Resources\" "$(SolutionDir)_SampleScenarios\BveEx\Debug\Resources\FastMember\"</PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -12,13 +12,13 @@ using BveTypes;
 using BveTypes.ClassWrappers;
 using UnembeddedResources;
 
-using AtsEx.BveHackerServices;
-using AtsEx.Handles;
+using BveEx.BveHackerServices;
+using BveEx.Handles;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.LoadErrorManager;
+using BveEx.PluginHost;
+using BveEx.PluginHost.LoadErrorManager;
 
-namespace AtsEx
+namespace BveEx
 {
     internal sealed class BveHacker : IBveHacker, IDisposable
     {

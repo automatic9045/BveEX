@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.Handles;
-using AtsEx.PluginHost.Handles;
-using AtsEx.PluginHost.Plugins;
+using BveEx.Handles;
+using BveEx.PluginHost.Handles;
+using BveEx.PluginHost.Plugins;
 
-namespace AtsEx
+namespace BveEx
 {
     internal sealed class TickCommandBuilder
     {

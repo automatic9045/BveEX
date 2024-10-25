@@ -1,0 +1,10 @@
+BveTs Scenario 2.00 : UTF-8
+
+Title = 普通 一橋→六合【車両プラグイン連携サンプル】
+Route = BveEx.Samples\Maps\Basic\Samples\CooperateWithVehiclePlugin\Map.txt
+RouteTitle = ★BveEX サンプル
+Vehicle = BveEx.Samples\Vehicles\Basic\Vehicle_CooperatingWithMapPlugin.txt
+VehicleTitle = BveEX 搭載サンプル車両
+Author = おーとま (automatic9045)
+Image = BveEx.Samples\Thumbnails\Basic\Default.png
+Comment = マッププラグインから車両プラグインを参照するサンプルです。

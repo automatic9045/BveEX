@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AtsEx.Diagnostics
+namespace BveEx.Diagnostics
 {
     public partial class ErrorDialog
     {
@@ -147,7 +147,7 @@ namespace AtsEx.Diagnostics
             ExitButton.Click += (sender2, e) =>
             {
                 DialogResult result = MessageBox.Show($"読込を中断し、BVE を終了してもよろしいですか?\nAbort loading and exit BVE Trainsim?",
-                    "AtsEX Diagnostics", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    "BveEX Diagnostics", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes) Application.Exit();
             };
 
@@ -174,7 +174,7 @@ namespace AtsEx.Diagnostics
                 HelpLinkButton.Click += (sender2, e) =>
                 {
                     DialogResult result = MessageBox.Show($"このヘルプリンクを信頼し、エラーに関する情報を表示しますか?\nTrust this help link and open it?\n\n{info.HelpLink}",
-                        "AtsEX Diagnostics", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        "BveEX Diagnostics", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (result == DialogResult.Yes) Process.Start(info.HelpLink.ToString());
                 };
 

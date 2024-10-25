@@ -11,7 +11,7 @@ using FastMember;
 using ObjectiveHarmonyPatch;
 using TypeWrapping;
 
-namespace AtsEx.BveHackerServices
+namespace BveEx.BveHackerServices
 {
     internal class ConfigFormHacker : IDisposable
     {

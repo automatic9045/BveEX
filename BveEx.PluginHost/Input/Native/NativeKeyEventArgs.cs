@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.PluginHost.Input.Native
+namespace BveEx.PluginHost.Input.Native
 {
     /// <summary>
     /// <see cref="INativeKeySet.AnyKeyPressed"/>、<see cref="INativeKeySet.AnyKeyReleased"/> イベントのデータを提供します。

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.Extensions.MapStatements
+namespace BveEx.Extensions.MapStatements
 {
     /// <summary>
     /// マップステートメントの句の種類を指定します。

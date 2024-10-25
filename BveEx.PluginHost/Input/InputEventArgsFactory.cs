@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using BveTypes.ClassWrappers;
 using Mackoy.Bvets;
 
-using AtsEx.PluginHost.Input.Native;
-using AtsEx.PluginHost.Native;
+using BveEx.PluginHost.Input.Native;
+using BveEx.PluginHost.Native;
 
-namespace AtsEx.PluginHost.Input
+namespace BveEx.PluginHost.Input
 {
     /// <summary>
     /// <see cref="InputEventArgs"/> を直感的に作成するための機能を提供します。

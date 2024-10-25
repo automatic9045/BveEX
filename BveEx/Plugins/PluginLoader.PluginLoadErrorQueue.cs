@@ -6,11 +6,11 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-using AtsEx.Plugins.Scripting;
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.LoadErrorManager;
+using BveEx.Plugins.Scripting;
+using BveEx.PluginHost;
+using BveEx.PluginHost.LoadErrorManager;
 
-namespace AtsEx.Plugins
+namespace BveEx.Plugins
 {
     internal partial class PluginLoader
     {
@@ -28,7 +28,7 @@ namespace AtsEx.Plugins
             {
                 string assemblyFileName = Path.GetFileName(assembly.Location);
 
-                Version pluginHostVersion = App.Instance.AtsExPluginHostAssembly.GetName().Version;
+                Version pluginHostVersion = App.Instance.BveExPluginHostAssembly.GetName().Version;
                 Version referencedPluginHostVersion = assembly.GetReferencedPluginHost()?.Version;
                 if (referencedPluginHostVersion is null)
                 {

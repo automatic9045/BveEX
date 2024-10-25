@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.Extensions
+namespace BveEx.Extensions
 {
     /// <summary>
     /// メソッドの処理を上書きする方法を指定します。

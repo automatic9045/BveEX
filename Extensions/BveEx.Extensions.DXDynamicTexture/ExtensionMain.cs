@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 using Zbx1425.DXDynamicTexture;
 
-using AtsEx.PluginHost.Plugins;
-using AtsEx.PluginHost.Plugins.Extensions;
+using BveEx.PluginHost.Plugins;
+using BveEx.PluginHost.Plugins.Extensions;
 
-namespace AtsEx.Extensions.DXDynamicTexture
+namespace BveEx.Extensions.DXDynamicTexture
 {
     [Plugin(PluginType.Extension)]
     [HideExtensionMain]

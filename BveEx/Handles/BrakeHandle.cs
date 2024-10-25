@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using BveTypes.ClassWrappers;
 using UnembeddedResources;
 
-using AtsEx.PluginHost.Handles;
+using BveEx.PluginHost.Handles;
 
-namespace AtsEx.Handles
+namespace BveEx.Handles
 {
     internal class BrakeHandle : HandleBase, IBrakeHandle
     {

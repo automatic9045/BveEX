@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.PluginHost.Sound.Native
+namespace BveEx.PluginHost.Sound.Native
 {
     /// <summary>
     /// ATS プラグインから制御可能な ATS サウンドを表します。

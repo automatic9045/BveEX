@@ -6,7 +6,7 @@ using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.Diagnostics
+namespace BveEx.Diagnostics
 {
     /// <summary>
     /// 例外をラップしている <see cref="AggregateException"/> などの例外を一元的に解決するための機能を提供します。

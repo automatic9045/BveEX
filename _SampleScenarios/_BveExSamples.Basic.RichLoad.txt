@@ -1,0 +1,10 @@
+BveTs Scenario 2.00 : UTF-8
+
+Title = 普通 一橋→六合【RichLoad サンプル】
+Route = BveEx.Samples\Maps\Basic\Samples\Empty\Map.txt
+RouteTitle = ★BveEX サンプル
+Vehicle = BveEx.Samples\Vehicles\E217r\Vehicle_Samples.Empty.txt
+VehicleTitle = E217 系 15 両【BveEX プラグイン搭載】
+Author = おーとま (automatic9045)
+Image = BveEx.Samples\Thumbnails\Basic\Default.png
+Comment = RichLoad プラグインを使用してオリジナルの読込画面を実装するサンプルです。

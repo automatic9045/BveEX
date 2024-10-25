@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using AtsEx.PluginHost.Plugins;
-using AtsEx.PluginHost.Plugins.Extensions;
+using BveEx.PluginHost.Plugins;
+using BveEx.PluginHost.Plugins.Extensions;
 
-namespace AtsEx.Extensions.ContextMenuHacker
+namespace BveEx.Extensions.ContextMenuHacker
 {
     [Plugin(PluginType.Extension)]
     [ExtensionMainDisplayType(typeof(IContextMenuHacker))]

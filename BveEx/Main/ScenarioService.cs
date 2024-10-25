@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 using BveTypes.ClassWrappers;
 using UnembeddedResources;
 
-using AtsEx.Handles;
-using AtsEx.Input;
-using AtsEx.Panels;
-using AtsEx.Plugins;
-using AtsEx.Sound;
-using AtsEx.PluginHost.Input.Native;
-using AtsEx.PluginHost.Native;
-using AtsEx.PluginHost.Plugins;
-using AtsEx.PluginHost;
+using BveEx.Handles;
+using BveEx.Input;
+using BveEx.Panels;
+using BveEx.Plugins;
+using BveEx.Sound;
+using BveEx.PluginHost.Input.Native;
+using BveEx.PluginHost.Native;
+using BveEx.PluginHost.Plugins;
+using BveEx.PluginHost;
 
-namespace AtsEx
+namespace BveEx
 {
     internal partial class ScenarioService : IDisposable
     {
@@ -44,32 +44,32 @@ namespace AtsEx
         }
 
 
-        private readonly AtsEx AtsEx;
+        private readonly BveEx BveEx;
         private readonly NativeImpl Native;
 
         private readonly PluginService _PluginService;
 
         public Scenario Target { get; private set; } = null;
 
-        public ScenarioService(AtsEx atsEx, PluginSourceSet vehiclePluginUsing, VehicleConfig vehicleConfig, VehicleSpec vehicleSpec)
+        public ScenarioService(BveEx bveEx, PluginSourceSet vehiclePluginUsing, VehicleConfig vehicleConfig, VehicleSpec vehicleSpec)
         {
-            AtsEx = atsEx;
-            AtsEx.BveHacker.ScenarioCreated += OnScenarioCreated;
+            BveEx = bveEx;
+            BveEx.BveHacker.ScenarioCreated += OnScenarioCreated;
 
             Native = new NativeImpl(vehicleSpec, vehicleConfig);
 
-            PluginLoader pluginLoader = new PluginLoader(Native, AtsEx.BveHacker, AtsEx.Extensions);
+            PluginLoader pluginLoader = new PluginLoader(Native, BveEx.BveHacker, BveEx.Extensions);
             PluginSet plugins = pluginLoader.Load(vehiclePluginUsing);
             _PluginService = new PluginService(plugins, Native.Handles);
 
-            AtsEx.VersionFormProvider.SetScenario(plugins[PluginType.VehiclePlugin].Values, plugins[PluginType.MapPlugin].Values);
+            BveEx.VersionFormProvider.SetScenario(plugins[PluginType.VehiclePlugin].Values, plugins[PluginType.MapPlugin].Values);
         }
 
         public virtual void Dispose()
         {
-            AtsEx.BveHacker.ScenarioCreated -= OnScenarioCreated;
+            BveEx.BveHacker.ScenarioCreated -= OnScenarioCreated;
 
-            AtsEx.VersionFormProvider.UnsetScenario();
+            BveEx.VersionFormProvider.UnsetScenario();
             _PluginService.Dispose();
         }
 
@@ -95,7 +95,7 @@ namespace AtsEx
 
         public HandlePositionSet Tick(TimeSpan elapsed, VehicleState vehicleState, IList<int> panel, IList<int> sound)
         {
-            HandleSet atsHandles = AtsEx.BveHacker.Scenario.Vehicle.Instruments.AtsPlugin.AtsHandles;
+            HandleSet atsHandles = BveEx.BveHacker.Scenario.Vehicle.Instruments.AtsPlugin.AtsHandles;
             NotifyHandleUpdated();
 
             Native.VehicleState = vehicleState;

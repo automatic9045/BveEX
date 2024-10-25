@@ -6,14 +6,14 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-using AtsEx.Plugins;
-using AtsEx.Plugins.Extensions;
-using AtsEx.Plugins.Scripting;
+using BveEx.Plugins;
+using BveEx.Plugins.Extensions;
+using BveEx.Plugins.Scripting;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Plugins;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Plugins;
 
-namespace AtsEx.Plugins.Extensions
+namespace BveEx.Plugins.Extensions
 {
     internal static class ExtensionSetFactory
     {

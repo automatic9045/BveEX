@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-namespace AtsEx.PluginHost.Handles
+namespace BveEx.PluginHost.Handles
 {
     /// <summary>
     /// 逆転器を表します。

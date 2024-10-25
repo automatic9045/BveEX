@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.Extensions;
-using AtsEx.Extensions.ConductorPatch;
+using BveEx.Extensions;
+using BveEx.Extensions.ConductorPatch;
 
-namespace AtsEx.Samples.VehiclePlugins.ConductorPatchTest
+namespace BveEx.Samples.VehiclePlugins.ConductorPatchTest
 {
     internal class TestConductor : ConductorBase
     {

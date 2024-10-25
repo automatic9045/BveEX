@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Binding;
-using AtsEx.PluginHost.Panels.Native;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Binding;
+using BveEx.PluginHost.Panels.Native;
 
-namespace AtsEx.Panels
+namespace BveEx.Panels
 {
     internal class AtsPanelValue<T> : IAtsPanelValue<T>
     {

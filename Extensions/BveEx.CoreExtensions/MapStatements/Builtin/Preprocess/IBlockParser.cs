@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.Extensions.MapStatements.Builtin.Preprocess
+namespace BveEx.Extensions.MapStatements.Builtin.Preprocess
 {
     internal interface IBlockParser
     {

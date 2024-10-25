@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.PluginHost.Sound
+namespace BveEx.PluginHost.Sound
 {
     /// <summary>
     /// 再生・ループ再生・停止が可能なサウンドを表します。

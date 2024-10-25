@@ -11,13 +11,13 @@ using FastMember;
 using ObjectiveHarmonyPatch;
 using TypeWrapping;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Plugins;
-using AtsEx.PluginHost.Plugins.Extensions;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Plugins;
+using BveEx.PluginHost.Plugins.Extensions;
 
-using AtsEx.Extensions.MapStatements.Builtin;
+using BveEx.Extensions.MapStatements.Builtin;
 
-namespace AtsEx.Extensions.MapStatements
+namespace BveEx.Extensions.MapStatements
 {
     [Plugin(PluginType.Extension)]
     [ExtensionMainDisplayType(typeof(IStatementSet))]
@@ -42,7 +42,7 @@ namespace AtsEx.Extensions.MapStatements
             {
                 WrappedList<MapStatementClause> clauses = WrappedList<MapStatementClause>.FromSource((IList)e.Args[0]);
 
-                if (0 < clauses.Count && clauses[0].Name.ToLowerInvariant() == "atsex")
+                if (0 < clauses.Count && clauses[0].Name.ToLowerInvariant() == "bveex")
                 {
                     MapLoader instance = MapLoader.FromSource(e.Instance);
 

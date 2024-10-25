@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 using BveTypes.ClassWrappers;
 using BveTypes.ClassWrappers.Extensions;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Plugins;
-using AtsEx.PluginHost.Plugins.Extensions;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Plugins;
+using BveEx.PluginHost.Plugins.Extensions;
 
-namespace AtsEx.Extensions.StructureModelFinder
+namespace BveEx.Extensions.StructureModelFinder
 {
     [Plugin(PluginType.Extension)]
     [ExtensionMainDisplayType(typeof(IStructureModelFinder))]

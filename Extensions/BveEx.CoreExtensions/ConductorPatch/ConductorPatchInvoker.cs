@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using ObjectiveHarmonyPatch;
 
-namespace AtsEx.Extensions.ConductorPatch
+namespace BveEx.Extensions.ConductorPatch
 {
     internal class ConductorPatchInvoker
     {

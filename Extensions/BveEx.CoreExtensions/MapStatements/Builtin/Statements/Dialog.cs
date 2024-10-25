@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 using BveTypes.ClassWrappers;
 
-namespace AtsEx.Extensions.MapStatements.Builtin.Statements
+namespace BveEx.Extensions.MapStatements.Builtin.Statements
 {
     internal class Dialog : IParser
     {

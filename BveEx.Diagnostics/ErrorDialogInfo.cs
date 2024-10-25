@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.Diagnostics
+namespace BveEx.Diagnostics
 {
     /// <summary>
     /// <see cref="ErrorDialog"/> の表示内容を指定します。
@@ -72,7 +72,7 @@ namespace AtsEx.Diagnostics
             Message = message;
         }
 
-        internal string GetCaption() => Caption ?? Sender ?? "AtsEX";
+        internal string GetCaption() => Caption ?? Sender ?? "BveEX";
         internal string GetHeader() => Header ?? "エラーが発生しました";
         internal string GetSender() => Sender ?? "(指定なし)";
     }

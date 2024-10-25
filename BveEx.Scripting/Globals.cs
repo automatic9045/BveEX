@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using AtsEx.PluginHost;
+using BveEx.PluginHost;
 
-namespace AtsEx.Scripting
+namespace BveEx.Scripting
 {
     public class Globals
     {

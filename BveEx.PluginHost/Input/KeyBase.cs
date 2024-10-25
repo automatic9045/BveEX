@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.PluginHost.Input
+namespace BveEx.PluginHost.Input
 {
     /// <summary>
     /// すべてのキーの基本クラスを表します。

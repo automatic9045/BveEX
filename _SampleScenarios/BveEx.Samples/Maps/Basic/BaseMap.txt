@@ -1,7 +1,7 @@
 BveTs Map 2.02:utf-8
 
-include '[[AtsEx::NOMPI]] このマップでは AtsEX マッププラグインを使用しています。正常動作には AtsEX のインストールが必要です。詳細は https://automatic9045.github.io をご覧ください。';
-include '[[AtsEx::NOMPI]] This map requires to install AtsEX to execute map plugins. For more information, visit https://automatic9045.github.io';
+include '[[BveEx::NOMPI]] このマップでは AtsEX マッププラグインを使用しています。正常動作には AtsEX のインストールが必要です。詳細は https://automatic9045.github.io をご覧ください。';
+include '[[BveEx::NOMPI]] This map requires to install AtsEX to execute map plugins. For more information, visit https://automatic9045.github.io';
 
 Structure.Load(ex_relativedir + 'Structures.csv');
 Signal.Load(ex_relativedir + 'Signal.csv');

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 using BveTypes.ClassWrappers;
 
-namespace AtsEx.PluginHost
+namespace BveEx.PluginHost
 {
     /// <summary>
     /// <see cref="IBveHacker.PreviewScenarioCreated"/>、<see cref="IBveHacker.ScenarioCreated"/> イベントのデータを提供します。

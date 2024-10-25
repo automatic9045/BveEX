@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using AtsEx.Native;
+using BveEx.Native;
 
-namespace AtsEx.Sound
+namespace BveEx.Sound
 {
     internal class AtsSoundCommand
     {

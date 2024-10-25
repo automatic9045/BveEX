@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 using UnembeddedResources;
 
-namespace AtsEx.PluginHost
+namespace BveEx.PluginHost
 {
     public sealed class App
     {
@@ -39,22 +39,22 @@ namespace AtsEx.PluginHost
 #endif
         }
 
-        private App(Process targetProcess, Assembly bveAssembly, Assembly launcherAssembly, Assembly atsExAssembly)
+        private App(Process targetProcess, Assembly bveAssembly, Assembly bveExLauncherAssembly, Assembly bveExAssembly)
         {
             Process = targetProcess;
             BveAssembly = bveAssembly;
-            AtsExLauncherAssembly = launcherAssembly;
-            AtsExAssembly = atsExAssembly;
-            AtsExPluginHostAssembly = Assembly.GetExecutingAssembly();
-            ExtensionDirectory = Path.Combine(Path.GetDirectoryName(AtsExAssembly.Location), "Extensions");
+            BveExLauncherAssembly = bveExLauncherAssembly;
+            BveExAssembly = bveExAssembly;
+            BveExPluginHostAssembly = Assembly.GetExecutingAssembly();
+            ExtensionDirectory = Path.Combine(Path.GetDirectoryName(BveExAssembly.Location), "Extensions");
 
-            AtsExVersion = AtsExAssembly.GetName().Version;
+            BveExVersion = BveExAssembly.GetName().Version;
             BveVersion = BveAssembly.GetName().Version;
         }
 
-        public static void CreateInstance(Process targetProcess, Assembly bveAssembly, Assembly launcherAssembly, Assembly atsExAssembly)
+        public static void CreateInstance(Process targetProcess, Assembly bveAssembly, Assembly bveExLauncherAssembly, Assembly bveExAssembly)
         {
-            Instance = new App(targetProcess, bveAssembly, launcherAssembly, atsExAssembly);
+            Instance = new App(targetProcess, bveAssembly, bveExLauncherAssembly, bveExAssembly);
             IsInitialized = true;
         }
 
@@ -80,29 +80,29 @@ namespace AtsEx.PluginHost
         public Assembly BveAssembly { get; }
 
         /// <summary>
-        /// AtsEX Launcher の <see cref="Assembly"/> を取得します。
+        /// BveEX Launcher の <see cref="Assembly"/> を取得します。
         /// </summary>
-        public Assembly AtsExLauncherAssembly { get; }
+        public Assembly BveExLauncherAssembly { get; }
 
         /// <summary>
-        /// AtsEX の <see cref="Assembly"/> を取得します。
+        /// BveEX の <see cref="Assembly"/> を取得します。
         /// </summary>
-        public Assembly AtsExAssembly { get; }
+        public Assembly BveExAssembly { get; }
 
         /// <summary>
-        /// AtsEX プラグインホストの <see cref="Assembly"/> を取得します。
+        /// BveEX プラグインホストの <see cref="Assembly"/> を取得します。
         /// </summary>
-        public Assembly AtsExPluginHostAssembly { get; }
+        public Assembly BveExPluginHostAssembly { get; }
 
         /// <summary>
-        /// AtsEX 拡張機能の配置先として使用するディレクトリを取得します。
+        /// BveEX 拡張機能の配置先として使用するディレクトリを取得します。
         /// </summary>
         public string ExtensionDirectory { get; }
 
         /// <summary>
-        /// AtsEX のバージョンを取得します。
+        /// BveEX のバージョンを取得します。
         /// </summary>
-        public Version AtsExVersion { get; }
+        public Version BveExVersion { get; }
 
         /// <summary>
         /// 実行元の BVE のバージョンを取得します。

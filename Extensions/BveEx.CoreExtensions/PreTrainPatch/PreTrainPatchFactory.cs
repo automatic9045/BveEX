@@ -10,10 +10,10 @@ using BveTypes.ClassWrappers;
 using FastMember;
 using TypeWrapping;
 
-using AtsEx.PluginHost.Plugins;
-using AtsEx.PluginHost.Plugins.Extensions;
+using BveEx.PluginHost.Plugins;
+using BveEx.PluginHost.Plugins.Extensions;
 
-namespace AtsEx.Extensions.PreTrainPatch
+namespace BveEx.Extensions.PreTrainPatch
 {
     [Plugin(PluginType.Extension)]
     [ExtensionMainDisplayType(typeof(IPreTrainPatchFactory))]

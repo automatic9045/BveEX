@@ -14,7 +14,7 @@ using Irony.Parsing;
 using ObjectiveHarmonyPatch;
 using TypeWrapping;
 
-namespace AtsEx.BveHackerServices
+namespace BveEx.BveHackerServices
 {
     internal class MapLoaderHacker : IDisposable
     {

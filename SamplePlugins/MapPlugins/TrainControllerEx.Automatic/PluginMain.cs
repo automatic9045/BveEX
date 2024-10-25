@@ -9,11 +9,11 @@ using SlimDX.Direct3D9;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.Extensions.TrainDrawPatch;
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Plugins;
+using BveEx.Extensions.TrainDrawPatch;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Plugins;
 
-namespace AtsEx.Samples.MapPlugins.TrainControllerEx.Automatic
+namespace BveEx.Samples.MapPlugins.TrainControllerEx.Automatic
 {
     [Plugin(PluginType.MapPlugin)]
     public class PluginMain : AssemblyPluginBase

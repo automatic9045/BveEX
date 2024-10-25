@@ -11,7 +11,7 @@ using TypeWrapping;
 
 using BveTypes.ClassWrappers;
 
-namespace AtsEx.BveHackerServices
+namespace BveEx.BveHackerServices
 {
     internal sealed class StructureSetLifeProlonger : IDisposable
     {

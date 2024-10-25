@@ -2,16 +2,16 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-using AtsEx.Native;
+using BveEx.Native;
 
 // アセンブリに関する一般情報は以下の属性セットをとおして制御されます。
 // 制御されます。アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更してください。
-[assembly: AssemblyTitle("AtsEX")]
+[assembly: AssemblyTitle("BveEX")]
 [assembly: AssemblyDescription("ATSプラグイン拡張キット for BVE 5 & 6")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("AtsEX Project")]
-[assembly: AssemblyProduct("AtsEX")]
+[assembly: AssemblyCompany("AtsEX & BveEX Project")]
+[assembly: AssemblyProduct("BveEX")]
 [assembly: AssemblyCopyright("Copyright © 2022 automatic9045")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

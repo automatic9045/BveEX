@@ -11,12 +11,12 @@ using Microsoft.CodeAnalysis.Text;
 
 using UnembeddedResources;
 
-using AtsEx.Diagnostics;
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.LoadErrorManager;
-using AtsEx.Scripting.CSharp;
+using BveEx.Diagnostics;
+using BveEx.PluginHost;
+using BveEx.PluginHost.LoadErrorManager;
+using BveEx.Scripting.CSharp;
 
-namespace AtsEx.Plugins
+namespace BveEx.Plugins
 {
     internal class PluginLoadErrorResolver : WrapperExceptionExtractor
     {

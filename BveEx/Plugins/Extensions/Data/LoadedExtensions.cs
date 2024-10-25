@@ -6,11 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Plugins;
-using AtsEx.PluginHost.Plugins.Extensions;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Plugins;
+using BveEx.PluginHost.Plugins.Extensions;
 
-namespace AtsEx.Plugins.Extensions.Data
+namespace BveEx.Plugins.Extensions.Data
 {
     public class LoadedExtensions
     {
@@ -23,7 +23,7 @@ namespace AtsEx.Plugins.Extensions.Data
 
         static LoadedExtensions()
         {
-            FilePath = Path.Combine(Path.GetDirectoryName(App.Instance.AtsExAssembly.Location), FileName);
+            FilePath = Path.Combine(Path.GetDirectoryName(App.Instance.BveExAssembly.Location), FileName);
         }
 
 

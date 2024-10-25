@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using AtsEx.PluginHost;
+using BveEx.PluginHost;
 
-namespace AtsEx.Plugins.Extensions
+namespace BveEx.Plugins.Extensions
 {
     internal static class ExtensionPath
     {

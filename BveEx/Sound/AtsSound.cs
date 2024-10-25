@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using AtsEx.PluginHost.Sound;
-using AtsEx.PluginHost.Sound.Native;
+using BveEx.PluginHost.Sound;
+using BveEx.PluginHost.Sound.Native;
 
-namespace AtsEx.Sound
+namespace BveEx.Sound
 {
     internal sealed class AtsSound : IAtsSound
     {

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 using UnembeddedResources;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Handles;
-using AtsEx.PluginHost.Native;
-using AtsEx.PluginHost.Plugins;
-using AtsEx.Scripting;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Handles;
+using BveEx.PluginHost.Native;
+using BveEx.PluginHost.Plugins;
+using BveEx.Scripting;
 
-namespace AtsEx.Plugins.Scripting
+namespace BveEx.Plugins.Scripting
 {
     internal abstract class ScriptPluginBase : PluginBase, IDisposable
     {

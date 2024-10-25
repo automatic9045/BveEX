@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-namespace AtsEx.PluginHost.Handles
+namespace BveEx.PluginHost.Handles
 {
     public enum ConstantSpeedCommand
     {

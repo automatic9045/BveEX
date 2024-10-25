@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Plugins.Extensions;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Plugins.Extensions;
 
-namespace AtsEx.Samples.MapPlugins.StationController
+namespace BveEx.Samples.MapPlugins.StationController
 {
     internal sealed class InstanceStore
     {

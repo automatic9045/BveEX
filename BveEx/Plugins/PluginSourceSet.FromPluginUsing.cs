@@ -9,12 +9,12 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
 
-using AtsEx.Plugins.Native;
-using AtsEx.Plugins.Scripting;
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Plugins;
+using BveEx.Plugins.Native;
+using BveEx.Plugins.Scripting;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Plugins;
 
-namespace AtsEx.Plugins
+namespace BveEx.Plugins
 {
     internal sealed partial class PluginSourceSet
     {
@@ -47,7 +47,7 @@ namespace AtsEx.Plugins
             XDocument doc = XDocument.Load(listPath, LoadOptions.SetLineInfo);
             doc.Validate(SchemaSet, DocumentValidation);
 
-            XElement root = doc.Element(TargetNamespace + "AtsExPluginUsing");
+            XElement root = doc.Element("BveExPluginUsing");
 
             List<IPluginPackage> pluginPackages = root.Elements().Select<XElement, IPluginPackage>(element =>
             {

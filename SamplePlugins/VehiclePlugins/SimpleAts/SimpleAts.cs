@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Handles;
-using AtsEx.PluginHost.Plugins;
-using AtsEx.PluginHost.Sound;
-using AtsEx.PluginHost.Sound.Native;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Handles;
+using BveEx.PluginHost.Plugins;
+using BveEx.PluginHost.Sound;
+using BveEx.PluginHost.Sound.Native;
 
-namespace AtsEx.Samples.VehiclePlugins.SimpleAts
+namespace BveEx.Samples.VehiclePlugins.SimpleAts
 {
     [Plugin(PluginType.VehiclePlugin)]
     public class SimpleAts : AssemblyPluginBase

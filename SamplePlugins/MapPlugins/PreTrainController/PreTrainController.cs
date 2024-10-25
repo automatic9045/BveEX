@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Plugins;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Plugins;
 
-using AtsEx.Extensions.PreTrainPatch;
+using BveEx.Extensions.PreTrainPatch;
 
-namespace AtsEx.Samples.MapPlugins.PreTrainController
+namespace BveEx.Samples.MapPlugins.PreTrainController
 {
     [Plugin(PluginType.MapPlugin)]
     public class PreTrainController : AssemblyPluginBase

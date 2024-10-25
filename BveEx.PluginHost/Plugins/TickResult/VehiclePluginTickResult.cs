@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using AtsEx.PluginHost.Handles;
+using BveEx.PluginHost.Handles;
 
-namespace AtsEx.PluginHost.Plugins
+namespace BveEx.PluginHost.Plugins
 {
     /// <summary>
     /// 車両プラグインの <see cref="PluginBase.Tick(TimeSpan)"/> メソッドの実行結果を表します。

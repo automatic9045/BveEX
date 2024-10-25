@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Input;
-using AtsEx.PluginHost.Input.Native;
-using AtsEx.PluginHost.Plugins;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Input;
+using BveEx.PluginHost.Input.Native;
+using BveEx.PluginHost.Plugins;
 
-using AtsEx.Extensions.ConductorPatch;
+using BveEx.Extensions.ConductorPatch;
 
-namespace AtsEx.Samples.VehiclePlugins.ConductorPatchTest
+namespace BveEx.Samples.VehiclePlugins.ConductorPatchTest
 {
     [Plugin(PluginType.VehiclePlugin)]
     public class PluginMain : AssemblyPluginBase

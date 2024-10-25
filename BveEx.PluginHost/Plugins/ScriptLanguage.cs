@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.PluginHost.Plugins
+namespace BveEx.PluginHost.Plugins
 {
     /// <summary>
     /// スクリプト言語を指定します。

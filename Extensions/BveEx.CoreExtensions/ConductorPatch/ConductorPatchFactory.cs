@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using BveTypes.ClassWrappers;
 using ObjectiveHarmonyPatch;
 
-using AtsEx.PluginHost.Plugins;
-using AtsEx.PluginHost.Plugins.Extensions;
+using BveEx.PluginHost.Plugins;
+using BveEx.PluginHost.Plugins.Extensions;
 
-namespace AtsEx.Extensions.ConductorPatch
+namespace BveEx.Extensions.ConductorPatch
 {
     [Plugin(PluginType.Extension)]
     [ExtensionMainDisplayType(typeof(IConductorPatchFactory))]

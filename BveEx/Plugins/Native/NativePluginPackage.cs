@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.Plugins.Native
+namespace BveEx.Plugins.Native
 {
     internal class NativePluginPackage : IPluginPackage
     {

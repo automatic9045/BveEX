@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 using UnembeddedResources;
 
-using AtsEx.Native;
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Sound.Native;
+using BveEx.Native;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Sound.Native;
 
-namespace AtsEx.Sound
+namespace BveEx.Sound
 {
     internal sealed class AtsSoundSet : IAtsSoundSet
     {

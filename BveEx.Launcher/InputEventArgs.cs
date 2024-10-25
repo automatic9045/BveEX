@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.Launcher
+namespace BveEx.Launcher
 {
     public class InputEventArgs : EventArgs
     {

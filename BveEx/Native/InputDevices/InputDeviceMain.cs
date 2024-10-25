@@ -13,14 +13,14 @@ using ObjectiveHarmonyPatch;
 using TypeWrapping;
 using UnembeddedResources;
 
-using AtsEx.Plugins;
-using AtsEx.Troubleshooting;
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Input.Native;
-using AtsEx.PluginHost.Native;
-using AtsEx.PluginHost.Plugins;
+using BveEx.Plugins;
+using BveEx.Troubleshooting;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Input.Native;
+using BveEx.PluginHost.Native;
+using BveEx.PluginHost.Plugins;
 
-namespace AtsEx.Native.InputDevices
+namespace BveEx.Native.InputDevices
 {
     public class InputDeviceMain : IDisposable
     {
@@ -48,7 +48,7 @@ namespace AtsEx.Native.InputDevices
 
         private readonly TroubleshooterSet Troubleshooters;
 
-        private AtsEx AtsEx = null;
+        private BveEx BveEx = null;
         private ScenarioService ScenarioService = null;
         private FrameSpan FrameSpan = null;
 
@@ -58,7 +58,7 @@ namespace AtsEx.Native.InputDevices
         public InputDeviceMain(CallerInfo callerInfo)
         {
             Assembly executingAssembly = Assembly.GetExecutingAssembly();
-            App.CreateInstance(callerInfo.Process, callerInfo.BveAssembly, callerInfo.AtsExLauncherAssembly, executingAssembly);
+            App.CreateInstance(callerInfo.Process, callerInfo.BveAssembly, callerInfo.LauncherAssembly, executingAssembly);
 
             if (Application.OpenForms.Count > 0)
             {
@@ -96,53 +96,53 @@ namespace AtsEx.Native.InputDevices
             {
                 createDirectXDevicesPatch.Invoked -= OnCreateDirectXDevices;
 
-                InitializeAtsEx();
+                InitializeBveEx();
                 return new PatchInvokationResult(SkipModes.Continue);
             }
 
-            void InitializeAtsEx()
+            void InitializeBveEx()
             {
-                AtsEx = new AtsEx(bveTypes);
+                BveEx = new BveEx(bveTypes);
 
-                AtsEx.ScenarioClosed += OnScenarioClosed;
-                AtsEx.OnSetVehicleSpec += OnSetVehicleSpec;
-                AtsEx.OnInitialize += OnInitialize;
-                AtsEx.PostElapse += PostElapse;
-                AtsEx.OnSetPower += OnSetPower;
-                AtsEx.OnSetBrake += OnSetBrake;
-                AtsEx.OnSetReverser += OnSetReverser;
-                AtsEx.OnKeyDown += OnKeyDown;
-                AtsEx.OnKeyUp += OnKeyUp;
-                AtsEx.OnHornBlow += OnHornBlow;
-                AtsEx.OnDoorOpen += OnDoorOpen;
-                AtsEx.OnDoorClose += OnDoorClose;
-                AtsEx.OnSetSignal += OnSetSignal;
-                AtsEx.OnSetBeaconData += OnSetBeaconData;
+                BveEx.ScenarioClosed += OnScenarioClosed;
+                BveEx.OnSetVehicleSpec += OnSetVehicleSpec;
+                BveEx.OnInitialize += OnInitialize;
+                BveEx.PostElapse += PostElapse;
+                BveEx.OnSetPower += OnSetPower;
+                BveEx.OnSetBrake += OnSetBrake;
+                BveEx.OnSetReverser += OnSetReverser;
+                BveEx.OnKeyDown += OnKeyDown;
+                BveEx.OnKeyUp += OnKeyUp;
+                BveEx.OnHornBlow += OnHornBlow;
+                BveEx.OnDoorOpen += OnDoorOpen;
+                BveEx.OnDoorClose += OnDoorClose;
+                BveEx.OnSetSignal += OnSetSignal;
+                BveEx.OnSetBeaconData += OnSetBeaconData;
             }
         }
 
-        private void OnSetVehicleSpec(object sender, AtsEx.ValueEventArgs<VehicleSpec> e)
+        private void OnSetVehicleSpec(object sender, BveEx.ValueEventArgs<VehicleSpec> e)
         {
             PluginHost.Native.VehicleSpec exVehicleSpec = new PluginHost.Native.VehicleSpec(
                 e.Value.BrakeNotches, e.Value.PowerNotches, e.Value.AtsNotch, e.Value.B67Notch, e.Value.Cars);
 
-            string vehiclePath = AtsEx.BveHacker.ScenarioInfo.VehicleFiles.SelectedFile.Path;
+            string vehiclePath = BveEx.BveHacker.ScenarioInfo.VehicleFiles.SelectedFile.Path;
             VehicleConfig vehicleConfig = LoadedVehicleConfig ?? VehicleConfig.Resolve(vehiclePath);
             PluginSourceSet pluginUsing = !(LoadedVehiclePluginUsing is null) ? LoadedVehiclePluginUsing
                 : vehicleConfig.PluginUsingPath is null ? PluginSourceSet.ResolvePluginUsingToLoad(PluginType.VehiclePlugin, true, vehiclePath)
                 : PluginSourceSet.FromPluginUsing(PluginType.VehiclePlugin, true, vehicleConfig.PluginUsingPath);
 
-            ScenarioService = new ScenarioService(AtsEx, pluginUsing, vehicleConfig, exVehicleSpec);
+            ScenarioService = new ScenarioService(BveEx, pluginUsing, vehicleConfig, exVehicleSpec);
             FrameSpan = new FrameSpan();
         }
 
-        private void OnInitialize(object sender, AtsEx.ValueEventArgs<DefaultBrakePosition> e)
+        private void OnInitialize(object sender, BveEx.ValueEventArgs<DefaultBrakePosition> e)
         {
             ScenarioService.Started((BrakePosition)e.Value);
             FrameSpan.Initialize();
         }
 
-        private void PostElapse(object sender, AtsEx.OnElapseEventArgs e)
+        private void PostElapse(object sender, BveEx.OnElapseEventArgs e)
         {
             ScenarioService?.PreviewTick();
 
@@ -153,38 +153,38 @@ namespace AtsEx.Native.InputDevices
                 e.VehicleState.Location, e.VehicleState.Speed, TimeSpan.FromMilliseconds(e.VehicleState.Time),
                 e.VehicleState.BcPressure, e.VehicleState.MrPressure, e.VehicleState.ErPressure, e.VehicleState.BpPressure, e.VehicleState.SapPressure, e.VehicleState.Current);
 
-            AtsEx.Tick(elapsed);
+            BveEx.Tick(elapsed);
             _ = ScenarioService?.Tick(elapsed, exVehicleState, e.Panel, e.Sound);
 
             ScenarioService?.PostTick();
         }
 
-        private void OnSetPower(object sender, AtsEx.ValueEventArgs<int> e)
+        private void OnSetPower(object sender, BveEx.ValueEventArgs<int> e)
         {
             ScenarioService?.SetPower(e.Value, true);
         }
 
-        private void OnSetBrake(object sender, AtsEx.ValueEventArgs<int> e)
+        private void OnSetBrake(object sender, BveEx.ValueEventArgs<int> e)
         {
             ScenarioService?.SetBrake(e.Value, true);
         }
 
-        private void OnSetReverser(object sender, AtsEx.ValueEventArgs<int> e)
+        private void OnSetReverser(object sender, BveEx.ValueEventArgs<int> e)
         {
             ScenarioService?.SetReverser((ReverserPosition)e.Value, true);
         }
 
-        private void OnKeyDown(object sender, AtsEx.ValueEventArgs<ATSKeys> e)
+        private void OnKeyDown(object sender, BveEx.ValueEventArgs<ATSKeys> e)
         {
             ScenarioService?.KeyDown((NativeAtsKeyName)e.Value);
         }
 
-        private void OnKeyUp(object sender, AtsEx.ValueEventArgs<ATSKeys> e)
+        private void OnKeyUp(object sender, BveEx.ValueEventArgs<ATSKeys> e)
         {
             ScenarioService?.KeyUp((NativeAtsKeyName)e.Value);
         }
 
-        private void OnHornBlow(object sender, AtsEx.ValueEventArgs<HornType> e)
+        private void OnHornBlow(object sender, BveEx.ValueEventArgs<HornType> e)
         {
             ScenarioService?.HornBlow((PluginHost.Native.HornType)e.Value);
         }
@@ -199,18 +199,18 @@ namespace AtsEx.Native.InputDevices
             ScenarioService?.DoorClosed();
         }
 
-        private void OnSetSignal(object sender, AtsEx.ValueEventArgs<int> e)
+        private void OnSetSignal(object sender, BveEx.ValueEventArgs<int> e)
         {
             ScenarioService?.SetSignal(e.Value);
         }
 
-        private void OnSetBeaconData(object sender, AtsEx.ValueEventArgs<BeaconData> e)
+        private void OnSetBeaconData(object sender, BveEx.ValueEventArgs<BeaconData> e)
         {
             BeaconPassedEventArgs args = new BeaconPassedEventArgs(e.Value.Num, e.Value.Sig, e.Value.Z, e.Value.Data);
             ScenarioService?.BeaconPassed(args);
         }
 
-        private void OnScenarioClosed(object sender, AtsEx.ValueEventArgs<Scenario> e)
+        private void OnScenarioClosed(object sender, BveEx.ValueEventArgs<Scenario> e)
         {
             // Scenario クラスのデストラクタ由来の場合
             if (e.Value != ScenarioService?.Target) return;
@@ -225,11 +225,11 @@ namespace AtsEx.Native.InputDevices
         public void Dispose()
         {
             ScenarioService?.Dispose();
-            AtsEx?.Dispose();
+            BveEx?.Dispose();
             Troubleshooters?.Dispose();
         }
 
-        public void Configure(IWin32Window owner) => AtsEx.VersionFormProvider.ShowForm();
+        public void Configure(IWin32Window owner) => BveEx.VersionFormProvider.ShowForm();
 
         public void Load(string settingsPath)
         {

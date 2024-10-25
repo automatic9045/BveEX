@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-namespace AtsEx.Extensions.MapStatements
+namespace BveEx.Extensions.MapStatements
 {
     /// <summary>
     /// <see cref="IStatementSet.StatementLoaded"/> イベントのデータを提供します。
@@ -14,7 +14,7 @@ namespace AtsEx.Extensions.MapStatements
     public class StatementLoadedEventArgs : EventArgs
     {
         /// <summary>
-        /// 読み込まれた AtsEX マップステートメント を取得します。
+        /// 読み込まれた BveEX マップステートメント を取得します。
         /// </summary>
         public Statement Statement { get; }
 
@@ -26,7 +26,7 @@ namespace AtsEx.Extensions.MapStatements
         /// <summary>
         /// <see cref="StatementLoadedEventArgs"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
-        /// <param name="statement">読み込まれた AtsEX マップステートメント。</param>
+        /// <param name="statement">読み込まれた BveEX マップステートメント。</param>
         /// <param name="mapLoader">ステートメントの読込に使用された <see cref="BveTypes.ClassWrappers.MapLoader"/>。</param>
         public StatementLoadedEventArgs(Statement statement, MapLoader mapLoader)
         {

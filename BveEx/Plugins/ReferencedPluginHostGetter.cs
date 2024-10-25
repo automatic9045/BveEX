@@ -5,14 +5,14 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.Plugins
+namespace BveEx.Plugins
 {
     internal static class ReferencedPluginHostGetter
     {
         public static AssemblyName GetReferencedPluginHost(this Assembly assembly)
         {
             AssemblyName[] referencedAssemblies = assembly.GetReferencedAssemblies();
-            AssemblyName referencedPluginHost = referencedAssemblies.FirstOrDefault(asm => asm.Name == "AtsEx.PluginHost");
+            AssemblyName referencedPluginHost = referencedAssemblies.FirstOrDefault(asm => asm.Name == "BveEx.PluginHost");
 
             return referencedPluginHost;
         }

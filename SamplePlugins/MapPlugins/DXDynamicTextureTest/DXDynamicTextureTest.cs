@@ -9,10 +9,10 @@ using Zbx1425.DXDynamicTexture;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Plugins;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Plugins;
 
-namespace AtsEx.Samples.MapPlugins.DXDynamicTextureTest
+namespace BveEx.Samples.MapPlugins.DXDynamicTextureTest
 {
     [Plugin(PluginType.MapPlugin)]
     public class DXDynamicTextureTest : AssemblyPluginBase

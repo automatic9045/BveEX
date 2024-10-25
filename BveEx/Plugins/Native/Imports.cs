@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.Plugins.Native
+namespace BveEx.Plugins.Native
 {
     internal static class Imports
     {

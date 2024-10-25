@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-namespace AtsEx.Handles
+namespace BveEx.Handles
 {
     internal class HandlePositionSet
     {

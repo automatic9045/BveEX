@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 using BveTypes.ClassWrappers;
 
-namespace AtsEx.Samples.VehiclePlugins.StateViewer
+namespace BveEx.Samples.VehiclePlugins.StateViewer
 {
     public partial class StateForm : Form
     {

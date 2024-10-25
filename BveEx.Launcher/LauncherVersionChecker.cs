@@ -5,9 +5,9 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-using AtsEx.Native;
+using BveEx.Native;
 
-namespace AtsEx.Launcher
+namespace BveEx.Launcher
 {
     internal static class LauncherVersionChecker
     {
@@ -16,13 +16,13 @@ namespace AtsEx.Launcher
         public static void Check()
         {
             Assembly launcherAssembly = Assembly.GetExecutingAssembly();
-            Assembly atsExAssembly = typeof(CallerInfo).Assembly;
+            Assembly bveExAssembly = typeof(CallerInfo).Assembly;
 
-            LauncherCompatibilityVersionAttribute compatibilityVersionAttribute = atsExAssembly.GetCustomAttribute<LauncherCompatibilityVersionAttribute>();
+            LauncherCompatibilityVersionAttribute compatibilityVersionAttribute = bveExAssembly.GetCustomAttribute<LauncherCompatibilityVersionAttribute>();
             if (compatibilityVersionAttribute.Version != LauncherVersion)
             {
                 Version launcherAssemblyVersion = launcherAssembly.GetName().Version;
-                throw new NotSupportedException($"読み込まれた AtsEX Launcher (バージョン {launcherAssemblyVersion}) は現在の AtsEX ではサポートされていません。");
+                throw new NotSupportedException($"読み込まれた BveEX Launcher (バージョン {launcherAssemblyVersion}) は現在の BveEX ではサポートされていません。");
             }
 
         }

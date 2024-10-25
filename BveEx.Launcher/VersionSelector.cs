@@ -10,10 +10,10 @@ using System.Runtime.Remoting.Channels.Ipc;
 using System.Text;
 using System.Threading.Tasks;
 
-using AtsEx.Launcher.Hosting;
-using AtsEx.Launcher.SplashScreen;
+using BveEx.Launcher.Hosting;
+using BveEx.Launcher.SplashScreen;
 
-namespace AtsEx.Launcher
+namespace BveEx.Launcher
 {
     public class VersionSelector
     {
@@ -42,7 +42,7 @@ namespace AtsEx.Launcher
             Version bveVersion = BveFinder.TargetAssembly.GetName().Version;
             Version launcherVersion = launcherAssembly.GetName().Version;
             Guid channelGuid = Guid.NewGuid();
-            SplashProcess = Process.Start(Path.Combine(rootDirectory, "AtsEx.Launcher.SplashScreen.exe"), $"{bveVersion} {launcherVersion} {channelGuid}");
+            SplashProcess = Process.Start(Path.Combine(rootDirectory, "BveEx.Launcher.SplashScreen.exe"), $"{bveVersion} {launcherVersion} {channelGuid}");
             while (SplashProcess.MainWindowHandle == IntPtr.Zero)
             {
                 Task.Delay(10).Wait();
@@ -50,33 +50,33 @@ namespace AtsEx.Launcher
             }
 
             SplashForm = (SplashFormInfo)Activator.GetObject(typeof(SplashFormInfo), $"ipc://{channelGuid}/{nameof(SplashFormInfo)}");
-            SplashForm.ProgressText = "AtsEX を探しています...";
+            SplashForm.ProgressText = "BveEX を探しています...";
 
-            string atsExAssemblyDirectory;
+            string bveExAssemblyDirectory;
 #if DEBUG
-            atsExAssemblyDirectory = Path.Combine(rootDirectory, "Debug");
+            bveExAssemblyDirectory = Path.Combine(rootDirectory, "Debug");
 #else
             IEnumerable<string> availableDirectories = Directory.GetDirectories(rootDirectory).Where(x => x.Contains('.'));
-            IEnumerable<(string Directory, AssemblyName AssemblyName)> atsExAssemblies = availableDirectories
-                .Select(x => (Directory: x, Location: Path.Combine(x, "AtsEx.dll")))
+            IEnumerable<(string Directory, AssemblyName AssemblyName)> bveExAssemblies = availableDirectories
+                .Select(x => (Directory: x, Location: Path.Combine(x, "BveEx.dll")))
                 .Where(x => File.Exists(x.Location))
                 .Select(x => (x.Directory, AssemblyName: AssemblyName.GetAssemblyName(x.Location)))
                 .OrderBy(x => x.AssemblyName.Version);
 
-            if (!atsExAssemblies.Any())
+            if (!bveExAssemblies.Any())
             {
-                ErrorDialog.Show(4, $"AtsEX 本体の読込に失敗しました。候補となる AtsEX 本体フォルダが見つかりませんでした。",
-                    "AtsEX を再インストールしてください。");
+                ErrorDialog.Show(4, $"BveEX 本体の読込に失敗しました。候補となる BveEX 本体フォルダが見つかりませんでした。",
+                    "BveEX を再インストールしてください。");
                 throw new NotSupportedException();
             }
 
-            atsExAssemblyDirectory = atsExAssemblies.Last().Directory; // TODO: バージョンを選択できるようにする
+            bveExAssemblyDirectory = bveExAssemblies.Last().Directory; // TODO: バージョンを選択できるようにする
 #endif
 
-            if (!Directory.Exists(atsExAssemblyDirectory))
+            if (!Directory.Exists(bveExAssemblyDirectory))
             {
-                ErrorDialog.Show(3, $"AtsEX 本体の読込に失敗しました。フォルダ '{atsExAssemblyDirectory}' が見つかりませんでした。",
-                    "AtsEX を再インストールしてください。");
+                ErrorDialog.Show(3, $"BveEX 本体の読込に失敗しました。フォルダ '{bveExAssemblyDirectory}' が見つかりませんでした。",
+                    "BveEX を再インストールしてください。");
                 throw new NotSupportedException();
             }
 
@@ -85,12 +85,12 @@ namespace AtsEx.Launcher
                 AssemblyName assemblyName = new AssemblyName(e.Name);
                 switch (assemblyName.Name)
                 {
-                    case "AtsEx.Diagnostics":
+                    case "BveEx.Diagnostics":
                         string diagnosticsPath = Path.Combine(rootDirectory, assemblyName.Name + ".dll");
                         return Assembly.LoadFrom(diagnosticsPath);
 
                     default:
-                        string path = Path.Combine(atsExAssemblyDirectory, assemblyName.Name + ".dll");
+                        string path = Path.Combine(bveExAssemblyDirectory, assemblyName.Name + ".dll");
                         return File.Exists(path) ? Assembly.LoadFrom(path) : null;
                 }
             };
@@ -106,7 +106,7 @@ namespace AtsEx.Launcher
 
             UpdateChecker.CheckUpdates();
 
-            SplashForm.ProgressText = "AtsEX 入力デバイスプラグイン版を起動しています...";
+            SplashForm.ProgressText = "BveEX を起動しています...";
 
             try
             {

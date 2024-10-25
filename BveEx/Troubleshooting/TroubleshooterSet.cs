@@ -7,10 +7,10 @@ using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Troubleshooting;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Troubleshooting;
 
-namespace AtsEx.Troubleshooting
+namespace BveEx.Troubleshooting
 {
     internal class TroubleshooterSet : IDisposable
     {
@@ -25,7 +25,7 @@ namespace AtsEx.Troubleshooting
 
         public static TroubleshooterSet Load()
         {
-            string troubleshootersDirectory = Path.Combine(Path.GetDirectoryName(App.Instance.AtsExAssembly.Location), "Troubleshooters");
+            string troubleshootersDirectory = Path.Combine(Path.GetDirectoryName(App.Instance.BveExAssembly.Location), "Troubleshooters");
             Directory.CreateDirectory(troubleshootersDirectory);
 
             List<ITroubleshooter> troubleshooters = new List<ITroubleshooter>();

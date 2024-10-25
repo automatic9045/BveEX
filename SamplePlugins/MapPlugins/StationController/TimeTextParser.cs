@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.Samples.MapPlugins.StationController
+namespace BveEx.Samples.MapPlugins.StationController
 {
     internal static class TimeTextParser
     {

@@ -13,7 +13,7 @@ using FastMember;
 using ObjectiveHarmonyPatch;
 using TypeWrapping;
 
-namespace AtsEx.Extensions.TrainDrawPatch
+namespace BveEx.Extensions.TrainDrawPatch
 {
     /// <summary>
     /// 他列車を自由に移動・回転できるようにするパッチを表します。

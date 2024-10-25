@@ -9,7 +9,7 @@ using SlimDX.Direct3D9;
 
 using BveTypes.ClassWrappers;
 
-namespace AtsEx.Samples.MapPlugins.TrainControllerEx.Manual
+namespace BveEx.Samples.MapPlugins.TrainControllerEx.Manual
 {
     internal class TrainLocator
     {

@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.Launcher.Hosting
+namespace BveEx.Launcher.Hosting
 {
     internal class TargetBveFinder
     {
@@ -28,13 +28,13 @@ namespace AtsEx.Launcher.Hosting
             if (TargetAssembly is null)
             {
                 ErrorDialog.Show(1, "BVE 本体の読込に失敗しました。Assembly.GetEntryAssembly が null を返しました。",
-                    "想定されない方法で AtsEX を起動しています。BVE 本体と異なるプロセス上で AtsEX を実行していませんか?");
+                    "想定されない方法で BveEX を起動しています。BVE 本体と異なるプロセス上で BveEX を実行していませんか?");
                 throw new NotSupportedException();
             }
             else if (!TargetAssembly.GetTypes().Any(t => t.Namespace == "Mackoy.Bvets"))
             {
                 ErrorDialog.Show(2, "同一プロセス上に BVE 本体が見つかりませんでした。",
-                    "想定されない方法で AtsEX を起動しています。BVE 本体と異なるプロセス上で AtsEX を実行していませんか?");
+                    "想定されない方法で BveEX を起動しています。BVE 本体と異なるプロセス上で BveEX を実行していませんか?");
                 throw new NotSupportedException();
             }
         }

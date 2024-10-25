@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using BveTypes;
 using UnembeddedResources;
 
-using AtsEx.Diagnostics;
-using AtsEx.PluginHost;
+using BveEx.Diagnostics;
+using BveEx.PluginHost;
 
-namespace AtsEx.Native
+namespace BveEx.Native
 {
     internal class BveTypeSetLoader
     {

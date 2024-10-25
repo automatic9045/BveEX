@@ -3,13 +3,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using AtsEx.PluginHost.Handles;
-using AtsEx.PluginHost.Input.Native;
-using AtsEx.PluginHost.Native;
-using AtsEx.PluginHost.Panels.Native;
-using AtsEx.PluginHost.Sound.Native;
+using BveEx.PluginHost.Handles;
+using BveEx.PluginHost.Input.Native;
+using BveEx.PluginHost.Native;
+using BveEx.PluginHost.Panels.Native;
+using BveEx.PluginHost.Sound.Native;
 
-namespace AtsEx.PluginHost
+namespace BveEx.PluginHost
 {
     /// <summary>
     /// BVE が標準で提供する ATS プラグイン向けの機能をラップします。
@@ -28,13 +28,13 @@ namespace AtsEx.PluginHost
 
 
         /// <summary>
-        /// AtsEX プラグインから、ATS プラグインによって制御可能な運転台パネルの状態量 (例えば「ats12」など、subjectKey が「ats」から始まる状態量) を操作するための機能を提供する
+        /// BveEX プラグインから、ATS プラグインによって制御可能な運転台パネルの状態量 (例えば「ats12」など、subjectKey が「ats」から始まる状態量) を操作するための機能を提供する
         /// <see cref="IAtsPanelValueSet"/> を取得します。
         /// </summary>
         IAtsPanelValueSet AtsPanelValues { get; }
 
         /// <summary>
-        /// AtsEX プラグインから ATS サウンドを再生するための機能を提供する <see cref="IAtsSoundSet"/> を取得します。
+        /// BveEX プラグインから ATS サウンドを再生するための機能を提供する <see cref="IAtsSoundSet"/> を取得します。
         /// </summary>
         IAtsSoundSet AtsSounds { get; }
 

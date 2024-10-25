@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtsEx.PluginHost.Sound
+namespace BveEx.PluginHost.Sound
 {
     /// <summary>
     /// サウンドの再生状態を表します。

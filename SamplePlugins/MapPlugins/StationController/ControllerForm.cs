@@ -8,10 +8,10 @@ using System.Windows.Forms;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.Extensions.DiagramUpdater;
-using AtsEx.PluginHost;
+using BveEx.Extensions.DiagramUpdater;
+using BveEx.PluginHost;
 
-namespace AtsEx.Samples.MapPlugins.StationController
+namespace BveEx.Samples.MapPlugins.StationController
 {
     public partial class ControllerForm : Form
     {

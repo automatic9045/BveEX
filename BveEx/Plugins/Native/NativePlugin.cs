@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.PluginHost.Handles;
-using AtsEx.PluginHost.Input.Native;
-using AtsEx.PluginHost.Native;
-using AtsEx.PluginHost.Plugins;
+using BveEx.PluginHost.Handles;
+using BveEx.PluginHost.Input.Native;
+using BveEx.PluginHost.Native;
+using BveEx.PluginHost.Plugins;
 
-namespace AtsEx.Plugins.Native
+namespace BveEx.Plugins.Native
 {
     [Plugin(PluginType.VehiclePlugin)]
     internal sealed class NativePlugin : PluginBase

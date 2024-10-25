@@ -8,13 +8,13 @@ using SlimDX;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.Extensions.TrainDrawPatch;
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Input;
-using AtsEx.PluginHost.Input.Native;
-using AtsEx.PluginHost.Plugins;
+using BveEx.Extensions.TrainDrawPatch;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Input;
+using BveEx.PluginHost.Input.Native;
+using BveEx.PluginHost.Plugins;
 
-namespace AtsEx.Samples.MapPlugins.TrainControllerEx.Manual
+namespace BveEx.Samples.MapPlugins.TrainControllerEx.Manual
 {
     [Plugin(PluginType.MapPlugin)]
     public class PluginMain : AssemblyPluginBase

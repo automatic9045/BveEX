@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using AtsEx.PluginHost;
-using AtsEx.Scripting;
+using BveEx.PluginHost;
+using BveEx.Scripting;
 
-namespace AtsEx.Plugins.Scripting
+namespace BveEx.Plugins.Scripting
 {
     public class ScenarioCreatedGlobals : Globals
     {

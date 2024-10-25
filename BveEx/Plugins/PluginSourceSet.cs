@@ -10,10 +10,10 @@ using System.Xml.Schema;
 
 using UnembeddedResources;
 
-using AtsEx.Plugins.Scripting;
-using AtsEx.PluginHost.Plugins;
+using BveEx.Plugins.Scripting;
+using BveEx.PluginHost.Plugins;
 
-namespace AtsEx.Plugins
+namespace BveEx.Plugins
 {
     internal sealed partial class PluginSourceSet : ReadOnlyCollection<IPluginPackage>
     {
@@ -34,7 +34,6 @@ namespace AtsEx.Plugins
         private static readonly Lazy<ResourceSet> Resources = new Lazy<ResourceSet>();
 
         private static readonly XmlSchemaSet SchemaSet = new XmlSchemaSet();
-        private static readonly string TargetNamespace;
 
         static PluginSourceSet()
         {
@@ -42,10 +41,9 @@ namespace AtsEx.Plugins
             _ = Resources.Value;
 #endif
 
-            using (Stream schemaStream = Assembly.GetExecutingAssembly().GetManifestResourceStream($"{typeof(PluginSourceSet).Namespace}.AtsExPluginUsingXmlSchema.xsd"))
+            using (Stream schemaStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(typeof(PluginSourceSet), "BveExPluginUsingXmlSchema.xsd"))
             {
                 XmlSchema schema = XmlSchema.Read(schemaStream, SchemaValidation);
-                TargetNamespace = $"{{{schema.TargetNamespace}}}";
                 SchemaSet.Add(schema);
             }
         }
