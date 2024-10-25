@@ -1,19 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
-		<id>AtsEx.Diagnostics</id>
-		<version>1.0.0-rc9</version>
+		<id>BveEx.Diagnostics</id>
+		<version>2.0.0-alpha.1</version>
 		<description>BVE Trainsim 5/6 用 AtsEX 及び AtsEX プラグインで発生したエラーを解析するための機能を提供します。</description>
-		<authors>AtsEX Project</authors>
+		<authors>AtsEX &amp; BveEX Project</authors>
 
 		<projectUrl>https://www.okaoka-depot.com/AtsEX/</projectUrl>
-		<license type="expression">MIT</license>
 		<icon>images\Icon_NuGet.png</icon>
 		<readme>docs\README_NuGet.md</readme>
 		<copyright>Copyright © 2022 AtsEX Project</copyright>
 		<tags>bve bve5 bve6</tags>
 		<repository type="git" url="https://github.com/automatic9045/AtsEX.git" />
-		<title>AtsEX Diagnostics</title>
+		<title>BveEX Diagnostics</title>
 
 		<dependencies>
 		</dependencies>
@@ -21,7 +20,7 @@
 	<files>
 		<file src="README_NuGet.md" target="docs" />
 		<file src="Icon_NuGet.png" target="images" />
-		<file src="bin\Release\AtsEx.Diagnostics.dll" target="lib" />
-		<file src="bin\Release\AtsEx.Diagnostics.xml" target="lib" />
+		<file src="bin\Release\BveEx.Diagnostics.dll" target="lib" />
+		<file src="bin\Release\BveEx.Diagnostics.xml" target="lib" />
 	</files>
 </package>
