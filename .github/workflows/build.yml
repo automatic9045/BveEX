@@ -26,8 +26,8 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: |
-            AtsEx.PluginHost\LocalReferences\BveTs\Mackoy.IInputDevice.DLL
-            AtsEx.PluginHost\LocalReferences\BveTs\Mackoy.XmlInterfaces.DLL
+            LocalReferences\BveTs\Mackoy.IInputDevice.DLL
+            LocalReferences\BveTs\Mackoy.XmlInterfaces.DLL
           key: dependencies-1.0.0.0
       - name: Setup dependencies
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
@@ -37,16 +37,16 @@ jobs:
           curl -L "$env:BVETS6" -o bvets6-msi.zip
           7z x -obvets6 bvets6-msi.zip
           cmd.exe /c start /wait msiexec /a bvets6\BveTs6Setup.msi /qn
-          mkdir AtsEx.PluginHost\LocalReferences\BveTs
-          copy "C:\Program Files\mackoy\BveTs6\Mackoy.IInputDevice.DLL" AtsEx.PluginHost\LocalReferences\BveTs\Mackoy.IInputDevice.DLL
-          copy "C:\Program Files\mackoy\BveTs6\Mackoy.XmlInterfaces.DLL" AtsEx.PluginHost\LocalReferences\BveTs\Mackoy.XmlInterfaces.DLL
+          mkdir LocalReferences\BveTs
+          copy "C:\Program Files\mackoy\BveTs6\Mackoy.IInputDevice.DLL" LocalReferences\BveTs\Mackoy.IInputDevice.DLL
+          copy "C:\Program Files\mackoy\BveTs6\Mackoy.XmlInterfaces.DLL" LocalReferences\BveTs\Mackoy.XmlInterfaces.DLL
       - name: Cache dependencies
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
         uses: actions/cache/save@v4
         with:
           path: |
-            AtsEx.PluginHost\LocalReferences\BveTs\Mackoy.IInputDevice.DLL
-            AtsEx.PluginHost\LocalReferences\BveTs\Mackoy.XmlInterfaces.DLL
+            LocalReferences\BveTs\Mackoy.IInputDevice.DLL
+            LocalReferences\BveTs\Mackoy.XmlInterfaces.DLL
           key: dependencies-1.0.0.0
       - name: Setup DllExport
         run: |

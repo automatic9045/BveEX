@@ -44,11 +44,11 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Mackoy.IInputDevice">
-      <HintPath>..\AtsEx.PluginHost\LocalReferences\BveTs\Mackoy.IInputDevice.DLL</HintPath>
+      <HintPath>..\LocalReferences\BveTs\Mackoy.IInputDevice.DLL</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Mackoy.XmlInterfaces">
-      <HintPath>..\AtsEx.PluginHost\LocalReferences\BveTs\Mackoy.XmlInterfaces.DLL</HintPath>
+      <HintPath>..\LocalReferences\BveTs\Mackoy.XmlInterfaces.DLL</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.CodeAnalysis, Version=4.9.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">

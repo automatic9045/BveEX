@@ -32,7 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mackoy.IInputDevice">
-      <HintPath>..\AtsEx.PluginHost\LocalReferences\BveTs\Mackoy.IInputDevice.DLL</HintPath>
+      <HintPath>..\LocalReferences\BveTs\Mackoy.IInputDevice.DLL</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />

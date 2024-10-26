@@ -39,11 +39,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mackoy.IInputDevice">
-      <HintPath>LocalReferences\BveTs\Mackoy.IInputDevice.DLL</HintPath>
+      <HintPath>..\LocalReferences\BveTs\Mackoy.IInputDevice.DLL</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Mackoy.XmlInterfaces">
-      <HintPath>LocalReferences\BveTs\Mackoy.XmlInterfaces.DLL</HintPath>
+      <HintPath>..\LocalReferences\BveTs\Mackoy.XmlInterfaces.DLL</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="SlimDX, Version=4.0.13.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9, processorArchitecture=x86">
