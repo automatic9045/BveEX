@@ -15,6 +15,8 @@ xcopy "AtsEx.Scripting\Resources\*.resx" "%dst%\1.0\Resources" /s /y
 xcopy "AtsEx.Launcher\bin\Release\*.dll" "%dst%\" /s /y
 xcopy "AtsEx.Launcher\bin\Release\*.dll.config" "%dst%\" /s /y
 xcopy "AtsEx.Launcher\bin\Release\*.xml" "%dst%\" /s /y
+xcopy "AtsEx.Launcher.SplashScreen\bin\Release\*.exe" "%dst%\" /s /y
+xcopy "AtsEx.Launcher.SplashScreen\bin\Release\*.xml" "%dst%\" /s /y
 xcopy "AtsEx.Caller.InputDevice\bin\Release\*.dll" "bin\Input Devices\" /s /y
 xcopy "AtsEx.Caller.InputDevice\bin\Release\*.xml" "bin\Input Devices\" /s /y
 
