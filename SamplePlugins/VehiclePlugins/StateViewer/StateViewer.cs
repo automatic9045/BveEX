@@ -39,7 +39,7 @@ namespace BveEx.Samples.VehiclePlugins.StateViewer
             MenuItem.Dispose();
         }
 
-        public override TickResult Tick(TimeSpan elapsed)
+        public override IPluginTickResult Tick(TimeSpan elapsed)
         {
             Form?.Tick();
 

@@ -39,7 +39,7 @@ namespace BveEx.Samples.MapPlugins.StationController
             Form.Close();
         }
 
-        public override TickResult Tick(TimeSpan elapsed)
+        public override IPluginTickResult Tick(TimeSpan elapsed)
         {
             return new MapPluginTickResult();
         }

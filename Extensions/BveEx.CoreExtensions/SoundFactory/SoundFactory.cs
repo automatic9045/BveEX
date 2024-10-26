@@ -80,7 +80,7 @@ namespace BveEx.Extensions.SoundFactory
             return sound;
         }
 
-        public override TickResult Tick(TimeSpan elapsed)
+        public override IPluginTickResult Tick(TimeSpan elapsed)
         {
             return new ExtensionTickResult();
         }

@@ -45,7 +45,7 @@ namespace BveEx.Samples.MapPlugins.PreTrainController
             PreTrainPatch = Extensions.GetExtension<IPreTrainPatchFactory>().Patch(nameof(PreTrainPatch), sectionManager, new PreTrainLocationConverter(Train, sectionManager));
         }
 
-        public override TickResult Tick(TimeSpan elapsed)
+        public override IPluginTickResult Tick(TimeSpan elapsed)
         {
             if (Train.Location < 15.1)
             {

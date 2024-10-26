@@ -59,7 +59,7 @@ namespace BveEx.Extensions.AtsArrayExtender
             return PatchInvokationResult.DoNothing(e);
         }
 
-        public override TickResult Tick(TimeSpan elapsed)
+        public override IPluginTickResult Tick(TimeSpan elapsed)
             => new ExtensionTickResult();
     }
 }

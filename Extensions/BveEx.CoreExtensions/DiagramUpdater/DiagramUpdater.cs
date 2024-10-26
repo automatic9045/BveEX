@@ -30,7 +30,7 @@ namespace BveEx.Extensions.DiagramUpdater
         {
         }
 
-        public override TickResult Tick(TimeSpan elapsed) => new ExtensionTickResult();
+        public override IPluginTickResult Tick(TimeSpan elapsed) => new ExtensionTickResult();
 
         public void UpdateDiagram(Scenario scenario)
         {

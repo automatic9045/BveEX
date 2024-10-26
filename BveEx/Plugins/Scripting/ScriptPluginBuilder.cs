@@ -22,7 +22,7 @@ namespace BveEx.Plugins.Scripting
         public IPluginScript<Globals> DisposeScript { get; set; }
         public IPluginScript<ScenarioCreatedGlobals> OnScenarioCreatedScript { get; set; }
         public IPluginScript<StartedGlobals> OnStartedScript { get; set; }
-        public IPluginScript<TickResult, TickGlobals> TickScript { get; set; }
+        public IPluginScript<IPluginTickResult, TickGlobals> TickScript { get; set; }
 
         public ScriptPluginBuilder(PluginBuilder source) : base(source)
         {

@@ -40,7 +40,7 @@ namespace BveEx.Samples.MapPlugins.SoundFactoryTest
             SampleSound.Play(1, 1, 0);
         }
 
-        public override TickResult Tick(TimeSpan elapsed)
+        public override IPluginTickResult Tick(TimeSpan elapsed)
         {
             return new MapPluginTickResult();
         }

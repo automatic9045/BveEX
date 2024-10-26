@@ -53,7 +53,7 @@ namespace BveEx.Plugins.Scripting
         private readonly IPluginScript<Globals> DisposeScript;
         private readonly IPluginScript<ScenarioCreatedGlobals> OnScenarioCreatedScript;
         private readonly IPluginScript<StartedGlobals> OnStartedScript;
-        private readonly IPluginScript<TickResult, TickGlobals> TickScript;
+        private readonly IPluginScript<IPluginTickResult, TickGlobals> TickScript;
 
         protected ScriptPluginBase(ScriptPluginBuilder builder, PluginType pluginType) : base(builder, new PluginAttribute(pluginType))
         {
@@ -91,7 +91,7 @@ namespace BveEx.Plugins.Scripting
             OnStartedScript?.Run(globals);
         }
 
-        public override TickResult Tick(TimeSpan elapsed)
+        public override IPluginTickResult Tick(TimeSpan elapsed)
         {
             if (TickScript is null)
             {
@@ -106,7 +106,7 @@ namespace BveEx.Plugins.Scripting
             }
 
             TickGlobals globals = new TickGlobals(Globals, elapsed);
-            IScriptResult<TickResult> result = TickScript.Run(globals) ?? throw new InvalidOperationException(string.Format(Resources.Value.NoReturnValue.Value, Title, nameof(Tick)));
+            IScriptResult<IPluginTickResult> result = TickScript.Run(globals) ?? throw new InvalidOperationException(string.Format(Resources.Value.NoReturnValue.Value, Title, nameof(Tick)));
 
             return result.ReturnValue;
         }

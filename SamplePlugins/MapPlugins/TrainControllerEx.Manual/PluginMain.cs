@@ -54,7 +54,7 @@ namespace BveEx.Samples.MapPlugins.TrainControllerEx.Manual
             Patch = Extensions.GetExtension<ITrainDrawPatchFactory>().Patch(nameof(Manual), Train, TrainLocator.Draw);
         }
 
-        public override TickResult Tick(TimeSpan elapsed)
+        public override IPluginTickResult Tick(TimeSpan elapsed)
         {
             IReadOnlyDictionary<NativeAtsKeyName, KeyBase> atsKeys = Native.NativeKeys.AtsKeys;
 

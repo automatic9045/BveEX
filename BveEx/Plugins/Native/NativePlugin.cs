@@ -116,7 +116,7 @@ namespace BveEx.Plugins.Native
             });
         }
 
-        public override TickResult Tick(TimeSpan elapsed)
+        public override IPluginTickResult Tick(TimeSpan elapsed)
         {
             IgnoreHandleUpdates = true;
 

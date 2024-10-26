@@ -34,7 +34,7 @@ namespace BveEx.Extensions.PreTrainPatch
         {
         }
 
-        public override TickResult Tick(TimeSpan elapsed) => new ExtensionTickResult();
+        public override IPluginTickResult Tick(TimeSpan elapsed) => new ExtensionTickResult();
 
         public PreTrainPatch Patch(string name, SectionManager sectionManager, IPreTrainLocationConverter converter)
             => new PreTrainPatch(name, UpdatePreTrainSectionMethod, sectionManager, converter);

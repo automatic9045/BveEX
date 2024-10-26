@@ -27,7 +27,7 @@ namespace BveEx.Samples.VehiclePlugins.AtsPanelValueTest
         {
         }
 
-        public override TickResult Tick(TimeSpan elapsed)
+        public override IPluginTickResult Tick(TimeSpan elapsed)
         {
             int timeMilliseconds = (int)Native.VehicleState.Time.TotalMilliseconds;
 

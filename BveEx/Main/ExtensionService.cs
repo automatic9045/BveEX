@@ -54,7 +54,7 @@ namespace BveEx
         {
             foreach (PluginBase extension in Extensions)
             {
-                TickResult tickResult = extension.Tick(elapsed);
+                IPluginTickResult tickResult = extension.Tick(elapsed);
                 if (!(tickResult is ExtensionTickResult))
                 {
                     throw new InvalidOperationException(string.Format(Resources.Value.ExtensionTickResultTypeInvalid.Value,

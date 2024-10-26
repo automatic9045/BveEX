@@ -21,6 +21,6 @@ namespace BveEx.Samples.VehiclePlugins.CooperatingWithMapPlugin
         {
         }
 
-        public override TickResult Tick(TimeSpan elapsed) => new VehiclePluginTickResult();
+        public override IPluginTickResult Tick(TimeSpan elapsed) => new VehiclePluginTickResult();
     }
 }

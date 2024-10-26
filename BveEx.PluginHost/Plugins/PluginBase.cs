@@ -203,9 +203,9 @@ namespace BveEx.PluginHost.Plugins
         /// </summary>
         /// <param name="elapsed">前フレームから経過した時間。</param>
         /// <returns>
-        /// このメソッドの実行結果を表す <see cref="TickResult"/>。<br/>
+        /// このメソッドの実行結果を表す <see cref="IPluginTickResult"/>。<br/>
         /// 拡張機能では <see cref="ExtensionTickResult"/> を、車両プラグインでは <see cref="VehiclePluginTickResult"/> を、マッププラグインでは <see cref="MapPluginTickResult"/> を返してください。
         /// </returns>
-        public abstract TickResult Tick(TimeSpan elapsed);
+        public abstract IPluginTickResult Tick(TimeSpan elapsed);
     }
 }

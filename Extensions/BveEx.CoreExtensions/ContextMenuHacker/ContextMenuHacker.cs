@@ -40,7 +40,7 @@ namespace BveEx.Extensions.ContextMenuHacker
             }
         }
 
-        public override TickResult Tick(TimeSpan elapsed) => new ExtensionTickResult();
+        public override IPluginTickResult Tick(TimeSpan elapsed) => new ExtensionTickResult();
 
         private void Clear(ContextMenuItemType itemType)
         {

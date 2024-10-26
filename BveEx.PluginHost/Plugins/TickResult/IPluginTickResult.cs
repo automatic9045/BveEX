@@ -9,7 +9,7 @@ namespace BveEx.PluginHost.Plugins
     /// <summary>
     /// <see cref="PluginBase.Tick(TimeSpan)"/> メソッドの実行結果を表します。
     /// </summary>
-    public abstract class TickResult
+    public interface IPluginTickResult
     {
     }
 }

@@ -64,6 +64,6 @@ namespace BveEx.Samples.VehiclePlugins.ConductorPatchTest
         private void OnGPressed(object sender, EventArgs e) => Conductor.CloseDoors(DoorSide.Right);
         private void OnHPressed(object sender, EventArgs e) => Conductor.RequestFixStopPosition();
 
-        public override TickResult Tick(TimeSpan elapsed) => new VehiclePluginTickResult();
+        public override IPluginTickResult Tick(TimeSpan elapsed) => new VehiclePluginTickResult();
     }
 }

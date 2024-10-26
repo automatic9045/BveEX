@@ -48,7 +48,7 @@ namespace BveEx.Samples.VehiclePlugins.PanelController
             panel.Elements.Add(Element6);
         }
 
-        public override TickResult Tick(TimeSpan elapsed)
+        public override IPluginTickResult Tick(TimeSpan elapsed)
         {
             float amount = (float)Math.Sin(Native.VehicleState.Time.TotalSeconds * 2);
 

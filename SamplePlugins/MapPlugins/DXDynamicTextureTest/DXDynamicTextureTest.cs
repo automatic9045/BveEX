@@ -40,7 +40,7 @@ namespace BveEx.Samples.MapPlugins.DXDynamicTextureTest
             GDIHelper = new GDIHelper(TextureHandle.Width, TextureHandle.Height);
         }
 
-        public override TickResult Tick(TimeSpan elapsed)
+        public override IPluginTickResult Tick(TimeSpan elapsed)
         {
             if (TextureHandle.HasEnoughTimePassed(10))
             {

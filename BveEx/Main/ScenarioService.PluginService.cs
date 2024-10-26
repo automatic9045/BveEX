@@ -38,7 +38,7 @@ namespace BveEx
 
                 foreach (PluginBase plugin in Plugins[PluginType.VehiclePlugin].Values)
                 {
-                    TickResult tickResult = plugin.Tick(elapsed);
+                    IPluginTickResult tickResult = plugin.Tick(elapsed);
                     if (!(tickResult is VehiclePluginTickResult vehiclePluginTickResult))
                     {
                         throw new InvalidOperationException(string.Format(Resources.Value.VehiclePluginTickResultTypeInvalid.Value,
@@ -51,7 +51,7 @@ namespace BveEx
 
                 foreach (PluginBase plugin in Plugins[PluginType.MapPlugin].Values)
                 {
-                    TickResult tickResult = plugin.Tick(elapsed);
+                    IPluginTickResult tickResult = plugin.Tick(elapsed);
                     if (!(tickResult is MapPluginTickResult mapPluginTickResult))
                     {
                         throw new InvalidOperationException(string.Format(Resources.Value.MapPluginTickResultTypeInvalid.Value,

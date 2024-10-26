@@ -25,7 +25,7 @@ namespace BveEx.Extensions.DXDynamicTexture
             TextureManager.Clear();
         }
 
-        public override TickResult Tick(TimeSpan elapsed)
+        public override IPluginTickResult Tick(TimeSpan elapsed)
         {
             return new ExtensionTickResult();
         }

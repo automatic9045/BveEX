@@ -42,7 +42,7 @@ namespace BveEx.Extensions.ConductorPatch
             PatchInvoker.ActivePatch = null;
         }
 
-        public override TickResult Tick(TimeSpan elapsed) => new ExtensionTickResult();
+        public override IPluginTickResult Tick(TimeSpan elapsed) => new ExtensionTickResult();
 
         public void BeginPatch(Func<Conductor, ConductorBase> conductorFactory, DeclarationPriority priority, Action<ConductorPatch> patchedCallback)
         {

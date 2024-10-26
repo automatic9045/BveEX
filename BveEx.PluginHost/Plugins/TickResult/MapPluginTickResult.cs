@@ -9,7 +9,7 @@ namespace BveEx.PluginHost.Plugins
     /// <summary>
     /// マッププラグインの <see cref="PluginBase.Tick(TimeSpan)"/> メソッドの実行結果を表します。
     /// </summary>
-    public class MapPluginTickResult : TickResult
+    public class MapPluginTickResult : IPluginTickResult
     {
         /// <summary>
         /// <see cref="MapPluginTickResult"/> クラスの新しいインスタンスを初期化します。

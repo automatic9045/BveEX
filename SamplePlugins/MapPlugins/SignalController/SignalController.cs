@@ -56,6 +56,6 @@ namespace BveEx.Samples.MapPlugins.SignalController
             Native.NativeKeys.AtsKeys[NativeAtsKeyName.H].Pressed -= OnHPressed;
         }
 
-        public override TickResult Tick(TimeSpan elapsed) => new MapPluginTickResult();
+        public override IPluginTickResult Tick(TimeSpan elapsed) => new MapPluginTickResult();
     }
 }

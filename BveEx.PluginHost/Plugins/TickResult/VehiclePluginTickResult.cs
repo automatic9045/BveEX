@@ -11,7 +11,7 @@ namespace BveEx.PluginHost.Plugins
     /// <summary>
     /// 車両プラグインの <see cref="PluginBase.Tick(TimeSpan)"/> メソッドの実行結果を表します。
     /// </summary>
-    public class VehiclePluginTickResult : TickResult
+    public class VehiclePluginTickResult : IPluginTickResult
     {
         private HandleCommandSet _HandleCommandSet = HandleCommandSet.DoNothing;
         /// <summary>

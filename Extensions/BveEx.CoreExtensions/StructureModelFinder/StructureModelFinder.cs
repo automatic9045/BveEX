@@ -41,7 +41,7 @@ namespace BveEx.Extensions.StructureModelFinder
             BveHacker.ScenarioCreated -= OnScenarioCreated;
         }
 
-        public override TickResult Tick(TimeSpan elapsed) => new ExtensionTickResult();
+        public override IPluginTickResult Tick(TimeSpan elapsed) => new ExtensionTickResult();
 
         public Model GetModel(string structureKey) => KeyToModel[structureKey];
         public string GetStructureKey(Model model) => ModelToKey[model];

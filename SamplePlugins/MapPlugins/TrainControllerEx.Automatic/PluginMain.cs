@@ -43,7 +43,7 @@ namespace BveEx.Samples.MapPlugins.TrainControllerEx.Automatic
             Patch = Extensions.GetExtension<ITrainDrawPatchFactory>().Patch(nameof(Automatic), Train, DrawTrain);
         }
 
-        public override TickResult Tick(TimeSpan elapsed)
+        public override IPluginTickResult Tick(TimeSpan elapsed)
         {
             return new MapPluginTickResult();
         }

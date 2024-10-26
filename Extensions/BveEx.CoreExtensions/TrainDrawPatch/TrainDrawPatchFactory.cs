@@ -34,7 +34,7 @@ namespace BveEx.Extensions.TrainDrawPatch
         {
         }
 
-        public override TickResult Tick(TimeSpan elapsed) => new ExtensionTickResult();
+        public override IPluginTickResult Tick(TimeSpan elapsed) => new ExtensionTickResult();
 
         public TrainDrawPatch Patch(string name, Train target, IMatrixConverter worldMatrixConverter)
             => new TrainDrawPatch(name, DrawCarsMethod, target, worldMatrixConverter, new DefaultMatrixConverter());

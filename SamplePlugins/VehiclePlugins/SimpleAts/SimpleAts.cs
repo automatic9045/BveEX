@@ -29,7 +29,7 @@ namespace BveEx.Samples.VehiclePlugins.SimpleAts
         {
         }
 
-        public override TickResult Tick(TimeSpan elapsed)
+        public override IPluginTickResult Tick(TimeSpan elapsed)
         {
             UserVehicleLocationManager locationManager = BveHacker.Scenario.LocationManager;
             PluginHost.Handles.HandleSet handleSet = Native.Handles;

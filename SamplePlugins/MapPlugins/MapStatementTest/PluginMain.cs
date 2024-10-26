@@ -22,6 +22,6 @@ namespace BveEx.Samples.MapPlugins.MapStatementTest
         {
         }
 
-        public override TickResult Tick(TimeSpan elapsed) => new MapPluginTickResult();
+        public override IPluginTickResult Tick(TimeSpan elapsed) => new MapPluginTickResult();
     }
 }
