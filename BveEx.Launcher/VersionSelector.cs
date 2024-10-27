@@ -114,7 +114,7 @@ namespace BveEx.Launcher
             }
             finally
             {
-                SplashProcess.Kill();
+                if (!SplashProcess.HasExited) SplashProcess.Kill();
             }
         }
     }
