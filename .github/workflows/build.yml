@@ -49,7 +49,7 @@ jobs:
             LocalReferences\BveTs\Mackoy.XmlInterfaces.DLL
           key: dependencies-1.0.0.0
       - name: Build
-        run: msbuild AtsEx.sln /p:Configuration=Release
+        run: msbuild AtsEx.sln /p:Configuration=Release /p:DebugSymbols=false /p:DebugType=none
       - name: Package
         run: |
           .\package.bat

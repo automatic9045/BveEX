@@ -64,6 +64,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /y /i "$(TargetDir)" "$(SolutionDir)_SampleScenarios\AtsEx.Samples\Maps\Basic\Samples\DXDynamicTexture\MapPlugins\"</PostBuildEvent>
+    <PostBuildEvent>xcopy /y /i "$(TargetDir)" "$(SolutionDir)_out\Scenarios\AtsEx.Samples\Maps\Basic\Samples\DXDynamicTexture\MapPlugins\"</PostBuildEvent>
   </PropertyGroup>
 </Project>
