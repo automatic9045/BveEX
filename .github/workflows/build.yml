@@ -52,10 +52,16 @@ jobs:
         run: msbuild AtsEx.sln /p:Configuration=Release /p:DebugSymbols=false /p:DebugType=none
       - name: Package
         run: |
-          .\package.bat
+          .\package.bat bin\Core
+          .\package.bat bin\WithScenarios /s
           Add-Content -Path $env:GITHUB_ENV -Value "GIT_HASH=$(git rev-parse --short HEAD)"
-      - name: Upload artifacts
+      - name: Upload artifacts 1/2 (Core)
         uses: actions/upload-artifact@v4
         with:
           name: AtsEX_${{ env.GIT_HASH }}
-          path: ./bin/*
+          path: ./bin/Core/*
+      - name: Upload artifacts 2/2 (WithScenarios)
+        uses: actions/upload-artifact@v4
+        with:
+          name: AtsEX_WithScenarios_${{ env.GIT_HASH }}
+          path: ./bin/WithScenarios/*
