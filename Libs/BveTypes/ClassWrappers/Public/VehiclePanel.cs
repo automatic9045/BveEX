@@ -164,7 +164,7 @@ namespace BveTypes.ClassWrappers
         public WrappedList<VehiclePanelElement> Elements
         {
             get => WrappedList<VehiclePanelElement>.FromSource(ElementsGetMethod.Invoke(Src, null));
-            set => ElementsSetMethod.Invoke(Src, new object[] { value.Src });
+            set => ElementsSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
         private static FastMethod DrawMethod;

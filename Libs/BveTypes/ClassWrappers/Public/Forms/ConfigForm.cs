@@ -45,7 +45,7 @@ namespace BveTypes.ClassWrappers
         /// <see cref="ConfigForm"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         /// <param name="mainForm">メインのフォーム。</param>
-        public ConfigForm(MainForm mainForm) : this(Constructor.Invoke(new object[] { mainForm.Src }))
+        public ConfigForm(MainForm mainForm) : this(Constructor.Invoke(new object[] { mainForm?.Src }))
         {
         }
 

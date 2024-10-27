@@ -131,9 +131,9 @@ namespace BveTypes.ClassWrappers
         }
 
         private static FastMethod AddMethod;
-        private static SixDof Add(SixDof x, SixDof y) => SixDof.FromSource(AddMethod.Invoke(null, new object[] { x.Src, y.Src }));
+        private static SixDof Add(SixDof x, SixDof y) => SixDof.FromSource(AddMethod.Invoke(null, new object[] { x?.Src, y?.Src }));
 
         private static FastMethod MultiplyMethod;
-        private static SixDof Multiply(double x, SixDof y) => SixDof.FromSource(MultiplyMethod.Invoke(null, new object[] { x, y.Src }));
+        private static SixDof Multiply(double x, SixDof y) => SixDof.FromSource(MultiplyMethod.Invoke(null, new object[] { x, y?.Src }));
     }
 }

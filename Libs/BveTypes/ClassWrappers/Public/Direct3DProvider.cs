@@ -116,6 +116,6 @@ namespace BveTypes.ClassWrappers
         /// 指定したオブジェクトへ描画します。
         /// </summary>
         /// <param name="target">描画のターゲット。</param>
-        public void Render(IDrawable target) => RenderMethod.Invoke(Src, new object[] { ((ClassWrapperBase)target).Src });
+        public void Render(IDrawable target) => RenderMethod.Invoke(Src, new object[] { ((ClassWrapperBase)target)?.Src });
     }
 }

@@ -90,7 +90,7 @@ namespace BveTypes.ClassWrappers
         public TimeManager TimeManager
         {
             get => ClassWrappers.TimeManager.FromSource(TimeManagerField.GetValue(Src));
-            set => TimeManagerField.SetValue(Src, value.Src);
+            set => TimeManagerField.SetValue(Src, value?.Src);
         }
 
         private static FastField PreTrainPassObjectsField;
@@ -100,7 +100,7 @@ namespace BveTypes.ClassWrappers
         public MapObjectList PreTrainPassObjects
         {
             get => MapObjectList.FromSource(PreTrainPassObjectsField.GetValue(Src));
-            set => PreTrainPassObjectsField.SetValue(Src, value.Src);
+            set => PreTrainPassObjectsField.SetValue(Src, value?.Src);
         }
 
         private static FastField PreTrainSectionIndexField;

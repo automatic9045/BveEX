@@ -70,7 +70,7 @@ namespace BveTypes.ClassWrappers
         /// <param name="trainInfo">この他列車の追加情報を格納している <see cref="ClassWrappers.TrainInfo"/>。</param>
         /// <param name="drawDistanceManager">使用する <see cref="ClassWrappers.DrawDistanceManager"/>。</param>
         public Train(TimeManager timeManager, UserVehicleLocationManager locationManager, Route route, TrainInfo trainInfo, DrawDistanceManager drawDistanceManager)
-            : this(Constructor.Invoke(new object[] { timeManager.Src, locationManager.Src, route.Src, trainInfo.Src, drawDistanceManager.Src }))
+            : this(Constructor.Invoke(new object[] { timeManager?.Src, locationManager?.Src, route?.Src, trainInfo?.Src, drawDistanceManager?.Src }))
         {
         }
 
@@ -87,7 +87,7 @@ namespace BveTypes.ClassWrappers
         public TrainInfo TrainInfo
         {
             get => ClassWrappers.TrainInfo.FromSource(TrainInfoField.GetValue(Src));
-            set => TrainInfoField.SetValue(Src, value.Src);
+            set => TrainInfoField.SetValue(Src, value?.Src);
         }
 
         private static FastField DrawDistanceManagerField;
@@ -100,7 +100,7 @@ namespace BveTypes.ClassWrappers
         public WrappedList<TrainSchedule> Schedules
         {
             get => WrappedList<TrainSchedule>.FromSource(SchedulesField.GetValue(Src));
-            set => SchedulesField.SetValue(Src, value.Src);
+            set => SchedulesField.SetValue(Src, value?.Src);
         }
 
         private static FastField LocationField;
@@ -194,7 +194,7 @@ namespace BveTypes.ClassWrappers
         /// <param name="direct3DProvider">描画に使用する <see cref="Direct3DProvider"/>。</param>
         /// <param name="additionalWorldMatrix">ワールド変換行列の後に追加で掛ける行列。</param>
         public void DrawCars(Direct3DProvider direct3DProvider, Matrix additionalWorldMatrix)
-            => DrawCarsMethod.Invoke(Src, new object[] { direct3DProvider.Src, additionalWorldMatrix });
+            => DrawCarsMethod.Invoke(Src, new object[] { direct3DProvider?.Src, additionalWorldMatrix });
 
         private static FastMethod UpdateSoundMethod;
         /// <summary>

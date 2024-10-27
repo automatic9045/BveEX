@@ -99,7 +99,7 @@ namespace BveTypes.ClassWrappers
         public WrappedList<Model> Models
         {
             get => WrappedList<Model>.FromSource(ModelsGetMethod.Invoke(Src, null));
-            set => ModelsSetMethod.Invoke(Src, new object[] { value.Src });
+            set => ModelsSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
         private static FastMethod IntervalGetMethod;

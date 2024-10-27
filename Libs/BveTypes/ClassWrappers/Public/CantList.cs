@@ -54,7 +54,7 @@ namespace BveTypes.ClassWrappers
         public Physical RotationZ
         {
             get => Physical.FromSource(RotationZGetMethod.Invoke(Src, null));
-            set => RotationZSetMethod.Invoke(Src, new object[] { value.Src });
+            set => RotationZSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
         private static FastMethod YGetMethod;
@@ -65,7 +65,7 @@ namespace BveTypes.ClassWrappers
         public Physical Y
         {
             get => Physical.FromSource(YGetMethod.Invoke(Src, null));
-            set => YSetMethod.Invoke(Src, new object[] { value.Src });
+            set => YSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
         private static FastMethod XGetMethod;
@@ -76,7 +76,7 @@ namespace BveTypes.ClassWrappers
         public Physical X
         {
             get => Physical.FromSource(XGetMethod.Invoke(Src, null));
-            set => XSetMethod.Invoke(Src, new object[] { value.Src });
+            set => XSetMethod.Invoke(Src, new object[] { value?.Src });
         }
     }
 }

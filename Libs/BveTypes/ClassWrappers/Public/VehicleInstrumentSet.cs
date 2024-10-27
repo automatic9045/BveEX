@@ -79,7 +79,7 @@ namespace BveTypes.ClassWrappers
         public CabBase Cab
         {
             get => (CabBase)ClassWrapperBase.CreateFromSource(CabGetMethod.Invoke(Src, null));
-            internal set => CabSetMethod.Invoke(Src, new object[] { value.Src });
+            internal set => CabSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
         private static FastMethod AtsPluginGetMethod;
@@ -90,7 +90,7 @@ namespace BveTypes.ClassWrappers
         public AtsPlugin AtsPlugin
         {
             get => ClassWrappers.AtsPlugin.FromSource(AtsPluginGetMethod.Invoke(Src, null));
-            internal set => AtsPluginSetMethod.Invoke(Src, new object[] { value.Src });
+            internal set => AtsPluginSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
         private static FastMethod PluginLoaderGetMethod;
@@ -102,7 +102,7 @@ namespace BveTypes.ClassWrappers
         public PluginLoader PluginLoader
         {
             get => ClassWrappers.PluginLoader.FromSource(PluginLoaderGetMethod.Invoke(Src, null));
-            internal set => PluginLoaderSetMethod.Invoke(Src, new object[] { value.Src });
+            internal set => PluginLoaderSetMethod.Invoke(Src, new object[] { value?.Src });
         }
     }
 }

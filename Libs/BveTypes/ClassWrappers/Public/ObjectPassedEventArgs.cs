@@ -39,7 +39,7 @@ namespace BveTypes.ClassWrappers
         /// <param name="direction">通過方向。前方向の場合は 1、後方向の場合は -1 を指定してください。</param>
         /// <param name="mapObject">通過したマップオブジェクト。</param>
         public ObjectPassedEventArgs(int direction, MapObjectBase mapObject)
-            : this(Constructor.Invoke(new object[] { direction, mapObject.Src }))
+            : this(Constructor.Invoke(new object[] { direction, mapObject?.Src }))
         {
         }
 

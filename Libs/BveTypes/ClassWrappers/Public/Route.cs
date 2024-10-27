@@ -120,7 +120,7 @@ namespace BveTypes.ClassWrappers
         public StructureSet Structures
         {
             get => StructureSet.FromSource(StructuresGetMethod.Invoke(Src, null));
-            set => StructuresField.SetValue(Src, value.Src);
+            set => StructuresField.SetValue(Src, value?.Src);
         }
 
         private static FastMethod RollingNoiseObjectsGetMethod;
@@ -270,7 +270,7 @@ namespace BveTypes.ClassWrappers
         /// <param name="from">基準点とする距離程 [m]。</param>
         /// <returns>ワールド変換行列を表す <see cref="Matrix"/>。</returns>
         public Matrix GetTrackMatrix(LocatableMapObject mapObject, double to, double from)
-            => GetTrackMatrixMethod.Invoke(Src, new object[] { mapObject.Src, to, from });
+            => GetTrackMatrixMethod.Invoke(Src, new object[] { mapObject?.Src, to, from });
 
         private class Sounds3DConverter : ITwoWayConverter<object, Sound[]>
         {

@@ -51,7 +51,7 @@ namespace BveTypes.ClassWrappers
         /// <param name="clauses">ステートメントを構成する句の一覧。</param>
         /// <param name="fileName">ステートメントが定義されているマップファイルの名前。</param>
         public MapStatement(double location, WrappedList<MapStatementClause> clauses, string fileName)
-            : this(Constructor.Invoke(new object[] { location, clauses.Src, fileName }))
+            : this(Constructor.Invoke(new object[] { location, clauses?.Src, fileName }))
         {
         }
 

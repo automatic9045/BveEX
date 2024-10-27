@@ -97,7 +97,7 @@ namespace BveTypes.ClassWrappers
                 throw new NotSupportedException(Resources.Value.SameLocation.Value);
             }
             
-            InsertMethod.Invoke(Src, new object[] { item.Src });
+            InsertMethod.Invoke(Src, new object[] { item?.Src });
         }
 
         private static FastMethod GetStandardTimeMethod;

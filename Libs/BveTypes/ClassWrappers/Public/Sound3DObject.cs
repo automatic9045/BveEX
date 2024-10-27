@@ -84,7 +84,7 @@ namespace BveTypes.ClassWrappers
         public Sound Source
         {
             get => Sound.FromSource(SourceGetMethod.Invoke(Src, null));
-            set => SourceSetMethod.Invoke(Src, new object[] { value.Src });
+            set => SourceSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
         private static FastMethod DistanceToSourceFrontGetMethod;

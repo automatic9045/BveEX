@@ -60,7 +60,7 @@ namespace BveTypes.ClassWrappers
         public NotchInfo NotchInfo
         {
             get => ClassWrappers.NotchInfo.FromSource(NotchInfoGetMethod.Invoke(Src, null));
-            internal set => NotchInfoSetMethod.Invoke(Src, new object[] { value.Src });
+            internal set => NotchInfoSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
         private static FastMethod BrakeNotchGetMethod;

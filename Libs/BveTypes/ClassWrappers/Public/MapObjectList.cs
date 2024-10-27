@@ -80,7 +80,7 @@ namespace BveTypes.ClassWrappers
         /// <see cref="ObjectPassed"/> イベントを実行します。
         /// </summary>
         /// <param name="args">自列車が通過したマップ オブジェクト。</param>
-        public void ObjectPassed_Invoke(ObjectPassedEventArgs args) => ObjectPassedEvent.Invoke(Src, new object[] { Src, args.Src });
+        public void ObjectPassed_Invoke(ObjectPassedEventArgs args) => ObjectPassedEvent.Invoke(Src, new object[] { Src, args?.Src });
 
         private static FastMethod GoToAndGetCurrentMethod;
         /// <summary>
@@ -98,7 +98,7 @@ namespace BveTypes.ClassWrappers
         /// 距離程順に新しい項目を追加します。
         /// </summary>
         /// <param name="item">追加するマップ オブジェクト。</param>
-        public void Insert(MapObjectBase item) => InsertMethod.Invoke(Src, new object[] { item.Src });
+        public void Insert(MapObjectBase item) => InsertMethod.Invoke(Src, new object[] { item?.Src });
 
         private static FastMethod GoToMethod1;
         /// <summary>

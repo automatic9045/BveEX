@@ -52,7 +52,7 @@ namespace BveTypes.ClassWrappers
         public ValueContainer MrPressure
         {
             get => ValueContainer.FromSource(MrPressureField.GetValue(Src));
-            set => MrPressureField.SetValue(Src, value.Src);
+            set => MrPressureField.SetValue(Src, value?.Src);
         }
 
         private static FastField TargetPressureField;
@@ -62,7 +62,7 @@ namespace BveTypes.ClassWrappers
         public ValueContainer TargetPressure
         {
             get => ValueContainer.FromSource(TargetPressureField.GetValue(Src));
-            set => TargetPressureField.SetValue(Src, value.Src);
+            set => TargetPressureField.SetValue(Src, value?.Src);
         }
 
         private static FastField ApplySpeedField;

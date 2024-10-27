@@ -158,7 +158,7 @@ namespace BveTypes.ClassWrappers
         public Model DaytimeImageModel
         {
             get => Model.FromSource(DaytimeImageModelField.GetValue(Src));
-            set => DaytimeImageModelField.SetValue(Src, value.Src);
+            set => DaytimeImageModelField.SetValue(Src, value?.Src);
         }
 
         private static FastField DaytimeImagePathField;
@@ -178,7 +178,7 @@ namespace BveTypes.ClassWrappers
         public Model NighttimeImageModel
         {
             get => Model.FromSource(NighttimeImageModelField.GetValue(Src));
-            set => NighttimeImageModelField.SetValue(Src, value.Src);
+            set => NighttimeImageModelField.SetValue(Src, value?.Src);
         }
 
         private static FastField NighttimeImagePathField;
@@ -218,7 +218,7 @@ namespace BveTypes.ClassWrappers
         /// <param name="direct3DProvider">描画に使用する <see cref="Direct3DProvider"/>。</param>
         /// <param name="world">ワールド変換行列。</param>
         public void Draw(Direct3DProvider direct3DProvider, Matrix world)
-            => DrawMethod.Invoke(Src, new object[] { direct3DProvider.Src, world });
+            => DrawMethod.Invoke(Src, new object[] { direct3DProvider?.Src, world });
 
         private static FastMethod DisposeMethod;
         /// <inheritdoc/>

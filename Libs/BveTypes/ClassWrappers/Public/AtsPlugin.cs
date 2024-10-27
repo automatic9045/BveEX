@@ -71,7 +71,7 @@ namespace BveTypes.ClassWrappers
 
         private static FastConstructor Constructor;
         public AtsPlugin(UserVehicleLocationManager locationManager, KeyProvider keyProvider, HandleSet _0, HandleSet _1, VehicleStateStore vehicleStateStore, SectionManager sectionManager, MapFunctionList beacons, DoorSet doors)
-            : this(Constructor.Invoke(new object[] { locationManager.Src, keyProvider.Src, _0.Src, _1.Src, vehicleStateStore.Src, sectionManager.Src, beacons.Src, doors.Src }))
+            : this(Constructor.Invoke(new object[] { locationManager?.Src, keyProvider?.Src, _0?.Src, _1?.Src, vehicleStateStore?.Src, sectionManager?.Src, beacons?.Src, doors?.Src }))
         {
         }
 
@@ -114,7 +114,7 @@ namespace BveTypes.ClassWrappers
         public HandleSet Handles
         {
             get => HandleSet.FromSource(HandlesField.GetValue(Src));
-            set => HandlesField.SetValue(Src, value.Src);
+            set => HandlesField.SetValue(Src, value?.Src);
         }
 
         private static FastField _PanelArrayField;
@@ -160,7 +160,7 @@ namespace BveTypes.ClassWrappers
         public UserVehicleLocationManager LocationManager
         {
             get => UserVehicleLocationManager.FromSource(LocationManagerField.GetValue(Src));
-            set => LocationManagerField.SetValue(Src, value.Src);
+            set => LocationManagerField.SetValue(Src, value?.Src);
         }
 
         private static FastField StateStoreField;
@@ -170,7 +170,7 @@ namespace BveTypes.ClassWrappers
         public VehicleStateStore StateStore
         {
             get => VehicleStateStore.FromSource(StateStoreField.GetValue(Src));
-            set => StateStoreField.SetValue(Src, value.Src);
+            set => StateStoreField.SetValue(Src, value?.Src);
         }
 
         private static FastField SectionManagerField;
@@ -180,7 +180,7 @@ namespace BveTypes.ClassWrappers
         public SectionManager SectionManager
         {
             get => ClassWrappers.SectionManager.FromSource(SectionManagerField.GetValue(Src));
-            set => SectionManagerField.SetValue(Src, value.Src);
+            set => SectionManagerField.SetValue(Src, value?.Src);
         }
 
         private static FastField DoorsField;
@@ -190,7 +190,7 @@ namespace BveTypes.ClassWrappers
         public DoorSet Doors
         {
             get => DoorSet.FromSource(DoorsField.GetValue(Src));
-            set => DoorsField.SetValue(Src, value.Src);
+            set => DoorsField.SetValue(Src, value?.Src);
         }
 
         private static FastField AtsHandlesField;
@@ -200,7 +200,7 @@ namespace BveTypes.ClassWrappers
         public HandleSet AtsHandles
         {
             get => HandleSet.FromSource(AtsHandlesField.GetValue(Src));
-            set => AtsHandlesField.SetValue(Src, value.Src);
+            set => AtsHandlesField.SetValue(Src, value?.Src);
         }
 
         private static FastMethod OnSetBeaconDataMethod;
@@ -209,7 +209,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         /// <param name="sender">イベントのソース。</param>
         /// <param name="e">イベント データを格納しているオブジェクト。</param>
-        public void OnSetBeaconData(object sender, ObjectPassedEventArgs e) => OnSetBeaconDataMethod.Invoke(Src, new object[] { sender, e.Src });
+        public void OnSetBeaconData(object sender, ObjectPassedEventArgs e) => OnSetBeaconDataMethod.Invoke(Src, new object[] { sender, e?.Src });
 
         private static FastMethod OnKeyDownMethod;
         /// <summary>
@@ -257,7 +257,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         /// <param name="sender">イベントのソース。</param>
         /// <param name="e">イベント データを格納しているオブジェクト。</param>
-        public void OnSetBrake(object sender, ValueEventArgs<int> e) => OnSetBrakeMethod.Invoke(Src, new object[] { sender, e.Src });
+        public void OnSetBrake(object sender, ValueEventArgs<int> e) => OnSetBrakeMethod.Invoke(Src, new object[] { sender, e?.Src });
 
         private static FastMethod OnSetPowerMethod;
         /// <summary>
@@ -265,7 +265,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         /// <param name="sender">イベントのソース。</param>
         /// <param name="e">イベント データを格納しているオブジェクト。</param>
-        public void OnSetPower(object sender, ValueEventArgs<int> e) => OnSetPowerMethod.Invoke(Src, new object[] { sender, e.Src });
+        public void OnSetPower(object sender, ValueEventArgs<int> e) => OnSetPowerMethod.Invoke(Src, new object[] { sender, e?.Src });
 
         private static FastMethod DisposeMethod;
         /// <inheritdoc/>
@@ -284,7 +284,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         /// <param name="notchInfo">ノッチの情報。</param>
         /// <param name="carCount">編成両数。</param>
-        public void OnSetVehicleSpec(NotchInfo notchInfo, int carCount) => OnSetVehicleSpecMethod.Invoke(Src, new object[] { notchInfo.Src, carCount });
+        public void OnSetVehicleSpec(NotchInfo notchInfo, int carCount) => OnSetVehicleSpecMethod.Invoke(Src, new object[] { notchInfo?.Src, carCount });
 
         private static FastMethod OnInitializeMethod;
         /// <summary>

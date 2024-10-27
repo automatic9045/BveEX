@@ -105,13 +105,13 @@ namespace BveTypes.ClassWrappers
         }
 
         private static FastMethod OnLocationChangedMethod;
-        private void OnLocationChanged(object sender, ValueEventArgs<double> e) => OnLocationChangedMethod.Invoke(Src, new object[] { sender, e.Src });
+        private void OnLocationChanged(object sender, ValueEventArgs<double> e) => OnLocationChangedMethod.Invoke(Src, new object[] { sender, e?.Src });
 
         /// <summary>
         /// 自列車が移動したときに呼び出されます。
         /// </summary>
         /// <param name="sender">イベントのソース。</param>
         /// <param name="e">イベントデータを格納している <see cref="ValueEventArgs{T}"/> (T は <see cref="double"/>)。<see cref="ValueEventArgs{T}.Value"/> は自列車の走行距離程の変位 [m] です。</param>
-        public void OnLocationChanged(VehiclePositioner sender, ValueEventArgs<double> e) => OnLocationChanged(sender.Src, e);
+        public void OnLocationChanged(VehiclePositioner sender, ValueEventArgs<double> e) => OnLocationChanged(sender?.Src, e);
     }
 }

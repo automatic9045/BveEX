@@ -138,6 +138,6 @@ namespace BveTypes.ClassWrappers
         /// <param name="direct3DProvider">描画に使用する <see cref="Direct3DProvider"/>。</param>
         /// <param name="skipZWrite">深度バッファーへの書き込みをスキップするか。</param>
         public void Draw(Direct3DProvider direct3DProvider, bool skipZWrite)
-            => DrawMethod.Invoke(Src, new object[] { direct3DProvider.Src, skipZWrite });
+            => DrawMethod.Invoke(Src, new object[] { direct3DProvider?.Src, skipZWrite });
     }
 }

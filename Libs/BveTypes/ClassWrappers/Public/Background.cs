@@ -50,7 +50,7 @@ namespace BveTypes.ClassWrappers
         public MapFunctionList BackgroundObjects
         {
             get => MapFunctionList.FromSource(BackgroundObjectsField.GetValue(Src));
-            set => BackgroundObjectsField.SetValue(Src, value.Src);
+            set => BackgroundObjectsField.SetValue(Src, value?.Src);
         }
 
         private static FastMethod DrawMethod;
