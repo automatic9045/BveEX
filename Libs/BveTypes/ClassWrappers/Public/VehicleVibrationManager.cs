@@ -131,7 +131,7 @@ namespace BveTypes.ClassWrappers
         public SixDof ViewPoint
         {
             get => SixDof.FromSource(ViewPointGetMethod.Invoke(Src, null));
-            set => ViewPointSetMethod.Invoke(Src, new object[] { value.Src });
+            set => ViewPointSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
         private static FastField PassengerField;
@@ -141,7 +141,7 @@ namespace BveTypes.ClassWrappers
         public Passenger Passenger
         {
             get => ClassWrappers.Passenger.FromSource(PassengerField.GetValue(Src));
-            set => PassengerField.SetValue(Src, value.Src);
+            set => PassengerField.SetValue(Src, value?.Src);
         }
 
         private static FastField VerticalSpringsField;
@@ -154,7 +154,7 @@ namespace BveTypes.ClassWrappers
         public WrappedArray<AirSpring> VerticalSprings
         {
             get => WrappedArray<AirSpring>.FromSource(VerticalSpringsField.GetValue(Src));
-            set => VerticalSpringsField.SetValue(Src, value.Src);
+            set => VerticalSpringsField.SetValue(Src, value?.Src);
         }
 
         private static FastMethod TickMethod;

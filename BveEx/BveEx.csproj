@@ -299,8 +299,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /e /y /i "$(TargetDir)" "$(SolutionDir)_SampleScenarios\BveEx\Debug\"
-xcopy /e /y /i "$(ProjectDir)Resources\" "$(SolutionDir)_SampleScenarios\BveEx\Debug\Resources\Core\"</PostBuildEvent>
+    <PostBuildEvent>xcopy /e /y /i "$(TargetDir)" "$(SolutionDir)_out\BveEx\Debug\"
+xcopy /e /y /i "$(ProjectDir)Resources\" "$(SolutionDir)_out\BveEx\Debug\Resources\Core\"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PlatformTarget>AnyCPU</PlatformTarget>

@@ -51,7 +51,7 @@ namespace BveTypes.ClassWrappers
         public BveFile SelectedFile
         {
             get => BveFile.FromSource(SelectedFileGetMethod.Invoke(Src, null));
-            set => SelectedFileGetMethod.Invoke(Src, new object[] { value.Src });
+            set => SelectedFileGetMethod.Invoke(Src, new object[] { value?.Src });
         }
     }
 }

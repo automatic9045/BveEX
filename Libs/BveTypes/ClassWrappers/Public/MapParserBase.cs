@@ -62,7 +62,7 @@ namespace BveTypes.ClassWrappers
         public MapStatementList Statements
         {
             get => MapStatementList.FromSource(StatementsField.GetValue(Src));
-            set => StatementsField.SetValue(Src, value.Src);
+            set => StatementsField.SetValue(Src, value?.Src);
         }
 
         private static FastField LocationField;

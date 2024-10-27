@@ -1,0 +1,66 @@
+name: Build
+on:
+  workflow_dispatch:
+  pull_request:
+jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v2
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+      - name: Restore project
+        run: |
+          msbuild BveEx.sln /t:Restore /p:Configuration=Release
+          nuget restore BveEx.sln
+      - name: Restore dependencies
+        id: cache-dependencies
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            LocalReferences\BveTs\Mackoy.IInputDevice.DLL
+            LocalReferences\BveTs\Mackoy.XmlInterfaces.DLL
+          key: dependencies-1.0.0.0
+      - name: Setup dependencies
+        if: steps.cache-dependencies.outputs.cache-hit != 'true'
+        env:
+          BVETS6: ${{ secrets.BveTs6 }}
+        run: |
+          curl -L "$env:BVETS6" -o bvets6-msi.zip
+          7z x -obvets6 bvets6-msi.zip
+          cmd.exe /c start /wait msiexec /a bvets6\BveTs6Setup.msi /qn
+          mkdir LocalReferences\BveTs
+          copy "C:\Program Files\mackoy\BveTs6\Mackoy.IInputDevice.DLL" LocalReferences\BveTs\Mackoy.IInputDevice.DLL
+          copy "C:\Program Files\mackoy\BveTs6\Mackoy.XmlInterfaces.DLL" LocalReferences\BveTs\Mackoy.XmlInterfaces.DLL
+      - name: Cache dependencies
+        if: steps.cache-dependencies.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            LocalReferences\BveTs\Mackoy.IInputDevice.DLL
+            LocalReferences\BveTs\Mackoy.XmlInterfaces.DLL
+          key: dependencies-1.0.0.0
+      - name: Build
+        run: msbuild BveEx.sln /p:Configuration=Release /p:DebugSymbols=false /p:DebugType=none
+      - name: Package
+        run: |
+          .\package.bat bin\Core
+          .\package.bat bin\WithScenarios /s
+          Add-Content -Path $env:GITHUB_ENV -Value "GIT_HASH=$(git rev-parse --short HEAD)"
+      - name: Upload artifacts 1/2 (Core)
+        uses: actions/upload-artifact@v4
+        with:
+          name: BveEX_${{ env.GIT_HASH }}
+          path: ./bin/Core/*
+      - name: Upload artifacts 2/2 (WithScenarios)
+        uses: actions/upload-artifact@v4
+        with:
+          name: BveEX_WithScenarios_${{ env.GIT_HASH }}
+          path: ./bin/WithScenarios/*

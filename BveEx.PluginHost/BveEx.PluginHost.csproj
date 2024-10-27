@@ -222,7 +222,7 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /y /i "$(TargetDir)" "$(SolutionDir)_SampleScenarios\BveEx\Debug\"
-xcopy /e /y /i "$(ProjectDir)Resources\" "$(SolutionDir)_SampleScenarios\BveEx\Debug\Resources\PluginHost\"</PostBuildEvent>
+    <PostBuildEvent>xcopy /y /i "$(TargetDir)" "$(SolutionDir)_out\BveEx\Debug\"
+xcopy /e /y /i "$(ProjectDir)Resources\" "$(SolutionDir)_out\BveEx\Debug\Resources\PluginHost\"</PostBuildEvent>
   </PropertyGroup>
 </Project>

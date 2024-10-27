@@ -55,7 +55,7 @@ namespace BveTypes.ClassWrappers
         /// <see cref="Needle"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         /// <param name="timeManager">針の振動の計算に用いる <see cref="TimeManager"/>。</param>
-        public Needle(TimeManager timeManager) : this(Constructor.Invoke(new object[] { timeManager.Src }))
+        public Needle(TimeManager timeManager) : this(Constructor.Invoke(new object[] { timeManager?.Src }))
         {
         }
 

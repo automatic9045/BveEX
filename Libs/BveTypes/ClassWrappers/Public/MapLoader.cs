@@ -78,7 +78,7 @@ namespace BveTypes.ClassWrappers
         /// <param name="cameraLocation"><see cref="Sound"/> を読み込む際に指定する <see cref="ClassWrappers.CameraLocation"/>。</param>
         /// <param name="skipLoadStructures">ストラクチャーの読込をスキップするかどうか。</param>
         public MapLoader(LoadingProgressForm loadingProgressForm, string filePath, DirectSound directSound, TimeManager timeManager, Route route, CameraLocation cameraLocation, bool skipLoadStructures)
-            : this(Constructor.Invoke(new object[] { loadingProgressForm.Src, filePath, directSound, timeManager.Src, route.Src, cameraLocation.Src, skipLoadStructures }))
+            : this(Constructor.Invoke(new object[] { loadingProgressForm?.Src, filePath, directSound, timeManager?.Src, route?.Src, cameraLocation?.Src, skipLoadStructures }))
         {
         }
 
@@ -90,7 +90,7 @@ namespace BveTypes.ClassWrappers
         public LoadingProgressForm LoadingProgressForm
         {
             get => ClassWrappers.LoadingProgressForm.FromSource(LoadingProgressFormField.GetValue(Src));
-            set => LoadingProgressFormField.SetValue(Src, value.Src);
+            set => LoadingProgressFormField.SetValue(Src, value?.Src);
         }
 
         private static FastField TimeManagerField;
@@ -100,7 +100,7 @@ namespace BveTypes.ClassWrappers
         public TimeManager TimeManager
         {
             get => ClassWrappers.TimeManager.FromSource(TimeManagerField.GetValue(Src));
-            set => TimeManagerField.SetValue(Src, value.Src);
+            set => TimeManagerField.SetValue(Src, value?.Src);
         }
 
         private static FastField RouteField;
@@ -110,7 +110,7 @@ namespace BveTypes.ClassWrappers
         public Route Route
         {
             get => ClassWrappers.Route.FromSource(RouteField.GetValue(Src));
-            set => RouteField.SetValue(Src, value.Src);
+            set => RouteField.SetValue(Src, value?.Src);
         }
 
         private static FastField DirectSoundField;
@@ -144,7 +144,7 @@ namespace BveTypes.ClassWrappers
                 IDictionary dictionarySrc = StationsField.GetValue(Src);
                 return new WrappedSortedList<string, Station>(dictionarySrc);
             }
-            set => VariablesField.SetValue(Src, value.Src);
+            set => VariablesField.SetValue(Src, value?.Src);
         }
 
         private static FastField CurrentLocationField;
@@ -184,7 +184,7 @@ namespace BveTypes.ClassWrappers
         public CameraLocation CameraLocation
         {
             get => ClassWrappers.CameraLocation.FromSource(CameraLocationField.GetValue(Src));
-            set => CameraLocationField.SetValue(Src, value.Src);
+            set => CameraLocationField.SetValue(Src, value?.Src);
         }
 
         private static FastField StatementsField;
@@ -194,7 +194,7 @@ namespace BveTypes.ClassWrappers
         public MapStatementList Statements
         {
             get => MapStatementList.FromSource(StatementsField.GetValue(Src));
-            set => StatementsField.SetValue(Src, value.Src);
+            set => StatementsField.SetValue(Src, value?.Src);
         }
 
 
@@ -218,7 +218,7 @@ namespace BveTypes.ClassWrappers
         /// 1 つのステートメントを構文解析します。
         /// </summary>
         /// <param name="clauses">ステートメントを構成する句の一覧。</param>
-        public void ParseStatement(WrappedList<MapStatementClause> clauses) => ParseStatementMethod.Invoke(Src, new object[] { clauses.Src });
+        public void ParseStatement(WrappedList<MapStatementClause> clauses) => ParseStatementMethod.Invoke(Src, new object[] { clauses?.Src });
 
         private static FastMethod LoadSound3DListMethod;
         /// <summary>

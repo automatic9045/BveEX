@@ -103,6 +103,6 @@ namespace BveTypes.ClassWrappers
         /// <param name="direct3DProvider">描画に使用する <see cref="Direct3DProvider"/>。</param>
         /// <param name="view">ビュー変換行列。</param>
         public void Draw(Direct3DProvider direct3DProvider, Matrix view)
-            => DrawMethod.Invoke(Src, new object[] { direct3DProvider.Src, view });
+            => DrawMethod.Invoke(Src, new object[] { direct3DProvider?.Src, view });
     }
 }

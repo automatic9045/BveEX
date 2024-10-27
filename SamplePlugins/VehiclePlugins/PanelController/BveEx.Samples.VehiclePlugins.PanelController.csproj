@@ -66,6 +66,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /y /i "$(TargetDir)" "$(SolutionDir)_SampleScenarios\BveEx.Samples\Vehicles\Basic\BveExPlugins\"</PostBuildEvent>
+    <PostBuildEvent>xcopy /y /i "$(TargetDir)" "$(SolutionDir)_out\Scenarios\BveEx.Samples\Vehicles\Basic\BveExPlugins\"</PostBuildEvent>
   </PropertyGroup>
 </Project>

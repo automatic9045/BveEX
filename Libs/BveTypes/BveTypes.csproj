@@ -269,6 +269,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /e /y /i "$(ProjectDir)Resources\" "$(SolutionDir)_SampleScenarios\BveEx\Debug\Resources\BveTypes\"</PostBuildEvent>
+    <PostBuildEvent>xcopy /e /y /i "$(ProjectDir)Resources\" "$(SolutionDir)_out\BveEx\Debug\Resources\BveTypes\"</PostBuildEvent>
   </PropertyGroup>
 </Project>

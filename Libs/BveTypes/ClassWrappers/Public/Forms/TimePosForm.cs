@@ -46,7 +46,7 @@ namespace BveTypes.ClassWrappers
         /// 指定したシナリオに基づいてダイヤグラムの表示を初期化します。
         /// </summary>
         /// <param name="scenario">シナリオを表す <see cref="Scenario"/>。</param>
-        public void SetScenario(Scenario scenario) => SetScenarioMethod.Invoke(Src, new object[] { scenario.Src });
+        public void SetScenario(Scenario scenario) => SetScenarioMethod.Invoke(Src, new object[] { scenario?.Src });
 
         private static FastMethod DrawMethod;
         /// <summary>

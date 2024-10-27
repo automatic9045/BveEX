@@ -123,6 +123,6 @@ namespace BveTypes.ClassWrappers
         /// <param name="view">ビュー変換行列。</param>
         /// <param name="skipZWrite">深度バッファーへの書き込みをスキップするか。</param>
         public void Draw(Direct3DProvider direct3DProvider, Matrix view, bool skipZWrite)
-            => DrawMethod.Invoke(Src, new object[] { direct3DProvider.Src, view, skipZWrite });
+            => DrawMethod.Invoke(Src, new object[] { direct3DProvider?.Src, view, skipZWrite });
     }
 }

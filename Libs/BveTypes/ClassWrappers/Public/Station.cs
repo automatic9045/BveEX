@@ -326,7 +326,7 @@ namespace BveTypes.ClassWrappers
         public Sound DepartureSound
         {
             get => Sound.FromSource(DepartureSoundGetMethod.Invoke(Src, null));
-            set => DepartureSoundSetMethod.Invoke(Src, new object[] { value.Src });
+            set => DepartureSoundSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
         /// <summary>
@@ -347,7 +347,7 @@ namespace BveTypes.ClassWrappers
         public Sound ArrivalSound
         {
             get => Sound.FromSource(ArrivalSoundGetMethod.Invoke(Src, null));
-            set => ArrivalSoundSetMethod.Invoke(Src, new object[] { value.Src });
+            set => ArrivalSoundSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
         private static FastMethod SignalFlagGetMethod;

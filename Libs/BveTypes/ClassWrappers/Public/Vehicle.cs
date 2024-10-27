@@ -76,7 +76,7 @@ namespace BveTypes.ClassWrappers
         /// <param name="route">使用するマップ。</param>
         /// <param name="sectionManager">閉そくを制御するための <see cref="SectionManager" />。</param>
         public Vehicle(AssistantDrawer assistantDrawer, DirectSound directSound, KeyProvider keyProvider, TimeManager timeManager, UserVehicleLocationManager locationManager, CameraLocation cameraLocation, Route route, SectionManager sectionManager)
-            : this(Constructor.Invoke(new object[] { assistantDrawer.Src, directSound, keyProvider.Src, timeManager.Src, locationManager.Src, cameraLocation.Src, route.Src, sectionManager.Src }))
+            : this(Constructor.Invoke(new object[] { assistantDrawer?.Src, directSound, keyProvider?.Src, timeManager?.Src, locationManager?.Src, cameraLocation?.Src, route?.Src, sectionManager?.Src }))
         {
         }
 
@@ -88,7 +88,7 @@ namespace BveTypes.ClassWrappers
         public VehicleInstrumentSet Instruments
         {
             get => VehicleInstrumentSet.FromSource(InstrumentsGetMethod.Invoke(Src, null));
-            set => InstrumentsSetMethod.Invoke(Src, new object[] { value.Src });
+            set => InstrumentsSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
         private static FastMethod VibrationManagerGetMethod;
@@ -99,7 +99,7 @@ namespace BveTypes.ClassWrappers
         public VehicleVibrationManager VibrationManager
         {
             get => VehicleVibrationManager.FromSource(VibrationManagerGetMethod.Invoke(Src, null));
-            set => VibrationManagerSetMethod.Invoke(Src, new object[] { value.Src });
+            set => VibrationManagerSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
         private static FastMethod PanelGetMethod;
@@ -122,7 +122,7 @@ namespace BveTypes.ClassWrappers
         public DoorSet Doors
         {
             get => DoorSet.FromSource(DoorsGetMethod.Invoke(Src, null));
-            set => DoorsSetMethod.Invoke(Src, new object[] { value.Src });
+            set => DoorsSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
         private static FastMethod DynamicsGetMethod;
@@ -133,7 +133,7 @@ namespace BveTypes.ClassWrappers
         public VehicleDynamics Dynamics
         {
             get => VehicleDynamics.FromSource(DynamicsGetMethod.Invoke(Src, null));
-            set => DynamicsSetMethod.Invoke(Src, new object[] { value.Src });
+            set => DynamicsSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
         private static FastMethod PassengerGetMethod;
@@ -144,7 +144,7 @@ namespace BveTypes.ClassWrappers
         public Passenger Passenger
         {
             get => ClassWrappers.Passenger.FromSource(PassengerGetMethod.Invoke(Src, null));
-            set => PassengerSetMethod.Invoke(Src, new object[] { value.Src });
+            set => PassengerSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
         private static FastField CameraLocationField;
@@ -154,7 +154,7 @@ namespace BveTypes.ClassWrappers
         public CameraLocation CameraLocation
         {
             get => ClassWrappers.CameraLocation.FromSource(CameraLocationField.GetValue(Src));
-            set => CameraLocationField.SetValue(Src, value.Src);
+            set => CameraLocationField.SetValue(Src, value?.Src);
         }
 
         private static FastMethod InitializeMethod;

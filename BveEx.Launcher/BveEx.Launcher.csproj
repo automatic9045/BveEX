@@ -116,6 +116,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /e /y /i "$(TargetDir)" "$(SolutionDir)_SampleScenarios\BveEx\"</PostBuildEvent>
+    <PostBuildEvent>xcopy /e /y /i "$(TargetDir)" "$(SolutionDir)_out\BveEx\"</PostBuildEvent>
   </PropertyGroup>
 </Project>

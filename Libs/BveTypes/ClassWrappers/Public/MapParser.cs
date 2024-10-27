@@ -91,7 +91,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         /// <param name="clauses">構文の句の一覧。</param>
         /// <param name="node">システム変数の取得 (例: <c>Beacon.Put(1, 0, distance);</c> の <c>distance</c>) を表す構文木。</param>
-        public object GetSystemVariable(WrappedList<MapStatementClause> clauses, ParseTreeNode node) => GetSystemVariableMethod.Invoke(Src, new object[] { clauses.Src, node });
+        public object GetSystemVariable(WrappedList<MapStatementClause> clauses, ParseTreeNode node) => GetSystemVariableMethod.Invoke(Src, new object[] { clauses?.Src, node });
 
         private static FastMethod InvokeFunctionMethod;
         /// <summary>
@@ -99,7 +99,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         /// <param name="clauses">構文の句の一覧。</param>
         /// <param name="node">関数 (例: <c>abs(1.23);</c>) を表す構文木。</param>
-        public object InvokeFunction(WrappedList<MapStatementClause> clauses, ParseTreeNode node) => InvokeFunctionMethod.Invoke(Src, new object[] { clauses.Src, node });
+        public object InvokeFunction(WrappedList<MapStatementClause> clauses, ParseTreeNode node) => InvokeFunctionMethod.Invoke(Src, new object[] { clauses?.Src, node });
 
         private static FastMethod CalculateSignMethod;
         /// <summary>

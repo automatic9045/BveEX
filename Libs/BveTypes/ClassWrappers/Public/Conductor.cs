@@ -70,7 +70,7 @@ namespace BveTypes.ClassWrappers
         public TimeManager TimeManager
         {
             get => ClassWrappers.TimeManager.FromSource(TimeManagerField.GetValue(Src));
-            set => TimeManagerField.SetValue(Src, value.Src);
+            set => TimeManagerField.SetValue(Src, value?.Src);
         }
 
         private static FastField LocationManagerField;
@@ -80,7 +80,7 @@ namespace BveTypes.ClassWrappers
         public UserVehicleLocationManager LocationManager
         {
             get => UserVehicleLocationManager.FromSource(LocationManagerField.GetValue(Src));
-            set => LocationManagerField.SetValue(Src, value.Src);
+            set => LocationManagerField.SetValue(Src, value?.Src);
         }
 
         private static FastField SoundsField;
@@ -90,7 +90,7 @@ namespace BveTypes.ClassWrappers
         public SoundSet Sounds
         {
             get => SoundSet.FromSource(SoundsField.GetValue(Src));
-            set => SoundsField.SetValue(Src, value.Src);
+            set => SoundsField.SetValue(Src, value?.Src);
         }
 
         private static FastField StationsField;
@@ -100,7 +100,7 @@ namespace BveTypes.ClassWrappers
         public MapObjectList Stations
         {
             get => MapObjectList.FromSource(StationsField.GetValue(Src));
-            set => StationsField.SetValue(Src, value.Src);
+            set => StationsField.SetValue(Src, value?.Src);
         }
 
         private static FastField SectionManagerField;
@@ -110,7 +110,7 @@ namespace BveTypes.ClassWrappers
         public SectionManager SectionManager
         {
             get => ClassWrappers.SectionManager.FromSource(SectionManagerField.GetValue(Src));
-            set => SectionManagerField.SetValue(Src, value.Src);
+            set => SectionManagerField.SetValue(Src, value?.Src);
         }
 
         private static FastField DoorsField;
@@ -120,7 +120,7 @@ namespace BveTypes.ClassWrappers
         public DoorSet Doors
         {
             get => DoorSet.FromSource(DoorsField.GetValue(Src));
-            set => DoorsField.SetValue(Src, value.Src);
+            set => DoorsField.SetValue(Src, value?.Src);
         }
 
         private static FastField PassengerField;
@@ -130,7 +130,7 @@ namespace BveTypes.ClassWrappers
         public Passenger Passenger
         {
             get => ClassWrappers.Passenger.FromSource(PassengerField.GetValue(Src));
-            set => PassengerField.SetValue(Src, value.Src);
+            set => PassengerField.SetValue(Src, value?.Src);
         }
 
         private static FastField StoppedToDoorOpeningMillisecondsField;

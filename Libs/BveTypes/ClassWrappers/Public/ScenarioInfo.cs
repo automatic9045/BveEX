@@ -179,7 +179,7 @@ namespace BveTypes.ClassWrappers
         public RandomFileList RouteFiles
         {
             get => RandomFileList.FromSource(RouteFilesGetMethod.Invoke(Src, null));
-            internal set => RouteFilesSetMethod.Invoke(Src, new object[] { value.Src } );
+            internal set => RouteFilesSetMethod.Invoke(Src, new object[] { value?.Src } );
         }
 
         private static FastMethod VehicleFilesGetMethod;
@@ -190,7 +190,7 @@ namespace BveTypes.ClassWrappers
         public RandomFileList VehicleFiles
         {
             get => RandomFileList.FromSource(VehicleFilesGetMethod.Invoke(Src, null));
-            internal set => VehicleFilesSetMethod.Invoke(Src, new object[] { value.Src } );
+            internal set => VehicleFilesSetMethod.Invoke(Src, new object[] { value?.Src } );
         }
 
         private static FastMethod RouteTitleGetMethod;
@@ -223,7 +223,7 @@ namespace BveTypes.ClassWrappers
         public WrappedList<LoadError> ScenarioFileLoadErrors
         {
             get => WrappedList<LoadError>.FromSource((IList)ScenarioFileLoadErrorsGetMethod.Invoke(Src, null));
-            internal set => ScenarioFileLoadErrorsSetMethod.Invoke(Src, value.Src);
+            internal set => ScenarioFileLoadErrorsSetMethod.Invoke(Src, value?.Src);
         }
     }
 }

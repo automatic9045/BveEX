@@ -63,7 +63,7 @@ namespace BveTypes.ClassWrappers
         public Physical X
         {
             get => Physical.FromSource(XField.GetValue(Src));
-            set => XField.SetValue(Src, value.Src);
+            set => XField.SetValue(Src, value?.Src);
         }
 
         private static FastField YField;
@@ -73,7 +73,7 @@ namespace BveTypes.ClassWrappers
         public Physical Y
         {
             get => Physical.FromSource(YField.GetValue(Src));
-            set => YField.SetValue(Src, value.Src);
+            set => YField.SetValue(Src, value?.Src);
         }
 
         private static FastField RotationZField;
@@ -83,7 +83,7 @@ namespace BveTypes.ClassWrappers
         public Physical RotationZ
         {
             get => Physical.FromSource(RotationZField.GetValue(Src));
-            set => RotationZField.SetValue(Src, value.Src);
+            set => RotationZField.SetValue(Src, value?.Src);
         }
 
         private static FastField PositionInBlockField;
@@ -97,13 +97,13 @@ namespace BveTypes.ClassWrappers
         }
 
         private static FastMethod OnLocationChangedMethod;
-        private void OnLocationChanged(object sender, ValueEventArgs<double> e) => OnLocationChangedMethod.Invoke(Src, new object[] { sender, e.Src });
+        private void OnLocationChanged(object sender, ValueEventArgs<double> e) => OnLocationChangedMethod.Invoke(Src, new object[] { sender, e?.Src });
 
         /// <summary>
         /// 自列車が移動したときに呼び出されます。
         /// </summary>
         /// <param name="sender">イベントのソース。</param>
         /// <param name="e">イベントデータを格納している <see cref="ValueEventArgs{T}"/> (T は <see cref="double"/>)。<see cref="ValueEventArgs{T}.Value"/> は自列車の走行距離程の変位 [m] です。</param>
-        public void OnLocationChanged(VehicleBogieWheel sender, ValueEventArgs<double> e) => OnLocationChanged(sender.Src, e);
+        public void OnLocationChanged(VehicleBogieWheel sender, ValueEventArgs<double> e) => OnLocationChanged(sender?.Src, e);
     }
 }

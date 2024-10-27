@@ -107,7 +107,7 @@ namespace BveTypes.ClassWrappers
         /// <remarks>
         /// 通常は <see cref="LoadErrorManager.Throw(LoadError)"/> メソッドを使用してください。
         /// </remarks>
-        public void ThrowError(LoadError error) => ThrowErrorMethod2.Invoke(Src, new object[] { error.Src });
+        public void ThrowError(LoadError error) => ThrowErrorMethod2.Invoke(Src, new object[] { error?.Src });
 
         private static FastMethod ThrowErrorsMethod;
         /// <summary>
@@ -117,7 +117,7 @@ namespace BveTypes.ClassWrappers
         /// <remarks>
         /// 通常は <see cref="LoadErrorManager.Throw(LoadError)"/> メソッドを使用してください。
         /// </remarks>
-        public void ThrowErrors(IEnumerable<LoadError> errors) => ThrowErrorsMethod.Invoke(Src, new object[] { errors.Select(error => error.Src) });
+        public void ThrowErrors(IEnumerable<LoadError> errors) => ThrowErrorsMethod.Invoke(Src, new object[] { errors.Select(error => error?.Src) });
 
         private static FastMethod SetProgressMethod;
         /// <summary>

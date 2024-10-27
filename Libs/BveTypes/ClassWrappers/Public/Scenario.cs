@@ -130,6 +130,6 @@ namespace BveTypes.ClassWrappers
         /// ストラクチャーと運転台パネルを描画します。
         /// </summary>
         /// <param name="direct3DProvider">描画に使用する <see cref="Direct3DProvider"/>。</param>
-        public void Draw(Direct3DProvider direct3DProvider) => DrawMethod.Invoke(Src, new object[] { direct3DProvider.Src });
+        public void Draw(Direct3DProvider direct3DProvider) => DrawMethod.Invoke(Src, new object[] { direct3DProvider?.Src });
     }
 }

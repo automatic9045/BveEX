@@ -142,7 +142,7 @@ namespace BveTypes.ClassWrappers
         public CarInfo FirstCar
         {
             get => CarInfo.FromSource(FirstCarGetMethod.Invoke(Src, null));
-            set => FirstCarSetMethod.Invoke(Src, new object[] { value.Src });
+            set => FirstCarSetMethod.Invoke(Src, new object[] { value?.Src });
         }
     }
 }
