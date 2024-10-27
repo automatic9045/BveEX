@@ -50,12 +50,7 @@ namespace BveEx.Caller.InputDevice
                 MessageBox.Show($"エラーコード CI-1: BveEX Launcher が見つかりません。\n\n指定された場所:\n{launcherLocation}", ErrorCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            AppDomain.CurrentDomain.AssemblyResolve += (sender, e) =>
-            {
-                AssemblyName assemblyName = new AssemblyName(e.Name);
-                return assemblyName.Name == LauncherName ? Assembly.LoadFrom(launcherLocation) : null;
-            };
-
+            AppDomain.CurrentDomain.AssemblyResolve += AssemblyResolve;
             try
             {
                 Load();
@@ -63,6 +58,21 @@ namespace BveEx.Caller.InputDevice
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), ErrorCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+            Assembly AssemblyResolve(object sender, ResolveEventArgs e)
+            {
+                AssemblyName assemblyName = new AssemblyName(e.Name);
+                if (assemblyName.Name == LauncherName)
+                {
+                    AppDomain.CurrentDomain.AssemblyResolve -= AssemblyResolve;
+                    return Assembly.LoadFrom(launcherLocation);
+                }
+                else
+                {
+                    return null;
+                }
             }
 
             void Load()

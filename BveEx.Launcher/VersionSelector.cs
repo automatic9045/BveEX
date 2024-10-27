@@ -80,21 +80,6 @@ namespace BveEx.Launcher
                 throw new NotSupportedException();
             }
 
-            AppDomain.CurrentDomain.AssemblyResolve += (sender, e) =>
-            {
-                AssemblyName assemblyName = new AssemblyName(e.Name);
-                switch (assemblyName.Name)
-                {
-                    case "BveEx.Diagnostics":
-                        string diagnosticsPath = Path.Combine(rootDirectory, assemblyName.Name + ".dll");
-                        return Assembly.LoadFrom(diagnosticsPath);
-
-                    default:
-                        string path = Path.Combine(bveExAssemblyDirectory, assemblyName.Name + ".dll");
-                        return File.Exists(path) ? Assembly.LoadFrom(path) : null;
-                }
-            };
-
             SplashForm.ProgressText = "アップデートを確認しています...";
 
             if (ServicePointManager.SecurityProtocol.HasFlag(SecurityProtocolType.Tls) || ServicePointManager.SecurityProtocol.HasFlag(SecurityProtocolType.Tls11))
@@ -108,6 +93,7 @@ namespace BveEx.Launcher
 
             SplashForm.ProgressText = "BveEX を起動しています...";
 
+            AppDomain.CurrentDomain.AssemblyResolve += AssemblyResolve;
             try
             {
                 CoreHost = new CoreHostAsInputDevice(callerAssembly, BveFinder);
@@ -115,6 +101,22 @@ namespace BveEx.Launcher
             finally
             {
                 if (!SplashProcess.HasExited) SplashProcess.Kill();
+            }
+
+
+            Assembly AssemblyResolve(object sender, ResolveEventArgs e)
+            {
+                AssemblyName assemblyName = new AssemblyName(e.Name);
+                switch (assemblyName.Name)
+                {
+                    case "BveEx.Diagnostics":
+                        string diagnosticsPath = Path.Combine(rootDirectory, assemblyName.Name + ".dll");
+                        return Assembly.LoadFrom(diagnosticsPath);
+
+                    default:
+                        string path = Path.Combine(bveExAssemblyDirectory, assemblyName.Name + ".dll");
+                        return File.Exists(path) ? Assembly.LoadFrom(path) : null;
+                }
             }
         }
     }
