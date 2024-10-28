@@ -12,5 +12,16 @@ namespace BveEx.BveHackerServices
         {
             return text.StartsWith("[[bveex::nompi]]", StringComparison.OrdinalIgnoreCase);
         }
+
+        public static bool IsLegacyHeader(string text)
+        {
+            return IsHeader("[[", "]]") || IsHeader("<", ">");
+
+
+            bool IsHeader(string startBracket, string endBracket)
+            {
+                return text.StartsWith(startBracket + "atsex::", StringComparison.OrdinalIgnoreCase) && text.Contains(endBracket);
+            }
+        }
     }
 }

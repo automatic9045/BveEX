@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AtsEx">
+      <HintPath>..\LocalReferences\Legacy\AtsEx.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Markdig, Version=0.37.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Markdig.0.37.0\lib\net462\Markdig.dll</HintPath>
     </Reference>
@@ -65,10 +69,12 @@
   <ItemGroup>
     <Compile Include="ErrorDialog.cs" />
     <Compile Include="Hosting\UpdateChecker.cs" />
-    <Compile Include="CoreHostAsInputDevice.cs" />
+    <Compile Include="CoreHost.cs" />
+    <Compile Include="ICoreHost.cs" />
     <Compile Include="InputEventArgs.cs" />
     <Compile Include="LauncherCompatibilityVersionAttribute.cs" />
     <Compile Include="LauncherVersionChecker.cs" />
+    <Compile Include="LegacyCoreHost.cs" />
     <Compile Include="Resources.cs" />
     <Compile Include="VersionSelector.cs" />
     <Compile Include="Hosting\TargetBveFinder.cs" />

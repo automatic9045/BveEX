@@ -32,10 +32,14 @@ namespace BveEx.Launcher
         private readonly Process SplashProcess;
         private readonly SplashFormInfo SplashForm;
 
-        public CoreHostAsInputDevice CoreHost { get; }
+        public ICoreHost CoreHost { get; }
 
         public VersionSelector(Assembly callerAssembly)
         {
+            string[] commandLineArgs = Environment.GetCommandLineArgs();
+            bool isLegacyMode = commandLineArgs.Contains("/bveex-legacy", StringComparer.OrdinalIgnoreCase);
+            string productName = isLegacyMode ? "BveEX レガシーモード (AtsEX)" : "BveEX";
+
             Assembly launcherAssembly = Assembly.GetExecutingAssembly();
             string rootDirectory = Path.GetDirectoryName(launcherAssembly.Location);
 
@@ -50,32 +54,39 @@ namespace BveEx.Launcher
             }
 
             SplashForm = (SplashFormInfo)Activator.GetObject(typeof(SplashFormInfo), $"ipc://{channelGuid}/{nameof(SplashFormInfo)}");
-            SplashForm.ProgressText = "BveEX を探しています...";
+            SplashForm.ProgressText = $"{productName} を探しています...";
 
-            string bveExAssemblyDirectory;
-#if DEBUG
-            bveExAssemblyDirectory = Path.Combine(rootDirectory, "Debug");
-#else
-            IEnumerable<string> availableDirectories = Directory.GetDirectories(rootDirectory).Where(x => x.Contains('.'));
-            IEnumerable<(string Directory, AssemblyName AssemblyName)> bveExAssemblies = availableDirectories
-                .Select(x => (Directory: x, Location: Path.Combine(x, "BveEx.dll")))
-                .Where(x => File.Exists(x.Location))
-                .Select(x => (x.Directory, AssemblyName: AssemblyName.GetAssemblyName(x.Location)))
-                .OrderBy(x => x.AssemblyName.Version);
-
-            if (!bveExAssemblies.Any())
+            string exAssemblyDirectory;
+            if (isLegacyMode)
             {
-                ErrorDialog.Show(4, $"BveEX 本体の読込に失敗しました。候補となる BveEX 本体フォルダが見つかりませんでした。",
-                    "BveEX を再インストールしてください。");
-                throw new NotSupportedException();
+                exAssemblyDirectory = Path.Combine(rootDirectory, "Legacy");
+            }
+            else
+            {
+#if DEBUG
+                exAssemblyDirectory = Path.Combine(rootDirectory, "Debug");
+#else
+                IEnumerable<string> availableDirectories = Directory.GetDirectories(rootDirectory).Where(x => x.Contains('.'));
+                IEnumerable<(string Directory, AssemblyName AssemblyName)> bveExAssemblies = availableDirectories
+                    .Select(x => (Directory: x, Location: Path.Combine(x, "BveEx.dll")))
+                    .Where(x => File.Exists(x.Location))
+                    .Select(x => (x.Directory, AssemblyName: AssemblyName.GetAssemblyName(x.Location)))
+                    .OrderBy(x => x.AssemblyName.Version);
+
+                if (!bveExAssemblies.Any())
+                {
+                    ErrorDialog.Show(4, $"BveEX 本体の読込に失敗しました。候補となる BveEX 本体フォルダが見つかりませんでした。",
+                        "BveEX を再インストールしてください。");
+                    throw new NotSupportedException();
+                }
+
+                bveExAssemblyDirectory = bveExAssemblies.Last().Directory; // TODO: バージョンを選択できるようにする
+#endif
             }
 
-            bveExAssemblyDirectory = bveExAssemblies.Last().Directory; // TODO: バージョンを選択できるようにする
-#endif
-
-            if (!Directory.Exists(bveExAssemblyDirectory))
+            if (!Directory.Exists(exAssemblyDirectory))
             {
-                ErrorDialog.Show(3, $"BveEX 本体の読込に失敗しました。フォルダ '{bveExAssemblyDirectory}' が見つかりませんでした。",
+                ErrorDialog.Show(3, $"{productName} 本体の読込に失敗しました。フォルダ '{exAssemblyDirectory}' が見つかりませんでした。",
                     "BveEX を再インストールしてください。");
                 throw new NotSupportedException();
             }
@@ -91,12 +102,12 @@ namespace BveEx.Launcher
 
             UpdateChecker.CheckUpdates();
 
-            SplashForm.ProgressText = "BveEX を起動しています...";
+            SplashForm.ProgressText = $"{productName} を起動しています...";
 
             AppDomain.CurrentDomain.AssemblyResolve += AssemblyResolve;
             try
             {
-                CoreHost = new CoreHostAsInputDevice(callerAssembly, BveFinder);
+                CoreHost = isLegacyMode ? (ICoreHost)new LegacyCoreHost(callerAssembly, BveFinder) : new CoreHost(callerAssembly, BveFinder);
             }
             finally
             {
@@ -109,12 +120,13 @@ namespace BveEx.Launcher
                 AssemblyName assemblyName = new AssemblyName(e.Name);
                 switch (assemblyName.Name)
                 {
+                    case "AtsEx.Diagnostics":
                     case "BveEx.Diagnostics":
                         string diagnosticsPath = Path.Combine(rootDirectory, assemblyName.Name + ".dll");
                         return Assembly.LoadFrom(diagnosticsPath);
 
                     default:
-                        string path = Path.Combine(bveExAssemblyDirectory, assemblyName.Name + ".dll");
+                        string path = Path.Combine(exAssemblyDirectory, assemblyName.Name + ".dll");
                         return File.Exists(path) ? Assembly.LoadFrom(path) : null;
                 }
             }

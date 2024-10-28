@@ -9,6 +9,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
 
+using BveEx.Launching;
 using BveEx.Plugins.Native;
 using BveEx.Plugins.Scripting;
 using BveEx.PluginHost;
@@ -45,8 +46,13 @@ namespace BveEx.Plugins
         public static PluginSourceSet FromPluginUsing(PluginType pluginType, bool allowNonPluginAssembly, string listPath)
         {
             XDocument doc = XDocument.Load(listPath, LoadOptions.SetLineInfo);
-            doc.Validate(SchemaSet, DocumentValidation);
 
+            if (doc.Root.Name.LocalName == "AtsExPluginUsing")
+            {
+                throw new LaunchModeException();
+            }
+
+            doc.Validate(SchemaSet, DocumentValidation);
             XElement root = doc.Element("BveExPluginUsing");
 
             List<IPluginPackage> pluginPackages = root.Elements().Select<XElement, IPluginPackage>(element =>

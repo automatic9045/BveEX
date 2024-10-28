@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,6 +16,7 @@ using BveEx.PluginHost;
 using BveEx.PluginHost.Plugins;
 using BveEx.PluginHost.Plugins.Extensions;
 
+using BveEx.Launching;
 using BveEx.Native;
 using BveEx.Plugins.Extensions;
 
@@ -76,6 +78,7 @@ namespace BveEx
         public BveEx(BveTypeSet bveTypes)
         {
             BveHacker = new BveHacker(bveTypes);
+            AppDomain.CurrentDomain.FirstChanceException += OnFirstChanceException;
 
             ClassMemberSet mainFormMembers = BveHacker.BveTypes.GetClassInfoOf<MainForm>();
             ClassMemberSet scenarioMembers = BveHacker.BveTypes.GetClassInfoOf<Scenario>();
@@ -95,6 +98,8 @@ namespace BveEx
 
         public void Dispose()
         {
+            AppDomain.CurrentDomain.FirstChanceException -= OnFirstChanceException;
+
             if (BveHacker.IsConfigFormReady)
             {
                 string header = string.Format(Resources.Value.ManualDisposeHeader.Value, App.Instance.ProductShortName);
@@ -114,6 +119,14 @@ namespace BveEx
             VersionFormProvider.Dispose();
             ExtensionService.Dispose();
             BveHacker.Dispose();
+        }
+
+        private void OnFirstChanceException(object sender, FirstChanceExceptionEventArgs e)
+        {
+            if (e.Exception is LaunchModeException)
+            {
+                LaunchModeManager.RestartAsLegacyMode(BveHacker.ScenarioInfo?.Path);
+            }
         }
 
         public void Tick(TimeSpan elapsed)

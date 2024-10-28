@@ -14,6 +14,8 @@ using Irony.Parsing;
 using ObjectiveHarmonyPatch;
 using TypeWrapping;
 
+using BveEx.Launching;
+
 namespace BveEx.BveHackerServices
 {
     internal class MapLoaderHacker : IDisposable
@@ -48,7 +50,11 @@ namespace BveEx.BveHackerServices
                 ParseTreeNode node = (ParseTreeNode)e.Args[0];
                 string argText = Convert.ToString(node.ChildNodes[1].Token?.Value);
 
-                if (!HeaderParser.IsNoMapPluginHeader(argText))
+                if (HeaderParser.IsLegacyHeader(argText))
+                {
+                    throw new LaunchModeException();
+                }
+                else if (!HeaderParser.IsNoMapPluginHeader(argText))
                 {
                     object result = instance.GetValue(node.ChildNodes[1]);
                     MapLoader.Include(Convert.ToString(result));

@@ -13,6 +13,7 @@ using System.Xml.Schema;
 using UnembeddedResources;
 
 using BveEx.PluginHost.Plugins;
+using BveEx.Launching;
 
 namespace BveEx.Plugins.Scripting
 {
@@ -83,8 +84,13 @@ namespace BveEx.Plugins.Scripting
         public static ScriptPluginPackage Load(Identifier identifier, ScriptLanguage scriptLanguage, string path)
         {
             XDocument doc = XDocument.Load(path, LoadOptions.SetLineInfo);
-            doc.Validate(SchemaSet, DocumentValidation);
 
+            if (doc.Root.Name.LocalName == "AtsExScriptPluginPackageManifest")
+            {
+                throw new LaunchModeException();
+            }
+
+            doc.Validate(SchemaSet, DocumentValidation);
             XElement root = doc.Element("BveExScriptPluginPackageManifest");
 
             XElement infoElement = root.Element("Info");

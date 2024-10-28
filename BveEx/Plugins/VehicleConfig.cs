@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BveEx.Launching;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -80,8 +81,13 @@ namespace BveEx.Plugins
         public static VehicleConfig LoadFrom(string path)
         {
             XDocument doc = XDocument.Load(path, LoadOptions.SetLineInfo);
-            doc.Validate(SchemaSet, DocumentValidation);
 
+            if (doc.Root.Name.LocalName == "AtsExVehicleConfig")
+            {
+                throw new LaunchModeException();
+            }
+
+            doc.Validate(SchemaSet, DocumentValidation);
             XElement root = doc.Element("BveExVehicleConfig");
 
             VehicleConfig result = new VehicleConfig()
