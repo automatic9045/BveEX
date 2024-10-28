@@ -21,6 +21,7 @@ namespace AtsEx.BveHackerServices
     {
         private readonly MainForm MainForm;
 
+        private readonly HarmonyPatch OpenPatch;
         private readonly HarmonyPatch LoadPatch;
         private readonly HarmonyPatch UnloadPatch;
         private readonly HarmonyPatch InitializeTimeAndLocationMethodPatch;
@@ -49,17 +50,20 @@ namespace AtsEx.BveHackerServices
             ClassMemberSet mainFormMembers = bveTypes.GetClassInfoOf<MainForm>();
             ClassMemberSet scenarioMembers = bveTypes.GetClassInfoOf<Scenario>();
 
+            FastMethod openMethod = mainFormMembers.GetSourceMethodOf(nameof(BveTypes.ClassWrappers.MainForm.OpenScenario));
             FastMethod loadMethod = mainFormMembers.GetSourceMethodOf(nameof(BveTypes.ClassWrappers.MainForm.LoadScenario));
             FastMethod unloadMethod = mainFormMembers.GetSourceMethodOf(nameof(BveTypes.ClassWrappers.MainForm.UnloadScenario));
 
             FastMethod initializeTimeAndLocationMethod = scenarioMembers.GetSourceMethodOf(nameof(Scenario.InitializeTimeAndLocation));
             FastMethod initializeMethod = scenarioMembers.GetSourceMethodOf(nameof(Scenario.Initialize));
 
+            OpenPatch = CreateAndSetupPatch(openMethod.Source);
             LoadPatch = CreateAndSetupPatch(loadMethod.Source);
             UnloadPatch = CreateAndSetupPatch(unloadMethod.Source);
             InitializeTimeAndLocationMethodPatch = CreateAndSetupPatch(initializeTimeAndLocationMethod.Source, PatchType.Postfix);
             InitializeMethodPatch = CreateAndSetupPatch(initializeMethod.Source, PatchType.Postfix);
 
+            OpenPatch.Invoked += OnOpened;
             LoadPatch.Invoked += OnLoaded;
             UnloadPatch.Invoked += OnDisposed;
 
@@ -69,6 +73,19 @@ namespace AtsEx.BveHackerServices
                 HarmonyPatch patch = HarmonyPatch.Patch(nameof(ScenarioHacker), original, patchType);
                 return patch;
             }
+        }
+
+        private PatchInvokationResult OnOpened(object sender, PatchInvokedEventArgs e)
+        {
+            if (0 < e.Args.Length && (string)e.Args[0] == string.Empty)
+            {
+                MainForm instance = MainForm.FromSource(e.Instance);
+                instance.OpenScenario(null);
+
+                return new PatchInvokationResult(SkipModes.SkipPatches | SkipModes.SkipOriginal);
+            }
+
+            return PatchInvokationResult.DoNothing(e);
         }
 
         private PatchInvokationResult OnLoaded(object sender, PatchInvokedEventArgs e)
@@ -90,6 +107,7 @@ namespace AtsEx.BveHackerServices
 
         public void Dispose()
         {
+            OpenPatch.Dispose();
             LoadPatch.Dispose();
             UnloadPatch.Dispose();
             InitializeTimeAndLocationMethodPatch.Dispose();
