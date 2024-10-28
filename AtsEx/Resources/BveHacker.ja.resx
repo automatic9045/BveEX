@@ -120,6 +120,9 @@
   <data name="CannotGetScenario" xml:space="preserve">
     <value>シナリオの読込が完了していないため、{0} プロパティの値は取得できません。</value>
   </data>
+  <data name="LegacyMode" xml:space="preserve">
+    <value>レガシーモード</value>
+  </data>
   <data name="NoPluginLoaded" xml:space="preserve">
     <value>{0} の正常動作には、車両データに何らかの ATS プラグインが組み込まれている必要があります。</value>
   </data>

@@ -30,6 +30,7 @@ namespace AtsEx
 
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> CannotGetScenario { get; private set; }
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> NoPluginLoaded { get; private set; }
+            [ResourceStringHolder(nameof(Localizer))] public Resource<string> LegacyMode { get; private set; }
 
             public ResourceSet()
             {
@@ -60,6 +61,8 @@ namespace AtsEx
             StructureSetLifeProlonger = new StructureSetLifeProlonger(this);
 
             LoadErrorManager = new LoadErrorManager.LoadErrorManager(LoadingProgressForm);
+
+            MainFormSource.Text += $" @ {App.Instance.ProductShortName} {Resources.Value.LegacyMode.Value}";
 
             ScenarioHacker.ScenarioCreated += e =>
             {
