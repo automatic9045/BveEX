@@ -79,6 +79,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /e /y /i "$(TargetDir)" "$(SolutionDir)_out\AtsEx\Debug\Extensions"</PostBuildEvent>
+    <PostBuildEvent>xcopy /e /y /i "$(TargetDir)" "$(SolutionDir)_out\BveEx\Legacy\Extensions"</PostBuildEvent>
   </PropertyGroup>
 </Project>

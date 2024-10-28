@@ -1,4 +1,4 @@
-/AtsEx
+/BveEx
 
 /Scenarios/AtsEx.Samples/Maps/Basic/Samples/*/MapPlugins/*.dll
 /Scenarios/AtsEx.Samples/Maps/Basic/Samples/*/MapPlugins/*.pdb
@@ -17,4 +17,5 @@
 /Scenarios/AtsEx.Samples/Vehicles/E217r/Ats/Samples/*.dll.config
 /Scenarios/AtsEx.Samples/Vehicles/E217r/Ats/Samples/*.xml
 
+/Scenarios/BveEx.Samples
 /Scenarios/Uchibo20

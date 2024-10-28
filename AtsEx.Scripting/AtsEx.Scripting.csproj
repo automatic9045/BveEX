@@ -148,7 +148,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /y /i "$(TargetDir)" "$(SolutionDir)_out\AtsEx\Debug\"
-xcopy /e /y /i "$(ProjectDir)Resources\" "$(SolutionDir)_out\AtsEx\Debug\Resources\Scripting\"</PostBuildEvent>
+    <PostBuildEvent>xcopy /y /i "$(TargetDir)" "$(SolutionDir)_out\BveEx\Legacy\"
+xcopy /e /y /i "$(ProjectDir)Resources\" "$(SolutionDir)_out\BveEx\Legacy\Resources\Scripting\"</PostBuildEvent>
   </PropertyGroup>
 </Project>

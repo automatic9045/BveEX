@@ -59,4 +59,7 @@
     <EmbeddedResource Include="Logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /e /y /i "$(TargetDir)" "$(SolutionDir)_out\BveEx\"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
