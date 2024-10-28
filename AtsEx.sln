@@ -45,8 +45,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastCaching", "Libs\FastCac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Extensions.ExtendedBeacons", "Extensions\AtsEx.Extensions.ExtendedBeacons\AtsEx.Extensions.ExtendedBeacons.csproj", "{DEA13CE0-F2BC-45ED-8C35-3C970F634AC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Launcher", "AtsEx.Launcher\AtsEx.Launcher.csproj", "{A4645E87-8E06-4687-A7C8-9D015E5567F2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Samples.MapPlugins.PreTrainController", "SamplePlugins\MapPlugins\PreTrainController\AtsEx.Samples.MapPlugins.PreTrainController.csproj", "{381AF3E4-97FF-42AD-84C5-67111A2B482A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Samples.MapPlugins.SignalController", "SamplePlugins\MapPlugins\SignalController\AtsEx.Samples.MapPlugins.SignalController.csproj", "{8C69A759-3A3B-47AC-8D25-E29318AAB460}"
@@ -59,8 +57,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Samples.VehiclePlugin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Samples.MapPlugins.CooperatingWithVehiclePlugin", "SamplePlugins\MapPlugins\CooperatingWithVehiclePlugin\AtsEx.Samples.MapPlugins.CooperatingWithVehiclePlugin.csproj", "{944AEC7A-6F9A-4D24-B8C4-B95B84220985}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Caller.InputDevice", "AtsEx.Caller.InputDevice\AtsEx.Caller.InputDevice.csproj", "{23B1CB7F-B82F-49FA-9F2B-4A78547D71C2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Samples.VehiclePlugins.ConductorPatchTest", "SamplePlugins\VehiclePlugins\ConductorPatchTest\AtsEx.Samples.VehiclePlugins.ConductorPatchTest.csproj", "{A7E2204D-F68E-4638-89C4-A8ABD2A2A90C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Extensions.AtsArrayExtender", "Extensions\AtsEx.Extensions.AtsArrayExtender\AtsEx.Extensions.AtsArrayExtender.csproj", "{EA213D83-BD73-4890-A77B-7171FC3469A9}"
@@ -72,8 +68,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Samples.MapPlugins.SoundFactoryTest", "SamplePlugins\MapPlugins\SoundFactoryTest\AtsEx.Samples.MapPlugins.SoundFactoryTest.csproj", "{637CDEEB-4E42-41EA-9179-02DE33FF4C59}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Samples.VehiclePlugins.PanelController", "SamplePlugins\VehiclePlugins\PanelController\AtsEx.Samples.VehiclePlugins.PanelController.csproj", "{F715E19A-BFF1-418D-B6D2-40F54C6BB71F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Launcher.SplashScreen", "AtsEx.Launcher.SplashScreen\AtsEx.Launcher.SplashScreen.csproj", "{6B621F1A-289E-485A-9927-1A650AFA49BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -145,10 +139,6 @@ Global
 		{DEA13CE0-F2BC-45ED-8C35-3C970F634AC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DEA13CE0-F2BC-45ED-8C35-3C970F634AC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DEA13CE0-F2BC-45ED-8C35-3C970F634AC6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A4645E87-8E06-4687-A7C8-9D015E5567F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A4645E87-8E06-4687-A7C8-9D015E5567F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A4645E87-8E06-4687-A7C8-9D015E5567F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A4645E87-8E06-4687-A7C8-9D015E5567F2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{381AF3E4-97FF-42AD-84C5-67111A2B482A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{381AF3E4-97FF-42AD-84C5-67111A2B482A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{381AF3E4-97FF-42AD-84C5-67111A2B482A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -173,10 +163,6 @@ Global
 		{944AEC7A-6F9A-4D24-B8C4-B95B84220985}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{944AEC7A-6F9A-4D24-B8C4-B95B84220985}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{944AEC7A-6F9A-4D24-B8C4-B95B84220985}.Release|Any CPU.Build.0 = Release|Any CPU
-		{23B1CB7F-B82F-49FA-9F2B-4A78547D71C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{23B1CB7F-B82F-49FA-9F2B-4A78547D71C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{23B1CB7F-B82F-49FA-9F2B-4A78547D71C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{23B1CB7F-B82F-49FA-9F2B-4A78547D71C2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A7E2204D-F68E-4638-89C4-A8ABD2A2A90C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A7E2204D-F68E-4638-89C4-A8ABD2A2A90C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7E2204D-F68E-4638-89C4-A8ABD2A2A90C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -201,10 +187,6 @@ Global
 		{F715E19A-BFF1-418D-B6D2-40F54C6BB71F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F715E19A-BFF1-418D-B6D2-40F54C6BB71F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F715E19A-BFF1-418D-B6D2-40F54C6BB71F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6B621F1A-289E-485A-9927-1A650AFA49BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6B621F1A-289E-485A-9927-1A650AFA49BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6B621F1A-289E-485A-9927-1A650AFA49BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6B621F1A-289E-485A-9927-1A650AFA49BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
