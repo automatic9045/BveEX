@@ -91,16 +91,19 @@ namespace BveEx.Launcher
                 throw new NotSupportedException();
             }
 
-            SplashForm.ProgressText = "アップデートを確認しています...";
-
-            if (ServicePointManager.SecurityProtocol.HasFlag(SecurityProtocolType.Tls) || ServicePointManager.SecurityProtocol.HasFlag(SecurityProtocolType.Tls11))
+            if (!isLegacyMode)
             {
-                ServicePointManager.SecurityProtocol &= ~SecurityProtocolType.Tls;
-                ServicePointManager.SecurityProtocol &= ~SecurityProtocolType.Tls11;
-                ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
-            }
+                SplashForm.ProgressText = "アップデートを確認しています...";
 
-            UpdateChecker.CheckUpdates();
+                if (ServicePointManager.SecurityProtocol.HasFlag(SecurityProtocolType.Tls) || ServicePointManager.SecurityProtocol.HasFlag(SecurityProtocolType.Tls11))
+                {
+                    ServicePointManager.SecurityProtocol &= ~SecurityProtocolType.Tls;
+                    ServicePointManager.SecurityProtocol &= ~SecurityProtocolType.Tls11;
+                    ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
+                }
+
+                UpdateChecker.CheckUpdates();
+            }
 
             SplashForm.ProgressText = $"{productName} を起動しています...";
 
