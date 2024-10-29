@@ -678,7 +678,7 @@
 	<Class Wrapper="MapLoader" Original="p">
 		<Field WrapperProperty="LoadingProgressForm" Original="b" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="TimeManager" Original="c" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="Route" Original="d" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Map" Original="d" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="DirectSound" Original="e" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Variables" Original="g" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Stations" Original="h" IsOriginalNonPublic="true"/>
@@ -888,7 +888,7 @@
 		<Field WrapperProperty="StructureDrawer" Original="b" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="DrawDistanceManager" Original="g" IsOriginalNonPublic="true"/>
 
-		<Method Wrapper="SetRoute" WrapperParams="ex:Route" Original="a"/>
+		<Method Wrapper="SetMap" WrapperParams="ex:Map" Original="a"/>
 		<Method Wrapper="Draw" WrapperParams="void" Original="o"/>
 	</Class>
 
@@ -981,7 +981,7 @@
 		</Property>
 	</Class>
 
-	<Class Wrapper="Route" Original="br">
+	<Class Wrapper="Map" Original="br">
 		<Property Wrapper="DrawLimitLocation">
 			<Getter Original="e"/>
 			<Setter Original="a"/>
@@ -1057,7 +1057,7 @@
 		<Property Wrapper="VehicleLocation">
 			<Getter Original="b"/>
 		</Property>
-		<Property Wrapper="Route">
+		<Property Wrapper="Map">
 			<Getter Original="h"/>
 		</Property>
 		<Property Wrapper="Vehicle">
@@ -1497,7 +1497,7 @@
 
 	<Class Wrapper="Train" Original="e4">
 		<Field WrapperProperty="VehicleLocation" Original="b" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="Route" Original="c" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Map" Original="c" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="TrainInfo" Original="d" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="DrawDistanceManager" Original="e" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Schedules" Original="f" IsOriginalNonPublic="true"/>

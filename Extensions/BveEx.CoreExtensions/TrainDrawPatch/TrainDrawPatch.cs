@@ -61,7 +61,7 @@ namespace BveEx.Extensions.TrainDrawPatch
                 if (!(structure.Model is null) && !isTooFarInFront && !isTooFarInBack)
                 {
                     structure.TrackKey = target.TrainInfo.TrackKey;
-                    Matrix trackMatrix = target.Route.GetTrackMatrix(structure, target.Location + structure.Location, (double)(target.VehicleLocation.BlockIndex * 25));
+                    Matrix trackMatrix = target.Map.GetTrackMatrix(structure, target.Location + structure.Location, (double)(target.VehicleLocation.BlockIndex * 25));
                     direct3DProvider.Device.SetTransform(TransformState.World, worldMatrixConverter.Convert(trackMatrix) * viewMatrixConverter.Convert(viewMatrix));
                     structure.Model.Draw(direct3DProvider, false);
                     structure.Model.Draw(direct3DProvider, true);

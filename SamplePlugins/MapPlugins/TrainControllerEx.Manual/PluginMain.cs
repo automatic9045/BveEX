@@ -50,7 +50,7 @@ namespace BveEx.Samples.MapPlugins.TrainControllerEx.Manual
             float initialDirection = (float)(Math.PI * 0.5); // 回転の基点は手前方向、右回りを正とする。初期状態は π/2 = 左向き
 
             TrainLocator = new TrainLocator(Train, initialLocation, initialDirection, 0.2f, 0.01f,
-                () => BveHacker.Scenario.Route.MyTrack.GetTransform(0, BveHacker.Scenario.VehicleLocation.BlockIndex * 25));
+                () => BveHacker.Scenario.Map.MyTrack.GetTransform(0, BveHacker.Scenario.VehicleLocation.BlockIndex * 25));
             Patch = Extensions.GetExtension<ITrainDrawPatchFactory>().Patch(nameof(Manual), Train, TrainLocator.Draw);
         }
 

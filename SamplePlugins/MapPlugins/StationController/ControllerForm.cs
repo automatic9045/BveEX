@@ -39,7 +39,7 @@ namespace BveEx.Samples.MapPlugins.StationController
         {
             scenario = scenario ?? InstanceStore.Instance.BveHacker.Scenario;
 
-            StationList stations = scenario.Route.Stations;
+            StationList stations = scenario.Map.Stations;
             Station lastStation = stations.Count == 0 ? null : stations[stations.Count - 1] as Station;
             
             LocationValue.Text = (lastStation is null ? 0 : lastStation.Location + 500).ToString();
@@ -52,7 +52,7 @@ namespace BveEx.Samples.MapPlugins.StationController
         {
             IBveHacker bveHacker = InstanceStore.Instance.BveHacker;
 
-            StationList stations = bveHacker.Scenario.Route.Stations;
+            StationList stations = bveHacker.Scenario.Map.Stations;
             try
             {
                 Station newStation = new Station(NameValue.Text)
@@ -82,7 +82,7 @@ namespace BveEx.Samples.MapPlugins.StationController
         {
             IBveHacker bveHacker = InstanceStore.Instance.BveHacker;
 
-            StationList stations = InstanceStore.Instance.BveHacker.Scenario.Route.Stations;
+            StationList stations = InstanceStore.Instance.BveHacker.Scenario.Map.Stations;
             if (stations.Count == 0) return;
             stations.RemoveAt(stations.Count - 1);
 

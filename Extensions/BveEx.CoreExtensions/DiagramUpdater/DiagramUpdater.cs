@@ -36,7 +36,7 @@ namespace BveEx.Extensions.DiagramUpdater
         {
             if (scenario is null) throw new ArgumentNullException(nameof(scenario));
 
-            StationList stations = scenario.Route.Stations;
+            StationList stations = scenario.Map.Stations;
             TimeTable timeTable = scenario.TimeTable;
 
             timeTable.NameTexts = new string[stations.Count + 1];

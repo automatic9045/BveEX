@@ -24,7 +24,7 @@ namespace BveTypes.ClassWrappers
             StructureDrawerField = members.GetSourceFieldOf(nameof(StructureDrawer));
             DrawDistanceManagerField = members.GetSourceFieldOf(nameof(DrawDistanceManager));
 
-            SetRouteMethod = members.GetSourceMethodOf(nameof(SetRoute));
+            SetMapMethod = members.GetSourceMethodOf(nameof(SetMap));
             DrawMethod = members.GetSourceMethodOf(nameof(Draw));
         }
 
@@ -56,12 +56,12 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public DrawDistanceManager DrawDistanceManager => ClassWrappers.DrawDistanceManager.FromSource(DrawDistanceManagerField.GetValue(Src));
 
-        private static FastMethod SetRouteMethod;
+        private static FastMethod SetMapMethod;
         /// <summary>
         /// 処理対象となるマップを登録します。
         /// </summary>
-        /// <param name="route">処理対象となるマップ。</param>
-        public void SetRoute(Route route) => SetRouteMethod.Invoke(Src, new object[] { route?.Src });
+        /// <param name="map">処理対象となるマップ。</param>
+        public void SetMap(Map map) => SetMapMethod.Invoke(Src, new object[] { map?.Src });
 
         private static FastMethod DrawMethod;
         /// <summary>

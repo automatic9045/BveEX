@@ -24,10 +24,10 @@ namespace BveTypes.ClassWrappers
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<Train>();
 
-            Constructor = members.GetSourceConstructor(new Type[] { typeof(TimeManager), typeof(VehicleLocation), typeof(Route), typeof(TrainInfo), typeof(DrawDistanceManager) });
+            Constructor = members.GetSourceConstructor(new Type[] { typeof(TimeManager), typeof(VehicleLocation), typeof(Map), typeof(TrainInfo), typeof(DrawDistanceManager) });
 
             VehicleLocationField = members.GetSourceFieldOf(nameof(VehicleLocation));
-            RouteField = members.GetSourceFieldOf(nameof(Route));
+            MapField = members.GetSourceFieldOf(nameof(Map));
             TrainInfoField = members.GetSourceFieldOf(nameof(TrainInfo));
             DrawDistanceManagerField = members.GetSourceFieldOf(nameof(DrawDistanceManager));
             SchedulesField = members.GetSourceFieldOf(nameof(Schedules));
@@ -66,11 +66,11 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         /// <param name="timeManager">使用する <see cref="TimeManager"/>。</param>
         /// <param name="location">自列車の位置情報。</param>
-        /// <param name="route">現在読み込まれているマップを表す <see cref="ClassWrappers.Route"/>。</param>
+        /// <param name="map">現在読み込まれているマップを表す <see cref="ClassWrappers.Map"/>。</param>
         /// <param name="trainInfo">この他列車の追加情報を格納している <see cref="ClassWrappers.TrainInfo"/>。</param>
         /// <param name="drawDistanceManager">使用する <see cref="ClassWrappers.DrawDistanceManager"/>。</param>
-        public Train(TimeManager timeManager, VehicleLocation location, Route route, TrainInfo trainInfo, DrawDistanceManager drawDistanceManager)
-            : this(Constructor.Invoke(new object[] { timeManager?.Src, location?.Src, route?.Src, trainInfo?.Src, drawDistanceManager?.Src }))
+        public Train(TimeManager timeManager, VehicleLocation location, Map map, TrainInfo trainInfo, DrawDistanceManager drawDistanceManager)
+            : this(Constructor.Invoke(new object[] { timeManager?.Src, location?.Src, map?.Src, trainInfo?.Src, drawDistanceManager?.Src }))
         {
         }
 
@@ -80,11 +80,11 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public VehicleLocation VehicleLocation => ClassWrappers.VehicleLocation.FromSource(VehicleLocationField.GetValue(Src));
 
-        private static FastField RouteField;
+        private static FastField MapField;
         /// <summary>
         /// マップを取得します。
         /// </summary>
-        public Route Route => ClassWrappers.Route.FromSource(RouteField.GetValue(Src));
+        public Map Map => ClassWrappers.Map.FromSource(MapField.GetValue(Src));
 
         private static FastField TrainInfoField;
         /// <summary>

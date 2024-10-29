@@ -18,12 +18,12 @@ namespace BveTypes.ClassWrappers
     /// <summary>
     /// マップを表します。
     /// </summary>
-    public class Route : ClassWrapperBase
+    public class Map : ClassWrapperBase
     {
         [InitializeClassWrapper]
         private static void Initialize(BveTypeSet bveTypes)
         {
-            ClassMemberSet members = bveTypes.GetClassInfoOf<Route>();
+            ClassMemberSet members = bveTypes.GetClassInfoOf<Map>();
 
             DrawLimitLocationGetMethod = members.GetSourcePropertyGetterOf(nameof(DrawLimitLocation));
             DrawLimitLocationSetMethod = members.GetSourcePropertySetterOf(nameof(DrawLimitLocation));
@@ -71,10 +71,10 @@ namespace BveTypes.ClassWrappers
         }
 
         /// <summary>
-        /// オリジナル オブジェクトから <see cref="Route"/> クラスの新しいインスタンスを初期化します。
+        /// オリジナル オブジェクトから <see cref="Map"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         /// <param name="src">ラップするオリジナル オブジェクト。</param>
-        protected Route(object src) : base(src)
+        protected Map(object src) : base(src)
         {
         }
 
@@ -82,9 +82,9 @@ namespace BveTypes.ClassWrappers
         /// オリジナル オブジェクトからラッパーのインスタンスを生成します。
         /// </summary>
         /// <param name="src">ラップするオリジナル オブジェクト。</param>
-        /// <returns>オリジナル オブジェクトをラップした <see cref="Route"/> クラスのインスタンス。</returns>
+        /// <returns>オリジナル オブジェクトをラップした <see cref="Map"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
-        public static Route FromSource(object src) => src is null ? null : new Route(src);
+        public static Map FromSource(object src) => src is null ? null : new Map(src);
 
         private static FastMethod DrawLimitLocationGetMethod;
         private static FastMethod DrawLimitLocationSetMethod;

@@ -25,11 +25,11 @@ namespace BveTypes.ClassWrappers
             ClassMemberSet members = bveTypes.GetClassInfoOf<MapLoader>();
 
             Constructor = members.GetSourceConstructor(
-                new Type[] { typeof(LoadingProgressForm), typeof(string), typeof(DirectSound), typeof(TimeManager), typeof(Route), typeof(CameraLocation), typeof(bool) });
+                new Type[] { typeof(LoadingProgressForm), typeof(string), typeof(DirectSound), typeof(TimeManager), typeof(Map), typeof(CameraLocation), typeof(bool) });
 
             LoadingProgressFormField = members.GetSourceFieldOf(nameof(LoadingProgressForm));
             TimeManagerField = members.GetSourceFieldOf(nameof(TimeManager));
-            RouteField = members.GetSourceFieldOf(nameof(Route));
+            MapField = members.GetSourceFieldOf(nameof(Map));
             DirectSoundField = members.GetSourceFieldOf(nameof(DirectSound));
             VariablesField = members.GetSourceFieldOf(nameof(Variables));
             StationsField = members.GetSourceFieldOf(nameof(Stations));
@@ -74,11 +74,11 @@ namespace BveTypes.ClassWrappers
         /// <param name="filePath">読込対象となるマップファイルのパス。</param>
         /// <param name="directSound">DirectSound デバイス。</param>
         /// <param name="timeManager">時間を制御する <see cref="ClassWrappers.TimeManager"/>。</param>
-        /// <param name="route">読み込んだマップデータを記憶する <see cref="ClassWrappers.Route"/>。</param>
+        /// <param name="map">読み込んだマップデータを記憶する <see cref="ClassWrappers.Map"/>。</param>
         /// <param name="cameraLocation"><see cref="Sound"/> を読み込む際に指定する <see cref="ClassWrappers.CameraLocation"/>。</param>
         /// <param name="skipLoadStructures">ストラクチャーの読込をスキップするかどうか。</param>
-        public MapLoader(LoadingProgressForm loadingProgressForm, string filePath, DirectSound directSound, TimeManager timeManager, Route route, CameraLocation cameraLocation, bool skipLoadStructures)
-            : this(Constructor.Invoke(new object[] { loadingProgressForm?.Src, filePath, directSound, timeManager?.Src, route?.Src, cameraLocation?.Src, skipLoadStructures }))
+        public MapLoader(LoadingProgressForm loadingProgressForm, string filePath, DirectSound directSound, TimeManager timeManager, Map map, CameraLocation cameraLocation, bool skipLoadStructures)
+            : this(Constructor.Invoke(new object[] { loadingProgressForm?.Src, filePath, directSound, timeManager?.Src, map?.Src, cameraLocation?.Src, skipLoadStructures }))
         {
         }
 
@@ -103,14 +103,14 @@ namespace BveTypes.ClassWrappers
             set => TimeManagerField.SetValue(Src, value?.Src);
         }
 
-        private static FastField RouteField;
+        private static FastField MapField;
         /// <summary>
-        /// 読み込んだマップデータを記憶する <see cref="ClassWrappers.Route"/> を取得・設定します。
+        /// 読み込んだマップデータを記憶する <see cref="ClassWrappers.Map"/> を取得・設定します。
         /// </summary>
-        public Route Route
+        public Map Map
         {
-            get => ClassWrappers.Route.FromSource(RouteField.GetValue(Src));
-            set => RouteField.SetValue(Src, value?.Src);
+            get => ClassWrappers.Map.FromSource(MapField.GetValue(Src));
+            set => MapField.SetValue(Src, value?.Src);
         }
 
         private static FastField DirectSoundField;

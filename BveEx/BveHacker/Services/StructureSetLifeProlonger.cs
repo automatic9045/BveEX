@@ -15,7 +15,7 @@ namespace BveEx.BveHackerServices
 {
     internal sealed class StructureSetLifeProlonger : IDisposable
     {
-        private readonly HarmonyPatch SetRouteMethodPatch;
+        private readonly HarmonyPatch SetMapMethodPatch;
 
         private readonly BveHacker BveHacker;
 
@@ -24,15 +24,15 @@ namespace BveEx.BveHackerServices
             BveHacker = bveHacker;
 
             ClassMemberSet trainDrawerMembers = BveHacker.BveTypes.GetClassInfoOf<ObjectDrawer>();
-            FastMethod setRouteMethod = trainDrawerMembers.GetSourceMethodOf(nameof(ObjectDrawer.SetRoute));
+            FastMethod setMapMethod = trainDrawerMembers.GetSourceMethodOf(nameof(ObjectDrawer.SetMap));
 
-            SetRouteMethodPatch = HarmonyPatch.Patch(nameof(StructureSetLifeProlonger), setRouteMethod.Source, PatchType.Prefix);
-            SetRouteMethodPatch.Invoked += (_, e) =>
+            SetMapMethodPatch = HarmonyPatch.Patch(nameof(StructureSetLifeProlonger), setMapMethod.Source, PatchType.Prefix);
+            SetMapMethodPatch.Invoked += (_, e) =>
             {
-                Route route = Route.FromSource(e.Args[0]);
-                StructureSet structures = route.Structures;
+                Map map = Map.FromSource(e.Args[0]);
+                StructureSet structures = map.Structures;
 
-                BveHacker.PreviewScenarioCreated += e2 => e2.Scenario.Route.Structures = structures;
+                BveHacker.PreviewScenarioCreated += e2 => e2.Scenario.Map.Structures = structures;
 
                 return PatchInvokationResult.DoNothing(e);
             };
@@ -40,7 +40,7 @@ namespace BveEx.BveHackerServices
 
         public void Dispose()
         {
-            SetRouteMethodPatch.Dispose();
+            SetMapMethodPatch.Dispose();
         }
     }
 }

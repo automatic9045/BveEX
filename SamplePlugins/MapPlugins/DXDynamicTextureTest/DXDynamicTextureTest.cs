@@ -34,7 +34,7 @@ namespace BveEx.Samples.MapPlugins.DXDynamicTextureTest
 
         private void OnScenarioCreated(ScenarioCreatedEventArgs e)
         {
-            Model targetModel = e.Scenario.Route.StructureModels["dxdt-test"];
+            Model targetModel = e.Scenario.Map.StructureModels["dxdt-test"];
             TextureHandle = targetModel.Register("Stop6.png");
 
             GDIHelper = new GDIHelper(TextureHandle.Width, TextureHandle.Height);

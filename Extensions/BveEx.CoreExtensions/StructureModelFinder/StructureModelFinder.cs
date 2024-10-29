@@ -30,7 +30,7 @@ namespace BveEx.Extensions.StructureModelFinder
 
         private void OnScenarioCreated(ScenarioCreatedEventArgs e)
         {
-            WrappedSortedList<string, Model> loadedModels = e.Scenario.Route.StructureModels;
+            WrappedSortedList<string, Model> loadedModels = e.Scenario.Map.StructureModels;
 
             KeyToModel = loadedModels;
             ModelToKey = loadedModels.Where(item => !(item.Value is null)).ToDictionary(item => item.Value, item => item.Key);

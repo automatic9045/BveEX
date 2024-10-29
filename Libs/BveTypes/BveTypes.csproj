@@ -189,7 +189,7 @@
     <Compile Include="ClassWrappers\Public\PutBetweenStructure.cs" />
     <Compile Include="ClassWrappers\Public\RandomFileList.cs" />
     <Compile Include="ClassWrappers\Public\RepeatedStructure.cs" />
-    <Compile Include="ClassWrappers\Public\Route.cs" />
+    <Compile Include="ClassWrappers\Public\Map.cs" />
     <Compile Include="ClassWrappers\Public\Scenario.cs" />
     <Compile Include="ClassWrappers\Public\ScenarioInfo.cs" />
     <Compile Include="ClassWrappers\Public\Section.cs" />
