@@ -100,16 +100,6 @@ namespace BveTypes.ClassWrappers
             set => DepartureTimeTextsField.SetValue(Src, value);
         }
 
-        /// <summary>
-        /// 互換性のために残されている旧名のプロパティです。<see cref="DepartureTimeTexts"/> を使用してください。
-        /// </summary>
-        [Obsolete]
-        public string[] DepertureTimeTexts
-        {
-            get => DepartureTimeTexts;
-            set => DepartureTimeTexts = value;
-        }
-
         private static FastField NameTextWidthsField;
         /// <summary>
         /// 停車場名の表示幅の配列を取得・設定します。ここで設定した数値を基に、列全体の幅が決定されます。
@@ -145,21 +135,11 @@ namespace BveTypes.ClassWrappers
         /// <remarks>
         /// 初めの見出し行 ("発(通)") も含まれます。
         /// </remarks>
-        /// <seealso cref="DepertureTimeTexts"/>
+        /// <seealso cref="DepartureTimeTexts"/>
         public int[] DepartureTimeTextWidths
         {
             get => DepartureTimeTextWidthsField.GetValue(Src);
             set => DepartureTimeTextWidthsField.SetValue(Src, value);
-        }
-
-        /// <summary>
-        /// 互換性のために残されている旧名のプロパティです。<see cref="DepartureTimeTexts"/> を使用してください。
-        /// </summary>
-        [Obsolete]
-        public int[] DepertureTimeTextWidths
-        {
-            get => DepartureTimeTextWidths;
-            set => DepartureTimeTextWidths = value;
         }
 
         private static FastMethod UpdateMethod;

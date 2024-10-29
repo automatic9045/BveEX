@@ -116,10 +116,6 @@
 	</Class>
 
 	<Class Wrapper="AtsPlugin" Original="aa">
-		<Bridges>
-			<Bridge Wrapper="PluginLoader"/>
-		</Bridges>
-
 		<Property Wrapper="PanelArray">
 			<Getter Original="a"/>
 		</Property>
@@ -319,10 +315,6 @@
 	</Class>
 
 	<Class Wrapper="CarBrake" Original="d6">
-		<Bridges>
-			<Bridge Wrapper="CarBc"/>
-		</Bridges>
-
 		<Property Wrapper="BcValve">
 			<Getter Original="d"/>
 		</Property>
@@ -1740,10 +1732,6 @@
 			<Setter Original="a"/>
 		</Property>
 		<Property Wrapper="AtsPlugin">
-			<Getter Original="f"/>
-			<Setter Original="a"/>
-		</Property>
-		<Property Wrapper="PluginLoader">
 			<Getter Original="f"/>
 			<Setter Original="a"/>
 		</Property>

@@ -160,16 +160,6 @@ namespace BveTypes.ClassWrappers
         }
 
         /// <summary>
-        /// 互換性のために残されている旧名のプロパティです。<see cref="DepartureTimeMilliseconds"/> を使用してください。
-        /// </summary>
-        [Obsolete]
-        public int DepertureTimeMilliseconds
-        {
-            get => DepartureTimeMilliseconds;
-            set => DepartureTimeMilliseconds = value;
-        }
-
-        /// <summary>
         /// 発車時刻または通過時刻を取得・設定します。
         /// </summary>
         public TimeSpan DepartureTime
@@ -327,16 +317,6 @@ namespace BveTypes.ClassWrappers
         {
             get => Sound.FromSource(DepartureSoundGetMethod.Invoke(Src, null));
             set => DepartureSoundSetMethod.Invoke(Src, new object[] { value?.Src });
-        }
-
-        /// <summary>
-        /// 互換性のために残されている旧名のプロパティです。<see cref="DepartureSound"/> を使用してください。
-        /// </summary>
-        [Obsolete]
-        public Sound DepertureSound
-        {
-            get => DepartureSound;
-            set => DepartureSound = value;
         }
 
         private static FastMethod ArrivalSoundGetMethod;

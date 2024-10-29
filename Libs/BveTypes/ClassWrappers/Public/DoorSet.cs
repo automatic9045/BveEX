@@ -73,12 +73,6 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public bool AreAllClosed => AreAllClosedGetMethod.Invoke(Src, null);
 
-        /// <summary>
-        /// 互換性のために残されている旧名のプロパティです。<see cref="AreAllClosed"/> を使用してください。
-        /// </summary>
-        [Obsolete]
-        public bool AreAllClosingOrClosed => AreAllClosed;
-
         private static FastMethod GetSideMethod;
         private SideDoorSet GetSide(int doorSide) => SideDoorSet.FromSource(GetSideMethod.Invoke(Src, new object[] { doorSide }));
 

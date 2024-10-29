@@ -43,27 +43,6 @@ namespace BveTypes
         private readonly WrapTypeSet Types;
         private readonly FastCache<Type, FastMethod> FromSourceMethodCache = new FastCache<Type, FastMethod>();
 
-        /// <summary>
-        /// 互換性のために残されている古い形式のメソッドです。<see cref="BveTypeSetFactory"/> を使用してください。
-        /// </summary>
-        /// <param name="bveAssembly">BVE の <see cref="Assembly"/>。</param>
-        /// <param name="notUsed">使用されません。</param>
-        /// <param name="allowLoadProfileForDifferentBveVersion">実行中の BVE がサポートされないバージョンの場合、他のバージョン向けのプロファイルで代用するか。</param>
-        /// <param name="profileForDifferentBveVersionLoaded">実行中の BVE がサポートされないバージョンであり、他のバージョン向けのプロファイルで代用された時に実行するデリケート。パラメータにはプロファイルのバージョンが渡されます。</param>
-        /// <returns><see cref="BveTypeSet"/> クラスの新しいインスタンス。</returns>
-        [Obsolete]
-        public static BveTypeSet Load(Assembly bveAssembly, Version notUsed, bool allowLoadProfileForDifferentBveVersion, Action<Version> profileForDifferentBveVersionLoaded = null)
-        {
-            BveTypeSetFactory factory = new BveTypeSetFactory()
-            {
-                AllowProfileForDifferentBveVersion = allowLoadProfileForDifferentBveVersion,
-                BveAssembly = bveAssembly,
-            };
-
-            factory.DifferentVersionProfileLoaded += (sender, e) => profileForDifferentBveVersionLoaded?.Invoke(e.ProfileVersion);
-            return factory.Load();
-        }
-
         internal BveTypeSet(WrapTypeSet types, Version profileVersion)
         {
 #if DEBUG

@@ -130,16 +130,6 @@ namespace BveTypes.ClassWrappers
             set => StopSignalSectionIndexesField.SetValue(Src, value);
         }
 
-        /// <summary>
-        /// 非推奨のプロパティです。
-        /// </summary>
-        [Obsolete(nameof(StopSignalSectionIndexes) + " プロパティを使用してください。")]
-        public List<int> SectionIndexesTrainOn
-        {
-            get => StopSignalSectionIndexes;
-            set => StopSignalSectionIndexes = value;
-        }
-
         private static FastField PreTrainLocationField;
         /// <summary>
         /// 先行列車が走行している距離程 [m] を取得・設定します。

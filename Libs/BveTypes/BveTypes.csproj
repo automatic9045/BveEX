@@ -123,7 +123,6 @@
     <Compile Include="ClassWrappers\Public\CameraLocation.cs" />
     <Compile Include="ClassWrappers\Public\Cant.cs" />
     <Compile Include="ClassWrappers\Public\CantList.cs" />
-    <Compile Include="ClassWrappers\Public\CarBc.cs" />
     <Compile Include="ClassWrappers\Public\CarInfo.cs" />
     <Compile Include="ClassWrappers\Public\Cl.cs" />
     <Compile Include="ClassWrappers\Public\ClockText.cs" />
@@ -185,7 +184,6 @@
     <Compile Include="ClassWrappers\Public\NotchInfo.cs" />
     <Compile Include="ClassWrappers\Public\ObjectDrawer.cs" />
     <Compile Include="ClassWrappers\Public\ObjectPassedEventArgs.cs" />
-    <Compile Include="ClassWrappers\Public\PluginLoader.cs" />
     <Compile Include="ClassWrappers\Public\AtsPlugin.cs" />
     <Compile Include="ClassWrappers\Public\PreTrainObjectList.cs" />
     <Compile Include="ClassWrappers\Public\PutBetweenStructure.cs" />

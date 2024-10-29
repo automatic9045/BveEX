@@ -106,23 +106,11 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public CarBrake MotorCarBrake => CarBrake.FromSource(MotorCarBrakeGetMethod.Invoke(Src, null));
 
-        /// <summary>
-        /// 互換性のために残されている旧名のプロパティです。<see cref="MotorCarBrake"/> を使用してください。
-        /// </summary>
-        [Obsolete]
-        public CarBc MotorCarBc => CarBc.FromSource(MotorCarBrake?.Src);
-
         private static FastMethod TrailerCarBrakeGetMethod;
         /// <summary>
         /// 付随車のブレーキを表す <see cref="CarBrake"/> を取得します。
         /// </summary>
         public CarBrake TrailerCarBrake => CarBrake.FromSource(TrailerCarBrakeGetMethod.Invoke(Src, null));
-
-        /// <summary>
-        /// 互換性のために残されている旧名のプロパティです。<see cref="TrailerCarBrake"/> を使用してください。
-        /// </summary>
-        [Obsolete]
-        public CarBc TrailerCarBc => CarBc.FromSource(TrailerCarBrake?.Src);
 
         private static FastMethod FirstCarBrakeGetMethod;
         private static FastMethod FirstCarBrakeSetMethod;
@@ -133,16 +121,6 @@ namespace BveTypes.ClassWrappers
         {
             get => CarBrake.FromSource(FirstCarBrakeGetMethod.Invoke(Src, null));
             set => FirstCarBrakeSetMethod.Invoke(Src, value?.Src);
-        }
-
-        /// <summary>
-        /// 互換性のために残されている旧名のプロパティです。<see cref="FirstCarBrake"/> を使用してください。
-        /// </summary>
-        [Obsolete]
-        public CarBc FirstCarBc
-        {
-            get => CarBc.FromSource(FirstCarBrake?.Src);
-            set => FirstCarBrake = CarBrake.FromSource(value?.Src);
         }
     }
 }

@@ -30,11 +30,6 @@ namespace BveTypes.ClassWrappers
 
             AtsPluginGetMethod = members.GetSourcePropertyGetterOf(nameof(AtsPlugin));
             AtsPluginSetMethod = members.GetSourcePropertySetterOf(nameof(AtsPlugin));
-
-#pragma warning disable CS0612 // 型またはメンバーが旧型式です
-            PluginLoaderGetMethod = members.GetSourcePropertyGetterOf(nameof(PluginLoader));
-            PluginLoaderSetMethod = members.GetSourcePropertySetterOf(nameof(PluginLoader));
-#pragma warning restore CS0612 // 型またはメンバーが旧型式です
         }
 
         /// <summary>
@@ -91,18 +86,6 @@ namespace BveTypes.ClassWrappers
         {
             get => ClassWrappers.AtsPlugin.FromSource(AtsPluginGetMethod.Invoke(Src, null));
             internal set => AtsPluginSetMethod.Invoke(Src, new object[] { value?.Src });
-        }
-
-        private static FastMethod PluginLoaderGetMethod;
-        private static FastMethod PluginLoaderSetMethod;
-        /// <summary>
-        /// 互換性のために残されている旧名のプロパティです。<see cref="AtsPlugin"/> を使用してください。
-        /// </summary>
-        [Obsolete]
-        public PluginLoader PluginLoader
-        {
-            get => ClassWrappers.PluginLoader.FromSource(PluginLoaderGetMethod.Invoke(Src, null));
-            internal set => PluginLoaderSetMethod.Invoke(Src, new object[] { value?.Src });
         }
     }
 }
