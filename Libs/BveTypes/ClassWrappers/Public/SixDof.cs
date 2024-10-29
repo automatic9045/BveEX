@@ -53,7 +53,20 @@ namespace BveTypes.ClassWrappers
         [CreateClassWrapperFromSource]
         public static SixDof FromSource(object src) => src is null ? null : new SixDof(src);
 
+        /// <summary>
+        /// <see cref="SixDof"/> 同士の加算を行います。
+        /// </summary>
+        /// <param name="x">左辺。</param>
+        /// <param name="y">右辺。</param>
+        /// <returns><paramref name="x"/> と <paramref name="y"/> の和。</returns>
         public static SixDof operator +(SixDof x, SixDof y) => Add(x, y);
+
+        /// <summary>
+        /// <see cref="SixDof"/> を実数倍します。
+        /// </summary>
+        /// <param name="x">かける数。</param>
+        /// <param name="y">元となる <see cref="SixDof"/>。</param>
+        /// <returns><paramref name="y"/> を <paramref name="x"/> 倍した値。</returns>
         public static SixDof operator *(double x, SixDof y) => Multiply(x, y);
 
         /// <summary>

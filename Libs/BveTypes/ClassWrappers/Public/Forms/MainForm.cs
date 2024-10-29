@@ -147,9 +147,6 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 右クリックで表示されるショートカット メニューを取得・設定します。
         /// </summary>
-        /// <remarks>
-        /// メニューの内容を編集する場合、通常は <see cref="IContextMenuHacker"/> を使用してください。
-        /// </remarks>
         public ContextMenuStrip ContextMenu
         {
             get => ContextMenuField.GetValue(Src);

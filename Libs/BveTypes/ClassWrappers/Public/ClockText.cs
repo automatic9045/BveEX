@@ -9,6 +9,9 @@ using TypeWrapping;
 
 namespace BveTypes.ClassWrappers
 {
+    /// <summary>
+    /// 「速度・時刻」補助表示を表します。
+    /// </summary>
     public class ClockText : AssistantText
     {
         [InitializeClassWrapper]

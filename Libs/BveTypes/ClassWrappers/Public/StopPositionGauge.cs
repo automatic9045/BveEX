@@ -9,6 +9,9 @@ using TypeWrapping;
 
 namespace BveTypes.ClassWrappers
 {
+    /// <summary>
+    /// 「停止位置」補助表示を表します。
+    /// </summary>
     public class StopPositionGauge : AssistantBase
     {
         [InitializeClassWrapper]
@@ -31,6 +34,6 @@ namespace BveTypes.ClassWrappers
         /// <param name="src">ラップするオリジナル オブジェクト。</param>
         /// <returns>オリジナル オブジェクトをラップした <see cref="StopPositionGauge"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
-        public static new StopPositionGauge FromSource(object src) => src is null ? null : new StopPositionGauge(src);
+        public static StopPositionGauge FromSource(object src) => src is null ? null : new StopPositionGauge(src);
     }
 }

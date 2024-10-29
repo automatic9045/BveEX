@@ -57,7 +57,7 @@ namespace BveTypes.ClassWrappers
         /// <item>標準では、これをランダムに 0.95 ～ 1.05 倍した値が各ドア (<see cref="SideDoorSet.CarDoors"/> プロパティの各要素) の <see cref="CarDoor.CloseTime"/> プロパティに設定されます。</item>
         /// <item>
         /// 取得の場合、厳密には左側のドアの <see cref="SideDoorSet.StandardCloseTime"/> プロパティの値が返されます。
-        /// 標準ではドアの側によって値が異なることはありませんが、AtsEX プラグインから手動で変更している場合は注意してください。
+        /// 標準ではドアの側によって値が異なることはありませんが、プラグインなどから手動で変更している場合は注意してください。
         /// </item>
         /// </list>
         /// </remarks>

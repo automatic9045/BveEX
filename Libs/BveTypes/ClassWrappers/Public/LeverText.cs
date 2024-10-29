@@ -9,6 +9,9 @@ using TypeWrapping;
 
 namespace BveTypes.ClassWrappers
 {
+    /// <summary>
+    /// 「ハンドル位置」補助表示を表します。
+    /// </summary>
     public class LeverText : AssistantText
     {
         [InitializeClassWrapper]

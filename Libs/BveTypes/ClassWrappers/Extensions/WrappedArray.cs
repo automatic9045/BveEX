@@ -21,10 +21,6 @@ namespace BveTypes.ClassWrappers.Extensions
         private static BveTypeSet BveTypes = null;
         private static ArrayConstructorSet ArrayConstructors = null;
 
-        protected readonly new Array Src;
-        protected readonly ITwoWayConverter<object, TWrapper> Converter;
-
-
         private static void LoadConstructors()
         {
             Type originalType = BveTypes.GetTypeInfoOf<TWrapper>().OriginalType;
@@ -33,6 +29,22 @@ namespace BveTypes.ClassWrappers.Extensions
         }
 
 
+        /// <summary>
+        /// ラップされているオリジナル オブジェクトです。
+        /// </summary>
+        protected readonly new Array Src;
+
+        /// <summary>
+        /// オリジナル型とラッパー型を相互に変換するためのコンバータです。
+        /// </summary>
+        protected readonly ITwoWayConverter<object, TWrapper> Converter;
+
+        /// <summary>
+        /// <see cref="WrappedArray{TWrapper}"/> クラスの新しいインスタンスを初期化します。
+        /// </summary>
+        /// <param name="src">ラップされているオリジナル オブジェクト。</param>
+        /// <param name="converter">オリジナル型とラッパー型を相互に変換するためのコンバータ。</param>
+        /// <exception cref="ArgumentException"><paramref name="src"/> が配列ではありません。</exception>
         protected WrappedArray(Array src, ITwoWayConverter<object, TWrapper> converter) : base(src)
         {
             if (BveTypes is null)
@@ -47,6 +59,10 @@ namespace BveTypes.ClassWrappers.Extensions
             Converter = converter;
         }
 
+        /// <summary>
+        /// 既定のコンバータを使用して、<see cref="WrappedArray{TWrapper}"/> クラスの新しいインスタンスを初期化します。
+        /// </summary>
+        /// <param name="src"></param>
         protected WrappedArray(Array src) : this(src, new ClassWrapperConverter<TWrapper>())
         {
         }
@@ -66,11 +82,13 @@ namespace BveTypes.ClassWrappers.Extensions
         /// <returns>オリジナル オブジェクトをラップした <see cref="WrappedArray{TWrapper}"/> クラスのインスタンス。</returns>
         public static WrappedArray<TWrapper> FromSource(Array src) => FromSource(src, new ClassWrapperConverter<TWrapper>());
 
-
+        /// <summary>
+        /// 指定した長さを備えた空の配列を表す <see cref="WrappedArray{TWrapper}"/> クラスの新しいインスタンスを初期化します。
+        /// </summary>
+        /// <param name="capacity">新しい配列に格納できる要素の数。</param>
         public WrappedArray(int capacity) : base(ArrayConstructors.Create(capacity))
         {
         }
-
 
         /// <inheritdoc/>
         public TWrapper this[int index]
@@ -79,19 +97,27 @@ namespace BveTypes.ClassWrappers.Extensions
             set => Src.SetValue(Converter.ConvertBack(value), index);
         }
 
-
+        /// <inheritdoc/>
         public bool IsFixedSize => Src.IsFixedSize;
+        /// <inheritdoc/>
         public bool IsReadOnly => Src.IsReadOnly;
+        /// <inheritdoc/>
         public bool IsSynchronized => Src.IsSynchronized;
+        /// <inheritdoc/>
         public int Length => Src.Length;
+        /// <inheritdoc/>
         public long LongLength => Src.LongLength;
+        /// <inheritdoc/>
         public int Rank => Src.Rank;
+        /// <inheritdoc/>
         public object SyncRoot => Src.SyncRoot;
 
-
-        //public Array Clone() => 
+        /// <inheritdoc/>
         public void CopyTo(TWrapper[] array, int index) => (this as ICollection).CopyTo(array, index);
+        /// <inheritdoc/>
         public IEnumerator<TWrapper> GetEnumerator() => new WrappedEnumerator<TWrapper>(Src.GetEnumerator(), Converter);
+
+#pragma warning disable CS1591 // 公開されている型またはメンバーの XML コメントがありません
         public int GetLength(int dimension) => Src.GetLength(dimension);
         public long GetLongLength(int dimension) => Src.GetLongLength(dimension);
         public int GetLowerBound(int dimension) => Src.GetLowerBound(dimension);
@@ -113,7 +139,7 @@ namespace BveTypes.ClassWrappers.Extensions
         public void SetValue(TWrapper value, long index1, long index2) => Src.SetValue(Converter.ConvertBack(value), index1, index2);
         public void SetValue(TWrapper value, long index1, long index2, long index3) => Src.SetValue(Converter.ConvertBack(value), index1, index2, index3);
         public void SetValue(TWrapper value, params long[] indices) => Src.SetValue(Converter.ConvertBack(value), indices);
-
+#pragma warning restore CS1591 // 公開されている型またはメンバーの XML コメントがありません
 
         int ICollection<TWrapper>.Count => (Src as ICollection).Count;
         void ICollection<TWrapper>.Add(TWrapper value) => (Src as IList).Add(Converter.ConvertBack(value));
@@ -133,7 +159,6 @@ namespace BveTypes.ClassWrappers.Extensions
         }
         void IList<TWrapper>.RemoveAt(int index) => (Src as IList).RemoveAt(index);
         IEnumerator IEnumerable.GetEnumerator() => Src.GetEnumerator();
-
 
         int ICollection.Count => (Src as ICollection).Count;
         int IList.Add(object value) => (Src as IList).Add(value);

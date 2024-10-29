@@ -131,6 +131,11 @@ namespace BveTypes.ClassWrappers
         public void GoTo(int index) => GoToByIndex(index);
 
 
+        /// <summary>
+        /// 自列車がマップ オブジェクトを通過したときに発生するイベントを処理するメソッドを表します。
+        /// </summary>
+        /// <param name="sender">イベントのソース。</param>
+        /// <param name="e">イベントデータを格納している <see cref="ObjectPassedEventArgs"/>。</param>
         public delegate void ObjectPassedEventHandler(object sender, ObjectPassedEventArgs e);
     }
 }

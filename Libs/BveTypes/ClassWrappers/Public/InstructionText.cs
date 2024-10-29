@@ -9,6 +9,9 @@ using TypeWrapping;
 
 namespace BveTypes.ClassWrappers
 {
+    /// <summary>
+    /// 「運転指示」補助表示を表します。
+    /// </summary>
     public class InstructionText : AssistantText
     {
         [InitializeClassWrapper]
