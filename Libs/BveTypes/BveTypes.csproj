@@ -174,7 +174,7 @@
     <Compile Include="ClassWrappers\Public\LoadError.cs" />
     <Compile Include="ClassWrappers\Public\LocatableMapObject.cs" />
     <Compile Include="ClassWrappers\Public\LocatableModel.cs" />
-    <Compile Include="ClassWrappers\Public\LocationManager.cs" />
+    <Compile Include="ClassWrappers\Public\Tachogenerator.cs" />
     <Compile Include="ClassWrappers\Public\LockoutValve.cs" />
     <Compile Include="ClassWrappers\Public\MapFunctionList.cs" />
     <Compile Include="ClassWrappers\Public\MapObjectBase.cs" />

@@ -13,7 +13,7 @@ namespace BveTypes.ClassWrappers
     /// <summary>
     /// 自車両の位置情報に関する処理を行います。
     /// </summary>
-    public class UserVehicleLocationManager : LocationManager
+    public class UserVehicleLocationManager : Tachogenerator
     {
         [InitializeClassWrapper]
         private static void Initialize(BveTypeSet bveTypes)

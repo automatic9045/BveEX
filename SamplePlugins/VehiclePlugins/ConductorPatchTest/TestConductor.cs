@@ -60,7 +60,7 @@ namespace BveEx.Samples.VehiclePlugins.ConductorPatchTest
 				if (nextStation.Pass || nextStation.DoorSide == 0)
 				{
                     double location = Original.LocationManager.Location;
-					if ((Math.Abs(Original.LocationManager.SpeedMeterPerSecond) < 0.01f && location >= nextStation.MinStopPosition) || location >= nextStation.MaxStopPosition)
+					if ((Math.Abs(Original.LocationManager.Speed) < 0.01f && location >= nextStation.MinStopPosition) || location >= nextStation.MaxStopPosition)
 					{
                         Original.Stations.GoToByIndex(Original.Stations.CurrentIndex + 1);
 					}

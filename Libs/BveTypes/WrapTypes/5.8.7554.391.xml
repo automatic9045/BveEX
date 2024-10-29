@@ -654,8 +654,8 @@
 		</Property>
 	</Class>
 
-	<Class Wrapper="LocationManager" Original="ct">
-		<Property Wrapper="SpeedMeterPerSecond">
+	<Class Wrapper="Tachogenerator" Original="ct">
+		<Property Wrapper="Speed">
 			<Getter Original="g"/>
 		</Property>
 

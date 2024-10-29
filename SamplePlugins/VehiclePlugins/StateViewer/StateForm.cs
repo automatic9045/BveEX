@@ -61,7 +61,7 @@ namespace BveEx.Samples.VehiclePlugins.StateViewer
 
             if (!TimeValue.Focused) TimeValue.Text = TimeSpan.FromMilliseconds(scenario.TimeManager.TimeMilliseconds).ToString(@"hh\:mm\:ss");
             if (!LocationValue.Focused) LocationValue.Text = scenario.LocationManager.Location.ToString("F");
-            if (!SpeedValue.Focused) SpeedValue.Text = (scenario.LocationManager.SpeedMeterPerSecond * 3.6).ToString("F");
+            if (!SpeedValue.Focused) SpeedValue.Text = (scenario.LocationManager.Speed * 3.6).ToString("F");
         }
     }
 }
