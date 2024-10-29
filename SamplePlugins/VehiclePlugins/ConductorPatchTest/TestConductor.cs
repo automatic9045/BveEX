@@ -58,10 +58,10 @@ namespace BveEx.Samples.VehiclePlugins.ConductorPatchTest
             if (!(nextStation is null))
 			{
 				if (nextStation.Pass || nextStation.DoorSide == 0)
-				{
-                    double location = Original.LocationManager.Location;
-					if ((Math.Abs(Original.LocationManager.Speed) < 0.01f && location >= nextStation.MinStopPosition) || location >= nextStation.MaxStopPosition)
-					{
+                {
+                    double location = Original.Location.Location;
+                    if ((Math.Abs(Original.Location.Speed) < 0.01f && location >= nextStation.MinStopPosition) || location >= nextStation.MaxStopPosition)
+                    {
                         Original.Stations.GoToByIndex(Original.Stations.CurrentIndex + 1);
 					}
 				}

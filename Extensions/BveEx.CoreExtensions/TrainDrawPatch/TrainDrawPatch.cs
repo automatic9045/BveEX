@@ -51,7 +51,7 @@ namespace BveEx.Extensions.TrainDrawPatch
 
         private static void DrawCars(Direct3DProvider direct3DProvider, Matrix viewMatrix, Train target, IMatrixConverter worldMatrixConverter, IMatrixConverter viewMatrixConverter)
         {
-            int distance = (int)Math.Floor(target.Location - target.UserVehicleLocationManager.Location);
+            int distance = (int)Math.Floor(target.Location - target.VehicleLocation.Location);
 
             foreach (Structure structure in target.TrainInfo.Structures)
             {
@@ -61,7 +61,7 @@ namespace BveEx.Extensions.TrainDrawPatch
                 if (!(structure.Model is null) && !isTooFarInFront && !isTooFarInBack)
                 {
                     structure.TrackKey = target.TrainInfo.TrackKey;
-                    Matrix trackMatrix = target.Route.GetTrackMatrix(structure, target.Location + structure.Location, (double)(target.UserVehicleLocationManager.BlockIndex * 25));
+                    Matrix trackMatrix = target.Route.GetTrackMatrix(structure, target.Location + structure.Location, (double)(target.VehicleLocation.BlockIndex * 25));
                     direct3DProvider.Device.SetTransform(TransformState.World, worldMatrixConverter.Convert(trackMatrix) * viewMatrixConverter.Convert(viewMatrix));
                     structure.Model.Draw(direct3DProvider, false);
                     structure.Model.Draw(direct3DProvider, true);

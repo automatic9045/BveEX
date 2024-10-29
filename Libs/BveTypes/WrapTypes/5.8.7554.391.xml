@@ -129,7 +129,7 @@
 		<Field WrapperProperty="_PanelArray" Original="d" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="_SoundArray" Original="e" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="_OldSoundArray" Original="f" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="LocationManager" Original="h" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Location" Original="h" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="StateStore" Original="i" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="SectionManager" Original="j" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Doors" Original="k" IsOriginalNonPublic="true"/>
@@ -414,7 +414,7 @@
 
 	<Class Wrapper="Conductor" Original="ba">
 		<Field WrapperProperty="TimeManager" Original="a" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="LocationManager" Original="b" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Location" Original="b" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Sounds" Original="o" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Stations" Original="c" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="SectionManager" Original="e" IsOriginalNonPublic="true"/>
@@ -1054,7 +1054,7 @@
 		<Property Wrapper="TimeManager">
 			<Getter Original="j"/>
 		</Property>
-		<Property Wrapper="LocationManager">
+		<Property Wrapper="VehicleLocation">
 			<Getter Original="b"/>
 		</Property>
 		<Property Wrapper="Route">
@@ -1496,7 +1496,7 @@
 	</Class>
 
 	<Class Wrapper="Train" Original="e4">
-		<Field WrapperProperty="UserVehicleLocationManager" Original="b" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="VehicleLocation" Original="b" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Route" Original="c" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="TrainInfo" Original="d" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="DrawDistanceManager" Original="e" IsOriginalNonPublic="true"/>
@@ -1576,7 +1576,7 @@
 	<Class Wrapper="TwoLeverCab" Original="ac">
 	</Class>
 
-	<Class Wrapper="UserVehicleLocationManager" Original="fu">
+	<Class Wrapper="VehicleLocation" Original="fu">
 		<Property Wrapper="Location">
 			<Getter Original="c"/>
 		</Property>

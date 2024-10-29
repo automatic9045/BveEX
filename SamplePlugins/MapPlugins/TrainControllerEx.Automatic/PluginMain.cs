@@ -56,7 +56,7 @@ namespace BveEx.Samples.MapPlugins.TrainControllerEx.Automatic
 
                 double angle = Native.VehicleState.Time.TotalSeconds;
                 Matrix location = Matrix.RotationY((float)angle - (float)Math.PI / 2) * Matrix.Translation(15 + 8 * (float)Math.Sin(angle), -1, 162 + 8 * (float)Math.Cos(angle));
-                Matrix originLocation = BveHacker.Scenario.Route.MyTrack.GetTransform(0, BveHacker.Scenario.LocationManager.BlockIndex * 25);
+                Matrix originLocation = BveHacker.Scenario.Route.MyTrack.GetTransform(0, BveHacker.Scenario.VehicleLocation.BlockIndex * 25);
                 
                 direct3DProvider.Device.SetTransform(TransformState.World, location * originLocation * viewMatrix);
                 structure.Model.Draw(direct3DProvider, false);

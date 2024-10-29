@@ -209,7 +209,7 @@
     <Compile Include="ClassWrappers\Public\TimeTable.cs" />
     <Compile Include="ClassWrappers\Public\Train.cs" />
     <Compile Include="ClassWrappers\Public\TrainInfo.cs" />
-    <Compile Include="ClassWrappers\Public\UserVehicleLocationManager.cs" />
+    <Compile Include="ClassWrappers\Public\VehicleLocation.cs" />
     <Compile Include="ClassWrappers\Public\ValueEventArgs.cs" />
     <Compile Include="ClassWrappers\Public\Vehicle.cs" />
     <Compile Include="ClassWrappers\Public\VehicleDynamics.cs" />

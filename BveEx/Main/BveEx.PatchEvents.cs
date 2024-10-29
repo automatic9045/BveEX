@@ -47,7 +47,7 @@ namespace BveEx
                 BeaconData beaconData = new BeaconData()
                 {
                     Data = beacon.SendData,
-                    Z = section is null ? 0f : (float)(section.Location - atsPlugin.LocationManager.Location),
+                    Z = section is null ? 0f : (float)(section.Location - atsPlugin.Location.Location),
                     Sig = section is null ? 0 : section.CurrentSignalIndex,
                     Num = beacon.Type,
                 };
@@ -193,7 +193,7 @@ namespace BveEx
 
                 VehicleState vehicleState = new VehicleState()
                 {
-                    Location = atsPlugin.LocationManager.Location,
+                    Location = atsPlugin.Location.Location,
                     Speed = (float)atsPlugin.StateStore.Speed[0],
                     Time = (int)e.Args[0],
                     BcPressure = (float)atsPlugin.StateStore.BcPressure[0],

@@ -31,10 +31,10 @@ namespace BveEx.Samples.VehiclePlugins.SimpleAts
 
         public override IPluginTickResult Tick(TimeSpan elapsed)
         {
-            UserVehicleLocationManager locationManager = BveHacker.Scenario.LocationManager;
+            VehicleLocation location = BveHacker.Scenario.VehicleLocation;
             PluginHost.Handles.HandleSet handleSet = Native.Handles;
 
-            double speedMps = locationManager.Speed;
+            double speedMps = location.Speed;
 
             VehiclePluginTickResult tickResult = new VehiclePluginTickResult();
             if (speedMps > 100d.KmphToMps()) // 100km/h以上出ていたら常用最大ブレーキ

@@ -11,14 +11,14 @@ using TypeWrapping;
 namespace BveTypes.ClassWrappers
 {
     /// <summary>
-    /// 自車両の位置情報に関する処理を行います。
+    /// 自列車の位置情報を表します。
     /// </summary>
-    public class UserVehicleLocationManager : Tachogenerator
+    public class VehicleLocation : Tachogenerator
     {
         [InitializeClassWrapper]
         private static void Initialize(BveTypeSet bveTypes)
         {
-            ClassMemberSet members = bveTypes.GetClassInfoOf<UserVehicleLocationManager>();
+            ClassMemberSet members = bveTypes.GetClassInfoOf<VehicleLocation>();
 
             LocationGetMethod = members.GetSourcePropertyGetterOf(nameof(Location));
 
@@ -28,10 +28,10 @@ namespace BveTypes.ClassWrappers
         }
 
         /// <summary>
-        /// オリジナル オブジェクトから <see cref="UserVehicleLocationManager"/> クラスの新しいインスタンスを初期化します。
+        /// オリジナル オブジェクトから <see cref="VehicleLocation"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         /// <param name="src">ラップするオリジナル オブジェクト。</param>
-        protected UserVehicleLocationManager(object src) : base(src)
+        protected VehicleLocation(object src) : base(src)
         {
         }
 
@@ -39,9 +39,9 @@ namespace BveTypes.ClassWrappers
         /// オリジナル オブジェクトからラッパーのインスタンスを生成します。
         /// </summary>
         /// <param name="src">ラップするオリジナル オブジェクト。</param>
-        /// <returns>オリジナル オブジェクトをラップした <see cref="UserVehicleLocationManager"/> クラスのインスタンス。</returns>
+        /// <returns>オリジナル オブジェクトをラップした <see cref="VehicleLocation"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
-        public static new UserVehicleLocationManager FromSource(object src) => src is null ? null : new UserVehicleLocationManager(src);
+        public static new VehicleLocation FromSource(object src) => src is null ? null : new VehicleLocation(src);
 
         private static FastMethod LocationGetMethod;
         /// <summary>

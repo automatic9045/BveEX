@@ -20,7 +20,7 @@ namespace BveTypes.ClassWrappers
             ClassMemberSet members = bveTypes.GetClassInfoOf<Conductor>();
 
             TimeManagerField = members.GetSourceFieldOf(nameof(TimeManager));
-            LocationManagerField = members.GetSourceFieldOf(nameof(LocationManager));
+            LocationField = members.GetSourceFieldOf(nameof(Location));
             SoundsField = members.GetSourceFieldOf(nameof(Sounds));
             StationsField = members.GetSourceFieldOf(nameof(Stations));
             SectionManagerField = members.GetSourceFieldOf(nameof(SectionManager));
@@ -58,8 +58,8 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// <see cref="Conductor"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
-        public Conductor(TimeManager timeManager, UserVehicleLocationManager locationManager, SoundSet sounds, MapObjectList stations, SectionManager sectionManager, DoorSet doors, Passenger passenger)
-            : this(Constructor.Invoke(new object[] { timeManager, locationManager, sounds, stations, sectionManager, doors, passenger }))
+        public Conductor(TimeManager timeManager, VehicleLocation location, SoundSet sounds, MapObjectList stations, SectionManager sectionManager, DoorSet doors, Passenger passenger)
+            : this(Constructor.Invoke(new object[] { timeManager, location, sounds, stations, sectionManager, doors, passenger }))
         {
         }
 
@@ -73,14 +73,14 @@ namespace BveTypes.ClassWrappers
             set => TimeManagerField.SetValue(Src, value?.Src);
         }
 
-        private static FastField LocationManagerField;
+        private static FastField LocationField;
         /// <summary>
-        /// シナリオに関連付けられた <see cref="UserVehicleLocationManager"/> のインスタンスを取得・設定します。
+        /// シナリオに関連付けられた <see cref="VehicleLocation"/> のインスタンスを取得・設定します。
         /// </summary>
-        public UserVehicleLocationManager LocationManager
+        public VehicleLocation Location
         {
-            get => UserVehicleLocationManager.FromSource(LocationManagerField.GetValue(Src));
-            set => LocationManagerField.SetValue(Src, value?.Src);
+            get => VehicleLocation.FromSource(LocationField.GetValue(Src));
+            set => LocationField.SetValue(Src, value?.Src);
         }
 
         private static FastField SoundsField;

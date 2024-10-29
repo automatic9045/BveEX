@@ -28,7 +28,7 @@ namespace BveTypes.ClassWrappers
             ClassMemberSet members = bveTypes.GetClassInfoOf<Scenario>();
 
             TimeManagerGetMethod = members.GetSourcePropertyGetterOf(nameof(TimeManager));
-            LocationManagerGetMethod = members.GetSourcePropertyGetterOf(nameof(LocationManager));
+            VehicleLocationGetMethod = members.GetSourcePropertyGetterOf(nameof(VehicleLocation));
             RouteGetMethod = members.GetSourcePropertyGetterOf(nameof(Route));
             VehicleGetMethod = members.GetSourcePropertyGetterOf(nameof(Vehicle));
             TrainsGetMethod = members.GetSourcePropertyGetterOf(nameof(Trains));
@@ -65,11 +65,11 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public TimeManager TimeManager => ClassWrappers.TimeManager.FromSource(TimeManagerGetMethod.Invoke(Src, null));
 
-        private static FastMethod LocationManagerGetMethod;
+        private static FastMethod VehicleLocationGetMethod;
         /// <summary>
-        /// このシナリオに関連付けられた <see cref="UserVehicleLocationManager"/> のインスタンスを取得します。
+        /// このシナリオに関連付けられた <see cref="ClassWrappers.VehicleLocation"/> のインスタンスを取得します。
         /// </summary>
-        public UserVehicleLocationManager LocationManager => UserVehicleLocationManager.FromSource(LocationManagerGetMethod.Invoke(Src, null));
+        public VehicleLocation VehicleLocation => ClassWrappers.VehicleLocation.FromSource(VehicleLocationGetMethod.Invoke(Src, null));
 
         private static FastMethod RouteGetMethod;
         /// <summary>

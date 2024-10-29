@@ -32,7 +32,7 @@ namespace BveTypes.ClassWrappers
             _PanelArrayField = members.GetSourceFieldOf(nameof(_PanelArray));
             _SoundArrayField = members.GetSourceFieldOf(nameof(_SoundArray));
             _OldSoundArrayField = members.GetSourceFieldOf(nameof(_OldSoundArray));
-            LocationManagerField = members.GetSourceFieldOf(nameof(LocationManager));
+            LocationField = members.GetSourceFieldOf(nameof(Location));
             StateStoreField = members.GetSourceFieldOf(nameof(StateStore));
             SectionManagerField = members.GetSourceFieldOf(nameof(SectionManager));
             DoorsField = members.GetSourceFieldOf(nameof(Doors));
@@ -73,7 +73,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// <see cref="AtsPlugin"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
-        /// <param name="locationManager">自列車の位置に関する情報。</param>
+        /// <param name="location">自列車の位置情報。</param>
         /// <param name="inputManager">キー入力に関する情報。</param>
         /// <param name="handles">自列車のノッチ情報。</param>
         /// <param name="atsHandles">ATS による指示を適用した自列車のノッチ情報。</param>
@@ -81,8 +81,8 @@ namespace BveTypes.ClassWrappers
         /// <param name="sectionManager">閉塞の制御に関する情報。</param>
         /// <param name="beacons">地上子の一覧。</param>
         /// <param name="doors">自列車のドアの一覧。</param>
-        public AtsPlugin(UserVehicleLocationManager locationManager, InputManager inputManager, HandleSet handles, HandleSet atsHandles, VehicleStateStore vehicleStateStore, SectionManager sectionManager, MapFunctionList beacons, DoorSet doors)
-            : this(Constructor.Invoke(new object[] { locationManager?.Src, inputManager?.Src, handles?.Src, atsHandles?.Src, vehicleStateStore?.Src, sectionManager?.Src, beacons?.Src, doors?.Src }))
+        public AtsPlugin(VehicleLocation location, InputManager inputManager, HandleSet handles, HandleSet atsHandles, VehicleStateStore vehicleStateStore, SectionManager sectionManager, MapFunctionList beacons, DoorSet doors)
+            : this(Constructor.Invoke(new object[] { location?.Src, inputManager?.Src, handles?.Src, atsHandles?.Src, vehicleStateStore?.Src, sectionManager?.Src, beacons?.Src, doors?.Src }))
         {
         }
 
@@ -164,14 +164,14 @@ namespace BveTypes.ClassWrappers
             set => _OldSoundArrayField.SetValue(Src, value);
         }
 
-        private static FastField LocationManagerField;
+        private static FastField LocationField;
         /// <summary>
-        /// 自列車の位置情報に関する処理を行う <see cref="UserVehicleLocationManager"/> を取得・設定します。
+        /// 自列車の位置情報を取得・設定します。
         /// </summary>
-        public UserVehicleLocationManager LocationManager
+        public VehicleLocation Location
         {
-            get => UserVehicleLocationManager.FromSource(LocationManagerField.GetValue(Src));
-            set => LocationManagerField.SetValue(Src, value?.Src);
+            get => VehicleLocation.FromSource(LocationField.GetValue(Src));
+            set => LocationField.SetValue(Src, value?.Src);
         }
 
         private static FastField StateStoreField;
