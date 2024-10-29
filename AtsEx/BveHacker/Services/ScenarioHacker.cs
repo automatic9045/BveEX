@@ -27,6 +27,8 @@ namespace AtsEx.BveHackerServices
         private readonly HarmonyPatch InitializeTimeAndLocationMethodPatch;
         private readonly HarmonyPatch InitializeMethodPatch;
 
+        private bool IsFirstOpen = true;
+
         public ScenarioInfo CurrentScenarioInfo
         {
             get => MainForm.CurrentScenarioInfo;
@@ -95,8 +97,19 @@ namespace AtsEx.BveHackerServices
             if (isReload) ScenarioClosed?.Invoke(EventArgs.Empty);
 
             ScenarioInfo scenarioInfo = ScenarioInfo.FromSource(e.Args[0]);
-            ScenarioOpened?.Invoke(new ScenarioOpenedEventArgs(scenarioInfo, isReload));
 
+            if (!IsFirstOpen && !isReload)
+            {
+                MainForm.Preferences.SaveToXml();
+                MainForm.Preferences = null;
+
+                string bvePath = App.Instance.BveAssembly.Location;
+                Process.Start(bvePath, $"\"{scenarioInfo.Path ?? string.Empty}\"");
+                Environment.Exit(0);
+            }
+            IsFirstOpen = false;
+
+            ScenarioOpened?.Invoke(new ScenarioOpenedEventArgs(scenarioInfo, isReload));
             return PatchInvokationResult.DoNothing(e);
         }
 
