@@ -139,11 +139,13 @@ namespace BveEx.Plugins.Native
 
                 Imports.Handles handles = Library.Elapse.Invoke(vehicleState, atsPlugin.PanelArray, atsPlugin.SoundArray);
 
-                HandleCommandSet handleCommand = new HandleCommandSet(
-                    Native.Handles.Power.GetCommandToSetNotchTo(handles.Power),
-                    Native.Handles.Brake.GetCommandToSetNotchTo(handles.Brake),
-                    new ReverserPositionCommandBase.SetPositionCommand((ReverserPosition)handles.Reverser),
-                    (ConstantSpeedCommand)handles.ConstantSpeed);
+                HandleCommandSet handleCommand = new HandleCommandSet()
+                {
+                    PowerNotch = handles.Power,
+                    BrakeNotch = handles.Brake,
+                    ReverserPosition = (ReverserPosition)handles.Reverser,
+                    ConstantSpeedMode = (ConstantSpeedMode)handles.ConstantSpeed,
+                };
                 tickResult.HandleCommandSet = handleCommand;
             }
 

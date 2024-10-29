@@ -41,15 +41,12 @@ namespace BveEx.Samples.VehiclePlugins.SimpleAts
             {
                 if (AtsSound.PlayState == PlayState.Stop) AtsSound.PlayLoop();
 
-                int atsPowerNotch = 0;
-                int atsBrakeNotch = handleSet.Brake.MaxServiceBrakeNotch;
-
-                NotchCommandBase powerCommand = handleSet.Power.GetCommandToSetNotchTo(atsPowerNotch);
-                NotchCommandBase brakeCommand = handleSet.Brake.GetCommandToSetNotchTo(Math.Max(atsBrakeNotch, handleSet.Brake.Notch));
-                ReverserPositionCommandBase reverserCommand = ReverserPositionCommandBase.Continue;
-                ConstantSpeedCommand? constantSpeedCommand = ConstantSpeedCommand.Disable;
-
-                tickResult.HandleCommandSet = new HandleCommandSet(powerCommand, brakeCommand, reverserCommand, constantSpeedCommand);
+                tickResult.HandleCommandSet = new HandleCommandSet()
+                {
+                    PowerNotch = 0,
+                    BrakeNotch = Math.Max(handleSet.Brake.MaxServiceBrakeNotch, handleSet.Brake.Notch),
+                    ConstantSpeedMode = ConstantSpeedMode.Disable,
+                };
             }
             else
             {

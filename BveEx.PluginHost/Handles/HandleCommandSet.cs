@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using BveTypes.ClassWrappers;
+
 namespace BveEx.PluginHost.Handles
 {
     /// <summary>
@@ -14,44 +16,45 @@ namespace BveEx.PluginHost.Handles
         /// <summary>
         /// ハンドルの出力を一切編集しないことを表す <see cref="HandleCommandSet"/> を取得します。
         /// </summary>
-        public static readonly HandleCommandSet DoNothing = new HandleCommandSet(NotchCommandBase.Continue, NotchCommandBase.Continue, ReverserPositionCommandBase.Continue, null);
+        public static readonly HandleCommandSet DoNothing = new HandleCommandSet();
 
         /// <summary>
-        /// 力行ノッチの出力を編集するための <see cref="NotchCommandBase"/> を取得します。
+        /// 力行ノッチの出力を取得・設定します。
         /// </summary>
-        public NotchCommandBase PowerCommand { get; }
+        /// <remarks>
+        /// 出力を編集しない場合は <see langword="null"/> を指定します。
+        /// </remarks>
+        public int? PowerNotch { get; set; } = null;
 
         /// <summary>
-        /// ブレーキノッチの出力を編集するための <see cref="NotchCommandBase"/> を取得します。
+        /// ブレーキノッチの出力を取得・設定します。
         /// </summary>
-        public NotchCommandBase BrakeCommand { get; }
+        /// <remarks>
+        /// 出力を編集しない場合は <see langword="null"/> を指定します。
+        /// </remarks>
+        public int? BrakeNotch { get; set; } = null;
 
         /// <summary>
-        /// 逆転器の位置の出力を編集するための <see cref="ReverserPositionCommandBase"/> を取得します。
+        /// 逆転器の位置の出力を取得・設定します。
         /// </summary>
-        public ReverserPositionCommandBase ReverserCommand { get; }
+        /// <remarks>
+        /// 出力を編集しないことを表すには、<see langword="null"/> を指定します。
+        /// </remarks>
+        public ReverserPosition? ReverserPosition { get; set; } = null;
 
         /// <summary>
-        /// 定速制御の状態の出力を編集するための <see cref="Handles.ConstantSpeedCommand"/> を取得します。
+        /// 定速制御の状態の出力を取得・設定します。
         /// </summary>
-        public ConstantSpeedCommand? ConstantSpeedCommand { get; }
+        /// <remarks>
+        /// 出力を編集しない場合は <see langword="null"/> を指定します。<see cref="ConstantSpeedMode.Continue"/> は前フレームと同じ値を指定することを表します。
+        /// </remarks>
+        public ConstantSpeedMode? ConstantSpeedMode { get; set; } = null;
 
         /// <summary>
         /// <see cref="HandleCommandSet"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
-        /// <param name="powerCommand">力行ノッチの出力を編集するための <see cref="NotchCommandBase"/>。</param>
-        /// <param name="brakeCommand">ブレーキノッチの出力を編集するための <see cref="NotchCommandBase"/>。</param>
-        /// <param name="reverserCommand">逆転器の位置の出力を編集するための <see cref="ReverserPositionCommandBase"/>。</param>
-        /// <param name="constantSpeedCommand">
-        /// 定速制御の状態の出力を編集するための <see cref="Handles.ConstantSpeedCommand"/>。<br/>
-        /// 出力を編集しない場合は <see langword="null"/> を指定します。<see cref="ConstantSpeedCommand.Continue"/> は前フレームと同じ値を指定することを表します。
-        /// </param>
-        public HandleCommandSet(NotchCommandBase powerCommand, NotchCommandBase brakeCommand, ReverserPositionCommandBase reverserCommand, ConstantSpeedCommand? constantSpeedCommand)
+        public HandleCommandSet()
         {
-            PowerCommand = powerCommand ?? throw new ArgumentNullException(nameof(powerCommand));
-            BrakeCommand = brakeCommand ?? throw new ArgumentNullException(nameof(brakeCommand));
-            ReverserCommand = reverserCommand ?? throw new ArgumentNullException(nameof(reverserCommand));
-            ConstantSpeedCommand = constantSpeedCommand;
         }
     }
 }

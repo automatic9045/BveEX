@@ -38,10 +38,10 @@ namespace BveEx
         {
             HandleCommandSet commandSet = tickResult.HandleCommandSet;
 
-            AtsPowerNotch = commandSet.PowerCommand.GetOverridenNotch(AtsPowerNotch ?? CabPowerNotch) ?? AtsPowerNotch;
-            AtsBrakeNotch = commandSet.BrakeCommand.GetOverridenNotch(AtsBrakeNotch ?? CabBrakeNotch) ?? AtsBrakeNotch;
-            AtsReverserPosition = commandSet.ReverserCommand.GetOverridenPosition(AtsReverserPosition ?? CabReverserPosition) ?? AtsReverserPosition;
-            AtsConstantSpeedMode = commandSet.ConstantSpeedCommand?.ToConstantSpeedMode() ?? AtsConstantSpeedMode;
+            AtsPowerNotch = commandSet.PowerNotch ?? AtsPowerNotch;
+            AtsBrakeNotch = commandSet.BrakeNotch ?? AtsBrakeNotch;
+            AtsReverserPosition = commandSet.ReverserPosition ?? AtsReverserPosition;
+            AtsConstantSpeedMode = commandSet.ConstantSpeedMode ?? AtsConstantSpeedMode;
 
             LatestHandlePositionSet = new HandlePositionSet(
                 AtsPowerNotch ?? CabPowerNotch,
