@@ -82,7 +82,7 @@ namespace AtsEx
             {
                 ScenarioHacker.BeginObserveInitialization();
 
-                ScenarioOpened?.Invoke(new ScenarioOpenedEventArgs(e.ScenarioInfo));
+                ScenarioOpened?.Invoke(e);
             };
 
             ScenarioHacker.ScenarioClosed += e =>
@@ -90,7 +90,7 @@ namespace AtsEx
                 MapLoaderHacker.Clear();
                 MapStatements = null;
 
-                ScenarioClosed?.Invoke(EventArgs.Empty);
+                ScenarioClosed?.Invoke(e);
             };
         }
 

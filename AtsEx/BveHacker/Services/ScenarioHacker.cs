@@ -91,10 +91,11 @@ namespace AtsEx.BveHackerServices
         private PatchInvokationResult OnLoaded(object sender, PatchInvokedEventArgs e)
         {
             // 再読込の場合は MainForm.UnloadScenario が呼ばれない
-            if (!(CurrentScenario is null)) ScenarioClosed?.Invoke(EventArgs.Empty);
+            bool isReload = !(CurrentScenario is null);
+            if (isReload) ScenarioClosed?.Invoke(EventArgs.Empty);
 
             ScenarioInfo scenarioInfo = ScenarioInfo.FromSource(e.Args[0]);
-            ScenarioOpened?.Invoke(new ScenarioOpenedEventArgs(scenarioInfo));
+            ScenarioOpened?.Invoke(new ScenarioOpenedEventArgs(scenarioInfo, isReload));
 
             return PatchInvokationResult.DoNothing(e);
         }
