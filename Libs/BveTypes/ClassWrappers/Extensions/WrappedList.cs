@@ -21,10 +21,6 @@ namespace BveTypes.ClassWrappers.Extensions
         private static BveTypeSet BveTypes = null;
         private static ListConstructorSet ListConstructors = null;
 
-        protected readonly new IList Src;
-        protected readonly ITwoWayConverter<object, TWrapper> Converter;
-
-
         private static void LoadConstructors()
         {
             Type originalType = BveTypes.GetTypeInfoOf<TWrapper>().OriginalType;
@@ -33,6 +29,22 @@ namespace BveTypes.ClassWrappers.Extensions
         }
 
 
+        /// <summary>
+        /// ラップされているオリジナル オブジェクトです。
+        /// </summary>
+        protected readonly new IList Src;
+
+        /// <summary>
+        /// オリジナル型とラッパー型を相互に変換するためのコンバータです。
+        /// </summary>
+        protected readonly ITwoWayConverter<object, TWrapper> Converter;
+
+        /// <summary>
+        /// <see cref="WrappedList{TWrapper}"/> クラスの新しいインスタンスを初期化します。
+        /// </summary>
+        /// <param name="src">ラップされているオリジナル オブジェクト。</param>
+        /// <param name="converter">オリジナル型とラッパー型を相互に変換するためのコンバータ。</param>
+        /// <exception cref="ArgumentException"><paramref name="src"/> が <see cref="IList{T}"/> の派生ではありません。</exception>
         protected WrappedList(IList src, ITwoWayConverter<object, TWrapper> converter) : base(src)
         {
             if (BveTypes is null)
@@ -58,6 +70,10 @@ namespace BveTypes.ClassWrappers.Extensions
             }
         }
 
+        /// <summary>
+        /// 既定のコンバータを使用して、<see cref="WrappedList{TWrapper}"/> クラスの新しいインスタンスを初期化します。
+        /// </summary>
+        /// <param name="src"></param>
         protected WrappedList(IList src) : this(src, new ClassWrapperConverter<TWrapper>())
         {
         }
@@ -77,19 +93,28 @@ namespace BveTypes.ClassWrappers.Extensions
         /// <returns>オリジナル オブジェクトをラップした <see cref="WrappedList{TWrapper}"/> クラスのインスタンス。</returns>
         public static WrappedList<TWrapper> FromSource(IList src) => FromSource(src, new ClassWrapperConverter<TWrapper>());
 
-
+        /// <summary>
+        /// 空の <see cref="WrappedList{TWrapper}"/> クラスの新しいインスタンスを初期化します。
+        /// </summary>
         public WrappedList() : base(ListConstructors.Create())
         {
         }
 
+        /// <summary>
+        /// 指定したコレクションからコピーした要素を格納し、コピーされる要素の数を格納できるだけの容量を備えた <see cref="WrappedList{TWrapper}"/> クラスの新しいインスタンスを初期化します。
+        /// </summary>
+        /// <param name="collection">要素のコピー元となるコレクション。</param>
         public WrappedList(IEnumerable collection) : base(ListConstructors.Create(collection))
         {
         }
 
+        /// <summary>
+        /// 空で、指定した初期量を備えた <see cref="WrappedList{TWrapper}"/> クラスの新しいインスタンスを初期化します。
+        /// </summary>
+        /// <param name="capacity">新しいリストに格納できる要素の数。</param>
         public WrappedList(int capacity) : base(ListConstructors.Create(capacity))
         {
         }
-
 
         /// <inheritdoc/>
         public TWrapper this[int index]

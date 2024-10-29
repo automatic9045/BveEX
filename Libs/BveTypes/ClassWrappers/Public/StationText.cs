@@ -9,6 +9,9 @@ using TypeWrapping;
 
 namespace BveTypes.ClassWrappers
 {
+    /// <summary>
+    /// 「次駅情報」補助表示を表します。
+    /// </summary>
     public class StationText : AssistantText
     {
         [InitializeClassWrapper]

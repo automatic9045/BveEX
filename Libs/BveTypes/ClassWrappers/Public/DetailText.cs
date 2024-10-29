@@ -9,6 +9,9 @@ using TypeWrapping;
 
 namespace BveTypes.ClassWrappers
 {
+    /// <summary>
+    /// 「内部計算値」補助表示を表します。
+    /// </summary>
     public class DetailText : AssistantText
     {
         [InitializeClassWrapper]

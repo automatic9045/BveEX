@@ -19,12 +19,27 @@ namespace BveEx.PluginHost
         public ScenarioInfo ScenarioInfo { get; }
 
         /// <summary>
+        /// F5 キーなどによる再読込であるかどうかを取得します。
+        /// </summary>
+        public bool IsReload { get; }
+
+        /// <summary>
         /// <see cref="ScenarioOpenedEventArgs"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         /// <param name="scenarioInfo">読込が開始されたシナリオの情報を格納する <see cref="BveTypes.ClassWrappers.ScenarioInfo"/>。</param>
-        public ScenarioOpenedEventArgs(ScenarioInfo scenarioInfo)
+        /// <param name="isReload">F5 キーなどによる再読込であるかどうか。</param>
+        public ScenarioOpenedEventArgs(ScenarioInfo scenarioInfo, bool isReload)
         {
             ScenarioInfo = scenarioInfo;
+            IsReload = isReload;
+        }
+
+        /// <summary>
+        /// 再読込でないことを表す <see cref="ScenarioOpenedEventArgs"/> クラスの新しいインスタンスを初期化します。
+        /// </summary>
+        /// <param name="scenarioInfo">読込が開始されたシナリオの情報を格納する <see cref="BveTypes.ClassWrappers.ScenarioInfo"/>。</param>
+        public ScenarioOpenedEventArgs(ScenarioInfo scenarioInfo) : this(scenarioInfo, false)
+        {
         }
     }
 }

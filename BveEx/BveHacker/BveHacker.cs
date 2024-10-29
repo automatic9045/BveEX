@@ -77,14 +77,14 @@ namespace BveEx
             {
                 ScenarioHacker.BeginObserveInitialization();
 
-                ScenarioOpened?.Invoke(new ScenarioOpenedEventArgs(e.ScenarioInfo));
+                ScenarioOpened?.Invoke(e);
             };
 
             ScenarioHacker.ScenarioClosed += e =>
             {
                 MapLoaderHacker.Clear();
 
-                ScenarioClosed?.Invoke(EventArgs.Empty);
+                ScenarioClosed?.Invoke(e);
             };
         }
 

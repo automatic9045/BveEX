@@ -9,6 +9,9 @@ using TypeWrapping;
 
 namespace BveTypes.ClassWrappers
 {
+    /// <summary>
+    /// 「曲線・勾配」補助表示を表します。
+    /// </summary>
     public class GeometryText : AssistantText
     {
         [InitializeClassWrapper]

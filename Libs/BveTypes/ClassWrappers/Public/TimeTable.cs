@@ -14,7 +14,6 @@ namespace BveTypes.ClassWrappers
     /// <summary>
     /// BVE 標準機能の時刻表を表します。
     /// </summary>
-    /// <seealso cref="DiagramUpdater"/>
     public class TimeTable : AssistantText
     {
         [InitializeClassWrapper]
@@ -167,11 +166,6 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 時刻表の表示を最新の状態に更新します。
         /// </summary>
-        /// <remarks>
-        /// このメソッドは独自の更新処理を実装するために公開されているものです。通常は <see cref="DiagramUpdater"/> を使用してください。
-        /// </remarks>
-        /// <seealso cref="DiagramUpdater"/>
-        /// <seealso cref="DiagramUpdater.UpdateDiagram"/>
         public void Update()
         {
             UpdateMethod.Invoke(Src, null);

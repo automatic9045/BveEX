@@ -41,6 +41,9 @@ namespace BveTypes.ClassWrappers
         public static SoundSet FromSource(object src) => src is null ? null : new SoundSet(src);
 
         private static FastMethod ItemsGetMethod;
+        /// <summary>
+        /// 要素の一覧を取得します。
+        /// </summary>
         public WrappedSortedList<string, Sound> Items => new WrappedSortedList<string, Sound>(ItemsGetMethod.Invoke(Src, null));
     }
 }

@@ -34,8 +34,19 @@ namespace BveTypes.ClassWrappers
         [CreateClassWrapperFromSource]
         public static new PluginLoader FromSource(object src) => src is null ? null : new PluginLoader(src);
 
-        public PluginLoader(UserVehicleLocationManager locationManager, KeyProvider keyProvider, HandleSet _0, HandleSet _1, VehicleStateStore vehicleStateStore, SectionManager sectionManager, MapFunctionList beacons, DoorSet doors)
-            : base(locationManager, keyProvider, _0, _1, vehicleStateStore, sectionManager, beacons, doors)
+        /// <summary>
+        /// <see cref="PluginLoader"/> クラスの新しいインスタンスを初期化します。
+        /// </summary>
+        /// <param name="locationManager">自列車の位置に関する情報。</param>
+        /// <param name="keyProvider">キー入力に関する情報。</param>
+        /// <param name="handles">自列車のノッチ情報。</param>
+        /// <param name="atsHandles">ATS による指示を適用した自列車のノッチ情報。</param>
+        /// <param name="vehicleStateStore">自列車の状態に関する情報。</param>
+        /// <param name="sectionManager">閉塞の制御に関する情報。</param>
+        /// <param name="beacons">地上子の一覧。</param>
+        /// <param name="doors">自列車のドアの一覧。</param>
+        public PluginLoader(UserVehicleLocationManager locationManager, KeyProvider keyProvider, HandleSet handles, HandleSet atsHandles, VehicleStateStore vehicleStateStore, SectionManager sectionManager, MapFunctionList beacons, DoorSet doors)
+            : base(locationManager, keyProvider, handles, atsHandles, vehicleStateStore, sectionManager, beacons, doors)
         {
         }
     }
