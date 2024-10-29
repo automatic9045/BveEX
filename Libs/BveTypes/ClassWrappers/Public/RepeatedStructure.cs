@@ -12,6 +12,9 @@ using BveTypes.ClassWrappers.Extensions;
 
 namespace BveTypes.ClassWrappers
 {
+    /// <summary>
+    /// 沿線ストラクチャーを表します。
+    /// </summary>
     public class RepeatedStructure : Structure
     {
         [InitializeClassWrapper]

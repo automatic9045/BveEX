@@ -9,6 +9,9 @@ using TypeWrapping;
 
 namespace BveTypes.ClassWrappers
 {
+    /// <summary>
+    /// 「制限速度」補助表示を表します。
+    /// </summary>
     public class SpeedLimitText : AssistantText
     {
         [InitializeClassWrapper]

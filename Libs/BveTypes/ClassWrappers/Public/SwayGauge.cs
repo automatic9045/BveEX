@@ -9,6 +9,9 @@ using TypeWrapping;
 
 namespace BveTypes.ClassWrappers
 {
+    /// <summary>
+    /// 「乗客の揺れ」補助表示を表します。
+    /// </summary>
     public class SwayGauge : AssistantBase
     {
         [InitializeClassWrapper]
@@ -31,6 +34,6 @@ namespace BveTypes.ClassWrappers
         /// <param name="src">ラップするオリジナル オブジェクト。</param>
         /// <returns>オリジナル オブジェクトをラップした <see cref="SwayGauge"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
-        public static new SwayGauge FromSource(object src) => src is null ? null : new SwayGauge(src);
+        public static SwayGauge FromSource(object src) => src is null ? null : new SwayGauge(src);
     }
 }

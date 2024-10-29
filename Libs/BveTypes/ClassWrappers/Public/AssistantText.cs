@@ -14,7 +14,7 @@ using TypeWrapping;
 namespace BveTypes.ClassWrappers
 {
     /// <summary>
-    /// 補助表示を表します。
+    /// テキストによる補助表示を表します。
     /// </summary>
     public class AssistantText : AssistantBase
     {
@@ -56,7 +56,7 @@ namespace BveTypes.ClassWrappers
         /// <param name="src">ラップするオリジナル オブジェクト。</param>
         /// <returns>オリジナル オブジェクトをラップした <see cref="AssistantText"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
-        public static new AssistantText FromSource(object src) => src is null ? null : new AssistantText(src);
+        public static AssistantText FromSource(object src) => src is null ? null : new AssistantText(src);
 
         private static FastMethod ColorGetMethod;
         private static FastMethod ColorSetMethod;

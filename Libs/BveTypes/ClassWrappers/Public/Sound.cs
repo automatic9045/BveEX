@@ -68,12 +68,28 @@ namespace BveTypes.ClassWrappers
         public static Sound FromSource(object src) => src is null ? null : new Sound(src);
 
         private static FastConstructor Constructor1;
+        /// <summary>
+        /// <see cref="Sound"/> クラスの新しいインスタンスを初期化します。
+        /// </summary>
+        /// <param name="timeManager">時間に関する情報。</param>
+        /// <param name="cameraLocation">カメラ (視点) の位置に関する情報。</param>
+        /// <param name="buffer">サウンドバッファ。</param>
+        /// <param name="minRadius">サウンドの視点までの最短距離 [m]。</param>
+        /// <param name="position">サウンドの設置位置。</param>
         public Sound(TimeManager timeManager, CameraLocation cameraLocation, SecondarySoundBuffer buffer, double minRadius, SoundPosition position)
             : this(Constructor1.Invoke(new object[] { timeManager?.Src, cameraLocation?.Src, buffer, minRadius, position }))
         {
         }
 
         private static FastConstructor Constructor2;
+        /// <summary>
+        /// <see cref="Sound"/> クラスの新しいインスタンスを初期化します。
+        /// </summary>
+        /// <param name="timeManager">時間に関する情報。</param>
+        /// <param name="cameraLocation">カメラ (視点) の位置に関する情報。</param>
+        /// <param name="buffers">サウンドバッファの一覧。</param>
+        /// <param name="minRadius">サウンドの視点までの最短距離 [m]。</param>
+        /// <param name="position">サウンドの設置位置。</param>
         public Sound(TimeManager timeManager, CameraLocation cameraLocation, SecondarySoundBuffer[] buffers, double minRadius, SoundPosition position)
             : this(Constructor2.Invoke(new object[] { timeManager?.Src, cameraLocation?.Src, buffers, minRadius, position }))
         {

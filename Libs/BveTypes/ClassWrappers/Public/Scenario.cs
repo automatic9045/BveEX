@@ -120,9 +120,18 @@ namespace BveTypes.ClassWrappers
         public void Dispose() => DisposeMethod.Invoke(Src, null);
 
         private static FastMethod InitializeTimeAndLocationMethod;
+        /// <summary>
+        /// 現在の時刻と自列車の位置を初期化します。
+        /// </summary>
+        /// <param name="location">自列車の距離程 [m]。</param>
+        /// <param name="timeMilliseconds">時刻。0 時丁度から経過した時間 [ms] で指定します。</param>
         public void InitializeTimeAndLocation(double location, int timeMilliseconds) => InitializeTimeAndLocationMethod.Invoke(Src, new object[] { location, timeMilliseconds });
 
         private static FastMethod InitializeMethod;
+        /// <summary>
+        /// 走行中である停車場間の情報を初期化します。
+        /// </summary>
+        /// <param name="stationIndex">停車場のインデックス。</param>
         public void Initialize(int stationIndex) => InitializeMethod.Invoke(Src, new object[] { stationIndex });
 
         private static FastMethod DrawMethod;

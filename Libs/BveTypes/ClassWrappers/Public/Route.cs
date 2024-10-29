@@ -16,7 +16,7 @@ using BveTypes.ClassWrappers.Extensions;
 namespace BveTypes.ClassWrappers
 {
     /// <summary>
-    /// マップに関する情報にアクセスするための機能を提供します。
+    /// マップを表します。
     /// </summary>
     public class Route : ClassWrapperBase
     {

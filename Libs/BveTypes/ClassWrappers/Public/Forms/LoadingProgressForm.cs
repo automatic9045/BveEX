@@ -61,6 +61,9 @@ namespace BveTypes.ClassWrappers
         }
 
         private static FastField ErrorCountField;
+        /// <summary>
+        /// 表示されているエラーの件数を取得します。
+        /// </summary>
         public int ErrorCount
         {
             get => ErrorCountField.GetValue(Src);
@@ -68,6 +71,9 @@ namespace BveTypes.ClassWrappers
         }
 
         private static FastField PanelField;
+        /// <summary>
+        /// フォームのレイアウトのための <see cref="System.Windows.Forms.Panel"/> を取得します。
+        /// </summary>
         public Panel Panel => PanelField.GetValue(Src);
 
         private static FastField ProgressBarField;
@@ -81,6 +87,9 @@ namespace BveTypes.ClassWrappers
         }
 
         private static FastField ErrorListViewField;
+        /// <summary>
+        /// エラーの一覧を表示する <see cref="ListView"/> を取得します。
+        /// </summary>
         public ListView ErrorListView => ErrorListViewField.GetValue(Src);
 
 
@@ -92,10 +101,6 @@ namespace BveTypes.ClassWrappers
         /// <param name="senderFileName">エラーの発生元となるファイルのファイル名。</param>
         /// <param name="lineIndex">エラーの発生元となる行番号。</param>
         /// <param name="charIndex">エラーの発生元となる列番号。</param>
-        /// <remarks>
-        /// 通常は <see cref="LoadErrorManager.Throw(string, string, int, int)"/> メソッド、<see cref="LoadErrorManager.Throw(string, string, int)"/> メソッド、
-        /// <see cref="LoadErrorManager.Throw(string, string)"/> メソッド、<see cref="LoadErrorManager.Throw(string)"/> メソッドを使用してください。
-        /// </remarks>
         public void ThrowError(string text, string senderFileName, int lineIndex, int charIndex)
             => ThrowErrorMethod1.Invoke(Src, new object[] { text, senderFileName, lineIndex, charIndex });
 
@@ -104,9 +109,6 @@ namespace BveTypes.ClassWrappers
         /// エラーをエラー一覧に追加します。
         /// </summary>
         /// <param name="error">追加するエラー。</param>
-        /// <remarks>
-        /// 通常は <see cref="LoadErrorManager.Throw(LoadError)"/> メソッドを使用してください。
-        /// </remarks>
         public void ThrowError(LoadError error) => ThrowErrorMethod2.Invoke(Src, new object[] { error?.Src });
 
         private static FastMethod ThrowErrorsMethod;
@@ -114,9 +116,6 @@ namespace BveTypes.ClassWrappers
         /// 複数のエラーをエラー一覧に追加します。
         /// </summary>
         /// <param name="errors">追加するエラー。</param>
-        /// <remarks>
-        /// 通常は <see cref="LoadErrorManager.Throw(LoadError)"/> メソッドを使用してください。
-        /// </remarks>
         public void ThrowErrors(IEnumerable<LoadError> errors) => ThrowErrorsMethod.Invoke(Src, new object[] { errors.Select(error => error?.Src) });
 
         private static FastMethod SetProgressMethod;
