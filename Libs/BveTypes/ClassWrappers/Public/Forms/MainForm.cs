@@ -31,7 +31,7 @@ namespace BveTypes.ClassWrappers
             ChartFormField = members.GetSourceFieldOf(nameof(ChartForm));
             LoadingProgressFormField = members.GetSourceFieldOf(nameof(LoadingProgressForm));
             AssistantDrawerField = members.GetSourceFieldOf(nameof(AssistantDrawer));
-            KeyProviderField = members.GetSourceFieldOf(nameof(KeyProvider));
+            InputManagerField = members.GetSourceFieldOf(nameof(InputManager));
             CurrentScenarioField = members.GetSourceFieldOf(nameof(CurrentScenario));
             CurrentScenarioInfoField = members.GetSourceFieldOf(nameof(CurrentScenarioInfo));
             PreferencesField = members.GetSourceFieldOf(nameof(Preferences));
@@ -103,14 +103,14 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public AssistantDrawer AssistantDrawer => ClassWrappers.AssistantDrawer.FromSource(AssistantDrawerField.GetValue(Src));
 
-        private static FastField KeyProviderField;
+        private static FastField InputManagerField;
         /// <summary>
-        /// キー入力を管理する <see cref="ClassWrappers.KeyProvider"/> を取得・設定します。
+        /// キー入力を管理する <see cref="ClassWrappers.InputManager"/> を取得・設定します。
         /// </summary>
-        public KeyProvider KeyProvider
+        public InputManager InputManager
         {
-            get => ClassWrappers.KeyProvider.FromSource(KeyProviderField.GetValue(Src));
-            set => KeyProviderField.SetValue(Src, value?.Src);
+            get => ClassWrappers.InputManager.FromSource(InputManagerField.GetValue(Src));
+            set => InputManagerField.SetValue(Src, value?.Src);
         }
 
         private static FastField CurrentScenarioField;

@@ -74,15 +74,15 @@ namespace BveTypes.ClassWrappers
         /// <see cref="AtsPlugin"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         /// <param name="locationManager">自列車の位置に関する情報。</param>
-        /// <param name="keyProvider">キー入力に関する情報。</param>
+        /// <param name="inputManager">キー入力に関する情報。</param>
         /// <param name="handles">自列車のノッチ情報。</param>
         /// <param name="atsHandles">ATS による指示を適用した自列車のノッチ情報。</param>
         /// <param name="vehicleStateStore">自列車の状態に関する情報。</param>
         /// <param name="sectionManager">閉塞の制御に関する情報。</param>
         /// <param name="beacons">地上子の一覧。</param>
         /// <param name="doors">自列車のドアの一覧。</param>
-        public AtsPlugin(UserVehicleLocationManager locationManager, KeyProvider keyProvider, HandleSet handles, HandleSet atsHandles, VehicleStateStore vehicleStateStore, SectionManager sectionManager, MapFunctionList beacons, DoorSet doors)
-            : this(Constructor.Invoke(new object[] { locationManager?.Src, keyProvider?.Src, handles?.Src, atsHandles?.Src, vehicleStateStore?.Src, sectionManager?.Src, beacons?.Src, doors?.Src }))
+        public AtsPlugin(UserVehicleLocationManager locationManager, InputManager inputManager, HandleSet handles, HandleSet atsHandles, VehicleStateStore vehicleStateStore, SectionManager sectionManager, MapFunctionList beacons, DoorSet doors)
+            : this(Constructor.Invoke(new object[] { locationManager?.Src, inputManager?.Src, handles?.Src, atsHandles?.Src, vehicleStateStore?.Src, sectionManager?.Src, beacons?.Src, doors?.Src }))
         {
         }
 

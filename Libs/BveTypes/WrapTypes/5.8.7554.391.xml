@@ -35,7 +35,7 @@
 		<Field WrapperProperty="ChartForm" Original="e" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="LoadingProgressForm" Original="k" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="AssistantDrawer" Original="l" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="KeyProvider" Original="m" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="InputManager" Original="m" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="CurrentScenario" Original="n" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="CurrentScenarioInfo" Original="q" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Preferences" Original="w" IsOriginalStatic="true"/>
@@ -601,7 +601,7 @@
 		<Method Wrapper="Tick" WrapperParams="System.Double" Original="ag"/>
 	</Class>
 
-	<Class Wrapper="KeyProvider" Original="ag">
+	<Class Wrapper="InputManager" Original="ag">
 		<Property Wrapper="InputDevices">
 			<Getter Original="c"/>
 		</Property>

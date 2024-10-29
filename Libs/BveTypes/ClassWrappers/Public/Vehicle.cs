@@ -69,14 +69,14 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         /// <param name="assistantDrawer">補助表示を描画するための <see cref="AssistantDrawer"/>。</param>
         /// <param name="directSound">DirectSound デバイス。</param>
-        /// <param name="keyProvider">キー入力を管理するための <see cref="KeyProvider"/>。</param>
+        /// <param name="inputManager">キー入力を管理するための <see cref="InputManager"/>。</param>
         /// <param name="timeManager">時間に関する処理を行う <see cref="TimeManager"/>。</param>
         /// <param name="locationManager">自列車の位置情報に関する処理を行う <see cref="UserVehicleLocationManager"/>。</param>
         /// <param name="cameraLocation">カメラの位置に関する情報を提供する <see cref="CameraLocation"/>。</param>
         /// <param name="route">使用するマップ。</param>
         /// <param name="sectionManager">閉そくを制御するための <see cref="SectionManager" />。</param>
-        public Vehicle(AssistantDrawer assistantDrawer, DirectSound directSound, KeyProvider keyProvider, TimeManager timeManager, UserVehicleLocationManager locationManager, CameraLocation cameraLocation, Route route, SectionManager sectionManager)
-            : this(Constructor.Invoke(new object[] { assistantDrawer?.Src, directSound, keyProvider?.Src, timeManager?.Src, locationManager?.Src, cameraLocation?.Src, route?.Src, sectionManager?.Src }))
+        public Vehicle(AssistantDrawer assistantDrawer, DirectSound directSound, InputManager inputManager, TimeManager timeManager, UserVehicleLocationManager locationManager, CameraLocation cameraLocation, Route route, SectionManager sectionManager)
+            : this(Constructor.Invoke(new object[] { assistantDrawer?.Src, directSound, inputManager?.Src, timeManager?.Src, locationManager?.Src, cameraLocation?.Src, route?.Src, sectionManager?.Src }))
         {
         }
 

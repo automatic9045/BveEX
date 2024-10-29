@@ -137,7 +137,7 @@ namespace BveEx
         public ChartForm ChartForm => MainForm.ChartForm;
 
         public Preferences Preferences => MainForm.Preferences;
-        public KeyProvider KeyProvider => MainForm.KeyProvider;
+        public InputManager InputManager => MainForm.InputManager;
 
         public ILoadErrorManager LoadErrorManager { get; }
 

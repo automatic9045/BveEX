@@ -21,7 +21,7 @@ namespace BveEx.Extensions.AtsArrayExtender
         private readonly static Type[] atsPluginConstructorParamTypes = new Type[]
         {
             typeof(UserVehicleLocationManager),
-            typeof(KeyProvider),
+            typeof(InputManager),
             typeof(HandleSet),
             typeof(HandleSet),
             typeof(VehicleStateStore),

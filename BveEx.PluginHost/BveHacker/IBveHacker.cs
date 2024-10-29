@@ -128,9 +128,9 @@ namespace BveEx.PluginHost
         Preferences Preferences { get; }
 
         /// <summary>
-        /// キー入力を管理する <see cref="BveTypes.ClassWrappers.KeyProvider"/> を取得します。
+        /// キー入力を管理する <see cref="BveTypes.ClassWrappers.InputManager"/> を取得します。
         /// </summary>
-        KeyProvider KeyProvider { get; }
+        InputManager InputManager { get; }
 
 
         /// <summary>

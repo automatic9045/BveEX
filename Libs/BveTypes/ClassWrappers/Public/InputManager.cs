@@ -15,12 +15,12 @@ namespace BveTypes.ClassWrappers
     /// <summary>
     /// キー入力を管理します。
     /// </summary>
-    public class KeyProvider : ClassWrapperBase
+    public class InputManager : ClassWrapperBase
     {
         [InitializeClassWrapper]
         private static void Initialize(BveTypeSet bveTypes)
         {
-            ClassMemberSet members = bveTypes.GetClassInfoOf<KeyProvider>();
+            ClassMemberSet members = bveTypes.GetClassInfoOf<InputManager>();
 
             InputDevicesGetMethod = members.GetSourcePropertyGetterOf(nameof(InputDevices));
 
@@ -30,10 +30,10 @@ namespace BveTypes.ClassWrappers
         }
 
         /// <summary>
-        /// オリジナル オブジェクトから <see cref="KeyProvider"/> クラスの新しいインスタンスを初期化します。
+        /// オリジナル オブジェクトから <see cref="InputManager"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         /// <param name="src">ラップするオリジナル オブジェクト。</param>
-        protected KeyProvider(object src) : base(src)
+        protected InputManager(object src) : base(src)
         {
         }
 
@@ -41,8 +41,8 @@ namespace BveTypes.ClassWrappers
         /// オリジナル オブジェクトからラッパーのインスタンスを生成します。
         /// </summary>
         /// <param name="src">ラップするオリジナル オブジェクト。</param>
-        /// <returns>オリジナル オブジェクトをラップした <see cref="KeyProvider"/> クラスのインスタンス。</returns>
-        public static KeyProvider FromSource(object src) => src is null ? null : new KeyProvider(src);
+        /// <returns>オリジナル オブジェクトをラップした <see cref="InputManager"/> クラスのインスタンス。</returns>
+        public static InputManager FromSource(object src) => src is null ? null : new InputManager(src);
 
         private static FastMethod InputDevicesGetMethod;
         /// <summary>
