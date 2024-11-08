@@ -72,8 +72,8 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Model Model
         {
-            get => ModelGetMethod.Invoke(Src, null);
-            set => ModelSetMethod.Invoke(Src, new object[] { value });
+            get => ClassWrappers.Model.FromSource(ModelGetMethod.Invoke(Src, null));
+            set => ModelSetMethod.Invoke(Src, new object[] { value.Src });
         }
 
         private static FastMethod TrackKey1GetMethod;
