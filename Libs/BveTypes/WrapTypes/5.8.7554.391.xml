@@ -657,9 +657,11 @@
 	</Class>
 
 	<Class Wrapper="LocatableModel" Original="ej">
-		<Property Wrapper="Model">
-			<Getter Original="b"/>
-		</Property>
+		<Field WrapperProperty="Model" Original="a" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Matrix" Original="b" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Vertices" Original="c" IsOriginalNonPublic="true"/>
+
+		<Method Wrapper="Draw" WrapperParams="ex:Direct3DProvider; SlimDX.Matrix, SlimDX; System.Boolean" Original="ah"/>
 	</Class>
 
 	<Class Wrapper="LocationManager" Original="ct">
