@@ -89,7 +89,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double X
         {
-            get => XField.GetValue(Src);
+            get => (double)XField.GetValue(Src);
             set => XField.SetValue(Src, value);
         }
 
@@ -99,7 +99,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double Y
         {
-            get => YField.GetValue(Src);
+            get => (double)YField.GetValue(Src);
             set => YField.SetValue(Src, value);
         }
 
@@ -109,7 +109,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double Z
         {
-            get => ZField.GetValue(Src);
+            get => (double)ZField.GetValue(Src);
             set => ZField.SetValue(Src, value);
         }
 
@@ -119,7 +119,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double RotationX
         {
-            get => RotationXField.GetValue(Src);
+            get => (double)RotationXField.GetValue(Src);
             set => RotationXField.SetValue(Src, value);
         }
 
@@ -129,7 +129,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double RotationY
         {
-            get => RotationYField.GetValue(Src);
+            get => (double)RotationYField.GetValue(Src);
             set => RotationYField.SetValue(Src, value);
         }
 
@@ -139,7 +139,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double RotationZ
         {
-            get => RotationZField.GetValue(Src);
+            get => (double)RotationZField.GetValue(Src);
             set => RotationZField.SetValue(Src, value);
         }
 

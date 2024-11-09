@@ -22,7 +22,7 @@ namespace BveEx.LoadErrorManager
         internal LoadErrorList(LoadingProgressForm loadingProgressForm)
         {
             Form = loadingProgressForm;
-            FormSource = loadingProgressForm.Src;
+            FormSource = loadingProgressForm.Src as Form;
         }
 
         private static ListViewItem ToListViewItem(LoadError loadError, int index)

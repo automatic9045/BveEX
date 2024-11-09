@@ -92,7 +92,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// ラップされているオリジナル オブジェクトを取得します。
         /// </summary>
-        public dynamic Src { get; }
+        public object Src { get; }
 
         /// <summary>
         /// <see cref="ClassWrapperBase"/> クラスの新しいインスタンスを初期化します。
@@ -109,19 +109,19 @@ namespace BveTypes.ClassWrappers
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            return obj is ClassWrapperBase classWrapper && (bool)(Src as object).Equals(classWrapper.Src);
+            return obj is ClassWrapperBase classWrapper && Src.Equals(classWrapper.Src);
         }
 
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            return (Src as object).GetHashCode();
+            return Src.GetHashCode();
         }
 
         /// <inheritdoc/>
         public override string ToString()
         {
-            return (Src as object).ToString();
+            return Src.ToString();
         }
     }
 }

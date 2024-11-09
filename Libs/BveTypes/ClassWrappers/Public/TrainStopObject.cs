@@ -84,7 +84,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int StopTimeMilliseconds
         {
-            get => StopTimeMillisecondsGetMethod.Invoke(Src, null);
+            get => (int)StopTimeMillisecondsGetMethod.Invoke(Src, null);
             set => StopTimeMillisecondsSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -104,7 +104,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double Acceleration
         {
-            get => AccelerationGetMethod.Invoke(Src, null);
+            get => (double)AccelerationGetMethod.Invoke(Src, null);
             set => AccelerationSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -115,7 +115,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double Deceleration
         {
-            get => DecelerationGetMethod.Invoke(Src, null);
+            get => (double)DecelerationGetMethod.Invoke(Src, null);
             set => DecelerationSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -126,7 +126,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double Speed
         {
-            get => SpeedGetMethod.Invoke(Src, null);
+            get => (double)SpeedGetMethod.Invoke(Src, null);
             set => SpeedSetMethod.Invoke(Src, new object[] { value });
         }
     }

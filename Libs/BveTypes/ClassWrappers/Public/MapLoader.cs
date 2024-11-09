@@ -119,7 +119,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public DirectSound DirectSound
         {
-            get => DirectSoundField.GetValue(Src);
+            get => DirectSoundField.GetValue(Src) as DirectSound;
             set => DirectSoundField.SetValue(Src, value);
         }
 
@@ -129,7 +129,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public SortedList<string, object> Variables
         {
-            get => VariablesField.GetValue(Src);
+            get => VariablesField.GetValue(Src) as SortedList<string, object>;
             set => VariablesField.SetValue(Src, value);
         }
 
@@ -141,7 +141,7 @@ namespace BveTypes.ClassWrappers
         {
             get
             {
-                IDictionary dictionarySrc = StationsField.GetValue(Src);
+                IDictionary dictionarySrc = StationsField.GetValue(Src) as IDictionary;
                 return new WrappedSortedList<string, Station>(dictionarySrc);
             }
             set => VariablesField.SetValue(Src, value?.Src);
@@ -153,7 +153,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double CurrentLocation
         {
-            get => CurrentLocationField.GetValue(Src);
+            get => (double)CurrentLocationField.GetValue(Src);
             set => CurrentLocationField.SetValue(Src, value);
         }
 
@@ -163,7 +163,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public string FilePath
         {
-            get => FilePathField.GetValue(Src);
+            get => FilePathField.GetValue(Src) as string;
             set => FilePathField.SetValue(Src, value);
         }
 
@@ -173,7 +173,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public string Directory
         {
-            get => DirectoryField.GetValue(Src);
+            get => DirectoryField.GetValue(Src) as string;
             set => DirectoryField.SetValue(Src, value);
         }
 
@@ -203,7 +203,7 @@ namespace BveTypes.ClassWrappers
         /// マップを読み込みます。
         /// </summary>
         /// <returns>読込に成功した場合は <see langword="true"/>、失敗した場合は <see langword="false"/>。</returns>
-        public bool Load() => LoadMethod.Invoke(Src, null);
+        public bool Load() => (bool)LoadMethod.Invoke(Src, null);
 
         private static FastMethod RegisterFileMethod;
         /// <summary>
@@ -211,7 +211,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         /// <param name="filePath">マップファイルのパス。</param>
         /// <returns>読込に成功した場合は <see langword="true"/>、失敗した場合は <see langword="false"/>。</returns>
-        public bool RegisterFile(string filePath) => RegisterFileMethod.Invoke(Src, new object[] { filePath });
+        public bool RegisterFile(string filePath) => (bool)RegisterFileMethod.Invoke(Src, new object[] { filePath });
 
         private static FastMethod ParseStatementMethod;
         /// <summary>

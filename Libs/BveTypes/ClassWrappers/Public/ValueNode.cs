@@ -78,7 +78,11 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public T Value
         {
-            get => ValueGetMethod.Invoke(Src, null);
+            get
+            {
+                object obj = ValueGetMethod.Invoke(Src, null);
+                return obj is null ? default : (T)obj;
+            }
             set => ValueSetMethod.Invoke(Src, new object[] { value });
         }
     }

@@ -64,7 +64,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double Weight
         {
-            get => WeightGetMethod.Invoke(Src, null);
+            get => (double)WeightGetMethod.Invoke(Src, null);
             set => WeightSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -79,7 +79,7 @@ namespace BveTypes.ClassWrappers
         /// <seealso cref="AirSupplement.MotorCarRatio"/>
         public double Count
         {
-            get => CountGetMethod.Invoke(Src, null);
+            get => (double)CountGetMethod.Invoke(Src, null);
             set => CountSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -90,7 +90,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double InertiaFactor
         {
-            get => InertiaFactorGetMethod.Invoke(Src, null);
+            get => (double)InertiaFactorGetMethod.Invoke(Src, null);
             set => InertiaFactorSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -101,7 +101,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double ShoeFrictionA
         {
-            get => ShoeFrictionAGetMethod.Invoke(Src, null);
+            get => (double)ShoeFrictionAGetMethod.Invoke(Src, null);
             set => ShoeFrictionASetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -112,7 +112,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double ShoeFrictionB
         {
-            get => ShoeFrictionBGetMethod.Invoke(Src, null);
+            get => (double)ShoeFrictionBGetMethod.Invoke(Src, null);
             set => ShoeFrictionBSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -123,7 +123,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double ShoeFrictionC
         {
-            get => ShoeFrictionCGetMethod.Invoke(Src, null);
+            get => (double)ShoeFrictionCGetMethod.Invoke(Src, null);
             set => ShoeFrictionCSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -133,7 +133,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public bool IsSlipping
         {
-            get => IsSlippingField.GetValue(Src);
+            get => (bool)IsSlippingField.GetValue(Src);
             set => IsSlippingField.SetValue(Src, value);
         }
     }

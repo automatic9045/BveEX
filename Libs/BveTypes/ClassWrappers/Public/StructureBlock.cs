@@ -72,7 +72,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double Direction
         {
-            get => DirectionGetMethod.Invoke(Src, null);
+            get => (double)DirectionGetMethod.Invoke(Src, null);
             set => DirectionSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -84,7 +84,7 @@ namespace BveTypes.ClassWrappers
         {
             get
             {
-                IList listSrc = ModelsGetMethod.Invoke(Src, null);
+                IList listSrc = ModelsGetMethod.Invoke(Src, null) as IList;
                 return WrappedList<LocatableModel>.FromSource(listSrc);
             }
         }
@@ -99,7 +99,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public Matrix WorldMatrix
         {
-            get => WorldMatrixGetMethod.Invoke(Src, null);
+            get => (Matrix)WorldMatrixGetMethod.Invoke(Src, null);
             set => WorldMatrixSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -111,7 +111,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Matrix TransformFromLastBlock
         {
-            get => TransformFromLastBlockGetMethod.Invoke(Src, null);
+            get => (Matrix)TransformFromLastBlockGetMethod.Invoke(Src, null);
             set => TransformFromLastBlockSetMethod.Invoke(Src, new object[] { value });
         }
 

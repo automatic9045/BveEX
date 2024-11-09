@@ -99,7 +99,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Matrix Matrix
         {
-            get => MatrixGetMethod.Invoke(Src, null);
+            get => (Matrix)MatrixGetMethod.Invoke(Src, null);
             set => MatrixSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -110,7 +110,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public string TrackKey
         {
-            get => TrackKeyGetMethod.Invoke(Src, null);
+            get => TrackKeyGetMethod.Invoke(Src, null) as string;
             set => TrackKeySetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -121,7 +121,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double Span
         {
-            get => SpanGetMethod.Invoke(Src, null);
+            get => (double)SpanGetMethod.Invoke(Src, null);
             set => SpanSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -132,7 +132,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public bool TiltsAlongCant
         {
-            get => TiltsAlongCantGetMethod.Invoke(Src, null);
+            get => (bool)TiltsAlongCantGetMethod.Invoke(Src, null);
             set => TiltsAlongCantSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -143,7 +143,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public bool TiltsAlongGradient
         {
-            get => TiltsAlongGradientGetMethod.Invoke(Src, null);
+            get => (bool)TiltsAlongGradientGetMethod.Invoke(Src, null);
             set => TiltsAlongGradientSetMethod.Invoke(Src, new object[] { value });
         }
 

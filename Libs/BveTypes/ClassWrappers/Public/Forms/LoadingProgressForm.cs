@@ -56,7 +56,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public bool IsErrorCritical
         {
-            get => IsErrorCriticalField.GetValue(Src);
+            get => (bool)IsErrorCriticalField.GetValue(Src);
             set => IsErrorCriticalField.SetValue(Src, value);
         }
 
@@ -66,7 +66,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int ErrorCount
         {
-            get => ErrorCountField.GetValue(Src);
+            get => (int)ErrorCountField.GetValue(Src);
             set => ErrorCountField.SetValue(Src, value);
         }
 
@@ -74,7 +74,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// フォームのレイアウトのための <see cref="System.Windows.Forms.Panel"/> を取得します。
         /// </summary>
-        public Panel Panel => PanelField.GetValue(Src);
+        public Panel Panel => PanelField.GetValue(Src) as Panel;
 
         private static FastField ProgressBarField;
         /// <summary>
@@ -82,7 +82,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public ProgressBar ProgressBar
         {
-            get => ProgressBarField.GetValue(Src);
+            get => ProgressBarField.GetValue(Src) as ProgressBar;
             set => ProgressBarField.SetValue(Src, value);
         }
 
@@ -90,7 +90,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// エラーの一覧を表示する <see cref="ListView"/> を取得します。
         /// </summary>
-        public ListView ErrorListView => ErrorListViewField.GetValue(Src);
+        public ListView ErrorListView => ErrorListViewField.GetValue(Src) as ListView;
 
 
         private static FastMethod ThrowErrorMethod1;

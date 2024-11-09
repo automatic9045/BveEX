@@ -102,7 +102,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Vector3 PositionInBlock
         {
-            get => PositionInBlockGetMethod.Invoke(Src, null);
+            get => (Vector3)PositionInBlockGetMethod.Invoke(Src, null);
             set => PositionInBlockSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -113,7 +113,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Vector3 SpeedInBlock
         {
-            get => SpeedInBlockGetMethod.Invoke(Src, null);
+            get => (Vector3)SpeedInBlockGetMethod.Invoke(Src, null);
             set => SpeedInBlockSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -127,7 +127,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public double MinRadius
         {
-            get => MinRadiusGetMethod.Invoke(Src, null);
+            get => (double)MinRadiusGetMethod.Invoke(Src, null);
             set => MinRadiusSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -138,7 +138,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int MaxFrequency
         {
-            get => MaxFrequencyGetMethod.Invoke(Src, null);
+            get => (int)MaxFrequencyGetMethod.Invoke(Src, null);
             set => MaxFrequencySetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -149,7 +149,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int MinFrequency
         {
-            get => MinFrequencyGetMethod.Invoke(Src, null);
+            get => (int)MinFrequencyGetMethod.Invoke(Src, null);
             set => MinFrequencySetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -159,7 +159,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public SecondarySoundBuffer[] Buffers
         {
-            get => BuffersField.GetValue(Src);
+            get => BuffersField.GetValue(Src) as SecondarySoundBuffer[];
             set => BuffersField.SetValue(Src, value);
         }
 
@@ -169,7 +169,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int CurrentBufferIndex
         {
-            get => CurrentBufferIndexField.GetValue(Src);
+            get => (int)CurrentBufferIndexField.GetValue(Src);
             set => CurrentBufferIndexField.SetValue(Src, value);
         }
 

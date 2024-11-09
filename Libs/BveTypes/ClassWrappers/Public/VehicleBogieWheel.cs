@@ -52,7 +52,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double LocationInCar
         {
-            get => LocationInCarField.GetValue(Src);
+            get => (double)LocationInCarField.GetValue(Src);
             set => LocationInCarField.SetValue(Src, value);
         }
 
@@ -92,7 +92,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Vector3 PositionInBlock
         {
-            get => PositionInBlockField.GetValue(Src);
+            get => (Vector3)PositionInBlockField.GetValue(Src);
             set => PositionInBlockField.SetValue(Src, value);
         }
 

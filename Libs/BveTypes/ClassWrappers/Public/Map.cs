@@ -96,7 +96,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public double DrawLimitLocation
         {
-            get => DrawLimitLocationGetMethod.Invoke(Src, null);
+            get => (double)DrawLimitLocationGetMethod.Invoke(Src, null);
             set => DrawLimitLocationSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -202,7 +202,7 @@ namespace BveTypes.ClassWrappers
         {
             get
             {
-                IDictionary dictionarySrc = SoundsGetMethod.Invoke(Src, null);
+                IDictionary dictionarySrc = SoundsGetMethod.Invoke(Src, null) as IDictionary;
                 return new WrappedSortedList<string, Sound>(dictionarySrc);
             }
         }
@@ -220,7 +220,7 @@ namespace BveTypes.ClassWrappers
         {
             get
             {
-                IDictionary dictionarySrc = Sounds3DGetMethod.Invoke(Src, null);
+                IDictionary dictionarySrc = Sounds3DGetMethod.Invoke(Src, null) as IDictionary;
                 return new WrappedSortedList<string, Sound[]>(dictionarySrc, new Sounds3DConverter());
             }
         }
@@ -238,7 +238,7 @@ namespace BveTypes.ClassWrappers
         {
             get
             {
-                IDictionary dictionarySrc = StructureModelsGetMethod.Invoke(Src, null);
+                IDictionary dictionarySrc = StructureModelsGetMethod.Invoke(Src, null) as IDictionary;
                 return new WrappedSortedList<string, Model>(dictionarySrc);
             }
         }
@@ -253,7 +253,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 他列車の情報のリストを取得します。
         /// </summary>
-        public WrappedSortedList<string, TrainInfo> TrainInfos => new WrappedSortedList<string, TrainInfo>(TrainInfosGetMethod.Invoke(Src, null));
+        public WrappedSortedList<string, TrainInfo> TrainInfos => new WrappedSortedList<string, TrainInfo>(TrainInfosGetMethod.Invoke(Src, null) as IDictionary);
 
         private static FastMethod DrawDistanceObjectsGetMethod;
         /// <summary>
@@ -270,7 +270,7 @@ namespace BveTypes.ClassWrappers
         /// <param name="from">基準点とする距離程 [m]。</param>
         /// <returns>ワールド変換行列を表す <see cref="Matrix"/>。</returns>
         public Matrix GetTrackMatrix(LocatableMapObject mapObject, double to, double from)
-            => GetTrackMatrixMethod.Invoke(Src, new object[] { mapObject?.Src, to, from });
+            => (Matrix)GetTrackMatrixMethod.Invoke(Src, new object[] { mapObject?.Src, to, from });
 
         private class Sounds3DConverter : ITwoWayConverter<object, Sound[]>
         {

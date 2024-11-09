@@ -71,7 +71,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Device Device
         {
-            get => DeviceField.GetValue(Src);
+            get => DeviceField.GetValue(Src) as Device;
             set => DeviceField.SetValue(Src, value);
         }
 
@@ -81,7 +81,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public PresentParameters PresentParameters
         {
-            get => PresentParametersField.GetValue(Src);
+            get => PresentParametersField.GetValue(Src) as PresentParameters;
             set => PresentParametersField.SetValue(Src, value);
         }
 
@@ -91,7 +91,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public bool HasDeviceLost
         {
-            get => HasDeviceLostField.GetValue(Src);
+            get => (bool)HasDeviceLostField.GetValue(Src);
             set => HasDeviceLostField.SetValue(Src, value);
         }
 

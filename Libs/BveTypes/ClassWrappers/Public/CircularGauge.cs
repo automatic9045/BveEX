@@ -73,7 +73,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double Radius
         {
-            get => RadiusGetMethod.Invoke(Src, null);
+            get => (double)RadiusGetMethod.Invoke(Src, null);
             set => RadiusSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -84,7 +84,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double InitialAngle
         {
-            get => InitialAngleGetMethod.Invoke(Src, null);
+            get => (double)InitialAngleGetMethod.Invoke(Src, null);
             set => InitialAngleSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -95,7 +95,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double LastAngle
         {
-            get => LastAngleGetMethod.Invoke(Src, null);
+            get => (double)LastAngleGetMethod.Invoke(Src, null);
             set => LastAngleSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -106,7 +106,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double Max
         {
-            get => MaxGetMethod.Invoke(Src, null);
+            get => (double)MaxGetMethod.Invoke(Src, null);
             set => MaxSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -117,7 +117,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double Min
         {
-            get => MinGetMethod.Invoke(Src, null);
+            get => (double)MinGetMethod.Invoke(Src, null);
             set => MinSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -128,7 +128,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Vector2 Tilt
         {
-            get => TiltGetMethod.Invoke(Src, null);
+            get => (Vector2)TiltGetMethod.Invoke(Src, null);
             set => TiltSetMethod.Invoke(Src, new object[] { value });
         }
     }

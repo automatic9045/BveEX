@@ -43,6 +43,6 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 現在の状態を説明するテキストを取得します。
         /// </summary>
-        public string GetDescriptionText() => GetDescriptionTextMethod.Invoke(Src, null);
+        public string GetDescriptionText() => GetDescriptionTextMethod.Invoke(Src, null) as string;
     }
 }

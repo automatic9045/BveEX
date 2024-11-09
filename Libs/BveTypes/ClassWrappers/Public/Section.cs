@@ -58,7 +58,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public List<int> SectionIndexesTrainOn
         {
-            get => SectionIndexesTrainOnGetMethod.Invoke(Src, null);
+            get => SectionIndexesTrainOnGetMethod.Invoke(Src, null) as List<int>;
             set => SectionIndexesTrainOnSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -66,7 +66,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 現在の信号現示のインデックスを取得します。
         /// </summary>
-        public int CurrentSignalIndex => CurrentSignalIndexGetMethod.Invoke(Src, null);
+        public int CurrentSignalIndex => (int)CurrentSignalIndexGetMethod.Invoke(Src, null);
 
         private static FastMethod SignalIndexesGetMethod;
         private static FastMethod SignalIndexesSetMethod;
@@ -75,7 +75,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int[] SignalIndexes
         {
-            get => SignalIndexesGetMethod.Invoke(Src, null);
+            get => SignalIndexesGetMethod.Invoke(Src, null) as int[];
             set => SignalIndexesSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -86,7 +86,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int SectionCount
         {
-            get => SectionCountGetMethod.Invoke(Src, null);
+            get => (int)SectionCountGetMethod.Invoke(Src, null);
             set => SectionCountSetMethod.Invoke(Src, new object[] { value });
         }
     }

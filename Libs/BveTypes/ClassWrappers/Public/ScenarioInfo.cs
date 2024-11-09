@@ -101,7 +101,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public string Path
         {
-            get => PathGetMethod.Invoke(Src, null);
+            get => PathGetMethod.Invoke(Src, null) as string;
             internal set => PathSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -112,7 +112,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public string FileName
         {
-            get => FileNameGetMethod.Invoke(Src, null);
+            get => FileNameGetMethod.Invoke(Src, null) as string;
             internal set => FileNameSetMethod.Invoke(Src, new object[] { value } );
         }
 
@@ -123,7 +123,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public string DirectoryName
         {
-            get => DirectoryNameGetMethod.Invoke(Src, null);
+            get => DirectoryNameGetMethod.Invoke(Src, null) as string;
             internal set => DirectoryNameSetMethod.Invoke(Src, new object[] { value } );
         }
 
@@ -134,7 +134,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public string Title
         {
-            get => TitleGetMethod.Invoke(Src, null);
+            get => TitleGetMethod.Invoke(Src, null) as string;
             internal set => TitleSetMethod.Invoke(Src, new object[] { value } );
         }
 
@@ -145,7 +145,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public string ImagePath
         {
-            get => ImagePathGetMethod.Invoke(Src, null);
+            get => ImagePathGetMethod.Invoke(Src, null) as string;
             internal set => ImagePathSetMethod.Invoke(Src, new object[] { value } );
         }
 
@@ -156,7 +156,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public string Author
         {
-            get => AuthorGetMethod.Invoke(Src, null);
+            get => AuthorGetMethod.Invoke(Src, null) as string;
             internal set => AuthorSetMethod.Invoke(Src, new object[] { value } );
         }
 
@@ -167,7 +167,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public string Comment
         {
-            get => CommentGetMethod.Invoke(Src, null);
+            get => CommentGetMethod.Invoke(Src, null) as string;
             internal set => CommentSetMethod.Invoke(Src, new object[] { value } );
         }
 
@@ -200,7 +200,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public string RouteTitle
         {
-            get => RouteTitleGetMethod.Invoke(Src, null);
+            get => RouteTitleGetMethod.Invoke(Src, null) as string;
             internal set => RouteTitleSetMethod.Invoke(Src, new object[] { value } );
         }
 
@@ -211,7 +211,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public string VehicleTitle
         {
-            get => VehicleTitleGetMethod.Invoke(Src, null);
+            get => VehicleTitleGetMethod.Invoke(Src, null) as string;
             internal set => VehicleTitleSetMethod.Invoke(Src, new object[] { value } );
         }
 
@@ -222,8 +222,8 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public WrappedList<LoadError> ScenarioFileLoadErrors
         {
-            get => WrappedList<LoadError>.FromSource((IList)ScenarioFileLoadErrorsGetMethod.Invoke(Src, null));
-            internal set => ScenarioFileLoadErrorsSetMethod.Invoke(Src, value?.Src);
+            get => WrappedList<LoadError>.FromSource(ScenarioFileLoadErrorsGetMethod.Invoke(Src, null) as IList);
+            internal set => ScenarioFileLoadErrorsSetMethod.Invoke(Src, new object[] { value?.Src });
         }
     }
 }

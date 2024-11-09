@@ -87,7 +87,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double Displacement
         {
-            get => DisplacementField.GetValue(Src);
+            get => (double)DisplacementField.GetValue(Src);
             set => DisplacementField.SetValue(Src, value);
         }
 
@@ -97,7 +97,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double Velocity
         {
-            get => VelocityField.GetValue(Src);
+            get => (double)VelocityField.GetValue(Src);
             set => VelocityField.SetValue(Src, value);
         }
 
@@ -107,7 +107,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double Acceleration
         {
-            get => AccelerationField.GetValue(Src);
+            get => (double)AccelerationField.GetValue(Src);
             set => AccelerationField.SetValue(Src, value);
         }
 

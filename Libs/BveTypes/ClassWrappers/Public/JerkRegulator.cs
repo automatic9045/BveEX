@@ -59,7 +59,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         /// <returns>ジャーク制御介入前の電流値 [A]。</returns>
         public double CalculateRawCurrent()
-            => CalculateRawCurrentMethod.Invoke(Src, null);
+            => (double)CalculateRawCurrentMethod.Invoke(Src, null);
 
         private static FastMethod TickMethod;
         /// <summary>

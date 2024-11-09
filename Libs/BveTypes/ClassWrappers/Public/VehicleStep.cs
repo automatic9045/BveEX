@@ -91,7 +91,7 @@ namespace BveTypes.ClassWrappers
         {
             get
             {
-                IDictionary dictionarySrc = CurvesGetMethod.Invoke(Src, null);
+                IDictionary dictionarySrc = CurvesGetMethod.Invoke(Src, null) as IDictionary;
                 return new WrappedSortedList<string, GraphCurve>(dictionarySrc);
             }
         }
@@ -133,7 +133,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double JerkRegulationUp
         {
-            get => JerkRegulationUpGetMethod.Invoke(Src, null);
+            get => (double)JerkRegulationUpGetMethod.Invoke(Src, null);
             set => JerkRegulationUpSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -144,7 +144,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double JerkRegulationDown
         {
-            get => JerkRegulationDownGetMethod.Invoke(Src, null);
+            get => (double)JerkRegulationDownGetMethod.Invoke(Src, null);
             set => JerkRegulationDownSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -155,7 +155,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double BreakerDelayOn
         {
-            get => BreakerDelayOnGetMethod.Invoke(Src, null);
+            get => (double)BreakerDelayOnGetMethod.Invoke(Src, null);
             set => BreakerDelayOnSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -166,7 +166,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double BreakerDelayOff
         {
-            get => BreakerDelayOffGetMethod.Invoke(Src, null);
+            get => (double)BreakerDelayOffGetMethod.Invoke(Src, null);
             set => BreakerDelayOffSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -177,7 +177,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double ResetTime
         {
-            get => ResetTimeGetMethod.Invoke(Src, null);
+            get => (double)ResetTimeGetMethod.Invoke(Src, null);
             set => ResetTimeSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -188,7 +188,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double CurrentReducingTime
         {
-            get => CurrentReducingTimeGetMethod.Invoke(Src, null);
+            get => (double)CurrentReducingTimeGetMethod.Invoke(Src, null);
             set => CurrentReducingTimeSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -199,7 +199,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int RequiredNotchUp
         {
-            get => RequiredNotchUpGetMethod.Invoke(Src, null);
+            get => (int)RequiredNotchUpGetMethod.Invoke(Src, null);
             set => RequiredNotchUpSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -210,7 +210,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int RequiredNotchDown
         {
-            get => RequiredNotchDownGetMethod.Invoke(Src, null);
+            get => (int)RequiredNotchDownGetMethod.Invoke(Src, null);
             set => RequiredNotchDownSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -221,7 +221,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double StopDelayUp
         {
-            get => StopDelayUpGetMethod.Invoke(Src, null);
+            get => (double)StopDelayUpGetMethod.Invoke(Src, null);
             set => StopDelayUpSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -232,7 +232,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double StopDelayDown
         {
-            get => StopDelayDownGetMethod.Invoke(Src, null);
+            get => (double)StopDelayDownGetMethod.Invoke(Src, null);
             set => StopDelayDownSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -243,7 +243,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double CurrentLimitingValueEmpty
         {
-            get => CurrentLimitingValueEmptyGetMethod.Invoke(Src, null);
+            get => (double)CurrentLimitingValueEmptyGetMethod.Invoke(Src, null);
             set => CurrentLimitingValueEmptySetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -254,7 +254,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double CurrentLimitingValueFull
         {
-            get => CurrentLimitingValueFullGetMethod.Invoke(Src, null);
+            get => (double)CurrentLimitingValueFullGetMethod.Invoke(Src, null);
             set => CurrentLimitingValueFullSetMethod.Invoke(Src, new object[] { value });
         }
     }

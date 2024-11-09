@@ -90,13 +90,13 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// パネルに渡す値の配列を取得・設定します。
         /// </summary>
-        public int[] PanelArray => PanelArrayGetMethod.Invoke(Src, null);
+        public int[] PanelArray => PanelArrayGetMethod.Invoke(Src, null) as int[];
 
         private static FastMethod SoundArrayGetMethod;
         /// <summary>
         /// サウンドの再生状態を表す値の配列を取得・設定します。
         /// </summary>
-        public int[] SoundArray => SoundArrayGetMethod.Invoke(Src, null);
+        public int[] SoundArray => SoundArrayGetMethod.Invoke(Src, null) as int[];
 
         private static FastField IsPluginLoadedField;
         /// <summary>
@@ -104,7 +104,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public bool IsPluginLoaded
         {
-            get => IsPluginLoadedField.GetValue(Src);
+            get => (bool)IsPluginLoadedField.GetValue(Src);
             set => IsPluginLoadedField.SetValue(Src, value);
         }
 
@@ -114,7 +114,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public IntPtr HModule
         {
-            get => HModuleField.GetValue(Src);
+            get => (IntPtr)HModuleField.GetValue(Src);
             set => HModuleField.SetValue(Src, value);
         }
 
@@ -136,7 +136,7 @@ namespace BveTypes.ClassWrappers
         public int[] _PanelArray
 #pragma warning restore IDE1006 // 命名スタイル
         {
-            get => _PanelArrayField.GetValue(Src);
+            get => _PanelArrayField.GetValue(Src) as int[];
             set => _PanelArrayField.SetValue(Src, value);
         }
 
@@ -148,7 +148,7 @@ namespace BveTypes.ClassWrappers
         public int[] _SoundArray
 #pragma warning restore IDE1006 // 命名スタイル
         {
-            get => _SoundArrayField.GetValue(Src);
+            get => _SoundArrayField.GetValue(Src) as int[];
             set => _SoundArrayField.SetValue(Src, value);
         }
 
@@ -160,7 +160,7 @@ namespace BveTypes.ClassWrappers
         public int[] _OldSoundArray
 #pragma warning restore IDE1006 // 命名スタイル
         {
-            get => _OldSoundArrayField.GetValue(Src);
+            get => _OldSoundArrayField.GetValue(Src) as int[];
             set => _OldSoundArrayField.SetValue(Src, value);
         }
 

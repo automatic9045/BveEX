@@ -82,7 +82,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// このスケジュールの開始時刻をミリ秒単位で取得します。
         /// </summary>
-        public int StartTimeMilliseconds => StartTimeMillisecondsField.GetValue(Src);
+        public int StartTimeMilliseconds => (int)StartTimeMillisecondsField.GetValue(Src);
 
         /// <summary>
         /// このスケジュールの開始時刻を取得します。
@@ -93,7 +93,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// このスケジュールの計算上の基準時刻をミリ秒単位で取得します。
         /// </summary>
-        public int OriginTimeMilliseconds => OriginTimeMillisecondsField.GetValue(Src);
+        public int OriginTimeMilliseconds => (int)OriginTimeMillisecondsField.GetValue(Src);
 
         /// <summary>
         /// このスケジュールの計算上の基準時刻を取得します。
@@ -104,19 +104,19 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 基準時刻 (<see cref="OriginTime"/> プロパティの値) における距離程 [m] を取得します。
         /// </summary>
-        public double Location => BaseLocationField.GetValue(Src);
+        public double Location => (double)BaseLocationField.GetValue(Src);
 
         private static FastField SpeedField;
         /// <summary>
         /// 基準時刻 (<see cref="OriginTime"/> プロパティの値) における速度 [m/s] を取得・設定します。
         /// </summary>
-        public double Speed => SpeedField.GetValue(Src);
+        public double Speed => (double)SpeedField.GetValue(Src);
 
         private static FastField AccelerationField;
         /// <summary>
         /// 加速度 [m/s^2] を取得・設定します。
         /// </summary>
-        public double Acceleration => AccelerationField.GetValue(Src);
+        public double Acceleration => (double)AccelerationField.GetValue(Src);
 
 
         private static FastMethod GetLocationMethod;
@@ -126,7 +126,7 @@ namespace BveTypes.ClassWrappers
         /// <param name="timeMilliseconds">時刻 [ms]。</param>
         /// <returns>時刻 <paramref name="timeMilliseconds"/> [ms] における距離程 [m]。</returns>
         public double GetLocation(int timeMilliseconds)
-            => GetLocationMethod.Invoke(Src, new object[] { timeMilliseconds });
+            => (double)GetLocationMethod.Invoke(Src, new object[] { timeMilliseconds });
 
         /// <summary>
         /// 指定した時刻における距離程を計算します。
@@ -142,7 +142,7 @@ namespace BveTypes.ClassWrappers
         /// <param name="timeMilliseconds">時刻 [ms]。</param>
         /// <returns>時刻 <paramref name="timeMilliseconds"/> [ms] における速度 [m/s]。</returns>
         public double GetSpeed(int timeMilliseconds)
-            => GetSpeedMethod.Invoke(Src, new object[] { timeMilliseconds });
+            => (double)GetSpeedMethod.Invoke(Src, new object[] { timeMilliseconds });
 
         /// <summary>
         /// 指定した時刻における速度を計算します。

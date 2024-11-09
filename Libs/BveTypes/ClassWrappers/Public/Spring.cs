@@ -49,7 +49,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double UpperPosition
         {
-            get => UpperPositionGetMethod.Invoke(Src, null);
+            get => (double)UpperPositionGetMethod.Invoke(Src, null);
             set => UpperPositionSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -60,7 +60,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double UpperSpeed
         {
-            get => UpperSpeedGetMethod.Invoke(Src, null);
+            get => (double)UpperSpeedGetMethod.Invoke(Src, null);
             set => UpperSpeedSetMethod.Invoke(Src, new object[] { value });
         }
     }

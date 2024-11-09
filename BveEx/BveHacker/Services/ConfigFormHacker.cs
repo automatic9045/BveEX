@@ -20,7 +20,7 @@ namespace BveEx.BveHackerServices
 
         public bool IsReady => !(Form is null);
         public ConfigForm Form { get; private set; } = null;
-        public Form FormSource => Form?.Src;
+        public Form FormSource => Form?.Src as Form;
 
         public ConfigFormHacker(BveTypeSet bveTypes)
         {

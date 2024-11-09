@@ -65,7 +65,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Color Color
         {
-            get => ColorGetMethod.Invoke(Src, null);
+            get => (Color)ColorGetMethod.Invoke(Src, null);
             set => ColorSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -76,7 +76,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public string Text
         {
-            get => TextGetMethod.Invoke(Src, null);
+            get => TextGetMethod.Invoke(Src, null) as string;
             set => TextSetMethod.Invoke(Src, new object[] { value });
         }
     }

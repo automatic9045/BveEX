@@ -69,7 +69,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public DirectSound DirectSound
         {
-            get => DirectSoundField.GetValue(Src);
+            get => DirectSoundField.GetValue(Src) as DirectSound;
             set => DirectSoundField.SetValue(Src, value);
         }
 
@@ -139,7 +139,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Preferences Preferences
         {
-            get => PreferencesField.GetValue(Src);
+            get => PreferencesField.GetValue(Src) as Preferences;
             set => PreferencesField.SetValue(Src, value);
         }
 
@@ -149,7 +149,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public ContextMenuStrip ContextMenu
         {
-            get => ContextMenuField.GetValue(Src);
+            get => ContextMenuField.GetValue(Src) as ContextMenuStrip;
             set => ContextMenuField.SetValue(Src, value);
         }
 

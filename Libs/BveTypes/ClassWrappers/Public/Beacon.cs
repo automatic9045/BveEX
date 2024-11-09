@@ -70,7 +70,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int TargetSectionIndex
         {
-            get => TargetSectionIndexGetMethod.Invoke(Src, null);
+            get => (int)TargetSectionIndexGetMethod.Invoke(Src, null);
             set => TargetSectionIndexSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -81,7 +81,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int Type
         {
-            get => TypeGetMethod.Invoke(Src, null);
+            get => (int)TypeGetMethod.Invoke(Src, null);
             set => TypeSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -92,7 +92,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int SendData
         {
-            get => SendDataGetMethod.Invoke(Src, null);
+            get => (int)SendDataGetMethod.Invoke(Src, null);
             set => SendDataSetMethod.Invoke(Src, new object[] { value });
         }
     }

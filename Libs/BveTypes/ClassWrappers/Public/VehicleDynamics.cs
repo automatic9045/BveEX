@@ -66,7 +66,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double CurveResistanceFactor
         {
-            get => CurveResistanceFactorGetMethod.Invoke(Src, null);
+            get => (double)CurveResistanceFactorGetMethod.Invoke(Src, null);
             set => CurveResistanceFactorSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -81,7 +81,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public double RunningResistanceFactorA
         {
-            get => RunningResistanceFactorAGetMethod.Invoke(Src, null);
+            get => (double)RunningResistanceFactorAGetMethod.Invoke(Src, null);
             set => RunningResistanceFactorASetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -96,7 +96,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public double RunningResistanceFactorB
         {
-            get => RunningResistanceFactorBGetMethod.Invoke(Src, null);
+            get => (double)RunningResistanceFactorBGetMethod.Invoke(Src, null);
             set => RunningResistanceFactorBSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -107,7 +107,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double RunningResistanceFactorC
         {
-            get => RunningResistanceFactorCGetMethod.Invoke(Src, null);
+            get => (double)RunningResistanceFactorCGetMethod.Invoke(Src, null);
             set => RunningResistanceFactorCSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -118,7 +118,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double CarLength
         {
-            get => CarLengthGetMethod.Invoke(Src, null);
+            get => (double)CarLengthGetMethod.Invoke(Src, null);
             set => CarLengthSetMethod.Invoke(Src, new object[] { value });
         }
 

@@ -51,7 +51,7 @@ namespace BveTypes.ClassWrappers
         /// 自車両の位置を設定するには <see cref="SetLocation(double, bool)"/> メソッドを使用してください。
         /// </remarks>
         /// <seealso cref="SetLocation(double, bool)"/>
-        public double Location => LocationGetMethod.Invoke(Src, null);
+        public double Location => (double)LocationGetMethod.Invoke(Src, null);
 
         private static FastMethod BlockIndexGetMethod;
         /// <summary>
@@ -61,7 +61,7 @@ namespace BveTypes.ClassWrappers
         /// 25m 毎に 1 つの描画ブロックが定義されており、全てのストラクチャーは設置された距離程が含まれるブロックに登録されます。<br/>
         /// 各ストラクチャーが描画距離内に入っているかどうかを描画ブロック単位で判定することで、ストラクチャーの描画処理を高速化しています。
         /// </remarks>
-        public int BlockIndex => BlockIndexGetMethod.Invoke(Src, null);
+        public int BlockIndex => (int)BlockIndexGetMethod.Invoke(Src, null);
 
         private static FastMethod SetLocationMethod;
         /// <summary>

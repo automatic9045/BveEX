@@ -61,7 +61,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public double DrawLimitLocation
         {
-            get => DrawLimitLocationGetMethod.Invoke(Src, null);
+            get => (double)DrawLimitLocationGetMethod.Invoke(Src, null);
             set => DrawLimitLocationSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -74,7 +74,7 @@ namespace BveTypes.ClassWrappers
         {
             get
             {
-                IDictionary dictionarySrc = RepeatedGetMethod.Invoke(Src, null);
+                IDictionary dictionarySrc = RepeatedGetMethod.Invoke(Src, null) as IDictionary;
                 return new WrappedSortedList<string, MapObjectList>(dictionarySrc);
             }
         }

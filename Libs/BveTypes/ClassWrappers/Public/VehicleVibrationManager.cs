@@ -74,7 +74,7 @@ namespace BveTypes.ClassWrappers
         /// <remarks>
         /// 遠心力・重力成分を含みます。
         /// </remarks>
-        public double FrontAccelerationX => FrontAccelerationXGetMethod.Invoke(Src, null);
+        public double FrontAccelerationX => (double)FrontAccelerationXGetMethod.Invoke(Src, null);
 
         private static FastMethod RearAccelerationXGetMethod;
         /// <summary>
@@ -83,7 +83,7 @@ namespace BveTypes.ClassWrappers
         /// <remarks>
         /// 遠心力・重力成分を含みます。
         /// </remarks>
-        public double RearAccelerationX => RearAccelerationXGetMethod.Invoke(Src, null);
+        public double RearAccelerationX => (double)RearAccelerationXGetMethod.Invoke(Src, null);
 
         private static FastMethod AccelerationZGetMethod;
         /// <summary>
@@ -92,7 +92,7 @@ namespace BveTypes.ClassWrappers
         /// <remarks>
         /// 重力成分を含みます。
         /// </remarks>
-        public double AccelerationZ => AccelerationZGetMethod.Invoke(Src, null);
+        public double AccelerationZ => (double)AccelerationZGetMethod.Invoke(Src, null);
 
         private static FastMethod CarBodyAccelerationGetMethod;
         /// <summary>
@@ -119,7 +119,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double SpringHeight
         {
-            get => SpringHeightGetMethod.Invoke(Src, null);
+            get => (double)SpringHeightGetMethod.Invoke(Src, null);
             set => SpringHeightSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -153,7 +153,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public WrappedArray<AirSpring> VerticalSprings
         {
-            get => WrappedArray<AirSpring>.FromSource(VerticalSpringsField.GetValue(Src));
+            get => WrappedArray<AirSpring>.FromSource(VerticalSpringsField.GetValue(Src) as Array);
             set => VerticalSpringsField.SetValue(Src, value?.Src);
         }
 

@@ -42,7 +42,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double MaximumPressure
         {
-            get => MaximumPressureGetMethod.Invoke(Src, null);
+            get => (double)MaximumPressureGetMethod.Invoke(Src, null);
             set => MaximumPressureSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -56,7 +56,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public double[] PressureRates
         {
-            get => PressureRatesGetMethod.Invoke(Src, null);
+            get => PressureRatesGetMethod.Invoke(Src, null) as double[];
             set => PressureRatesSetMethod.Invoke(Src, new object[] { value });
         }
     }

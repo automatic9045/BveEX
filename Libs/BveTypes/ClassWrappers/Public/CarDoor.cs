@@ -63,7 +63,7 @@ namespace BveTypes.ClassWrappers
         /// <seealso cref="DoorSet.StandardCloseTime"/>
         public int CloseTime
         {
-            get => CloseTimeGetMethod.Invoke(Src, null);
+            get => (int)CloseTimeGetMethod.Invoke(Src, null);
             set => CloseTimeSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -71,7 +71,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// このドアが開いているかどうかを取得します。
         /// </summary>
-        public bool IsOpen => IsOpenGetMethod.Invoke(Src, null);
+        public bool IsOpen => (bool)IsOpenGetMethod.Invoke(Src, null);
 
         private static FastField TimeLeftToCompleteClosingField;
         /// <summary>
@@ -82,7 +82,7 @@ namespace BveTypes.ClassWrappers
         /// <seealso cref="CloseTime"/>
         public int TimeLeftToCompleteClosing
         {
-            get => TimeLeftToCompleteClosingField.GetValue(Src);
+            get => (int)TimeLeftToCompleteClosingField.GetValue(Src);
             set => TimeLeftToCompleteClosingField.SetValue(Src, value);
         }
 

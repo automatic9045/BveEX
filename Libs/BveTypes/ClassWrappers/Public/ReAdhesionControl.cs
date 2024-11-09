@@ -54,7 +54,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public bool IsEnabled
         {
-            get => IsEnabledGetMethod.Invoke(Src, null);
+            get => (bool)IsEnabledGetMethod.Invoke(Src, null);
             set => IsEnabledSetMethod.Invoke(Src, new object[] { value });
         }
     }

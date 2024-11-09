@@ -69,7 +69,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double RegenerationLimit
         {
-            get => RegenerationLimitGetMethod.Invoke(Src, null);
+            get => (double)RegenerationLimitGetMethod.Invoke(Src, null);
             set => RegenerationLimitSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -92,7 +92,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double SlipVelocityCoefficient
         {
-            get => SlipVelocityCoefficientGetMethod.Invoke(Src, null);
+            get => (double)SlipVelocityCoefficientGetMethod.Invoke(Src, null);
             set => SlipVelocityCoefficientSetMethod.Invoke(Src, new object[] { value });
         }
     }

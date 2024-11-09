@@ -49,7 +49,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 総制御段数を取得します。
         /// </summary>
-        public int StepCount => CountGetMethod.Invoke(Src, null);
+        public int StepCount => (int)CountGetMethod.Invoke(Src, null);
 
         private static FastMethod CurrentIndexGetMethod;
         private static FastMethod CurrentIndexSetMethod;
@@ -58,7 +58,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int CurrentStepIndex
         {
-            get => CurrentIndexGetMethod.Invoke(Src, null);
+            get => (int)CurrentIndexGetMethod.Invoke(Src, null);
             set => CurrentIndexSetMethod.Invoke(Src, new object[] { value });
         }
 

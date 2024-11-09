@@ -46,7 +46,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Matrix Matrix
         {
-            get => MatrixField.GetValue(Src);
+            get => (Matrix)MatrixField.GetValue(Src);
             set => MatrixField.SetValue(Src, value);
         }
     }

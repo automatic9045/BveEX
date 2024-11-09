@@ -70,7 +70,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int PowerNotchCount
         {
-            get => PowerNotchCountGetMethod.Invoke(Src, null);
+            get => (int)PowerNotchCountGetMethod.Invoke(Src, null);
             internal set => PowerNotchCountSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -84,7 +84,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public int HoldingSpeedNotchCount
         {
-            get => HoldingSpeedNotchCountGetMethod.Invoke(Src, null);
+            get => (int)HoldingSpeedNotchCountGetMethod.Invoke(Src, null);
             internal set => HoldingSpeedNotchCountSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -95,7 +95,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int BrakeNotchCount
         {
-            get => BrakeNotchCountGetMethod.Invoke(Src, null);
+            get => (int)BrakeNotchCountGetMethod.Invoke(Src, null);
             internal set => BrakeNotchCountSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -106,7 +106,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int B67Notch
         {
-            get => B67NotchGetMethod.Invoke(Src, null);
+            get => (int)B67NotchGetMethod.Invoke(Src, null);
             internal set => B67NotchSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -117,7 +117,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int AtsCancelNotch
         {
-            get => AtsCancelNotchGetMethod.Invoke(Src, null);
+            get => (int)AtsCancelNotchGetMethod.Invoke(Src, null);
             internal set => AtsCancelNotchSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -128,7 +128,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int MotorBrakeNotch
         {
-            get => MotorBrakeNotchGetMethod.Invoke(Src, null);
+            get => (int)MotorBrakeNotchGetMethod.Invoke(Src, null);
             internal set => MotorBrakeNotchSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -139,7 +139,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public bool HasHoldingSpeedBrake
         {
-            get => HasHoldingSpeedBrakeGetMethod.Invoke(Src, null);
+            get => (bool)HasHoldingSpeedBrakeGetMethod.Invoke(Src, null);
             internal set => HasHoldingSpeedBrakeSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -147,7 +147,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 電気ブレーキが立ち上がる最小ブレーキノッチを取得します。
         /// </summary>
-        public int EmergencyBrakeNotch => EmergencyBrakeNotchGetMethod.Invoke(Src, null);
+        public int EmergencyBrakeNotch => (int)EmergencyBrakeNotchGetMethod.Invoke(Src, null);
 
         private static FastMethod PrioritizeBrakeGetMethod;
         private static FastMethod PrioritizeBrakeSetMethod;
@@ -156,7 +156,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public bool PrioritizeBrake
         {
-            get => PrioritizeBrakeGetMethod.Invoke(Src, null);
+            get => (bool)PrioritizeBrakeGetMethod.Invoke(Src, null);
             internal set => PrioritizeBrakeSetMethod.Invoke(Src, new object[] { value });
         }
     }

@@ -80,7 +80,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         /// <param name="location">方角を求める距離程 [m]。</param>
         /// <returns>距離程 <paramref name="location"/> にて自軌道が向いている方角。</returns>
-        public double GetDirectionAt(int location) => GetDirectionAtMethod.Invoke(Src, new object[] { location });
+        public double GetDirectionAt(int location) => (double)GetDirectionAtMethod.Invoke(Src, new object[] { location });
 
         private static FastMethod GetPositionMethod;
         /// <summary>
@@ -89,7 +89,7 @@ namespace BveTypes.ClassWrappers
         /// <param name="locationTo">目標距離程 [m]。</param>
         /// <param name="locationFrom">基点とする距離程 [m]。</param>
         /// <returns>距離程 <paramref name="locationFrom"/> を基点とした、距離程 <paramref name="locationTo"/> における自軌道の位置ベクトル。</returns>
-        public Vector3 GetPosition(double locationTo, double locationFrom) => GetPositionMethod.Invoke(Src, new object[] { locationTo, locationFrom });
+        public Vector3 GetPosition(double locationTo, double locationFrom) => (Vector3)GetPositionMethod.Invoke(Src, new object[] { locationTo, locationFrom });
 
         private static FastMethod GetTransformMethod;
         /// <summary>
@@ -98,6 +98,6 @@ namespace BveTypes.ClassWrappers
         /// <param name="locationTo">目標距離程 [m]。</param>
         /// <param name="locationFrom">基点とする距離程 [m]。</param>
         /// <returns>距離程 <paramref name="locationFrom"/> から距離程 <paramref name="locationTo"/> への自軌道の射影行列。</returns>
-        public Matrix GetTransform(double locationTo, double locationFrom) => GetTransformMethod.Invoke(Src, new object[] { locationTo, locationFrom });
+        public Matrix GetTransform(double locationTo, double locationFrom) => (Matrix)GetTransformMethod.Invoke(Src, new object[] { locationTo, locationFrom });
     }
 }

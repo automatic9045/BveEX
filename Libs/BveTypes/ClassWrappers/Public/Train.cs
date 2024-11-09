@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -108,7 +109,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public WrappedList<TrainSchedule> Schedules
         {
-            get => WrappedList<TrainSchedule>.FromSource(SchedulesField.GetValue(Src));
+            get => WrappedList<TrainSchedule>.FromSource(SchedulesField.GetValue(Src) as IList);
             set => SchedulesField.SetValue(Src, value?.Src);
         }
 
@@ -121,7 +122,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public double Location
         {
-            get => LocationField.GetValue(Src);
+            get => (double)LocationField.GetValue(Src);
             set => LocationField.SetValue(Src, value);
         }
 
@@ -135,7 +136,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public double Speed
         {
-            get => SpeedField.GetValue(Src);
+            get => (double)SpeedField.GetValue(Src);
             set => SpeedField.SetValue(Src, value);
         }
 
@@ -148,7 +149,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public int EnabledTimeMilliseconds
         {
-            get => EnabledTimeMillisecondsField.GetValue(Src);
+            get => (int)EnabledTimeMillisecondsField.GetValue(Src);
             set => EnabledTimeMillisecondsField.SetValue(Src, value);
         }
 
@@ -175,7 +176,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int ScheduleIndex
         {
-            get => ScheduleIndexField.GetValue(Src);
+            get => (int)ScheduleIndexField.GetValue(Src);
             set => ScheduleIndexField.SetValue(Src, value);
         }
 
@@ -185,7 +186,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double ViewZ
         {
-            get => ViewZField.GetValue(Src);
+            get => (double)ViewZField.GetValue(Src);
             set => ViewZField.SetValue(Src, value);
         }
 
@@ -194,7 +195,7 @@ namespace BveTypes.ClassWrappers
         /// この他列車を初期化します。
         /// </summary>
         public double Initialize()
-            => InitializeMethod.Invoke(Src, null);
+            => (double)InitializeMethod.Invoke(Src, null);
 
         private static FastMethod DrawCarsMethod;
         /// <summary>

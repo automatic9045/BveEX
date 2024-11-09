@@ -55,6 +55,6 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 通過したマップ オブジェクトを取得します。
         /// </summary>
-        public MapObjectBase MapObject => (MapObjectBase)CreateFromSource(MapObjectGetMethod.Invoke(Src, null));
+        public MapObjectBase MapObject => CreateFromSource(MapObjectGetMethod.Invoke(Src, null)) as MapObjectBase;
     }
 }

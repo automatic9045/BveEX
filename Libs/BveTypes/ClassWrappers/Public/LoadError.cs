@@ -70,7 +70,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public string Text
         {
-            get => TextGetMethod.Invoke(Src, new object[0]);
+            get => TextGetMethod.Invoke(Src, new object[0]) as string;
             internal set => TextSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -81,7 +81,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public string SenderFileName
         {
-            get => SenderFileNameGetMethod.Invoke(Src, new object[0]);
+            get => SenderFileNameGetMethod.Invoke(Src, new object[0]) as string;
             internal set => SenderFileNameSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -92,7 +92,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int LineIndex
         {
-            get => LineIndexGetMethod.Invoke(Src, new object[0]);
+            get => (int)LineIndexGetMethod.Invoke(Src, new object[0]);
             internal set => LineIndexSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -103,7 +103,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int CharIndex
         {
-            get => CharIndexGetMethod.Invoke(Src, new object[0]);
+            get => (int)CharIndexGetMethod.Invoke(Src, new object[0]);
             internal set => CharIndexSetMethod.Invoke(Src, new object[] { value });
         }
     }

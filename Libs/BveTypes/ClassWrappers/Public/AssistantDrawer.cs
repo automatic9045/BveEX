@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -50,7 +51,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 補助表示の一覧を取得します。
         /// </summary>
-        public WrappedList<AssistantBase> Items => WrappedList<AssistantBase>.FromSource(ItemsGetMethod.Invoke(Src, null));
+        public WrappedList<AssistantBase> Items => WrappedList<AssistantBase>.FromSource(ItemsGetMethod.Invoke(Src, null) as IList);
 
         private static FastMethod DrawMethod;
         /// <summary>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -101,7 +102,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public WrappedList<Model> Models
         {
-            get => WrappedList<Model>.FromSource(ModelsGetMethod.Invoke(Src, null));
+            get => WrappedList<Model>.FromSource(ModelsGetMethod.Invoke(Src, null) as IList);
             set => ModelsSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
@@ -112,7 +113,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double Interval
         {
-            get => IntervalGetMethod.Invoke(Src, null);
+            get => (double)IntervalGetMethod.Invoke(Src, null);
             set => IntervalSetMethod.Invoke(Src, new object[] { value });
         }
     }

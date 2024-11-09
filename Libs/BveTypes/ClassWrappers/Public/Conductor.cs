@@ -139,7 +139,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int StoppedToDoorOpeningMilliseconds
         {
-            get => StoppedToDoorOpeningMillisecondsField.GetValue(Src);
+            get => (int)StoppedToDoorOpeningMillisecondsField.GetValue(Src);
             set => StoppedToDoorOpeningMillisecondsField.SetValue(Src, value);
         }
 

@@ -70,7 +70,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int BrakeNotch
         {
-            get => BrakeNotchGetMethod.Invoke(Src, null);
+            get => (int)BrakeNotchGetMethod.Invoke(Src, null);
             set => BrakeNotchSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -81,7 +81,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int PowerNotch
         {
-            get => PowerNotchGetMethod.Invoke(Src, null);
+            get => (int)PowerNotchGetMethod.Invoke(Src, null);
             set => PowerNotchSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -91,7 +91,7 @@ namespace BveTypes.ClassWrappers
         private int _ReverserPosition
 #pragma warning restore IDE1006 // 命名スタイル
         {
-            get => ReverserPositionGetMethod.Invoke(Src, null);
+            get => (int)ReverserPositionGetMethod.Invoke(Src, null);
             set => ReverserPositionSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -110,7 +110,7 @@ namespace BveTypes.ClassWrappers
         private int _ConstantSpeedMode
 #pragma warning restore IDE1006 // 命名スタイル
         {
-            get => ConstantSpeedGetMethod.Invoke(Src, null);
+            get => (int)ConstantSpeedGetMethod.Invoke(Src, null);
             set => ConstantSpeedSetMethod.Invoke(Src, new object[] { value });
         }
 

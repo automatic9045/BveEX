@@ -41,7 +41,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public SortedList<string, object> Variables
         {
-            get => VariablesField.GetValue(Src);
+            get => VariablesField.GetValue(Src) as SortedList<string, object>;
             set => VariablesField.SetValue(Src, value);
         }
 
@@ -51,7 +51,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public string FilePath
         {
-            get => FilePathField.GetValue(Src);
+            get => FilePathField.GetValue(Src) as string;
             set => FilePathField.SetValue(Src, value);
         }
 
@@ -71,7 +71,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double Location
         {
-            get => LocationField.GetValue(Src);
+            get => (double)LocationField.GetValue(Src);
             set => LocationField.SetValue(Src, value);
         }
 
@@ -81,6 +81,6 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         /// <param name="sourceText">マップ構文のテキスト。</param>
         /// <param name="filePath">マップファイルのパス。この値はエラーを表示する際に使用されます。</param>
-        public string Parse(string sourceText, string filePath) => ParseMethod.Invoke(Src, new object[] { sourceText, filePath });
+        public string Parse(string sourceText, string filePath) => ParseMethod.Invoke(Src, new object[] { sourceText, filePath }) as string;
     }
 }

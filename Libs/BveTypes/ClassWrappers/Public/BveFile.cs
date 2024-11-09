@@ -47,7 +47,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public string Path
         {
-            get => PathGetMethod.Invoke(Src, null);
+            get => PathGetMethod.Invoke(Src, null) as string;
             internal set => PathSetMethod.Invoke(Src, new object[] { value });
         }
     }

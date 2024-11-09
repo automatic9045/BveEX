@@ -50,7 +50,7 @@ namespace BveTypes.ClassWrappers
         /// <seealso cref="AirSupplement.PistonArea"/>
         public double PistonArea
         {
-            get => PistonAreaGetMethod.Invoke(Src, null);
+            get => (double)PistonAreaGetMethod.Invoke(Src, null);
             set => PistonAreaSetMethod.Invoke(Src, new object[] { value });
         }
     }

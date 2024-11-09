@@ -70,13 +70,13 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// この他列車に紐づけるストラクチャーの一覧を取得・設定します。
         /// </summary>
-        public WrappedList<Structure> Structures => WrappedList<Structure>.FromSource((IList)StructuresGetMethod.Invoke(Src, null));
+        public WrappedList<Structure> Structures => WrappedList<Structure>.FromSource(StructuresGetMethod.Invoke(Src, null) as IList);
 
         private static FastMethod SoundsGetMethod;
         /// <summary>
         /// この他列車に紐づける音源の一覧を取得・設定します。
         /// </summary>
-        public WrappedList<Sound3DObject> Sounds => WrappedList<Sound3DObject>.FromSource((IList)SoundsGetMethod.Invoke(Src, null));
+        public WrappedList<Sound3DObject> Sounds => WrappedList<Sound3DObject>.FromSource(SoundsGetMethod.Invoke(Src, null) as IList);
 
         private static FastMethod DirectionGetMethod;
         private static FastMethod DirectionSetMethod;

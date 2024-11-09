@@ -127,13 +127,13 @@ namespace BveEx
         public Form ConfigFormSource => ConfigFormHacker.FormSource;
         public ConfigForm ConfigForm => ConfigFormHacker.Form;
 
-        public Form ScenarioSelectionFormSource => ScenarioSelectionForm.Src;
+        public Form ScenarioSelectionFormSource => ScenarioSelectionForm.Src as Form;
         public ScenarioSelectionForm ScenarioSelectionForm => MainForm.ScenarioSelectForm;
-        public Form LoadingProgressFormSource => LoadingProgressForm.Src;
+        public Form LoadingProgressFormSource => LoadingProgressForm.Src as Form;
         public LoadingProgressForm LoadingProgressForm => MainForm.LoadingProgressForm;
-        public Form TimePosFormSource => TimePosForm.Src;
+        public Form TimePosFormSource => TimePosForm.Src as Form;
         public TimePosForm TimePosForm => MainForm.TimePosForm;
-        public Form ChartFormSource => ChartForm.Src;
+        public Form ChartFormSource => ChartForm.Src as Form;
         public ChartForm ChartForm => MainForm.ChartForm;
 
         public Preferences Preferences => MainForm.Preferences;

@@ -52,7 +52,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double Curvature
         {
-            get => CurvatureGetMethod.Invoke(Src, null);
+            get => (double)CurvatureGetMethod.Invoke(Src, null);
             set => CurvatureSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -63,7 +63,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double Direction
         {
-            get => DirectionGetMethod.Invoke(Src, null);
+            get => (double)DirectionGetMethod.Invoke(Src, null);
             set => DirectionSetMethod.Invoke(Src, new object[] { value });
         }
     }

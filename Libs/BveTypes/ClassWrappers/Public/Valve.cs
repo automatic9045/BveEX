@@ -71,7 +71,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double ApplySpeed
         {
-            get => ApplySpeedField.GetValue(Src);
+            get => (double)ApplySpeedField.GetValue(Src);
             set => ApplySpeedField.SetValue(Src, value);
         }
 
@@ -81,7 +81,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double ReleaseSpeed
         {
-            get => ReleaseSpeedField.GetValue(Src);
+            get => (double)ReleaseSpeedField.GetValue(Src);
             set => ReleaseSpeedField.SetValue(Src, value);
         }
 
@@ -94,7 +94,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public double VolumeRatio
         {
-            get => VolumeRatioField.GetValue(Src);
+            get => (double)VolumeRatioField.GetValue(Src);
             set => VolumeRatioField.SetValue(Src, value);
         }
 

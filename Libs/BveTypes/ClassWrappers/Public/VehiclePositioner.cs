@@ -73,7 +73,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double HalfOfCarLength
         {
-            get => HalfOfCarLengthGetMethod.Invoke(Src, null);
+            get => (double)HalfOfCarLengthGetMethod.Invoke(Src, null);
             set => HalfOfCarLengthSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -84,7 +84,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double HalfOfBogieDistance
         {
-            get => HalfOfBogieDistanceGetMethod.Invoke(Src, null);
+            get => (double)HalfOfBogieDistanceGetMethod.Invoke(Src, null);
             set => HalfOfBogieDistanceSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -100,7 +100,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Vector3 PositionInBlock
         {
-            get => PositionInBlockField.GetValue(Src);
+            get => (Vector3)PositionInBlockField.GetValue(Src);
             set => PositionInBlockField.SetValue(Src, value);
         }
 

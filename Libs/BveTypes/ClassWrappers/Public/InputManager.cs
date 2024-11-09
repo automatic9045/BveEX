@@ -48,7 +48,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 読み込まれている入力デバイスプラグインを取得します。
         /// </summary>
-        public Dictionary<string, IInputDevice> InputDevices => InputDevicesGetMethod.Invoke(Src, null);
+        public Dictionary<string, IInputDevice> InputDevices => InputDevicesGetMethod.Invoke(Src, null) as Dictionary<string, IInputDevice>;
 
         private static FastEvent LeverMovedEvent;
         /// <summary>

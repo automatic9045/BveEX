@@ -49,7 +49,7 @@ namespace BveTypes.ClassWrappers
         /// 速度の変更には <see cref="SetSpeed(double)"/> メソッドを使用してください。
         /// </remarks>
         /// <seealso cref="SetSpeed(double)"/>
-        public double Speed => SpeedGetMethod.Invoke(Src, null);
+        public double Speed => (double)SpeedGetMethod.Invoke(Src, null);
 
         private static FastMethod SetSpeedMethod;
         /// <summary>

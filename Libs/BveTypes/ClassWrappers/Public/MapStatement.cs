@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -60,20 +61,20 @@ namespace BveTypes.ClassWrappers
         /// このステートメントが定義されている距離程 [m] を取得します。
         /// </summary>
         public double Location
-            => LocationGetMethod.Invoke(Src, null);
+            => (double)LocationGetMethod.Invoke(Src, null);
 
         private static FastMethod ClausesGetMethod;
         /// <summary>
         /// このステートメントを構成する句の一覧を取得します。
         /// </summary>
         public WrappedList<MapStatementClause> Clauses
-            => WrappedList<MapStatementClause>.FromSource(ClausesGetMethod.Invoke(Src, null));
+            => WrappedList<MapStatementClause>.FromSource(ClausesGetMethod.Invoke(Src, null) as IList);
 
         private static FastMethod FileNameGetMethod;
         /// <summary>
         /// このステートメントが定義されているマップファイルの名前を取得します。
         /// </summary>
         public string FileName
-            => FileNameGetMethod.Invoke(Src, null);
+            => FileNameGetMethod.Invoke(Src, null) as string;
     }
 }

@@ -80,7 +80,7 @@ namespace BveTypes.ClassWrappers
         /// <remarks>
         /// 取得される値は、パラメーターファイルでの設定に合わせて <see cref="Ecb"/> プロパティ、<see cref="Smee"/> プロパティ、<see cref="Cl"/> プロパティのいずれかとなります。
         /// </remarks>
-        public BrakeControllerBase BrakeController => CreateFromSource(BrakeControllerGetMethod.Invoke(Src, null));
+        public BrakeControllerBase BrakeController => CreateFromSource(BrakeControllerGetMethod.Invoke(Src, null)) as BrakeControllerBase;
 
         private static FastMethod EcbGetMethod;
         /// <summary>
@@ -120,7 +120,7 @@ namespace BveTypes.ClassWrappers
         public CarBrake FirstCarBrake
         {
             get => CarBrake.FromSource(FirstCarBrakeGetMethod.Invoke(Src, null));
-            set => FirstCarBrakeSetMethod.Invoke(Src, value?.Src);
+            set => FirstCarBrakeSetMethod.Invoke(Src, new object[] { value?.Src });
         }
     }
 }

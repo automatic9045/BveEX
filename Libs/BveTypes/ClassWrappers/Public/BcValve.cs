@@ -47,7 +47,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double ReleaseStartMargin
         {
-            get => ReleaseStartMarginField.GetValue(Src);
+            get => (double)ReleaseStartMarginField.GetValue(Src);
             set => ReleaseStartMarginField.SetValue(Src, value);
         }
 
@@ -57,7 +57,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double ApplyStartMargin
         {
-            get => ApplyStartMarginField.GetValue(Src);
+            get => (double)ApplyStartMarginField.GetValue(Src);
             set => ApplyStartMarginField.SetValue(Src, value);
         }
 
@@ -67,7 +67,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double ReleaseStopMargin
         {
-            get => ReleaseStopMarginField.GetValue(Src);
+            get => (double)ReleaseStopMarginField.GetValue(Src);
             set => ReleaseStopMarginField.SetValue(Src, value);
         }
 
@@ -77,7 +77,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double ApplyStopMargin
         {
-            get => ApplyStopMarginField.GetValue(Src);
+            get => (double)ApplyStopMarginField.GetValue(Src);
             set => ApplyStopMarginField.SetValue(Src, value);
         }
     }
