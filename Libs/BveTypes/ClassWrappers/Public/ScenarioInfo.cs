@@ -97,133 +97,133 @@ namespace BveTypes.ClassWrappers
         private static FastMethod PathGetMethod;
         private static FastMethod PathSetMethod;
         /// <summary>
-        /// シナリオファイルのパスを取得します。
+        /// シナリオファイルのパスを取得・設定します。
         /// </summary>
         public string Path
         {
             get => PathGetMethod.Invoke(Src, null) as string;
-            internal set => PathSetMethod.Invoke(Src, new object[] { value });
+            set => PathSetMethod.Invoke(Src, new object[] { value });
         }
 
         private static FastMethod FileNameGetMethod;
         private static FastMethod FileNameSetMethod;
         /// <summary>
-        /// シナリオファイルのファイル名を取得します。
+        /// シナリオファイルのファイル名を取得・設定します。
         /// </summary>
         public string FileName
         {
             get => FileNameGetMethod.Invoke(Src, null) as string;
-            internal set => FileNameSetMethod.Invoke(Src, new object[] { value } );
+            set => FileNameSetMethod.Invoke(Src, new object[] { value } );
         }
 
         private static FastMethod DirectoryNameGetMethod;
         private static FastMethod DirectoryNameSetMethod;
         /// <summary>
-        /// シナリオファイルのディレクトリ情報を取得します。
+        /// シナリオファイルのディレクトリ情報を取得・設定します。
         /// </summary>
         public string DirectoryName
         {
             get => DirectoryNameGetMethod.Invoke(Src, null) as string;
-            internal set => DirectoryNameSetMethod.Invoke(Src, new object[] { value } );
+            set => DirectoryNameSetMethod.Invoke(Src, new object[] { value } );
         }
 
         private static FastMethod TitleGetMethod;
         private static FastMethod TitleSetMethod;
         /// <summary>
-        /// シナリオのタイトルを取得します。
+        /// シナリオのタイトルを取得・設定します。
         /// </summary>
         public string Title
         {
             get => TitleGetMethod.Invoke(Src, null) as string;
-            internal set => TitleSetMethod.Invoke(Src, new object[] { value } );
+            set => TitleSetMethod.Invoke(Src, new object[] { value } );
         }
 
         private static FastMethod ImagePathGetMethod;
         private static FastMethod ImagePathSetMethod;
         /// <summary>
-        /// シナリオのサムネイル画像のパスを取得します。
+        /// シナリオのサムネイル画像のパスを取得・設定します。
         /// </summary>
         public string ImagePath
         {
             get => ImagePathGetMethod.Invoke(Src, null) as string;
-            internal set => ImagePathSetMethod.Invoke(Src, new object[] { value } );
+            set => ImagePathSetMethod.Invoke(Src, new object[] { value } );
         }
 
         private static FastMethod AuthorGetMethod;
         private static FastMethod AuthorSetMethod;
         /// <summary>
-        /// シナリオの作者を取得します。
+        /// シナリオの作者を取得・設定します。
         /// </summary>
         public string Author
         {
             get => AuthorGetMethod.Invoke(Src, null) as string;
-            internal set => AuthorSetMethod.Invoke(Src, new object[] { value } );
+            set => AuthorSetMethod.Invoke(Src, new object[] { value } );
         }
 
         private static FastMethod CommentGetMethod;
         private static FastMethod CommentSetMethod;
         /// <summary>
-        /// シナリオの説明を取得します。
+        /// シナリオの説明を取得・設定します。
         /// </summary>
         public string Comment
         {
             get => CommentGetMethod.Invoke(Src, null) as string;
-            internal set => CommentSetMethod.Invoke(Src, new object[] { value } );
+            set => CommentSetMethod.Invoke(Src, new object[] { value } );
         }
 
         private static FastMethod RouteFilesGetMethod;
         private static FastMethod RouteFilesSetMethod;
         /// <summary>
-        /// 選択されうるマップファイルのリストを取得します。
+        /// 選択されうるマップファイルのリストを取得・設定します。
         /// </summary>
         public RandomFileList RouteFiles
         {
             get => RandomFileList.FromSource(RouteFilesGetMethod.Invoke(Src, null));
-            internal set => RouteFilesSetMethod.Invoke(Src, new object[] { value?.Src } );
+            set => RouteFilesSetMethod.Invoke(Src, new object[] { value?.Src } );
         }
 
         private static FastMethod VehicleFilesGetMethod;
         private static FastMethod VehicleFilesSetMethod;
         /// <summary>
-        /// 選択されうる車両ファイルのリストを取得します。
+        /// 選択されうる車両ファイルのリストを取得・設定します。
         /// </summary>
         public RandomFileList VehicleFiles
         {
             get => RandomFileList.FromSource(VehicleFilesGetMethod.Invoke(Src, null));
-            internal set => VehicleFilesSetMethod.Invoke(Src, new object[] { value?.Src } );
+            set => VehicleFilesSetMethod.Invoke(Src, new object[] { value?.Src } );
         }
 
         private static FastMethod RouteTitleGetMethod;
         private static FastMethod RouteTitleSetMethod;
         /// <summary>
-        /// 路線名を取得します。
+        /// 路線名を取得・設定します。
         /// </summary>
         public string RouteTitle
         {
             get => RouteTitleGetMethod.Invoke(Src, null) as string;
-            internal set => RouteTitleSetMethod.Invoke(Src, new object[] { value } );
+            set => RouteTitleSetMethod.Invoke(Src, new object[] { value } );
         }
 
         private static FastMethod VehicleTitleGetMethod;
         private static FastMethod VehicleTitleSetMethod;
         /// <summary>
-        /// 車両名を取得します。
+        /// 車両名を取得・設定します。
         /// </summary>
         public string VehicleTitle
         {
             get => VehicleTitleGetMethod.Invoke(Src, null) as string;
-            internal set => VehicleTitleSetMethod.Invoke(Src, new object[] { value } );
+            set => VehicleTitleSetMethod.Invoke(Src, new object[] { value } );
         }
 
         private static FastMethod ScenarioFileLoadErrorsGetMethod;
         private static FastMethod ScenarioFileLoadErrorsSetMethod;
         /// <summary>
-        /// シナリオファイルの読込時に発生した、継続不能となる深刻なエラーを取得します。
+        /// シナリオファイルの読込時に発生した、継続不能となる深刻なエラーを取得・設定します。
         /// </summary>
         public WrappedList<LoadError> ScenarioFileLoadErrors
         {
             get => WrappedList<LoadError>.FromSource(ScenarioFileLoadErrorsGetMethod.Invoke(Src, null) as IList);
-            internal set => ScenarioFileLoadErrorsSetMethod.Invoke(Src, new object[] { value?.Src });
+            set => ScenarioFileLoadErrorsSetMethod.Invoke(Src, new object[] { value?.Src });
         }
     }
 }

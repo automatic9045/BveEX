@@ -66,45 +66,45 @@ namespace BveTypes.ClassWrappers
         private static FastMethod TextGetMethod;
         private static FastMethod TextSetMethod;
         /// <summary>
-        /// エラーの内容を表すテキストを取得します。
+        /// エラーの内容を表すテキストを取得・設定します。
         /// </summary>
         public string Text
         {
             get => TextGetMethod.Invoke(Src, new object[0]) as string;
-            internal set => TextSetMethod.Invoke(Src, new object[] { value });
+            set => TextSetMethod.Invoke(Src, new object[] { value });
         }
 
         private static FastMethod SenderFileNameGetMethod;
         private static FastMethod SenderFileNameSetMethod;
         /// <summary>
-        /// エラーの発生元となるファイルのファイル名を取得します。
+        /// エラーの発生元となるファイルのファイル名を取得・設定します。
         /// </summary>
         public string SenderFileName
         {
             get => SenderFileNameGetMethod.Invoke(Src, new object[0]) as string;
-            internal set => SenderFileNameSetMethod.Invoke(Src, new object[] { value });
+            set => SenderFileNameSetMethod.Invoke(Src, new object[] { value });
         }
 
         private static FastMethod LineIndexGetMethod;
         private static FastMethod LineIndexSetMethod;
         /// <summary>
-        /// エラーの発生元となる行番号を取得します。
+        /// エラーの発生元となる行番号を取得・設定します。
         /// </summary>
         public int LineIndex
         {
             get => (int)LineIndexGetMethod.Invoke(Src, new object[0]);
-            internal set => LineIndexSetMethod.Invoke(Src, new object[] { value });
+            set => LineIndexSetMethod.Invoke(Src, new object[] { value });
         }
 
         private static FastMethod CharIndexGetMethod;
         private static FastMethod CharIndexSetMethod;
         /// <summary>
-        /// エラーの発生元となる列番号を取得します。
+        /// エラーの発生元となる列番号を取得・設定します。
         /// </summary>
         public int CharIndex
         {
             get => (int)CharIndexGetMethod.Invoke(Src, new object[0]);
-            internal set => CharIndexSetMethod.Invoke(Src, new object[] { value });
+            set => CharIndexSetMethod.Invoke(Src, new object[] { value });
         }
     }
 }

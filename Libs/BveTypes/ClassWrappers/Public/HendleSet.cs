@@ -55,12 +55,12 @@ namespace BveTypes.ClassWrappers
         private static FastMethod NotchInfoGetMethod;
         private static FastMethod NotchInfoSetMethod;
         /// <summary>
-        /// ノッチの情報を表す <see cref="ClassWrappers.NotchInfo"/> を取得します。
+        /// ノッチの情報を取得・設定します。
         /// </summary>
         public NotchInfo NotchInfo
         {
             get => ClassWrappers.NotchInfo.FromSource(NotchInfoGetMethod.Invoke(Src, null));
-            internal set => NotchInfoSetMethod.Invoke(Src, new object[] { value?.Src });
+            set => NotchInfoSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
         private static FastMethod BrakeNotchGetMethod;

@@ -69,23 +69,23 @@ namespace BveTypes.ClassWrappers
         private static FastMethod CabGetMethod;
         private static FastMethod CabSetMethod;
         /// <summary>
-        /// 運転台のハンドルを表す <see cref="CabBase"/> を取得します。
+        /// 運転台のハンドルを取得・設定します。
         /// </summary>
         public CabBase Cab
         {
-            get => (CabBase)ClassWrapperBase.CreateFromSource(CabGetMethod.Invoke(Src, null));
-            internal set => CabSetMethod.Invoke(Src, new object[] { value?.Src });
+            get => (CabBase)CreateFromSource(CabGetMethod.Invoke(Src, null));
+            set => CabSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
         private static FastMethod AtsPluginGetMethod;
         private static FastMethod AtsPluginSetMethod;
         /// <summary>
-        /// ATS プラグインを表す <see cref="ClassWrappers.AtsPlugin"/> を取得します。
+        /// ATS プラグインを取得・設定します。
         /// </summary>
         public AtsPlugin AtsPlugin
         {
             get => ClassWrappers.AtsPlugin.FromSource(AtsPluginGetMethod.Invoke(Src, null));
-            internal set => AtsPluginSetMethod.Invoke(Src, new object[] { value?.Src });
+            set => AtsPluginSetMethod.Invoke(Src, new object[] { value?.Src });
         }
     }
 }
