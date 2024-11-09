@@ -154,7 +154,7 @@ namespace BveEx.PluginHost
         /// 現在実行中のシナリオの読込に使用されている <see cref="BveTypes.ClassWrappers.MapLoader"/> を取得します。
         /// </summary>
         /// <remarks>
-        /// ATS プラグイン版には対応していません。また、シナリオが読み込まれていない時は <see langword="null"/> になります。
+        /// シナリオが読み込まれていない時は <see langword="null"/> になります。
         /// </remarks>
         MapLoader MapLoader { get; }
 
@@ -163,7 +163,6 @@ namespace BveEx.PluginHost
         /// シナリオが選択され、読込を開始したときに発生します。
         /// </summary>
         /// <remarks>
-        /// このイベントは入力デバイスプラグイン版でのみ発生します。ATS プラグイン版では発生しません。<br/>
         /// 読み込まれたシナリオを表す <see cref="BveTypes.ClassWrappers.Scenario"/> を取得するには、<see cref="ScenarioCreated"/> または <see cref="PreviewScenarioCreated"/> イベントを使用してください。
         /// </remarks>
         event ScenarioOpenedEventHandler ScenarioOpened;
@@ -171,9 +170,6 @@ namespace BveEx.PluginHost
         /// <summary>
         /// シナリオが閉じられたときに発生します。
         /// </summary>
-        /// <remarks>
-        /// このイベントは入力デバイスプラグイン版でのみ発生します。ATS プラグイン版では発生しません。
-        /// </remarks>
         event ScenarioClosedEventHandler ScenarioClosed;
 
 
