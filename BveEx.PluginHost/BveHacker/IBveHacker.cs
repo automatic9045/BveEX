@@ -10,8 +10,6 @@ using Mackoy.Bvets;
 using BveTypes;
 using BveTypes.ClassWrappers;
 
-using BveEx.PluginHost.LoadErrorManager;
-
 namespace BveEx.PluginHost
 {
     /// <summary>
@@ -131,12 +129,6 @@ namespace BveEx.PluginHost
         /// キー入力を管理する <see cref="BveTypes.ClassWrappers.InputManager"/> を取得します。
         /// </summary>
         InputManager InputManager { get; }
-
-
-        /// <summary>
-        /// シナリオ読込時のエラーを編集するための機能を提供する <see cref="ILoadErrorManager"/> を取得します。
-        /// </summary>
-        ILoadErrorManager LoadErrorManager { get; }
 
 
         /// <summary>

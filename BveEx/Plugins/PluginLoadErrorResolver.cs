@@ -9,11 +9,11 @@ using System.Windows.Forms;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
 
+using BveTypes.ClassWrappers;
 using UnembeddedResources;
 
 using BveEx.Diagnostics;
 using BveEx.PluginHost;
-using BveEx.PluginHost.LoadErrorManager;
 using BveEx.Scripting.CSharp;
 
 namespace BveEx.Plugins
@@ -41,11 +41,11 @@ namespace BveEx.Plugins
 #endif
         }
 
-        private readonly ILoadErrorManager LoadErrorManager;
+        private readonly LoadingProgressForm LoadingProgressForm;
 
-        public PluginLoadErrorResolver(ILoadErrorManager loadErrorManager)
+        public PluginLoadErrorResolver(LoadingProgressForm loadingProgressForm)
         {
-            LoadErrorManager = loadErrorManager;
+            LoadingProgressForm = loadingProgressForm;
         }
 
         protected override void Throw(string senderName, Exception exception, bool isWrapperException)
@@ -56,17 +56,17 @@ namespace BveEx.Plugins
                     foreach (Diagnostic error in ex.CompilationErrors)
                     {
                         LinePosition linePosition = error.Location.GetLineSpan().StartLinePosition;
-                        LoadErrorManager.Throw(error.GetMessage(System.Globalization.CultureInfo.CurrentUICulture), ex.SenderName, linePosition.Line, linePosition.Character + 1);
+                        LoadingProgressForm.ThrowError(error.GetMessage(System.Globalization.CultureInfo.CurrentUICulture), ex.SenderName, linePosition.Line, linePosition.Character + 1);
                     }
                     break;
 
                 case BveFileLoadException ex:
-                    LoadErrorManager.Throw(ex.Message, ex.SenderFileName, ex.LineIndex, ex.CharIndex);
+                    LoadingProgressForm.ThrowError(ex.Message, ex.SenderFileName, ex.LineIndex, ex.CharIndex);
                     break;
 
                 default:
                     if (!isWrapperException) MessageBox.Show(exception.ToString(), string.Format(Resources.Value.UnhandledExceptionCaption.Value, App.Instance.ProductShortName));
-                    LoadErrorManager.Throw(exception.Message, senderName);
+                    LoadingProgressForm.ThrowError(exception.Message, senderName, 0, 0);
                     break;
             }
         }

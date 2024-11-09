@@ -12,6 +12,7 @@ using BveEx.Plugins.Native;
 using BveEx.Plugins.Scripting;
 using BveEx.Plugins.Scripting.CSharp;
 using BveEx.Plugins.Scripting.IronPython2;
+
 using BveEx.PluginHost;
 using BveEx.PluginHost.Plugins;
 using BveEx.PluginHost.Plugins.Extensions;
@@ -63,7 +64,7 @@ namespace BveEx.Plugins
         public Dictionary<string, PluginBase> Load(PluginSourceSet pluginSources)
         {
             Dictionary<string, PluginBase> plugins = new Dictionary<string, PluginBase>();
-            PluginLoadErrorQueue loadErrorQueue = new PluginLoadErrorQueue(BveHacker.LoadErrorManager);
+            PluginLoadErrorQueue loadErrorQueue = new PluginLoadErrorQueue(BveHacker.LoadingProgressForm);
 
             foreach (IPluginPackage pluginPackage in pluginSources)
             {

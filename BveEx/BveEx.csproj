@@ -159,8 +159,6 @@
     <Compile Include="Handles\Reverser.cs" />
     <Compile Include="Input\NativeAtsKey.cs" />
     <Compile Include="Input\NativeKeySet.cs" />
-    <Compile Include="LoadErrorManager\LoadErrorList.cs" />
-    <Compile Include="LoadErrorManager\LoadErrorManager.cs" />
     <Compile Include="Main\ScenarioService.PluginLoader.cs" />
     <Compile Include="Main\ScenarioService.PluginService.cs" />
     <Compile Include="Plugins\PluginLoadErrorResolver.cs" />

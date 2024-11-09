@@ -69,6 +69,9 @@
     <Compile Include="ContextMenuHacker\IContextMenuHacker.cs" />
     <Compile Include="DiagramUpdater\IDiagramUpdater.cs" />
     <Compile Include="DiagramUpdater\DiagramUpdater.cs" />
+    <Compile Include="LoadErrorManager\ILoadErrorManager.cs" />
+    <Compile Include="LoadErrorManager\LoadErrorList.cs" />
+    <Compile Include="LoadErrorManager\LoadErrorManager.cs" />
     <Compile Include="MapStatements\Builtin\BuiltinProcess.cs" />
     <Compile Include="MapStatements\Builtin\Condition.cs" />
     <Compile Include="MapStatements\Builtin\IParser.cs" />

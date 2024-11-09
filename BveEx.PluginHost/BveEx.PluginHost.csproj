@@ -80,7 +80,6 @@
     <Compile Include="Native\HornType.cs" />
     <Compile Include="Input\Native\NativeKeyEventArgs.cs" />
     <Compile Include="ITwoWayConverter.cs" />
-    <Compile Include="LoadErrorManager\ILoadErrorManager.cs" />
     <Compile Include="Native\BeaconPassedEventArgs.cs" />
     <Compile Include="Native\BeaconPassedEventHandler.cs" />
     <Compile Include="Native\DoorEventArgs.cs" />

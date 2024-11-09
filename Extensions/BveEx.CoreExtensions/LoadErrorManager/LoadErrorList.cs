@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 using BveTypes.ClassWrappers;
 
-namespace BveEx.LoadErrorManager
+namespace BveEx.Extensions.LoadErrorManager
 {
     /// <summary>
     /// <see cref="LoadError"/> のリストを表します。

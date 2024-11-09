@@ -6,9 +6,11 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
+using BveTypes.ClassWrappers;
+
 using BveEx.Plugins.Scripting;
+
 using BveEx.PluginHost;
-using BveEx.PluginHost.LoadErrorManager;
 
 namespace BveEx.Plugins
 {
@@ -19,9 +21,9 @@ namespace BveEx.Plugins
             private readonly PluginLoadErrorResolver LoadErrorResolver;
             private readonly Queue<PluginException> ExceptionsToResolve = new Queue<PluginException>();
 
-            public PluginLoadErrorQueue(ILoadErrorManager loadErrorManager)
+            public PluginLoadErrorQueue(LoadingProgressForm loadingProgressForm)
             {
-                LoadErrorResolver = new PluginLoadErrorResolver(loadErrorManager);
+                LoadErrorResolver = new PluginLoadErrorResolver(loadingProgressForm);
             }
 
             public void OnFailedToLoadAssembly(Assembly assembly, Exception ex)

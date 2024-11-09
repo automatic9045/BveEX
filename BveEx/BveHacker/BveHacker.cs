@@ -16,7 +16,6 @@ using BveEx.BveHackerServices;
 using BveEx.Handles;
 
 using BveEx.PluginHost;
-using BveEx.PluginHost.LoadErrorManager;
 
 namespace BveEx
 {
@@ -57,8 +56,6 @@ namespace BveEx
 
             StructureSetLifeProlonger = new StructureSetLifeProlonger(this);
 
-            LoadErrorManager = new LoadErrorManager.LoadErrorManager(LoadingProgressForm);
-
             ScenarioHacker.ScenarioCreated += e =>
             {
                 try
@@ -69,7 +66,7 @@ namespace BveEx
                 }
                 catch (BveFileLoadException ex)
                 {
-                    LoadErrorManager.Throw(ex.Message, ex.SenderFileName, ex.LineIndex, ex.CharIndex);
+                    LoadingProgressForm.ThrowError(ex.Message, ex.SenderFileName, ex.LineIndex, ex.CharIndex);
                 }
             };
 
@@ -138,8 +135,6 @@ namespace BveEx
 
         public Preferences Preferences => MainForm.Preferences;
         public InputManager InputManager => MainForm.InputManager;
-
-        public ILoadErrorManager LoadErrorManager { get; }
 
         public PluginHost.Handles.HandleSet Handles { get; private set; }
 

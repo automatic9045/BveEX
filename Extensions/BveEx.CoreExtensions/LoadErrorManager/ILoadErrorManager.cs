@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using BveEx.PluginHost.Plugins.Extensions;
 using BveTypes.ClassWrappers;
 
-namespace BveEx.PluginHost.LoadErrorManager
+namespace BveEx.Extensions.LoadErrorManager
 {
     /// <summary>
     /// シナリオ読込時のエラーを編集するための機能を提供します。
     /// </summary>
-    public interface ILoadErrorManager
+    public interface ILoadErrorManager : IExtension
     {
         /// <summary>
         /// エラーの一覧を取得します。

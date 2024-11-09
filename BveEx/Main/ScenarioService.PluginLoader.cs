@@ -34,7 +34,7 @@ namespace BveEx
 
             public PluginSet Load(PluginSourceSet vehiclePluginUsing)
             {
-                PluginLoadErrorResolver loadErrorResolver = new PluginLoadErrorResolver(BveHacker.LoadErrorManager);
+                PluginLoadErrorResolver loadErrorResolver = new PluginLoadErrorResolver(BveHacker.LoadingProgressForm);
 
                 PluginSet loadedPlugins = new PluginSet();
                 Plugins.PluginLoader pluginLoader = new Plugins.PluginLoader(Native, BveHacker, Extensions, loadedPlugins);

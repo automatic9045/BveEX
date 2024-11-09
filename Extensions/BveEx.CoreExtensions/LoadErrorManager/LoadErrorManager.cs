@@ -6,21 +6,33 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using BveEx.PluginHost.LoadErrorManager;
+using BveEx.PluginHost.Plugins;
+using BveEx.PluginHost.Plugins.Extensions;
 
-namespace BveEx.LoadErrorManager
+namespace BveEx.Extensions.LoadErrorManager
 {
-    internal sealed class LoadErrorManager : ILoadErrorManager
+    [Plugin(PluginType.Extension)]
+    [ExtensionMainDisplayType(typeof(ILoadErrorManager))]
+    internal class LoadErrorManager : AssemblyPluginBase, ILoadErrorManager
     {
         private readonly LoadingProgressForm LoadingProgressForm;
 
-        internal LoadErrorManager(LoadingProgressForm loadingProgressForm)
+        public IList<LoadError> Errors { get; private set; }
+
+        public LoadErrorManager(PluginBuilder builder) : base(builder)
         {
-            LoadingProgressForm = loadingProgressForm;
+            LoadingProgressForm = BveHacker.LoadingProgressForm;
             Errors = new LoadErrorList(LoadingProgressForm);
         }
 
-        public IList<LoadError> Errors { get; private set; }
+        public override void Dispose()
+        {
+        }
+
+        public override IPluginTickResult Tick(TimeSpan elapsed)
+        {
+            return new ExtensionTickResult();
+        }
 
         public void Throw(string text, string senderFileName, int lineIndex, int charIndex)
         {
