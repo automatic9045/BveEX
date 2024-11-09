@@ -55,7 +55,11 @@ namespace BveTypes.ClassWrappers
         /// <exception cref="InvalidOperationException"><paramref name="wrapperType"/> で指定した型内に有効なクラスラッパー生成メソッドが定義されていません。</exception>
         public static ClassWrapperBase CreateFromSource(Type wrapperType, object src)
         {
-            if (wrapperType is null)
+            if (src is null)
+            {
+                return null;
+            }
+            else if (wrapperType is null)
             {
                 throw new ArgumentNullException(nameof(wrapperType));
             }
@@ -79,6 +83,8 @@ namespace BveTypes.ClassWrappers
         /// <exception cref="InvalidOperationException">ラッパー型内に有効なクラスラッパー生成メソッドが定義されていません。</exception>
         public static ClassWrapperBase CreateFromSource(object src)
         {
+            if (src is null) return null;
+
             Type wrapperType = BveTypes.GetWrapperTypeOf(src.GetType());
             return CreateFromSource(wrapperType, src);
         }
