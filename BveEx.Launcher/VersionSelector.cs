@@ -80,7 +80,7 @@ namespace BveEx.Launcher
                     throw new NotSupportedException();
                 }
 
-                bveExAssemblyDirectory = bveExAssemblies.Last().Directory; // TODO: バージョンを選択できるようにする
+                exAssemblyDirectory = bveExAssemblies.Last().Directory; // TODO: バージョンを選択できるようにする
 #endif
             }
 
