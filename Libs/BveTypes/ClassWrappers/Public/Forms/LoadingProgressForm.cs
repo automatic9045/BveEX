@@ -21,7 +21,7 @@ namespace BveTypes.ClassWrappers
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<LoadingProgressForm>();
 
-            IsErrorCriticalField = members.GetSourceFieldOf(nameof(IsErrorCritical));
+            IsAbortedField = members.GetSourceFieldOf(nameof(IsAborted));
             ErrorCountField = members.GetSourceFieldOf(nameof(ErrorCount));
             PanelField = members.GetSourceFieldOf(nameof(Panel));
             ProgressBarField = members.GetSourceFieldOf(nameof(ProgressBar));
@@ -50,14 +50,14 @@ namespace BveTypes.ClassWrappers
         public static LoadingProgressForm FromSource(object src) => src is null ? null : new LoadingProgressForm(src);
 
 
-        private static FastField IsErrorCriticalField;
+        private static FastField IsAbortedField;
         /// <summary>
-        /// 読み込みの強制継続が不可能なエラーが発生しているかどうかを取得・設定します。
+        /// 読込が中止されたかどうかを取得・設定します。
         /// </summary>
-        public bool IsErrorCritical
+        public bool IsAborted
         {
-            get => (bool)IsErrorCriticalField.GetValue(Src);
-            set => IsErrorCriticalField.SetValue(Src, value);
+            get => (bool)IsAbortedField.GetValue(Src);
+            set => IsAbortedField.SetValue(Src, value);
         }
 
         private static FastField ErrorCountField;

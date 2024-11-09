@@ -16,7 +16,7 @@
 	</Class>
 
 	<Class Wrapper="LoadingProgressForm" Original="dt">
-		<Field WrapperProperty="IsErrorCritical" Original="a" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="IsAborted" Original="a" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="ErrorCount" Original="b" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Panel" Original="e" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="ProgressBar" Original="h" IsOriginalNonPublic="true"/>

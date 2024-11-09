@@ -58,7 +58,7 @@ namespace BveEx.LoadErrorManager
 
             if (Count == 0)
             {
-                Form.IsErrorCritical = false;
+                Form.IsAborted = false;
             }
 
             FormSource.ClientSize = new Size(800, Count == 0 ? Form.Panel.Height : 500);
