@@ -56,9 +56,9 @@ namespace BveTypes.ClassWrappers
         /// エラーの内容を指定して <see cref="LoadError"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         /// <param name="text">エラーの内容を表すテキスト。</param>
-        /// <param name="senderFileName">エラーの発生元となるファイルのファイル名。</param>
-        /// <param name="lineIndex">エラーの発生元となる行番号。</param>
-        /// <param name="charIndex">エラーの発生元となる列番号。</param>
+        /// <param name="senderFileName">エラーの発生元となるファイルのファイル名。使用しない場合は <see cref="string.Empty"/> を指定します。</param>
+        /// <param name="lineIndex">エラーの発生元となる行番号。使用しない場合は 0 を指定します。</param>
+        /// <param name="charIndex">エラーの発生元となる列番号。使用しない場合は 0 を指定します。</param>
         public LoadError(string text, string senderFileName, int lineIndex, int charIndex) : this(Constructor.Invoke(new object[] { text, senderFileName, lineIndex, charIndex }))
         {
         }
@@ -79,6 +79,9 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// エラーの発生元となるファイルのファイル名を取得・設定します。
         /// </summary>
+        /// <remarks>
+        /// 使用しない場合は <see cref="string.Empty"/> を指定します。
+        /// </remarks>
         public string SenderFileName
         {
             get => SenderFileNameGetMethod.Invoke(Src, new object[0]) as string;
@@ -90,6 +93,9 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// エラーの発生元となる行番号を取得・設定します。
         /// </summary>
+        /// <remarks>
+        /// 使用しない場合は 0 を指定します。
+        /// </remarks>
         public int LineIndex
         {
             get => (int)LineIndexGetMethod.Invoke(Src, new object[0]);
@@ -101,6 +107,9 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// エラーの発生元となる列番号を取得・設定します。
         /// </summary>
+        /// <remarks>
+        /// 使用しない場合は 0 を指定します。
+        /// </remarks>
         public int CharIndex
         {
             get => (int)CharIndexGetMethod.Invoke(Src, new object[0]);

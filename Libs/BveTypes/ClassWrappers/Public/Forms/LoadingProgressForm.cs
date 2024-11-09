@@ -98,9 +98,9 @@ namespace BveTypes.ClassWrappers
         /// エラーをエラー一覧に追加します。
         /// </summary>
         /// <param name="text">エラーの内容を表すテキスト。</param>
-        /// <param name="senderFileName">エラーの発生元となるファイルのファイル名。</param>
-        /// <param name="lineIndex">エラーの発生元となる行番号。</param>
-        /// <param name="charIndex">エラーの発生元となる列番号。</param>
+        /// <param name="senderFileName">エラーの発生元となるファイルのファイル名。使用しない場合は <see cref="string.Empty"/> を指定します。</param>
+        /// <param name="lineIndex">エラーの発生元となる行番号。使用しない場合は 0 を指定します。</param>
+        /// <param name="charIndex">エラーの発生元となる列番号。使用しない場合は 0 を指定します。</param>
         public void ThrowError(string text, string senderFileName, int lineIndex, int charIndex)
             => ThrowErrorMethod1.Invoke(Src, new object[] { text, senderFileName, lineIndex, charIndex });
 
