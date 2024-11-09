@@ -12,7 +12,7 @@ namespace BveTypes.ClassWrappers
     /// <summary>
     /// 締切電磁弁式電空協調制御を表します。
     /// </summary>
-    public class LockoutValve : ElectroPneumaticBlendedBrakingControlBase
+    public class LockoutValve : BrakeBlenderBase
     {
         [InitializeClassWrapper]
         private static void Initialize(BveTypeSet bveTypes)

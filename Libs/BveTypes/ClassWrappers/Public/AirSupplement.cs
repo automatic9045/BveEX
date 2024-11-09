@@ -12,7 +12,7 @@ namespace BveTypes.ClassWrappers
     /// <summary>
     /// 遅れ込め制御式電空協調制御を表します。
     /// </summary>
-    public class AirSupplement : ElectroPneumaticBlendedBrakingControlBase
+    public class AirSupplement : BrakeBlenderBase
     {
         [InitializeClassWrapper]
         private static void Initialize(BveTypeSet bveTypes)

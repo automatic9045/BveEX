@@ -19,7 +19,7 @@ namespace BveTypes.ClassWrappers
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<BrakeSystem>();
 
-            ElectroPneumaticBlendedBrakingControlGetMethod = members.GetSourcePropertyGetterOf(nameof(ElectroPneumaticBlendedBrakingControl));
+            BrakeBlenderGetMethod = members.GetSourcePropertyGetterOf(nameof(BrakeBlender));
             AirSupplementGetMethod = members.GetSourcePropertyGetterOf(nameof(AirSupplement));
             LockoutValveGetMethod = members.GetSourcePropertyGetterOf(nameof(LockoutValve));
 
@@ -52,14 +52,14 @@ namespace BveTypes.ClassWrappers
         [CreateClassWrapperFromSource]
         public static BrakeSystem FromSource(object src) => src is null ? null : new BrakeSystem(src);
 
-        private static FastMethod ElectroPneumaticBlendedBrakingControlGetMethod;
+        private static FastMethod BrakeBlenderGetMethod;
         /// <summary>
         /// 自列車が使用する電空協調制御を取得します。
         /// </summary>
         /// <remarks>
         /// 取得される値は、パラメーターファイルでの設定に合わせて <see cref="AirSupplement"/> プロパティ、<see cref="LockoutValve"/> プロパティのどちらかとなります。
         /// </remarks>
-        public ElectroPneumaticBlendedBrakingControlBase ElectroPneumaticBlendedBrakingControl => CreateFromSource(ElectroPneumaticBlendedBrakingControlGetMethod.Invoke(Src, null));
+        public BrakeBlenderBase BrakeBlender => CreateFromSource(BrakeBlenderGetMethod.Invoke(Src, null)) as BrakeBlenderBase;
 
         private static FastMethod AirSupplementGetMethod;
         /// <summary>
@@ -71,7 +71,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 締切電磁弁式電空協調制御を取得します。
         /// </summary>
-        public AirSupplement LockoutValve => ClassWrappers.AirSupplement.FromSource(LockoutValveGetMethod.Invoke(Src, null));
+        public LockoutValve LockoutValve => ClassWrappers.LockoutValve.FromSource(LockoutValveGetMethod.Invoke(Src, null));
 
         private static FastMethod BrakeControllerGetMethod;
         /// <summary>

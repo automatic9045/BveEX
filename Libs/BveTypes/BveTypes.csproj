@@ -163,7 +163,6 @@
     <Compile Include="ClassWrappers\Public\Transform.cs" />
     <Compile Include="ClassWrappers\Public\VehicleBogieWheel.cs" />
     <Compile Include="ClassWrappers\Public\VehicleElectricity.cs" />
-    <Compile Include="ClassWrappers\Public\ElectroPneumaticBlendedBrakingControlBase.cs" />
     <Compile Include="ClassWrappers\Public\Forms\ChartForm.cs" />
     <Compile Include="ClassWrappers\Public\Forms\LoadingProgressForm.cs" />
     <Compile Include="ClassWrappers\Public\Forms\MainForm.cs" />

@@ -186,10 +186,6 @@
 	</Class>
 
 	<Class Wrapper="BrakeBlenderBase" Original="e3">
-		<Bridges>
-			<Bridge Wrapper="ElectroPneumaticBlendedBrakingControlBase"/>
-		</Bridges>
-
 		<Property Wrapper="InitialPressure">
 			<Getter Original="k"/>
 			<Setter Original="e"/>
@@ -220,7 +216,7 @@
 	</Class>
 
 	<Class Wrapper="BrakeSystem" Original="bh">
-		<Property Wrapper="ElectroPneumaticBlendedBrakingControl">
+		<Property Wrapper="BrakeBlender">
 			<Getter Original="k"/>
 		</Property>
 		<Property Wrapper="AirSupplement">
