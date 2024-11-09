@@ -28,9 +28,6 @@ namespace BveEx
         {
             private readonly ResourceLocalizer Localizer = ResourceLocalizer.FromResXOfType<BveEx>("Core");
 
-            [ResourceStringHolder(nameof(Localizer))] public Resource<string> BveExAssemblyLocationIllegalMessage { get; private set; }
-            [ResourceStringHolder(nameof(Localizer))] public Resource<string> BveExAssemblyLocationIllegalApproach { get; private set; }
-            [ResourceStringHolder(nameof(Localizer))] public Resource<string> IgnoreAndContinue { get; private set; }
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> ManualDisposeHeader { get; private set; }
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> ManualDisposeMessage { get; private set; }
 

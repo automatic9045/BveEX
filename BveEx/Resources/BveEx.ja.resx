@@ -117,16 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BveExAssemblyLocationIllegalApproach" xml:space="preserve">
-    <value>{0} 本体を最新のバージョンに維持するため、車両・マップ毎に組み込むことは推奨されません。{0} ATS プラグイン版をご利用の場合は 1 つのシナリオフォルダに 1 つのみ配置してください。
-正しい配置先は '{1}' です。</value>
-  </data>
-  <data name="BveExAssemblyLocationIllegalMessage" xml:space="preserve">
-    <value>{0} のメインアセンブリの配置先 '{1}' は不正です。</value>
-  </data>
-  <data name="IgnoreAndContinue" xml:space="preserve">
-    <value>無視して読込を続行しますか？</value>
-  </data>
   <data name="ManualDisposeHeader" xml:space="preserve">
     <value>{0} に問題がありましたか?</value>
   </data>

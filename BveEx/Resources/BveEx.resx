@@ -117,16 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BveExAssemblyLocationIllegalApproach" xml:space="preserve">
-    <value>Due to keeping your {0} always in the latest version, you should place only one {0} package in each Scenarios directory; you should not embed {0} in each map or vehicle.
-The legal location to place is '{1}'.</value>
-  </data>
-  <data name="BveExAssemblyLocationIllegalMessage" xml:space="preserve">
-    <value>The location of the {0} main assembly '{1}' is illegal.</value>
-  </data>
-  <data name="IgnoreAndContinue" xml:space="preserve">
-    <value>Ignore and continue loading?</value>
-  </data>
   <data name="ManualDisposeHeader" xml:space="preserve">
     <value>Any scenario that doesn't work with {0}?</value>
   </data>
