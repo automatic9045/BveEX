@@ -151,10 +151,6 @@
     <Compile Include="Main\BveEx.cs" />
     <Compile Include="Main\ScenarioService.cs" />
     <Compile Include="BveHacker\BveHacker.cs" />
-    <Compile Include="Handles\BrakeHandle.cs" />
-    <Compile Include="Handles\HandleBase.cs" />
-    <Compile Include="Handles\PowerHandle.cs" />
-    <Compile Include="Handles\Reverser.cs" />
     <Compile Include="Input\NativeAtsKey.cs" />
     <Compile Include="Input\NativeKeySet.cs" />
     <Compile Include="Main\ScenarioService.PluginLoader.cs" />
@@ -241,8 +237,6 @@
     <Content Include="Resources\BveEx.resx" />
     <Content Include="Resources\ScenarioService.ja.resx" />
     <Content Include="Resources\ScenarioService.resx" />
-    <Content Include="Resources\Handles\BrakeHandle.ja.resx" />
-    <Content Include="Resources\Handles\BrakeHandle.resx" />
     <Content Include="Resources\PluginLoader.ja.resx" />
     <Content Include="Resources\PluginLoader.resx" />
     <Content Include="Resources\PluginSourceSet.ja.resx" />

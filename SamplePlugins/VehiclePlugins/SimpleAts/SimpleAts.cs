@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using BveEx.PluginHost;
 using BveEx.PluginHost.Plugins;
 using BveEx.PluginHost.Sound;
 using BveEx.PluginHost.Sound.Native;
@@ -30,10 +29,7 @@ namespace BveEx.Samples.VehiclePlugins.SimpleAts
 
         public override void Tick(TimeSpan elapsed)
         {
-            VehicleLocation location = BveHacker.Scenario.VehicleLocation;
-            PluginHost.Handles.HandleSet handleSet = Native.Handles;
-
-            double speedMps = location.Speed;
+            double speedMps = BveHacker.Scenario.VehicleLocation.Speed;
             if (speedMps > 100d.KmphToMps()) // 100km/h以上出ていたら常用最大ブレーキ
             {
                 if (AtsSound.PlayState == PlayState.Stop) AtsSound.PlayLoop();

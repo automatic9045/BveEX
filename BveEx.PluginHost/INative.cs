@@ -3,7 +3,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using BveEx.PluginHost.Handles;
 using BveEx.PluginHost.Input.Native;
 using BveEx.PluginHost.Native;
 using BveEx.PluginHost.Panels.Native;
@@ -16,17 +15,6 @@ namespace BveEx.PluginHost
     /// </summary>
     public interface INative
     {
-        /// <summary>
-        /// 全てのハンドルのセットを取得します。
-        /// </summary>
-        /// <remarks>
-        /// このプロパティに設定されている値は力行ハンドルの抑速ノッチ、ブレーキハンドルの抑速ブレーキノッチを無視したものになります。<br/>
-        /// 正確な値を確実に取得したい場合は <see cref="IBveHacker.Handles"/> プロパティを使用してください。
-        /// </remarks>
-        /// <seealso cref="IBveHacker.Handles"/>
-        HandleSet Handles { get; }
-
-
         /// <summary>
         /// BveEX プラグインから、ATS プラグインによって制御可能な運転台パネルの状態量 (例えば「ats12」など、subjectKey が「ats」から始まる状態量) を操作するための機能を提供する
         /// <see cref="IAtsPanelValueSet"/> を取得します。

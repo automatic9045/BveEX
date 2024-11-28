@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using BveEx.Handles;
 using BveEx.Input;
 using BveEx.Panels;
 using BveEx.Plugins;
@@ -25,11 +24,6 @@ namespace BveEx
         {
             VehicleSpec = vehicleSpec;
 
-            BrakeHandle brake = new BrakeHandle(vehicleSpec.BrakeNotches, vehicleSpec.AtsNotch, vehicleSpec.B67Notch, false);
-            PowerHandle power = new PowerHandle(VehicleSpec.PowerNotches);
-            Reverser reverser = new Reverser();
-            Handles = new PluginHost.Handles.HandleSet(brake, power, reverser);
-
             AtsPanelValues = new AtsPanelValueSet(vehicleConfigOptions.DetectPanelValueIndexConflict);
             AtsSounds = new AtsSoundSet(vehicleConfigOptions.DetectSoundIndexConflict);
         }
@@ -43,8 +37,6 @@ namespace BveEx
 
         public void InvokePreviewTick() => PreviewTick?.Invoke(this, EventArgs.Empty);
         public void InvokePostTick() => PostTick?.Invoke(this, EventArgs.Empty);
-
-        public PluginHost.Handles.HandleSet Handles { get; }
 
         public IAtsPanelValueSet AtsPanelValues { get; }
 

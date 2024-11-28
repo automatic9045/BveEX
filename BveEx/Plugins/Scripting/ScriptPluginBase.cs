@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using UnembeddedResources;
 
 using BveEx.PluginHost;
-using BveEx.PluginHost.Handles;
 using BveEx.PluginHost.Native;
 using BveEx.PluginHost.Plugins;
 using BveEx.Scripting;

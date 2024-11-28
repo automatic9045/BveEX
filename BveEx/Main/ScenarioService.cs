@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using BveTypes.ClassWrappers;
 using UnembeddedResources;
 
-using BveEx.Handles;
 using BveEx.Input;
 using BveEx.Panels;
 using BveEx.Plugins;
@@ -97,9 +96,6 @@ namespace BveEx
 
         public void Tick(TimeSpan elapsed, VehicleState vehicleState, IList<int> panel, IList<int> sound)
         {
-            HandleSet atsHandles = BveEx.BveHacker.Scenario.Vehicle.Instruments.AtsPlugin.AtsHandles;
-            NotifyHandleUpdated();
-
             Native.VehicleState = vehicleState;
             (Native.AtsPanelValues as AtsPanelValueSet).PreTick(panel);
 
@@ -115,38 +111,6 @@ namespace BveEx
 
             (Native.AtsPanelValues as AtsPanelValueSet).Tick(panel);
             (Native.AtsSounds as AtsSoundSet).Tick(sound);
-
-
-            void NotifyHandleUpdated()
-            {
-                SetPower(atsHandles.PowerNotch, false);
-                SetBrake(atsHandles.BrakeNotch, false);
-                SetReverser(atsHandles.ReverserPosition, false);
-            }
-        }
-
-        public void SetPower(int notch, bool forceInvokeEvent)
-        {
-            PowerHandle powerHandle = (PowerHandle)Native.Handles.Power;
-            int oldNotch = powerHandle.Notch;
-            powerHandle.Notch = notch;
-            if (forceInvokeEvent && notch == oldNotch) powerHandle.InvokeNotchChanged();
-        }
-
-        public void SetBrake(int notch, bool forceInvokeEvent)
-        {
-            BrakeHandle brakeHandle = (BrakeHandle)Native.Handles.Brake;
-            int oldNotch = brakeHandle.Notch;
-            brakeHandle.Notch = notch;
-            if (forceInvokeEvent && notch == oldNotch) brakeHandle.InvokeNotchChanged();
-        }
-
-        public void SetReverser(ReverserPosition position, bool forceInvokeEvent)
-        {
-            Reverser reverser = (Reverser)Native.Handles.Reverser;
-            ReverserPosition oldPosition = reverser.Position;
-            reverser.Position = position;
-            if (forceInvokeEvent && position == oldPosition) reverser.InvokePositionChanged();
         }
 
         public void KeyDown(NativeAtsKeyName key)

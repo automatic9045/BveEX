@@ -132,17 +132,6 @@ namespace BveEx.PluginHost
 
 
         /// <summary>
-        /// 全てのハンドルのセットを取得します。
-        /// </summary>
-        /// <remarks>
-        /// <see cref="IBveHacker"/> が利用できない場合は <see cref="INative.Handles"/> プロパティを使用してください。
-        /// ただし、<see cref="INative.Handles"/> プロパティに設定されている値は力行ハンドルの抑速ノッチ、ブレーキハンドルの抑速ブレーキノッチを無視したものになります。
-        /// </remarks>
-        /// <seealso cref="INative.Handles"/>
-        Handles.HandleSet Handles { get; }
-
-
-        /// <summary>
         /// 現在実行中のシナリオの読込に使用されている <see cref="BveTypes.ClassWrappers.MapLoader"/> を取得します。
         /// </summary>
         /// <remarks>

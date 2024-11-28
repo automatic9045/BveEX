@@ -161,17 +161,14 @@ namespace BveEx.Native.InputDevices
 
         private void OnSetPower(object sender, BveEx.ValueEventArgs<int> e)
         {
-            ScenarioService?.SetPower(e.Value, true);
         }
 
         private void OnSetBrake(object sender, BveEx.ValueEventArgs<int> e)
         {
-            ScenarioService?.SetBrake(e.Value, true);
         }
 
         private void OnSetReverser(object sender, BveEx.ValueEventArgs<int> e)
         {
-            ScenarioService?.SetReverser((ReverserPosition)e.Value, true);
         }
 
         private void OnKeyDown(object sender, BveEx.ValueEventArgs<ATSKeys> e)

@@ -13,7 +13,6 @@ using BveTypes.ClassWrappers;
 using UnembeddedResources;
 
 using BveEx.BveHackerServices;
-using BveEx.Handles;
 
 using BveEx.PluginHost;
 
@@ -94,14 +93,6 @@ namespace BveEx
 
         private void OnScenarioCreated(ScenarioCreatedEventArgs e)
         {
-            NotchInfo notchInfo = e.Scenario.Vehicle.Instruments.Cab.Handles.NotchInfo;
-
-            BrakeHandle brake = BrakeHandle.FromNotchInfo(notchInfo);
-            PowerHandle power = PowerHandle.FromNotchInfo(notchInfo);
-            Reverser reverser = new Reverser();
-
-            Handles = new PluginHost.Handles.HandleSet(brake, power, reverser);
-
             AtsPlugin atsPlugin = e.Scenario.Vehicle.Instruments.AtsPlugin;
             if (!atsPlugin.IsPluginLoaded)
             {
@@ -135,8 +126,6 @@ namespace BveEx
 
         public Preferences Preferences => MainForm.Preferences;
         public InputManager InputManager => MainForm.InputManager;
-
-        public PluginHost.Handles.HandleSet Handles { get; private set; }
 
         private readonly MapLoaderHacker MapLoaderHacker;
         public MapLoader MapLoader => MapLoaderHacker.MapLoader;

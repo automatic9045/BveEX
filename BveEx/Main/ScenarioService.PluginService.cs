@@ -4,9 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using BveEx.Handles;
 using BveEx.Plugins;
-using BveEx.PluginHost.Handles;
 using BveEx.PluginHost.Plugins;
 
 namespace BveEx
@@ -16,12 +14,10 @@ namespace BveEx
         private class PluginService : IDisposable
         {
             private readonly PluginSet Plugins;
-            private readonly HandleSet Handles;
 
-            public PluginService(PluginSet plugins, HandleSet handles)
+            public PluginService(PluginSet plugins)
             {
                 Plugins = plugins;
-                Handles = handles;
             }
 
             public void Dispose()
