@@ -145,5 +145,11 @@ namespace BveEx
         public Scenario Scenario => ScenarioHacker.CurrentScenario ?? throw new InvalidOperationException(string.Format(Resources.Value.CannotGetScenario.Value, nameof(Scenario)));
 
         public bool IsScenarioCreated => !(ScenarioHacker.CurrentScenario is null);
+
+        public event EventHandler PreviewTick;
+        public event EventHandler PostTick;
+
+        public void InvokePreviewTick() => PreviewTick?.Invoke(this, EventArgs.Empty);
+        public void InvokePostTick() => PostTick?.Invoke(this, EventArgs.Empty);
     }
 }

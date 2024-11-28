@@ -74,16 +74,5 @@ namespace BveEx.PluginHost
         /// 地上子上を通過した時に発生します。ネイティブ ATS プラグインの SendBeaconData(ATS_BEACONDATA beaconData) に当たります。
         /// </summary>
         event BeaconPassedEventHandler BeaconPassed;
-
-
-        /// <summary>
-        /// 拡張機能、プラグインの <see cref="Plugins.PluginBase.Tick(TimeSpan)"/> メソッドの呼出処理を開始する直前に発生します。
-        /// </summary>
-        event EventHandler PreviewTick;
-
-        /// <summary>
-        /// 拡張機能、プラグインの <see cref="Plugins.PluginBase.Tick(TimeSpan)"/> メソッドの呼出処理が完了したときに発生します。
-        /// </summary>
-        event EventHandler PostTick;
     }
 }

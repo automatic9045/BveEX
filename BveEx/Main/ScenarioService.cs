@@ -86,12 +86,12 @@ namespace BveEx
 
         public void PreviewTick()
         {
-            Native.InvokePreviewTick();
+            BveEx.BveHacker.InvokePreviewTick();
         }
 
         public void PostTick()
         {
-            Native.InvokePostTick();
+            BveEx.BveHacker.InvokePostTick();
         }
 
         public void Tick(TimeSpan elapsed, VehicleState vehicleState, IList<int> panel, IList<int> sound)

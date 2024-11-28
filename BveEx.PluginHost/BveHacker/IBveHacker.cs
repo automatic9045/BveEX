@@ -10,6 +10,8 @@ using Mackoy.Bvets;
 using BveTypes;
 using BveTypes.ClassWrappers;
 
+using BveEx.PluginHost.Plugins;
+
 namespace BveEx.PluginHost
 {
     /// <summary>
@@ -179,5 +181,15 @@ namespace BveEx.PluginHost
         /// <see cref="Scenario"/> が取得可能かどうかを取得します。
         /// </summary>
         bool IsScenarioCreated { get; }
+
+        /// <summary>
+        /// 拡張機能、プラグインの <see cref="PluginBase.Tick(TimeSpan)"/> メソッドの呼出処理を開始する直前に発生します。
+        /// </summary>
+        event EventHandler PreviewTick;
+
+        /// <summary>
+        /// 拡張機能、プラグインの <see cref="PluginBase.Tick(TimeSpan)"/> メソッドの呼出処理が完了したときに発生します。
+        /// </summary>
+        event EventHandler PostTick;
     }
 }
