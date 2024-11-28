@@ -145,7 +145,7 @@ namespace BveTypes.ClassWrappers
 
         private static FastMethod EmergencyBrakeNotchGetMethod;
         /// <summary>
-        /// 電気ブレーキが立ち上がる最小ブレーキノッチを取得・設定します。
+        /// 非常ブレーキに相当するノッチを取得・設定します。
         /// </summary>
         public int EmergencyBrakeNotch => (int)EmergencyBrakeNotchGetMethod.Invoke(Src, null);
 
