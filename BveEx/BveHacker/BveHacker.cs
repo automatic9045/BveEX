@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using Mackoy.Bvets;
+using SlimDX.DirectSound;
 
 using BveTypes;
 using BveTypes.ClassWrappers;
@@ -124,8 +125,10 @@ namespace BveEx
         public Form ChartFormSource => ChartForm.Src as Form;
         public ChartForm ChartForm => MainForm.ChartForm;
 
-        public Preferences Preferences => MainForm.Preferences;
+        public DirectSound DirectSound => MainForm.DirectSound;
+        public AssistantSet Assistants => MainForm.Assistants;
         public InputManager InputManager => MainForm.InputManager;
+        public Preferences Preferences => MainForm.Preferences;
 
         private readonly MapLoaderHacker MapLoaderHacker;
         public MapLoader MapLoader => MapLoaderHacker.MapLoader;

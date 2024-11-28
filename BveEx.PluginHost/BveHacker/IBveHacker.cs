@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using Mackoy.Bvets;
+using SlimDX.DirectSound;
 
 using BveTypes;
 using BveTypes.ClassWrappers;
@@ -123,14 +124,24 @@ namespace BveEx.PluginHost
 
 
         /// <summary>
-        /// BVE の設定が格納された <see cref="Mackoy.Bvets.Preferences"/> を取得します。
+        /// BVE が使用する DirectSound デバイスを取得します。
         /// </summary>
-        Preferences Preferences { get; }
+        DirectSound DirectSound { get; }
+
+        /// <summary>
+        /// 補助表示のセットを取得します。
+        /// </summary>
+        AssistantSet Assistants { get; }
 
         /// <summary>
         /// キー入力を管理する <see cref="BveTypes.ClassWrappers.InputManager"/> を取得します。
         /// </summary>
         InputManager InputManager { get; }
+
+        /// <summary>
+        /// BVE の設定が格納された <see cref="Mackoy.Bvets.Preferences"/> を取得します。
+        /// </summary>
+        Preferences Preferences { get; }
 
 
         /// <summary>
@@ -181,6 +192,7 @@ namespace BveEx.PluginHost
         /// <see cref="Scenario"/> が取得可能かどうかを取得します。
         /// </summary>
         bool IsScenarioCreated { get; }
+
 
         /// <summary>
         /// 拡張機能、プラグインの <see cref="PluginBase.Tick(TimeSpan)"/> メソッドの呼出処理を開始する直前に発生します。
