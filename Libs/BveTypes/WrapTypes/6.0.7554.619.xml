@@ -1619,7 +1619,7 @@
 			<Getter Original="f"/>
 			<Setter Original="a"/>
 		</Property>
-		<Property Wrapper="VibrationManager">
+		<Property Wrapper="Vibration">
 			<Getter Original="c"/>
 			<Setter Original="a"/>
 		</Property>
@@ -1951,7 +1951,7 @@
 		<Method Wrapper="GetStep" WrapperParams="System.Int32" Original="b"/>
 	</Class>
 
-	<Class Wrapper="VehicleVibrationManager" Original="d3">
+	<Class Wrapper="VehicleVibration" Original="d3">
 		<Property Wrapper="CarBodyTransform">
 			<Getter Original="aa"/>
 		</Property>

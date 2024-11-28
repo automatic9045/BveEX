@@ -26,8 +26,8 @@ namespace BveTypes.ClassWrappers
             InstrumentsGetMethod = members.GetSourcePropertyGetterOf(nameof(Instruments));
             InstrumentsSetMethod = members.GetSourcePropertySetterOf(nameof(Instruments));
 
-            VibrationManagerGetMethod = members.GetSourcePropertyGetterOf(nameof(VibrationManager));
-            VibrationManagerSetMethod = members.GetSourcePropertySetterOf(nameof(VibrationManager));
+            VibrationGetMethod = members.GetSourcePropertyGetterOf(nameof(Vibration));
+            VibrationSetMethod = members.GetSourcePropertySetterOf(nameof(Vibration));
 
             PanelGetMethod = members.GetSourcePropertyGetterOf(nameof(Panel));
 
@@ -91,15 +91,15 @@ namespace BveTypes.ClassWrappers
             set => InstrumentsSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
-        private static FastMethod VibrationManagerGetMethod;
-        private static FastMethod VibrationManagerSetMethod;
+        private static FastMethod VibrationGetMethod;
+        private static FastMethod VibrationSetMethod;
         /// <summary>
-        /// 自列車の揺れを制御する <see cref="VehicleVibrationManager"/> を取得・設定します。
+        /// 自列車の揺れを取得・設定します。
         /// </summary>
-        public VehicleVibrationManager VibrationManager
+        public VehicleVibration Vibration
         {
-            get => VehicleVibrationManager.FromSource(VibrationManagerGetMethod.Invoke(Src, null));
-            set => VibrationManagerSetMethod.Invoke(Src, new object[] { value?.Src });
+            get => VehicleVibration.FromSource(VibrationGetMethod.Invoke(Src, null));
+            set => VibrationSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
         private static FastMethod PanelGetMethod;

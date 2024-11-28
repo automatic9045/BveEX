@@ -14,12 +14,12 @@ namespace BveTypes.ClassWrappers
     /// <summary>
     /// 自列車の揺れを制御します。
     /// </summary>
-    public class VehicleVibrationManager : ClassWrapperBase
+    public class VehicleVibration : ClassWrapperBase
     {
         [InitializeClassWrapper]
         private static void Initialize(BveTypeSet bveTypes)
         {
-            ClassMemberSet members = bveTypes.GetClassInfoOf<VehicleVibrationManager>();
+            ClassMemberSet members = bveTypes.GetClassInfoOf<VehicleVibration>();
 
             CarBodyTransformGetMethod = members.GetSourcePropertyGetterOf(nameof(CarBodyTransform));
 
@@ -46,10 +46,10 @@ namespace BveTypes.ClassWrappers
         }
 
         /// <summary>
-        /// オリジナル オブジェクトから <see cref="VehicleVibrationManager"/> クラスの新しいインスタンスを初期化します。
+        /// オリジナル オブジェクトから <see cref="VehicleVibration"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         /// <param name="src">ラップするオリジナル オブジェクト。</param>
-        protected VehicleVibrationManager(object src) : base(src)
+        protected VehicleVibration(object src) : base(src)
         {
         }
 
@@ -57,9 +57,9 @@ namespace BveTypes.ClassWrappers
         /// オリジナル オブジェクトからラッパーのインスタンスを生成します。
         /// </summary>
         /// <param name="src">ラップするオリジナル オブジェクト。</param>
-        /// <returns>オリジナル オブジェクトをラップした <see cref="VehicleVibrationManager"/> クラスのインスタンス。</returns>
+        /// <returns>オリジナル オブジェクトをラップした <see cref="VehicleVibration"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
-        public static VehicleVibrationManager FromSource(object src) => src is null ? null : new VehicleVibrationManager(src);
+        public static VehicleVibration FromSource(object src) => src is null ? null : new VehicleVibration(src);
 
         private static FastMethod CarBodyTransformGetMethod;
         /// <summary>

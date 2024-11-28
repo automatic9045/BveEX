@@ -222,7 +222,7 @@
     <Compile Include="ClassWrappers\Public\VehicleStateStore.cs" />
     <Compile Include="ClassWrappers\Public\VehicleStep.cs" />
     <Compile Include="ClassWrappers\Public\VehicleStepSet.cs" />
-    <Compile Include="ClassWrappers\Public\VehicleVibrationManager.cs" />
+    <Compile Include="ClassWrappers\Public\VehicleVibration.cs" />
     <Compile Include="ClassWrappers\Public\StopPositionGauge.cs" />
     <Compile Include="Comparer.cs" />
     <Compile Include="ClassWrappers\Public\Conductor.cs" />
