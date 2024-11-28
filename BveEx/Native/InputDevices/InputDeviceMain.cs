@@ -154,7 +154,7 @@ namespace BveEx.Native.InputDevices
                 e.VehicleState.BcPressure, e.VehicleState.MrPressure, e.VehicleState.ErPressure, e.VehicleState.BpPressure, e.VehicleState.SapPressure, e.VehicleState.Current);
 
             BveEx.Tick(elapsed);
-            _ = ScenarioService?.Tick(elapsed, exVehicleState, e.Panel, e.Sound);
+            ScenarioService?.Tick(elapsed, exVehicleState, e.Panel, e.Sound);
 
             ScenarioService?.PostTick();
         }

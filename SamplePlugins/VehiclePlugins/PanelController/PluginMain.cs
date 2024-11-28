@@ -48,7 +48,7 @@ namespace BveEx.Samples.VehiclePlugins.PanelController
             panel.Elements.Add(Element6);
         }
 
-        public override IPluginTickResult Tick(TimeSpan elapsed)
+        public override void Tick(TimeSpan elapsed)
         {
             float amount = (float)Math.Sin(Native.VehicleState.Time.TotalSeconds * 2);
 
@@ -56,8 +56,6 @@ namespace BveEx.Samples.VehiclePlugins.PanelController
             Element4Subject[0] = Native.VehicleState.Time.TotalMilliseconds / 10 % 200;
             panel.Elements[5].Matrix = Matrix.Scaling((amount + 2) / 3, (amount + 1.5f) / 2.5f, 0) * Element5Location * Matrix.Translation(amount * 100, 0, 0);
             Element6.Matrix = Matrix.Translation(200, 300 + amount * 50, 0);
-
-            return new VehiclePluginTickResult();
         }
     }
 }

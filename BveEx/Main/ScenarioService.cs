@@ -47,7 +47,7 @@ namespace BveEx
         private readonly BveEx BveEx;
         private readonly NativeImpl Native;
 
-        private readonly PluginService _PluginService;
+        private readonly PluginSet Plugins;
 
         public Scenario Target { get; private set; } = null;
 
@@ -59,10 +59,9 @@ namespace BveEx
             Native = new NativeImpl(vehicleSpec, vehicleConfig);
 
             PluginLoader pluginLoader = new PluginLoader(Native, BveEx.BveHacker, BveEx.Extensions);
-            PluginSet plugins = pluginLoader.Load(vehiclePluginUsing);
-            _PluginService = new PluginService(plugins, Native.Handles);
+            Plugins = pluginLoader.Load(vehiclePluginUsing);
 
-            BveEx.VersionFormProvider.SetScenario(plugins[PluginType.VehiclePlugin].Values, plugins[PluginType.MapPlugin].Values);
+            BveEx.VersionFormProvider.SetScenario(Plugins[PluginType.VehiclePlugin].Values, Plugins[PluginType.MapPlugin].Values);
         }
 
         public virtual void Dispose()
@@ -70,7 +69,10 @@ namespace BveEx
             BveEx.BveHacker.ScenarioCreated -= OnScenarioCreated;
 
             BveEx.VersionFormProvider.UnsetScenario();
-            _PluginService.Dispose();
+            foreach (KeyValuePair<string, PluginBase> plugin in Plugins)
+            {
+                plugin.Value.Dispose();
+            }
         }
 
         private void OnScenarioCreated(ScenarioCreatedEventArgs e)
@@ -93,7 +95,7 @@ namespace BveEx
             Native.InvokePostTick();
         }
 
-        public HandlePositionSet Tick(TimeSpan elapsed, VehicleState vehicleState, IList<int> panel, IList<int> sound)
+        public void Tick(TimeSpan elapsed, VehicleState vehicleState, IList<int> panel, IList<int> sound)
         {
             HandleSet atsHandles = BveEx.BveHacker.Scenario.Vehicle.Instruments.AtsPlugin.AtsHandles;
             NotifyHandleUpdated();
@@ -101,20 +103,18 @@ namespace BveEx
             Native.VehicleState = vehicleState;
             (Native.AtsPanelValues as AtsPanelValueSet).PreTick(panel);
 
-            HandlePositionSet lastHandlePositionSet = _PluginService.Tick(elapsed, handlePositionSet =>
+            foreach (PluginBase plugin in Plugins[PluginType.VehiclePlugin].Values)
             {
-                atsHandles.PowerNotch = handlePositionSet.Power;
-                atsHandles.BrakeNotch = handlePositionSet.Brake;
-                atsHandles.ReverserPosition = handlePositionSet.ReverserPosition;
-                atsHandles.ConstantSpeedMode = handlePositionSet.ConstantSpeed;
+                plugin.Tick(elapsed);
+            }
 
-                NotifyHandleUpdated();
-            });
+            foreach (PluginBase plugin in Plugins[PluginType.MapPlugin].Values)
+            {
+                plugin.Tick(elapsed);
+            }
 
             (Native.AtsPanelValues as AtsPanelValueSet).Tick(panel);
             (Native.AtsSounds as AtsSoundSet).Tick(sound);
-
-            return lastHandlePositionSet;
 
 
             void NotifyHandleUpdated()

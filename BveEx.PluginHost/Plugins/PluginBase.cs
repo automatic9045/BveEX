@@ -199,13 +199,9 @@ namespace BveEx.PluginHost.Plugins
         public abstract void Dispose();
 
         /// <summary>
-        /// 毎フレーム呼び出されます。ネイティブ ATS プラグインの Elapse(ATS_VEHICLESTATE vehicleState, int[] panel, int[] sound) に当たります。
+        /// 通常の ATS プラグインの Elapse 関数と同様のタイミングで、運転中毎フレーム呼び出されます。
         /// </summary>
         /// <param name="elapsed">前フレームから経過した時間。</param>
-        /// <returns>
-        /// このメソッドの実行結果を表す <see cref="IPluginTickResult"/>。<br/>
-        /// 拡張機能では <see cref="ExtensionTickResult"/> を、車両プラグインでは <see cref="VehiclePluginTickResult"/> を、マッププラグインでは <see cref="MapPluginTickResult"/> を返してください。
-        /// </returns>
-        public abstract IPluginTickResult Tick(TimeSpan elapsed);
+        public abstract void Tick(TimeSpan elapsed);
     }
 }

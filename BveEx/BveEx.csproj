@@ -145,7 +145,6 @@
     <Compile Include="Plugins\Native\NativePluginBuilder.cs" />
     <Compile Include="Plugins\Native\NativePluginPackage.cs" />
     <Compile Include="Plugins\PluginLoader.PluginLoadErrorQueue.cs" />
-    <Compile Include="Main\TickCommandBuilder.cs" />
     <Compile Include="BveHacker\Services\MainFormHacker.cs" />
     <Compile Include="BveHacker\Services\ScenarioHacker.cs" />
     <Compile Include="BveHacker\Services\StructureSetLifeProlonger.cs" />
@@ -154,7 +153,6 @@
     <Compile Include="BveHacker\BveHacker.cs" />
     <Compile Include="Handles\BrakeHandle.cs" />
     <Compile Include="Handles\HandleBase.cs" />
-    <Compile Include="Handles\HandlePositionSet.cs" />
     <Compile Include="Handles\PowerHandle.cs" />
     <Compile Include="Handles\Reverser.cs" />
     <Compile Include="Input\NativeAtsKey.cs" />
@@ -285,8 +283,6 @@
     <Content Include="Resources\Plugins\Native\Library.resx" />
     <Content Include="Resources\PluginListTabPage.resx" />
     <Content Include="Resources\PluginListTabPage.ja.resx" />
-    <Content Include="Resources\ExtensionService.ja.resx" />
-    <Content Include="Resources\ExtensionService.resx" />
     <None Include="app.config" />
     <None Include="packages.config" />
     <EmbeddedResource Include="Plugins\BveExVehicleConfigXmlSchema.xsd">

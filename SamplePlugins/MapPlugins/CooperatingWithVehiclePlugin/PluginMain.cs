@@ -30,6 +30,8 @@ namespace BveEx.Samples.MapPlugins.CooperatingWithVehiclePlugin
             Plugins.AllPluginsLoaded -= OnAllPluginsLoaded;
         }
 
-        public override IPluginTickResult Tick(TimeSpan elapsed) => new MapPluginTickResult();
+        public override void Tick(TimeSpan elapsed)
+        {
+        }
     }
 }

@@ -29,9 +29,8 @@ namespace BveEx.Extensions.LoadErrorManager
         {
         }
 
-        public override IPluginTickResult Tick(TimeSpan elapsed)
+        public override void Tick(TimeSpan elapsed)
         {
-            return new ExtensionTickResult();
         }
 
         public void Throw(string text, string senderFileName, int lineIndex, int charIndex)

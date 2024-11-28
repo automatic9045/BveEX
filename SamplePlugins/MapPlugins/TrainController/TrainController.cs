@@ -47,7 +47,7 @@ namespace BveEx.Samples.MapPlugins.TrainController
             Train = e.Scenario.Trains["test"];
         }
 
-        public override IPluginTickResult Tick(TimeSpan elapsed)
+        public override void Tick(TimeSpan elapsed)
         {
             if (Native.NativeKeys.AtsKeys[NativeAtsKeyName.F].IsPressed) Speed -= 10.0 * elapsed.Ticks / TimeSpan.TicksPerMillisecond / 1000;
             if (Native.NativeKeys.AtsKeys[NativeAtsKeyName.G].IsPressed) Speed += 10.0 * elapsed.Ticks / TimeSpan.TicksPerMillisecond / 1000;
@@ -65,8 +65,6 @@ namespace BveEx.Samples.MapPlugins.TrainController
 
             Train.Location += Speed * elapsed.Ticks / TimeSpan.TicksPerMillisecond / 1000;
             Train.Speed = Speed;
-
-            return new MapPluginTickResult();
         }
     }
 }

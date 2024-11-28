@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using BveEx.PluginHost.Handles;
 using BveEx.PluginHost.Input.Native;
 using BveEx.PluginHost.Native;
 using BveEx.PluginHost.Plugins;
@@ -116,11 +115,10 @@ namespace BveEx.Plugins.Native
             });
         }
 
-        public override IPluginTickResult Tick(TimeSpan elapsed)
+        public override void Tick(TimeSpan elapsed)
         {
             IgnoreHandleUpdates = true;
 
-            VehiclePluginTickResult tickResult = new VehiclePluginTickResult();
             if (!(Library.Elapse is null))
             {
                 Imports.VehicleState vehicleState = new Imports.VehicleState()
@@ -139,17 +137,12 @@ namespace BveEx.Plugins.Native
 
                 Imports.Handles handles = Library.Elapse.Invoke(vehicleState, atsPlugin.PanelArray, atsPlugin.SoundArray);
 
-                HandleCommandSet handleCommand = new HandleCommandSet()
-                {
-                    PowerNotch = handles.Power,
-                    BrakeNotch = handles.Brake,
-                    ReverserPosition = (ReverserPosition)handles.Reverser,
-                    ConstantSpeedMode = (ConstantSpeedMode)handles.ConstantSpeed,
-                };
-                tickResult.HandleCommandSet = handleCommand;
+                HandleSet atsHandles = BveHacker.Scenario.Vehicle.Instruments.AtsPlugin.AtsHandles;
+                atsHandles.PowerNotch = handles.Power;
+                atsHandles.BrakeNotch = handles.Brake;
+                atsHandles.ReverserPosition = (ReverserPosition)handles.Reverser;
+                atsHandles.ConstantSpeedMode = (ConstantSpeedMode)handles.ConstantSpeed;
             }
-
-            return tickResult;
         }
     }
 }

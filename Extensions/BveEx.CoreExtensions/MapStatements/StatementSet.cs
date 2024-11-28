@@ -83,9 +83,8 @@ namespace BveEx.Extensions.MapStatements
             Patch.Dispose();
         }
 
-        public override IPluginTickResult Tick(TimeSpan elapsed)
+        public override void Tick(TimeSpan elapsed)
         {
-            return new ExtensionTickResult();
         }
 
         public IEnumerator<Statement> GetEnumerator() => Statements.GetEnumerator();

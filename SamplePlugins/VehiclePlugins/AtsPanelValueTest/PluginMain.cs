@@ -27,7 +27,7 @@ namespace BveEx.Samples.VehiclePlugins.AtsPanelValueTest
         {
         }
 
-        public override IPluginTickResult Tick(TimeSpan elapsed)
+        public override void Tick(TimeSpan elapsed)
         {
             int timeMilliseconds = (int)Native.VehicleState.Time.TotalMilliseconds;
 
@@ -36,8 +36,6 @@ namespace BveEx.Samples.VehiclePlugins.AtsPanelValueTest
             Ats2.Value = Math.Sin(timeMilliseconds / 400d) * 100; // 波形に変動させる
 
             if (Ats1.Value == 200) Ats1.Value = 0;
-
-            return new VehiclePluginTickResult();
         }
     }
 }

@@ -54,7 +54,7 @@ namespace BveEx.Samples.MapPlugins.TrainControllerEx.Manual
             Patch = Extensions.GetExtension<ITrainDrawPatchFactory>().Patch(nameof(Manual), Train, TrainLocator.Draw);
         }
 
-        public override IPluginTickResult Tick(TimeSpan elapsed)
+        public override void Tick(TimeSpan elapsed)
         {
             IReadOnlyDictionary<NativeAtsKeyName, KeyBase> atsKeys = Native.NativeKeys.AtsKeys;
 
@@ -64,8 +64,6 @@ namespace BveEx.Samples.MapPlugins.TrainControllerEx.Manual
             Speed = Math.Min(maxSpeed, Math.Max(-maxSpeed, CalculateSpeed(Speed, 5, 3, elapsed, atsKeys[NativeAtsKeyName.J].IsPressed, atsKeys[NativeAtsKeyName.K].IsPressed)));
 
             TrainLocator.Tick(RotationSpeedFactor, Speed, elapsed);
-
-            return new MapPluginTickResult();
         }
 
         /// <summary>

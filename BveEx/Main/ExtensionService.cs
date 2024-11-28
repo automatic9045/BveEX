@@ -13,28 +13,6 @@ namespace BveEx
 {
     internal class ExtensionService : IDisposable
     {
-        private class ResourceSet
-        {
-            private readonly ResourceLocalizer Localizer = ResourceLocalizer.FromResXOfType<ExtensionService>("Core");
-
-            [ResourceStringHolder(nameof(Localizer))] public Resource<string> ExtensionTickResultTypeInvalid { get; private set; }
-
-            public ResourceSet()
-            {
-                ResourceLoader.LoadAndSetAll(this);
-            }
-        }
-
-        private static readonly Lazy<ResourceSet> Resources = new Lazy<ResourceSet>();
-
-        static ExtensionService()
-        {
-#if DEBUG
-            _ = Resources.Value;
-#endif
-        }
-
-
         private readonly IExtensionSet Extensions;
 
         public ExtensionService(IExtensionSet extensions)
@@ -54,12 +32,7 @@ namespace BveEx
         {
             foreach (PluginBase extension in Extensions)
             {
-                IPluginTickResult tickResult = extension.Tick(elapsed);
-                if (!(tickResult is ExtensionTickResult))
-                {
-                    throw new InvalidOperationException(string.Format(Resources.Value.ExtensionTickResultTypeInvalid.Value,
-                       $"{nameof(PluginBase)}.{nameof(PluginBase.Tick)}", nameof(ExtensionTickResult)));
-                }
+                extension.Tick(elapsed);
             }
         }
     }

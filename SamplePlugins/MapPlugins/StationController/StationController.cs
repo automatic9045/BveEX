@@ -39,9 +39,8 @@ namespace BveEx.Samples.MapPlugins.StationController
             Form.Close();
         }
 
-        public override IPluginTickResult Tick(TimeSpan elapsed)
+        public override void Tick(TimeSpan elapsed)
         {
-            return new MapPluginTickResult();
         }
 
         private void MenuItemCheckedChanged(object sender, EventArgs e)

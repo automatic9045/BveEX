@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using BveTypes.ClassWrappers;
 
 using BveEx.PluginHost;
-using BveEx.PluginHost.Handles;
 using BveEx.PluginHost.Plugins;
 using BveEx.PluginHost.Sound;
 using BveEx.PluginHost.Sound.Native;
@@ -29,31 +28,25 @@ namespace BveEx.Samples.VehiclePlugins.SimpleAts
         {
         }
 
-        public override IPluginTickResult Tick(TimeSpan elapsed)
+        public override void Tick(TimeSpan elapsed)
         {
             VehicleLocation location = BveHacker.Scenario.VehicleLocation;
             PluginHost.Handles.HandleSet handleSet = Native.Handles;
 
             double speedMps = location.Speed;
-
-            VehiclePluginTickResult tickResult = new VehiclePluginTickResult();
             if (speedMps > 100d.KmphToMps()) // 100km/h以上出ていたら常用最大ブレーキ
             {
                 if (AtsSound.PlayState == PlayState.Stop) AtsSound.PlayLoop();
 
-                tickResult.HandleCommandSet = new HandleCommandSet()
-                {
-                    PowerNotch = 0,
-                    BrakeNotch = Math.Max(handleSet.Brake.MaxServiceBrakeNotch, handleSet.Brake.Notch),
-                    ConstantSpeedMode = ConstantSpeedMode.Disable,
-                };
+                AtsPlugin atsPlugin = BveHacker.Scenario.Vehicle.Instruments.AtsPlugin;
+                atsPlugin.AtsHandles.PowerNotch = 0;
+                atsPlugin.AtsHandles.BrakeNotch = Math.Max(atsPlugin.AtsHandles.NotchInfo.EmergencyBrakeNotch - 1, atsPlugin.Handles.BrakeNotch);
+                atsPlugin.AtsHandles.ConstantSpeedMode = ConstantSpeedMode.Disable;
             }
             else
             {
                 if (AtsSound.PlayState == PlayState.PlayingLoop) AtsSound.Stop();
             }
-
-            return tickResult;
         }
     }
 }

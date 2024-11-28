@@ -112,7 +112,6 @@
     <Compile Include="Plugins\Extensions\HideExtensionMainAttribute.cs" />
     <Compile Include="Plugins\Extensions\IExtension.cs" />
     <Compile Include="Plugins\Extensions\IExtensionSet.cs" />
-    <Compile Include="Plugins\Extensions\ExtensionTickResult.cs" />
     <Compile Include="Plugins\IPluginSet.cs" />
     <Compile Include="Plugins\PluginAttribute.cs" />
     <Compile Include="Plugins\PluginBuilder.cs" />
@@ -129,9 +128,6 @@
     <Compile Include="Input\Native\INativeKeySet.cs" />
     <Compile Include="Input\Native\NativeAtsKeyName.cs" />
     <Compile Include="Plugins\ScriptLanguage.cs" />
-    <Compile Include="Plugins\TickResult\MapPluginTickResult.cs" />
-    <Compile Include="Plugins\TickResult\IPluginTickResult.cs" />
-    <Compile Include="Plugins\TickResult\VehiclePluginTickResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sound\ISound.cs" />
     <Compile Include="Sound\Native\IAtsSoundSet.cs" />

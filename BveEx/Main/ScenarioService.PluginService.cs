@@ -32,36 +32,17 @@ namespace BveEx
                 }
             }
 
-            public HandlePositionSet Tick(TimeSpan elapsed, Action<HandlePositionSet> onHandleOverriden)
+            public void Tick(TimeSpan elapsed)
             {
-                TickCommandBuilder commandBuilder = new TickCommandBuilder(Handles);
-
                 foreach (PluginBase plugin in Plugins[PluginType.VehiclePlugin].Values)
                 {
-                    IPluginTickResult tickResult = plugin.Tick(elapsed);
-                    if (!(tickResult is VehiclePluginTickResult vehiclePluginTickResult))
-                    {
-                        throw new InvalidOperationException(string.Format(Resources.Value.VehiclePluginTickResultTypeInvalid.Value,
-                           $"{nameof(PluginBase)}.{nameof(PluginBase.Tick)}", nameof(VehiclePluginTickResult)));
-                    }
-
-                    commandBuilder.Override(vehiclePluginTickResult);
-                    onHandleOverriden(commandBuilder.LatestHandlePositionSet);
+                    plugin.Tick(elapsed);
                 }
 
                 foreach (PluginBase plugin in Plugins[PluginType.MapPlugin].Values)
                 {
-                    IPluginTickResult tickResult = plugin.Tick(elapsed);
-                    if (!(tickResult is MapPluginTickResult mapPluginTickResult))
-                    {
-                        throw new InvalidOperationException(string.Format(Resources.Value.MapPluginTickResultTypeInvalid.Value,
-                           $"{nameof(PluginBase)}.{nameof(PluginBase.Tick)}", nameof(MapPluginTickResult)));
-                    }
-
-                    commandBuilder.Override(mapPluginTickResult);
+                    plugin.Tick(elapsed);
                 }
-
-                return commandBuilder.LatestHandlePositionSet;
             }
         }
     }

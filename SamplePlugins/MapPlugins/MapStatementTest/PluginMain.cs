@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 using BveEx.Extensions.MapStatements;
 using BveEx.PluginHost.Plugins;
@@ -22,6 +21,8 @@ namespace BveEx.Samples.MapPlugins.MapStatementTest
         {
         }
 
-        public override IPluginTickResult Tick(TimeSpan elapsed) => new MapPluginTickResult();
+        public override void Tick(TimeSpan elapsed)
+        {
+        }
     }
 }

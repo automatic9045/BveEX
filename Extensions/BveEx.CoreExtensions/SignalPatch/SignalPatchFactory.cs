@@ -32,10 +32,9 @@ namespace BveEx.Extensions.SignalPatch
         {
         }
 
-        public override IPluginTickResult Tick(TimeSpan elapsed)
+        public override void Tick(TimeSpan elapsed)
         {
             BveHacker.Scenario.SectionManager.OnSignalChanged();
-            return new ExtensionTickResult();
         }
 
         public SignalPatch Patch(string name, Section target, Converter<int, int> factory)
