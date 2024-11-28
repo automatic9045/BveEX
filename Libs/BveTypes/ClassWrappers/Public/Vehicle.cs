@@ -67,7 +67,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// <see cref="Vehicle"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
-        /// <param name="assistantDrawer">補助表示を描画するための <see cref="AssistantDrawer"/>。</param>
+        /// <param name="assistants">補助表示のセット。</param>
         /// <param name="directSound">DirectSound デバイス。</param>
         /// <param name="inputManager">キー入力を管理するための <see cref="InputManager"/>。</param>
         /// <param name="timeManager">時間に関する処理を行う <see cref="TimeManager"/>。</param>
@@ -75,8 +75,8 @@ namespace BveTypes.ClassWrappers
         /// <param name="cameraLocation">カメラの位置に関する情報を提供する <see cref="CameraLocation"/>。</param>
         /// <param name="map">使用するマップ。</param>
         /// <param name="sectionManager">閉そくを制御するための <see cref="SectionManager" />。</param>
-        public Vehicle(AssistantDrawer assistantDrawer, DirectSound directSound, InputManager inputManager, TimeManager timeManager, VehicleLocation location, CameraLocation cameraLocation, Map map, SectionManager sectionManager)
-            : this(Constructor.Invoke(new object[] { assistantDrawer?.Src, directSound, inputManager?.Src, timeManager?.Src, location?.Src, cameraLocation?.Src, map?.Src, sectionManager?.Src }))
+        public Vehicle(AssistantSet assistants, DirectSound directSound, InputManager inputManager, TimeManager timeManager, VehicleLocation location, CameraLocation cameraLocation, Map map, SectionManager sectionManager)
+            : this(Constructor.Invoke(new object[] { assistants?.Src, directSound, inputManager?.Src, timeManager?.Src, location?.Src, cameraLocation?.Src, map?.Src, sectionManager?.Src }))
         {
         }
 

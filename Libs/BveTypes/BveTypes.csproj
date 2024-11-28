@@ -111,7 +111,7 @@
     <Compile Include="ClassWrappers\Public\AirSupplement.cs" />
     <Compile Include="ClassWrappers\Public\AssistantText.cs" />
     <Compile Include="ClassWrappers\Public\AssistantBase.cs" />
-    <Compile Include="ClassWrappers\Public\AssistantDrawer.cs" />
+    <Compile Include="ClassWrappers\Public\AssistantSet.cs" />
     <Compile Include="ClassWrappers\Public\Background.cs" />
     <Compile Include="ClassWrappers\Public\BasicBrake.cs" />
     <Compile Include="ClassWrappers\Public\Beacon.cs" />

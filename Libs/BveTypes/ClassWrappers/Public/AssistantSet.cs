@@ -15,14 +15,14 @@ using BveTypes.ClassWrappers.Extensions;
 namespace BveTypes.ClassWrappers
 {
     /// <summary>
-    /// 補助表示を描画するための機能を提供します。
+    /// 補助表示のセットを表します。
     /// </summary>
-    public class AssistantDrawer : ClassWrapperBase
+    public class AssistantSet : ClassWrapperBase
     {
         [InitializeClassWrapper]
         private static void Initialize(BveTypeSet bveTypes)
         {
-            ClassMemberSet members = bveTypes.GetClassInfoOf<AssistantDrawer>();
+            ClassMemberSet members = bveTypes.GetClassInfoOf<AssistantSet>();
 
             ItemsGetMethod = members.GetSourcePropertyGetterOf(nameof(Items));
 
@@ -32,10 +32,10 @@ namespace BveTypes.ClassWrappers
         }
 
         /// <summary>
-        /// オリジナル オブジェクトから <see cref="AssistantDrawer"/> クラスの新しいインスタンスを初期化します。
+        /// オリジナル オブジェクトから <see cref="AssistantSet"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         /// <param name="src">ラップするオリジナル オブジェクト。</param>
-        protected AssistantDrawer(object src) : base(src)
+        protected AssistantSet(object src) : base(src)
         {
         }
 
@@ -45,7 +45,7 @@ namespace BveTypes.ClassWrappers
         /// <param name="src">ラップするオリジナル オブジェクト。</param>
         /// <returns>オリジナル オブジェクトをラップした <see cref="AssistantText"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
-        public static AssistantDrawer FromSource(object src) => src is null ? null : new AssistantDrawer(src);
+        public static AssistantSet FromSource(object src) => src is null ? null : new AssistantSet(src);
 
         private static FastMethod ItemsGetMethod;
         /// <summary>

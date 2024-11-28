@@ -34,7 +34,7 @@
 		<Field WrapperProperty="TimePosForm" Original="d" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="ChartForm" Original="e" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="LoadingProgressForm" Original="k" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="AssistantDrawer" Original="l" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Assistants" Original="l" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="InputManager" Original="m" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="CurrentScenario" Original="n" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="CurrentScenarioInfo" Original="q" IsOriginalNonPublic="true"/>
@@ -105,7 +105,7 @@
 		<Method Wrapper="OnDeviceReset" WrapperParams="void" Original="t"/>
 	</Class>
 
-	<Class Wrapper="AssistantDrawer" Original="ar">
+	<Class Wrapper="AssistantSet" Original="ar">
 		<Property Wrapper="Items">
 			<Getter Original="a"/>
 		</Property>
