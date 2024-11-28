@@ -44,10 +44,10 @@ namespace BveEx.PluginHost.Plugins
 
             Location = pluginAssembly.Location;
             Name = Path.GetFileName(Location);
-            Title = ((AssemblyTitleAttribute)Attribute.GetCustomAttribute(pluginAssembly, typeof(AssemblyTitleAttribute))).Title;
+            Title = (Attribute.GetCustomAttribute(pluginAssembly, typeof(AssemblyTitleAttribute)) as AssemblyTitleAttribute)?.Title ?? string.Empty;
             Version = pluginAssembly.GetName().Version.ToString();
-            Description = ((AssemblyDescriptionAttribute)Attribute.GetCustomAttribute(pluginAssembly, typeof(AssemblyDescriptionAttribute))).Description;
-            Copyright = ((AssemblyCopyrightAttribute)Attribute.GetCustomAttribute(pluginAssembly, typeof(AssemblyCopyrightAttribute))).Copyright;
+            Description = (Attribute.GetCustomAttribute(pluginAssembly, typeof(AssemblyDescriptionAttribute)) as AssemblyDescriptionAttribute)?.Description ?? string.Empty;
+            Copyright = (Attribute.GetCustomAttribute(pluginAssembly, typeof(AssemblyCopyrightAttribute)) as AssemblyCopyrightAttribute)?.Copyright ?? string.Empty;
         }
     }
 }
