@@ -38,6 +38,9 @@ namespace BveTypes.ClassWrappers
             DoorsField = members.GetSourceFieldOf(nameof(Doors));
             AtsHandlesField = members.GetSourceFieldOf(nameof(AtsHandles));
 
+            LoopSoundRequestedEvent = members.GetSourceEventOf(nameof(LoopSoundRequested));
+            PlaySoundRequestedEvent = members.GetSourceEventOf(nameof(PlaySoundRequested));
+
             OnSetBeaconDataMethod = members.GetSourceMethodOf(nameof(OnSetBeaconData));
             OnKeyDownMethod = members.GetSourceMethodOf(nameof(OnKeyDown));
             OnKeyUpMethod = members.GetSourceMethodOf(nameof(OnKeyUp));
@@ -214,6 +217,34 @@ namespace BveTypes.ClassWrappers
             set => AtsHandlesField.SetValue(Src, value?.Src);
         }
 
+        private static FastEvent LoopSoundRequestedEvent;
+        /// <summary>
+        /// ATS サウンドのループ再生が要求されたときに発生します。
+        /// </summary>
+        public event EventHandler<AtsSoundEventArgs> LoopSoundRequested
+        {
+            add => LoopSoundRequestedEvent.Add(Src, value);
+            remove => LoopSoundRequestedEvent.Remove(Src, value);
+        }
+        /// <summary>
+        /// <see cref="LoopSoundRequested"/> イベントを実行します。
+        /// </summary>
+        public void LoopSoundRequested_Invoke(AtsSoundEventArgs args) => LoopSoundRequestedEvent.Invoke(Src, new object[] { Src, args.Src });
+
+        private static FastEvent PlaySoundRequestedEvent;
+        /// <summary>
+        /// ATS サウンドの再生が要求されたときに発生します。
+        /// </summary>
+        public event EventHandler<AtsSoundEventArgs> PlaySoundRequested
+        {
+            add => PlaySoundRequestedEvent.Add(Src, value);
+            remove => PlaySoundRequestedEvent.Remove(Src, value);
+        }
+        /// <summary>
+        /// <see cref="PlaySoundRequested"/> イベントを実行します。
+        /// </summary>
+        public void PlaySoundRequested_Invoke(AtsSoundEventArgs args) => PlaySoundRequestedEvent.Invoke(Src, new object[] { Src, args.Src });
+
         private static FastMethod OnSetBeaconDataMethod;
         /// <summary>
         /// プラグインに地上子を越えたことを通知します。
@@ -310,5 +341,73 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         /// <param name="time">現在時刻。</param>
         public void OnElapse(int time) => OnElapseMethod.Invoke(Src, new object[] { time });
+
+
+        /// <summary>
+        /// <see cref="PlaySoundRequested"/>、<see cref="LoopSoundRequested"/> イベントのデータを提供します。
+        /// </summary>
+        public class AtsSoundEventArgs : ClassWrapperBase
+        {
+            [InitializeClassWrapper]
+            private static void Initialize(BveTypeSet bveTypes)
+            {
+                ClassMemberSet members = bveTypes.GetClassInfoOf<AtsSoundEventArgs>();
+
+                Constructor = members.GetSourceConstructor();
+
+                SoundIndexField = members.GetSourceFieldOf(nameof(SoundIndex));
+                VolumeField = members.GetSourceFieldOf(nameof(Volume));
+            }
+
+            /// <summary>
+            /// オリジナル オブジェクトから <see cref="AtsSoundEventArgs"/> クラスの新しいインスタンスを初期化します。
+            /// </summary>
+            /// <param name="src">ラップするオリジナル オブジェクト。</param>
+            protected AtsSoundEventArgs(object src) : base(src)
+            {
+            }
+
+            private static FastConstructor Constructor;
+            /// <summary>
+            /// <see cref="ObjectPassedEventArgs"/> クラスの新しいインスタンスを初期化します。
+            /// </summary>
+            /// <param name="soundIndex">通過したマップオブジェクト。</param>
+            /// <param name="volume">下げる音量の符号付き大きさ [B]。0 または負の値で指定してください。</param>
+            public AtsSoundEventArgs(int soundIndex, int volume)
+                : this(Constructor.Invoke(new object[] { soundIndex, volume }))
+            {
+            }
+
+            /// <summary>
+            /// オリジナル オブジェクトからラッパーのインスタンスを生成します。
+            /// </summary>
+            /// <param name="src">ラップするオリジナル オブジェクト。</param>
+            /// <returns>オリジナル オブジェクトをラップした <see cref="AtsSoundEventArgs"/> クラスのインスタンス。</returns>
+            [CreateClassWrapperFromSource]
+            public static AtsSoundEventArgs FromSource(object src) => src is null ? null : new AtsSoundEventArgs(src);
+
+            private static FastField SoundIndexField;
+            /// <summary>
+            /// 操作対象となる ATS サウンドのインデックスを取得・設定します。
+            /// </summary>
+            public int SoundIndex
+            {
+                get => (int)SoundIndexField.GetValue(Src);
+                set => SoundIndexField.SetValue(Src, value);
+            }
+
+            private static FastField VolumeField;
+            /// <summary>
+            /// 下げる音量の符号付き大きさ [B] を取得・設定します。
+            /// </summary>
+            /// <remarks>
+            /// 0 または負の値で指定してください。
+            /// </remarks>
+            public int Volume
+            {
+                get => (int)VolumeField.GetValue(Src);
+                set => VolumeField.SetValue(Src, value);
+            }
+        }
     }
 }

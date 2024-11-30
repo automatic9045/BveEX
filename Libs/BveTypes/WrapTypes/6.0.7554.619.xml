@@ -116,6 +116,13 @@
 	</Class>
 
 	<Class Wrapper="AtsPlugin" Original="aa">
+		<Children>
+			<Class Wrapper="AtsSoundEventArgs" Original="a">
+				<Field WrapperProperty="SoundIndex" Original="a" IsOriginalNonPublic="true"/>
+				<Field WrapperProperty="Volume" Original="b" IsOriginalNonPublic="true"/>
+			</Class>
+		</Children>
+
 		<Property Wrapper="PanelArray">
 			<Getter Original="a"/>
 		</Property>
@@ -134,6 +141,9 @@
 		<Field WrapperProperty="SectionManager" Original="j" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Doors" Original="k" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="AtsHandles" Original="l" IsOriginalNonPublic="true"/>
+
+		<Event Wrapper="LoopSoundRequested" OriginalAddAccessor="c" OriginalRemoveAccessor="b" OriginalDelegateField="y"/>
+		<Event Wrapper="PlaySoundRequested" OriginalAddAccessor="a" OriginalRemoveAccessor="d" OriginalDelegateField="z"/>
 
 		<Method Wrapper="OnSetBeaconData" WrapperParams="System.Object; ex:ObjectPassedEventArgs" Original="a" IsOriginalNonPublic="true"/>
 		<Method Wrapper="OnKeyDown" WrapperParams="System.Object; Mackoy.Bvets.InputEventArgs, Mackoy.IInputDevice" Original="b" IsOriginalNonPublic="true"/>
