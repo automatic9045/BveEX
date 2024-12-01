@@ -15,9 +15,8 @@ using UnembeddedResources;
 
 using BveEx.Plugins;
 using BveEx.Troubleshooting;
+
 using BveEx.PluginHost;
-using BveEx.PluginHost.Input.Native;
-using BveEx.PluginHost.Native;
 using BveEx.PluginHost.Plugins;
 
 namespace BveEx.Native.InputDevices
@@ -108,103 +107,37 @@ namespace BveEx.Native.InputDevices
                 BveEx.OnSetVehicleSpec += OnSetVehicleSpec;
                 BveEx.OnInitialize += OnInitialize;
                 BveEx.PostElapse += PostElapse;
-                BveEx.OnSetPower += OnSetPower;
-                BveEx.OnSetBrake += OnSetBrake;
-                BveEx.OnSetReverser += OnSetReverser;
-                BveEx.OnKeyDown += OnKeyDown;
-                BveEx.OnKeyUp += OnKeyUp;
-                BveEx.OnHornBlow += OnHornBlow;
-                BveEx.OnDoorOpen += OnDoorOpen;
-                BveEx.OnDoorClose += OnDoorClose;
-                BveEx.OnSetSignal += OnSetSignal;
-                BveEx.OnSetBeaconData += OnSetBeaconData;
             }
         }
 
-        private void OnSetVehicleSpec(object sender, BveEx.ValueEventArgs<VehicleSpec> e)
+        private void OnSetVehicleSpec(object sender, EventArgs e)
         {
-            PluginHost.Native.VehicleSpec exVehicleSpec = new PluginHost.Native.VehicleSpec(
-                e.Value.BrakeNotches, e.Value.PowerNotches, e.Value.AtsNotch, e.Value.B67Notch, e.Value.Cars);
-
             string vehiclePath = BveEx.BveHacker.ScenarioInfo.VehicleFiles.SelectedFile.Path;
             VehicleConfig vehicleConfig = LoadedVehicleConfig ?? VehicleConfig.Resolve(vehiclePath);
             PluginSourceSet pluginUsing = !(LoadedVehiclePluginUsing is null) ? LoadedVehiclePluginUsing
                 : vehicleConfig.PluginUsingPath is null ? PluginSourceSet.ResolvePluginUsingToLoad(PluginType.VehiclePlugin, true, vehiclePath)
                 : PluginSourceSet.FromPluginUsing(PluginType.VehiclePlugin, true, vehicleConfig.PluginUsingPath);
 
-            ScenarioService = new ScenarioService(BveEx, pluginUsing, vehicleConfig, exVehicleSpec);
+            ScenarioService = new ScenarioService(BveEx, pluginUsing, vehicleConfig);
             FrameSpan = new FrameSpan();
         }
 
-        private void OnInitialize(object sender, BveEx.ValueEventArgs<DefaultBrakePosition> e)
+        private void OnInitialize(object sender, EventArgs e)
         {
-            ScenarioService.Started((BrakePosition)e.Value);
             FrameSpan.Initialize();
         }
 
-        private void PostElapse(object sender, BveEx.OnElapseEventArgs e)
+        private void PostElapse(object sender, BveEx.ValueEventArgs<TimeSpan> e)
         {
             ScenarioService?.PreviewTick();
 
-            TimeSpan now = TimeSpan.FromMilliseconds(e.VehicleState.Time);
+            TimeSpan now = e.Value;
             TimeSpan elapsed = FrameSpan.Tick(now);
 
-            PluginHost.Native.VehicleState exVehicleState = new PluginHost.Native.VehicleState(
-                e.VehicleState.Location, e.VehicleState.Speed, TimeSpan.FromMilliseconds(e.VehicleState.Time),
-                e.VehicleState.BcPressure, e.VehicleState.MrPressure, e.VehicleState.ErPressure, e.VehicleState.BpPressure, e.VehicleState.SapPressure, e.VehicleState.Current);
-
             BveEx.Tick(elapsed);
-            ScenarioService?.Tick(elapsed, exVehicleState, e.Panel, e.Sound);
+            ScenarioService?.Tick(elapsed);
 
             ScenarioService?.PostTick();
-        }
-
-        private void OnSetPower(object sender, BveEx.ValueEventArgs<int> e)
-        {
-        }
-
-        private void OnSetBrake(object sender, BveEx.ValueEventArgs<int> e)
-        {
-        }
-
-        private void OnSetReverser(object sender, BveEx.ValueEventArgs<int> e)
-        {
-        }
-
-        private void OnKeyDown(object sender, BveEx.ValueEventArgs<ATSKeys> e)
-        {
-            ScenarioService?.KeyDown((NativeAtsKeyName)e.Value);
-        }
-
-        private void OnKeyUp(object sender, BveEx.ValueEventArgs<ATSKeys> e)
-        {
-            ScenarioService?.KeyUp((NativeAtsKeyName)e.Value);
-        }
-
-        private void OnHornBlow(object sender, BveEx.ValueEventArgs<HornType> e)
-        {
-            ScenarioService?.HornBlow((PluginHost.Native.HornType)e.Value);
-        }
-
-        private void OnDoorOpen(object sender, EventArgs e)
-        {
-            ScenarioService?.DoorOpened();
-        }
-
-        private void OnDoorClose(object sender, EventArgs e)
-        {
-            ScenarioService?.DoorClosed();
-        }
-
-        private void OnSetSignal(object sender, BveEx.ValueEventArgs<int> e)
-        {
-            ScenarioService?.SetSignal(e.Value);
-        }
-
-        private void OnSetBeaconData(object sender, BveEx.ValueEventArgs<BeaconData> e)
-        {
-            BeaconPassedEventArgs args = new BeaconPassedEventArgs(e.Value.Num, e.Value.Sig, e.Value.Z, e.Value.Data);
-            ScenarioService?.BeaconPassed(args);
         }
 
         private void OnScenarioClosed(object sender, BveEx.ValueEventArgs<Scenario> e)

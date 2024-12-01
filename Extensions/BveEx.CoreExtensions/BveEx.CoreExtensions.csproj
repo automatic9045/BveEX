@@ -37,6 +37,10 @@
       <HintPath>..\..\packages\Lib.Harmony.2.2.2\lib\net48\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Mackoy.IInputDevice">
+      <HintPath>..\..\LocalReferences\BveTs\Mackoy.IInputDevice.DLL</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="ObjectiveHarmonyPatch, Version=1.1.40209.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ObjectiveHarmonyPatch.1.1.0\lib\ObjectiveHarmonyPatch.dll</HintPath>
       <Private>False</Private>
@@ -87,6 +91,23 @@
     <Compile Include="MapStatements\StatementSet.cs" />
     <Compile Include="MapStatements\SyntaxException.cs" />
     <Compile Include="MethodOverrideMode.cs" />
+    <Compile Include="Native\PanelArray.cs" />
+    <Compile Include="Native\SoundArray.cs" />
+    <Compile Include="Native\BeaconPassedEventArgs.cs" />
+    <Compile Include="Native\HornBlownEventArgs.cs" />
+    <Compile Include="Native\INative.cs" />
+    <Compile Include="Native\Input\AtsKeySet.cs" />
+    <Compile Include="Native\Input\AtsKey.cs" />
+    <Compile Include="Native\Input\AtsKeyEventArgs.cs" />
+    <Compile Include="Native\Native.cs" />
+    <Compile Include="Native\PatchSet.cs" />
+    <Compile Include="Native\ScenarioService.cs" />
+    <Compile Include="Native\SignalUpdatedEventArgs.cs" />
+    <Compile Include="Native\SoundPlayCommands.cs" />
+    <Compile Include="Native\SoundPlayMode.cs" />
+    <Compile Include="Native\StartedEventArgs.cs" />
+    <Compile Include="Native\VehicleSpec.cs" />
+    <Compile Include="Native\VehicleState.cs" />
     <Compile Include="PreTrainPatch\IPreTrainLocationConverter.cs" />
     <Compile Include="PreTrainPatch\IPreTrainPatchFactory.cs" />
     <Compile Include="PreTrainPatch\PreTrainLocation.cs" />

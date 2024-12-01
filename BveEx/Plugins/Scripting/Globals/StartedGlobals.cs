@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using BveEx.PluginHost.Native;
+using BveEx.Extensions.Native;
 using BveEx.Scripting;
 
 namespace BveEx.Plugins.Scripting

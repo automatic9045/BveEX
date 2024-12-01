@@ -50,10 +50,11 @@ namespace BveEx.Samples.VehiclePlugins.PanelController
 
         public override void Tick(TimeSpan elapsed)
         {
-            float amount = (float)Math.Sin(Native.VehicleState.Time.TotalSeconds * 2);
+            TimeSpan now = BveHacker.Scenario.TimeManager.Time;
+            float amount = (float)Math.Sin(now.TotalSeconds * 2);
 
             VehiclePanel panel = BveHacker.Scenario.Vehicle.Panel;
-            Element4Subject[0] = Native.VehicleState.Time.TotalMilliseconds / 10 % 200;
+            Element4Subject[0] = now.TotalMilliseconds / 10 % 200;
             panel.Elements[5].Matrix = Matrix.Scaling((amount + 2) / 3, (amount + 1.5f) / 2.5f, 0) * Element5Location * Matrix.Translation(amount * 100, 0, 0);
             Element6.Matrix = Matrix.Translation(200, 300 + amount * 50, 0);
         }

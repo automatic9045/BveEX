@@ -7,9 +7,6 @@ using System.Threading.Tasks;
 using BveTypes.ClassWrappers;
 using Mackoy.Bvets;
 
-using BveEx.PluginHost.Input.Native;
-using BveEx.PluginHost.Native;
-
 namespace BveEx.PluginHost.Input
 {
     /// <summary>
@@ -137,7 +134,7 @@ namespace BveEx.PluginHost.Input
         /// </summary>
         /// <param name="key">押下するキー。</param>
         /// <returns>ATS キーを押下することを表す <see cref="InputEventArgs"/>。</returns>
-        public static InputEventArgs AtsKey(NativeAtsKeyName key)
+        public static InputEventArgs AtsKey(AtsKeyName key)
         {
             return new InputEventArgs(-2, (int)key);
         }

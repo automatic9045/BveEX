@@ -53,19 +53,9 @@ namespace BveEx
         public event EventHandler<ValueEventArgs<ScenarioInfo>> ScenarioOpened;
         public event EventHandler<ValueEventArgs<Scenario>> ScenarioClosed;
 
-        public event EventHandler<ValueEventArgs<VehicleSpec>> OnSetVehicleSpec;
-        public event EventHandler<ValueEventArgs<DefaultBrakePosition>> OnInitialize;
-        public event EventHandler<OnElapseEventArgs> PostElapse;
-        public event EventHandler<ValueEventArgs<int>> OnSetPower;
-        public event EventHandler<ValueEventArgs<int>> OnSetBrake;
-        public event EventHandler<ValueEventArgs<int>> OnSetReverser;
-        public event EventHandler<ValueEventArgs<ATSKeys>> OnKeyDown;
-        public event EventHandler<ValueEventArgs<ATSKeys>> OnKeyUp;
-        public event EventHandler<ValueEventArgs<HornType>> OnHornBlow;
-        public event EventHandler OnDoorOpen;
-        public event EventHandler OnDoorClose;
-        public event EventHandler<ValueEventArgs<int>> OnSetSignal;
-        public event EventHandler<ValueEventArgs<BeaconData>> OnSetBeaconData;
+        public event EventHandler OnSetVehicleSpec;
+        public event EventHandler OnInitialize;
+        public event EventHandler<ValueEventArgs<TimeSpan>> PostElapse;
 
         public BveHacker BveHacker { get; }
         public IExtensionSet Extensions { get; }
@@ -139,20 +129,6 @@ namespace BveEx
             public ValueEventArgs(T value)
             {
                 Value = value;
-            }
-        }
-
-        internal class OnElapseEventArgs : EventArgs
-        {
-            public VehicleState VehicleState { get; }
-            public int[] Panel { get; }
-            public int[] Sound { get; }
-
-            public OnElapseEventArgs(VehicleState vehicleState, int[] panel, int[] sound)
-            {
-                VehicleState = vehicleState;
-                Panel = panel;
-                Sound = sound;
             }
         }
     }

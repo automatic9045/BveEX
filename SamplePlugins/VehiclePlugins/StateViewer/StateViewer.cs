@@ -19,7 +19,7 @@ namespace BveEx.Samples.VehiclePlugins.StateViewer
 
         public StateViewer(PluginBuilder services) : base(services)
         {
-            InstanceStore.Initialize(Native, BveHacker);
+            InstanceStore.Initialize(BveHacker);
 
             MenuItem = Extensions.GetExtension<IContextMenuHacker>().AddCheckableMenuItem("状態ウィンドウを表示", MenuItemCheckedChanged, ContextMenuItemType.Plugins);
 

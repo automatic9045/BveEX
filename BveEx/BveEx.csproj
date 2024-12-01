@@ -127,12 +127,9 @@
     <Compile Include="Native\BveTypeSetLoader.cs" />
     <Compile Include="Plugins\Extensions\ExtensionSetFactory.cs" />
     <Compile Include="Main\ExtensionService.cs" />
-    <Compile Include="Native\Export.cs" />
     <Compile Include="Native\CallerInfo.cs" />
     <Compile Include="Native\FrameSpan.cs" />
     <Compile Include="Native\InputDevices\InputDeviceMain.cs" />
-    <Compile Include="Panels\AtsPanelValue.cs" />
-    <Compile Include="Panels\AtsPanelValueSet.cs" />
     <Compile Include="Plugins\AssemblyPluginPackage.cs" />
     <Compile Include="Plugins\Extensions\Data\Extension.cs" />
     <Compile Include="Plugins\Extensions\Data\LoadedExtensions.cs" />
@@ -151,8 +148,6 @@
     <Compile Include="Main\BveEx.cs" />
     <Compile Include="Main\ScenarioService.cs" />
     <Compile Include="BveHacker\BveHacker.cs" />
-    <Compile Include="Input\NativeAtsKey.cs" />
-    <Compile Include="Input\NativeKeySet.cs" />
     <Compile Include="Main\ScenarioService.PluginLoader.cs" />
     <Compile Include="Main\ScenarioService.PluginService.cs" />
     <Compile Include="Plugins\PluginLoadErrorResolver.cs" />
@@ -178,11 +173,6 @@
     <Compile Include="Plugins\Scripting\ScriptPluginPackage.InformationBuilder.cs" />
     <Compile Include="Plugins\Scripting\ScriptPluginPackage.ScriptsBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="NativeImpl.cs" />
-    <Compile Include="Sound\AtsSound.cs" />
-    <Compile Include="Sound\AtsSoundCommand.cs" />
-    <Compile Include="Sound\AtsSoundCommandQueue.cs" />
-    <Compile Include="Sound\AtsSoundSet.cs" />
     <Compile Include="Troubleshooting\TroubleshooterSet.cs" />
     <Compile Include="VersionForm\PluginListTabPage.cs">
       <SubType>Component</SubType>
@@ -261,10 +251,6 @@
     <Content Include="Resources\Plugins\Extensions\ExtensionSet.resx" />
     <Content Include="Resources\BveHacker.resx" />
     <Content Include="Resources\BveHacker.ja.resx" />
-    <Content Include="Resources\AtsPanelValueSet.ja.resx" />
-    <Content Include="Resources\AtsPanelValueSet.resx" />
-    <Content Include="Resources\AtsSoundSet.ja.resx" />
-    <Content Include="Resources\AtsSoundSet.resx" />
     <Content Include="Resources\BveTypeSetLoader.resx" />
     <Content Include="Resources\BveTypeSetLoader.ja.resx" />
     <Content Include="Resources\VehicleConfig.ja.resx" />

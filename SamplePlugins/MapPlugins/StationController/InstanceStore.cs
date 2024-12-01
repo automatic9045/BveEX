@@ -14,19 +14,17 @@ namespace BveEx.Samples.MapPlugins.StationController
         public static InstanceStore Instance { get; private set; } = null;
         public static bool IsInitialized => !(Instance is null);
 
-        public static void Initialize(INative native, IExtensionSet extensions, IBveHacker bveHacker)
+        public static void Initialize(IExtensionSet extensions, IBveHacker bveHacker)
         {
-            Instance = new InstanceStore(native, extensions, bveHacker);
+            Instance = new InstanceStore(extensions, bveHacker);
         }
 
 
-        public INative Native { get; }
         public IExtensionSet Extensions { get; }
         public IBveHacker BveHacker { get; }
 
-        private InstanceStore(INative native, IExtensionSet extensions, IBveHacker bveHacker)
+        private InstanceStore(IExtensionSet extensions, IBveHacker bveHacker)
         {
-            Native = native;
             Extensions = extensions;
             BveHacker = bveHacker;
         }

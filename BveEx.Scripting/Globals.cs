@@ -10,24 +10,22 @@ namespace BveEx.Scripting
 {
     public class Globals
     {
-        public INative Native { get; }
         public IBveHacker BveHacker { get; }
 
         protected Dictionary<string, dynamic> Variables;
 
-        private Globals(INative native, IBveHacker bveHacker, Dictionary<string, dynamic> variables)
+        private Globals(IBveHacker bveHacker, Dictionary<string, dynamic> variables)
         {
-            Native = native;
             BveHacker = bveHacker;
 
             Variables = variables;
         }
 
-        protected Globals(Globals source) : this(source.Native, source.BveHacker, source.Variables)
+        protected Globals(Globals source) : this(source.BveHacker, source.Variables)
         {
         }
 
-        public Globals(INative native, IBveHacker bveHacker) : this(native, bveHacker, new Dictionary<string, dynamic>())
+        public Globals(IBveHacker bveHacker) : this(bveHacker, new Dictionary<string, dynamic>())
         {
         }
 

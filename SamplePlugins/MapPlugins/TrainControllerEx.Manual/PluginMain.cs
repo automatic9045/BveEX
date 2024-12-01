@@ -8,10 +8,11 @@ using SlimDX;
 
 using BveTypes.ClassWrappers;
 
+using BveEx.Extensions.Native;
+using BveEx.Extensions.Native.Input;
 using BveEx.Extensions.TrainDrawPatch;
 using BveEx.PluginHost;
 using BveEx.PluginHost.Input;
-using BveEx.PluginHost.Input.Native;
 using BveEx.PluginHost.Plugins;
 
 namespace BveEx.Samples.MapPlugins.TrainControllerEx.Manual
@@ -56,12 +57,12 @@ namespace BveEx.Samples.MapPlugins.TrainControllerEx.Manual
 
         public override void Tick(TimeSpan elapsed)
         {
-            IReadOnlyDictionary<NativeAtsKeyName, KeyBase> atsKeys = Native.NativeKeys.AtsKeys;
+            AtsKeySet atsKeys = Extensions.GetExtension<INative>().AtsKeys;
 
-            RotationSpeedFactor = Math.Min(1, Math.Max(-1, CalculateSpeed(RotationSpeedFactor, 2, 1, elapsed, atsKeys[NativeAtsKeyName.H].IsPressed, atsKeys[NativeAtsKeyName.I].IsPressed)));
+            RotationSpeedFactor = Math.Min(1, Math.Max(-1, CalculateSpeed(RotationSpeedFactor, 2, 1, elapsed, atsKeys.GetKey(AtsKeyName.H).IsPressed, atsKeys.GetKey(AtsKeyName.I).IsPressed)));
 
-            float maxSpeed = 60 / 3.6f; // 60 [km/h] = (60 / 3.6) [m/s]
-            Speed = Math.Min(maxSpeed, Math.Max(-maxSpeed, CalculateSpeed(Speed, 5, 3, elapsed, atsKeys[NativeAtsKeyName.J].IsPressed, atsKeys[NativeAtsKeyName.K].IsPressed)));
+            float maxSpeed = 60 / 3.6f; // 60 km/h = (60 / 3.6) m/s
+            Speed = Math.Min(maxSpeed, Math.Max(-maxSpeed, CalculateSpeed(Speed, 5, 3, elapsed, atsKeys.GetKey(AtsKeyName.J).IsPressed, atsKeys.GetKey(AtsKeyName.K).IsPressed)));
 
             TrainLocator.Tick(RotationSpeedFactor, Speed, elapsed);
         }

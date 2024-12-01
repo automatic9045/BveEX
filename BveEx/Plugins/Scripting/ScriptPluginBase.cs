@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 using UnembeddedResources;
 
+using BveEx.Extensions.Native;
 using BveEx.PluginHost;
-using BveEx.PluginHost.Native;
 using BveEx.PluginHost.Plugins;
 using BveEx.Scripting;
 
@@ -62,7 +62,7 @@ namespace BveEx.Plugins.Scripting
             Description = builder.Description;
             Copyright = builder.Copyright;
 
-            Globals = new Globals(Native, BveHacker);
+            Globals = new Globals(BveHacker);
 
             DisposeScript = builder.DisposeScript?.GetWithCheckErrors();
             OnScenarioCreatedScript = builder.OnScenarioCreatedScript?.GetWithCheckErrors();
@@ -73,7 +73,7 @@ namespace BveEx.Plugins.Scripting
             constructorScript?.Run(Globals);
 
             BveHacker.ScenarioCreated += OnScenarioCreated;
-            Native.Started += OnStarted;
+            Extensions.GetExtension<INative>().Started += OnStarted;
         }
 
         public override void Dispose() => DisposeScript?.Run(Globals);
@@ -84,7 +84,7 @@ namespace BveEx.Plugins.Scripting
             OnScenarioCreatedScript?.Run(globals);
         }
 
-        private void OnStarted(StartedEventArgs e)
+        private void OnStarted(object sender, StartedEventArgs e)
         {
             StartedGlobals globals = new StartedGlobals(Globals, e);
             OnStartedScript?.Run(globals);

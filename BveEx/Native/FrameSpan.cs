@@ -25,7 +25,7 @@ namespace BveEx.Native
             TimeSpan span = IsFirstFrame ? TimeSpan.Zero : now - Time;
 
             Time = now;
-            IsFirstFrame= false;
+            IsFirstFrame = false;
 
             return span;
         }

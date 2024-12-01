@@ -20,7 +20,7 @@ namespace BveEx.Plugins.Extensions
         public static ExtensionSet Load(BveHacker bveHacker)
         {
             ExtensionSet extensions = new ExtensionSet();
-            PluginLoader pluginLoader = new PluginLoader(null, bveHacker, extensions, null);
+            PluginLoader pluginLoader = new PluginLoader(bveHacker, extensions, null);
 
             string extensionsDirectory = App.Instance.ExtensionDirectory;
             Directory.CreateDirectory(extensionsDirectory);

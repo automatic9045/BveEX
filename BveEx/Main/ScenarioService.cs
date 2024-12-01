@@ -7,12 +7,7 @@ using System.Threading.Tasks;
 using BveTypes.ClassWrappers;
 using UnembeddedResources;
 
-using BveEx.Input;
-using BveEx.Panels;
 using BveEx.Plugins;
-using BveEx.Sound;
-using BveEx.PluginHost.Input.Native;
-using BveEx.PluginHost.Native;
 using BveEx.PluginHost.Plugins;
 using BveEx.PluginHost;
 
@@ -44,20 +39,17 @@ namespace BveEx
 
 
         private readonly BveEx BveEx;
-        private readonly NativeImpl Native;
 
         private readonly PluginSet Plugins;
 
         public Scenario Target { get; private set; } = null;
 
-        public ScenarioService(BveEx bveEx, PluginSourceSet vehiclePluginUsing, VehicleConfig vehicleConfig, VehicleSpec vehicleSpec)
+        public ScenarioService(BveEx bveEx, PluginSourceSet vehiclePluginUsing, VehicleConfig vehicleConfig)
         {
             BveEx = bveEx;
             BveEx.BveHacker.ScenarioCreated += OnScenarioCreated;
 
-            Native = new NativeImpl(vehicleSpec, vehicleConfig);
-
-            PluginLoader pluginLoader = new PluginLoader(Native, BveEx.BveHacker, BveEx.Extensions);
+            PluginLoader pluginLoader = new PluginLoader(BveEx.BveHacker, BveEx.Extensions);
             Plugins = pluginLoader.Load(vehiclePluginUsing);
 
             BveEx.VersionFormProvider.SetScenario(Plugins[PluginType.VehiclePlugin].Values, Plugins[PluginType.MapPlugin].Values);
@@ -79,11 +71,6 @@ namespace BveEx
             Target = e.Scenario;
         }
 
-        public void Started(BrakePosition defaultBrakePosition)
-        {
-            Native.InvokeStarted(defaultBrakePosition);
-        }
-
         public void PreviewTick()
         {
             BveEx.BveHacker.InvokePreviewTick();
@@ -94,11 +81,8 @@ namespace BveEx
             BveEx.BveHacker.InvokePostTick();
         }
 
-        public void Tick(TimeSpan elapsed, VehicleState vehicleState, IList<int> panel, IList<int> sound)
+        public void Tick(TimeSpan elapsed)
         {
-            Native.VehicleState = vehicleState;
-            (Native.AtsPanelValues as AtsPanelValueSet).PreTick(panel);
-
             foreach (PluginBase plugin in Plugins[PluginType.VehiclePlugin].Values)
             {
                 plugin.Tick(elapsed);
@@ -108,44 +92,6 @@ namespace BveEx
             {
                 plugin.Tick(elapsed);
             }
-
-            (Native.AtsPanelValues as AtsPanelValueSet).Tick(panel);
-            (Native.AtsSounds as AtsSoundSet).Tick(sound);
-        }
-
-        public void KeyDown(NativeAtsKeyName key)
-        {
-            ((NativeKeySet)Native.NativeKeys).NotifyPressed(key);
-        }
-
-        public void KeyUp(NativeAtsKeyName key)
-        {
-            ((NativeKeySet)Native.NativeKeys).NotifyReleased(key);
-        }
-
-        public void HornBlow(HornType hornType)
-        {
-            Native.InvokeHornBlown(hornType);
-        }
-
-        public void DoorOpened()
-        {
-            Native.InvokeDoorOpened();
-        }
-
-        public void DoorClosed()
-        {
-            Native.InvokeDoorClosed();
-        }
-
-        public void BeaconPassed(BeaconPassedEventArgs args)
-        {
-            Native.InvokeBeaconPassed(args);
-        }
-
-        public void SetSignal(int signalIndex)
-        {
-            Native.InvokeSignalUpdated(signalIndex);
         }
     }
 }

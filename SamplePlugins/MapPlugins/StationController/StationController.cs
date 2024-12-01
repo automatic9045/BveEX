@@ -19,7 +19,7 @@ namespace BveEx.Samples.MapPlugins.StationController
 
         public StationController(PluginBuilder services) : base(services)
         {
-            InstanceStore.Initialize(Native, Extensions, BveHacker);
+            InstanceStore.Initialize(Extensions, BveHacker);
 
             IContextMenuHacker contextMenuHacker = Extensions.GetExtension<IContextMenuHacker>();
             MenuItem = contextMenuHacker.AddCheckableMenuItem("駅編集ウィンドウを表示", MenuItemCheckedChanged, ContextMenuItemType.Plugins);

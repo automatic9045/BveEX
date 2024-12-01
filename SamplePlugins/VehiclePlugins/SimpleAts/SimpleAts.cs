@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 using BveTypes.ClassWrappers;
 
 using BveEx.PluginHost.Plugins;
-using BveEx.PluginHost.Sound;
-using BveEx.PluginHost.Sound.Native;
+
+using BveEx.Extensions.Native;
 
 namespace BveEx.Samples.VehiclePlugins.SimpleAts
 {
     [Plugin(PluginType.VehiclePlugin)]
     public class SimpleAts : AssemblyPluginBase
     {
-        private readonly IAtsSound AtsSound;
+        private readonly INative Native;
 
         public SimpleAts(PluginBuilder builder) : base(builder)
         {
-            AtsSound = Native.AtsSounds.Register(0);
+            Native = Extensions.GetExtension<INative>();
         }
 
         public override void Dispose()
@@ -30,9 +30,11 @@ namespace BveEx.Samples.VehiclePlugins.SimpleAts
         public override void Tick(TimeSpan elapsed)
         {
             double speedMps = BveHacker.Scenario.VehicleLocation.Speed;
-            if (speedMps > 100d.KmphToMps()) // 100km/h以上出ていたら常用最大ブレーキ
+            SoundPlayMode soundPlayMode = SoundPlayCommands.GetMode(Native.AtsSoundArray[0]);
+
+            if (speedMps > 100 / 3.6) // 100 km/h 以上出ていたら常用最大ブレーキ
             {
-                if (AtsSound.PlayState == PlayState.Stop) AtsSound.PlayLoop();
+                if (soundPlayMode == SoundPlayMode.Stop) Native.AtsSoundArray[0] = SoundPlayMode.PlayLooping.ToCommand();
 
                 AtsPlugin atsPlugin = BveHacker.Scenario.Vehicle.Instruments.AtsPlugin;
                 atsPlugin.AtsHandles.PowerNotch = 0;
@@ -41,7 +43,7 @@ namespace BveEx.Samples.VehiclePlugins.SimpleAts
             }
             else
             {
-                if (AtsSound.PlayState == PlayState.PlayingLoop) AtsSound.Stop();
+                if (soundPlayMode == SoundPlayMode.PlayLooping) Native.AtsSoundArray[0] = SoundPlayMode.Stop.ToCommand();
             }
         }
     }

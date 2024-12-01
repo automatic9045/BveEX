@@ -50,6 +50,16 @@
       <Name>BveEx.PluginHost</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Extensions\BveEx.CoreExtensions\BveEx.CoreExtensions.csproj">
+      <Project>{fbe0c5ab-7271-4801-a862-af39dd32c829}</Project>
+      <Name>BveEx.CoreExtensions</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Libs\BveTypes\BveTypes.csproj">
+      <Project>{3658ede1-0c3e-4104-a351-64981e4f82df}</Project>
+      <Name>BveTypes</Name>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

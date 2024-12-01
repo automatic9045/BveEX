@@ -15,14 +15,6 @@ namespace BveEx
         public readonly HarmonyPatch LoadScenarioPatch;
         public readonly HarmonyPatch DisposeScenarioPatch;
 
-        public readonly HarmonyPatch OnSetBeaconDataPatch;
-        public readonly HarmonyPatch OnKeyDownPatch;
-        public readonly HarmonyPatch OnKeyUpPatch;
-        public readonly HarmonyPatch OnDoorStateChangedPatch;
-        public readonly HarmonyPatch OnSetSignalPatch;
-        public readonly HarmonyPatch OnSetReverserPatch;
-        public readonly HarmonyPatch OnSetBrakePatch;
-        public readonly HarmonyPatch OnSetPowerPatch;
         public readonly HarmonyPatch OnSetVehicleSpecPatch;
         public readonly HarmonyPatch OnInitializePatch;
         public readonly HarmonyPatch PostElapsePatch;
@@ -32,14 +24,6 @@ namespace BveEx
             LoadScenarioPatch = HarmonyPatch.Patch(nameof(BveEx), mainFormMembers.GetSourceMethodOf(nameof(MainForm.LoadScenario)).Source, PatchType.Prefix);
             DisposeScenarioPatch = HarmonyPatch.Patch(nameof(BveEx), scenarioMembers.GetSourceMethodOf(nameof(Scenario.Dispose)).Source, PatchType.Prefix);
 
-            OnSetBeaconDataPatch = HarmonyPatch.Patch(nameof(BveEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnSetBeaconData)).Source, PatchType.Prefix);
-            OnKeyDownPatch = HarmonyPatch.Patch(nameof(BveEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnKeyDown)).Source, PatchType.Prefix);
-            OnKeyUpPatch = HarmonyPatch.Patch(nameof(BveEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnKeyUp)).Source, PatchType.Prefix);
-            OnDoorStateChangedPatch = HarmonyPatch.Patch(nameof(BveEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnDoorStateChanged)).Source, PatchType.Prefix);
-            OnSetSignalPatch = HarmonyPatch.Patch(nameof(BveEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnSetSignal)).Source, PatchType.Prefix);
-            OnSetReverserPatch = HarmonyPatch.Patch(nameof(BveEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnSetReverser)).Source, PatchType.Prefix);
-            OnSetBrakePatch = HarmonyPatch.Patch(nameof(BveEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnSetBrake)).Source, PatchType.Prefix);
-            OnSetPowerPatch = HarmonyPatch.Patch(nameof(BveEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnSetPower)).Source, PatchType.Prefix);
             OnSetVehicleSpecPatch = HarmonyPatch.Patch(nameof(BveEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnSetVehicleSpec)).Source, PatchType.Postfix);
             OnInitializePatch = HarmonyPatch.Patch(nameof(BveEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnInitialize)).Source, PatchType.Prefix);
             PostElapsePatch = HarmonyPatch.Patch(nameof(BveEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnElapse)).Source, PatchType.Postfix);
@@ -50,14 +34,6 @@ namespace BveEx
             LoadScenarioPatch.Dispose();
             DisposeScenarioPatch.Dispose();
 
-            OnSetBeaconDataPatch.Dispose();
-            OnKeyDownPatch.Dispose();
-            OnKeyUpPatch.Dispose();
-            OnDoorStateChangedPatch.Dispose();
-            OnSetSignalPatch.Dispose();
-            OnSetReverserPatch.Dispose();
-            OnSetBrakePatch.Dispose();
-            OnSetPowerPatch.Dispose();
             OnSetVehicleSpecPatch.Dispose();
             OnInitializePatch.Dispose();
             PostElapsePatch.Dispose();

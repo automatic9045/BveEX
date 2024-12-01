@@ -57,14 +57,6 @@ namespace BveEx.PluginHost.Plugins
         public Version MinRequiredVersion => Info.MinRequiredVersion;
 
         /// <summary>
-        /// BVE が標準で提供する ATS プラグイン向けの機能のラッパーを取得します。
-        /// </summary>
-        /// <remarks>
-        /// BveEX 拡張機能の場合 (<see cref="PluginType"/> が <see cref="PluginType.Extension"/> の場合) は取得できません。
-        /// </remarks>
-        protected INative Native { get; }
-
-        /// <summary>
         /// 読み込まれた BveEX 拡張機能の一覧を取得します。
         /// </summary>
         /// <remarks>
@@ -134,7 +126,6 @@ namespace BveEx.PluginHost.Plugins
 
         private PluginBase(PluginBuilder builder, PluginAttribute info, bool allowInfoIsNull)
         {
-            Native = builder.Native;
             Extensions = builder.Extensions;
             Plugins = builder.Plugins;
             BveHacker = builder.BveHacker;

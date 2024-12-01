@@ -48,14 +48,12 @@ namespace BveEx.Plugins
 #endif
         }
 
-        protected readonly NativeImpl Native;
         protected readonly BveHacker BveHacker;
         protected readonly IExtensionSet Extensions;
         protected readonly IPluginSet Plugins;
 
-        public PluginLoader(NativeImpl native, BveHacker bveHacker, IExtensionSet extensions, IPluginSet plugins)
+        public PluginLoader(BveHacker bveHacker, IExtensionSet extensions, IPluginSet plugins)
         {
-            Native = native;
             BveHacker = bveHacker;
             Extensions = extensions;
             Plugins = plugins;
@@ -89,7 +87,7 @@ namespace BveEx.Plugins
                     {
                         try
                         {
-                            PluginBuilder pluginBuilder = new PluginBuilder(Native, BveHacker, Extensions, Plugins, scriptPluginPackage.Identifier.Text);
+                            PluginBuilder pluginBuilder = new PluginBuilder(BveHacker, Extensions, Plugins, scriptPluginPackage.Identifier.Text);
 
                             ScriptPluginBase plugin;
                             switch (scriptPluginPackage.ScriptLanguage)
@@ -120,7 +118,7 @@ namespace BveEx.Plugins
                     {
                         try
                         {
-                            PluginBuilder pluginBuilder = new PluginBuilder(Native, BveHacker, Extensions, Plugins, nativePluginPackage.Identifier.Text);
+                            PluginBuilder pluginBuilder = new PluginBuilder(BveHacker, Extensions, Plugins, nativePluginPackage.Identifier.Text);
                             NativePluginBuilder nativePluginBuilder = new NativePluginBuilder(pluginBuilder)
                             {
                                 LibraryPath = nativePluginPackage.LibraryPath,
@@ -203,7 +201,7 @@ namespace BveEx.Plugins
                 {
                     (Type type, ConstructorInfo constructorInfo) = constructor;
 
-                    PluginBase pluginInstance = constructorInfo.Invoke(new object[] { new PluginBuilder(Native, BveHacker, Extensions, Plugins, GenerateIdentifier()) }) as PluginBase;
+                    PluginBase pluginInstance = constructorInfo.Invoke(new object[] { new PluginBuilder(BveHacker, Extensions, Plugins, GenerateIdentifier()) }) as PluginBase;
                     if (pluginInstance.PluginType != pluginType)
                     {
                         throw new InvalidOperationException(string.Format(Resources.Value.WrongPluginType.Value, pluginType.GetTypeString(), pluginInstance.PluginType.GetTypeString()));

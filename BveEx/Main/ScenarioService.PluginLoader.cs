@@ -21,13 +21,11 @@ namespace BveEx
     {
         private class PluginLoader
         {
-            private readonly NativeImpl Native;
             private readonly BveHacker BveHacker;
             private readonly IExtensionSet Extensions;
 
-            public PluginLoader(NativeImpl native, BveHacker bveHacker, IExtensionSet extensions)
+            public PluginLoader(BveHacker bveHacker, IExtensionSet extensions)
             {
-                Native = native;
                 BveHacker = bveHacker;
                 Extensions = extensions;
             }
@@ -37,7 +35,7 @@ namespace BveEx
                 PluginLoadErrorResolver loadErrorResolver = new PluginLoadErrorResolver(BveHacker.LoadingProgressForm);
 
                 PluginSet loadedPlugins = new PluginSet();
-                Plugins.PluginLoader pluginLoader = new Plugins.PluginLoader(Native, BveHacker, Extensions, loadedPlugins);
+                Plugins.PluginLoader pluginLoader = new Plugins.PluginLoader(BveHacker, Extensions, loadedPlugins);
 
                 Dictionary<string, PluginBase> vehiclePlugins;
                 try

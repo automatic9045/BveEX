@@ -13,18 +13,16 @@ namespace BveEx.Samples.VehiclePlugins.StateViewer
         public static InstanceStore Instance { get; private set; } = null;
         public static bool IsInitialized => !(Instance is null);
 
-        public static void Initialize(INative native, IBveHacker bveHacker)
+        public static void Initialize(IBveHacker bveHacker)
         {
-            Instance = new InstanceStore(native, bveHacker);
+            Instance = new InstanceStore(bveHacker);
         }
 
 
-        public INative Native { get; }
         public IBveHacker BveHacker { get; }
 
-        private InstanceStore(INative native, IBveHacker bveHacker)
+        private InstanceStore(IBveHacker bveHacker)
         {
-            Native = native;
             BveHacker = bveHacker;
         }
     }
