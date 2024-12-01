@@ -35,8 +35,11 @@ namespace BveTypes.ClassWrappers
             DoorsField = members.GetSourceFieldOf(nameof(Doors));
             AtsHandlesField = members.GetSourceFieldOf(nameof(AtsHandles));
 
-            LoopSoundRequestedEvent = members.GetSourceEventOf(nameof(LoopSoundRequested));
-            PlaySoundRequestedEvent = members.GetSourceEventOf(nameof(PlaySoundRequested));
+            FastEvent loopSoundRequestedEvent = members.GetSourceEventOf(nameof(LoopSoundRequested));
+            FastEvent playSoundRequestedEvent = members.GetSourceEventOf(nameof(PlaySoundRequested));
+
+            LoopSoundRequestedEvent = new WrapperEvent<EventHandler<AtsSoundEventArgs>>(loopSoundRequestedEvent, x => (sender, e) => x?.Invoke(FromSource(sender), AtsSoundEventArgs.FromSource(e)));
+            PlaySoundRequestedEvent = new WrapperEvent<EventHandler<AtsSoundEventArgs>>(playSoundRequestedEvent, x => (sender, e) => x?.Invoke(FromSource(sender), AtsSoundEventArgs.FromSource(e)));
 
             OnSetBeaconDataMethod = members.GetSourceMethodOf(nameof(OnSetBeaconData));
             OnKeyDownMethod = members.GetSourceMethodOf(nameof(OnKeyDown));
@@ -196,7 +199,7 @@ namespace BveTypes.ClassWrappers
             set => AtsHandlesField.SetValue(Src, value?.Src);
         }
 
-        private static FastEvent LoopSoundRequestedEvent;
+        private static WrapperEvent<EventHandler<AtsSoundEventArgs>> LoopSoundRequestedEvent;
         /// <summary>
         /// ATS サウンドのループ再生が要求されたときに発生します。
         /// </summary>
@@ -208,9 +211,9 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// <see cref="LoopSoundRequested"/> イベントを実行します。
         /// </summary>
-        public void LoopSoundRequested_Invoke(AtsSoundEventArgs args) => LoopSoundRequestedEvent.Invoke(Src, new object[] { Src, args.Src });
+        public void LoopSoundRequested_Invoke(AtsSoundEventArgs args) => LoopSoundRequestedEvent.Invoke(Src, args);
 
-        private static FastEvent PlaySoundRequestedEvent;
+        private static WrapperEvent<EventHandler<AtsSoundEventArgs>> PlaySoundRequestedEvent;
         /// <summary>
         /// ATS サウンドの再生が要求されたときに発生します。
         /// </summary>
@@ -222,7 +225,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// <see cref="PlaySoundRequested"/> イベントを実行します。
         /// </summary>
-        public void PlaySoundRequested_Invoke(AtsSoundEventArgs args) => PlaySoundRequestedEvent.Invoke(Src, new object[] { Src, args.Src });
+        public void PlaySoundRequested_Invoke(AtsSoundEventArgs args) => PlaySoundRequestedEvent.Invoke(Src, args);
 
         private static FastMethod OnSetBeaconDataMethod;
         /// <summary>

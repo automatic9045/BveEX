@@ -35,9 +35,13 @@ namespace BveTypes.ClassWrappers
             ConstantSpeedGetMethod = members.GetSourcePropertyGetterOf(nameof(_ConstantSpeedMode));
             ConstantSpeedSetMethod = members.GetSourcePropertySetterOf(nameof(_ConstantSpeedMode));
 
-            BrakeChangedEvent = members.GetSourceEventOf(nameof(BrakeChanged));
-            PowerChangedEvent = members.GetSourceEventOf(nameof(PowerChanged));
-            ReverserChangedEvent = members.GetSourceEventOf(nameof(ReverserChanged));
+            FastEvent brakeChangedEvent = members.GetSourceEventOf(nameof(BrakeChanged));
+            FastEvent powerChangedEvent = members.GetSourceEventOf(nameof(PowerChanged));
+            FastEvent reverserChangedEvent = members.GetSourceEventOf(nameof(ReverserChanged));
+
+            BrakeChangedEvent = new WrapperEvent<EventHandler<ValueEventArgs<int>>>(brakeChangedEvent, x => (sender, e) => x?.Invoke(FromSource(sender), ValueEventArgs<int>.FromSource(e)));
+            PowerChangedEvent = new WrapperEvent<EventHandler<ValueEventArgs<int>>>(powerChangedEvent, x => (sender, e) => x?.Invoke(FromSource(sender), ValueEventArgs<int>.FromSource(e)));
+            ReverserChangedEvent = new WrapperEvent<EventHandler<ValueEventArgs<int>>>(reverserChangedEvent, x => (sender, e) => x?.Invoke(FromSource(sender), ValueEventArgs<int>.FromSource(e)));
             ConstantSpeedChangedEvent = members.GetSourceEventOf(nameof(ConstantSpeedChanged));
         }
 
@@ -128,7 +132,7 @@ namespace BveTypes.ClassWrappers
             set => _ConstantSpeedMode = (int)value;
         }
 
-        private static FastEvent BrakeChangedEvent;
+        private static WrapperEvent<EventHandler<ValueEventArgs<int>>> BrakeChangedEvent;
         /// <summary>
         /// ブレーキハンドルが扱われたときに発生します。
         /// </summary>
@@ -140,9 +144,9 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// <see cref="BrakeChanged"/> イベントを実行します。
         /// </summary>
-        public void BrakeChanged_Invoke(ValueEventArgs<int> args) => BrakeChangedEvent.Invoke(Src, new object[] { Src, args.Src });
+        public void BrakeChanged_Invoke(ValueEventArgs<int> args) => BrakeChangedEvent.Invoke(Src, args);
 
-        private static FastEvent PowerChangedEvent;
+        private static WrapperEvent<EventHandler<ValueEventArgs<int>>> PowerChangedEvent;
         /// <summary>
         /// 主ハンドルが扱われたときに発生します。
         /// </summary>
@@ -154,9 +158,9 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// <see cref="PowerChanged"/> イベントを実行します。
         /// </summary>
-        public void PowerChanged_Invoke(ValueEventArgs<int> args) => PowerChangedEvent.Invoke(Src, new object[] { Src, args.Src });
+        public void PowerChanged_Invoke(ValueEventArgs<int> args) => PowerChangedEvent.Invoke(Src, args);
 
-        private static FastEvent ReverserChangedEvent;
+        private static WrapperEvent<EventHandler<ValueEventArgs<int>>> ReverserChangedEvent;
         /// <summary>
         /// レバーサーが扱われたときに発生します。
         /// </summary>
@@ -168,7 +172,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// <see cref="ReverserChanged"/> イベントを実行します。
         /// </summary>
-        public void ReverserChanged_Invoke(ValueEventArgs<int> args) => ReverserChangedEvent.Invoke(Src, new object[] { Src, args.Src });
+        public void ReverserChanged_Invoke(ValueEventArgs<int> args) => ReverserChangedEvent.Invoke(Src, args);
 
         private static FastEvent ConstantSpeedChangedEvent;
         /// <summary>

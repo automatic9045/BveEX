@@ -233,6 +233,7 @@
     <Compile Include="DifferentVersionProfileLoadedEventArgs.cs" />
     <Compile Include="ProfileSelector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WrapperEvent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\DuplicatedLibraryException.ja.resx" />
