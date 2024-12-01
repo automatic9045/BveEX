@@ -60,7 +60,7 @@ namespace BveEx
             plugins.SetPlugins(vehiclePlugins, mapPlugins);
             Plugins = plugins;
 
-            BveEx.VersionFormProvider.SetScenario(Plugins[PluginType.VehiclePlugin].Values, Plugins[PluginType.MapPlugin].Values);
+            BveEx.VersionFormProvider.SetScenario(((IPluginSet)Plugins).VehiclePlugins.Values, ((IPluginSet)Plugins).MapPlugins.Values);
         }
 
         public virtual void Dispose()
@@ -91,12 +91,12 @@ namespace BveEx
 
         public void Tick(TimeSpan elapsed)
         {
-            foreach (PluginBase plugin in Plugins[PluginType.VehiclePlugin].Values)
+            foreach (PluginBase plugin in ((IPluginSet)Plugins).VehiclePlugins.Values)
             {
                 plugin.Tick(elapsed);
             }
 
-            foreach (PluginBase plugin in Plugins[PluginType.MapPlugin].Values)
+            foreach (PluginBase plugin in ((IPluginSet)Plugins).MapPlugins.Values)
             {
                 plugin.Tick(elapsed);
             }

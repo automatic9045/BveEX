@@ -21,7 +21,7 @@ namespace BveEx.Samples.MapPlugins.CooperatingWithVehiclePlugin
 
         private void OnAllPluginsLoaded(object sender, EventArgs e)
         {
-            VehiclePlugin vehiclePlugin = Plugins[PluginType.VehiclePlugin]["TestPlugin"] as VehiclePlugin;
+            VehiclePlugin vehiclePlugin = Plugins.VehiclePlugins["TestPlugin"] as VehiclePlugin;
             MessageBox.Show($"車両プラグインから値を取得しました: {vehiclePlugin.SharedValue}", "BveEX マッププラグイン：車両プラグイン連携サンプル");
         }
 
