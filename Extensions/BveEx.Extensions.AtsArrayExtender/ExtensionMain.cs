@@ -50,9 +50,9 @@ namespace BveEx.Extensions.AtsArrayExtender
         {
             AtsPlugin atsPlugin = AtsPlugin.FromSource(e.Instance);
 
-            atsPlugin._PanelArray = new int[1024];
-            atsPlugin._SoundArray = new int[1024];
-            atsPlugin._OldSoundArray = new int[1024];
+            atsPlugin.PanelArray = new int[1024];
+            atsPlugin.SoundArray = new int[1024];
+            atsPlugin.OldSoundArray = new int[1024];
 
             atsPlugin.StateStore.PanelArray = new double[1024];
 

@@ -123,19 +123,12 @@
 			</Class>
 		</Children>
 
-		<Property Wrapper="PanelArray">
-			<Getter Original="a"/>
-		</Property>
-		<Property Wrapper="SoundArray">
-			<Getter Original="b"/>
-		</Property>
-
 		<Field WrapperProperty="IsPluginLoaded" Original="a" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="HModule" Original="b" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Handles" Original="c" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="_PanelArray" Original="d" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="_SoundArray" Original="e" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="_OldSoundArray" Original="f" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="PanelArray" Original="d" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="SoundArray" Original="e" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="OldSoundArray" Original="f" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Location" Original="h" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="StateStore" Original="i" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="SectionManager" Original="j" IsOriginalNonPublic="true"/>

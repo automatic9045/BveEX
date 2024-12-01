@@ -23,15 +23,12 @@ namespace BveTypes.ClassWrappers
 
             Constructor = members.GetSourceConstructor();
 
-            PanelArrayGetMethod = members.GetSourcePropertyGetterOf(nameof(PanelArray));
-            SoundArrayGetMethod = members.GetSourcePropertyGetterOf(nameof(SoundArray));
-
             IsPluginLoadedField = members.GetSourceFieldOf(nameof(IsPluginLoaded));
             HModuleField = members.GetSourceFieldOf(nameof(HModule));
             HandlesField = members.GetSourceFieldOf(nameof(Handles));
-            _PanelArrayField = members.GetSourceFieldOf(nameof(_PanelArray));
-            _SoundArrayField = members.GetSourceFieldOf(nameof(_SoundArray));
-            _OldSoundArrayField = members.GetSourceFieldOf(nameof(_OldSoundArray));
+            PanelArrayField = members.GetSourceFieldOf(nameof(PanelArray));
+            SoundArrayField = members.GetSourceFieldOf(nameof(SoundArray));
+            OldSoundArrayField = members.GetSourceFieldOf(nameof(OldSoundArray));
             LocationField = members.GetSourceFieldOf(nameof(Location));
             StateStoreField = members.GetSourceFieldOf(nameof(StateStore));
             SectionManagerField = members.GetSourceFieldOf(nameof(SectionManager));
@@ -89,18 +86,6 @@ namespace BveTypes.ClassWrappers
         {
         }
 
-        private static FastMethod PanelArrayGetMethod;
-        /// <summary>
-        /// パネルに渡す値の配列を取得・設定します。
-        /// </summary>
-        public int[] PanelArray => PanelArrayGetMethod.Invoke(Src, null) as int[];
-
-        private static FastMethod SoundArrayGetMethod;
-        /// <summary>
-        /// サウンドの再生状態を表す値の配列を取得・設定します。
-        /// </summary>
-        public int[] SoundArray => SoundArrayGetMethod.Invoke(Src, null) as int[];
-
         private static FastField IsPluginLoadedField;
         /// <summary>
         /// 自列車のハンドルのセットを取得・設定します。
@@ -131,40 +116,34 @@ namespace BveTypes.ClassWrappers
             set => HandlesField.SetValue(Src, value?.Src);
         }
 
-        private static FastField _PanelArrayField;
+        private static FastField PanelArrayField;
         /// <summary>
-        /// <see cref="PanelArray"/> プロパティのバッキングフィールドを取得・設定します。
+        /// パネルに渡す値の配列を取得・設定します。
         /// </summary>
-#pragma warning disable IDE1006 // 命名スタイル
-        public int[] _PanelArray
-#pragma warning restore IDE1006 // 命名スタイル
+        public int[] PanelArray
         {
-            get => _PanelArrayField.GetValue(Src) as int[];
-            set => _PanelArrayField.SetValue(Src, value);
+            get => PanelArrayField.GetValue(Src) as int[];
+            set => PanelArrayField.SetValue(Src, value);
         }
 
-        private static FastField _SoundArrayField;
+        private static FastField SoundArrayField;
         /// <summary>
-        /// <see cref="SoundArray"/> プロパティのバッキングフィールドを取得・設定します。
+        /// サウンドの再生状態を表す値の配列を取得・設定します。
         /// </summary>
-#pragma warning disable IDE1006 // 命名スタイル
-        public int[] _SoundArray
-#pragma warning restore IDE1006 // 命名スタイル
+        public int[] SoundArray
         {
-            get => _SoundArrayField.GetValue(Src) as int[];
-            set => _SoundArrayField.SetValue(Src, value);
+            get => SoundArrayField.GetValue(Src) as int[];
+            set => SoundArrayField.SetValue(Src, value);
         }
 
-        private static FastField _OldSoundArrayField;
+        private static FastField OldSoundArrayField;
         /// <summary>
         /// 1 フレーム前におけるサウンドの再生状態を表す値の配列を取得・設定します。
         /// </summary>
-#pragma warning disable IDE1006 // 命名スタイル
-        public int[] _OldSoundArray
-#pragma warning restore IDE1006 // 命名スタイル
+        public int[] OldSoundArray
         {
-            get => _OldSoundArrayField.GetValue(Src) as int[];
-            set => _OldSoundArrayField.SetValue(Src, value);
+            get => OldSoundArrayField.GetValue(Src) as int[];
+            set => OldSoundArrayField.SetValue(Src, value);
         }
 
         private static FastField LocationField;
