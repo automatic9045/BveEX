@@ -1,27 +1,8 @@
-![GitHub Release](https://img.shields.io/github/v/release/automatic9045/AtsEX?include_prereleases&display_name=release) ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/automatic9045/AtsEX/total) ![NuGet Version](https://img.shields.io/nuget/vpre/AtsEx.PluginHost?logo=nuget&label=nuget%20(AtsEx.PluginHost)) ![NuGet Version](https://img.shields.io/nuget/vpre/AtsEx.CoreExtensions?logo=nuget&label=nuget%20(AtsEx.CoreExtensions))
-
-# AtsEX - BVE 拡張キット
-【BVE5・6 向け】BVE の機能を拡張し、あらゆる表現ができるようにするプラグイン フレームワークです。従来の ATS プラグインや入力デバイスプラグインでは実現できなかった新しい演出、機能の実装が可能になります。
-
-詳細はこちら→ https://www.okaoka-depot.com/AtsEX/
-
-## 名前の由来
-**ATS** プラグインを拡張 (**ex**tend) するプラグイン
+# BveEX レガシーモード (AtsEX)
+旧・AtsEX 向け (ver1.0-RC10 以前向け) のプラグインを動作させるための互換モードです。レガシーモードでは、BveEX の最新機能を利用できないなどの制限があります。
 
 ## ライセンス
-[The MIT License](LICENSE)
-
-## リリースのダウンロード
-こちら→ [Releases](https://github.com/automatic9045/AtsEX/releases)
-
-## AtsEX 本体のビルド手順
-こちら→ [AtsEX 本体のビルド手順](HowToBuild.md)
-
-### 【⚠️注意⚠️】プラグインを開発するための手順ではありません
-**AtsEX 本体のソースコードを編集するための手順です。AtsEX を使用してプラグインを開発する際は、こちらではなく [Releases](https://github.com/automatic9045/AtsEX/releases) を参照してください。**
-
-## プロジェクトの構成
-![AtsEX 構成図](SystemOverview.InputDevice.svg)
+[BveEX レガシーモード (AtsEX) ライセンス](LICENSE.md)
 
 ## 使用ライブラリ等（アルファベット順）
 #### [.NET Runtime](https://github.com/dotnet/runtime) (MIT)
