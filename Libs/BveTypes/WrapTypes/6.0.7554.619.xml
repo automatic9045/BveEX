@@ -1652,7 +1652,41 @@
 
 		<Field WrapperProperty="CameraLocation" Original="q" IsOriginalNonPublic="true"/>
 
+		<Method Wrapper="Load" WrapperParams="ex:LoadingProgressForm; ex:VehicleFile" Original="a"/>
 		<Method Wrapper="Initialize" WrapperParams="ex:BrakePosition" Original="a"/>
+	</Class>
+
+	<Class Wrapper="VehicleFile" Original="d5">
+		<Property Wrapper="Path">
+			<Getter Original="f"/>
+			<Setter Original="g" IsOriginalNonPublic="true"/>
+		</Property>
+		<Property Wrapper="ParametersPath">
+			<Getter Original="c"/>
+			<Setter Original="f" IsOriginalNonPublic="true"/>
+		</Property>
+		<Property Wrapper="PerformanceCurvePath">
+			<Getter Original="b"/>
+			<Setter Original="e" IsOriginalNonPublic="true"/>
+		</Property>
+		<Property Wrapper="AtsPluginPath">
+			<Getter Original="h"/>
+			<Setter Original="d" IsOriginalNonPublic="true"/>
+		</Property>
+		<Property Wrapper="PanelPath">
+			<Getter Original="g"/>
+			<Setter Original="c" IsOriginalNonPublic="true"/>
+		</Property>
+		<Property Wrapper="SoundPath">
+			<Getter Original="d"/>
+			<Setter Original="b" IsOriginalNonPublic="true"/>
+		</Property>
+		<Property Wrapper="MotorNoisePath">
+			<Getter Original="e"/>
+			<Setter Original="a" IsOriginalNonPublic="true"/>
+		</Property>
+
+		<Method Wrapper="FromFile" WrapperParams="ex:LoadingProgressForm; System.String" Original="a" IsWrapperStatic="true" IsOriginalStatic="true"/>
 	</Class>
 
 	<Class Wrapper="VehicleBogieWheel" Original="b7">

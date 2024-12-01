@@ -44,6 +44,7 @@ namespace BveTypes.ClassWrappers
 
             CameraLocationField = members.GetSourceFieldOf(nameof(CameraLocation));
 
+            LoadMethod = members.GetSourceMethodOf(nameof(Load));
             InitializeMethod = members.GetSourceMethodOf(nameof(Initialize));
         }
 
@@ -156,6 +157,14 @@ namespace BveTypes.ClassWrappers
             get => ClassWrappers.CameraLocation.FromSource(CameraLocationField.GetValue(Src));
             set => CameraLocationField.SetValue(Src, value?.Src);
         }
+
+        private static FastMethod LoadMethod;
+        /// <summary>
+        /// 自列車を読み込みます。
+        /// </summary>
+        /// <param name="loadingProgressForm">「シナリオを読み込んでいます...」フォーム。</param>
+        /// <param name="vehicleFile">車両ファイル。</param>
+        public void Load(LoadingProgressForm loadingProgressForm, VehicleFile vehicleFile) => LoadMethod.Invoke(null, new object[] { loadingProgressForm?.Src, vehicleFile?.Src });
 
         private static FastMethod InitializeMethod;
         /// <summary>
