@@ -34,6 +34,11 @@ namespace BveTypes.ClassWrappers
 
             ConstantSpeedGetMethod = members.GetSourcePropertyGetterOf(nameof(_ConstantSpeedMode));
             ConstantSpeedSetMethod = members.GetSourcePropertySetterOf(nameof(_ConstantSpeedMode));
+
+            BrakeChangedEvent = members.GetSourceEventOf(nameof(BrakeChanged));
+            PowerChangedEvent = members.GetSourceEventOf(nameof(PowerChanged));
+            ReverserChangedEvent = members.GetSourceEventOf(nameof(ReverserChanged));
+            ConstantSpeedChangedEvent = members.GetSourceEventOf(nameof(ConstantSpeedChanged));
         }
 
         /// <summary>
@@ -59,7 +64,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public NotchInfo NotchInfo
         {
-            get => ClassWrappers.NotchInfo.FromSource(NotchInfoGetMethod.Invoke(Src, null));
+            get => NotchInfo.FromSource(NotchInfoGetMethod.Invoke(Src, null));
             set => NotchInfoSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
@@ -122,5 +127,61 @@ namespace BveTypes.ClassWrappers
             get => (ConstantSpeedMode)_ConstantSpeedMode;
             set => _ConstantSpeedMode = (int)value;
         }
+
+        private static FastEvent BrakeChangedEvent;
+        /// <summary>
+        /// ブレーキハンドルが扱われたときに発生します。
+        /// </summary>
+        public event EventHandler<ValueEventArgs<int>> BrakeChanged
+        {
+            add => BrakeChangedEvent.Add(Src, value);
+            remove => BrakeChangedEvent.Remove(Src, value);
+        }
+        /// <summary>
+        /// <see cref="BrakeChanged"/> イベントを実行します。
+        /// </summary>
+        public void BrakeChanged_Invoke(ValueEventArgs<int> args) => BrakeChangedEvent.Invoke(Src, new object[] { Src, args.Src });
+
+        private static FastEvent PowerChangedEvent;
+        /// <summary>
+        /// 主ハンドルが扱われたときに発生します。
+        /// </summary>
+        public event EventHandler<ValueEventArgs<int>> PowerChanged
+        {
+            add => PowerChangedEvent.Add(Src, value);
+            remove => PowerChangedEvent.Remove(Src, value);
+        }
+        /// <summary>
+        /// <see cref="PowerChanged"/> イベントを実行します。
+        /// </summary>
+        public void PowerChanged_Invoke(ValueEventArgs<int> args) => PowerChangedEvent.Invoke(Src, new object[] { Src, args.Src });
+
+        private static FastEvent ReverserChangedEvent;
+        /// <summary>
+        /// レバーサーが扱われたときに発生します。
+        /// </summary>
+        public event EventHandler<ValueEventArgs<int>> ReverserChanged
+        {
+            add => ReverserChangedEvent.Add(Src, value);
+            remove => ReverserChangedEvent.Remove(Src, value);
+        }
+        /// <summary>
+        /// <see cref="ReverserChanged"/> イベントを実行します。
+        /// </summary>
+        public void ReverserChanged_Invoke(ValueEventArgs<int> args) => ReverserChangedEvent.Invoke(Src, new object[] { Src, args.Src });
+
+        private static FastEvent ConstantSpeedChangedEvent;
+        /// <summary>
+        /// 定速制御モードが変更されたときに発生します。
+        /// </summary>
+        public event EventHandler ConstantSpeedChanged
+        {
+            add => ConstantSpeedChangedEvent.Add(Src, value);
+            remove => ConstantSpeedChangedEvent.Remove(Src, value);
+        }
+        /// <summary>
+        /// <see cref="ConstantSpeedChanged"/> イベントを実行します。
+        /// </summary>
+        public void ConstantSpeedChanged_Invoke() => ConstantSpeedChangedEvent.Invoke(Src, new object[] { Src, EventArgs.Empty });
     }
 }

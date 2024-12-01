@@ -567,6 +567,11 @@
 			<Getter Original="g"/>
 			<Setter Original="d"/>
 		</Property>
+
+		<Event Wrapper="BrakeChanged" OriginalAddAccessor="d" OriginalRemoveAccessor="a" OriginalDelegateField="g"/>
+		<Event Wrapper="PowerChanged" OriginalAddAccessor="e" OriginalRemoveAccessor="c" OriginalDelegateField="h"/>
+		<Event Wrapper="ReverserChanged" OriginalAddAccessor="b" OriginalRemoveAccessor="f" OriginalDelegateField="i"/>
+		<Event Wrapper="ConstantSpeedChanged" OriginalAddAccessor="a" OriginalRemoveAccessor="b" OriginalDelegateField="j"/>
 	</Class>
 
 	<Class Wrapper="IDrawable" Original="c0">
