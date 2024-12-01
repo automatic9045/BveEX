@@ -14,7 +14,7 @@ namespace BveTypes.ClassWrappers
     /// <summary>
     /// 自列車を表します。
     /// </summary>
-    public class Vehicle : ClassWrapperBase
+    public class Vehicle : ClassWrapperBase, IDisposable
     {
         [InitializeClassWrapper]
         private static void Initialize(BveTypeSet bveTypes)
@@ -46,6 +46,7 @@ namespace BveTypes.ClassWrappers
 
             LoadMethod = members.GetSourceMethodOf(nameof(Load));
             InitializeMethod = members.GetSourceMethodOf(nameof(Initialize));
+            DisposeMethod = members.GetSourceMethodOf(nameof(Dispose));
         }
 
         /// <summary>
@@ -172,5 +173,9 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         /// <param name="brakePosition">ブレーキハンドルの位置。</param>
         public void Initialize(BrakePosition brakePosition) => InitializeMethod.Invoke(Src, new object[] { brakePosition });
+
+        private static FastMethod DisposeMethod;
+        /// <inheritdoc/>
+        public void Dispose() => DisposeMethod.Invoke(this, null);
     }
 }

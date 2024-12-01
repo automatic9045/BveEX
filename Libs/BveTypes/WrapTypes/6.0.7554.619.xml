@@ -1654,6 +1654,7 @@
 
 		<Method Wrapper="Load" WrapperParams="ex:LoadingProgressForm; ex:VehicleFile" Original="a"/>
 		<Method Wrapper="Initialize" WrapperParams="ex:BrakePosition" Original="a"/>
+		<Method Wrapper="Dispose" WrapperParams="void" Original="Dispose"/>
 	</Class>
 
 	<Class Wrapper="VehicleFile" Original="d5">
