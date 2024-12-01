@@ -49,6 +49,6 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 格納されている値を取得します。
         /// </summary>
-        public T Value => (T)ValueGetMethod.Invoke(this, null);
+        public T Value => (T)ValueGetMethod.Invoke(Src, null);
     }
 }
