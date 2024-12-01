@@ -25,11 +25,14 @@ namespace BveEx.Samples.MapPlugins.SignalController
             BveHacker.ScenarioCreated += OnScenarioCreated;
 
             INative native = Extensions.GetExtension<INative>();
-            native.AtsKeys.GetKey(AtsKeyName.D).Pressed += OnDPressed;
-            native.AtsKeys.GetKey(AtsKeyName.E).Pressed += OnEPressed;
-            native.AtsKeys.GetKey(AtsKeyName.F).Pressed += OnFPressed;
-            native.AtsKeys.GetKey(AtsKeyName.G).Pressed += OnGPressed;
-            native.AtsKeys.GetKey(AtsKeyName.H).Pressed += OnHPressed;
+            native.VehicleSpecLoaded += (sender, e) =>
+            {
+                native.AtsKeys.GetKey(AtsKeyName.D).Pressed += OnDPressed;
+                native.AtsKeys.GetKey(AtsKeyName.E).Pressed += OnEPressed;
+                native.AtsKeys.GetKey(AtsKeyName.F).Pressed += OnFPressed;
+                native.AtsKeys.GetKey(AtsKeyName.G).Pressed += OnGPressed;
+                native.AtsKeys.GetKey(AtsKeyName.H).Pressed += OnHPressed;
+            };
         }
 
         private void OnDPressed(object sender, EventArgs e) => SignalIndex = 0;

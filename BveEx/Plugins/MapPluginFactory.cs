@@ -17,75 +17,61 @@ namespace BveEx.Plugins
 {
     internal class MapPluginFactory
     {
-        private readonly BveHacker BveHacker;
-        private readonly IExtensionSet Extensions;
-        private readonly IPluginSet LoadedPlugins;
+        private readonly PluginLoadErrorResolver LoadErrorResolver;
+        private readonly PluginLoader PluginLoader;
 
-        public MapPluginFactory(BveHacker bveHacker, IExtensionSet extensions, IPluginSet loadedPlugins)
+        public MapPluginFactory(BveHacker bveHacker, IExtensionSet extensions, IPluginSet plugins)
         {
-            BveHacker = bveHacker;
-            Extensions = extensions;
-            LoadedPlugins = loadedPlugins;
+            LoadErrorResolver = new PluginLoadErrorResolver(bveHacker.LoadingProgressForm);
+            PluginLoader = new PluginLoader(bveHacker, extensions, plugins);
         }
 
-        public Dictionary<string, PluginBase> Load()
+        public Dictionary<string, PluginBase> LoadPluginUsing(string path)
         {
-            PluginLoadErrorResolver loadErrorResolver = new PluginLoadErrorResolver(BveHacker.LoadingProgressForm);
-            PluginLoader pluginLoader = new PluginLoader(BveHacker, Extensions, LoadedPlugins);
-
-            Dictionary<string, PluginBase> items = new Dictionary<string, PluginBase>();
+            PluginSourceSet pluginSources;
             try
             {
-                string mapDirectory = Path.GetDirectoryName(BveHacker.ScenarioInfo.RouteFiles.SelectedFile.Path);
-
-                {
-                    IStatementSet statements = Extensions.GetExtension<IStatementSet>();
-                    ClauseFilter elementFilter = ClauseFilter.Element("MapPlugin", 0);
-
-                    IEnumerable<Statement> loadPluginUsingStatements = statements.FindOfficialStatements(elementFilter, ClauseFilter.Function("Load", 1));
-                    foreach (Statement statement in loadPluginUsingStatements)
-                    {
-                        WrappedList<MapStatementClause> clauses = statement.Source.Clauses;
-                        string pluginUsingPath = Path.Combine(mapDirectory, clauses[clauses.Count - 1].Args[0].ToString());
-                        LoadMapPluginUsing(pluginUsingPath);
-                    }
-
-                    IEnumerable<Statement> loadAssemblyStatements = statements.FindOfficialStatements(elementFilter, ClauseFilter.Function("LoadAssembly", 1, 2));
-                    foreach (Statement statement in loadAssemblyStatements)
-                    {
-                        WrappedList<MapStatementClause> clauses = statement.Source.Clauses;
-                        MapStatementClause functionClause = clauses[clauses.Count - 1];
-                        string assemblyPath = Path.Combine(mapDirectory, functionClause.Args[0].ToString());
-                        Identifier identifier = 2 <= functionClause.Args.Count ? new Identifier(functionClause.Args[1].ToString()) : new RandomIdentifier();
-
-                        PluginSourceSet pluginSources = new PluginSourceSet(Path.GetFileName(assemblyPath), PluginType.MapPlugin, false, new IPluginPackage[]
-                        {
-                            new AssemblyPluginPackage(identifier, Assembly.LoadFrom(assemblyPath)),
-                        });
-
-                        LoadMapPlugins(pluginSources);
-                    }
-                }
-
-
-                void LoadMapPluginUsing(string path)
-                {
-                    PluginSourceSet mapPluginUsing = PluginSourceSet.FromPluginUsing(PluginType.MapPlugin, false, path);
-                    LoadMapPlugins(mapPluginUsing);
-                }
-
-                void LoadMapPlugins(PluginSourceSet pluginSources)
-                {
-                    Dictionary<string, PluginBase> plugins = pluginLoader.Load(pluginSources);
-                    foreach (KeyValuePair<string, PluginBase> plugin in plugins)
-                    {
-                        items.Add(plugin.Key, plugin.Value);
-                    }
-                }
+                pluginSources = PluginSourceSet.FromPluginUsing(PluginType.MapPlugin, false, path);
             }
             catch (Exception ex)
             {
-                loadErrorResolver.Resolve(null, ex);
+                pluginSources = new PluginSourceSet(path, PluginType.MapPlugin, false, new IPluginPackage[0]);
+                LoadErrorResolver.Resolve(null, ex);
+            }
+
+            return Load(pluginSources);
+        }
+
+        public Dictionary<string, PluginBase> LoadAssembly(string path, Identifier identifier)
+        {
+            PluginSourceSet pluginSources;
+            try
+            {
+                pluginSources = new PluginSourceSet(Path.GetFileName(path), PluginType.MapPlugin, false, new IPluginPackage[]
+                {
+                    new AssemblyPluginPackage(identifier, Assembly.LoadFrom(path)),
+                });
+            }
+            catch (Exception ex)
+            {
+                pluginSources = new PluginSourceSet(path, PluginType.MapPlugin, false, new IPluginPackage[0]);
+                LoadErrorResolver.Resolve(null, ex);
+            }
+
+            return Load(pluginSources);
+        }
+
+        public Dictionary<string, PluginBase> Load(PluginSourceSet pluginSources)
+        {
+            Dictionary<string, PluginBase> items;
+            try
+            {
+                items = PluginLoader.Load(pluginSources);
+            }
+            catch (Exception ex)
+            {
+                items = new Dictionary<string, PluginBase>();
+                LoadErrorResolver.Resolve(null, ex);
             }
 
             return items;

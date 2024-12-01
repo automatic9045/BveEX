@@ -11,31 +11,27 @@ namespace BveEx.Plugins
 {
     internal class VehiclePluginFactory
     {
-        private readonly BveHacker BveHacker;
-        private readonly IExtensionSet Extensions;
-        private readonly IPluginSet LoadedPlugins;
+        private readonly PluginLoadErrorResolver LoadErrorResolver;
+        private readonly PluginLoader PluginLoader;
 
-        public VehiclePluginFactory(BveHacker bveHacker, IExtensionSet extensions, IPluginSet loadedPlugins)
+        public VehiclePluginFactory(BveHacker bveHacker, IExtensionSet extensions, IPluginSet plugins)
         {
-            BveHacker = bveHacker;
-            Extensions = extensions;
-            LoadedPlugins = loadedPlugins;
+            LoadErrorResolver = new PluginLoadErrorResolver(bveHacker.LoadingProgressForm);
+            PluginLoader = new PluginLoader(bveHacker, extensions, plugins);
         }
 
-        public Dictionary<string, PluginBase> Load(PluginSourceSet pluginUsing)
+        public Dictionary<string, PluginBase> Load(string vehiclePath)
         {
-            PluginLoadErrorResolver loadErrorResolver = new PluginLoadErrorResolver(BveHacker.LoadingProgressForm);
-            PluginLoader pluginLoader = new PluginLoader(BveHacker, Extensions, LoadedPlugins);
-
             Dictionary<string, PluginBase> items;
             try
             {
-                items = pluginLoader.Load(pluginUsing);
+                PluginSourceSet pluginUsing = PluginSourceSet.ResolvePluginUsingToLoad(PluginType.VehiclePlugin, true, vehiclePath);
+                items = PluginLoader.Load(pluginUsing);
             }
             catch (Exception ex)
             {
                 items = new Dictionary<string, PluginBase>();
-                loadErrorResolver.Resolve(null, ex);
+                LoadErrorResolver.Resolve(null, ex);
             }
 
             return items;

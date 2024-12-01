@@ -100,6 +100,7 @@ namespace BveEx.Native.InputDevices
             {
                 BveEx = new BveEx(bveTypes);
 
+                BveEx.ScenarioOpened += OnScenarioOpened;
                 BveEx.ScenarioClosed += OnScenarioClosed;
                 BveEx.OnLoad += OnLoad;
                 BveEx.OnInitialize += OnInitialize;
@@ -107,13 +108,25 @@ namespace BveEx.Native.InputDevices
             }
         }
 
+        private void OnScenarioOpened(object sender, BveEx.ValueEventArgs<ScenarioInfo> e)
+        {
+            ScenarioService?.Dispose();
+            ScenarioService = new ScenarioService(BveEx);
+            FrameSpan = new FrameSpan();
+        }
+
+        private void OnScenarioClosed(object sender, BveEx.ValueEventArgs<Scenario> e)
+        {
+            // Scenario クラスのデストラクタ由来の場合
+            if (e.Value != ScenarioService?.Target) return;
+
+            ScenarioService?.Dispose();
+            ScenarioService = null;
+        }
+
         private void OnLoad(object sender, EventArgs e)
         {
-            string vehiclePath = BveEx.BveHacker.ScenarioInfo.VehicleFiles.SelectedFile.Path;
-            PluginSourceSet vehiclePluginUsing = PluginSourceSet.ResolvePluginUsingToLoad(PluginType.VehiclePlugin, true, vehiclePath);
-
-            ScenarioService = new ScenarioService(BveEx, vehiclePluginUsing);
-            FrameSpan = new FrameSpan();
+            ScenarioService?.LoadVehiclePlugins();
         }
 
         private void OnInitialize(object sender, EventArgs e)
@@ -132,15 +145,6 @@ namespace BveEx.Native.InputDevices
             ScenarioService?.Tick(elapsed);
 
             ScenarioService?.PostTick();
-        }
-
-        private void OnScenarioClosed(object sender, BveEx.ValueEventArgs<Scenario> e)
-        {
-            // Scenario クラスのデストラクタ由来の場合
-            if (e.Value != ScenarioService?.Target) return;
-
-            ScenarioService?.Dispose();
-            ScenarioService = null;
         }
 
         public void Dispose()

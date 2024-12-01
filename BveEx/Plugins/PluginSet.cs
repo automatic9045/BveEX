@@ -12,23 +12,55 @@ namespace BveEx.Plugins
 {
     internal class PluginSet : IPluginSet
     {
-        public IReadOnlyDictionary<string, PluginBase> MapPlugins { get; private set; } = null;
-        public IReadOnlyDictionary<string, PluginBase> VehiclePlugins { get; private set; } = null;
+        private readonly Dictionary<string, PluginBase> MapPlugins = new Dictionary<string, PluginBase>();
+        private readonly Dictionary<string, PluginBase> VehiclePlugins = new Dictionary<string, PluginBase>();
 
+        IReadOnlyDictionary<string, PluginBase> IPluginSet.MapPlugins => MapPlugins;
+        IReadOnlyDictionary<string, PluginBase> IPluginSet.VehiclePlugins => VehiclePlugins;
+
+        public bool AreMapPluginsLoaded { get; private set; } = false;
+        public bool AreVehiclePluginsLoaded { get; private set; } = false;
+
+        public event EventHandler MapPluginsLoaded;
+        public event EventHandler VehiclePluginsLoaded;
         public event EventHandler AllPluginsLoaded;
 
         public PluginSet()
         {
         }
 
-        public void SetPlugins(IReadOnlyDictionary<string, PluginBase> vehiclePlugins, IReadOnlyDictionary<string, PluginBase> mapPlugins)
+        public void AddMapPlugins(IReadOnlyDictionary<string, PluginBase> plugins)
         {
-            if (!(VehiclePlugins is null)) throw new InvalidOperationException();
-            if (!(MapPlugins is null)) throw new InvalidOperationException();
+            if (AreMapPluginsLoaded) throw new InvalidOperationException();
+            if (AreVehiclePluginsLoaded) throw new InvalidOperationException();
 
-            VehiclePlugins = vehiclePlugins;
-            MapPlugins = mapPlugins;
+            foreach (KeyValuePair<string, PluginBase> plugin in plugins)
+            {
+                MapPlugins.Add(plugin.Key, plugin.Value);
+            }
+        }
 
+        public void CompleteLoadingMapPlugins()
+        {
+            AreMapPluginsLoaded = true;
+            MapPluginsLoaded?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void AddVehiclePlugins(IReadOnlyDictionary<string, PluginBase> plugins)
+        {
+            if (!AreMapPluginsLoaded) throw new InvalidOperationException();
+            if (AreVehiclePluginsLoaded) throw new InvalidOperationException();
+
+            foreach (KeyValuePair<string, PluginBase> plugin in plugins)
+            {
+                VehiclePlugins.Add(plugin.Key, plugin.Value);
+            }
+        }
+
+        public void CompleteLoadingVehiclePlugins()
+        {
+            AreVehiclePluginsLoaded = true;
+            VehiclePluginsLoaded?.Invoke(this, EventArgs.Empty);
             AllPluginsLoaded?.Invoke(this, EventArgs.Empty);
         }
 

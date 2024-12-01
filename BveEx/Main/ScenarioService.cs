@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using BveTypes.ClassWrappers;
 using UnembeddedResources;
 
+using BveEx.Extensions.MapStatements;
 using BveEx.Plugins;
 using BveEx.PluginHost.Plugins;
 using BveEx.PluginHost;
@@ -39,39 +40,75 @@ namespace BveEx
 
 
         private readonly BveEx BveEx;
+        private readonly PluginSet Plugins = new PluginSet();
+        private readonly MapPluginFactory MapPluginFactory;
 
-        private readonly PluginSet Plugins;
+        private MapListener MapListener;
 
         public Scenario Target { get; private set; } = null;
 
-        public ScenarioService(BveEx bveEx, PluginSourceSet vehiclePluginUsing)
+        public ScenarioService(BveEx bveEx)
         {
             BveEx = bveEx;
             BveEx.BveHacker.ScenarioCreated += OnScenarioCreated;
 
-            PluginSet plugins = new PluginSet();
+            MapPluginFactory = new MapPluginFactory(BveEx.BveHacker, BveEx.Extensions, Plugins);
 
-            VehiclePluginFactory vehiclePluginFactory = new VehiclePluginFactory(BveEx.BveHacker, BveEx.Extensions, plugins);
-            Dictionary<string, PluginBase> vehiclePlugins = vehiclePluginFactory.Load(vehiclePluginUsing);
+            IStatementSet statements = BveEx.Extensions.GetExtension<IStatementSet>();
+            MapListener = MapListener.Listen(statements);
 
-            MapPluginFactory mapPluginFactory = new MapPluginFactory(BveEx.BveHacker, BveEx.Extensions, plugins);
-            Dictionary<string, PluginBase> mapPlugins = mapPluginFactory.Load();
+            MapListener.LoadRequested += (sender, e) =>
+            {
+                Dictionary<string, PluginBase> mapPlugins = MapPluginFactory.LoadPluginUsing(e.PluginUsingPath);
 
-            plugins.SetPlugins(vehiclePlugins, mapPlugins);
-            Plugins = plugins;
+                Plugins.AddMapPlugins(mapPlugins);
+                BveEx.VersionFormProvider.SetScenario(((IPluginSet)Plugins).VehiclePlugins.Values, ((IPluginSet)Plugins).MapPlugins.Values);
+            };
 
-            BveEx.VersionFormProvider.SetScenario(((IPluginSet)Plugins).VehiclePlugins.Values, ((IPluginSet)Plugins).MapPlugins.Values);
+            MapListener.LoadAssemblyRequested += (sender, e) =>
+            {
+                Dictionary<string, PluginBase> mapPlugins = MapPluginFactory.LoadAssembly(e.AssemblyPath, e.Identifier);
+
+                Plugins.AddMapPlugins(mapPlugins);
+                BveEx.VersionFormProvider.SetScenario(((IPluginSet)Plugins).VehiclePlugins.Values, ((IPluginSet)Plugins).MapPlugins.Values);
+            };
+
+            statements.LoadingCompleted += OnStatementLoadingCompleted;
         }
 
-        public virtual void Dispose()
+        public void Dispose()
         {
             BveEx.BveHacker.ScenarioCreated -= OnScenarioCreated;
+
+            IStatementSet statements = BveEx.Extensions.GetExtension<IStatementSet>();
+            statements.LoadingCompleted -= OnStatementLoadingCompleted;
+
+            MapListener?.Dispose();
 
             BveEx.VersionFormProvider.UnsetScenario();
             foreach (KeyValuePair<string, PluginBase> plugin in Plugins)
             {
                 plugin.Value.Dispose();
             }
+        }
+
+        private void OnStatementLoadingCompleted(object sender, EventArgs e)
+        {
+            Plugins.CompleteLoadingMapPlugins();
+
+            MapListener.Dispose();
+            MapListener = null;
+        }
+
+        public void LoadVehiclePlugins()
+        {
+            VehiclePluginFactory vehiclePluginFactory = new VehiclePluginFactory(BveEx.BveHacker, BveEx.Extensions, Plugins);
+            string vehiclePath = BveEx.BveHacker.ScenarioInfo.VehicleFiles.SelectedFile.Path;
+            Dictionary<string, PluginBase> vehiclePlugins = vehiclePluginFactory.Load(vehiclePath);
+
+            Plugins.AddVehiclePlugins(vehiclePlugins);
+            BveEx.VersionFormProvider.SetScenario(((IPluginSet)Plugins).VehiclePlugins.Values, ((IPluginSet)Plugins).MapPlugins.Values);
+            Plugins.CompleteLoadingVehiclePlugins();
         }
 
         private void OnScenarioCreated(ScenarioCreatedEventArgs e)

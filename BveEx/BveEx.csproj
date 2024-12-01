@@ -136,6 +136,7 @@
     <Compile Include="Plugins\Extensions\Data\LoadedExtensions.cs" />
     <Compile Include="Plugins\Extensions\ExtensionPath.cs" />
     <Compile Include="Plugins\IPluginPackage.cs" />
+    <Compile Include="Plugins\MapListener.cs" />
     <Compile Include="Plugins\MapPluginFactory.cs" />
     <Compile Include="Plugins\Native\Imports.cs" />
     <Compile Include="Plugins\Native\Library.cs" />
