@@ -23,7 +23,8 @@ namespace BveEx.Extensions.MapStatements
     [ExtensionMainDisplayType(typeof(IStatementSet))]
     internal class StatementSet : AssemblyPluginBase, IStatementSet
     {
-        private readonly HarmonyPatch Patch;
+        private readonly HarmonyPatch ParsePatch;
+        private readonly HarmonyPatch PostLoadPatch;
 
         private BuiltinProcess BuiltinProcess;
         private List<Statement> Statements = null;
@@ -32,13 +33,15 @@ namespace BveEx.Extensions.MapStatements
         public override string Description { get; } = "プラグインからオリジナルのマップ構文を簡単に定義・参照できるようにします。";
 
         public event EventHandler<StatementLoadedEventArgs> StatementLoaded;
+        public event EventHandler LoadingCompleted;
 
         public StatementSet(PluginBuilder builder) : base(builder)
         {
             ClassMemberSet mapLoaderMembers = BveHacker.BveTypes.GetClassInfoOf<MapLoader>();
+
             FastMethod parseStatementMethod = mapLoaderMembers.GetSourceMethodOf(nameof(MapLoader.ParseStatement));
-            Patch = HarmonyPatch.Patch(nameof(MapStatements), parseStatementMethod.Source, PatchType.Prefix);
-            Patch.Invoked += (sender, e) =>
+            ParsePatch = HarmonyPatch.Patch(nameof(MapStatements), parseStatementMethod.Source, PatchType.Prefix);
+            ParsePatch.Invoked += (sender, e) =>
             {
                 WrappedList<MapStatementClause> clauses = WrappedList<MapStatementClause>.FromSource((IList)e.Args[0]);
 
@@ -62,6 +65,14 @@ namespace BveEx.Extensions.MapStatements
                 return BuiltinProcess.IgnoreStatement ? new PatchInvokationResult(SkipModes.SkipOriginal) : PatchInvokationResult.DoNothing(e);
             };
 
+            FastMethod loadMethod = mapLoaderMembers.GetSourceMethodOf(nameof(MapLoader.Load));
+            PostLoadPatch = HarmonyPatch.Patch(nameof(MapStatements), loadMethod.Source, PatchType.Postfix);
+            PostLoadPatch.Invoked += (sender, e) =>
+            {
+                LoadingCompleted?.Invoke(this, EventArgs.Empty);
+                return PatchInvokationResult.DoNothing(e);
+            };
+
             BveHacker.ScenarioOpened += OnScenarioOpened;
             BveHacker.ScenarioClosed += OnScenarioClosed;
         }
@@ -80,7 +91,8 @@ namespace BveEx.Extensions.MapStatements
 
         public override void Dispose()
         {
-            Patch.Dispose();
+            ParsePatch.Dispose();
+            PostLoadPatch.Dispose();
         }
 
         public override void Tick(TimeSpan elapsed)

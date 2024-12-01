@@ -19,6 +19,11 @@ namespace BveEx.Extensions.MapStatements
         event EventHandler<StatementLoadedEventArgs> StatementLoaded;
 
         /// <summary>
+        /// マップの読込が完了したときに発生します。
+        /// </summary>
+        event EventHandler LoadingCompleted;
+
+        /// <summary>
         /// 指定された条件に一致する BveEX 公式のマップステートメントを検索し、その冒頭 1 つ目を取得します。
         /// </summary>
         /// <param name="clauses">検索するステートメントの句の一覧 (前方一致)。
