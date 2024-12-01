@@ -115,7 +115,7 @@ namespace BveEx.Plugins
 
         private static NativePluginPackage LoadNativePluginPackage(XElement element, string baseDirectory)
         {
-            string libraryPath = element.Attribute("Path").Value;
+            string libraryPath = element.Attribute($"Path{(Environment.Is64BitProcess ? "64" : "32")}").Value;
             return new NativePluginPackage(GetIdentifier(element), Path.Combine(baseDirectory, libraryPath));
         }
 
