@@ -13,7 +13,7 @@ using BveEx.PluginHost;
 
 namespace BveEx
 {
-    internal partial class ScenarioService : IDisposable
+    internal class ScenarioService : IDisposable
     {
         private class ResourceSet
         {
@@ -49,8 +49,16 @@ namespace BveEx
             BveEx = bveEx;
             BveEx.BveHacker.ScenarioCreated += OnScenarioCreated;
 
-            PluginLoader pluginLoader = new PluginLoader(BveEx.BveHacker, BveEx.Extensions);
-            Plugins = pluginLoader.Load(vehiclePluginUsing);
+            PluginSet plugins = new PluginSet();
+
+            VehiclePluginFactory vehiclePluginFactory = new VehiclePluginFactory(BveEx.BveHacker, BveEx.Extensions, plugins);
+            Dictionary<string, PluginBase> vehiclePlugins = vehiclePluginFactory.Load(vehiclePluginUsing);
+
+            MapPluginFactory mapPluginFactory = new MapPluginFactory(BveEx.BveHacker, BveEx.Extensions, plugins);
+            Dictionary<string, PluginBase> mapPlugins = mapPluginFactory.Load();
+
+            plugins.SetPlugins(vehiclePlugins, mapPlugins);
+            Plugins = plugins;
 
             BveEx.VersionFormProvider.SetScenario(Plugins[PluginType.VehiclePlugin].Values, Plugins[PluginType.MapPlugin].Values);
         }

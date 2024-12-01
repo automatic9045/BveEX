@@ -136,6 +136,7 @@
     <Compile Include="Plugins\Extensions\Data\LoadedExtensions.cs" />
     <Compile Include="Plugins\Extensions\ExtensionPath.cs" />
     <Compile Include="Plugins\IPluginPackage.cs" />
+    <Compile Include="Plugins\MapPluginFactory.cs" />
     <Compile Include="Plugins\Native\Imports.cs" />
     <Compile Include="Plugins\Native\Library.cs" />
     <Compile Include="Plugins\Native\LibraryProcedure.cs" />
@@ -149,8 +150,6 @@
     <Compile Include="Main\BveEx.cs" />
     <Compile Include="Main\ScenarioService.cs" />
     <Compile Include="BveHacker\BveHacker.cs" />
-    <Compile Include="Main\ScenarioService.PluginLoader.cs" />
-    <Compile Include="Main\ScenarioService.PluginService.cs" />
     <Compile Include="Plugins\PluginLoadErrorResolver.cs" />
     <Compile Include="Native\LauncherCompatibilityVersionAttribute.cs" />
     <Compile Include="Plugins\Extensions\ExtensionSet.cs" />
@@ -172,6 +171,7 @@
     <Compile Include="Plugins\Scripting\ScriptPluginPackage.cs" />
     <Compile Include="Plugins\Scripting\ScriptPluginPackage.InformationBuilder.cs" />
     <Compile Include="Plugins\Scripting\ScriptPluginPackage.ScriptsBuilder.cs" />
+    <Compile Include="Plugins\VehiclePluginFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Troubleshooting\TroubleshooterSet.cs" />
     <Compile Include="VersionForm\PluginListTabPage.cs">
