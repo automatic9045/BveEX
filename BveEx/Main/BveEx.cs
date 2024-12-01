@@ -17,7 +17,6 @@ using BveEx.PluginHost.Plugins;
 using BveEx.PluginHost.Plugins.Extensions;
 
 using BveEx.Launching;
-using BveEx.Native;
 using BveEx.Plugins.Extensions;
 
 namespace BveEx
@@ -48,14 +47,15 @@ namespace BveEx
 
 
         private readonly PatchSet Patches;
+        private readonly AtsPluginOverrider AtsPluginOverrider;
         private readonly ExtensionService ExtensionService;
 
         public event EventHandler<ValueEventArgs<ScenarioInfo>> ScenarioOpened;
         public event EventHandler<ValueEventArgs<Scenario>> ScenarioClosed;
 
-        public event EventHandler OnSetVehicleSpec;
+        public event EventHandler OnLoad;
         public event EventHandler OnInitialize;
-        public event EventHandler<ValueEventArgs<TimeSpan>> PostElapse;
+        public event EventHandler<ValueEventArgs<TimeSpan>> OnElapse;
 
         public BveHacker BveHacker { get; }
         public IExtensionSet Extensions { get; }
@@ -67,12 +67,15 @@ namespace BveEx
             BveHacker = new BveHacker(bveTypes);
             AppDomain.CurrentDomain.FirstChanceException += OnFirstChanceException;
 
-            ClassMemberSet mainFormMembers = BveHacker.BveTypes.GetClassInfoOf<MainForm>();
-            ClassMemberSet scenarioMembers = BveHacker.BveTypes.GetClassInfoOf<Scenario>();
-            ClassMemberSet atsPluginMembers = BveHacker.BveTypes.GetClassInfoOf<AtsPlugin>();
+            ClassMemberSet mainFormMembers = bveTypes.GetClassInfoOf<MainForm>();
+            ClassMemberSet scenarioMembers = bveTypes.GetClassInfoOf<Scenario>();
+            ClassMemberSet vehicleMembers = bveTypes.GetClassInfoOf<Vehicle>();
+            ClassMemberSet atsPluginMembers = bveTypes.GetClassInfoOf<AtsPlugin>();
 
             Patches = new PatchSet(mainFormMembers, scenarioMembers, atsPluginMembers);
             ListenPatchEvents();
+
+            AtsPluginOverrider = new AtsPluginOverrider(BveHacker.LoadingProgressForm, vehicleMembers, atsPluginMembers);
 
             Extensions = ExtensionSetFactory.Load(BveHacker);
             ExtensionService = new ExtensionService(Extensions);
@@ -100,6 +103,7 @@ namespace BveEx
             }
 
             Patches.Dispose();
+            AtsPluginOverrider.Dispose();
 
             ((ExtensionSet)Extensions).SaveStates();
 

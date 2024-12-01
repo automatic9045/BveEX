@@ -101,13 +101,13 @@ namespace BveEx.Native.InputDevices
                 BveEx = new BveEx(bveTypes);
 
                 BveEx.ScenarioClosed += OnScenarioClosed;
-                BveEx.OnSetVehicleSpec += OnSetVehicleSpec;
+                BveEx.OnLoad += OnLoad;
                 BveEx.OnInitialize += OnInitialize;
-                BveEx.PostElapse += PostElapse;
+                BveEx.OnElapse += OnElapse;
             }
         }
 
-        private void OnSetVehicleSpec(object sender, EventArgs e)
+        private void OnLoad(object sender, EventArgs e)
         {
             string vehiclePath = BveEx.BveHacker.ScenarioInfo.VehicleFiles.SelectedFile.Path;
             PluginSourceSet vehiclePluginUsing = PluginSourceSet.ResolvePluginUsingToLoad(PluginType.VehiclePlugin, true, vehiclePath);
@@ -121,7 +121,7 @@ namespace BveEx.Native.InputDevices
             FrameSpan.Initialize();
         }
 
-        private void PostElapse(object sender, BveEx.ValueEventArgs<TimeSpan> e)
+        private void OnElapse(object sender, BveEx.ValueEventArgs<TimeSpan> e)
         {
             ScenarioService?.PreviewTick();
 

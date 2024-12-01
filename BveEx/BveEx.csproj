@@ -120,6 +120,7 @@
     <Compile Include="BveHacker\Services\MapLoaderHacker.cs" />
     <Compile Include="ErrorDialog.cs" />
     <Compile Include="Launching\LaunchModeException.cs" />
+    <Compile Include="Main\AtsPluginOverrider.cs" />
     <Compile Include="Main\BveEx.PatchEvents.cs" />
     <Compile Include="Launching\LaunchModeManager.cs" />
     <Compile Include="Main\PatchSet.cs" />

@@ -73,6 +73,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BveEx.Samples.VehiclePlugin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BveEx.Launcher.SplashScreen", "BveEx.Launcher.SplashScreen\BveEx.Launcher.SplashScreen.csproj", "{6B621F1A-289E-485A-9927-1A650AFA49BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BveEx.DummyAts", "BveEx.DummyAts\BveEx.DummyAts.csproj", "{9CC80958-4BAF-473D-A702-10CC84DC60C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -199,6 +201,10 @@ Global
 		{6B621F1A-289E-485A-9927-1A650AFA49BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B621F1A-289E-485A-9927-1A650AFA49BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B621F1A-289E-485A-9927-1A650AFA49BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CC80958-4BAF-473D-A702-10CC84DC60C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CC80958-4BAF-473D-A702-10CC84DC60C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CC80958-4BAF-473D-A702-10CC84DC60C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CC80958-4BAF-473D-A702-10CC84DC60C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

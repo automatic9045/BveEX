@@ -26,7 +26,6 @@ namespace BveEx
             private readonly ResourceLocalizer Localizer = ResourceLocalizer.FromResXOfType<BveHacker>("Core");
 
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> CannotGetScenario { get; private set; }
-            [ResourceStringHolder(nameof(Localizer))] public Resource<string> NoPluginLoaded { get; private set; }
 
             public ResourceSet()
             {
@@ -61,7 +60,6 @@ namespace BveEx
                 try
                 {
                     PreviewScenarioCreated?.Invoke(e);
-                    OnScenarioCreated(e);
                     ScenarioCreated?.Invoke(e);
                 }
                 catch (BveFileLoadException ex)
@@ -90,16 +88,6 @@ namespace BveEx
             StructureSetLifeProlonger.Dispose();
             MapLoaderHacker.Dispose();
             ScenarioHacker.Dispose();
-        }
-
-        private void OnScenarioCreated(ScenarioCreatedEventArgs e)
-        {
-            AtsPlugin atsPlugin = e.Scenario.Vehicle.Instruments.AtsPlugin;
-            if (!atsPlugin.IsPluginLoaded)
-            {
-                string fileName = Path.GetFileName(ScenarioInfo.VehicleFiles.SelectedFile.Path);
-                throw new BveFileLoadException(string.Format(Resources.Value.NoPluginLoaded.Value, App.Instance.ProductShortName), fileName);
-            }
         }
 
 

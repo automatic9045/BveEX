@@ -4,12 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Mackoy.Bvets;
-
 using BveTypes.ClassWrappers;
 using ObjectiveHarmonyPatch;
-
-using BveEx.Native;
 
 namespace BveEx
 {
@@ -34,9 +30,9 @@ namespace BveEx
             };
 
 
-            Patches.OnSetVehicleSpecPatch.Invoked += (sender, e) =>
+            Patches.OnLoadPatch.Invoked += (sender, e) =>
             {
-                OnSetVehicleSpec?.Invoke(this, EventArgs.Empty);
+                OnLoad?.Invoke(this, EventArgs.Empty);
                 return PatchInvokationResult.DoNothing(e);
             };
 
@@ -46,13 +42,13 @@ namespace BveEx
                 return PatchInvokationResult.DoNothing(e);
             };
 
-            Patches.PostElapsePatch.Invoked += (sender, e) =>
+            Patches.OnElapsePatch.Invoked += (sender, e) =>
             {
                 AtsPlugin atsPlugin = AtsPlugin.FromSource(e.Instance);
 
                 TimeSpan now = TimeSpan.FromMilliseconds((int)e.Args[0]);
 
-                PostElapse?.Invoke(this, new ValueEventArgs<TimeSpan>(now));
+                OnElapse?.Invoke(this, new ValueEventArgs<TimeSpan>(now));
                 return PatchInvokationResult.DoNothing(e);
             };
         }
