@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Input;
-using AtsEx.PluginHost.Input.Native;
-using AtsEx.PluginHost.Plugins;
+using BveEx.Extensions.Native;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Input;
+using BveEx.PluginHost.Plugins;
 
-using AtsEx.Extensions.ConductorPatch;
+using BveEx.Extensions.ConductorPatch;
 
-namespace AtsEx.Samples.VehiclePlugins.ConductorPatchTest
+namespace BveEx.Samples.VehiclePlugins.ConductorPatchTest
 {
     [Plugin(PluginType.VehiclePlugin)]
     public class PluginMain : AssemblyPluginBase
@@ -25,11 +25,12 @@ namespace AtsEx.Samples.VehiclePlugins.ConductorPatchTest
         {
             BveHacker.ScenarioCreated += OnScenarioCreated;
 
-            Native.NativeKeys.AtsKeys[NativeAtsKeyName.D].Pressed += OnDPressed;
-            Native.NativeKeys.AtsKeys[NativeAtsKeyName.E].Pressed += OnEPressed;
-            Native.NativeKeys.AtsKeys[NativeAtsKeyName.F].Pressed += OnFPressed;
-            Native.NativeKeys.AtsKeys[NativeAtsKeyName.G].Pressed += OnGPressed;
-            Native.NativeKeys.AtsKeys[NativeAtsKeyName.H].Pressed += OnHPressed;
+            INative native = Extensions.GetExtension<INative>();
+            native.AtsKeys.GetKey(AtsKeyName.D).Pressed += OnDPressed;
+            native.AtsKeys.GetKey(AtsKeyName.E).Pressed += OnEPressed;
+            native.AtsKeys.GetKey(AtsKeyName.F).Pressed += OnFPressed;
+            native.AtsKeys.GetKey(AtsKeyName.G).Pressed += OnGPressed;
+            native.AtsKeys.GetKey(AtsKeyName.H).Pressed += OnHPressed;
         }
 
         public override void Dispose()
@@ -41,12 +42,6 @@ namespace AtsEx.Samples.VehiclePlugins.ConductorPatchTest
             }
 
             BveHacker.ScenarioCreated -= OnScenarioCreated;
-
-            Native.NativeKeys.AtsKeys[NativeAtsKeyName.D].Pressed -= OnDPressed;
-            Native.NativeKeys.AtsKeys[NativeAtsKeyName.E].Pressed -= OnEPressed;
-            Native.NativeKeys.AtsKeys[NativeAtsKeyName.F].Pressed -= OnFPressed;
-            Native.NativeKeys.AtsKeys[NativeAtsKeyName.G].Pressed -= OnGPressed;
-            Native.NativeKeys.AtsKeys[NativeAtsKeyName.H].Pressed -= OnHPressed;
         }
 
         private void OnScenarioCreated(ScenarioCreatedEventArgs e)
@@ -64,6 +59,8 @@ namespace AtsEx.Samples.VehiclePlugins.ConductorPatchTest
         private void OnGPressed(object sender, EventArgs e) => Conductor.CloseDoors(DoorSide.Right);
         private void OnHPressed(object sender, EventArgs e) => Conductor.RequestFixStopPosition();
 
-        public override TickResult Tick(TimeSpan elapsed) => new VehiclePluginTickResult();
+        public override void Tick(TimeSpan elapsed)
+        {
+        }
     }
 }

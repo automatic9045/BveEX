@@ -1,6 +1,0 @@
-BveTs Map 2.02:utf-8
-
-include '..\..\BaseMap.txt';
-
-AtsEx.MapPlugin.Load('MapPluginUsing.xml');
-Station.Load('Stations.csv');

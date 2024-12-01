@@ -94,7 +94,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double DistanceToSourceFront
         {
-            get => DistanceToSourceFrontGetMethod.Invoke(Src, null);
+            get => (double)DistanceToSourceFrontGetMethod.Invoke(Src, null);
             set => DistanceToSourceFrontSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -105,7 +105,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public SoundFunction Function
         {
-            get => FunctionGetMethod.Invoke(Src, null);
+            get => (SoundFunction)FunctionGetMethod.Invoke(Src, null);
             set => FunctionSetMethod.Invoke(Src, new object[] { value });
         }
 

@@ -16,7 +16,7 @@
 	</Class>
 
 	<Class Wrapper="LoadingProgressForm" Original="dt">
-		<Field WrapperProperty="IsErrorCritical" Original="a" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="IsAborted" Original="a" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="ErrorCount" Original="b" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Panel" Original="e" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="ProgressBar" Original="h" IsOriginalNonPublic="true"/>
@@ -34,8 +34,8 @@
 		<Field WrapperProperty="TimePosForm" Original="d" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="ChartForm" Original="e" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="LoadingProgressForm" Original="k" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="AssistantDrawer" Original="l" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="KeyProvider" Original="m" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Assistants" Original="l" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="InputManager" Original="m" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="CurrentScenario" Original="n" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="CurrentScenarioInfo" Original="q" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Preferences" Original="w" IsOriginalStatic="true"/>
@@ -105,7 +105,7 @@
 		<Method Wrapper="OnDeviceReset" WrapperParams="void" Original="t"/>
 	</Class>
 
-	<Class Wrapper="AssistantDrawer" Original="ar">
+	<Class Wrapper="AssistantSet" Original="ar">
 		<Property Wrapper="Items">
 			<Getter Original="a"/>
 		</Property>
@@ -116,28 +116,27 @@
 	</Class>
 
 	<Class Wrapper="AtsPlugin" Original="aa">
-		<Bridges>
-			<Bridge Wrapper="PluginLoader"/>
-		</Bridges>
-
-		<Property Wrapper="PanelArray">
-			<Getter Original="a"/>
-		</Property>
-		<Property Wrapper="SoundArray">
-			<Getter Original="b"/>
-		</Property>
+		<Children>
+			<Class Wrapper="AtsSoundEventArgs" Original="a">
+				<Field WrapperProperty="SoundIndex" Original="a" IsOriginalNonPublic="true"/>
+				<Field WrapperProperty="Volume" Original="b" IsOriginalNonPublic="true"/>
+			</Class>
+		</Children>
 
 		<Field WrapperProperty="IsPluginLoaded" Original="a" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="HModule" Original="b" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Handles" Original="c" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="_PanelArray" Original="d" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="_SoundArray" Original="e" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="_OldSoundArray" Original="f" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="LocationManager" Original="h" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="PanelArray" Original="d" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="SoundArray" Original="e" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="OldSoundArray" Original="f" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Location" Original="h" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="StateStore" Original="i" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="SectionManager" Original="j" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Doors" Original="k" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="AtsHandles" Original="l" IsOriginalNonPublic="true"/>
+
+		<Event Wrapper="LoopSoundRequested" OriginalAddAccessor="c" OriginalRemoveAccessor="b" OriginalDelegateField="y"/>
+		<Event Wrapper="PlaySoundRequested" OriginalAddAccessor="a" OriginalRemoveAccessor="d" OriginalDelegateField="z"/>
 
 		<Method Wrapper="OnSetBeaconData" WrapperParams="System.Object; ex:ObjectPassedEventArgs" Original="a" IsOriginalNonPublic="true"/>
 		<Method Wrapper="OnKeyDown" WrapperParams="System.Object; Mackoy.Bvets.InputEventArgs, Mackoy.IInputDevice" Original="b" IsOriginalNonPublic="true"/>
@@ -190,10 +189,6 @@
 	</Class>
 
 	<Class Wrapper="BrakeBlenderBase" Original="e3">
-		<Bridges>
-			<Bridge Wrapper="ElectroPneumaticBlendedBrakingControlBase"/>
-		</Bridges>
-
 		<Property Wrapper="InitialPressure">
 			<Getter Original="k"/>
 			<Setter Original="e"/>
@@ -224,7 +219,7 @@
 	</Class>
 
 	<Class Wrapper="BrakeSystem" Original="bh">
-		<Property Wrapper="ElectroPneumaticBlendedBrakingControl">
+		<Property Wrapper="BrakeBlender">
 			<Getter Original="k"/>
 		</Property>
 		<Property Wrapper="AirSupplement">
@@ -319,10 +314,6 @@
 	</Class>
 
 	<Class Wrapper="CarBrake" Original="d6">
-		<Bridges>
-			<Bridge Wrapper="CarBc"/>
-		</Bridges>
-
 		<Property Wrapper="BcValve">
 			<Getter Original="d"/>
 		</Property>
@@ -422,7 +413,7 @@
 
 	<Class Wrapper="Conductor" Original="ba">
 		<Field WrapperProperty="TimeManager" Original="a" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="LocationManager" Original="b" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Location" Original="b" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Sounds" Original="o" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Stations" Original="c" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="SectionManager" Original="e" IsOriginalNonPublic="true"/>
@@ -576,6 +567,11 @@
 			<Getter Original="g"/>
 			<Setter Original="d"/>
 		</Property>
+
+		<Event Wrapper="BrakeChanged" OriginalAddAccessor="d" OriginalRemoveAccessor="a" OriginalDelegateField="g"/>
+		<Event Wrapper="PowerChanged" OriginalAddAccessor="e" OriginalRemoveAccessor="c" OriginalDelegateField="h"/>
+		<Event Wrapper="ReverserChanged" OriginalAddAccessor="b" OriginalRemoveAccessor="f" OriginalDelegateField="i"/>
+		<Event Wrapper="ConstantSpeedChanged" OriginalAddAccessor="a" OriginalRemoveAccessor="b" OriginalDelegateField="j"/>
 	</Class>
 
 	<Class Wrapper="IDrawable" Original="c0">
@@ -601,7 +597,7 @@
 		<Method Wrapper="Tick" WrapperParams="System.Double" Original="ag"/>
 	</Class>
 
-	<Class Wrapper="KeyProvider" Original="ag">
+	<Class Wrapper="InputManager" Original="ag">
 		<Property Wrapper="InputDevices">
 			<Getter Original="c"/>
 		</Property>
@@ -664,8 +660,8 @@
 		<Method Wrapper="Draw" WrapperParams="ex:Direct3DProvider; SlimDX.Matrix, SlimDX; System.Boolean" Original="ah"/>
 	</Class>
 
-	<Class Wrapper="LocationManager" Original="ct">
-		<Property Wrapper="SpeedMeterPerSecond">
+	<Class Wrapper="Tachogenerator" Original="ct">
+		<Property Wrapper="Speed">
 			<Getter Original="g"/>
 		</Property>
 
@@ -688,7 +684,7 @@
 	<Class Wrapper="MapLoader" Original="p">
 		<Field WrapperProperty="LoadingProgressForm" Original="b" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="TimeManager" Original="c" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="Route" Original="d" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Map" Original="d" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="DirectSound" Original="e" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Variables" Original="g" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Stations" Original="h" IsOriginalNonPublic="true"/>
@@ -898,7 +894,7 @@
 		<Field WrapperProperty="StructureDrawer" Original="b" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="DrawDistanceManager" Original="g" IsOriginalNonPublic="true"/>
 
-		<Method Wrapper="SetRoute" WrapperParams="ex:Route" Original="a"/>
+		<Method Wrapper="SetMap" WrapperParams="ex:Map" Original="a"/>
 		<Method Wrapper="Draw" WrapperParams="void" Original="o"/>
 	</Class>
 
@@ -991,7 +987,7 @@
 		</Property>
 	</Class>
 
-	<Class Wrapper="Route" Original="br">
+	<Class Wrapper="Map" Original="br">
 		<Property Wrapper="DrawLimitLocation">
 			<Getter Original="e"/>
 			<Setter Original="a"/>
@@ -1064,10 +1060,10 @@
 		<Property Wrapper="TimeManager">
 			<Getter Original="j"/>
 		</Property>
-		<Property Wrapper="LocationManager">
+		<Property Wrapper="VehicleLocation">
 			<Getter Original="b"/>
 		</Property>
-		<Property Wrapper="Route">
+		<Property Wrapper="Map">
 			<Getter Original="h"/>
 		</Property>
 		<Property Wrapper="Vehicle">
@@ -1506,8 +1502,8 @@
 	</Class>
 
 	<Class Wrapper="Train" Original="e4">
-		<Field WrapperProperty="UserVehicleLocationManager" Original="b" IsOriginalNonPublic="true"/>
-		<Field WrapperProperty="Route" Original="c" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="VehicleLocation" Original="b" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Map" Original="c" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="TrainInfo" Original="d" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="DrawDistanceManager" Original="e" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Schedules" Original="f" IsOriginalNonPublic="true"/>
@@ -1586,7 +1582,7 @@
 	<Class Wrapper="TwoLeverCab" Original="ac">
 	</Class>
 
-	<Class Wrapper="UserVehicleLocationManager" Original="fu">
+	<Class Wrapper="VehicleLocation" Original="fu">
 		<Property Wrapper="Location">
 			<Getter Original="c"/>
 		</Property>
@@ -1633,7 +1629,7 @@
 			<Getter Original="f"/>
 			<Setter Original="a"/>
 		</Property>
-		<Property Wrapper="VibrationManager">
+		<Property Wrapper="Vibration">
 			<Getter Original="c"/>
 			<Setter Original="a"/>
 		</Property>
@@ -1658,7 +1654,42 @@
 
 		<Field WrapperProperty="CameraLocation" Original="q" IsOriginalNonPublic="true"/>
 
+		<Method Wrapper="Load" WrapperParams="ex:LoadingProgressForm; ex:VehicleFile" Original="a"/>
 		<Method Wrapper="Initialize" WrapperParams="ex:BrakePosition" Original="a"/>
+		<Method Wrapper="Dispose" WrapperParams="void" Original="Dispose"/>
+	</Class>
+
+	<Class Wrapper="VehicleFile" Original="d5">
+		<Property Wrapper="Path">
+			<Getter Original="f"/>
+			<Setter Original="g" IsOriginalNonPublic="true"/>
+		</Property>
+		<Property Wrapper="ParametersPath">
+			<Getter Original="c"/>
+			<Setter Original="f" IsOriginalNonPublic="true"/>
+		</Property>
+		<Property Wrapper="PerformanceCurvePath">
+			<Getter Original="b"/>
+			<Setter Original="e" IsOriginalNonPublic="true"/>
+		</Property>
+		<Property Wrapper="AtsPluginPath">
+			<Getter Original="h"/>
+			<Setter Original="d" IsOriginalNonPublic="true"/>
+		</Property>
+		<Property Wrapper="PanelPath">
+			<Getter Original="g"/>
+			<Setter Original="c" IsOriginalNonPublic="true"/>
+		</Property>
+		<Property Wrapper="SoundPath">
+			<Getter Original="d"/>
+			<Setter Original="b" IsOriginalNonPublic="true"/>
+		</Property>
+		<Property Wrapper="MotorNoisePath">
+			<Getter Original="e"/>
+			<Setter Original="a" IsOriginalNonPublic="true"/>
+		</Property>
+
+		<Method Wrapper="FromFile" WrapperParams="ex:LoadingProgressForm; System.String" Original="a" IsWrapperStatic="true" IsOriginalStatic="true"/>
 	</Class>
 
 	<Class Wrapper="VehicleBogieWheel" Original="b7">
@@ -1742,10 +1773,6 @@
 			<Setter Original="a"/>
 		</Property>
 		<Property Wrapper="AtsPlugin">
-			<Getter Original="f"/>
-			<Setter Original="a"/>
-		</Property>
-		<Property Wrapper="PluginLoader">
 			<Getter Original="f"/>
 			<Setter Original="a"/>
 		</Property>
@@ -1969,7 +1996,7 @@
 		<Method Wrapper="GetStep" WrapperParams="System.Int32" Original="b"/>
 	</Class>
 
-	<Class Wrapper="VehicleVibrationManager" Original="d3">
+	<Class Wrapper="VehicleVibration" Original="d3">
 		<Property Wrapper="CarBodyTransform">
 			<Getter Original="aa"/>
 		</Property>

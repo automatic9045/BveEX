@@ -23,20 +23,23 @@ namespace BveTypes.ClassWrappers
 
             Constructor = members.GetSourceConstructor();
 
-            PanelArrayGetMethod = members.GetSourcePropertyGetterOf(nameof(PanelArray));
-            SoundArrayGetMethod = members.GetSourcePropertyGetterOf(nameof(SoundArray));
-
             IsPluginLoadedField = members.GetSourceFieldOf(nameof(IsPluginLoaded));
             HModuleField = members.GetSourceFieldOf(nameof(HModule));
             HandlesField = members.GetSourceFieldOf(nameof(Handles));
-            _PanelArrayField = members.GetSourceFieldOf(nameof(_PanelArray));
-            _SoundArrayField = members.GetSourceFieldOf(nameof(_SoundArray));
-            _OldSoundArrayField = members.GetSourceFieldOf(nameof(_OldSoundArray));
-            LocationManagerField = members.GetSourceFieldOf(nameof(LocationManager));
+            PanelArrayField = members.GetSourceFieldOf(nameof(PanelArray));
+            SoundArrayField = members.GetSourceFieldOf(nameof(SoundArray));
+            OldSoundArrayField = members.GetSourceFieldOf(nameof(OldSoundArray));
+            LocationField = members.GetSourceFieldOf(nameof(Location));
             StateStoreField = members.GetSourceFieldOf(nameof(StateStore));
             SectionManagerField = members.GetSourceFieldOf(nameof(SectionManager));
             DoorsField = members.GetSourceFieldOf(nameof(Doors));
             AtsHandlesField = members.GetSourceFieldOf(nameof(AtsHandles));
+
+            FastEvent loopSoundRequestedEvent = members.GetSourceEventOf(nameof(LoopSoundRequested));
+            FastEvent playSoundRequestedEvent = members.GetSourceEventOf(nameof(PlaySoundRequested));
+
+            LoopSoundRequestedEvent = new WrapperEvent<EventHandler<AtsSoundEventArgs>>(loopSoundRequestedEvent, x => (sender, e) => x?.Invoke(FromSource(sender), AtsSoundEventArgs.FromSource(e)));
+            PlaySoundRequestedEvent = new WrapperEvent<EventHandler<AtsSoundEventArgs>>(playSoundRequestedEvent, x => (sender, e) => x?.Invoke(FromSource(sender), AtsSoundEventArgs.FromSource(e)));
 
             OnSetBeaconDataMethod = members.GetSourceMethodOf(nameof(OnSetBeaconData));
             OnKeyDownMethod = members.GetSourceMethodOf(nameof(OnKeyDown));
@@ -73,30 +76,18 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// <see cref="AtsPlugin"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
-        /// <param name="locationManager">自列車の位置に関する情報。</param>
-        /// <param name="keyProvider">キー入力に関する情報。</param>
+        /// <param name="location">自列車の位置情報。</param>
+        /// <param name="inputManager">キー入力に関する情報。</param>
         /// <param name="handles">自列車のノッチ情報。</param>
         /// <param name="atsHandles">ATS による指示を適用した自列車のノッチ情報。</param>
         /// <param name="vehicleStateStore">自列車の状態に関する情報。</param>
         /// <param name="sectionManager">閉塞の制御に関する情報。</param>
         /// <param name="beacons">地上子の一覧。</param>
         /// <param name="doors">自列車のドアの一覧。</param>
-        public AtsPlugin(UserVehicleLocationManager locationManager, KeyProvider keyProvider, HandleSet handles, HandleSet atsHandles, VehicleStateStore vehicleStateStore, SectionManager sectionManager, MapFunctionList beacons, DoorSet doors)
-            : this(Constructor.Invoke(new object[] { locationManager?.Src, keyProvider?.Src, handles?.Src, atsHandles?.Src, vehicleStateStore?.Src, sectionManager?.Src, beacons?.Src, doors?.Src }))
+        public AtsPlugin(VehicleLocation location, InputManager inputManager, HandleSet handles, HandleSet atsHandles, VehicleStateStore vehicleStateStore, SectionManager sectionManager, MapFunctionList beacons, DoorSet doors)
+            : this(Constructor.Invoke(new object[] { location?.Src, inputManager?.Src, handles?.Src, atsHandles?.Src, vehicleStateStore?.Src, sectionManager?.Src, beacons?.Src, doors?.Src }))
         {
         }
-
-        private static FastMethod PanelArrayGetMethod;
-        /// <summary>
-        /// パネルに渡す値の配列を取得・設定します。
-        /// </summary>
-        public int[] PanelArray => PanelArrayGetMethod.Invoke(Src, null);
-
-        private static FastMethod SoundArrayGetMethod;
-        /// <summary>
-        /// サウンドの再生状態を表す値の配列を取得・設定します。
-        /// </summary>
-        public int[] SoundArray => SoundArrayGetMethod.Invoke(Src, null);
 
         private static FastField IsPluginLoadedField;
         /// <summary>
@@ -104,7 +95,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public bool IsPluginLoaded
         {
-            get => IsPluginLoadedField.GetValue(Src);
+            get => (bool)IsPluginLoadedField.GetValue(Src);
             set => IsPluginLoadedField.SetValue(Src, value);
         }
 
@@ -114,7 +105,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public IntPtr HModule
         {
-            get => HModuleField.GetValue(Src);
+            get => (IntPtr)HModuleField.GetValue(Src);
             set => HModuleField.SetValue(Src, value);
         }
 
@@ -128,50 +119,44 @@ namespace BveTypes.ClassWrappers
             set => HandlesField.SetValue(Src, value?.Src);
         }
 
-        private static FastField _PanelArrayField;
+        private static FastField PanelArrayField;
         /// <summary>
-        /// <see cref="PanelArray"/> プロパティのバッキングフィールドを取得・設定します。
+        /// パネルに渡す値の配列を取得・設定します。
         /// </summary>
-#pragma warning disable IDE1006 // 命名スタイル
-        public int[] _PanelArray
-#pragma warning restore IDE1006 // 命名スタイル
+        public int[] PanelArray
         {
-            get => _PanelArrayField.GetValue(Src);
-            set => _PanelArrayField.SetValue(Src, value);
+            get => PanelArrayField.GetValue(Src) as int[];
+            set => PanelArrayField.SetValue(Src, value);
         }
 
-        private static FastField _SoundArrayField;
+        private static FastField SoundArrayField;
         /// <summary>
-        /// <see cref="SoundArray"/> プロパティのバッキングフィールドを取得・設定します。
+        /// サウンドの再生状態を表す値の配列を取得・設定します。
         /// </summary>
-#pragma warning disable IDE1006 // 命名スタイル
-        public int[] _SoundArray
-#pragma warning restore IDE1006 // 命名スタイル
+        public int[] SoundArray
         {
-            get => _SoundArrayField.GetValue(Src);
-            set => _SoundArrayField.SetValue(Src, value);
+            get => SoundArrayField.GetValue(Src) as int[];
+            set => SoundArrayField.SetValue(Src, value);
         }
 
-        private static FastField _OldSoundArrayField;
+        private static FastField OldSoundArrayField;
         /// <summary>
         /// 1 フレーム前におけるサウンドの再生状態を表す値の配列を取得・設定します。
         /// </summary>
-#pragma warning disable IDE1006 // 命名スタイル
-        public int[] _OldSoundArray
-#pragma warning restore IDE1006 // 命名スタイル
+        public int[] OldSoundArray
         {
-            get => _OldSoundArrayField.GetValue(Src);
-            set => _OldSoundArrayField.SetValue(Src, value);
+            get => OldSoundArrayField.GetValue(Src) as int[];
+            set => OldSoundArrayField.SetValue(Src, value);
         }
 
-        private static FastField LocationManagerField;
+        private static FastField LocationField;
         /// <summary>
-        /// 自列車の位置情報に関する処理を行う <see cref="UserVehicleLocationManager"/> を取得・設定します。
+        /// 自列車の位置情報を取得・設定します。
         /// </summary>
-        public UserVehicleLocationManager LocationManager
+        public VehicleLocation Location
         {
-            get => UserVehicleLocationManager.FromSource(LocationManagerField.GetValue(Src));
-            set => LocationManagerField.SetValue(Src, value?.Src);
+            get => VehicleLocation.FromSource(LocationField.GetValue(Src));
+            set => LocationField.SetValue(Src, value?.Src);
         }
 
         private static FastField StateStoreField;
@@ -213,6 +198,34 @@ namespace BveTypes.ClassWrappers
             get => HandleSet.FromSource(AtsHandlesField.GetValue(Src));
             set => AtsHandlesField.SetValue(Src, value?.Src);
         }
+
+        private static WrapperEvent<EventHandler<AtsSoundEventArgs>> LoopSoundRequestedEvent;
+        /// <summary>
+        /// ATS サウンドのループ再生が要求されたときに発生します。
+        /// </summary>
+        public event EventHandler<AtsSoundEventArgs> LoopSoundRequested
+        {
+            add => LoopSoundRequestedEvent.Add(Src, value);
+            remove => LoopSoundRequestedEvent.Remove(Src, value);
+        }
+        /// <summary>
+        /// <see cref="LoopSoundRequested"/> イベントを実行します。
+        /// </summary>
+        public void LoopSoundRequested_Invoke(AtsSoundEventArgs args) => LoopSoundRequestedEvent.Invoke(Src, args);
+
+        private static WrapperEvent<EventHandler<AtsSoundEventArgs>> PlaySoundRequestedEvent;
+        /// <summary>
+        /// ATS サウンドの再生が要求されたときに発生します。
+        /// </summary>
+        public event EventHandler<AtsSoundEventArgs> PlaySoundRequested
+        {
+            add => PlaySoundRequestedEvent.Add(Src, value);
+            remove => PlaySoundRequestedEvent.Remove(Src, value);
+        }
+        /// <summary>
+        /// <see cref="PlaySoundRequested"/> イベントを実行します。
+        /// </summary>
+        public void PlaySoundRequested_Invoke(AtsSoundEventArgs args) => PlaySoundRequestedEvent.Invoke(Src, args);
 
         private static FastMethod OnSetBeaconDataMethod;
         /// <summary>
@@ -310,5 +323,73 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         /// <param name="time">現在時刻。</param>
         public void OnElapse(int time) => OnElapseMethod.Invoke(Src, new object[] { time });
+
+
+        /// <summary>
+        /// <see cref="PlaySoundRequested"/>、<see cref="LoopSoundRequested"/> イベントのデータを提供します。
+        /// </summary>
+        public class AtsSoundEventArgs : ClassWrapperBase
+        {
+            [InitializeClassWrapper]
+            private static void Initialize(BveTypeSet bveTypes)
+            {
+                ClassMemberSet members = bveTypes.GetClassInfoOf<AtsSoundEventArgs>();
+
+                Constructor = members.GetSourceConstructor();
+
+                SoundIndexField = members.GetSourceFieldOf(nameof(SoundIndex));
+                VolumeField = members.GetSourceFieldOf(nameof(Volume));
+            }
+
+            /// <summary>
+            /// オリジナル オブジェクトから <see cref="AtsSoundEventArgs"/> クラスの新しいインスタンスを初期化します。
+            /// </summary>
+            /// <param name="src">ラップするオリジナル オブジェクト。</param>
+            protected AtsSoundEventArgs(object src) : base(src)
+            {
+            }
+
+            private static FastConstructor Constructor;
+            /// <summary>
+            /// <see cref="ObjectPassedEventArgs"/> クラスの新しいインスタンスを初期化します。
+            /// </summary>
+            /// <param name="soundIndex">通過したマップオブジェクト。</param>
+            /// <param name="volume">下げる音量の符号付き大きさ [B]。0 または負の値で指定してください。</param>
+            public AtsSoundEventArgs(int soundIndex, int volume)
+                : this(Constructor.Invoke(new object[] { soundIndex, volume }))
+            {
+            }
+
+            /// <summary>
+            /// オリジナル オブジェクトからラッパーのインスタンスを生成します。
+            /// </summary>
+            /// <param name="src">ラップするオリジナル オブジェクト。</param>
+            /// <returns>オリジナル オブジェクトをラップした <see cref="AtsSoundEventArgs"/> クラスのインスタンス。</returns>
+            [CreateClassWrapperFromSource]
+            public static AtsSoundEventArgs FromSource(object src) => src is null ? null : new AtsSoundEventArgs(src);
+
+            private static FastField SoundIndexField;
+            /// <summary>
+            /// 操作対象となる ATS サウンドのインデックスを取得・設定します。
+            /// </summary>
+            public int SoundIndex
+            {
+                get => (int)SoundIndexField.GetValue(Src);
+                set => SoundIndexField.SetValue(Src, value);
+            }
+
+            private static FastField VolumeField;
+            /// <summary>
+            /// 下げる音量の符号付き大きさ [B] を取得・設定します。
+            /// </summary>
+            /// <remarks>
+            /// 0 または負の値で指定してください。
+            /// </remarks>
+            public int Volume
+            {
+                get => (int)VolumeField.GetValue(Src);
+                set => VolumeField.SetValue(Src, value);
+            }
+        }
     }
 }

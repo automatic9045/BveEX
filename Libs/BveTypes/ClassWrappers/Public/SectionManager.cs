@@ -63,19 +63,19 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 現在の閉塞における信号インデックスを取得します。
         /// </summary>
-        public int CurrentSectionSignalIndex => CurrentSectionSignalIndexGetMethod.Invoke(Src, null);
+        public int CurrentSectionSignalIndex => (int)CurrentSectionSignalIndexGetMethod.Invoke(Src, null);
 
         private static FastMethod CurrentSectionSpeedLimitGetMethod;
         /// <summary>
         /// 現在の閉塞における、信号による制限速度 [m/s] を取得します。
         /// </summary>
-        public double CurrentSectionSpeedLimit => CurrentSectionSpeedLimitGetMethod.Invoke(Src, null);
+        public double CurrentSectionSpeedLimit => (double)CurrentSectionSpeedLimitGetMethod.Invoke(Src, null);
 
         private static FastMethod ForwardSectionSpeedLimitGetMethod;
         /// <summary>
         /// 次の閉塞における、信号による制限速度 [m/s] を取得します。
         /// </summary>
-        public double ForwardSectionSpeedLimit => ForwardSectionSpeedLimitGetMethod.Invoke(Src, null);
+        public double ForwardSectionSpeedLimit => (double)ForwardSectionSpeedLimitGetMethod.Invoke(Src, null);
 
         private static FastMethod LastSectionGetMethod;
         /// <summary>
@@ -109,7 +109,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int PreTrainSectionIndex
         {
-            get => PreTrainSectionIndexField.GetValue(Src);
+            get => (int)PreTrainSectionIndexField.GetValue(Src);
             set => PreTrainSectionIndexField.SetValue(Src, value);
         }
 
@@ -126,18 +126,8 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public List<int> StopSignalSectionIndexes
         {
-            get => StopSignalSectionIndexesField.GetValue(Src);
+            get => StopSignalSectionIndexesField.GetValue(Src) as List<int>;
             set => StopSignalSectionIndexesField.SetValue(Src, value);
-        }
-
-        /// <summary>
-        /// 非推奨のプロパティです。
-        /// </summary>
-        [Obsolete(nameof(StopSignalSectionIndexes) + " プロパティを使用してください。")]
-        public List<int> SectionIndexesTrainOn
-        {
-            get => StopSignalSectionIndexes;
-            set => StopSignalSectionIndexes = value;
         }
 
         private static FastField PreTrainLocationField;
@@ -146,7 +136,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double PreTrainLocation
         {
-            get => PreTrainLocationField.GetValue(Src);
+            get => (double)PreTrainLocationField.GetValue(Src);
             set => PreTrainLocationField.SetValue(Src, value);
         }
 

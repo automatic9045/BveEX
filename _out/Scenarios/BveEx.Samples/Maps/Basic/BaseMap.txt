@@ -1,0 +1,110 @@
+BveTs Map 2.02:utf-8
+
+include '[[BveEx::NOMPI]] このマップでは AtsEX マッププラグインを使用しています。正常動作には AtsEX のインストールが必要です。詳細は https://automatic9045.github.io をご覧ください。';
+include '[[BveEx::NOMPI]] This map requires to install AtsEX to execute map plugins. For more information, visit https://automatic9045.github.io';
+
+Structure.Load(ex_relativedir + 'Structures.csv');
+Signal.Load(ex_relativedir + 'Signal.csv');
+
+Curve.SetGauge(1.067);
+Curve.SetCenter(1.067 / 2);
+
+Track['1'].Cant.SetGauge(1.067);
+Track['1'].Cant.SetCenter(1.067 / 2);
+Track['1'].X.Interpolate(-3.8);
+
+-100;
+	Background.Change('Bg1');
+
+	Repeater['Gnd'].Begin('0', 0, -1, 0, 0, 0, 0, 0, 0, 25, 'Ground1a', 'Ground1b', 'Ground1c', 'Ground1d', 'Ground1e' );
+
+	Repeater['Track0'].Begin0('0', 3, 5, 5, 'Ballast0', 'Ballast1', 'Ballast2', 'Ballast3', 'Ballast4');
+	Repeater['Track0RailL'].Begin('0', -0.5335, 0, 0, 0, 0, 0, 3, 5, 5, 'RailL0', 'RailL1', 'RailL2', 'RailL3', 'RailL4');
+	Repeater['Track0RailR'].Begin('0', 0.5335, 0, 0, 0, 0, 0, 3, 5, 5, 'RailR0', 'RailR1', 'RailR2', 'RailR3', 'RailR4');
+
+	Repeater['Track1'].Begin0('1', 3, 5, 5, 'Ballast0', 'Ballast1', 'Ballast2', 'Ballast3', 'Ballast4');
+	Repeater['Track1RailL'].Begin('1', -0.5335, 0, 0, 0, 0, 0, 3, 5, 5, 'RailL0', 'RailL1', 'RailL2', 'RailL3', 'RailL4');
+	Repeater['Track1RailR'].Begin('1', 0.5335, 0, 0, 0, 0, 0, 3, 5, 5, 'RailR0', 'RailR1', 'RailR2', 'RailR3', 'RailR4');
+	
+	Repeater['Form0R'].Begin0('0', 1, 5, 5, 'FormR');
+	Repeater['Form0CR'].Begin0('0', 1, 5, 5, 'FormCR');
+	Repeater['Form0WallR'].Begin0('0', 1, 5, 5, 'FormWallR');
+	
+0;
+	Station['1_1'].Put(-1, -5, 5);
+	structure['Stop6'].Put('0', -2, 0, 0, 0, 0, 0, 0, 0);
+
+15;
+	Repeater['Form0R'].End();
+	Repeater['Form0CR'].End();
+	Repeater['Form0WallR'].End();
+
+1365;
+	Repeater['Form0R'].Begin0('0', 1, 5, 5, 'FormR');
+	Repeater['Form0CR'].Begin0('0', 1, 5, 5, 'FormCR');
+	Repeater['Form0WallR'].Begin0('0', 1, 5, 5, 'FormWallR');
+
+1500;
+	Station['1_2'].Put(-1, -5, 5);
+	structure['Stop6'].Put('0', -2, 0, 0, 0, 0, 0, 0, 0);
+	
+1515;
+	Repeater['Form0R'].End();
+	Repeater['Form0CR'].End();
+	Repeater['Form0WallR'].End();
+	
+2865;
+	Repeater['Form0R'].Begin0('0', 1, 5, 5, 'FormR');
+	Repeater['Form0CR'].Begin0('0', 1, 5, 5, 'FormCR');
+	Repeater['Form0WallR'].Begin0('0', 1, 5, 5, 'FormWallR');
+
+3000;
+	Station['1_3'].Put(-1, -5, 5);
+	structure['Stop6'].Put('0', -2, 0, 0, 0, 0, 0, 0, 0);
+	
+3015;
+	Repeater['Form0R'].End();
+	Repeater['Form0CR'].End();
+	Repeater['Form0WallR'].End();
+	
+4365;
+	Repeater['Form0R'].Begin0('0', 1, 5, 5, 'FormR');
+	Repeater['Form0CR'].Begin0('0', 1, 5, 5, 'FormCR');
+	Repeater['Form0WallR'].Begin0('0', 1, 5, 5, 'FormWallR');
+
+4500;
+	Station['1_4'].Put(-1, -5, 5);
+	structure['Stop6'].Put('0', -2, 0, 0, 0, 0, 0, 0, 0);
+	
+4515;
+	Repeater['Form0R'].End();
+	Repeater['Form0CR'].End();
+	Repeater['Form0WallR'].End();
+	
+5865;
+	Repeater['Form0R'].Begin0('0', 1, 5, 5, 'FormR');
+	Repeater['Form0CR'].Begin0('0', 1, 5, 5, 'FormCR');
+	Repeater['Form0WallR'].Begin0('0', 1, 5, 5, 'FormWallR');
+
+6000;
+	Station['1_5'].Put(-1, -5, 5);
+	structure['Stop6'].Put('0', -2, 0, 0, 0, 0, 0, 0, 0);
+	
+6015;
+	Repeater['Form0R'].End();
+	Repeater['Form0CR'].End();
+	Repeater['Form0WallR'].End();
+	
+7365;
+	Repeater['Form0R'].Begin0('0', 1, 5, 5, 'FormR');
+	Repeater['Form0CR'].Begin0('0', 1, 5, 5, 'FormCR');
+	Repeater['Form0WallR'].Begin0('0', 1, 5, 5, 'FormWallR');
+
+7500;
+	Station['1_6'].Put(-1, -5, 5);
+	structure['Stop6'].Put('0', -2, 0, 0, 0, 0, 0, 0, 0);
+	
+7515;
+	Repeater['Form0R'].End();
+	Repeater['Form0CR'].End();
+	Repeater['Form0WallR'].End();

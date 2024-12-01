@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{15F8005B-285B-4B98-B4D8-13978AD876F8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BveEx</RootNamespace>
+    <AssemblyName>BveEx</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony, Version=2.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lib.Harmony.2.2.2\lib\net48\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Irony, Version=1.1.0.0, Culture=neutral, PublicKeyToken=ca48ace7223ead47, processorArchitecture=MSIL">
+      <HintPath>..\packages\Irony.1.1.0\lib\net40\Irony.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mackoy.IInputDevice">
+      <HintPath>..\LocalReferences\BveTs\Mackoy.IInputDevice.DLL</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mackoy.XmlInterfaces">
+      <HintPath>..\LocalReferences\BveTs\Mackoy.XmlInterfaces.DLL</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis, Version=4.9.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.Common.4.9.2\lib\netstandard2.0\Microsoft.CodeAnalysis.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.Scripting, Version=4.9.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.Scripting.Common.4.9.2\lib\netstandard2.0\Microsoft.CodeAnalysis.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamic, Version=1.3.2.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamicLanguageRuntime.1.3.2\lib\net45\Microsoft.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting, Version=1.3.2.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamicLanguageRuntime.1.3.2\lib\net45\Microsoft.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.Metadata, Version=1.3.2.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamicLanguageRuntime.1.3.2\lib\net45\Microsoft.Scripting.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="ObjectiveHarmonyPatch, Version=1.1.40209.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ObjectiveHarmonyPatch.1.1.0\lib\ObjectiveHarmonyPatch.dll</HintPath>
+    </Reference>
+    <Reference Include="SlimDX, Version=4.0.13.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9, processorArchitecture=x86">
+      <HintPath>..\packages\SlimDX.4.0.13.44\lib\NET40\SlimDX.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.8.0.0\lib\net462\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.Metadata, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.Metadata.8.0.0\lib\net462\System.Reflection.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encoding.CodePages.8.0.0\lib\net462\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnembeddedResources, Version=1.0.30529.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UnembeddedResources.1.0.0\lib\UnembeddedResources.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BveHacker\Services\ConfigFormHacker.cs" />
+    <Compile Include="BveHacker\Services\MapLoaderHacker.cs" />
+    <Compile Include="ErrorDialog.cs" />
+    <Compile Include="Launching\LaunchModeException.cs" />
+    <Compile Include="Main\AtsPluginOverrider.cs" />
+    <Compile Include="Main\BveEx.PatchEvents.cs" />
+    <Compile Include="Launching\LaunchModeManager.cs" />
+    <Compile Include="Main\PatchSet.cs" />
+    <Compile Include="BveHacker\Services\HeaderParser.cs" />
+    <Compile Include="Native\BveTypeSetLoader.cs" />
+    <Compile Include="Plugins\Extensions\ExtensionSetFactory.cs" />
+    <Compile Include="Main\ExtensionService.cs" />
+    <Compile Include="Native\CallerInfo.cs" />
+    <Compile Include="Native\FrameSpan.cs" />
+    <Compile Include="Native\InputDevices\InputDeviceMain.cs" />
+    <Compile Include="Plugins\AssemblyPluginPackage.cs" />
+    <Compile Include="Plugins\Extensions\Data\Extension.cs" />
+    <Compile Include="Plugins\Extensions\Data\LoadedExtensions.cs" />
+    <Compile Include="Plugins\Extensions\ExtensionPath.cs" />
+    <Compile Include="Plugins\IPluginPackage.cs" />
+    <Compile Include="Plugins\MapListener.cs" />
+    <Compile Include="Plugins\MapPluginFactory.cs" />
+    <Compile Include="Plugins\Native\Imports.cs" />
+    <Compile Include="Plugins\Native\Library.cs" />
+    <Compile Include="Plugins\Native\LibraryProcedure.cs" />
+    <Compile Include="Plugins\Native\NativePlugin.cs" />
+    <Compile Include="Plugins\Native\NativePluginBuilder.cs" />
+    <Compile Include="Plugins\Native\NativePluginPackage.cs" />
+    <Compile Include="Plugins\PluginLoader.PluginLoadErrorQueue.cs" />
+    <Compile Include="BveHacker\Services\MainFormHacker.cs" />
+    <Compile Include="BveHacker\Services\ScenarioHacker.cs" />
+    <Compile Include="BveHacker\Services\StructureSetLifeProlonger.cs" />
+    <Compile Include="Main\BveEx.cs" />
+    <Compile Include="Main\ScenarioService.cs" />
+    <Compile Include="BveHacker\BveHacker.cs" />
+    <Compile Include="Plugins\PluginLoadErrorResolver.cs" />
+    <Compile Include="Native\LauncherCompatibilityVersionAttribute.cs" />
+    <Compile Include="Plugins\Extensions\ExtensionSet.cs" />
+    <Compile Include="Plugins\PluginSourceSet.Concat.cs" />
+    <Compile Include="Plugins\PluginSourceSet.cs" />
+    <Compile Include="Plugins\PluginSet.cs" />
+    <Compile Include="Plugins\Identifier.cs" />
+    <Compile Include="Plugins\PluginLoader.cs" />
+    <Compile Include="Plugins\PluginSourceSet.FromDirectory.cs" />
+    <Compile Include="Plugins\PluginSourceSet.FromPluginUsing.cs" />
+    <Compile Include="Plugins\ReferencedPluginHostGetter.cs" />
+    <Compile Include="Plugins\Scripting\CSharp\CSharpScriptPlugin.cs" />
+    <Compile Include="Plugins\Scripting\Globals\ScenarioCreatedGlobals.cs" />
+    <Compile Include="Plugins\Scripting\Globals\StartedGlobals.cs" />
+    <Compile Include="Plugins\Scripting\Globals\TickGlobals.cs" />
+    <Compile Include="Plugins\Scripting\IronPython2\IronPython2Plugin.cs" />
+    <Compile Include="Plugins\Scripting\ScriptPluginBase.cs" />
+    <Compile Include="Plugins\Scripting\ScriptPluginBuilder.cs" />
+    <Compile Include="Plugins\Scripting\ScriptPluginPackage.cs" />
+    <Compile Include="Plugins\Scripting\ScriptPluginPackage.InformationBuilder.cs" />
+    <Compile Include="Plugins\Scripting\ScriptPluginPackage.ScriptsBuilder.cs" />
+    <Compile Include="Plugins\VehiclePluginFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Troubleshooting\TroubleshooterSet.cs" />
+    <Compile Include="VersionForm\PluginListTabPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VersionForm\PluginListItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VersionForm\VersionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VersionForm\VersionForm.gui.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VersionForm\VersionFormProvider.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BveEx.Diagnostics\BveEx.Diagnostics.csproj">
+      <Project>{bec38da8-37e2-4db6-80ff-33fe4e25e1a9}</Project>
+      <Name>BveEx.Diagnostics</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\BveEx.PluginHost\BveEx.PluginHost.csproj">
+      <Project>{ac6ebf16-d22b-4da8-a0be-5afb729ea2e4}</Project>
+      <Name>BveEx.PluginHost</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\BveEx.Scripting\BveEx.Scripting.csproj">
+      <Project>{47e87f46-20fc-4094-a733-edd30819f1d5}</Project>
+      <Name>BveEx.Scripting</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Extensions\BveEx.CoreExtensions\BveEx.CoreExtensions.csproj">
+      <Project>{fbe0c5ab-7271-4801-a862-af39dd32c829}</Project>
+      <Name>BveEx.CoreExtensions</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Libs\BveTypes\BveTypes.csproj">
+      <Project>{3658ede1-0c3e-4104-a351-64981e4f82df}</Project>
+      <Name>BveTypes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libs\FastMember\FastMember.csproj">
+      <Project>{b63adef8-3bf9-48e1-8b61-8fa042b19f89}</Project>
+      <Name>FastMember</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libs\TypeWrapping\TypeWrapping.csproj">
+      <Project>{28fc1147-db95-42f0-aeb3-ae8ae93f0179}</Project>
+      <Name>TypeWrapping</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\BveEx.ja.resx" />
+    <Content Include="Resources\BveEx.resx" />
+    <Content Include="Resources\ScenarioService.ja.resx" />
+    <Content Include="Resources\ScenarioService.resx" />
+    <Content Include="Resources\PluginLoader.ja.resx" />
+    <Content Include="Resources\PluginLoader.resx" />
+    <Content Include="Resources\PluginSourceSet.ja.resx" />
+    <Content Include="Resources\PluginSourceSet.resx" />
+    <Content Include="Resources\ScriptPluginBase.ja.resx" />
+    <Content Include="Resources\ScriptPluginBase.resx" />
+    <Content Include="Resources\ScriptPluginPackage.ja.resx" />
+    <Content Include="Resources\ScriptPluginPackage.resx" />
+    <Content Include="Resources\VersionForm.ja.resx" />
+    <Content Include="Resources\VersionForm.resx" />
+    <Content Include="Resources\VersionFormProvider.ja.resx" />
+    <Content Include="Resources\VersionFormProvider.resx" />
+    <EmbeddedResource Include="Plugins\BveExPluginUsingXmlSchema.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Plugins\Scripting\BveExScriptPluginPackageManifestXmlSchema.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Content Include="Resources\PluginLoadErrorResolver.ja.resx" />
+    <Content Include="Resources\PluginLoadErrorResolver.resx" />
+    <Content Include="Resources\Plugins\Extensions\ExtensionSet.ja.resx" />
+    <Content Include="Resources\Plugins\Extensions\ExtensionSet.resx" />
+    <Content Include="Resources\BveHacker.resx" />
+    <Content Include="Resources\BveHacker.ja.resx" />
+    <Content Include="Resources\BveTypeSetLoader.resx" />
+    <Content Include="Resources\BveTypeSetLoader.ja.resx" />
+    <Content Include="Resources\InputDeviceMain.ja.resx" />
+    <Content Include="Resources\InputDeviceMain.resx" />
+    <Content Include="Resources\ErrorDialog.ja.resx" />
+    <Content Include="Resources\ErrorDialog.resx" />
+    <Content Include="Resources\Plugins\Native\Library.ja.resx" />
+    <Content Include="Resources\Plugins\Native\Library.resx" />
+    <Content Include="Resources\PluginListTabPage.resx" />
+    <Content Include="Resources\PluginListTabPage.ja.resx" />
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.4\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.4\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /e /y /i "$(TargetDir)" "$(SolutionDir)_out\BveEx\Debug\"
+xcopy /e /y /i "$(ProjectDir)Resources\" "$(SolutionDir)_out\BveEx\Debug\Resources\Core\"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+</Project>

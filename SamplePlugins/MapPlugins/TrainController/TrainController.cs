@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Input.Native;
-using AtsEx.PluginHost.Plugins;
+using BveEx.Extensions.Native;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Input;
+using BveEx.PluginHost.Plugins;
 
-namespace AtsEx.Samples.MapPlugins.TrainController
+namespace BveEx.Samples.MapPlugins.TrainController
 {
     [Plugin(PluginType.MapPlugin)]
     public class TrainController : AssemblyPluginBase
@@ -22,8 +23,9 @@ namespace AtsEx.Samples.MapPlugins.TrainController
         {
             BveHacker.ScenarioCreated += OnScenarioCreated;
 
-            Native.NativeKeys.AtsKeys[NativeAtsKeyName.D].Pressed += OnDPressed;
-            Native.NativeKeys.AtsKeys[NativeAtsKeyName.E].Pressed += OnEPressed;
+            INative native = Extensions.GetExtension<INative>();
+            native.AtsKeys.GetKey(AtsKeyName.D).Pressed += OnDPressed;
+            native.AtsKeys.GetKey(AtsKeyName.E).Pressed += OnEPressed;
         }
 
         private void OnDPressed(object sender, EventArgs e) => Train.TrainInfo.TrackKey = "1";
@@ -32,9 +34,6 @@ namespace AtsEx.Samples.MapPlugins.TrainController
         public override void Dispose()
         {
             BveHacker.ScenarioCreated -= OnScenarioCreated;
-
-            Native.NativeKeys.AtsKeys[NativeAtsKeyName.D].Pressed -= OnDPressed;
-            Native.NativeKeys.AtsKeys[NativeAtsKeyName.E].Pressed -= OnEPressed;
         }
 
         private void OnScenarioCreated(ScenarioCreatedEventArgs e)
@@ -47,10 +46,11 @@ namespace AtsEx.Samples.MapPlugins.TrainController
             Train = e.Scenario.Trains["test"];
         }
 
-        public override TickResult Tick(TimeSpan elapsed)
+        public override void Tick(TimeSpan elapsed)
         {
-            if (Native.NativeKeys.AtsKeys[NativeAtsKeyName.F].IsPressed) Speed -= 10.0 * elapsed.Ticks / TimeSpan.TicksPerMillisecond / 1000;
-            if (Native.NativeKeys.AtsKeys[NativeAtsKeyName.G].IsPressed) Speed += 10.0 * elapsed.Ticks / TimeSpan.TicksPerMillisecond / 1000;
+            INative native = Extensions.GetExtension<INative>();
+            if (native.AtsKeys.GetKey(AtsKeyName.F).IsPressed) Speed -= 10.0 * elapsed.Ticks / TimeSpan.TicksPerMillisecond / 1000;
+            if (native.AtsKeys.GetKey(AtsKeyName.G).IsPressed) Speed += 10.0 * elapsed.Ticks / TimeSpan.TicksPerMillisecond / 1000;
 
             if (Speed > 0)
             {
@@ -65,8 +65,6 @@ namespace AtsEx.Samples.MapPlugins.TrainController
 
             Train.Location += Speed * elapsed.Ticks / TimeSpan.TicksPerMillisecond / 1000;
             Train.Speed = Speed;
-
-            return new MapPluginTickResult();
         }
     }
 }

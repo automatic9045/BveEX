@@ -46,7 +46,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double Value
         {
-            get => ValueGetMethod.Invoke(Src, null);
+            get => (double)ValueGetMethod.Invoke(Src, null);
             set => ValueSetMethod.Invoke(Src, new object[] { value });
         }
     }

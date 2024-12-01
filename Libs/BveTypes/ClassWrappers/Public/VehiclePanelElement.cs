@@ -85,7 +85,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Color Color
         {
-            get => ColorGetMethod.Invoke(Src, null);
+            get => (Color)ColorGetMethod.Invoke(Src, null);
             set => ColorSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -96,7 +96,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double Layer
         {
-            get => LayerGetMethod.Invoke(Src, null);
+            get => (double)LayerGetMethod.Invoke(Src, null);
             set => LayerSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -107,7 +107,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double[] Subject
         {
-            get => SubjectGetMethod.Invoke(Src, null);
+            get => SubjectGetMethod.Invoke(Src, null) as double[];
             set => SubjectSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -118,7 +118,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int SubjectIndex
         {
-            get => SubjectIndexGetMethod.Invoke(Src, null);
+            get => (int)SubjectIndexGetMethod.Invoke(Src, null);
             set => SubjectIndexSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -138,7 +138,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Rectangle ImageRectangle
         {
-            get => ImageRectangleGetMethod.Invoke(Src, null);
+            get => (Rectangle)ImageRectangleGetMethod.Invoke(Src, null);
             set => ImageRectangleSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -167,7 +167,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public string DaytimeImagePath
         {
-            get => DaytimeImagePathField.GetValue(Src);
+            get => DaytimeImagePathField.GetValue(Src) as string;
             set => DaytimeImagePathField.SetValue(Src, value);
         }
 
@@ -187,7 +187,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public string NighttimeImagePath
         {
-            get => NighttimeImagePathField.GetValue(Src);
+            get => NighttimeImagePathField.GetValue(Src) as string;
             set => NighttimeImagePathField.SetValue(Src, value);
         }
 
@@ -197,7 +197,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Matrix Matrix
         {
-            get => MatrixField.GetValue(Src);
+            get => (Matrix)MatrixField.GetValue(Src);
             set => MatrixField.SetValue(Src, value);
         }
 

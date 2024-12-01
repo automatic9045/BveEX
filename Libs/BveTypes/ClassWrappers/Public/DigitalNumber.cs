@@ -56,7 +56,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int Interval
         {
-            get => IntervalGetMethod.Invoke(Src, null);
+            get => (int)IntervalGetMethod.Invoke(Src, null);
             set => IntervalSetMethod.Invoke(Src, new object[] { value });
         }
     }

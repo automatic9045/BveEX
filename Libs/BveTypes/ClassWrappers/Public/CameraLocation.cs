@@ -57,7 +57,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Matrix TransformFromBlock
         {
-            get => TransformFromBlockGetMethod.Invoke(Src, null);
+            get => (Matrix)TransformFromBlockGetMethod.Invoke(Src, null);
             set => TransformFromBlockSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -68,7 +68,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Matrix TransformFromCameraHomePosition
         {
-            get => TransformFromCameraHomePositionGetMethod.Invoke(Src, null);
+            get => (Matrix)TransformFromCameraHomePositionGetMethod.Invoke(Src, null);
             set => TransformFromCameraHomePositionSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -79,7 +79,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public RectangleF Plane
         {
-            get => PlaneGetMethod.Invoke(Src, null);
+            get => (RectangleF)PlaneGetMethod.Invoke(Src, null);
             set => PlaneSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -90,7 +90,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Vector3 Speed
         {
-            get => SpeedGetMethod.Invoke(Src, null);
+            get => (Vector3)SpeedGetMethod.Invoke(Src, null);
             set => SpeedSetMethod.Invoke(Src, new object[] { value });
         }
     }

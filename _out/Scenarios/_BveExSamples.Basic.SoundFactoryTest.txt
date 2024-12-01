@@ -1,0 +1,10 @@
+BveTs Scenario 2.00 : UTF-8
+
+Title = 普通 一橋→六合【SoundFactory サンプル】
+Route = BveEx.Samples\Maps\Basic\Samples\SoundFactoryTest\Map.txt
+RouteTitle = ★BveEX サンプル
+Vehicle = BveEx.Samples\Vehicles\Basic\Vehicle_Simple.txt
+VehicleTitle = BveEX 搭載サンプル車両
+Author = おーとま (automatic9045)
+Image = BveEx.Samples\Thumbnails\Basic\Default.png
+Comment = SoundFactory を利用してプラグインから音声を読み込み、再生するサンプルです。

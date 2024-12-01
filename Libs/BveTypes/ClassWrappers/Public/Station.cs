@@ -122,7 +122,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public string Name
         {
-            get => NameGetMethod.Invoke(Src, null);
+            get => NameGetMethod.Invoke(Src, null) as string;
             set => NameSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -134,7 +134,7 @@ namespace BveTypes.ClassWrappers
         /// <value>0 時丁度から到着時刻までに経過したミリ秒数 [ms]。</value>
         public int ArrivalTimeMilliseconds
         {
-            get => ArrivalTimeGetMethod.Invoke(Src, null);
+            get => (int)ArrivalTimeGetMethod.Invoke(Src, null);
             set => ArrivalTimeSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -155,18 +155,8 @@ namespace BveTypes.ClassWrappers
         /// <value>0 時丁度から発車時刻または通過時刻までに経過したミリ秒数 [ms]。</value>
         public int DepartureTimeMilliseconds
         {
-            get => DepartureTimeGetMethod.Invoke(Src, null);
+            get => (int)DepartureTimeGetMethod.Invoke(Src, null);
             set => DepartureTimeSetMethod.Invoke(Src, new object[] { value });
-        }
-
-        /// <summary>
-        /// 互換性のために残されている旧名のプロパティです。<see cref="DepartureTimeMilliseconds"/> を使用してください。
-        /// </summary>
-        [Obsolete]
-        public int DepertureTimeMilliseconds
-        {
-            get => DepartureTimeMilliseconds;
-            set => DepartureTimeMilliseconds = value;
         }
 
         /// <summary>
@@ -194,7 +184,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int DoorCloseTimeMilliseconds
         {
-            get => DoorCloseTimeGetMethod.Invoke(Src, null);
+            get => (int)DoorCloseTimeGetMethod.Invoke(Src, null);
             set => DoorCloseTimeSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -215,7 +205,7 @@ namespace BveTypes.ClassWrappers
         /// <value>0 時丁度から駅にジャンプしたときの時刻までに経過したミリ秒数 [ms]。</value>
         public int DefaultTimeMilliseconds
         {
-            get => DefaultTimeGetMethod.Invoke(Src, null);
+            get => (int)DefaultTimeGetMethod.Invoke(Src, null);
             set => DefaultTimeSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -235,7 +225,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public bool Pass
         {
-            get => PassGetMethod.Invoke(Src, null);
+            get => (bool)PassGetMethod.Invoke(Src, null);
             set => PassSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -246,7 +236,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public bool IsTerminal
         {
-            get => IsTerminalGetMethod.Invoke(Src, null);
+            get => (bool)IsTerminalGetMethod.Invoke(Src, null);
             set => IsTerminalSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -257,7 +247,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int StoppageTimeMilliseconds
         {
-            get => StoppageTimeGetMethod.Invoke(Src, null);
+            get => (int)StoppageTimeGetMethod.Invoke(Src, null);
             set => StoppageTimeSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -277,7 +267,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int DoorSide
         {
-            get => DoorSideGetMethod.Invoke(Src, null);
+            get => (int)DoorSideGetMethod.Invoke(Src, null);
             set => DoorSideSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -329,16 +319,6 @@ namespace BveTypes.ClassWrappers
             set => DepartureSoundSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
-        /// <summary>
-        /// 互換性のために残されている旧名のプロパティです。<see cref="DepartureSound"/> を使用してください。
-        /// </summary>
-        [Obsolete]
-        public Sound DepertureSound
-        {
-            get => DepartureSound;
-            set => DepartureSound = value;
-        }
-
         private static FastMethod ArrivalSoundGetMethod;
         private static FastMethod ArrivalSoundSetMethod;
         /// <summary>
@@ -357,7 +337,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public bool SignalFlag
         {
-            get => SignalFlagGetMethod.Invoke(Src, null);
+            get => (bool)SignalFlagGetMethod.Invoke(Src, null);
             set => SignalFlagSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -368,7 +348,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double MarginMax
         {
-            get => MarginMaxGetMethod.Invoke(Src, null);
+            get => (double)MarginMaxGetMethod.Invoke(Src, null);
             set => MarginMaxSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -379,7 +359,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double MarginMin
         {
-            get => MarginMinGetMethod.Invoke(Src, null);
+            get => (double)MarginMinGetMethod.Invoke(Src, null);
             set => MarginMinSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -387,13 +367,13 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 停止位置誤差の下限の距離程 [m] を取得します。
         /// </summary>
-        public double MinStopPosition => MinStopPositionGetMethod.Invoke(Src, null);
+        public double MinStopPosition => (double)MinStopPositionGetMethod.Invoke(Src, null);
 
         private static FastMethod MaxStopPositionGetMethod;
         /// <summary>
         /// 停止位置誤差の上限の距離程 [m] を取得します。
         /// </summary>
-        public double MaxStopPosition => MaxStopPositionGetMethod.Invoke(Src, null);
+        public double MaxStopPosition => (double)MaxStopPositionGetMethod.Invoke(Src, null);
 
         private static FastMethod AlightingTimeGetMethod;
         private static FastMethod AlightingTimeSetMethod;
@@ -402,7 +382,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int AlightingTimeMilliseconds
         {
-            get => AlightingTimeGetMethod.Invoke(Src, null);
+            get => (int)AlightingTimeGetMethod.Invoke(Src, null);
             set => AlightingTimeSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -422,7 +402,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double TargetLoadFactor
         {
-            get => TargetLoadFactorGetMethod.Invoke(Src, null);
+            get => (double)TargetLoadFactorGetMethod.Invoke(Src, null);
             set => TargetLoadFactorSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -433,7 +413,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double CurrentLoadFactor
         {
-            get => CurrentLoadFactorGetMethod.Invoke(Src, null);
+            get => (double)CurrentLoadFactorGetMethod.Invoke(Src, null);
             set => CurrentLoadFactorSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -444,7 +424,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double DoorReopen
         {
-            get => DoorReopenGetMethod.Invoke(Src, null);
+            get => (double)DoorReopenGetMethod.Invoke(Src, null);
             set => DoorReopenSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -455,7 +435,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int StuckInDoorMilliseconds
         {
-            get => StuckInDoorGetMethod.Invoke(Src, null);
+            get => (int)StuckInDoorGetMethod.Invoke(Src, null);
             set => StuckInDoorSetMethod.Invoke(Src, new object[] { value });
         }
 

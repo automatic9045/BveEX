@@ -1,0 +1,56 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using BveTypes.ClassWrappers;
+using ObjectiveHarmonyPatch;
+
+namespace BveEx
+{
+    internal partial class BveEx
+    {
+        private void ListenPatchEvents()
+        {
+            Patches.LoadScenarioPatch.Invoked += (sender, e) =>
+            {
+                ScenarioInfo scenarioInfo = ScenarioInfo.FromSource(e.Args[0]);
+
+                ScenarioOpened?.Invoke(this, new ValueEventArgs<ScenarioInfo>(scenarioInfo));
+                return PatchInvokationResult.DoNothing(e);
+            };
+
+            Patches.DisposeScenarioPatch.Invoked += (sender, e) =>
+            {
+                Scenario scenario = Scenario.FromSource(e.Instance);
+
+                ScenarioClosed?.Invoke(this, new ValueEventArgs<Scenario>(scenario));
+                return PatchInvokationResult.DoNothing(e);
+            };
+
+
+            Patches.OnLoadPatch.Invoked += (sender, e) =>
+            {
+                OnLoad?.Invoke(this, EventArgs.Empty);
+                return PatchInvokationResult.DoNothing(e);
+            };
+
+            Patches.OnInitializePatch.Invoked += (sender, e) =>
+            {
+                OnInitialize?.Invoke(this, EventArgs.Empty);
+                return PatchInvokationResult.DoNothing(e);
+            };
+
+            Patches.OnElapsePatch.Invoked += (sender, e) =>
+            {
+                AtsPlugin atsPlugin = AtsPlugin.FromSource(e.Instance);
+
+                TimeSpan now = TimeSpan.FromMilliseconds((int)e.Args[0]);
+
+                OnElapse?.Invoke(this, new ValueEventArgs<TimeSpan>(now));
+                return PatchInvokationResult.DoNothing(e);
+            };
+        }
+    }
+}

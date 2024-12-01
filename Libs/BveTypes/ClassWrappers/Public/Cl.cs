@@ -49,7 +49,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public double BpInitialPressure
         {
-            get => BpInitialPressureGetMethod.Invoke(Src, null);
+            get => (double)BpInitialPressureGetMethod.Invoke(Src, null);
             set => BpInitialPressureSetMethod.Invoke(Src, new object[] { value });
         }
     }

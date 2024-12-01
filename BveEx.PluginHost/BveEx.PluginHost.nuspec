@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+	<metadata>
+		<id>BveEx.PluginHost</id>
+		<version>2.0.0-alpha.1</version>
+		<description>BVE Trainsim 5/6 用 BveEX プラグインを開発するための基本ライブラリです。</description>
+		<authors>AtsEX &amp; BveEX Project</authors>
+
+		<projectUrl>https://www.okaoka-depot.com/AtsEX/</projectUrl>
+		<icon>images\Icon_NuGet.png</icon>
+		<readme>docs\README_NuGet.md</readme>
+		<copyright>Copyright © 2022 automatic9045</copyright>
+		<tags>bve bve5 bve6</tags>
+		<repository type="git" url="https://github.com/automatic9045/AtsEX.git" />
+		<title>BveEX PluginHost</title>
+
+		<dependencies>
+		</dependencies>
+	</metadata>
+	<files>
+		<file src="README_NuGet.md" target="docs" />
+		<file src="Icon_NuGet.png" target="images" />
+		<file src="bin\Release\BveEx.PluginHost.dll" target="lib" />
+		<file src="bin\Release\BveEx.PluginHost.xml" target="lib" />
+		<file src="bin\Release\BveTypes.dll" target="lib" />
+		<file src="bin\Release\BveTypes.xml" target="lib" />
+		<file src="bin\Release\FastCaching.dll" target="lib" />
+		<file src="bin\Release\FastMember.dll" target="lib" />
+		<file src="bin\Release\TypeWrapping.dll" target="lib" />
+	</files>
+</package>

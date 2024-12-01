@@ -122,14 +122,6 @@ namespace BveTypes.ClassWrappers
         /// <param name="index">移動先のインデックス。</param>
         public void GoToByIndex(int index) => GoToByIndexMethod.Invoke(Src, new object[] { index });
 
-        /// <summary>
-        /// <see cref="GoTo(double)"/> メソッドと紛らわしいため、<see cref="GoToByIndex(int)"/> メソッドを使用してください。
-        /// </summary>
-        /// <seealso cref="GoToByIndex(int)"/>
-        /// <param name="index">移動先のインデックス。</param>
-        [Obsolete("指定した距離程へ移動する GoTo メソッドと紛らわしいため、GoToByIndex メソッドを使用してください。", true)]
-        public void GoTo(int index) => GoToByIndex(index);
-
 
         /// <summary>
         /// 自列車がマップ オブジェクトを通過したときに発生するイベントを処理するメソッドを表します。

@@ -9,10 +9,10 @@ using Zbx1425.DXDynamicTexture;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Plugins;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Plugins;
 
-namespace AtsEx.Samples.MapPlugins.DXDynamicTextureTest
+namespace BveEx.Samples.MapPlugins.DXDynamicTextureTest
 {
     [Plugin(PluginType.MapPlugin)]
     public class DXDynamicTextureTest : AssemblyPluginBase
@@ -34,13 +34,13 @@ namespace AtsEx.Samples.MapPlugins.DXDynamicTextureTest
 
         private void OnScenarioCreated(ScenarioCreatedEventArgs e)
         {
-            Model targetModel = e.Scenario.Route.StructureModels["dxdt-test"];
+            Model targetModel = e.Scenario.Map.StructureModels["dxdt-test"];
             TextureHandle = targetModel.Register("Stop6.png");
 
             GDIHelper = new GDIHelper(TextureHandle.Width, TextureHandle.Height);
         }
 
-        public override TickResult Tick(TimeSpan elapsed)
+        public override void Tick(TimeSpan elapsed)
         {
             if (TextureHandle.HasEnoughTimePassed(10))
             {
@@ -52,8 +52,6 @@ namespace AtsEx.Samples.MapPlugins.DXDynamicTextureTest
                 GDIHelper.EndGDI();
                 TextureHandle.Update(GDIHelper);
             }
-
-            return new MapPluginTickResult();
         }
     }
 }

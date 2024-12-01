@@ -56,7 +56,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double Capacity
         {
-            get => CapacityGetMethod.Invoke(Src, null);
+            get => (double)CapacityGetMethod.Invoke(Src, null);
             set => CapacitySetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -66,7 +66,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double Count
         {
-            get => CountField.GetValue(Src);
+            get => (double)CountField.GetValue(Src);
             set => CountField.SetValue(Src, value);
         }
     }

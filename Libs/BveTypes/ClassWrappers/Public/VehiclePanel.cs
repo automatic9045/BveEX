@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -79,7 +80,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public double Perspective
         {
-            get => PerspectiveGetMethod.Invoke(Src, null);
+            get => (double)PerspectiveGetMethod.Invoke(Src, null);
             set => PerspectiveSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -93,7 +94,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public double DistanceFromDriver
         {
-            get => DistanceFromDriverGetMethod.Invoke(Src, null);
+            get => (double)DistanceFromDriverGetMethod.Invoke(Src, null);
             set => DistanceFromDriverSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -110,7 +111,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Rectangle Border
         {
-            get => BorderGetMethod.Invoke(Src, null);
+            get => (Rectangle)BorderGetMethod.Invoke(Src, null);
             set => BorderSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -121,7 +122,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Point Center
         {
-            get => CenterGetMethod.Invoke(Src, null);
+            get => (Point)CenterGetMethod.Invoke(Src, null);
             set => CenterSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -132,7 +133,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Point Origin
         {
-            get => OriginGetMethod.Invoke(Src, null);
+            get => (Point)OriginGetMethod.Invoke(Src, null);
             set => OriginSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -152,7 +153,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double Resolution
         {
-            get => ResolutionGetMethod.Invoke(Src, null);
+            get => (double)ResolutionGetMethod.Invoke(Src, null);
             set => ResolutionSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -163,7 +164,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public WrappedList<VehiclePanelElement> Elements
         {
-            get => WrappedList<VehiclePanelElement>.FromSource(ElementsGetMethod.Invoke(Src, null));
+            get => WrappedList<VehiclePanelElement>.FromSource(ElementsGetMethod.Invoke(Src, null) as IList);
             set => ElementsSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 

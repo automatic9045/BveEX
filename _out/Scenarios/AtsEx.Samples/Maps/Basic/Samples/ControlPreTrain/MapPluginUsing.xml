@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<AtsExPluginUsing xmlns="http://automatic9045.github.io/ns/xmlschemas/AtsExPluginUsingXmlSchema.xsd">
-	<Assembly Path="MapPlugins\TrainController.dll" />
-	<Assembly Path="MapPlugins\PreTrainController.dll" />
-</AtsExPluginUsing>

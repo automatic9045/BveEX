@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AtsEx.Samples.MapPlugins.StationController
+namespace BveEx.Samples.MapPlugins.StationController
 {
     public partial class ControllerForm : Form
     {
@@ -37,7 +37,7 @@ namespace AtsEx.Samples.MapPlugins.StationController
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(480, 112);
             Font = new Font("Yu Gothic UI", 9);
-            Text = "AtsEX マッププラグイン 停車場リスト編集サンプル";
+            Text = "BveEX マッププラグイン 停車場リスト編集サンプル";
 
 
             NameKey = new Label()

@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<AtsExPluginUsing xmlns="http://automatic9045.github.io/ns/xmlschemas/AtsExPluginUsingXmlSchema.xsd">
-	<CSharpScript PackageManifestPath="MapPlugins\Empty.CSharpScript\Package.xml" />
-	<IronPython2 PackageManifestPath="MapPlugins\Empty.IronPython\Package.xml" />
-</AtsExPluginUsing>

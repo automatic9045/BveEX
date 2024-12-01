@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using AtsEx.Extensions.ContextMenuHacker;
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Plugins;
+using BveEx.Extensions.ContextMenuHacker;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Plugins;
 
-namespace AtsEx.Samples.VehiclePlugins.StateViewer
+namespace BveEx.Samples.VehiclePlugins.StateViewer
 {
     [Plugin(PluginType.VehiclePlugin)]
     public class StateViewer : AssemblyPluginBase
@@ -19,7 +19,7 @@ namespace AtsEx.Samples.VehiclePlugins.StateViewer
 
         public StateViewer(PluginBuilder services) : base(services)
         {
-            InstanceStore.Initialize(Native, BveHacker);
+            InstanceStore.Initialize(BveHacker);
 
             MenuItem = Extensions.GetExtension<IContextMenuHacker>().AddCheckableMenuItem("状態ウィンドウを表示", MenuItemCheckedChanged, ContextMenuItemType.Plugins);
 
@@ -39,11 +39,9 @@ namespace AtsEx.Samples.VehiclePlugins.StateViewer
             MenuItem.Dispose();
         }
 
-        public override TickResult Tick(TimeSpan elapsed)
+        public override void Tick(TimeSpan elapsed)
         {
             Form?.Tick();
-
-            return new VehiclePluginTickResult();
         }
 
         private void MenuItemCheckedChanged(object sender, EventArgs e)

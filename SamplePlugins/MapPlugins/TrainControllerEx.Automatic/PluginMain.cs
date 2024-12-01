@@ -9,11 +9,11 @@ using SlimDX.Direct3D9;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.Extensions.TrainDrawPatch;
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Plugins;
+using BveEx.Extensions.TrainDrawPatch;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Plugins;
 
-namespace AtsEx.Samples.MapPlugins.TrainControllerEx.Automatic
+namespace BveEx.Samples.MapPlugins.TrainControllerEx.Automatic
 {
     [Plugin(PluginType.MapPlugin)]
     public class PluginMain : AssemblyPluginBase
@@ -43,9 +43,8 @@ namespace AtsEx.Samples.MapPlugins.TrainControllerEx.Automatic
             Patch = Extensions.GetExtension<ITrainDrawPatchFactory>().Patch(nameof(Automatic), Train, DrawTrain);
         }
 
-        public override TickResult Tick(TimeSpan elapsed)
+        public override void Tick(TimeSpan elapsed)
         {
-            return new MapPluginTickResult();
         }
 
         public void DrawTrain(Direct3DProvider direct3DProvider, Matrix viewMatrix)
@@ -54,9 +53,9 @@ namespace AtsEx.Samples.MapPlugins.TrainControllerEx.Automatic
             {
                 if (structure.Model is null) return;
 
-                double angle = Native.VehicleState.Time.TotalSeconds;
+                double angle = BveHacker.Scenario.TimeManager.Time.TotalSeconds;
                 Matrix location = Matrix.RotationY((float)angle - (float)Math.PI / 2) * Matrix.Translation(15 + 8 * (float)Math.Sin(angle), -1, 162 + 8 * (float)Math.Cos(angle));
-                Matrix originLocation = BveHacker.Scenario.Route.MyTrack.GetTransform(0, BveHacker.Scenario.LocationManager.BlockIndex * 25);
+                Matrix originLocation = BveHacker.Scenario.Map.MyTrack.GetTransform(0, BveHacker.Scenario.VehicleLocation.BlockIndex * 25);
                 
                 direct3DProvider.Device.SetTransform(TransformState.World, location * originLocation * viewMatrix);
                 structure.Model.Draw(direct3DProvider, false);

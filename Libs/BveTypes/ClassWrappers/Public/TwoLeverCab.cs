@@ -34,6 +34,6 @@ namespace BveTypes.ClassWrappers
         /// <param name="src">ラップするオリジナル オブジェクト。</param>
         /// <returns>オリジナル オブジェクトをラップした <see cref="TwoLeverCab"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
-        public static new TwoLeverCab FromSource(object src) => src is null ? null : new TwoLeverCab(src);
+        public static TwoLeverCab FromSource(object src) => src is null ? null : new TwoLeverCab(src);
     }
 }

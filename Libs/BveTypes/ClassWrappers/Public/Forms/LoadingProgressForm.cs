@@ -21,7 +21,7 @@ namespace BveTypes.ClassWrappers
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<LoadingProgressForm>();
 
-            IsErrorCriticalField = members.GetSourceFieldOf(nameof(IsErrorCritical));
+            IsAbortedField = members.GetSourceFieldOf(nameof(IsAborted));
             ErrorCountField = members.GetSourceFieldOf(nameof(ErrorCount));
             PanelField = members.GetSourceFieldOf(nameof(Panel));
             ProgressBarField = members.GetSourceFieldOf(nameof(ProgressBar));
@@ -50,14 +50,14 @@ namespace BveTypes.ClassWrappers
         public static LoadingProgressForm FromSource(object src) => src is null ? null : new LoadingProgressForm(src);
 
 
-        private static FastField IsErrorCriticalField;
+        private static FastField IsAbortedField;
         /// <summary>
-        /// 読み込みの強制継続が不可能なエラーが発生しているかどうかを取得・設定します。
+        /// 読込が中止されたかどうかを取得・設定します。
         /// </summary>
-        public bool IsErrorCritical
+        public bool IsAborted
         {
-            get => IsErrorCriticalField.GetValue(Src);
-            set => IsErrorCriticalField.SetValue(Src, value);
+            get => (bool)IsAbortedField.GetValue(Src);
+            set => IsAbortedField.SetValue(Src, value);
         }
 
         private static FastField ErrorCountField;
@@ -66,7 +66,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int ErrorCount
         {
-            get => ErrorCountField.GetValue(Src);
+            get => (int)ErrorCountField.GetValue(Src);
             set => ErrorCountField.SetValue(Src, value);
         }
 
@@ -74,7 +74,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// フォームのレイアウトのための <see cref="System.Windows.Forms.Panel"/> を取得します。
         /// </summary>
-        public Panel Panel => PanelField.GetValue(Src);
+        public Panel Panel => PanelField.GetValue(Src) as Panel;
 
         private static FastField ProgressBarField;
         /// <summary>
@@ -82,7 +82,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public ProgressBar ProgressBar
         {
-            get => ProgressBarField.GetValue(Src);
+            get => ProgressBarField.GetValue(Src) as ProgressBar;
             set => ProgressBarField.SetValue(Src, value);
         }
 
@@ -90,7 +90,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// エラーの一覧を表示する <see cref="ListView"/> を取得します。
         /// </summary>
-        public ListView ErrorListView => ErrorListViewField.GetValue(Src);
+        public ListView ErrorListView => ErrorListViewField.GetValue(Src) as ListView;
 
 
         private static FastMethod ThrowErrorMethod1;
@@ -98,9 +98,9 @@ namespace BveTypes.ClassWrappers
         /// エラーをエラー一覧に追加します。
         /// </summary>
         /// <param name="text">エラーの内容を表すテキスト。</param>
-        /// <param name="senderFileName">エラーの発生元となるファイルのファイル名。</param>
-        /// <param name="lineIndex">エラーの発生元となる行番号。</param>
-        /// <param name="charIndex">エラーの発生元となる列番号。</param>
+        /// <param name="senderFileName">エラーの発生元となるファイルのファイル名。使用しない場合は <see cref="string.Empty"/> を指定します。</param>
+        /// <param name="lineIndex">エラーの発生元となる行番号。使用しない場合は 0 を指定します。</param>
+        /// <param name="charIndex">エラーの発生元となる列番号。使用しない場合は 0 を指定します。</param>
         public void ThrowError(string text, string senderFileName, int lineIndex, int charIndex)
             => ThrowErrorMethod1.Invoke(Src, new object[] { text, senderFileName, lineIndex, charIndex });
 

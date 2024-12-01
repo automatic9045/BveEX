@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<BveExPluginUsing>
+	<Native Path64="Ats\x64\EB.dll" Path32="Ats\x86\EB.dll" />
+	<Native Path64="Ats\x64\E217_ATC_ATS.dll" Path32="Ats\x86\E217_ATC_ATS.dll" />
+	<Native Path64="Ats\x64\TIMS_MON_Disp.dll" Path32="Ats\x86\TIMS_MON_Disp.dll" />
+	<Native Path64="Ats\x64\DoorInterlock.dll" Path32="Ats\x86\DoorInterlock.dll" />
+	<Native Path64="Ats\x64\ConstSpdCtrl.dll" Path32="Ats\x86\ConstSpdCtrl.dll" />
+	<Assembly Path="Ats\Samples\ConductorPatchTest.dll" />
+</BveExPluginUsing>

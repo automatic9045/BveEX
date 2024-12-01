@@ -55,7 +55,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int NeutralControlMode
         {
-            get => NeutralControlModeGetMethod.Invoke(Src, null);
+            get => (int)NeutralControlModeGetMethod.Invoke(Src, null);
             set => NeutralControlModeSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -66,7 +66,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int PowerControlMode
         {
-            get => PowerControlModeGetMethod.Invoke(Src, null);
+            get => (int)PowerControlModeGetMethod.Invoke(Src, null);
             set => PowerControlModeSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -77,7 +77,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int BrakeControlMode
         {
-            get => BrakeControlModeGetMethod.Invoke(Src, null);
+            get => (int)BrakeControlModeGetMethod.Invoke(Src, null);
             set => BrakeControlModeSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -88,7 +88,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double MinSpeed
         {
-            get => MinSpeedGetMethod.Invoke(Src, null);
+            get => (double)MinSpeedGetMethod.Invoke(Src, null);
             set => MinSpeedSetMethod.Invoke(Src, new object[] { value });
         }
     }

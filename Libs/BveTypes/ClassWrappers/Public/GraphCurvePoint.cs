@@ -57,12 +57,12 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// x 座標を取得します。
         /// </summary>
-        public double X => XGetMethod.Invoke(Src, null);
+        public double X => (double)XGetMethod.Invoke(Src, null);
 
         private static FastMethod YGetMethod;
         /// <summary>
         /// y 座標を取得します。
         /// </summary>
-        public double Y => YGetMethod.Invoke(Src, null);
+        public double Y => (double)YGetMethod.Invoke(Src, null);
     }
 }

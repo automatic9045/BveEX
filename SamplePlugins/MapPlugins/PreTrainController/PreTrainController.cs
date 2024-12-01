@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Plugins;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Plugins;
 
-using AtsEx.Extensions.PreTrainPatch;
+using BveEx.Extensions.PreTrainPatch;
 
-namespace AtsEx.Samples.MapPlugins.PreTrainController
+namespace BveEx.Samples.MapPlugins.PreTrainController
 {
     [Plugin(PluginType.MapPlugin)]
     public class PreTrainController : AssemblyPluginBase
@@ -45,7 +45,7 @@ namespace AtsEx.Samples.MapPlugins.PreTrainController
             PreTrainPatch = Extensions.GetExtension<IPreTrainPatchFactory>().Patch(nameof(PreTrainPatch), sectionManager, new PreTrainLocationConverter(Train, sectionManager));
         }
 
-        public override TickResult Tick(TimeSpan elapsed)
+        public override void Tick(TimeSpan elapsed)
         {
             if (Train.Location < 15.1)
             {
@@ -55,8 +55,6 @@ namespace AtsEx.Samples.MapPlugins.PreTrainController
             {
                 Train.Location = 1520.1;
             }
-
-            return new MapPluginTickResult();
         }
 
 

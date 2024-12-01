@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Input.Native;
-using AtsEx.PluginHost.Plugins;
+using BveEx.Extensions.Native;
+using BveEx.Extensions.SignalPatch;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Input;
+using BveEx.PluginHost.Plugins;
 
-using AtsEx.Extensions.SignalPatch;
-
-namespace AtsEx.Samples.MapPlugins.SignalController
+namespace BveEx.Samples.MapPlugins.SignalController
 {
     [Plugin(PluginType.MapPlugin)]
     public class SignalController : AssemblyPluginBase
@@ -24,11 +24,15 @@ namespace AtsEx.Samples.MapPlugins.SignalController
         {
             BveHacker.ScenarioCreated += OnScenarioCreated;
 
-            Native.NativeKeys.AtsKeys[NativeAtsKeyName.D].Pressed += OnDPressed;
-            Native.NativeKeys.AtsKeys[NativeAtsKeyName.E].Pressed += OnEPressed;
-            Native.NativeKeys.AtsKeys[NativeAtsKeyName.F].Pressed += OnFPressed;
-            Native.NativeKeys.AtsKeys[NativeAtsKeyName.G].Pressed += OnGPressed;
-            Native.NativeKeys.AtsKeys[NativeAtsKeyName.H].Pressed += OnHPressed;
+            INative native = Extensions.GetExtension<INative>();
+            native.VehicleSpecLoaded += (sender, e) =>
+            {
+                native.AtsKeys.GetKey(AtsKeyName.D).Pressed += OnDPressed;
+                native.AtsKeys.GetKey(AtsKeyName.E).Pressed += OnEPressed;
+                native.AtsKeys.GetKey(AtsKeyName.F).Pressed += OnFPressed;
+                native.AtsKeys.GetKey(AtsKeyName.G).Pressed += OnGPressed;
+                native.AtsKeys.GetKey(AtsKeyName.H).Pressed += OnHPressed;
+            };
         }
 
         private void OnDPressed(object sender, EventArgs e) => SignalIndex = 0;
@@ -48,14 +52,10 @@ namespace AtsEx.Samples.MapPlugins.SignalController
         {
             SignalPatch?.Dispose();
             BveHacker.ScenarioCreated -= OnScenarioCreated;
-
-            Native.NativeKeys.AtsKeys[NativeAtsKeyName.D].Pressed -= OnDPressed;
-            Native.NativeKeys.AtsKeys[NativeAtsKeyName.E].Pressed -= OnEPressed;
-            Native.NativeKeys.AtsKeys[NativeAtsKeyName.F].Pressed -= OnFPressed;
-            Native.NativeKeys.AtsKeys[NativeAtsKeyName.G].Pressed -= OnGPressed;
-            Native.NativeKeys.AtsKeys[NativeAtsKeyName.H].Pressed -= OnHPressed;
         }
 
-        public override TickResult Tick(TimeSpan elapsed) => new MapPluginTickResult();
+        public override void Tick(TimeSpan elapsed)
+        {
+        }
     }
 }

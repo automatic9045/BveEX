@@ -7,56 +7,44 @@ using System.Threading.Tasks;
 
 using BveTypes.ClassWrappers;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Handles;
-using AtsEx.PluginHost.Plugins;
-using AtsEx.PluginHost.Sound;
-using AtsEx.PluginHost.Sound.Native;
+using BveEx.PluginHost.Plugins;
 
-namespace AtsEx.Samples.VehiclePlugins.SimpleAts
+using BveEx.Extensions.Native;
+
+namespace BveEx.Samples.VehiclePlugins.SimpleAts
 {
     [Plugin(PluginType.VehiclePlugin)]
     public class SimpleAts : AssemblyPluginBase
     {
-        private readonly IAtsSound AtsSound;
+        private readonly INative Native;
 
         public SimpleAts(PluginBuilder builder) : base(builder)
         {
-            AtsSound = Native.AtsSounds.Register(0);
+            Native = Extensions.GetExtension<INative>();
         }
 
         public override void Dispose()
         {
         }
 
-        public override TickResult Tick(TimeSpan elapsed)
+        public override void Tick(TimeSpan elapsed)
         {
-            UserVehicleLocationManager locationManager = BveHacker.Scenario.LocationManager;
-            PluginHost.Handles.HandleSet handleSet = Native.Handles;
+            double speedMps = BveHacker.Scenario.VehicleLocation.Speed;
+            SoundPlayMode soundPlayMode = SoundPlayCommands.GetMode(Native.AtsSoundArray[0]);
 
-            double speedMps = locationManager.SpeedMeterPerSecond;
-
-            VehiclePluginTickResult tickResult = new VehiclePluginTickResult();
-            if (speedMps > 100d.KmphToMps()) // 100km/h以上出ていたら常用最大ブレーキ
+            if (speedMps > 100 / 3.6) // 100 km/h 以上出ていたら常用最大ブレーキ
             {
-                if (AtsSound.PlayState == PlayState.Stop) AtsSound.PlayLoop();
+                if (soundPlayMode == SoundPlayMode.Stop) Native.AtsSoundArray[0] = SoundPlayMode.PlayLooping.ToCommand();
 
-                int atsPowerNotch = 0;
-                int atsBrakeNotch = handleSet.Brake.MaxServiceBrakeNotch;
-
-                NotchCommandBase powerCommand = handleSet.Power.GetCommandToSetNotchTo(atsPowerNotch);
-                NotchCommandBase brakeCommand = handleSet.Brake.GetCommandToSetNotchTo(Math.Max(atsBrakeNotch, handleSet.Brake.Notch));
-                ReverserPositionCommandBase reverserCommand = ReverserPositionCommandBase.Continue;
-                ConstantSpeedCommand? constantSpeedCommand = ConstantSpeedCommand.Disable;
-
-                tickResult.HandleCommandSet = new HandleCommandSet(powerCommand, brakeCommand, reverserCommand, constantSpeedCommand);
+                AtsPlugin atsPlugin = BveHacker.Scenario.Vehicle.Instruments.AtsPlugin;
+                atsPlugin.AtsHandles.PowerNotch = 0;
+                atsPlugin.AtsHandles.BrakeNotch = Math.Max(atsPlugin.AtsHandles.NotchInfo.EmergencyBrakeNotch - 1, atsPlugin.Handles.BrakeNotch);
+                atsPlugin.AtsHandles.ConstantSpeedMode = ConstantSpeedMode.Disable;
             }
             else
             {
-                if (AtsSound.PlayState == PlayState.PlayingLoop) AtsSound.Stop();
+                if (soundPlayMode == SoundPlayMode.PlayLooping) Native.AtsSoundArray[0] = SoundPlayMode.Stop.ToCommand();
             }
-
-            return tickResult;
         }
     }
 }

@@ -30,11 +30,6 @@ namespace BveTypes.ClassWrappers
 
             AtsPluginGetMethod = members.GetSourcePropertyGetterOf(nameof(AtsPlugin));
             AtsPluginSetMethod = members.GetSourcePropertySetterOf(nameof(AtsPlugin));
-
-#pragma warning disable CS0612 // 型またはメンバーが旧型式です
-            PluginLoaderGetMethod = members.GetSourcePropertyGetterOf(nameof(PluginLoader));
-            PluginLoaderSetMethod = members.GetSourcePropertySetterOf(nameof(PluginLoader));
-#pragma warning restore CS0612 // 型またはメンバーが旧型式です
         }
 
         /// <summary>
@@ -74,35 +69,23 @@ namespace BveTypes.ClassWrappers
         private static FastMethod CabGetMethod;
         private static FastMethod CabSetMethod;
         /// <summary>
-        /// 運転台のハンドルを表す <see cref="CabBase"/> を取得します。
+        /// 運転台のハンドルを取得・設定します。
         /// </summary>
         public CabBase Cab
         {
-            get => (CabBase)ClassWrapperBase.CreateFromSource(CabGetMethod.Invoke(Src, null));
-            internal set => CabSetMethod.Invoke(Src, new object[] { value?.Src });
+            get => (CabBase)CreateFromSource(CabGetMethod.Invoke(Src, null));
+            set => CabSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
         private static FastMethod AtsPluginGetMethod;
         private static FastMethod AtsPluginSetMethod;
         /// <summary>
-        /// ATS プラグインを表す <see cref="ClassWrappers.AtsPlugin"/> を取得します。
+        /// ATS プラグインを取得・設定します。
         /// </summary>
         public AtsPlugin AtsPlugin
         {
             get => ClassWrappers.AtsPlugin.FromSource(AtsPluginGetMethod.Invoke(Src, null));
-            internal set => AtsPluginSetMethod.Invoke(Src, new object[] { value?.Src });
-        }
-
-        private static FastMethod PluginLoaderGetMethod;
-        private static FastMethod PluginLoaderSetMethod;
-        /// <summary>
-        /// 互換性のために残されている旧名のプロパティです。<see cref="AtsPlugin"/> を使用してください。
-        /// </summary>
-        [Obsolete]
-        public PluginLoader PluginLoader
-        {
-            get => ClassWrappers.PluginLoader.FromSource(PluginLoaderGetMethod.Invoke(Src, null));
-            internal set => PluginLoaderSetMethod.Invoke(Src, new object[] { value?.Src });
+            set => AtsPluginSetMethod.Invoke(Src, new object[] { value?.Src });
         }
     }
 }

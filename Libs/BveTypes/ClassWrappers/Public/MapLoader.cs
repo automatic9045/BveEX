@@ -25,11 +25,11 @@ namespace BveTypes.ClassWrappers
             ClassMemberSet members = bveTypes.GetClassInfoOf<MapLoader>();
 
             Constructor = members.GetSourceConstructor(
-                new Type[] { typeof(LoadingProgressForm), typeof(string), typeof(DirectSound), typeof(TimeManager), typeof(Route), typeof(CameraLocation), typeof(bool) });
+                new Type[] { typeof(LoadingProgressForm), typeof(string), typeof(DirectSound), typeof(TimeManager), typeof(Map), typeof(CameraLocation), typeof(bool) });
 
             LoadingProgressFormField = members.GetSourceFieldOf(nameof(LoadingProgressForm));
             TimeManagerField = members.GetSourceFieldOf(nameof(TimeManager));
-            RouteField = members.GetSourceFieldOf(nameof(Route));
+            MapField = members.GetSourceFieldOf(nameof(Map));
             DirectSoundField = members.GetSourceFieldOf(nameof(DirectSound));
             VariablesField = members.GetSourceFieldOf(nameof(Variables));
             StationsField = members.GetSourceFieldOf(nameof(Stations));
@@ -74,11 +74,11 @@ namespace BveTypes.ClassWrappers
         /// <param name="filePath">読込対象となるマップファイルのパス。</param>
         /// <param name="directSound">DirectSound デバイス。</param>
         /// <param name="timeManager">時間を制御する <see cref="ClassWrappers.TimeManager"/>。</param>
-        /// <param name="route">読み込んだマップデータを記憶する <see cref="ClassWrappers.Route"/>。</param>
+        /// <param name="map">読み込んだマップデータを記憶する <see cref="ClassWrappers.Map"/>。</param>
         /// <param name="cameraLocation"><see cref="Sound"/> を読み込む際に指定する <see cref="ClassWrappers.CameraLocation"/>。</param>
         /// <param name="skipLoadStructures">ストラクチャーの読込をスキップするかどうか。</param>
-        public MapLoader(LoadingProgressForm loadingProgressForm, string filePath, DirectSound directSound, TimeManager timeManager, Route route, CameraLocation cameraLocation, bool skipLoadStructures)
-            : this(Constructor.Invoke(new object[] { loadingProgressForm?.Src, filePath, directSound, timeManager?.Src, route?.Src, cameraLocation?.Src, skipLoadStructures }))
+        public MapLoader(LoadingProgressForm loadingProgressForm, string filePath, DirectSound directSound, TimeManager timeManager, Map map, CameraLocation cameraLocation, bool skipLoadStructures)
+            : this(Constructor.Invoke(new object[] { loadingProgressForm?.Src, filePath, directSound, timeManager?.Src, map?.Src, cameraLocation?.Src, skipLoadStructures }))
         {
         }
 
@@ -103,14 +103,14 @@ namespace BveTypes.ClassWrappers
             set => TimeManagerField.SetValue(Src, value?.Src);
         }
 
-        private static FastField RouteField;
+        private static FastField MapField;
         /// <summary>
-        /// 読み込んだマップデータを記憶する <see cref="ClassWrappers.Route"/> を取得・設定します。
+        /// 読み込んだマップデータを記憶する <see cref="ClassWrappers.Map"/> を取得・設定します。
         /// </summary>
-        public Route Route
+        public Map Map
         {
-            get => ClassWrappers.Route.FromSource(RouteField.GetValue(Src));
-            set => RouteField.SetValue(Src, value?.Src);
+            get => ClassWrappers.Map.FromSource(MapField.GetValue(Src));
+            set => MapField.SetValue(Src, value?.Src);
         }
 
         private static FastField DirectSoundField;
@@ -119,7 +119,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public DirectSound DirectSound
         {
-            get => DirectSoundField.GetValue(Src);
+            get => DirectSoundField.GetValue(Src) as DirectSound;
             set => DirectSoundField.SetValue(Src, value);
         }
 
@@ -129,7 +129,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public SortedList<string, object> Variables
         {
-            get => VariablesField.GetValue(Src);
+            get => VariablesField.GetValue(Src) as SortedList<string, object>;
             set => VariablesField.SetValue(Src, value);
         }
 
@@ -141,7 +141,7 @@ namespace BveTypes.ClassWrappers
         {
             get
             {
-                IDictionary dictionarySrc = StationsField.GetValue(Src);
+                IDictionary dictionarySrc = StationsField.GetValue(Src) as IDictionary;
                 return new WrappedSortedList<string, Station>(dictionarySrc);
             }
             set => VariablesField.SetValue(Src, value?.Src);
@@ -153,7 +153,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double CurrentLocation
         {
-            get => CurrentLocationField.GetValue(Src);
+            get => (double)CurrentLocationField.GetValue(Src);
             set => CurrentLocationField.SetValue(Src, value);
         }
 
@@ -163,7 +163,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public string FilePath
         {
-            get => FilePathField.GetValue(Src);
+            get => FilePathField.GetValue(Src) as string;
             set => FilePathField.SetValue(Src, value);
         }
 
@@ -173,7 +173,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public string Directory
         {
-            get => DirectoryField.GetValue(Src);
+            get => DirectoryField.GetValue(Src) as string;
             set => DirectoryField.SetValue(Src, value);
         }
 
@@ -203,7 +203,7 @@ namespace BveTypes.ClassWrappers
         /// マップを読み込みます。
         /// </summary>
         /// <returns>読込に成功した場合は <see langword="true"/>、失敗した場合は <see langword="false"/>。</returns>
-        public bool Load() => LoadMethod.Invoke(Src, null);
+        public bool Load() => (bool)LoadMethod.Invoke(Src, null);
 
         private static FastMethod RegisterFileMethod;
         /// <summary>
@@ -211,7 +211,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         /// <param name="filePath">マップファイルのパス。</param>
         /// <returns>読込に成功した場合は <see langword="true"/>、失敗した場合は <see langword="false"/>。</returns>
-        public bool RegisterFile(string filePath) => RegisterFileMethod.Invoke(Src, new object[] { filePath });
+        public bool RegisterFile(string filePath) => (bool)RegisterFileMethod.Invoke(Src, new object[] { filePath });
 
         private static FastMethod ParseStatementMethod;
         /// <summary>

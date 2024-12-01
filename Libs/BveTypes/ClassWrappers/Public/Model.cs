@@ -94,7 +94,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Mesh Mesh
         {
-            get => MeshGetMethod.Invoke(Src, null);
+            get => MeshGetMethod.Invoke(Src, null) as Mesh;
             set => MeshSetMethod.Invoke(Src, new object[] { value });
         }
 

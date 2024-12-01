@@ -63,7 +63,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public int StandardCloseTime
         {
-            get => StandardCloseTimeGetMethod.Invoke(Src, null);
+            get => (int)StandardCloseTimeGetMethod.Invoke(Src, null);
             set => StandardCloseTimeSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -71,13 +71,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 全てのドアが閉まり切っているかどうかを取得します。
         /// </summary>
-        public bool AreAllClosed => AreAllClosedGetMethod.Invoke(Src, null);
-
-        /// <summary>
-        /// 互換性のために残されている旧名のプロパティです。<see cref="AreAllClosed"/> を使用してください。
-        /// </summary>
-        [Obsolete]
-        public bool AreAllClosingOrClosed => AreAllClosed;
+        public bool AreAllClosed => (bool)AreAllClosedGetMethod.Invoke(Src, null);
 
         private static FastMethod GetSideMethod;
         private SideDoorSet GetSide(int doorSide) => SideDoorSet.FromSource(GetSideMethod.Invoke(Src, new object[] { doorSide }));

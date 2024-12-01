@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // アセンブリに関する一般情報は以下の属性セットをとおして制御されます。
 // 制御されます。アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更してください。
-[assembly: AssemblyTitle("AtsEX 車両プラグイン：運転台パネルに値を渡すサンプル")]
-[assembly: AssemblyDescription("ネイティブ ATS プラグインでいう「Elapse 関数の panel 引数を編集する」操作を AtsEX プラグインから行うサンプル")]
+[assembly: AssemblyTitle("BveEX 車両プラグイン：運転台パネルに値を渡すサンプル")]
+[assembly: AssemblyDescription("ネイティブ ATS プラグインでいう「Elapse 関数の panel 引数を編集する」操作を BveEX プラグインから行うサンプル")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("AtsEX Project")]
-[assembly: AssemblyProduct("AtsEX")]
+[assembly: AssemblyCompany("AtsEX & BveEX Project")]
+[assembly: AssemblyProduct("BveEX")]
 [assembly: AssemblyCopyright("Copyright © 2022 automatic9045")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

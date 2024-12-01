@@ -59,7 +59,7 @@ namespace TypeWrapping
                 Type[] originalChildren = new Type[sourceChildren.Length];
                 for (int i = 0; i < sourceChildren.Length; i++)
                 {
-                    originalChildren[i] = ParseSimpleType(sourceChildren[i]);
+                    originalChildren[i] = Convert(sourceChildren[i]);
                 }
 
                 Type result = originalParent.MakeGenericType(originalChildren);
@@ -70,7 +70,7 @@ namespace TypeWrapping
                 if (!source.IsArray || source.Name.Contains("*")) throw new NotSupportedException(Resources.Value.ElementTypesButArrayNotSupported.Value);
 
                 Type sourceElement = source.GetElementType();
-                Type originalElement = ParseSimpleType(sourceElement);
+                Type originalElement = Convert(sourceElement);
 
                 int rank = source.GetArrayRank();
                 Type result = rank == 1 ? originalElement.MakeArrayType() : originalElement.MakeArrayType(rank);

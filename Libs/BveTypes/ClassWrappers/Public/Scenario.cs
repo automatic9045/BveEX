@@ -28,8 +28,8 @@ namespace BveTypes.ClassWrappers
             ClassMemberSet members = bveTypes.GetClassInfoOf<Scenario>();
 
             TimeManagerGetMethod = members.GetSourcePropertyGetterOf(nameof(TimeManager));
-            LocationManagerGetMethod = members.GetSourcePropertyGetterOf(nameof(LocationManager));
-            RouteGetMethod = members.GetSourcePropertyGetterOf(nameof(Route));
+            VehicleLocationGetMethod = members.GetSourcePropertyGetterOf(nameof(VehicleLocation));
+            MapGetMethod = members.GetSourcePropertyGetterOf(nameof(Map));
             VehicleGetMethod = members.GetSourcePropertyGetterOf(nameof(Vehicle));
             TrainsGetMethod = members.GetSourcePropertyGetterOf(nameof(Trains));
             SectionManagerGetMethod = members.GetSourcePropertyGetterOf(nameof(SectionManager));
@@ -65,17 +65,17 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public TimeManager TimeManager => ClassWrappers.TimeManager.FromSource(TimeManagerGetMethod.Invoke(Src, null));
 
-        private static FastMethod LocationManagerGetMethod;
+        private static FastMethod VehicleLocationGetMethod;
         /// <summary>
-        /// このシナリオに関連付けられた <see cref="UserVehicleLocationManager"/> のインスタンスを取得します。
+        /// このシナリオに関連付けられた <see cref="ClassWrappers.VehicleLocation"/> のインスタンスを取得します。
         /// </summary>
-        public UserVehicleLocationManager LocationManager => UserVehicleLocationManager.FromSource(LocationManagerGetMethod.Invoke(Src, null));
+        public VehicleLocation VehicleLocation => ClassWrappers.VehicleLocation.FromSource(VehicleLocationGetMethod.Invoke(Src, null));
 
-        private static FastMethod RouteGetMethod;
+        private static FastMethod MapGetMethod;
         /// <summary>
-        /// このシナリオに関連付けられた <see cref="ClassWrappers.Route"/> のインスタンスを取得します。
+        /// このシナリオに関連付けられた <see cref="ClassWrappers.Map"/> のインスタンスを取得します。
         /// </summary>
-        public Route Route => ClassWrappers.Route.FromSource(RouteGetMethod.Invoke(Src, null));
+        public Map Map => ClassWrappers.Map.FromSource(MapGetMethod.Invoke(Src, null));
 
         private static FastMethod VehicleGetMethod;
         /// <summary>
@@ -92,7 +92,7 @@ namespace BveTypes.ClassWrappers
         {
             get
             {
-                IDictionary dictionarySrc = TrainsGetMethod.Invoke(Src, null);
+                IDictionary dictionarySrc = TrainsGetMethod.Invoke(Src, null) as IDictionary;
                 return new WrappedSortedList<string, Train>(dictionarySrc);
             }
         }

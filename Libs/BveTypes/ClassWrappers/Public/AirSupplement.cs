@@ -12,7 +12,7 @@ namespace BveTypes.ClassWrappers
     /// <summary>
     /// 遅れ込め制御式電空協調制御を表します。
     /// </summary>
-    public class AirSupplement : ElectroPneumaticBlendedBrakingControlBase
+    public class AirSupplement : BrakeBlenderBase
     {
         [InitializeClassWrapper]
         private static void Initialize(BveTypeSet bveTypes)
@@ -52,7 +52,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double ShoeFriction
         {
-            get => ShoeFrictionGetMethod.Invoke(Src, null);
+            get => (double)ShoeFrictionGetMethod.Invoke(Src, null);
             set => ShoeFrictionSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -67,7 +67,7 @@ namespace BveTypes.ClassWrappers
         /// <seealso cref="CarInfo.Count"/>
         public double MotorCarRatio
         {
-            get => MotorCarRatioGetMethod.Invoke(Src, null);
+            get => (double)MotorCarRatioGetMethod.Invoke(Src, null);
             set => MotorCarRatioSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -82,7 +82,7 @@ namespace BveTypes.ClassWrappers
         /// <seealso cref="BasicBrake.PistonArea"/>
         public double PistonArea
         {
-            get => PistonAreaGetMethod.Invoke(Src, null);
+            get => (double)PistonAreaGetMethod.Invoke(Src, null);
             set => PistonAreaSetMethod.Invoke(Src, new object[] { value });
         }
     }

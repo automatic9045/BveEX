@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<BveExPluginUsing>
+	<Assembly Path="BveExPlugins\AtsPanelValueTest.dll" />
+	<Assembly Path="BveExPlugins\PanelController.dll" />
+	<Assembly Path="BveExPlugins\SimpleAts.dll" />
+	<Assembly Path="BveExPlugins\StateViewer.dll" />
+</BveExPluginUsing>

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using AtsEx.PluginHost.Plugins;
+using BveEx.PluginHost.Plugins;
 
-namespace AtsEx.Samples.VehiclePlugins.CooperatingWithMapPlugin
+namespace BveEx.Samples.VehiclePlugins.CooperatingWithMapPlugin
 {
     [Plugin(PluginType.VehiclePlugin)]
     public class PluginMain : AssemblyPluginBase
@@ -21,6 +21,8 @@ namespace AtsEx.Samples.VehiclePlugins.CooperatingWithMapPlugin
         {
         }
 
-        public override TickResult Tick(TimeSpan elapsed) => new VehiclePluginTickResult();
+        public override void Tick(TimeSpan elapsed)
+        {
+        }
     }
 }

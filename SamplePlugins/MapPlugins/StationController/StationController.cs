@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using AtsEx.Extensions.ContextMenuHacker;
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Plugins;
+using BveEx.Extensions.ContextMenuHacker;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Plugins;
 
-namespace AtsEx.Samples.MapPlugins.StationController
+namespace BveEx.Samples.MapPlugins.StationController
 {
     [Plugin(PluginType.MapPlugin)]
     public class StationController : AssemblyPluginBase
@@ -19,7 +19,7 @@ namespace AtsEx.Samples.MapPlugins.StationController
 
         public StationController(PluginBuilder services) : base(services)
         {
-            InstanceStore.Initialize(Native, Extensions, BveHacker);
+            InstanceStore.Initialize(Extensions, BveHacker);
 
             IContextMenuHacker contextMenuHacker = Extensions.GetExtension<IContextMenuHacker>();
             MenuItem = contextMenuHacker.AddCheckableMenuItem("駅編集ウィンドウを表示", MenuItemCheckedChanged, ContextMenuItemType.Plugins);
@@ -39,9 +39,8 @@ namespace AtsEx.Samples.MapPlugins.StationController
             Form.Close();
         }
 
-        public override TickResult Tick(TimeSpan elapsed)
+        public override void Tick(TimeSpan elapsed)
         {
-            return new MapPluginTickResult();
         }
 
         private void MenuItemCheckedChanged(object sender, EventArgs e)

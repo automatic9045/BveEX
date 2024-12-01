@@ -47,7 +47,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double InitialPressure
         {
-            get => InitialPressureGetMethod.Invoke(Src, null);
+            get => (double)InitialPressureGetMethod.Invoke(Src, null);
             set => InitialPressureSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -61,7 +61,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public double MaximumPressure
         {
-            get => MaximumPressureGetMethod.Invoke(Src, null);
+            get => (double)MaximumPressureGetMethod.Invoke(Src, null);
             set => MaximumPressureSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -72,7 +72,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double SapBcRatio
         {
-            get => SapBcRatioGetMethod.Invoke(Src, null);
+            get => (double)SapBcRatioGetMethod.Invoke(Src, null);
             set => SapBcRatioSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -83,7 +83,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double SapBcOffset
         {
-            get => SapBcOffsetGetMethod.Invoke(Src, null);
+            get => (double)SapBcOffsetGetMethod.Invoke(Src, null);
             set => SapBcOffsetSetMethod.Invoke(Src, new object[] { value });
         }
     }

@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="BveExScriptPluginPackageManifestXmlSchema"
+	elementFormDefault="qualified"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+	<xs:element name="BveExScriptPluginPackageManifest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Info">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Title" type="xs:string" />
+							<xs:element name="Version" type="xs:string" minOccurs="0" />
+							<xs:element name="Description" type="xs:string" minOccurs="0" />
+							<xs:element name="Copyright" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Scripts">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="Constructor" minOccurs="0" />
+							<xs:element ref="Dispose" minOccurs="0" />
+							<xs:element ref="OnScenarioCreated" minOccurs="0" />
+							<xs:element ref="OnStarted" minOccurs="0" />
+							<xs:element ref="Tick" minOccurs="0" />
+						</xs:sequence>
+						<xs:attribute name="UseBveExExtensions" type="xs:boolean" use="optional" default="true" />
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="Script">
+		<xs:attribute name="Path" type="xs:string" use="required" />
+	</xs:complexType>
+
+	<xs:element name="Constructor">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:restriction base="Script" />
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="Dispose">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:restriction base="Script" />
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="OnScenarioCreated">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:restriction base="Script" />
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="OnStarted">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:restriction base="Script" />
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="Tick">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:restriction base="Script" />
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

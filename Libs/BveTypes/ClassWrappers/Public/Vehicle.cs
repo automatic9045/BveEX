@@ -14,7 +14,7 @@ namespace BveTypes.ClassWrappers
     /// <summary>
     /// 自列車を表します。
     /// </summary>
-    public class Vehicle : ClassWrapperBase
+    public class Vehicle : ClassWrapperBase, IDisposable
     {
         [InitializeClassWrapper]
         private static void Initialize(BveTypeSet bveTypes)
@@ -26,8 +26,8 @@ namespace BveTypes.ClassWrappers
             InstrumentsGetMethod = members.GetSourcePropertyGetterOf(nameof(Instruments));
             InstrumentsSetMethod = members.GetSourcePropertySetterOf(nameof(Instruments));
 
-            VibrationManagerGetMethod = members.GetSourcePropertyGetterOf(nameof(VibrationManager));
-            VibrationManagerSetMethod = members.GetSourcePropertySetterOf(nameof(VibrationManager));
+            VibrationGetMethod = members.GetSourcePropertyGetterOf(nameof(Vibration));
+            VibrationSetMethod = members.GetSourcePropertySetterOf(nameof(Vibration));
 
             PanelGetMethod = members.GetSourcePropertyGetterOf(nameof(Panel));
 
@@ -44,7 +44,9 @@ namespace BveTypes.ClassWrappers
 
             CameraLocationField = members.GetSourceFieldOf(nameof(CameraLocation));
 
+            LoadMethod = members.GetSourceMethodOf(nameof(Load));
             InitializeMethod = members.GetSourceMethodOf(nameof(Initialize));
+            DisposeMethod = members.GetSourceMethodOf(nameof(Dispose));
         }
 
         /// <summary>
@@ -67,16 +69,16 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// <see cref="Vehicle"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
-        /// <param name="assistantDrawer">補助表示を描画するための <see cref="AssistantDrawer"/>。</param>
+        /// <param name="assistants">補助表示のセット。</param>
         /// <param name="directSound">DirectSound デバイス。</param>
-        /// <param name="keyProvider">キー入力を管理するための <see cref="KeyProvider"/>。</param>
+        /// <param name="inputManager">キー入力を管理するための <see cref="InputManager"/>。</param>
         /// <param name="timeManager">時間に関する処理を行う <see cref="TimeManager"/>。</param>
-        /// <param name="locationManager">自列車の位置情報に関する処理を行う <see cref="UserVehicleLocationManager"/>。</param>
+        /// <param name="location">自列車の位置情報。</param>
         /// <param name="cameraLocation">カメラの位置に関する情報を提供する <see cref="CameraLocation"/>。</param>
-        /// <param name="route">使用するマップ。</param>
+        /// <param name="map">使用するマップ。</param>
         /// <param name="sectionManager">閉そくを制御するための <see cref="SectionManager" />。</param>
-        public Vehicle(AssistantDrawer assistantDrawer, DirectSound directSound, KeyProvider keyProvider, TimeManager timeManager, UserVehicleLocationManager locationManager, CameraLocation cameraLocation, Route route, SectionManager sectionManager)
-            : this(Constructor.Invoke(new object[] { assistantDrawer?.Src, directSound, keyProvider?.Src, timeManager?.Src, locationManager?.Src, cameraLocation?.Src, route?.Src, sectionManager?.Src }))
+        public Vehicle(AssistantSet assistants, DirectSound directSound, InputManager inputManager, TimeManager timeManager, VehicleLocation location, CameraLocation cameraLocation, Map map, SectionManager sectionManager)
+            : this(Constructor.Invoke(new object[] { assistants?.Src, directSound, inputManager?.Src, timeManager?.Src, location?.Src, cameraLocation?.Src, map?.Src, sectionManager?.Src }))
         {
         }
 
@@ -91,15 +93,15 @@ namespace BveTypes.ClassWrappers
             set => InstrumentsSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
-        private static FastMethod VibrationManagerGetMethod;
-        private static FastMethod VibrationManagerSetMethod;
+        private static FastMethod VibrationGetMethod;
+        private static FastMethod VibrationSetMethod;
         /// <summary>
-        /// 自列車の揺れを制御する <see cref="VehicleVibrationManager"/> を取得・設定します。
+        /// 自列車の揺れを取得・設定します。
         /// </summary>
-        public VehicleVibrationManager VibrationManager
+        public VehicleVibration Vibration
         {
-            get => VehicleVibrationManager.FromSource(VibrationManagerGetMethod.Invoke(Src, null));
-            set => VibrationManagerSetMethod.Invoke(Src, new object[] { value?.Src });
+            get => VehicleVibration.FromSource(VibrationGetMethod.Invoke(Src, null));
+            set => VibrationSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
         private static FastMethod PanelGetMethod;
@@ -157,11 +159,23 @@ namespace BveTypes.ClassWrappers
             set => CameraLocationField.SetValue(Src, value?.Src);
         }
 
+        private static FastMethod LoadMethod;
+        /// <summary>
+        /// 自列車を読み込みます。
+        /// </summary>
+        /// <param name="loadingProgressForm">「シナリオを読み込んでいます...」フォーム。</param>
+        /// <param name="vehicleFile">車両ファイル。</param>
+        public void Load(LoadingProgressForm loadingProgressForm, VehicleFile vehicleFile) => LoadMethod.Invoke(null, new object[] { loadingProgressForm?.Src, vehicleFile?.Src });
+
         private static FastMethod InitializeMethod;
         /// <summary>
         /// 自列車を初期化します。
         /// </summary>
         /// <param name="brakePosition">ブレーキハンドルの位置。</param>
         public void Initialize(BrakePosition brakePosition) => InitializeMethod.Invoke(Src, new object[] { brakePosition });
+
+        private static FastMethod DisposeMethod;
+        /// <inheritdoc/>
+        public void Dispose() => DisposeMethod.Invoke(this, null);
     }
 }

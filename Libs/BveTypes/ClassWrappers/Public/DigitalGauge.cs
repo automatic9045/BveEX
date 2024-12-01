@@ -56,7 +56,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double Step
         {
-            get => StepGetMethod.Invoke(Src, null);
+            get => (double)StepGetMethod.Invoke(Src, null);
             set => StepSetMethod.Invoke(Src, new object[] { value });
         }
     }

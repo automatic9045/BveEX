@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<BveExPluginUsing>
+	<Assembly Path="MapPlugins\TrainController.dll" />
+	<Assembly Path="MapPlugins\TrainControllerEx.Automatic.dll" />
+	<Assembly Path="MapPlugins\TrainControllerEx.Manual.dll" />
+</BveExPluginUsing>

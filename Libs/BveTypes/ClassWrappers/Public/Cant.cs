@@ -46,18 +46,18 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// カントの角度 [rad] を取得します。
         /// </summary>
-        public double RotationZ => RotationZGetMethod.Invoke(Src, null);
+        public double RotationZ => (double)RotationZGetMethod.Invoke(Src, null);
 
         private static FastMethod CenterXGetMethod;
         /// <summary>
         /// このカントの回転中心の X 座標 [m] を取得します。
         /// </summary>
-        public double CenterX => CenterXGetMethod.Invoke(Src, null);
+        public double CenterX => (double)CenterXGetMethod.Invoke(Src, null);
 
         private static FastMethod FunctionIdGetMethod;
         /// <summary>
         /// このカントが設置されているカーブの緩和曲線関数を取得します。
         /// </summary>
-        public int FunctionId => FunctionIdGetMethod.Invoke(Src, null);
+        public int FunctionId => (int)FunctionIdGetMethod.Invoke(Src, null);
     }
 }

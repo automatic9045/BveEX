@@ -19,7 +19,7 @@ namespace BveTypes.ClassWrappers
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<BrakeSystem>();
 
-            ElectroPneumaticBlendedBrakingControlGetMethod = members.GetSourcePropertyGetterOf(nameof(ElectroPneumaticBlendedBrakingControl));
+            BrakeBlenderGetMethod = members.GetSourcePropertyGetterOf(nameof(BrakeBlender));
             AirSupplementGetMethod = members.GetSourcePropertyGetterOf(nameof(AirSupplement));
             LockoutValveGetMethod = members.GetSourcePropertyGetterOf(nameof(LockoutValve));
 
@@ -52,14 +52,14 @@ namespace BveTypes.ClassWrappers
         [CreateClassWrapperFromSource]
         public static BrakeSystem FromSource(object src) => src is null ? null : new BrakeSystem(src);
 
-        private static FastMethod ElectroPneumaticBlendedBrakingControlGetMethod;
+        private static FastMethod BrakeBlenderGetMethod;
         /// <summary>
         /// 自列車が使用する電空協調制御を取得します。
         /// </summary>
         /// <remarks>
         /// 取得される値は、パラメーターファイルでの設定に合わせて <see cref="AirSupplement"/> プロパティ、<see cref="LockoutValve"/> プロパティのどちらかとなります。
         /// </remarks>
-        public ElectroPneumaticBlendedBrakingControlBase ElectroPneumaticBlendedBrakingControl => CreateFromSource(ElectroPneumaticBlendedBrakingControlGetMethod.Invoke(Src, null));
+        public BrakeBlenderBase BrakeBlender => CreateFromSource(BrakeBlenderGetMethod.Invoke(Src, null)) as BrakeBlenderBase;
 
         private static FastMethod AirSupplementGetMethod;
         /// <summary>
@@ -71,7 +71,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 締切電磁弁式電空協調制御を取得します。
         /// </summary>
-        public AirSupplement LockoutValve => ClassWrappers.AirSupplement.FromSource(LockoutValveGetMethod.Invoke(Src, null));
+        public LockoutValve LockoutValve => ClassWrappers.LockoutValve.FromSource(LockoutValveGetMethod.Invoke(Src, null));
 
         private static FastMethod BrakeControllerGetMethod;
         /// <summary>
@@ -80,7 +80,7 @@ namespace BveTypes.ClassWrappers
         /// <remarks>
         /// 取得される値は、パラメーターファイルでの設定に合わせて <see cref="Ecb"/> プロパティ、<see cref="Smee"/> プロパティ、<see cref="Cl"/> プロパティのいずれかとなります。
         /// </remarks>
-        public BrakeControllerBase BrakeController => CreateFromSource(BrakeControllerGetMethod.Invoke(Src, null));
+        public BrakeControllerBase BrakeController => CreateFromSource(BrakeControllerGetMethod.Invoke(Src, null)) as BrakeControllerBase;
 
         private static FastMethod EcbGetMethod;
         /// <summary>
@@ -106,23 +106,11 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public CarBrake MotorCarBrake => CarBrake.FromSource(MotorCarBrakeGetMethod.Invoke(Src, null));
 
-        /// <summary>
-        /// 互換性のために残されている旧名のプロパティです。<see cref="MotorCarBrake"/> を使用してください。
-        /// </summary>
-        [Obsolete]
-        public CarBc MotorCarBc => CarBc.FromSource(MotorCarBrake?.Src);
-
         private static FastMethod TrailerCarBrakeGetMethod;
         /// <summary>
         /// 付随車のブレーキを表す <see cref="CarBrake"/> を取得します。
         /// </summary>
         public CarBrake TrailerCarBrake => CarBrake.FromSource(TrailerCarBrakeGetMethod.Invoke(Src, null));
-
-        /// <summary>
-        /// 互換性のために残されている旧名のプロパティです。<see cref="TrailerCarBrake"/> を使用してください。
-        /// </summary>
-        [Obsolete]
-        public CarBc TrailerCarBc => CarBc.FromSource(TrailerCarBrake?.Src);
 
         private static FastMethod FirstCarBrakeGetMethod;
         private static FastMethod FirstCarBrakeSetMethod;
@@ -132,17 +120,7 @@ namespace BveTypes.ClassWrappers
         public CarBrake FirstCarBrake
         {
             get => CarBrake.FromSource(FirstCarBrakeGetMethod.Invoke(Src, null));
-            set => FirstCarBrakeSetMethod.Invoke(Src, value?.Src);
-        }
-
-        /// <summary>
-        /// 互換性のために残されている旧名のプロパティです。<see cref="FirstCarBrake"/> を使用してください。
-        /// </summary>
-        [Obsolete]
-        public CarBc FirstCarBc
-        {
-            get => CarBc.FromSource(FirstCarBrake?.Src);
-            set => FirstCarBrake = CarBrake.FromSource(value?.Src);
+            set => FirstCarBrakeSetMethod.Invoke(Src, new object[] { value?.Src });
         }
     }
 }

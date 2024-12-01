@@ -56,9 +56,9 @@ namespace BveTypes.ClassWrappers
         /// エラーの内容を指定して <see cref="LoadError"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         /// <param name="text">エラーの内容を表すテキスト。</param>
-        /// <param name="senderFileName">エラーの発生元となるファイルのファイル名。</param>
-        /// <param name="lineIndex">エラーの発生元となる行番号。</param>
-        /// <param name="charIndex">エラーの発生元となる列番号。</param>
+        /// <param name="senderFileName">エラーの発生元となるファイルのファイル名。使用しない場合は <see cref="string.Empty"/> を指定します。</param>
+        /// <param name="lineIndex">エラーの発生元となる行番号。使用しない場合は 0 を指定します。</param>
+        /// <param name="charIndex">エラーの発生元となる列番号。使用しない場合は 0 を指定します。</param>
         public LoadError(string text, string senderFileName, int lineIndex, int charIndex) : this(Constructor.Invoke(new object[] { text, senderFileName, lineIndex, charIndex }))
         {
         }
@@ -66,45 +66,54 @@ namespace BveTypes.ClassWrappers
         private static FastMethod TextGetMethod;
         private static FastMethod TextSetMethod;
         /// <summary>
-        /// エラーの内容を表すテキストを取得します。
+        /// エラーの内容を表すテキストを取得・設定します。
         /// </summary>
         public string Text
         {
-            get => TextGetMethod.Invoke(Src, new object[0]);
-            internal set => TextSetMethod.Invoke(Src, new object[] { value });
+            get => TextGetMethod.Invoke(Src, new object[0]) as string;
+            set => TextSetMethod.Invoke(Src, new object[] { value });
         }
 
         private static FastMethod SenderFileNameGetMethod;
         private static FastMethod SenderFileNameSetMethod;
         /// <summary>
-        /// エラーの発生元となるファイルのファイル名を取得します。
+        /// エラーの発生元となるファイルのファイル名を取得・設定します。
         /// </summary>
+        /// <remarks>
+        /// 使用しない場合は <see cref="string.Empty"/> を指定します。
+        /// </remarks>
         public string SenderFileName
         {
-            get => SenderFileNameGetMethod.Invoke(Src, new object[0]);
-            internal set => SenderFileNameSetMethod.Invoke(Src, new object[] { value });
+            get => SenderFileNameGetMethod.Invoke(Src, new object[0]) as string;
+            set => SenderFileNameSetMethod.Invoke(Src, new object[] { value });
         }
 
         private static FastMethod LineIndexGetMethod;
         private static FastMethod LineIndexSetMethod;
         /// <summary>
-        /// エラーの発生元となる行番号を取得します。
+        /// エラーの発生元となる行番号を取得・設定します。
         /// </summary>
+        /// <remarks>
+        /// 使用しない場合は 0 を指定します。
+        /// </remarks>
         public int LineIndex
         {
-            get => LineIndexGetMethod.Invoke(Src, new object[0]);
-            internal set => LineIndexSetMethod.Invoke(Src, new object[] { value });
+            get => (int)LineIndexGetMethod.Invoke(Src, new object[0]);
+            set => LineIndexSetMethod.Invoke(Src, new object[] { value });
         }
 
         private static FastMethod CharIndexGetMethod;
         private static FastMethod CharIndexSetMethod;
         /// <summary>
-        /// エラーの発生元となる列番号を取得します。
+        /// エラーの発生元となる列番号を取得・設定します。
         /// </summary>
+        /// <remarks>
+        /// 使用しない場合は 0 を指定します。
+        /// </remarks>
         public int CharIndex
         {
-            get => CharIndexGetMethod.Invoke(Src, new object[0]);
-            internal set => CharIndexSetMethod.Invoke(Src, new object[] { value });
+            get => (int)CharIndexGetMethod.Invoke(Src, new object[0]);
+            set => CharIndexSetMethod.Invoke(Src, new object[] { value });
         }
     }
 }

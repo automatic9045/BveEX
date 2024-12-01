@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -24,10 +25,10 @@ namespace BveTypes.ClassWrappers
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<Train>();
 
-            Constructor = members.GetSourceConstructor(new Type[] { typeof(TimeManager), typeof(UserVehicleLocationManager), typeof(Route), typeof(TrainInfo), typeof(DrawDistanceManager) });
+            Constructor = members.GetSourceConstructor(new Type[] { typeof(TimeManager), typeof(VehicleLocation), typeof(Map), typeof(TrainInfo), typeof(DrawDistanceManager) });
 
-            UserVehicleLocationManagerField = members.GetSourceFieldOf(nameof(UserVehicleLocationManager));
-            RouteField = members.GetSourceFieldOf(nameof(Route));
+            VehicleLocationField = members.GetSourceFieldOf(nameof(VehicleLocation));
+            MapField = members.GetSourceFieldOf(nameof(Map));
             TrainInfoField = members.GetSourceFieldOf(nameof(TrainInfo));
             DrawDistanceManagerField = members.GetSourceFieldOf(nameof(DrawDistanceManager));
             SchedulesField = members.GetSourceFieldOf(nameof(Schedules));
@@ -65,26 +66,26 @@ namespace BveTypes.ClassWrappers
         /// <see cref="Train"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         /// <param name="timeManager">使用する <see cref="TimeManager"/>。</param>
-        /// <param name="locationManager">自列車の位置情報を提供する <see cref="ClassWrappers.UserVehicleLocationManager"/>。</param>
-        /// <param name="route">現在読み込まれているマップを表す <see cref="ClassWrappers.Route"/>。</param>
+        /// <param name="location">自列車の位置情報。</param>
+        /// <param name="map">現在読み込まれているマップを表す <see cref="ClassWrappers.Map"/>。</param>
         /// <param name="trainInfo">この他列車の追加情報を格納している <see cref="ClassWrappers.TrainInfo"/>。</param>
         /// <param name="drawDistanceManager">使用する <see cref="ClassWrappers.DrawDistanceManager"/>。</param>
-        public Train(TimeManager timeManager, UserVehicleLocationManager locationManager, Route route, TrainInfo trainInfo, DrawDistanceManager drawDistanceManager)
-            : this(Constructor.Invoke(new object[] { timeManager?.Src, locationManager?.Src, route?.Src, trainInfo?.Src, drawDistanceManager?.Src }))
+        public Train(TimeManager timeManager, VehicleLocation location, Map map, TrainInfo trainInfo, DrawDistanceManager drawDistanceManager)
+            : this(Constructor.Invoke(new object[] { timeManager?.Src, location?.Src, map?.Src, trainInfo?.Src, drawDistanceManager?.Src }))
         {
         }
 
-        private static FastField UserVehicleLocationManagerField;
+        private static FastField VehicleLocationField;
         /// <summary>
-        /// 自列車の位置に関する情報を取得します。
+        /// 自列車の位置情報を取得します。
         /// </summary>
-        public UserVehicleLocationManager UserVehicleLocationManager => ClassWrappers.UserVehicleLocationManager.FromSource(UserVehicleLocationManagerField.GetValue(Src));
+        public VehicleLocation VehicleLocation => ClassWrappers.VehicleLocation.FromSource(VehicleLocationField.GetValue(Src));
 
-        private static FastField RouteField;
+        private static FastField MapField;
         /// <summary>
         /// マップを取得します。
         /// </summary>
-        public Route Route => ClassWrappers.Route.FromSource(RouteField.GetValue(Src));
+        public Map Map => ClassWrappers.Map.FromSource(MapField.GetValue(Src));
 
         private static FastField TrainInfoField;
         /// <summary>
@@ -108,7 +109,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public WrappedList<TrainSchedule> Schedules
         {
-            get => WrappedList<TrainSchedule>.FromSource(SchedulesField.GetValue(Src));
+            get => WrappedList<TrainSchedule>.FromSource(SchedulesField.GetValue(Src) as IList);
             set => SchedulesField.SetValue(Src, value?.Src);
         }
 
@@ -121,7 +122,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public double Location
         {
-            get => LocationField.GetValue(Src);
+            get => (double)LocationField.GetValue(Src);
             set => LocationField.SetValue(Src, value);
         }
 
@@ -135,7 +136,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public double Speed
         {
-            get => SpeedField.GetValue(Src);
+            get => (double)SpeedField.GetValue(Src);
             set => SpeedField.SetValue(Src, value);
         }
 
@@ -148,7 +149,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public int EnabledTimeMilliseconds
         {
-            get => EnabledTimeMillisecondsField.GetValue(Src);
+            get => (int)EnabledTimeMillisecondsField.GetValue(Src);
             set => EnabledTimeMillisecondsField.SetValue(Src, value);
         }
 
@@ -175,7 +176,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int ScheduleIndex
         {
-            get => ScheduleIndexField.GetValue(Src);
+            get => (int)ScheduleIndexField.GetValue(Src);
             set => ScheduleIndexField.SetValue(Src, value);
         }
 
@@ -185,7 +186,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double ViewZ
         {
-            get => ViewZField.GetValue(Src);
+            get => (double)ViewZField.GetValue(Src);
             set => ViewZField.SetValue(Src, value);
         }
 
@@ -194,7 +195,7 @@ namespace BveTypes.ClassWrappers
         /// この他列車を初期化します。
         /// </summary>
         public double Initialize()
-            => InitializeMethod.Invoke(Src, null);
+            => (double)InitializeMethod.Invoke(Src, null);
 
         private static FastMethod DrawCarsMethod;
         /// <summary>

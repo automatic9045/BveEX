@@ -63,27 +63,6 @@ namespace BveTypes.ClassWrappers
         [CreateClassWrapperFromSource]
         public static new StationList FromSource(object src) => src is null ? null : new StationList((IList)src);
 
-        /// <summary>
-        /// <see cref="StationList"/> に項目を追加します。
-        /// </summary>
-        /// <remarks>
-        /// このメソッドは非推奨です。<see cref="Insert(Station)"/> メソッドを使用してください。
-        /// </remarks>
-        /// <param name="item"><see cref="StationList"/> に追加するオブジェクト。</param>
-        /// <exception cref="NotSupportedException">BVE がダイヤグラムを正常に描画できなくなるため、最初の駅と最後の駅の距離程を同一にすることはできません。</exception>
-        [Obsolete(nameof(Insert) + "(" + nameof(Station) + ") メソッドを使用してください。")]
-#pragma warning disable CS0809 // 旧形式のメンバーが、旧形式でないメンバーをオーバーライドします
-        public override void Add(MapObjectBase item)
-#pragma warning restore CS0809 // 旧形式のメンバーが、旧形式でないメンバーをオーバーライドします
-        {
-            if (Count > 0 && this[0].Location == item.Location)
-            {
-                throw new NotSupportedException(Resources.Value.SameLocation.Value);
-            }
-
-            base.Add(item);
-        }
-
         private static FastMethod InsertMethod;
         /// <summary>
         /// <see cref="StationList"/> に項目を追加します。

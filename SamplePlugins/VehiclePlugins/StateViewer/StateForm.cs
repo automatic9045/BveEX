@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 using BveTypes.ClassWrappers;
 
-namespace AtsEx.Samples.VehiclePlugins.StateViewer
+namespace BveEx.Samples.VehiclePlugins.StateViewer
 {
     public partial class StateForm : Form
     {
@@ -39,7 +39,7 @@ namespace AtsEx.Samples.VehiclePlugins.StateViewer
                             double location;
                             if (double.TryParse(textBox.Text, out location))
                             {
-                                scenario.LocationManager.SetLocation(location, true);
+                                scenario.VehicleLocation.SetLocation(location, true);
                             }
                             break;
 
@@ -47,7 +47,7 @@ namespace AtsEx.Samples.VehiclePlugins.StateViewer
                             double speed;
                             if (double.TryParse(textBox.Text, out speed))
                             {
-                                scenario.LocationManager.SetSpeed(speed / 3.6);
+                                scenario.VehicleLocation.SetSpeed(speed / 3.6);
                             }
                             break;
                     }
@@ -60,8 +60,8 @@ namespace AtsEx.Samples.VehiclePlugins.StateViewer
             Scenario scenario = InstanceStore.Instance.BveHacker.Scenario;
 
             if (!TimeValue.Focused) TimeValue.Text = TimeSpan.FromMilliseconds(scenario.TimeManager.TimeMilliseconds).ToString(@"hh\:mm\:ss");
-            if (!LocationValue.Focused) LocationValue.Text = scenario.LocationManager.Location.ToString("F");
-            if (!SpeedValue.Focused) SpeedValue.Text = (scenario.LocationManager.SpeedMeterPerSecond * 3.6).ToString("F");
+            if (!LocationValue.Focused) LocationValue.Text = scenario.VehicleLocation.Location.ToString("F");
+            if (!SpeedValue.Focused) SpeedValue.Text = (scenario.VehicleLocation.Speed * 3.6).ToString("F");
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -60,7 +61,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public int StandardCloseTime
         {
-            get => StandardCloseTimeGetMethod.Invoke(Src, null);
+            get => (int)StandardCloseTimeGetMethod.Invoke(Src, null);
             set => StandardCloseTimeSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -68,14 +69,14 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 車両単位のドアの一覧を取得します。
         /// </summary>
-        public WrappedList<CarDoor> CarDoors => WrappedList<CarDoor>.FromSource(CarDoorsGetMethod.Invoke(Src, null));
+        public WrappedList<CarDoor> CarDoors => WrappedList<CarDoor>.FromSource(CarDoorsGetMethod.Invoke(Src, null) as IList);
 
         private static FastMethod IsOpenGetMethod;
         /// <summary>
         /// この側のドアのうち、ひとつでも開いているものがあるかどうかを取得します。
         /// </summary>
         /// <seealso cref="DoorSet.AreAllClosed"/>
-        public bool IsOpen => IsOpenGetMethod.Invoke(Src, null);
+        public bool IsOpen => (bool)IsOpenGetMethod.Invoke(Src, null);
 
         private static FastMethod SetCarLengthMethod;
         /// <summary>

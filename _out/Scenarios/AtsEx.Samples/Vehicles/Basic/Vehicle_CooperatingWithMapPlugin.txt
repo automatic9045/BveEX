@@ -1,6 +1,0 @@
-bvets Vehicle 2.00
-PerformanceCurve = Notch\Notch.txt
-Parameters = Parameters.txt
-Sound = Sound.txt
-Ats64 = DummyAts\DetailManager.x64.dll
-Ats32 = DummyAts\DetailManager.x86.dll

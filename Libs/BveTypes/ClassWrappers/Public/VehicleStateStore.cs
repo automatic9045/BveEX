@@ -51,7 +51,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double[] Speed
         {
-            get => SpeedField.GetValue(Src);
+            get => SpeedField.GetValue(Src) as double[];
             set => SpeedField.SetValue(Src, value);
         }
 
@@ -61,7 +61,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double[] Current
         {
-            get => CurrentField.GetValue(Src);
+            get => CurrentField.GetValue(Src) as double[];
             set => CurrentField.SetValue(Src, value);
         }
 
@@ -71,7 +71,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double[] BcPressure
         {
-            get => BcPressureField.GetValue(Src);
+            get => BcPressureField.GetValue(Src) as double[];
             set => BcPressureField.SetValue(Src, value);
         }
 
@@ -81,7 +81,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double[] MrPressure
         {
-            get => MrPressureField.GetValue(Src);
+            get => MrPressureField.GetValue(Src) as double[];
             set => MrPressureField.SetValue(Src, value);
         }
 
@@ -91,7 +91,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double[] SapPressure
         {
-            get => SapPressureField.GetValue(Src);
+            get => SapPressureField.GetValue(Src) as double[];
             set => SapPressureField.SetValue(Src, value);
         }
 
@@ -101,7 +101,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double[] BpPressure
         {
-            get => BpPressureField.GetValue(Src);
+            get => BpPressureField.GetValue(Src) as double[];
             set => BpPressureField.SetValue(Src, value);
         }
 
@@ -111,7 +111,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double[] ErPressure
         {
-            get => ErPressureField.GetValue(Src);
+            get => ErPressureField.GetValue(Src) as double[];
             set => ErPressureField.SetValue(Src, value);
         }
 
@@ -121,7 +121,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double[] PanelArray
         {
-            get => PanelArrayField.GetValue(Src);
+            get => PanelArrayField.GetValue(Src) as double[];
             set => PanelArrayField.SetValue(Src, value);
         }
     }

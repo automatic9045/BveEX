@@ -42,7 +42,7 @@ namespace BveTypes.ClassWrappers
 
         private static FastConstructor Constructor;
         /// <summary>
-        /// スタイルを指定して、<see cref="AssistantText"/> クラスの新しいインスタンスを初期化します。
+        /// <see cref="AssistantText"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         /// <param name="config">スタイルを指定する <see cref="AssistantSettings"/>。</param>
         public AssistantText(AssistantSettings config)
@@ -58,6 +58,21 @@ namespace BveTypes.ClassWrappers
         [CreateClassWrapperFromSource]
         public static AssistantText FromSource(object src) => src is null ? null : new AssistantText(src);
 
+        /// <summary>
+        /// 表示するテキストを指定して、既定のスタイルの <see cref="AssistantText"/> クラスの新しいインスタンスを初期化します。
+        /// </summary>
+        /// <remarks>
+        /// 補助的に定義されているメソッドです。オリジナル型には存在しません。
+        /// </remarks>
+        /// <param name="text">表示するテキスト。</param>
+        public static AssistantText Create(string text)
+        {
+            return new AssistantText(new AssistantSettings())
+            {
+                Text = text,
+            };
+        }
+
         private static FastMethod ColorGetMethod;
         private static FastMethod ColorSetMethod;
         /// <summary>
@@ -65,7 +80,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Color Color
         {
-            get => ColorGetMethod.Invoke(Src, null);
+            get => (Color)ColorGetMethod.Invoke(Src, null);
             set => ColorSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -76,7 +91,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public string Text
         {
-            get => TextGetMethod.Invoke(Src, null);
+            get => TextGetMethod.Invoke(Src, null) as string;
             set => TextSetMethod.Invoke(Src, new object[] { value });
         }
     }

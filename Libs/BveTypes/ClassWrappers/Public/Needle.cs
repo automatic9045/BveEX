@@ -78,7 +78,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public double NaturalFrequency
         {
-            get => NaturalFrequencyGetMethod.Invoke(Src, null);
+            get => (double)NaturalFrequencyGetMethod.Invoke(Src, null);
             set => NaturalFrequencySetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -89,7 +89,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double DampingRatio
         {
-            get => DampingRatioGetMethod.Invoke(Src, null);
+            get => (double)DampingRatioGetMethod.Invoke(Src, null);
             set => DampingRatioSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -100,7 +100,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public bool IsStopPinEnabled
         {
-            get => IsStopPinEnabledGetMethod.Invoke(Src, null);
+            get => (bool)IsStopPinEnabledGetMethod.Invoke(Src, null);
             set => IsStopPinEnabledSetMethod.Invoke(Src, new object[] { value });
         }
     }

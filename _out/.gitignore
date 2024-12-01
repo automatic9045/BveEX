@@ -1,20 +1,21 @@
-/AtsEx
+/BveEx
 
-/Scenarios/AtsEx.Samples/Maps/Basic/Samples/*/MapPlugins/*.dll
-/Scenarios/AtsEx.Samples/Maps/Basic/Samples/*/MapPlugins/*.pdb
-/Scenarios/AtsEx.Samples/Maps/Basic/Samples/*/MapPlugins/*.dll.config
-/Scenarios/AtsEx.Samples/Maps/Basic/Samples/*/MapPlugins/*.xml
-/Scenarios/AtsEx.Samples/Maps/Basic/Samples/*/MapPlugins/Resources
+/Scenarios/BveEx.Samples/Maps/Basic/Samples/*/MapPlugins/*.dll
+/Scenarios/BveEx.Samples/Maps/Basic/Samples/*/MapPlugins/*.pdb
+/Scenarios/BveEx.Samples/Maps/Basic/Samples/*/MapPlugins/*.dll.config
+/Scenarios/BveEx.Samples/Maps/Basic/Samples/*/MapPlugins/*.xml
+/Scenarios/BveEx.Samples/Maps/Basic/Samples/*/MapPlugins/Resources
 
-/Scenarios/AtsEx.Samples/Vehicles/Basic/AtsEXPlugins/*.dll
-/Scenarios/AtsEx.Samples/Vehicles/Basic/AtsEXPlugins/*.pdb
-/Scenarios/AtsEx.Samples/Vehicles/Basic/AtsEXPlugins/*.dll.config
-/Scenarios/AtsEx.Samples/Vehicles/Basic/AtsEXPlugins/*.xml
-/Scenarios/AtsEx.Samples/Vehicles/Basic/AtsEXPlugins/Resources
+/Scenarios/BveEx.Samples/Vehicles/Basic/BveEXPlugins/*.dll
+/Scenarios/BveEx.Samples/Vehicles/Basic/BveEXPlugins/*.pdb
+/Scenarios/BveEx.Samples/Vehicles/Basic/BveEXPlugins/*.dll.config
+/Scenarios/BveEx.Samples/Vehicles/Basic/BveEXPlugins/*.xml
+/Scenarios/BveEx.Samples/Vehicles/Basic/BveEXPlugins/Resources
 
-/Scenarios/AtsEx.Samples/Vehicles/E217r/Ats/Samples/*.dll
-/Scenarios/AtsEx.Samples/Vehicles/E217r/Ats/Samples/*.pdb
-/Scenarios/AtsEx.Samples/Vehicles/E217r/Ats/Samples/*.dll.config
-/Scenarios/AtsEx.Samples/Vehicles/E217r/Ats/Samples/*.xml
+/Scenarios/BveEx.Samples/Vehicles/E217r/Ats/Samples/*.dll
+/Scenarios/BveEx.Samples/Vehicles/E217r/Ats/Samples/*.pdb
+/Scenarios/BveEx.Samples/Vehicles/E217r/Ats/Samples/*.dll.config
+/Scenarios/BveEx.Samples/Vehicles/E217r/Ats/Samples/*.xml
 
+/Scenarios/AtsEx.Samples
 /Scenarios/Uchibo20

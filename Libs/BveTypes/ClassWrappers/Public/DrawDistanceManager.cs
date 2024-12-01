@@ -58,7 +58,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public int FacingDirection
         {
-            get => FacingDirectionField.GetValue(Src);
+            get => (int)FacingDirectionField.GetValue(Src);
             set => FacingDirectionField.SetValue(Src, value);
         }
 
@@ -71,7 +71,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public double FrontDrawDistance
         {
-            get => FrontDrawDistanceField.GetValue(Src);
+            get => (double)FrontDrawDistanceField.GetValue(Src);
             set => FrontDrawDistanceField.SetValue(Src, value);
         }
 
@@ -84,7 +84,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public double BackDrawDistance
         {
-            get => BackDrawDistanceField.GetValue(Src);
+            get => (double)BackDrawDistanceField.GetValue(Src);
             set => BackDrawDistanceField.SetValue(Src, value);
         }
 
@@ -92,7 +92,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// マップファイル内での最長描画距離指定とユーザー設定から算出された描画距離 [m] を取得します。
         /// </summary>
-        public double DrawDistance => DrawDistanceGetMethod.Invoke(Src, null);
+        public double DrawDistance => (double)DrawDistanceGetMethod.Invoke(Src, null);
 
         private static FastMethod DrawDistanceObjectsGetMethod;
         /// <summary>

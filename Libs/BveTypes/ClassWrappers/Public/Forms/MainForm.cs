@@ -30,8 +30,8 @@ namespace BveTypes.ClassWrappers
             TimePosFormField = members.GetSourceFieldOf(nameof(TimePosForm));
             ChartFormField = members.GetSourceFieldOf(nameof(ChartForm));
             LoadingProgressFormField = members.GetSourceFieldOf(nameof(LoadingProgressForm));
-            AssistantDrawerField = members.GetSourceFieldOf(nameof(AssistantDrawer));
-            KeyProviderField = members.GetSourceFieldOf(nameof(KeyProvider));
+            AssistantsField = members.GetSourceFieldOf(nameof(Assistants));
+            InputManagerField = members.GetSourceFieldOf(nameof(InputManager));
             CurrentScenarioField = members.GetSourceFieldOf(nameof(CurrentScenario));
             CurrentScenarioInfoField = members.GetSourceFieldOf(nameof(CurrentScenarioInfo));
             PreferencesField = members.GetSourceFieldOf(nameof(Preferences));
@@ -69,7 +69,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public DirectSound DirectSound
         {
-            get => DirectSoundField.GetValue(Src);
+            get => DirectSoundField.GetValue(Src) as DirectSound;
             set => DirectSoundField.SetValue(Src, value);
         }
 
@@ -77,40 +77,40 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 「シナリオの選択」フォームを取得します。
         /// </summary>
-        public ScenarioSelectionForm ScenarioSelectForm => ClassWrappers.ScenarioSelectionForm.FromSource(ScenarioSelectFormField.GetValue(Src));
+        public ScenarioSelectionForm ScenarioSelectForm => ScenarioSelectionForm.FromSource(ScenarioSelectFormField.GetValue(Src));
 
         private static FastField TimePosFormField;
         /// <summary>
         /// 「時刻と位置」フォームを取得します。
         /// </summary>
-        public TimePosForm TimePosForm => ClassWrappers.TimePosForm.FromSource(TimePosFormField.GetValue(Src));
+        public TimePosForm TimePosForm => TimePosForm.FromSource(TimePosFormField.GetValue(Src));
 
         private static FastField ChartFormField;
         /// <summary>
         /// 「車両物理量」フォームを取得します。
         /// </summary>
-        public ChartForm ChartForm => ClassWrappers.ChartForm.FromSource(ChartFormField.GetValue(Src));
+        public ChartForm ChartForm => ChartForm.FromSource(ChartFormField.GetValue(Src));
 
         private static FastField LoadingProgressFormField;
         /// <summary>
         /// 「シナリオを読み込んでいます...」フォームを取得します。
         /// </summary>
-        public LoadingProgressForm LoadingProgressForm => ClassWrappers.LoadingProgressForm.FromSource(LoadingProgressFormField.GetValue(Src));
+        public LoadingProgressForm LoadingProgressForm => LoadingProgressForm.FromSource(LoadingProgressFormField.GetValue(Src));
 
-        private static FastField AssistantDrawerField;
+        private static FastField AssistantsField;
         /// <summary>
-        /// 補助表示を描画する <see cref="ClassWrappers.AssistantDrawer"/> を取得します。
+        /// 補助表示のセットを取得します。
         /// </summary>
-        public AssistantDrawer AssistantDrawer => ClassWrappers.AssistantDrawer.FromSource(AssistantDrawerField.GetValue(Src));
+        public AssistantSet Assistants => AssistantSet.FromSource(AssistantsField.GetValue(Src));
 
-        private static FastField KeyProviderField;
+        private static FastField InputManagerField;
         /// <summary>
-        /// キー入力を管理する <see cref="ClassWrappers.KeyProvider"/> を取得・設定します。
+        /// キー入力を管理する <see cref="ClassWrappers.InputManager"/> を取得・設定します。
         /// </summary>
-        public KeyProvider KeyProvider
+        public InputManager InputManager
         {
-            get => ClassWrappers.KeyProvider.FromSource(KeyProviderField.GetValue(Src));
-            set => KeyProviderField.SetValue(Src, value?.Src);
+            get => InputManager.FromSource(InputManagerField.GetValue(Src));
+            set => InputManagerField.SetValue(Src, value?.Src);
         }
 
         private static FastField CurrentScenarioField;
@@ -139,7 +139,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Preferences Preferences
         {
-            get => PreferencesField.GetValue(Src);
+            get => PreferencesField.GetValue(Src) as Preferences;
             set => PreferencesField.SetValue(Src, value);
         }
 
@@ -149,7 +149,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public ContextMenuStrip ContextMenu
         {
-            get => ContextMenuField.GetValue(Src);
+            get => ContextMenuField.GetValue(Src) as ContextMenuStrip;
             set => ContextMenuField.SetValue(Src, value);
         }
 

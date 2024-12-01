@@ -54,8 +54,8 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Model Model
         {
-            get => ModelField.GetValue(Src);
-            set => ModelField.SetValue(Src, value);
+            get => ClassWrappers.Model.FromSource(ModelField.GetValue(Src));
+            set => ModelField.SetValue(Src, value.Src);
         }
 
         private static FastField NameTextsField;
@@ -68,7 +68,7 @@ namespace BveTypes.ClassWrappers
         /// <seealso cref="NameTextWidths"/>
         public string[] NameTexts
         {
-            get => NameTextsField.GetValue(Src);
+            get => NameTextsField.GetValue(Src) as string[];
             set => NameTextsField.SetValue(Src, value);
         }
 
@@ -82,7 +82,7 @@ namespace BveTypes.ClassWrappers
         /// <seealso cref="ArrivalTimeTextWidths"/>
         public string[] ArrivalTimeTexts
         {
-            get => ArrivalTimeTextsField.GetValue(Src);
+            get => ArrivalTimeTextsField.GetValue(Src) as string[];
             set => ArrivalTimeTextsField.SetValue(Src, value);
         }
 
@@ -96,18 +96,8 @@ namespace BveTypes.ClassWrappers
         /// <seealso cref="DepartureTimeTextWidths"/>
         public string[] DepartureTimeTexts
         {
-            get => DepartureTimeTextsField.GetValue(Src);
+            get => DepartureTimeTextsField.GetValue(Src) as string[];
             set => DepartureTimeTextsField.SetValue(Src, value);
-        }
-
-        /// <summary>
-        /// 互換性のために残されている旧名のプロパティです。<see cref="DepartureTimeTexts"/> を使用してください。
-        /// </summary>
-        [Obsolete]
-        public string[] DepertureTimeTexts
-        {
-            get => DepartureTimeTexts;
-            set => DepartureTimeTexts = value;
         }
 
         private static FastField NameTextWidthsField;
@@ -120,7 +110,7 @@ namespace BveTypes.ClassWrappers
         /// <seealso cref="NameTexts"/>
         public int[] NameTextWidths
         {
-            get => NameTextWidthsField.GetValue(Src);
+            get => NameTextWidthsField.GetValue(Src) as int[];
             set => NameTextWidthsField.SetValue(Src, value);
         }
 
@@ -134,7 +124,7 @@ namespace BveTypes.ClassWrappers
         /// <seealso cref="ArrivalTimeTexts"/>
         public int[] ArrivalTimeTextWidths
         {
-            get => ArrivalTimeTextWidthsField.GetValue(Src);
+            get => ArrivalTimeTextWidthsField.GetValue(Src) as int[];
             set => ArrivalTimeTextWidthsField.SetValue(Src, value);
         }
 
@@ -145,21 +135,11 @@ namespace BveTypes.ClassWrappers
         /// <remarks>
         /// 初めの見出し行 ("発(通)") も含まれます。
         /// </remarks>
-        /// <seealso cref="DepertureTimeTexts"/>
+        /// <seealso cref="DepartureTimeTexts"/>
         public int[] DepartureTimeTextWidths
         {
-            get => DepartureTimeTextWidthsField.GetValue(Src);
+            get => DepartureTimeTextWidthsField.GetValue(Src) as int[];
             set => DepartureTimeTextWidthsField.SetValue(Src, value);
-        }
-
-        /// <summary>
-        /// 互換性のために残されている旧名のプロパティです。<see cref="DepartureTimeTexts"/> を使用してください。
-        /// </summary>
-        [Obsolete]
-        public int[] DepertureTimeTextWidths
-        {
-            get => DepartureTimeTextWidths;
-            set => DepartureTimeTextWidths = value;
         }
 
         private static FastMethod UpdateMethod;

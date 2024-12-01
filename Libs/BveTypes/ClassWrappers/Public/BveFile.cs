@@ -43,12 +43,12 @@ namespace BveTypes.ClassWrappers
         private static FastMethod PathGetMethod;
         private static FastMethod PathSetMethod;
         /// <summary>
-        /// ファイルのパスを取得します。
+        /// ファイルのパスを取得・設定します。
         /// </summary>
         public string Path
         {
-            get => PathGetMethod.Invoke(Src, null);
-            internal set => PathSetMethod.Invoke(Src, new object[] { value });
+            get => PathGetMethod.Invoke(Src, null) as string;
+            set => PathSetMethod.Invoke(Src, new object[] { value });
         }
     }
 }

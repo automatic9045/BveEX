@@ -1,0 +1,10 @@
+BveTs Scenario 2.00 : UTF-8
+
+Title = 普通 一橋→六合【先行列車操作サンプル】
+Route = BveEx.Samples\Maps\Basic\Samples\ControlPreTrain\Map.txt
+RouteTitle = ★BveEX サンプル
+Vehicle = BveEx.Samples\Vehicles\Basic\Vehicle_Simple.txt
+VehicleTitle = BveEX 搭載サンプル車両
+Author = おーとま (automatic9045)
+Image = BveEx.Samples\Thumbnails\Basic\Default.png
+Comment = 先行列車を動かすサンプルです。このサンプルでは他列車に連動して先行列車が動きます。

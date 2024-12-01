@@ -47,7 +47,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 補助表示の設定を取得します。
         /// </summary>
-        public AssistantSettings AssistantSettings => AssistantSettingsGetMethod.Invoke(Src, null);
+        public AssistantSettings AssistantSettings => AssistantSettingsGetMethod.Invoke(Src, null) as AssistantSettings;
 
         private static FastMethod BackgroundColorGetMethod;
         private static FastMethod BackgroundColorSetMethod;
@@ -56,7 +56,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Color BackgroundColor
         {
-            get => BackgroundColorGetMethod.Invoke(Src, null);
+            get => (Color)BackgroundColorGetMethod.Invoke(Src, null);
             set => BackgroundColorSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -64,7 +64,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 表示する位置とサイズを表す <see cref="Rectangle"/> を取得します。
         /// </summary>
-        public Rectangle DisplayArea => DisplayAreaGetMethod.Invoke(Src, null);
+        public Rectangle DisplayArea => (Rectangle)DisplayAreaGetMethod.Invoke(Src, null);
 
         private static FastMethod DrawMethod;
         /// <summary>

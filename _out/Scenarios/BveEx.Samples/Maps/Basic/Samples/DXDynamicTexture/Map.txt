@@ -1,0 +1,10 @@
+BveTs Map 2.02:utf-8
+
+include '..\..\BaseMap.txt';
+
+BveEx.MapPlugin.Load('MapPluginUsing.xml');
+Structure.Load('Structures.csv');
+Station.Load('Stations.csv');
+
+14;
+	structure['dxdt-test'].Put('1', -3.5, 0, 0, 0, 0, 0, 0, 0);

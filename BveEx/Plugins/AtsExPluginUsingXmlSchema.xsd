@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="BveExPluginUsingXmlSchema"
+	elementFormDefault="qualified"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="BveExPluginUsing">
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="Assembly"/>
+				<xs:element ref="CSharpScript"/>
+				<xs:element ref="IronPython2"/>
+				<xs:element ref="Native"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="Assembly">
+		<xs:complexType>
+			<xs:attribute name="Identifier" type="xs:string" use="optional" />
+			<xs:attribute name="Path" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="CSharpScript">
+		<xs:complexType>
+			<xs:attribute name="Identifier" type="xs:string" use="optional" />
+			<xs:attribute name="PackageManifestPath" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="IronPython2">
+		<xs:complexType>
+			<xs:attribute name="Identifier" type="xs:string" use="optional" />
+			<xs:attribute name="PackageManifestPath" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="Native">
+		<xs:complexType>
+			<xs:attribute name="Identifier" type="xs:string" use="optional" />
+			<xs:attribute name="Path" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -51,7 +51,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public double Location
         {
-            get => LocationGetMethod.Invoke(Src, null);
+            get => (double)LocationGetMethod.Invoke(Src, null);
             set => LocationSetMethod.Invoke(Src, new object[] { value });
         }
 

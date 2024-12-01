@@ -27,6 +27,10 @@
 #### [.NET Runtime](https://github.com/dotnet/runtime) (MIT)
 Copyright (c) .NET Foundation and Contributors
 
+#### [DllExport](https://github.com/3F/DllExport) (MIT)
+Copyright (c) 2009-2015  Robert Giesecke  
+Copyright (c) 2016-2021  Denis Kuzmin <x-3F@outlook.com> github/3F
+
 #### [DXDynamicTexture](https://github.com/zbx1425/DXDynamicTexture) (MIT)
 Copyright (c) 2021 zbx1425
 

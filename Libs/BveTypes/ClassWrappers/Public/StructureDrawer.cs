@@ -62,7 +62,7 @@ namespace BveTypes.ClassWrappers
         {
             get
             {
-                Array arraySrc = BlocksGetMethod.Invoke(Src, null);
+                Array arraySrc = BlocksGetMethod.Invoke(Src, null) as Array;
                 return WrappedArray<StructureBlock>.FromSource(arraySrc);
             }
         }
@@ -73,7 +73,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int MinDrawBlockIndex
         {
-            get => MinDrawBlockIndexField.GetValue(Src);
+            get => (int)MinDrawBlockIndexField.GetValue(Src);
             set => MinDrawBlockIndexField.SetValue(Src, value);
         }
 
@@ -83,7 +83,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int MaxDrawBlockIndexPlus1
         {
-            get => MaxDrawBlockIndexPlus1Field.GetValue(Src);
+            get => (int)MaxDrawBlockIndexPlus1Field.GetValue(Src);
             set => MaxDrawBlockIndexPlus1Field.SetValue(Src, value);
         }
 

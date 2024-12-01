@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -44,6 +45,6 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 要素の一覧を取得します。
         /// </summary>
-        public WrappedSortedList<string, Sound> Items => new WrappedSortedList<string, Sound>(ItemsGetMethod.Invoke(Src, null));
+        public WrappedSortedList<string, Sound> Items => new WrappedSortedList<string, Sound>(ItemsGetMethod.Invoke(Src, null) as IDictionary);
     }
 }

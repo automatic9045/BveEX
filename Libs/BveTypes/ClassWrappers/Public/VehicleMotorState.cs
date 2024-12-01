@@ -46,7 +46,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double CarForce
         {
-            get => CarForceField.GetValue(Src);
+            get => (double)CarForceField.GetValue(Src);
             set => CarForceField.SetValue(Src, value);
         }
 
@@ -56,7 +56,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double Current
         {
-            get => CurrentField.GetValue(Src);
+            get => (double)CurrentField.GetValue(Src);
             set => CurrentField.SetValue(Src, value);
         }
 
@@ -66,7 +66,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public double TorqueCurrent
         {
-            get => TorqueCurrentField.GetValue(Src);
+            get => (double)TorqueCurrentField.GetValue(Src);
             set => TorqueCurrentField.SetValue(Src, value);
         }
     }

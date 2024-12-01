@@ -72,8 +72,8 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Model Model
         {
-            get => ClassWrappers.Model.FromSource(ModelGetMethod.Invoke(Src, null));
-            set => ModelSetMethod.Invoke(Src, new object[] { value.Src });
+            get => Model.FromSource(ModelGetMethod.Invoke(Src, null));
+            set => ModelSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
         private static FastMethod TrackKey1GetMethod;
@@ -83,7 +83,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public string TrackKey1
         {
-            get => TrackKey1GetMethod.Invoke(Src, null);
+            get => TrackKey1GetMethod.Invoke(Src, null) as string;
             set => TrackKey1SetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -94,7 +94,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public string TrackKey2
         {
-            get => TrackKey2GetMethod.Invoke(Src, null);
+            get => TrackKey2GetMethod.Invoke(Src, null) as string;
             set => TrackKey2SetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -102,6 +102,6 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// X 方向のみに変形するかを取得・設定します。
         /// </summary>
-        public bool TransformOnlyX => TransformOnlyXGetMethod.Invoke(Src, null);
+        public bool TransformOnlyX => (bool)TransformOnlyXGetMethod.Invoke(Src, null);
     }
 }

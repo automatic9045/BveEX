@@ -71,7 +71,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public string Name
         {
-            get => NameGetMethod.Invoke(Src, null);
+            get => NameGetMethod.Invoke(Src, null) as string;
             set => NameSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -82,7 +82,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public List<object> Args
         {
-            get => ArgsGetMethod.Invoke(Src, null);
+            get => ArgsGetMethod.Invoke(Src, null) as List<object>;
             set => ArgsSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -93,7 +93,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public List<object> Keys
         {
-            get => KeysGetMethod.Invoke(Src, null);
+            get => KeysGetMethod.Invoke(Src, null) as List<object>;
             set => KeysSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -104,7 +104,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int LineIndex
         {
-            get => LineIndexGetMethod.Invoke(Src, null);
+            get => (int)LineIndexGetMethod.Invoke(Src, null);
             set => LineIndexSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -115,7 +115,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public int CharIndex
         {
-            get => CharIndexGetMethod.Invoke(Src, null);
+            get => (int)CharIndexGetMethod.Invoke(Src, null);
             set => CharIndexSetMethod.Invoke(Src, new object[] { value });
         }
 

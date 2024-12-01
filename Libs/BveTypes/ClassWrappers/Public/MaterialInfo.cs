@@ -55,7 +55,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Material Material
         {
-            get => MaterialGetMethod.Invoke(Src, null);
+            get => (Material)MaterialGetMethod.Invoke(Src, null);
             set => MaterialSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -66,7 +66,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Texture Texture
         {
-            get => TextureGetMethod.Invoke(Src, null);
+            get => TextureGetMethod.Invoke(Src, null) as Texture;
             set => TextureSetMethod.Invoke(Src, new object[] { value });
         }
 
@@ -77,7 +77,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public bool Is2D
         {
-            get => Is2DGetMethod.Invoke(Src, null);
+            get => (bool)Is2DGetMethod.Invoke(Src, null);
             set => Is2DSetMethod.Invoke(Src, new object[] { value });
         }
     }
