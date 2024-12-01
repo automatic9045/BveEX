@@ -44,7 +44,7 @@ namespace BveEx
 
         public Scenario Target { get; private set; } = null;
 
-        public ScenarioService(BveEx bveEx, PluginSourceSet vehiclePluginUsing, VehicleConfig vehicleConfig)
+        public ScenarioService(BveEx bveEx, PluginSourceSet vehiclePluginUsing)
         {
             BveEx = bveEx;
             BveEx.BveHacker.ScenarioCreated += OnScenarioCreated;

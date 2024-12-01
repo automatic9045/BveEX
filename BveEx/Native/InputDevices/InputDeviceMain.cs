@@ -51,9 +51,6 @@ namespace BveEx.Native.InputDevices
         private ScenarioService ScenarioService = null;
         private FrameSpan FrameSpan = null;
 
-        private PluginSourceSet LoadedVehiclePluginUsing = null;
-        private VehicleConfig LoadedVehicleConfig = null;
-
         public InputDeviceMain(CallerInfo callerInfo)
         {
             Assembly executingAssembly = Assembly.GetExecutingAssembly();
@@ -113,12 +110,9 @@ namespace BveEx.Native.InputDevices
         private void OnSetVehicleSpec(object sender, EventArgs e)
         {
             string vehiclePath = BveEx.BveHacker.ScenarioInfo.VehicleFiles.SelectedFile.Path;
-            VehicleConfig vehicleConfig = LoadedVehicleConfig ?? VehicleConfig.Resolve(vehiclePath);
-            PluginSourceSet pluginUsing = !(LoadedVehiclePluginUsing is null) ? LoadedVehiclePluginUsing
-                : vehicleConfig.PluginUsingPath is null ? PluginSourceSet.ResolvePluginUsingToLoad(PluginType.VehiclePlugin, true, vehiclePath)
-                : PluginSourceSet.FromPluginUsing(PluginType.VehiclePlugin, true, vehicleConfig.PluginUsingPath);
+            PluginSourceSet vehiclePluginUsing = PluginSourceSet.ResolvePluginUsingToLoad(PluginType.VehiclePlugin, true, vehiclePath);
 
-            ScenarioService = new ScenarioService(BveEx, pluginUsing, vehicleConfig);
+            ScenarioService = new ScenarioService(BveEx, vehiclePluginUsing);
             FrameSpan = new FrameSpan();
         }
 
@@ -147,9 +141,6 @@ namespace BveEx.Native.InputDevices
 
             ScenarioService?.Dispose();
             ScenarioService = null;
-
-            LoadedVehiclePluginUsing = null;
-            LoadedVehicleConfig = null;
         }
 
         public void Dispose()
