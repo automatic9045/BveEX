@@ -3,22 +3,21 @@
 	<metadata>
 		<id>BveEx.Diagnostics</id>
 		<version>2.0.0-alpha.1</version>
-		<description>BVE Trainsim 5/6 用 AtsEX 及び AtsEX プラグインで発生したエラーを解析するための機能を提供します。</description>
+		<description>BveEX [旧・AtsEX] 本体および BveEX プラグインで発生したエラーを解析するための機能を提供します。</description>
 		<authors>AtsEX &amp; BveEX Project</authors>
 
 		<projectUrl>https://www.okaoka-depot.com/AtsEX/</projectUrl>
+		<license type="file">LICENSE_NuGet.md</license>
 		<icon>images\Icon_NuGet.png</icon>
 		<readme>docs\README_NuGet.md</readme>
-		<copyright>Copyright © 2022 AtsEX Project</copyright>
+		<copyright>Copyright © 2022 automatic9045</copyright>
 		<tags>bve bve5 bve6</tags>
-		<repository type="git" url="https://github.com/automatic9045/AtsEX.git" />
+		<repository type="git" url="https://github.com/automatic9045/BveEX.git" />
 		<title>BveEX Diagnostics</title>
-
-		<dependencies>
-		</dependencies>
 	</metadata>
 	<files>
 		<file src="README_NuGet.md" target="docs" />
+		<file src="LICENSE_NuGet.md" target="" />
 		<file src="Icon_NuGet.png" target="images" />
 		<file src="bin\Release\BveEx.Diagnostics.dll" target="lib" />
 		<file src="bin\Release\BveEx.Diagnostics.xml" target="lib" />
