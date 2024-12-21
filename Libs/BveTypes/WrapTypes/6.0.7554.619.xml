@@ -1354,7 +1354,7 @@
 			<Getter Original="c"/>
 			<Setter Original="a" IsOriginalNonPublic="true"/>
 		</Property>
-		<Property Wrapper="DoorSide">
+		<Property Wrapper="DoorSideNumber">
 			<Getter Original="o"/>
 			<Setter Original="f"/>
 		</Property>

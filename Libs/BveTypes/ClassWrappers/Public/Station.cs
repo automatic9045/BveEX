@@ -46,8 +46,8 @@ namespace BveTypes.ClassWrappers
             StoppageTimeGetMethod = members.GetSourcePropertyGetterOf(nameof(StoppageTimeMilliseconds));
             StoppageTimeSetMethod = members.GetSourcePropertySetterOf(nameof(StoppageTimeMilliseconds));
 
-            DoorSideGetMethod = members.GetSourcePropertyGetterOf(nameof(DoorSide));
-            DoorSideSetMethod = members.GetSourcePropertySetterOf(nameof(DoorSide));
+            DoorSideNumberGetMethod = members.GetSourcePropertyGetterOf(nameof(DoorSideNumber));
+            DoorSideNumberSetMethod = members.GetSourcePropertySetterOf(nameof(DoorSideNumber));
 
             DepartureSoundGetMethod = members.GetSourcePropertyGetterOf(nameof(DepartureSound));
             DepartureSoundSetMethod = members.GetSourcePropertySetterOf(nameof(DepartureSound));
@@ -168,15 +168,6 @@ namespace BveTypes.ClassWrappers
             set => DepartureTimeMilliseconds = (int)value.TotalMilliseconds;
         }
 
-        /// <summary>
-        /// 発車時刻または通過時刻を取得・設定します。
-        /// </summary>
-        public TimeSpan DepertureTime
-        {
-            get => DepartureTime;
-            set => DepartureTime = value;
-        }
-
         private static FastMethod DoorCloseTimeGetMethod;
         private static FastMethod DoorCloseTimeSetMethod;
         /// <summary>
@@ -260,15 +251,15 @@ namespace BveTypes.ClassWrappers
             set => StoppageTimeMilliseconds = (int)value.TotalMilliseconds;
         }
 
-        private static FastMethod DoorSideGetMethod;
-        private static FastMethod DoorSideSetMethod;
+        private static FastMethod DoorSideNumberGetMethod;
+        private static FastMethod DoorSideNumberSetMethod;
         /// <summary>
         /// 開くドアの方向を表す整数を取得・設定します。
         /// </summary>
-        public int DoorSide
+        public int DoorSideNumber
         {
-            get => (int)DoorSideGetMethod.Invoke(Src, null);
-            set => DoorSideSetMethod.Invoke(Src, new object[] { value });
+            get => (int)DoorSideNumberGetMethod.Invoke(Src, null);
+            set => DoorSideNumberSetMethod.Invoke(Src, new object[] { value });
         }
 
         /// <summary>
@@ -277,11 +268,11 @@ namespace BveTypes.ClassWrappers
         /// <remarks>
         /// どちら側のドアも開かないことを表すには <see langword="null"/> を使用します。
         /// </remarks>
-        public DoorSide? DoorSideEnum
+        public DoorSide? DoorSide
         {
             get
             {
-                switch (DoorSide)
+                switch (DoorSideNumber)
                 {
                     case -1:
                         return ClassWrappers.DoorSide.Left;
@@ -296,13 +287,13 @@ namespace BveTypes.ClassWrappers
                 switch (value)
                 {
                     case ClassWrappers.DoorSide.Left:
-                        DoorSide = -1;
+                        DoorSideNumber = -1;
                         break;
                     case ClassWrappers.DoorSide.Right:
-                        DoorSide = 1;
+                        DoorSideNumber = 1;
                         break;
                     default:
-                        DoorSide = 0;
+                        DoorSideNumber = 0;
                         break;
                 }
             }
