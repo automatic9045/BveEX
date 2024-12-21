@@ -34,7 +34,7 @@ namespace BveEx.Samples.VehiclePlugins.ConductorPatchTest
             Original.Doors.SetState(DoorState.Close, DoorState.Close);
 
             Station currentStation = Original.Stations.Count <= stationIndex ? null : Original.Stations[stationIndex] as Station;
-            int doorSide = currentStation is null || currentStation.Pass || isDoorClosed ? 0 : currentStation.DoorSide;
+            int doorSide = currentStation is null || currentStation.Pass || isDoorClosed ? 0 : currentStation.DoorSideNumber;
             if (doorSide == 0) Original.Stations.GoToByIndex(stationIndex);
 
             return MethodOverrideMode.SkipOriginal;
@@ -56,18 +56,18 @@ namespace BveEx.Samples.VehiclePlugins.ConductorPatchTest
         {
             Station nextStation = GetNextStation();
             if (!(nextStation is null))
-			{
-				if (nextStation.Pass || nextStation.DoorSide == 0)
+            {
+                if (nextStation.Pass || nextStation.DoorSideNumber == 0)
                 {
                     double location = Original.Location.Location;
                     if ((Math.Abs(Original.Location.Speed) < 0.01f && location >= nextStation.MinStopPosition) || location >= nextStation.MaxStopPosition)
                     {
                         Original.Stations.GoToByIndex(Original.Stations.CurrentIndex + 1);
-					}
-				}
-			}
+                    }
+                }
+            }
 
-			return MethodOverrideMode.SkipOriginal;
+            return MethodOverrideMode.SkipOriginal;
         }
 
         public void RequestFixStopPosition()
@@ -78,7 +78,7 @@ namespace BveEx.Samples.VehiclePlugins.ConductorPatchTest
         public void OpenDoors(DoorSide doorSide)
         {
             Station nextStation = GetNextStation();
-            if (!(nextStation is null) && nextStation.DoorSide == ToDoorSideNumber(doorSide))
+            if (!(nextStation is null) && nextStation.DoorSideNumber == ToDoorSideNumber(doorSide))
             {
                 if (!HasStopPositionChecked)
                 {
@@ -103,7 +103,7 @@ namespace BveEx.Samples.VehiclePlugins.ConductorPatchTest
         public void CloseDoors(DoorSide doorSide)
         {
             Station nextStation = GetNextStation();
-            if (!(nextStation is null) && nextStation.DoorSide == ToDoorSideNumber(doorSide))
+            if (!(nextStation is null) && nextStation.DoorSideNumber == ToDoorSideNumber(doorSide))
             {
                 if (!HasStopPositionChecked)
                 {

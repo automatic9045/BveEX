@@ -23,8 +23,8 @@ namespace BveEx.Samples.MapPlugins.StationController
 
         protected CheckBox Pass;
 
-        protected Label DepertureTimeKey;
-        protected TextBox DepertureTimeValue;
+        protected Label DepartureTimeKey;
+        protected TextBox DepartureTimeValue;
 
         protected CheckBox IsTerminal;
 
@@ -109,23 +109,23 @@ namespace BveEx.Samples.MapPlugins.StationController
             Controls.Add(Pass);
 
 
-            DepertureTimeKey = new Label()
+            DepartureTimeKey = new Label()
             {
                 Left = 272,
                 Top = 16,
                 Width = 32,
                 Text = "出発",
             };
-            Controls.Add(DepertureTimeKey);
+            Controls.Add(DepartureTimeKey);
 
-            DepertureTimeValue = new TextBox()
+            DepartureTimeValue = new TextBox()
             {
-                Name = nameof(DepertureTimeValue),
+                Name = nameof(DepartureTimeValue),
                 Left = 304,
                 Top = 16 - 2,
                 Width = 64,
             };
-            Controls.Add(DepertureTimeValue);
+            Controls.Add(DepartureTimeValue);
 
 
             IsTerminal = new CheckBox()

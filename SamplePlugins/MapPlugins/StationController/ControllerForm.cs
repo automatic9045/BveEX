@@ -45,7 +45,7 @@ namespace BveEx.Samples.MapPlugins.StationController
             LocationValue.Text = (lastStation is null ? 0 : lastStation.Location + 500).ToString();
             int arrivalTime = lastStation is null ? 10 * 60 * 60 * 1000 : lastStation.DefaultTimeMilliseconds + 2 * 60 * 1000;
             ArrivalTimeValue.Text = arrivalTime.ToTimeText();
-            DepertureTimeValue.Text = (arrivalTime + 30 * 1000).ToTimeText();
+            DepartureTimeValue.Text = (arrivalTime + 30 * 1000).ToTimeText();
         }
 
         private void AddButtonClicked(object sender, EventArgs e)
@@ -60,7 +60,7 @@ namespace BveEx.Samples.MapPlugins.StationController
                     Location = int.Parse(LocationValue.Text),
                     DefaultTimeMilliseconds = ArrivalTimeValue.Text.ToTimeMilliseconds(),
                     ArrivalTimeMilliseconds = ArrivalTimeValue.Text.ToTimeMilliseconds(),
-                    DepartureTimeMilliseconds = Pass.Checked ? int.MaxValue : DepertureTimeValue.Text.ToTimeMilliseconds(),
+                    DepartureTimeMilliseconds = Pass.Checked ? int.MaxValue : DepartureTimeValue.Text.ToTimeMilliseconds(),
                     Pass = Pass.Checked,
                     IsTerminal = IsTerminal.Checked,
                 };
