@@ -89,8 +89,8 @@
   </Target>
   <PropertyGroup>
     <PostBuildEvent>copy /y "$(TargetDir)x64\$(TargetFileName)" "$(SolutionDir)_out\BveEx\Debug\$(TargetName).x64$(TargetExt)"
-copy /y "$(TargetDir)x64\$(TargetName).pdb" "$(SolutionDir)_out\BveEx\Debug\$(TargetName).x64.pdb"
+if exist "$(TargetDir)x64\$(TargetName).pdb" copy /y "$(TargetDir)x64\$(TargetName).pdb" "$(SolutionDir)_out\BveEx\Debug\$(TargetName).x64.pdb"
 copy /y "$(TargetDir)x86\$(TargetFileName)" "$(SolutionDir)_out\BveEx\Debug\$(TargetName).x86$(TargetExt)"
-copy /y "$(TargetDir)x86\$(TargetName).pdb" "$(SolutionDir)_out\BveEx\Debug\$(TargetName).x86.pdb"</PostBuildEvent>
+if exist "$(TargetDir)x86\$(TargetName).pdb" copy /y "$(TargetDir)x86\$(TargetName).pdb" "$(SolutionDir)_out\BveEx\Debug\$(TargetName).x86.pdb"</PostBuildEvent>
   </PropertyGroup>
 </Project>
