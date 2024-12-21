@@ -36,12 +36,12 @@ namespace BveEx.Launcher
 
         public VersionSelector(Assembly callerAssembly)
         {
-            string[] commandLineArgs = Environment.GetCommandLineArgs();
-            bool isLegacyMode = commandLineArgs.Contains("/bveex-legacy", StringComparer.OrdinalIgnoreCase);
-            string productName = isLegacyMode ? "BveEX レガシーモード (AtsEX)" : "BveEX";
-
             Assembly launcherAssembly = Assembly.GetExecutingAssembly();
             string rootDirectory = Path.GetDirectoryName(launcherAssembly.Location);
+
+            string legacyFilePath = Path.Combine(rootDirectory, ".LEGACY");
+            bool isLegacyMode = File.Exists(legacyFilePath);
+            string productName = isLegacyMode ? "BveEX レガシーモード (AtsEX)" : "BveEX";
 
             Version bveVersion = BveFinder.TargetAssembly.GetName().Version;
             Version launcherVersion = launcherAssembly.GetName().Version;
