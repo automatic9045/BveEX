@@ -116,6 +116,9 @@ namespace BveEx
         {
             if (e.Exception is LaunchModeException)
             {
+                BveHacker.MainForm.Preferences.SaveToXml();
+                BveHacker.MainForm.Preferences = null;
+
                 LaunchModeManager.RestartAsLegacyMode(BveHacker.ScenarioInfo?.Path);
             }
         }
