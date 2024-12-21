@@ -1,27 +1,27 @@
-![GitHub Release](https://img.shields.io/github/v/release/automatic9045/AtsEX?include_prereleases&display_name=release) ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/automatic9045/AtsEX/total) ![NuGet Version](https://img.shields.io/nuget/vpre/AtsEx.PluginHost?logo=nuget&label=nuget%20(AtsEx.PluginHost)) ![NuGet Version](https://img.shields.io/nuget/vpre/AtsEx.CoreExtensions?logo=nuget&label=nuget%20(AtsEx.CoreExtensions))
+![GitHub Release](https://img.shields.io/github/v/release/automatic9045/BveEX?include_prereleases&display_name=release) ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/automatic9045/BveEX/total) ![NuGet Version](https://img.shields.io/nuget/vpre/BveEx.PluginHost?logo=nuget&label=nuget%20(BveEx.PluginHost)) ![NuGet Version](https://img.shields.io/nuget/vpre/BveEx.CoreExtensions?logo=nuget&label=nuget%20(BveEx.CoreExtensions))
 
-# AtsEX - BVE 拡張キット
+# BveEX [旧・AtsEX] - BVE 拡張キット
 【BVE5・6 向け】BVE の機能を拡張し、あらゆる表現ができるようにするプラグイン フレームワークです。従来の ATS プラグインや入力デバイスプラグインでは実現できなかった新しい演出、機能の実装が可能になります。
 
 詳細はこちら→ https://www.okaoka-depot.com/AtsEX/
 
 ## 名前の由来
-**ATS** プラグインを拡張 (**ex**tend) するプラグイン
+**BVE** の機能を拡張 (**ex**tend) するプラグイン
 
 ## ライセンス
-[The MIT License](LICENSE)
+[PolyForm Noncommercial License 1.0.0](LICENSE.md)
 
 ## リリースのダウンロード
-こちら→ [Releases](https://github.com/automatic9045/AtsEX/releases)
+こちら→ [Releases](https://github.com/automatic9045/BveEX/releases)
 
-## AtsEX 本体のビルド手順
-こちら→ [AtsEX 本体のビルド手順](HowToBuild.md)
+## BveEX 本体のビルド手順
+こちら→ [BveEX 本体のビルド手順](HowToBuild.md)
 
 ### 【⚠️注意⚠️】プラグインを開発するための手順ではありません
-**AtsEX 本体のソースコードを編集するための手順です。AtsEX を使用してプラグインを開発する際は、こちらではなく [Releases](https://github.com/automatic9045/AtsEX/releases) を参照してください。**
+**BveEX 本体のソースコードを編集するための手順です。BveEX を使用してプラグインを開発する際は、こちらではなく [Releases](https://github.com/automatic9045/BveEX/releases) を参照してください。**
 
 ## プロジェクトの構成
-![AtsEX 構成図](SystemOverview.InputDevice.svg)
+![BveEX 構成図](SystemOverview.InputDevice.svg)
 
 ## 使用ライブラリ等（アルファベット順）
 #### [.NET Runtime](https://github.com/dotnet/runtime) (MIT)
