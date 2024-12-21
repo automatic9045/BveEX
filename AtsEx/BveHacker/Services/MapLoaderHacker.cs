@@ -14,6 +14,7 @@ using Irony.Parsing;
 using ObjectiveHarmonyPatch;
 using TypeWrapping;
 
+using AtsEx.Launching;
 using AtsEx.MapStatements;
 
 namespace AtsEx.BveHackerServices
@@ -22,6 +23,7 @@ namespace AtsEx.BveHackerServices
     {
         private readonly HarmonyPatch ConstructorPatch;
         private readonly HarmonyPatch RegisterFilePatch;
+        private readonly HarmonyPatch ParseStatementPatch;
         private readonly HarmonyPatch IncludePatch;
         private readonly HarmonyPatch GetSystemVariablePatch;
 
@@ -52,6 +54,20 @@ namespace AtsEx.BveHackerServices
                 if (filePath == MapLoader.FilePath)
                 {
                     Headers = HeadersFactory.Build();
+                }
+
+                return PatchInvokationResult.DoNothing(e);
+            };
+
+            FastMethod parseStatementMethod = mapLoaderMembers.GetSourceMethodOf(nameof(MapLoader.ParseStatement));
+            ParseStatementPatch = HarmonyPatch.Patch(nameof(MapLoaderHacker), parseStatementMethod.Source, PatchType.Prefix);
+            ParseStatementPatch.Invoked += (sender, e) =>
+            {
+                WrappedList<MapStatementClause> clauses = WrappedList<MapStatementClause>.FromSource((IList)e.Args[0]);
+
+                if (0 < clauses.Count && clauses[0].Name.ToLowerInvariant() == "bveex")
+                {
+                    throw new LaunchModeException();
                 }
 
                 return PatchInvokationResult.DoNothing(e);
@@ -114,7 +130,9 @@ namespace AtsEx.BveHackerServices
         {
             ConstructorPatch.Dispose();
             RegisterFilePatch.Dispose();
+            ParseStatementPatch.Dispose();
             IncludePatch.Dispose();
+            GetSystemVariablePatch.Dispose();
         }
 
         public void Clear()

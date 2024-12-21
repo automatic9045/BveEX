@@ -119,6 +119,8 @@
     <Compile Include="BveHacker\Services\ConfigFormHacker.cs" />
     <Compile Include="BveHacker\Services\MapLoaderHacker.cs" />
     <Compile Include="ErrorDialog.cs" />
+    <Compile Include="Launching\LaunchModeException.cs" />
+    <Compile Include="Launching\LaunchModeManager.cs" />
     <Compile Include="Main\AtsEx.PatchEvents.cs" />
     <Compile Include="Main\PatchSet.cs" />
     <Compile Include="MapStatements\HeaderParser.cs" />

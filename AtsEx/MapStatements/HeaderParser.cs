@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 using AtsEx.PluginHost.MapStatements;
 
+using AtsEx.Launching;
+
 namespace AtsEx.MapStatements
 {
     internal static class HeaderParser
@@ -44,6 +46,9 @@ namespace AtsEx.MapStatements
 
         public static HeaderInfo Parse(string text, string filePath, int lineIndex, int charIndex)
         {
+            if (text.StartsWith("[[bveex::", StringComparison.OrdinalIgnoreCase) && text.Contains("]]")) throw new LaunchModeException();
+            if (text.StartsWith("<bveex::", StringComparison.OrdinalIgnoreCase) && text.Contains(">")) throw new LaunchModeException();
+
             if (TryCreateHeader(UseAtsExHeaderFullName, UseAtsExHeaderFullNameObsolete) is Header useAtsExHeader)
             {
                 return new HeaderInfo(HeaderType.UseAtsEx, useAtsExHeader);

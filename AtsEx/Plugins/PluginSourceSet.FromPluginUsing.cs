@@ -14,6 +14,8 @@ using AtsEx.Plugins.Scripting;
 using AtsEx.PluginHost;
 using AtsEx.PluginHost.Plugins;
 
+using AtsEx.Launching;
+
 namespace AtsEx.Plugins
 {
     internal sealed partial class PluginSourceSet
@@ -45,8 +47,13 @@ namespace AtsEx.Plugins
         public static PluginSourceSet FromPluginUsing(PluginType pluginType, bool allowNonPluginAssembly, string listPath)
         {
             XDocument doc = XDocument.Load(listPath, LoadOptions.SetLineInfo);
-            doc.Validate(SchemaSet, DocumentValidation);
 
+            if (doc.Root.Name.LocalName == "BveExPluginUsing")
+            {
+                throw new LaunchModeException();
+            }
+
+            doc.Validate(SchemaSet, DocumentValidation);
             XElement root = doc.Element(TargetNamespace + "AtsExPluginUsing");
 
             List<IPluginPackage> pluginPackages = root.Elements().Select<XElement, IPluginPackage>(element =>

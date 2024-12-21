@@ -14,6 +14,8 @@ using UnembeddedResources;
 
 using AtsEx.PluginHost.Plugins;
 
+using AtsEx.Launching;
+
 namespace AtsEx.Plugins.Scripting
 {
     internal partial class ScriptPluginPackage : IPluginPackage
@@ -89,8 +91,13 @@ namespace AtsEx.Plugins.Scripting
         public static ScriptPluginPackage Load(Identifier identifier, ScriptLanguage scriptLanguage, string path)
         {
             XDocument doc = XDocument.Load(path, LoadOptions.SetLineInfo);
-            doc.Validate(SchemaSet, DocumentValidation);
 
+            if (doc.Root.Name.LocalName == "BveExScriptPluginPackageManifest")
+            {
+                throw new LaunchModeException();
+            }
+
+            doc.Validate(SchemaSet, DocumentValidation);
             XElement root = doc.Element(TargetNamespace + "AtsExScriptPluginPackageManifest");
 
             XElement infoElement = root.Element(TargetNamespace + "Info");

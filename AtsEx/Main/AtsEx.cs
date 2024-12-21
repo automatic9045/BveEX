@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,6 +18,7 @@ using AtsEx.PluginHost.Plugins.Extensions;
 
 using AtsEx.Native;
 using AtsEx.Plugins.Extensions;
+using AtsEx.Launching;
 
 namespace AtsEx
 {
@@ -76,6 +78,7 @@ namespace AtsEx
         public AtsEx(BveTypeSet bveTypes)
         {
             BveHacker = new BveHacker(bveTypes);
+            AppDomain.CurrentDomain.FirstChanceException += OnFirstChanceException;
 
             ClassMemberSet mainFormMembers = BveHacker.BveTypes.GetClassInfoOf<MainForm>();
             ClassMemberSet scenarioMembers = BveHacker.BveTypes.GetClassInfoOf<Scenario>();
@@ -95,6 +98,8 @@ namespace AtsEx
 
         public void Dispose()
         {
+            AppDomain.CurrentDomain.FirstChanceException -= OnFirstChanceException;
+
             if (BveHacker.IsConfigFormReady)
             {
                 string header = string.Format(Resources.Value.ManualDisposeHeader.Value, App.Instance.ProductShortName);
@@ -114,6 +119,17 @@ namespace AtsEx
             VersionFormProvider.Dispose();
             ExtensionService.Dispose();
             BveHacker.Dispose();
+        }
+
+        private void OnFirstChanceException(object sender, FirstChanceExceptionEventArgs e)
+        {
+            if (e.Exception is LaunchModeException)
+            {
+                BveHacker.MainForm.Preferences.SaveToXml();
+                BveHacker.MainForm.Preferences = null;
+
+                LaunchModeManager.RestartAsNormalMode(BveHacker.ScenarioInfo?.Path);
+            }
         }
 
         public void Tick(TimeSpan elapsed)
