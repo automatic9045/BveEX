@@ -35,10 +35,3 @@ using BveEx.Launcher;
 // 既定値にすることができます:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.41005.1")]
-
-// 互換性バージョンの履歴
-// ==============================
-// 1: beta0.16 (0.16.x.x)
-// 2: beta0.17 (0.17.x.x)
-// 3: beta0.18 (0.18.x.x) -
-[assembly: CallerCompatibilityVersion(3)]

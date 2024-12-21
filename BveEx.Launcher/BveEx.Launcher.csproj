@@ -72,7 +72,6 @@
     <Compile Include="CoreHost.cs" />
     <Compile Include="ICoreHost.cs" />
     <Compile Include="InputEventArgs.cs" />
-    <Compile Include="LauncherCompatibilityVersionAttribute.cs" />
     <Compile Include="LauncherVersionChecker.cs" />
     <Compile Include="LegacyCoreHost.cs" />
     <Compile Include="Resources.cs" />
