@@ -24,12 +24,23 @@ namespace BveEx.Samples.MapPlugins.TrainController
             BveHacker.ScenarioCreated += OnScenarioCreated;
 
             INative native = Extensions.GetExtension<INative>();
-            native.AtsKeys.GetKey(AtsKeyName.D).Pressed += OnDPressed;
-            native.AtsKeys.GetKey(AtsKeyName.E).Pressed += OnEPressed;
+            native.Opened += OnNativeOpened;
         }
 
-        private void OnDPressed(object sender, EventArgs e) => Train.TrainInfo.TrackKey = "1";
-        private void OnEPressed(object sender, EventArgs e) => Train.TrainInfo.TrackKey = "0";
+        private void OnNativeOpened(object sender, EventArgs e)
+        {
+            INative native = Extensions.GetExtension<INative>();
+
+            native.AtsKeys.GetKey(AtsKeyName.D).Pressed += (sender2, e2) =>
+            {
+                Train.TrainInfo.TrackKey = "1";
+            };
+
+            native.AtsKeys.GetKey(AtsKeyName.E).Pressed += (sender2, e2) =>
+            {
+                Train.TrainInfo.TrackKey = "0";
+            };
+        }
 
         public override void Dispose()
         {
