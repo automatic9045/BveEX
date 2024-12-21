@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<id>BveEx.CoreExtensions</id>
-		<version>2.0.0-alpha.1</version>
+		<version>2.0.0</version>
 		<description>BVE Trainsim 5/6 用 BveEX [旧・AtsEX] プラグインの開発に便利な拡張機能のセットです。</description>
 		<authors>AtsEX &amp; BveEX Project</authors>
 
@@ -16,7 +16,7 @@
 		<title>BveEX CoreExtensions</title>
 
 		<dependencies>
-			<dependency id="BveEx.PluginHost" version="2.0.0-alpha.1" />
+			<dependency id="BveEx.PluginHost" version="2.0.0" />
 		</dependencies>
 	</metadata>
 	<files>
