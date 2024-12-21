@@ -64,7 +64,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Model Model
         {
-            get => ClassWrappers.Model.FromSource(ModelField.GetValue(Src));
+            get => Model.FromSource(ModelField.GetValue(Src));
             set => ModelField.SetValue(Src, value.Src);
         }
 
@@ -74,7 +74,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Matrix Matrix
         {
-            get => MatrixField.GetValue(Src);
+            get => (Matrix)MatrixField.GetValue(Src);
             set => MatrixField.SetValue(Src, value);
         }
 
@@ -87,7 +87,7 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         public Vector3[] Vertices
         {
-            get => VerticesField.GetValue(Src);
+            get => VerticesField.GetValue(Src) as Vector3[];
             set => VerticesField.SetValue(Src, value);
         }
 
