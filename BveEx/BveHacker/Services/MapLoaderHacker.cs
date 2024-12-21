@@ -21,6 +21,7 @@ namespace BveEx.BveHackerServices
     internal class MapLoaderHacker : IDisposable
     {
         private readonly HarmonyPatch ConstructorPatch;
+        private readonly HarmonyPatch ParseStatementPatch;
         private readonly HarmonyPatch IncludePatch;
         private readonly HarmonyPatch GetSystemVariablePatch;
 
@@ -35,6 +36,20 @@ namespace BveEx.BveHackerServices
             ConstructorPatch.Invoked += (sender, e) =>
             {
                 MapLoader = MapLoader.FromSource(e.Instance);
+
+                return PatchInvokationResult.DoNothing(e);
+            };
+
+            FastMethod parseStatementMethod = mapLoaderMembers.GetSourceMethodOf(nameof(MapLoader.ParseStatement));
+            ParseStatementPatch = HarmonyPatch.Patch(nameof(MapLoaderHacker), parseStatementMethod.Source, PatchType.Prefix);
+            ParseStatementPatch.Invoked += (sender, e) =>
+            {
+                WrappedList<MapStatementClause> clauses = WrappedList<MapStatementClause>.FromSource((IList)e.Args[0]);
+
+                if (0 < clauses.Count && clauses[0].Name.ToLowerInvariant() == "atsex")
+                {
+                    throw new LaunchModeException();
+                }
 
                 return PatchInvokationResult.DoNothing(e);
             };
@@ -95,7 +110,9 @@ namespace BveEx.BveHackerServices
         public void Dispose()
         {
             ConstructorPatch.Dispose();
+            ParseStatementPatch.Dispose();
             IncludePatch.Dispose();
+            GetSystemVariablePatch.Dispose();
         }
 
         public void Clear()
