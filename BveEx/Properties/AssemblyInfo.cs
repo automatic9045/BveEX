@@ -40,5 +40,6 @@ using BveEx.Native;
 // ==============================
 // 1: beta0.16 (0.16.x.x)
 // 2: beta0.17 (0.17.x.x)
-// 3: beta0.18 (0.18.x.x) -
-[assembly: LauncherCompatibilityVersion(3)]
+// 3: beta0.18 (0.18.x.x) - ver1.0-RC10 (1.0.41005.1)
+// 4: ver2.0 (2.0.x.x) -
+[assembly: LauncherCompatibilityVersion(4)]

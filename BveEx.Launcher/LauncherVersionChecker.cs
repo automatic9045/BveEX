@@ -11,7 +11,7 @@ namespace BveEx.Launcher
 {
     internal static class LauncherVersionChecker
     {
-        private const int LauncherVersion = 3;
+        private const int LauncherVersion = 4;
 
         public static void Check()
         {
