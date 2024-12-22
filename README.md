@@ -11,6 +11,8 @@
 ## ライセンス
 [PolyForm Noncommercial License 1.0.0](LICENSE.md)
 
+※レガシーモードは別取扱となります。
+
 ## リリースのダウンロード
 こちら→ [Releases](https://github.com/automatic9045/BveEX/releases)
 
