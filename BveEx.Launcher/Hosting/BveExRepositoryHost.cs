@@ -13,7 +13,7 @@ namespace BveEx.Launcher.Hosting
     internal sealed class BveExRepositoryHost
     {
         private const string RepositoryOwner = "automatic9045";
-        private const string RepositoryName = "BveEx";
+        private const string RepositoryName = "BveEX";
 
         public BveExRepositoryHost()
         {
