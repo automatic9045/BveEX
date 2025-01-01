@@ -15,8 +15,12 @@ using BveEx.Launcher.SplashScreen;
 
 namespace BveEx.Launcher
 {
-    public class VersionSelector
+    public class VersionSelector : IDisposable
     {
+        private static readonly Assembly LauncherAssembly = Assembly.GetExecutingAssembly();
+        private static readonly string RootDirectory;
+        private static readonly string LegacyFilePath;
+
         private static readonly TargetBveFinder BveFinder = new TargetBveFinder();
 
         static VersionSelector()
@@ -24,6 +28,9 @@ namespace BveEx.Launcher
 #if DEBUG
             if (!Debugger.IsAttached) Debugger.Launch();
 #endif
+
+            RootDirectory = Path.GetDirectoryName(LauncherAssembly.Location);
+            LegacyFilePath = Path.Combine(RootDirectory, ".LEGACY");
 
             IpcClientChannel channel = new IpcClientChannel();
             ChannelServices.RegisterChannel(channel, true);
@@ -36,17 +43,13 @@ namespace BveEx.Launcher
 
         public VersionSelector(Assembly callerAssembly)
         {
-            Assembly launcherAssembly = Assembly.GetExecutingAssembly();
-            string rootDirectory = Path.GetDirectoryName(launcherAssembly.Location);
-
-            string legacyFilePath = Path.Combine(rootDirectory, ".LEGACY");
-            bool isLegacyMode = File.Exists(legacyFilePath);
+            bool isLegacyMode = File.Exists(LegacyFilePath);
             string productName = isLegacyMode ? "BveEX レガシーモード (AtsEX)" : "BveEX";
 
             Version bveVersion = BveFinder.TargetAssembly.GetName().Version;
-            Version launcherVersion = launcherAssembly.GetName().Version;
+            Version launcherVersion = LauncherAssembly.GetName().Version;
             Guid channelGuid = Guid.NewGuid();
-            SplashProcess = Process.Start(Path.Combine(rootDirectory, "BveEx.Launcher.SplashScreen.exe"), $"{bveVersion} {launcherVersion} {channelGuid}");
+            SplashProcess = Process.Start(Path.Combine(RootDirectory, "BveEx.Launcher.SplashScreen.exe"), $"{bveVersion} {launcherVersion} {channelGuid}");
             while (SplashProcess.MainWindowHandle == IntPtr.Zero)
             {
                 Task.Delay(10).Wait();
@@ -59,14 +62,14 @@ namespace BveEx.Launcher
             string exAssemblyDirectory;
             if (isLegacyMode)
             {
-                exAssemblyDirectory = Path.Combine(rootDirectory, "Legacy");
+                exAssemblyDirectory = Path.Combine(RootDirectory, "Legacy");
             }
             else
             {
 #if DEBUG
-                exAssemblyDirectory = Path.Combine(rootDirectory, "Debug");
+                exAssemblyDirectory = Path.Combine(RootDirectory, "Debug");
 #else
-                IEnumerable<string> availableDirectories = Directory.GetDirectories(rootDirectory).Where(x => x.Contains('.'));
+                IEnumerable<string> availableDirectories = Directory.GetDirectories(RootDirectory).Where(x => x.Contains('.'));
                 IEnumerable<(string Directory, AssemblyName AssemblyName)> bveExAssemblies = availableDirectories
                     .Select(x => (Directory: x, Location: Path.Combine(x, "BveEx.dll")))
                     .Where(x => File.Exists(x.Location))
@@ -125,7 +128,7 @@ namespace BveEx.Launcher
                 {
                     case "AtsEx.Diagnostics":
                     case "BveEx.Diagnostics":
-                        string diagnosticsPath = Path.Combine(rootDirectory, assemblyName.Name + ".dll");
+                        string diagnosticsPath = Path.Combine(RootDirectory, assemblyName.Name + ".dll");
                         return Assembly.LoadFrom(diagnosticsPath);
 
                     default:
@@ -133,6 +136,17 @@ namespace BveEx.Launcher
                         return File.Exists(path) ? Assembly.LoadFrom(path) : null;
                 }
             }
+        }
+
+        public void Dispose()
+        {
+            try
+            {
+                if (File.Exists(LegacyFilePath)) File.Delete(LegacyFilePath);
+            }
+            catch { }
+
+            CoreHost.Dispose();
         }
     }
 }

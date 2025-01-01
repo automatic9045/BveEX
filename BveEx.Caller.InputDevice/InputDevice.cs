@@ -85,7 +85,11 @@ namespace BveEx.Caller.InputDevice
             }
         }
 
-        public void Dispose() => VersionSelector?.CoreHost.Dispose();
+        public void Dispose()
+        {
+            VersionSelector?.Dispose();
+        }
+
         public void Configure(IWin32Window owner) => VersionSelector.CoreHost.Configure(owner);
         public void Load(string settingsPath) => VersionSelector.CoreHost.Load(settingsPath);
         public void SetAxisRanges(int[][] ranges) => VersionSelector.CoreHost.SetAxisRanges(ranges);
