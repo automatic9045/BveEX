@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -51,9 +52,6 @@ namespace AtsEx.Native.InputDevices
         private AtsEx AtsEx = null;
         private ScenarioService ScenarioService = null;
         private FrameSpan FrameSpan = null;
-
-        private PluginSourceSet LoadedVehiclePluginUsing = null;
-        private VehicleConfig LoadedVehicleConfig = null;
 
         public InputDeviceMain(CallerInfo callerInfo)
         {
@@ -126,9 +124,29 @@ namespace AtsEx.Native.InputDevices
             PluginHost.Native.VehicleSpec exVehicleSpec = new PluginHost.Native.VehicleSpec(
                 e.Value.BrakeNotches, e.Value.PowerNotches, e.Value.AtsNotch, e.Value.B67Notch, e.Value.Cars);
 
+            VehicleConfig callerLinkedConfig = null;
+            try
+            {
+                if (File.Exists(Launcher.CoreHost.VehicleConfigPath))
+                {
+                    callerLinkedConfig = VehicleConfig.LoadFrom(Launcher.CoreHost.VehicleConfigPath);
+                }
+            }
+            catch { }
+
+            PluginSourceSet callerLinkedPluginUsing = null;
+            try
+            {
+                if (File.Exists(Launcher.CoreHost.VehiclePluginUsingPath))
+                {
+                    callerLinkedPluginUsing = PluginSourceSet.FromPluginUsing(PluginType.VehiclePlugin, false, Launcher.CoreHost.VehiclePluginUsingPath);
+                }
+            }
+            catch { }
+
             string vehiclePath = AtsEx.BveHacker.ScenarioInfo.VehicleFiles.SelectedFile.Path;
-            VehicleConfig vehicleConfig = LoadedVehicleConfig ?? VehicleConfig.Resolve(vehiclePath);
-            PluginSourceSet pluginUsing = !(LoadedVehiclePluginUsing is null) ? LoadedVehiclePluginUsing
+            VehicleConfig vehicleConfig = callerLinkedConfig ?? VehicleConfig.Resolve(vehiclePath);
+            PluginSourceSet pluginUsing = !(callerLinkedPluginUsing is null) ? callerLinkedPluginUsing
                 : vehicleConfig.PluginUsingPath is null ? PluginSourceSet.ResolvePluginUsingToLoad(PluginType.VehiclePlugin, true, vehiclePath)
                 : PluginSourceSet.FromPluginUsing(PluginType.VehiclePlugin, true, vehicleConfig.PluginUsingPath);
 
@@ -217,9 +235,6 @@ namespace AtsEx.Native.InputDevices
 
             ScenarioService?.Dispose();
             ScenarioService = null;
-
-            LoadedVehiclePluginUsing = null;
-            LoadedVehicleConfig = null;
         }
 
         public void Dispose()

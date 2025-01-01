@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 using BveTypes.ClassWrappers;
 using UnembeddedResources;
 
+using AtsEx.PluginHost;
+using AtsEx.PluginHost.Input.Native;
+using AtsEx.PluginHost.Native;
+using AtsEx.PluginHost.Plugins;
+
 using AtsEx.Handles;
 using AtsEx.Input;
 using AtsEx.Panels;
 using AtsEx.Plugins;
 using AtsEx.Sound;
-using AtsEx.PluginHost.Input.Native;
-using AtsEx.PluginHost.Native;
-using AtsEx.PluginHost.Plugins;
-using AtsEx.PluginHost;
 
 namespace AtsEx
 {

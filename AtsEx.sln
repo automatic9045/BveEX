@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastCaching", "Libs\FastCac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Extensions.ExtendedBeacons", "Extensions\AtsEx.Extensions.ExtendedBeacons\AtsEx.Extensions.ExtendedBeacons.csproj", "{DEA13CE0-F2BC-45ED-8C35-3C970F634AC6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Launcher", "AtsEx.Launcher\AtsEx.Launcher.csproj", "{A4645E87-8E06-4687-A7C8-9D015E5567F2}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Samples.MapPlugins.PreTrainController", "SamplePlugins\MapPlugins\PreTrainController\AtsEx.Samples.MapPlugins.PreTrainController.csproj", "{381AF3E4-97FF-42AD-84C5-67111A2B482A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtsEx.Samples.MapPlugins.SignalController", "SamplePlugins\MapPlugins\SignalController\AtsEx.Samples.MapPlugins.SignalController.csproj", "{8C69A759-3A3B-47AC-8D25-E29318AAB460}"
@@ -139,6 +141,10 @@ Global
 		{DEA13CE0-F2BC-45ED-8C35-3C970F634AC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DEA13CE0-F2BC-45ED-8C35-3C970F634AC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DEA13CE0-F2BC-45ED-8C35-3C970F634AC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4645E87-8E06-4687-A7C8-9D015E5567F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4645E87-8E06-4687-A7C8-9D015E5567F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4645E87-8E06-4687-A7C8-9D015E5567F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4645E87-8E06-4687-A7C8-9D015E5567F2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{381AF3E4-97FF-42AD-84C5-67111A2B482A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{381AF3E4-97FF-42AD-84C5-67111A2B482A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{381AF3E4-97FF-42AD-84C5-67111A2B482A}.Release|Any CPU.ActiveCfg = Release|Any CPU

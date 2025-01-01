@@ -122,6 +122,7 @@
     <Compile Include="Launching\LaunchModeException.cs" />
     <Compile Include="Launching\LaunchModeManager.cs" />
     <Compile Include="Main\AtsEx.PatchEvents.cs" />
+    <Compile Include="Main\OldLauncherLoader.cs" />
     <Compile Include="Main\PatchSet.cs" />
     <Compile Include="MapStatements\HeaderParser.cs" />
     <Compile Include="Native\BveTypeSetLoader.cs" />
@@ -219,6 +220,11 @@
     <ProjectReference Include="..\AtsEx.Diagnostics\AtsEx.Diagnostics.csproj">
       <Project>{bec38da8-37e2-4db6-80ff-33fe4e25e1a9}</Project>
       <Name>AtsEx.Diagnostics</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\AtsEx.Launcher\AtsEx.Launcher.csproj">
+      <Project>{a4645e87-8e06-4687-a7c8-9d015e5567f2}</Project>
+      <Name>AtsEx.Launcher</Name>
       <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\AtsEx.PluginHost\AtsEx.PluginHost.csproj">
