@@ -91,7 +91,7 @@ namespace BveTypes.ClassWrappers
 
         private static FastField IsPluginLoadedField;
         /// <summary>
-        /// 自列車のハンドルのセットを取得・設定します。
+        /// 何らかの ATS プラグインが読み込まれているかどうかを取得・設定します。
         /// </summary>
         public bool IsPluginLoaded
         {

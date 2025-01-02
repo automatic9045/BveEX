@@ -156,7 +156,7 @@ namespace BveTypes.ClassWrappers
 
         private static FastMethod CreateDirectXDevicesMethod;
         /// <summary>
-        /// シナリオを閉じます。
+        /// DirectX 関連デバイスを初期化します。
         /// </summary>
         public void CreateDirectXDevices() => CreateDirectXDevicesMethod.Invoke(Src, null);
 
