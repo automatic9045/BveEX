@@ -183,7 +183,7 @@ namespace BveEx
                 switch (linkLabel.Name)
                 {
                     case nameof(LicenseLink):
-                        link = "https://github.com/automatic9045/AtsEX/blob/main/README.md";
+                        link = "https://github.com/automatic9045/BveEX/blob/main/README.md";
                         break;
 
                     case nameof(HomepageLink):
@@ -191,7 +191,7 @@ namespace BveEx
                         break;
 
                     case nameof(RepositoryLink):
-                        link = "https://github.com/automatic9045/AtsEX/";
+                        link = "https://github.com/automatic9045/BveEX/";
                         break;
 
                     default:
