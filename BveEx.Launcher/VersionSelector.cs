@@ -120,6 +120,8 @@ namespace BveEx.Launcher
                 if (!SplashProcess.HasExited) SplashProcess.Kill();
             }
 
+            ChannelServices.UnregisterChannel(channel);
+
 
             Assembly AssemblyResolve(object sender, ResolveEventArgs e)
             {
