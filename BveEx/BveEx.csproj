@@ -262,6 +262,8 @@
     <Content Include="Resources\Plugins\Native\Library.resx" />
     <Content Include="Resources\PluginListTabPage.resx" />
     <Content Include="Resources\PluginListTabPage.ja.resx" />
+    <Content Include="Resources\LaunchModeManager.ja.resx" />
+    <Content Include="Resources\LaunchModeManager.resx" />
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
