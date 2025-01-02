@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Reflection;
+using System.Runtime.Remoting;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Ipc;
 using System.Text;
@@ -31,9 +32,6 @@ namespace BveEx.Launcher
 
             RootDirectory = Path.GetDirectoryName(LauncherAssembly.Location);
             LegacyFilePath = Path.Combine(RootDirectory, ".LEGACY");
-
-            IpcClientChannel channel = new IpcClientChannel();
-            ChannelServices.RegisterChannel(channel, true);
         }
 
         private readonly Process SplashProcess;
@@ -45,6 +43,9 @@ namespace BveEx.Launcher
         {
             bool isLegacyMode = File.Exists(LegacyFilePath);
             string productName = isLegacyMode ? "BveEX レガシーモード (AtsEX)" : "BveEX";
+
+            IpcClientChannel channel = new IpcClientChannel();
+            ChannelServices.RegisterChannel(channel, true);
 
             Version bveVersion = BveFinder.TargetAssembly.GetName().Version;
             Version launcherVersion = LauncherAssembly.GetName().Version;
@@ -96,7 +97,11 @@ namespace BveEx.Launcher
 
             if (!isLegacyMode)
             {
-                SplashForm.ProgressText = "アップデートを確認しています...";
+                try
+                {
+                    SplashForm.ProgressText = "アップデートを確認しています...";
+                }
+                catch (RemotingException) { }
 
                 if (ServicePointManager.SecurityProtocol.HasFlag(SecurityProtocolType.Tls) || ServicePointManager.SecurityProtocol.HasFlag(SecurityProtocolType.Tls11))
                 {
@@ -108,7 +113,11 @@ namespace BveEx.Launcher
                 UpdateChecker.CheckUpdates();
             }
 
-            SplashForm.ProgressText = $"{productName} を起動しています...";
+            try
+            {
+                SplashForm.ProgressText = $"{productName} を起動しています...";
+            }
+            catch (RemotingException) { }
 
             AppDomain.CurrentDomain.AssemblyResolve += AssemblyResolve;
             try
