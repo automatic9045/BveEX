@@ -124,6 +124,12 @@ The legal location to place is '{1}'.</value>
   <data name="AtsExAssemblyLocationIllegalMessage" xml:space="preserve">
     <value>The location of the {0} main assembly '{1}' is illegal.</value>
   </data>
+  <data name="ConflictedApproach" xml:space="preserve">
+    <value>Replace map statements for AtsEX or AtsEX plugins by those for BveEX.</value>
+  </data>
+  <data name="ConflictedMessage" xml:space="preserve">
+    <value>Both code for AtsEX and that for BveEX detected. They cannot be used in the same scenario.</value>
+  </data>
   <data name="IgnoreAndContinue" xml:space="preserve">
     <value>Ignore and continue loading?</value>
   </data>

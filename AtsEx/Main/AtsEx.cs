@@ -30,6 +30,8 @@ namespace AtsEx
 
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> AtsExAssemblyLocationIllegalMessage { get; private set; }
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> AtsExAssemblyLocationIllegalApproach { get; private set; }
+            [ResourceStringHolder(nameof(Localizer))] public Resource<string> ConflictedMessage { get; private set; }
+            [ResourceStringHolder(nameof(Localizer))] public Resource<string> ConflictedApproach { get; private set; }
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> IgnoreAndContinue { get; private set; }
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> ManualDisposeHeader { get; private set; }
             [ResourceStringHolder(nameof(Localizer))] public Resource<string> ManualDisposeMessage { get; private set; }
@@ -53,6 +55,8 @@ namespace AtsEx
         private readonly PatchSet Patches;
         private readonly ExtensionService ExtensionService;
         private readonly OldLauncherLoader OldLauncherLoader = new OldLauncherLoader();
+
+        private bool IsFirstLoad;
 
         public event EventHandler<ValueEventArgs<ScenarioInfo>> ScenarioOpened;
         public event EventHandler<ValueEventArgs<Scenario>> ScenarioClosed;
@@ -78,7 +82,11 @@ namespace AtsEx
 
         public AtsEx(BveTypeSet bveTypes)
         {
+            string[] commandLineArgs = Environment.GetCommandLineArgs();
+            IsFirstLoad = 1 < commandLineArgs.Length && !string.IsNullOrWhiteSpace(commandLineArgs[1]);
+
             BveHacker = new BveHacker(bveTypes);
+            BveHacker.ScenarioCreated += OnScenarioCreated;
             AppDomain.CurrentDomain.FirstChanceException += OnFirstChanceException;
 
             ClassMemberSet mainFormMembers = BveHacker.BveTypes.GetClassInfoOf<MainForm>();
@@ -92,6 +100,11 @@ namespace AtsEx
             ExtensionService = new ExtensionService(Extensions);
 
             VersionFormProvider = CreateVersionFormProvider(Extensions);
+        }
+
+        private void OnScenarioCreated(ScenarioCreatedEventArgs e)
+        {
+            IsFirstLoad = false;
         }
 
         private VersionFormProvider CreateVersionFormProvider(IEnumerable<PluginBase> extensions)
@@ -127,6 +140,12 @@ namespace AtsEx
         {
             if (e.Exception is LaunchModeException)
             {
+                if (IsFirstLoad)
+                {
+                    ErrorDialog.Show(5, Resources.Value.ConflictedMessage.Value, Resources.Value.ConflictedApproach.Value);
+                    throw new InvalidOperationException(Resources.Value.ConflictedMessage.Value);
+                }
+
                 BveHacker.MainForm.Preferences.SaveToXml();
                 BveHacker.MainForm.Preferences = null;
 

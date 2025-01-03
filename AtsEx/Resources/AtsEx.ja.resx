@@ -124,6 +124,12 @@
   <data name="AtsExAssemblyLocationIllegalMessage" xml:space="preserve">
     <value>{0} のメインアセンブリの配置先 '{1}' は不正です。</value>
   </data>
+  <data name="ConflictedApproach" xml:space="preserve">
+    <value>旧・AtsEX 向けのマップ構文や AtsEX プラグインの使用を取り止め、BveEX 向けのものに統一してください。</value>
+  </data>
+  <data name="ConflictedMessage" xml:space="preserve">
+    <value>旧・AtsEX 用の構文と BveEX 用の構文の両方が検出されました。これらを同一シナリオで併用することはできません。</value>
+  </data>
   <data name="IgnoreAndContinue" xml:space="preserve">
     <value>無視して読込を続行しますか？</value>
   </data>

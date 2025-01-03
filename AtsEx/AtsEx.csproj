@@ -304,8 +304,6 @@
     <Content Include="Resources\PluginListTabPage.ja.resx" />
     <Content Include="Resources\ExtensionService.ja.resx" />
     <Content Include="Resources\ExtensionService.resx" />
-    <Content Include="Resources\LaunchModeManager.ja.resx" />
-    <Content Include="Resources\LaunchModeManager.resx" />
     <None Include="app.config" />
     <None Include="packages.config" />
     <EmbeddedResource Include="Plugins\AtsExVehicleConfigXmlSchema.xsd">
