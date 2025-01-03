@@ -122,7 +122,6 @@
     <Compile Include="Launching\LaunchModeException.cs" />
     <Compile Include="Launching\LaunchModeManager.cs" />
     <Compile Include="Main\AtsEx.PatchEvents.cs" />
-    <Compile Include="Main\OldLauncherLoader.cs" />
     <Compile Include="Main\PatchSet.cs" />
     <Compile Include="MapStatements\HeaderParser.cs" />
     <Compile Include="Native\BveTypeSetLoader.cs" />

@@ -54,7 +54,6 @@ namespace AtsEx
 
         private readonly PatchSet Patches;
         private readonly ExtensionService ExtensionService;
-        private readonly OldLauncherLoader OldLauncherLoader = new OldLauncherLoader();
 
         private bool IsFirstLoad;
 
@@ -133,7 +132,6 @@ namespace AtsEx
             VersionFormProvider.Dispose();
             ExtensionService.Dispose();
             BveHacker.Dispose();
-            OldLauncherLoader.Dispose();
         }
 
         private void OnFirstChanceException(object sender, FirstChanceExceptionEventArgs e)
