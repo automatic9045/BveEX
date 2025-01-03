@@ -34,8 +34,11 @@ namespace BveEx.Launcher
             LegacyFilePath = Path.Combine(RootDirectory, ".LEGACY");
         }
 
+
         private readonly Process SplashProcess;
         private readonly SplashFormInfo SplashForm;
+
+        private readonly OldLauncherLoader OldLauncherLoader;
 
         public ICoreHost CoreHost { get; }
 
@@ -56,6 +59,8 @@ namespace BveEx.Launcher
                 Task.Delay(10).Wait();
                 SplashProcess.Refresh();
             }
+
+            OldLauncherLoader = new OldLauncherLoader();
 
             SplashForm = (SplashFormInfo)Activator.GetObject(typeof(SplashFormInfo), $"ipc://{channelGuid}/{nameof(SplashFormInfo)}");
             SplashForm.ProgressText = $"{productName} を探しています...";
@@ -157,6 +162,7 @@ namespace BveEx.Launcher
             }
             catch { }
 
+            OldLauncherLoader.Dispose();
             CoreHost.Dispose();
         }
     }

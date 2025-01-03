@@ -78,6 +78,7 @@ jobs:
         run: |
           mkdir Target\LocalReferences\Legacy
           copy Legacy\AtsEx\bin\Release\AtsEx.dll Target\LocalReferences\Legacy\
+          copy Legacy\AtsEx.Launcher\bin\Release\AtsEx.Launcher.dll Target\LocalReferences\Legacy\
           msbuild Target\BveEx.sln /p:Configuration=Release /p:DebugSymbols=false /p:DebugType=none
       - name: Package
         run: |

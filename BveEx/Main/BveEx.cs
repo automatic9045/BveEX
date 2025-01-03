@@ -65,6 +65,7 @@ namespace BveEx
         public BveEx(BveTypeSet bveTypes)
         {
             BveHacker = new BveHacker(bveTypes);
+            BveHacker.ScenarioCreated += OnScenarioCreated;
             AppDomain.CurrentDomain.FirstChanceException += OnFirstChanceException;
 
             ClassMemberSet mainFormMembers = bveTypes.GetClassInfoOf<MainForm>();
@@ -81,6 +82,14 @@ namespace BveEx
             ExtensionService = new ExtensionService(Extensions);
 
             VersionFormProvider = CreateVersionFormProvider(Extensions);
+        }
+
+        private void OnScenarioCreated(ScenarioCreatedEventArgs e)
+        {
+            if (!(AtsEx.Launcher.CoreHost.VehicleConfigPath is null) || !(AtsEx.Launcher.CoreHost.VehicleConfigPath is null))
+            {
+                throw new LaunchModeException();
+            }
         }
 
         private VersionFormProvider CreateVersionFormProvider(IEnumerable<PluginBase> extensions)

@@ -39,6 +39,10 @@
     <Reference Include="0Harmony, Version=2.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Lib.Harmony.2.2.2\lib\net48\0Harmony.dll</HintPath>
     </Reference>
+    <Reference Include="AtsEx.Launcher">
+      <HintPath>..\LocalReferences\Legacy\AtsEx.Launcher.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Irony, Version=1.1.0.0, Culture=neutral, PublicKeyToken=ca48ace7223ead47, processorArchitecture=MSIL">
       <HintPath>..\packages\Irony.1.1.0\lib\net40\Irony.dll</HintPath>
       <Private>False</Private>
