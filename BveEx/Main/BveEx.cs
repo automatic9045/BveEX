@@ -55,7 +55,7 @@ namespace BveEx
 
         public event EventHandler OnLoad;
         public event EventHandler OnInitialize;
-        public event EventHandler<ValueEventArgs<TimeSpan>> OnElapse;
+        public event EventHandler<ValueEventArgs<TimeSpan>> PostElapse;
 
         public BveHacker BveHacker { get; }
         public IExtensionSet Extensions { get; }

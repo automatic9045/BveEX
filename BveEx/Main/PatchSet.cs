@@ -17,7 +17,7 @@ namespace BveEx
 
         public readonly HarmonyPatch OnLoadPatch;
         public readonly HarmonyPatch OnInitializePatch;
-        public readonly HarmonyPatch OnElapsePatch;
+        public readonly HarmonyPatch PostElapsePatch;
 
         public PatchSet(ClassMemberSet mainFormMembers, ClassMemberSet scenarioMembers, ClassMemberSet atsPluginMembers)
         {
@@ -26,7 +26,7 @@ namespace BveEx
 
             OnLoadPatch = HarmonyPatch.Patch(nameof(BveEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.LoadLibrary)).Source, PatchType.Prefix);
             OnInitializePatch = HarmonyPatch.Patch(nameof(BveEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnInitialize)).Source, PatchType.Prefix);
-            OnElapsePatch = HarmonyPatch.Patch(nameof(BveEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnElapse)).Source, PatchType.Prefix);
+            PostElapsePatch = HarmonyPatch.Patch(nameof(BveEx), atsPluginMembers.GetSourceMethodOf(nameof(AtsPlugin.OnElapse)).Source, PatchType.Postfix);
         }
 
         public void Dispose()
@@ -36,7 +36,7 @@ namespace BveEx
 
             OnLoadPatch.Dispose();
             OnInitializePatch.Dispose();
-            OnElapsePatch.Dispose();
+            PostElapsePatch.Dispose();
         }
     }
 }

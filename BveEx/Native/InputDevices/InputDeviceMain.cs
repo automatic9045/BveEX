@@ -104,7 +104,7 @@ namespace BveEx.Native.InputDevices
                 BveEx.ScenarioClosed += OnScenarioClosed;
                 BveEx.OnLoad += OnLoad;
                 BveEx.OnInitialize += OnInitialize;
-                BveEx.OnElapse += OnElapse;
+                BveEx.PostElapse += PostElapse;
             }
         }
 
@@ -134,7 +134,7 @@ namespace BveEx.Native.InputDevices
             FrameSpan.Initialize();
         }
 
-        private void OnElapse(object sender, BveEx.ValueEventArgs<TimeSpan> e)
+        private void PostElapse(object sender, BveEx.ValueEventArgs<TimeSpan> e)
         {
             ScenarioService?.PreviewTick();
 

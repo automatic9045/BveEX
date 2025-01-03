@@ -42,13 +42,13 @@ namespace BveEx
                 return PatchInvokationResult.DoNothing(e);
             };
 
-            Patches.OnElapsePatch.Invoked += (sender, e) =>
+            Patches.PostElapsePatch.Invoked += (sender, e) =>
             {
                 AtsPlugin atsPlugin = AtsPlugin.FromSource(e.Instance);
 
                 TimeSpan now = TimeSpan.FromMilliseconds((int)e.Args[0]);
 
-                OnElapse?.Invoke(this, new ValueEventArgs<TimeSpan>(now));
+                PostElapse?.Invoke(this, new ValueEventArgs<TimeSpan>(now));
                 return PatchInvokationResult.DoNothing(e);
             };
         }
