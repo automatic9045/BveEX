@@ -18,6 +18,15 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           path: Target\
+      - name: Package SDK
+        run: |
+          cd Target
+          Add-Content -Path $env:GITHUB_ENV -Value "GIT_HASH=$(git rev-parse --short HEAD)"
+      - name: Upload artifacts 1/3 (SDK)
+        uses: actions/upload-artifact@v4
+        with:
+          name: BveEX_SDK_${{ env.GIT_HASH }}
+          path: ./Target/SamplePlugins/*
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v2
       - name: Setup NuGet
@@ -85,13 +94,12 @@ jobs:
           cd Target
           .\package.bat bin\Core
           .\package.bat bin\WithScenarios /s
-          Add-Content -Path $env:GITHUB_ENV -Value "GIT_HASH=$(git rev-parse --short HEAD)"
-      - name: Upload artifacts 1/2 (Core)
+      - name: Upload artifacts 2/3 (Core)
         uses: actions/upload-artifact@v4
         with:
           name: BveEX_${{ env.GIT_HASH }}
           path: ./bin/Core/*
-      - name: Upload artifacts 2/2 (WithScenarios)
+      - name: Upload artifacts 3/3 (WithScenarios)
         uses: actions/upload-artifact@v4
         with:
           name: BveEX_WithScenarios_${{ env.GIT_HASH }}
