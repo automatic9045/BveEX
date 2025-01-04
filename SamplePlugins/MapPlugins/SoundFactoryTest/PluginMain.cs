@@ -17,20 +17,9 @@ namespace BveEx.Samples.MapPlugins.SoundFactoryTest
     [Plugin(PluginType.MapPlugin)]
     public class PluginMain : AssemblyPluginBase
     {
-        private Sound SampleSound;
+        private readonly Sound SampleSound;
 
         public PluginMain(PluginBuilder builder) : base(builder)
-        {
-            BveHacker.ScenarioCreated += OnScenarioCreated;
-        }
-
-        public override void Dispose()
-        {
-            BveHacker.ScenarioCreated -= OnScenarioCreated;
-            SampleSound.Dispose();
-        }
-
-        private void OnScenarioCreated(ScenarioCreatedEventArgs e)
         {
             ISoundFactory soundFactory = Extensions.GetExtension<ISoundFactory>();
 
@@ -38,6 +27,11 @@ namespace BveEx.Samples.MapPlugins.SoundFactoryTest
             SampleSound = soundFactory.LoadFrom(path, 1, Sound.SoundPosition.Cab);
 
             SampleSound.Play(1, 1, 0);
+        }
+
+        public override void Dispose()
+        {
+            SampleSound.Dispose();
         }
 
         public override void Tick(TimeSpan elapsed)
