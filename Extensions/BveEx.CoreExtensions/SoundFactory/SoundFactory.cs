@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using BveTypes.ClassWrappers;
+using FastMember;
+using ObjectiveHarmonyPatch;
 using SlimDX.DirectSound;
 using SlimDX.Multimedia;
+using TypeWrapping;
+using UnembeddedResources;
 
-using BveTypes.ClassWrappers;
-
-using BveEx.PluginHost;
 using BveEx.PluginHost.Plugins;
 using BveEx.PluginHost.Plugins.Extensions;
 
@@ -19,35 +21,73 @@ namespace BveEx.Extensions.SoundFactory
     [ExtensionMainDisplayType(typeof(ISoundFactory))]
     internal class SoundFactory : AssemblyPluginBase, ISoundFactory
     {
-        private Scenario Scenario;
+        private class ResourceSet
+        {
+            private readonly ResourceLocalizer Localizer = ResourceLocalizer.FromResXOfType<SoundFactory>("CoreExtensions");
+
+            [ResourceStringHolder(nameof(Localizer))] public Resource<string> NotAvailable { get; private set; }
+
+            public ResourceSet()
+            {
+                ResourceLoader.LoadAndSetAll(this);
+            }
+        }
+
+        private static readonly Lazy<ResourceSet> Resources = new Lazy<ResourceSet>();
+
+        static SoundFactory()
+        {
+#if DEBUG
+            _ = Resources.Value;
+#endif
+        }
+
+
+        private readonly HarmonyPatch Patch;
+
+        private TimeManager TimeManager = null;
+        private CameraLocation CameraLocation = null;
 
         public override string Title { get; } = nameof(SoundFactory);
         public override string Description { get; } = "プラグインから音声を簡単に読み込めるようにします。";
 
+        public bool IsAvailable { get; private set; } = false;
+
         public SoundFactory(PluginBuilder builder) : base(builder)
         {
-            BveHacker.ScenarioCreated += OnScenarioCreated;
+            ClassMemberSet vehicleMembers = BveHacker.BveTypes.GetClassInfoOf<Vehicle>();
+            FastConstructor constructor = vehicleMembers.GetSourceConstructor();
+            Patch = HarmonyPatch.Patch(nameof(SoundFactory), constructor.Source, PatchType.Postfix);
+            Patch.Invoked += (sender, e) =>
+            {
+                TimeManager = TimeManager.FromSource(e.Args[3]);
+                CameraLocation = Vehicle.FromSource(e.Instance).CameraLocation;
+                IsAvailable = true;
+
+                return PatchInvokationResult.DoNothing(e);
+            };
+
             BveHacker.ScenarioClosed += OnScenarioClosed;
         }
 
         public override void Dispose()
         {
-            BveHacker.ScenarioCreated -= OnScenarioCreated;
-            BveHacker.ScenarioClosed -= OnScenarioClosed;
-        }
+            Patch.Dispose();
 
-        private void OnScenarioCreated(ScenarioCreatedEventArgs e)
-        {
-            Scenario = e.Scenario;
+            BveHacker.ScenarioClosed -= OnScenarioClosed;
         }
 
         private void OnScenarioClosed(EventArgs e)
         {
-            Scenario = null;
+            TimeManager = null;
+            CameraLocation = null;
+            IsAvailable = false;
         }
 
         public Sound LoadFrom(string path, double minRadius, Sound.SoundPosition position, int bufferCount)
         {
+            if (!IsAvailable) throw new InvalidOperationException(string.Format(Resources.Value.NotAvailable.Value, Title));
+
             DirectSound device = BveHacker.MainForm.DirectSound;
 
             SecondarySoundBuffer[] buffers = new SecondarySoundBuffer[bufferCount];
@@ -72,7 +112,7 @@ namespace BveEx.Extensions.SoundFactory
                 }
             }
 
-            Sound sound = new Sound(Scenario.TimeManager, Scenario.Vehicle.CameraLocation, buffers, minRadius, position)
+            Sound sound = new Sound(TimeManager, CameraLocation, buffers, minRadius, position)
             {
                 MaxFrequency = device.Capabilities.MaxSecondarySampleRate,
                 MinFrequency = device.Capabilities.MinSecondarySampleRate,

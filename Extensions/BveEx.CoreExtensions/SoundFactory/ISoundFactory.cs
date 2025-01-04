@@ -16,6 +16,14 @@ namespace BveEx.Extensions.SoundFactory
     public interface ISoundFactory : IExtension
     {
         /// <summary>
+        /// <see cref="LoadFrom(string, double, Sound.SoundPosition, int)"/> メソッドが使用可能であるかどうかを取得します。
+        /// </summary>
+        /// <remarks>
+        /// <see cref="AtsPlugin"/> オブジェクトの生存期間 (コンストラクタが実行されてから、<see cref="AtsPlugin.Dispose"/> メソッドが呼び出されるまで) に一致します。
+        /// </remarks>
+        bool IsAvailable { get; }
+
+        /// <summary>
         /// 音声ファイルを読み込んで <see cref="Sound"/> を生成します。
         /// </summary>
         /// <param name="path">音声ファイルのパス。</param>
