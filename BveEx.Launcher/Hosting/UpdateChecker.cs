@@ -62,14 +62,14 @@ namespace BveEx.Launcher.Hosting
                     async Task<string> GetUpdateDetailsHtmlAsync()
                         => await Task.Run(() =>
                         {
-                            string updateDetailsMarkdown = "【詳細の取得に失敗しました】";
+                            string updateDetailsHtml = "【詳細の取得に失敗しました】";
                             try
                             {
-                                updateDetailsMarkdown = latestRelease.GetUpdateDetails();
+                                string updateDetailsMarkdown = latestRelease.GetUpdateDetails();
+                                updateDetailsHtml = Markdown.ToHtml(updateDetailsMarkdown);
                             }
                             catch { }
 
-                            string updateDetailsHtml = Markdown.ToHtml(updateDetailsMarkdown);
                             return updateDetailsHtml;
                         }).ConfigureAwait(false);
                 }
