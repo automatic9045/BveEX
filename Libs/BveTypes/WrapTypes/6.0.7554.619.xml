@@ -196,6 +196,10 @@
 			<Getter Original="k"/>
 			<Setter Original="e"/>
 		</Property>
+		<Property Wrapper="ElectricBrakeCommand">
+			<Getter Original="e"/>
+			<Setter Original="a"/>
+		</Property>
 		<Property Wrapper="MaximumPressure">
 			<Getter Original="l"/>
 			<Setter Original="f"/>
@@ -534,6 +538,11 @@
 	</Class>
 
 	<Class Wrapper="Ecb" Original="ew">
+	</Class>
+
+	<Class Wrapper="ElectricBrakeCommand" Original="ah">
+		<Field WrapperProperty="Rate" Original="a"/>
+		<Field WrapperProperty="Force" Original="b"/>
 	</Class>
 
 	<Class Wrapper="GraphCurve" Original="be">

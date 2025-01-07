@@ -22,6 +22,9 @@ namespace BveTypes.ClassWrappers
             InitialPressureGetMethod = members.GetSourcePropertyGetterOf(nameof(InitialPressure));
             InitialPressureSetMethod = members.GetSourcePropertySetterOf(nameof(InitialPressure));
 
+            ElectricBrakeCommandGetMethod = members.GetSourcePropertyGetterOf(nameof(ElectricBrakeCommand));
+            ElectricBrakeCommandSetMethod = members.GetSourcePropertySetterOf(nameof(ElectricBrakeCommand));
+
             MaximumPressureGetMethod = members.GetSourcePropertyGetterOf(nameof(MaximumPressure));
             MaximumPressureSetMethod = members.GetSourcePropertySetterOf(nameof(MaximumPressure));
 
@@ -52,6 +55,17 @@ namespace BveTypes.ClassWrappers
         {
             get => (double)InitialPressureGetMethod.Invoke(Src, null);
             set => InitialPressureSetMethod.Invoke(Src, new object[] { value });
+        }
+
+        private static FastMethod ElectricBrakeCommandGetMethod;
+        private static FastMethod ElectricBrakeCommandSetMethod;
+        /// <summary>
+        /// 主回路へ送られる指令を取得・設定します。
+        /// </summary>
+        public ElectricBrakeCommand ElectricBrakeCommand
+        {
+            get => ElectricBrakeCommand.FromSource(ElectricBrakeCommandGetMethod.Invoke(Src, null));
+            set => ElectricBrakeCommandSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
         private static FastMethod MaximumPressureGetMethod;

@@ -86,6 +86,7 @@
     <Compile Include="ClassWrappers\Public\ClassicMapParser.cs" />
     <Compile Include="ClassWrappers\Public\DigitalGauge.cs" />
     <Compile Include="ClassWrappers\Public\DigitalNumber.cs" />
+    <Compile Include="ClassWrappers\Public\ElectricBrakeCommand.cs" />
     <Compile Include="ClassWrappers\Public\Forms\ConfigForm.cs" />
     <Compile Include="ClassWrappers\Public\MapLoader.cs" />
     <Compile Include="ClassWrappers\Public\MapParser.cs" />
