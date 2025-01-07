@@ -683,6 +683,7 @@
 			<Getter Original="g"/>
 		</Property>
 
+		<Method Wrapper="Tick" WrapperParams="System.Double; System.Double; System.Double" Original="a"/>
 		<Method Wrapper="SetSpeed" WrapperParams="System.Double" Original="d"/>
 	</Class>
 
@@ -1602,17 +1603,6 @@
 	<Class Wrapper="TwoLeverCab" Original="ac">
 	</Class>
 
-	<Class Wrapper="VehicleLocation" Original="fu">
-		<Property Wrapper="Location">
-			<Getter Original="c"/>
-		</Property>
-		<Property Wrapper="BlockIndex">
-			<Getter Original="d"/>
-		</Property>
-
-		<Method Wrapper="SetLocation" WrapperParams="System.Double; System.Boolean" Original="a"/>
-	</Class>
-
 	<Class Wrapper="ValueContainer" Original="bs">
 		<Property Wrapper="Value">
 			<Getter Original="aj"/>
@@ -1796,6 +1786,18 @@
 			<Getter Original="f"/>
 			<Setter Original="a"/>
 		</Property>
+	</Class>
+
+	<Class Wrapper="VehicleLocation" Original="fu">
+		<Property Wrapper="Location">
+			<Getter Original="c"/>
+		</Property>
+		<Property Wrapper="BlockIndex">
+			<Getter Original="d"/>
+		</Property>
+
+		<Method Wrapper="Tick" WrapperParams="System.Double; System.Double; System.Double; System.Double" Original="a"/>
+		<Method Wrapper="SetLocation" WrapperParams="System.Double; System.Boolean" Original="a"/>
 	</Class>
 
 	<Class Wrapper="VehicleMotorState" Original="i">

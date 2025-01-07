@@ -24,6 +24,7 @@ namespace BveTypes.ClassWrappers
 
             BlockIndexGetMethod = members.GetSourcePropertyGetterOf(nameof(BlockIndex));
 
+            TickMethod = members.GetSourceMethodOf(nameof(Tick));
             SetLocationMethod = members.GetSourceMethodOf(nameof(SetLocation));
         }
 
@@ -62,6 +63,17 @@ namespace BveTypes.ClassWrappers
         /// 各ストラクチャーが描画距離内に入っているかどうかを描画ブロック単位で判定することで、ストラクチャーの描画処理を高速化しています。
         /// </remarks>
         public int BlockIndex => (int)BlockIndexGetMethod.Invoke(Src, null);
+
+        private static FastMethod TickMethod;
+        /// <summary>
+        /// 毎フレーム呼び出され、速度および距離程の値を更新します。
+        /// </summary>
+        /// <param name="acceleration">加速度 [m/s^2]。</param>
+        /// <param name="resistanceAcceleration">抵抗加速度 [m/s^2]。</param>
+        /// <param name="gradient">勾配。</param>
+        /// <param name="elapsedSeconds">前フレームからの経過時間 [s]。</param>
+        public void Tick(double acceleration, double resistanceAcceleration, double gradient, double elapsedSeconds)
+            => TickMethod.Invoke(Src, new object[] { acceleration, resistanceAcceleration, gradient, elapsedSeconds });
 
         private static FastMethod SetLocationMethod;
         /// <summary>

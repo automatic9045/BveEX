@@ -22,6 +22,7 @@ namespace BveTypes.ClassWrappers
 
             SpeedGetMethod = members.GetSourcePropertyGetterOf(nameof(Speed));
 
+            TickMethod = members.GetSourceMethodOf(nameof(Tick));
             SetSpeedMethod = members.GetSourceMethodOf(nameof(SetSpeed));
         }
 
@@ -50,6 +51,16 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         /// <seealso cref="SetSpeed(double)"/>
         public double Speed => (double)SpeedGetMethod.Invoke(Src, null);
+
+        private static FastMethod TickMethod;
+        /// <summary>
+        /// 毎フレーム呼び出され、速度の値を更新します。
+        /// </summary>
+        /// <param name="acceleration">加速度 [m/s^2]。</param>
+        /// <param name="resistanceAcceleration">抵抗加速度 [m/s^2]。</param>
+        /// <param name="elapsedSeconds">前フレームからの経過時間 [s]。</param>
+        public virtual void Tick(double acceleration, double resistanceAcceleration, double elapsedSeconds)
+            => TickMethod.Invoke(Src, new object[] { acceleration, resistanceAcceleration, elapsedSeconds });
 
         private static FastMethod SetSpeedMethod;
         /// <summary>
