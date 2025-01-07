@@ -27,6 +27,9 @@ namespace BveTypes.ClassWrappers
 
             PistonAreaGetMethod = members.GetSourcePropertyGetterOf(nameof(PistonArea));
             PistonAreaSetMethod = members.GetSourcePropertySetterOf(nameof(PistonArea));
+
+            InitializeMethod = members.GetSourceMethodOf(nameof(Initialize));
+            TickMethod = members.GetSourceMethodOf(nameof(Tick));
         }
 
         /// <summary>
@@ -85,5 +88,15 @@ namespace BveTypes.ClassWrappers
             get => (double)PistonAreaGetMethod.Invoke(Src, null);
             set => PistonAreaSetMethod.Invoke(Src, new object[] { value });
         }
+
+        private static FastMethod InitializeMethod;
+        /// <inheritdoc/>
+        public override void Initialize()
+            => InitializeMethod.Invoke(Src, null);
+
+        private static FastMethod TickMethod;
+        /// <inheritdoc/>
+        public override void Tick(double elapsedSeconds)
+            => TickMethod.Invoke(Src, new object[] { elapsedSeconds });
     }
 }

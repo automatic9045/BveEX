@@ -75,6 +75,9 @@
 			<Getter Original="a"/>
 			<Setter Original="a"/>
 		</Property>
+
+		<Method Wrapper="Initialize" WrapperParams="void" Original="n"/>
+		<Method Wrapper="Tick" WrapperParams="System.Double" Original="ag"/>
 	</Class>
 
 	<Class Wrapper="AssistantText" Original="bc">
@@ -205,6 +208,9 @@
 			<Getter Original="h"/>
 			<Setter Original="i"/>
 		</Property>
+
+		<Method Wrapper="Initialize" WrapperParams="void" Original="n"/>
+		<Method Wrapper="Tick" WrapperParams="System.Double" Original="ag"/>
 	</Class>
 
 	<Class Wrapper="BrakeControllerBase" Original="a1">
@@ -669,6 +675,8 @@
 	</Class>
 
 	<Class Wrapper="LockoutValve" Original="dg">
+		<Method Wrapper="Initialize" WrapperParams="void" Original="n"/>
+		<Method Wrapper="Tick" WrapperParams="System.Double" Original="ag"/>
 	</Class>
 
 	<Class Wrapper="MapFunctionList" Original="dh">
