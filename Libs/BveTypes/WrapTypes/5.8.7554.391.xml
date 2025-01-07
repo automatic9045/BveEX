@@ -333,6 +333,9 @@
 		<Property Wrapper="BrakeReAdhesion">
 			<Getter Original="c"/>
 		</Property>
+
+		<Method Wrapper="Initialize" WrapperParams="void" Original="n"/>
+		<Method Wrapper="Tick" WrapperParams="System.Double" Original="ag"/>
 	</Class>
 
 	<Class Wrapper="CarDoor" Original="av">
