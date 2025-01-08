@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -52,6 +51,10 @@ namespace BveTypes.ClassWrappers
             SoundObjectsGetMethod = members.GetSourcePropertyGetterOf(nameof(SoundObjects));
 
             Sound3DObjectsGetMethod = members.GetSourcePropertyGetterOf(nameof(Sound3DObjects));
+
+            AdhesionObjectsGetMethod = members.GetSourcePropertyGetterOf(nameof(AdhesionObjects));
+
+            BrakeShoeFrictionObjectsGetMethod = members.GetSourcePropertyGetterOf(nameof(BrakeShoeFrictionObjects));
 
             IrregularityObjectsGetMethod = members.GetSourcePropertyGetterOf(nameof(IrregularityObjects));
 
@@ -182,6 +185,18 @@ namespace BveTypes.ClassWrappers
         /// 固定音源の一覧を取得します。
         /// </summary>
         public Sound3DObjectList Sound3DObjects => Sound3DObjectList.FromSource(Sound3DObjectsGetMethod.Invoke(Src, null));
+
+        private static FastMethod AdhesionObjectsGetMethod;
+        /// <summary>
+        /// 設定した車輪 - レール間の粘着特性のリストを取得します。
+        /// </summary>
+        public MapFunctionList AdhesionObjects => MapFunctionList.FromSource(AdhesionObjectsGetMethod.Invoke(Src, null));
+
+        private static FastMethod BrakeShoeFrictionObjectsGetMethod;
+        /// <summary>
+        /// 設定した粘着係数のリストを取得します。
+        /// </summary>
+        public MapFunctionList BrakeShoeFrictionObjects => MapFunctionList.FromSource(BrakeShoeFrictionObjectsGetMethod.Invoke(Src, null));
 
         private static FastMethod IrregularityObjectsGetMethod;
         /// <summary>

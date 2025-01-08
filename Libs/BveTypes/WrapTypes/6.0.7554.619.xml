@@ -692,6 +692,81 @@
 		<Method Wrapper="Tick" WrapperParams="System.Double" Original="ag"/>
 	</Class>
 
+	<Class Wrapper="Map" Original="br">
+		<Property Wrapper="DrawLimitLocation">
+			<Getter Original="e"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="MyTrack">
+			<Getter Original="l"/>
+		</Property>
+		<Property Wrapper="Structures">
+			<Getter Original="y"/>
+		</Property>
+		<Property Wrapper="RollingNoiseObjects">
+			<Getter Original="q"/>
+		</Property>
+		<Property Wrapper="FlangeNoiseObjects">
+			<Getter Original="a"/>
+		</Property>
+		<Property Wrapper="JointNoiseObjects">
+			<Getter Original="m"/>
+		</Property>
+		<Property Wrapper="CabIlluminanceObjects">
+			<Getter Original="d"/>
+		</Property>
+		<Property Wrapper="Stations">
+			<Getter Original="f"/>
+		</Property>
+		<Property Wrapper="Beacons">
+			<Getter Original="r"/>
+		</Property>
+		<Property Wrapper="PreTrainObjects">
+			<Getter Original="p"/>
+		</Property>
+		<Property Wrapper="Sections">
+			<Getter Original="n"/>
+		</Property>
+		<Property Wrapper="SoundObjects">
+			<Getter Original="g"/>
+		</Property>
+		<Property Wrapper="Sound3DObjects">
+			<Getter Original="i"/>
+		</Property>
+		<Property Wrapper="AdhesionObjects">
+			<Getter Original="k"/>
+		</Property>
+		<Property Wrapper="BrakeShoeFrictionObjects">
+			<Getter Original="u"/>
+		</Property>
+		<Property Wrapper="IrregularityObjects">
+			<Getter Original="z"/>
+		</Property>
+		<Property Wrapper="Sounds">
+			<Getter Original="t"/>
+		</Property>
+		<Property Wrapper="Sounds3D">
+			<Getter Original="h"/>
+		</Property>
+		<Property Wrapper="StructureModels">
+			<Getter Original="s"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="SpeedLimits">
+			<Getter Original="w"/>
+		</Property>
+		<Property Wrapper="TrainInfos">
+			<Getter Original="ac"/>
+		</Property>
+		<Property Wrapper="DrawDistanceObjects">
+			<Getter Original="j"/>
+		</Property>
+
+		<Field WrapperProperty="Structures" Original="d" IsOriginalNonPublic="true"/>
+
+		<Method Wrapper="GetTrackMatrix" WrapperParams="ex:LocatableMapObject; System.Double; System.Double" Original="a"/>
+	</Class>
+
 	<Class Wrapper="MapFunctionList" Original="dh">
 	</Class>
 
@@ -1006,75 +1081,6 @@
 			<Getter Original="b"/>
 			<Setter Original="a"/>
 		</Property>
-	</Class>
-
-	<Class Wrapper="Map" Original="br">
-		<Property Wrapper="DrawLimitLocation">
-			<Getter Original="e"/>
-			<Setter Original="a"/>
-		</Property>
-		<Property Wrapper="MyTrack">
-			<Getter Original="l"/>
-		</Property>
-		<Property Wrapper="Structures">
-			<Getter Original="y"/>
-		</Property>
-		<Property Wrapper="RollingNoiseObjects">
-			<Getter Original="q"/>
-		</Property>
-		<Property Wrapper="FlangeNoiseObjects">
-			<Getter Original="a"/>
-		</Property>
-		<Property Wrapper="JointNoiseObjects">
-			<Getter Original="m"/>
-		</Property>
-		<Property Wrapper="CabIlluminanceObjects">
-			<Getter Original="d"/>
-		</Property>
-		<Property Wrapper="Stations">
-			<Getter Original="f"/>
-		</Property>
-		<Property Wrapper="Beacons">
-			<Getter Original="r"/>
-		</Property>
-		<Property Wrapper="PreTrainObjects">
-			<Getter Original="p"/>
-		</Property>
-		<Property Wrapper="Sections">
-			<Getter Original="n"/>
-		</Property>
-		<Property Wrapper="SoundObjects">
-			<Getter Original="g"/>
-		</Property>
-		<Property Wrapper="Sound3DObjects">
-			<Getter Original="i"/>
-		</Property>
-		<Property Wrapper="IrregularityObjects">
-			<Getter Original="z"/>
-		</Property>
-		<Property Wrapper="Sounds">
-			<Getter Original="t"/>
-		</Property>
-		<Property Wrapper="Sounds3D">
-			<Getter Original="h"/>
-		</Property>
-		<Property Wrapper="StructureModels">
-			<Getter Original="s"/>
-			<Setter Original="a"/>
-		</Property>
-		<Property Wrapper="SpeedLimits">
-			<Getter Original="w"/>
-		</Property>
-		<Property Wrapper="TrainInfos">
-			<Getter Original="ac"/>
-		</Property>
-		<Property Wrapper="DrawDistanceObjects">
-			<Getter Original="j"/>
-		</Property>
-
-		<Field WrapperProperty="Structures" Original="d" IsOriginalNonPublic="true"/>
-
-		<Method Wrapper="GetTrackMatrix" WrapperParams="ex:LocatableMapObject; System.Double; System.Double" Original="a"/>
 	</Class>
 
 	<Class Wrapper="Scenario" Original="er">
