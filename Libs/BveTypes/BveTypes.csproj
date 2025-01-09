@@ -114,7 +114,7 @@
     <Compile Include="ClassWrappers\Public\AssistantBase.cs" />
     <Compile Include="ClassWrappers\Public\AssistantSet.cs" />
     <Compile Include="ClassWrappers\Public\Background.cs" />
-    <Compile Include="ClassWrappers\Public\BasicBrake.cs" />
+    <Compile Include="ClassWrappers\Public\BrakePiston.cs" />
     <Compile Include="ClassWrappers\Public\Beacon.cs" />
     <Compile Include="ClassWrappers\Public\BrakeControllerBase.cs" />
     <Compile Include="ClassWrappers\Public\BrakePosition.cs" />

@@ -162,13 +162,6 @@
 		<Method Wrapper="Draw" WrapperParams="ex:Direct3DProvider; SlimDX.Matrix, SlimDX" Original="a"/>
 	</Class>
 
-	<Class Wrapper="BasicBrake" Original="bw">
-		<Property Wrapper="PistonArea">
-			<Getter Original="b"/>
-			<Setter Original="b"/>
-		</Property>
-	</Class>
-
 	<Class Wrapper="BcValve" Original="az">
 		<Field WrapperProperty="ReleaseStartMargin" Original="b" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="ApplyStartMargin" Original="c" IsOriginalNonPublic="true"/>
@@ -225,6 +218,13 @@
 		<Property Wrapper="PressureRates">
 			<Getter Original="f"/>
 			<Setter Original="a"/>
+		</Property>
+	</Class>
+
+	<Class Wrapper="BrakePiston" Original="bw">
+		<Property Wrapper="Area">
+			<Getter Original="b"/>
+			<Setter Original="b"/>
 		</Property>
 	</Class>
 
@@ -327,7 +327,7 @@
 		<Property Wrapper="BcValve">
 			<Getter Original="d"/>
 		</Property>
-		<Property Wrapper="BasicBrake">
+		<Property Wrapper="Piston">
 			<Getter Original="b"/>
 		</Property>
 		<Property Wrapper="BrakeReAdhesion">

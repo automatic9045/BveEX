@@ -80,9 +80,9 @@ namespace BveTypes.ClassWrappers
         /// てこ比を 1、機械的損失を 0 としたときの 1 両あたりのシリンダ受圧面積 [m^2] を取得・設定します。
         /// </summary>
         /// <remarks>
-        /// 必要に応じて <see cref="BasicBrake.PistonArea"/> プロパティも設定してください。
+        /// 必要に応じて <see cref="BrakePiston.Area"/> プロパティも設定してください。
         /// </remarks>
-        /// <seealso cref="BasicBrake.PistonArea"/>
+        /// <seealso cref="BrakePiston.Area"/>
         public double PistonArea
         {
             get => (double)PistonAreaGetMethod.Invoke(Src, null);

@@ -10,24 +10,24 @@ using TypeWrapping;
 namespace BveTypes.ClassWrappers
 {
     /// <summary>
-    /// 基礎ブレーキ装置を表します。
+    /// 基礎ブレーキ装置のピストンを表します。
     /// </summary>
-    public class BasicBrake : ClassWrapperBase
+    public class BrakePiston : ClassWrapperBase
     {
         [InitializeClassWrapper]
         private static void Initialize(BveTypeSet bveTypes)
         {
-            ClassMemberSet members = bveTypes.GetClassInfoOf<BasicBrake>();
+            ClassMemberSet members = bveTypes.GetClassInfoOf<BrakePiston>();
 
-            PistonAreaGetMethod = members.GetSourcePropertyGetterOf(nameof(PistonArea));
-            PistonAreaSetMethod = members.GetSourcePropertySetterOf(nameof(PistonArea));
+            AreaGetMethod = members.GetSourcePropertyGetterOf(nameof(Area));
+            AreaSetMethod = members.GetSourcePropertySetterOf(nameof(Area));
         }
 
         /// <summary>
-        /// オリジナル オブジェクトから <see cref="BasicBrake"/> クラスの新しいインスタンスを初期化します。
+        /// オリジナル オブジェクトから <see cref="BrakePiston"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         /// <param name="src">ラップするオリジナル オブジェクト。</param>
-        protected BasicBrake(object src) : base(src)
+        protected BrakePiston(object src) : base(src)
         {
         }
 
@@ -35,12 +35,12 @@ namespace BveTypes.ClassWrappers
         /// オリジナル オブジェクトからラッパーのインスタンスを生成します。
         /// </summary>
         /// <param name="src">ラップするオリジナル オブジェクト。</param>
-        /// <returns>オリジナル オブジェクトをラップした <see cref="BasicBrake"/> クラスのインスタンス。</returns>
+        /// <returns>オリジナル オブジェクトをラップした <see cref="BrakePiston"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
-        public static BasicBrake FromSource(object src) => src is null ? null : new BasicBrake(src);
+        public static BrakePiston FromSource(object src) => src is null ? null : new BrakePiston(src);
 
-        private static FastMethod PistonAreaGetMethod;
-        private static FastMethod PistonAreaSetMethod;
+        private static FastMethod AreaGetMethod;
+        private static FastMethod AreaSetMethod;
         /// <summary>
         /// てこ比を 1、機械的損失を 0 としたときの 1 両あたりのシリンダ受圧面積 [m^2] を取得・設定します。
         /// </summary>
@@ -48,10 +48,10 @@ namespace BveTypes.ClassWrappers
         /// 必要に応じて <see cref="AirSupplement.PistonArea"/> プロパティも設定してください。
         /// </remarks>
         /// <seealso cref="AirSupplement.PistonArea"/>
-        public double PistonArea
+        public double Area
         {
-            get => (double)PistonAreaGetMethod.Invoke(Src, null);
-            set => PistonAreaSetMethod.Invoke(Src, new object[] { value });
+            get => (double)AreaGetMethod.Invoke(Src, null);
+            set => AreaSetMethod.Invoke(Src, new object[] { value });
         }
     }
 }

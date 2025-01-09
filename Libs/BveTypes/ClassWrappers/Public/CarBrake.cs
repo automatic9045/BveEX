@@ -20,7 +20,7 @@ namespace BveTypes.ClassWrappers
             ClassMemberSet members = bveTypes.GetClassInfoOf<CarBrake>();
 
             BcValveGetMethod = members.GetSourcePropertyGetterOf(nameof(BcValve));
-            BasicBrakeGetMethod = members.GetSourcePropertyGetterOf(nameof(BasicBrake));
+            PistonGetMethod = members.GetSourcePropertyGetterOf(nameof(Piston));
             BrakeReAdhesionGetMethod = members.GetSourcePropertyGetterOf(nameof(BrakeReAdhesion));
 
             InitializeMethod = members.GetSourceMethodOf(nameof(Initialize));
@@ -49,11 +49,11 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public BcValve BcValve => ClassWrappers.BcValve.FromSource(BcValveGetMethod.Invoke(Src, null));
 
-        private static FastMethod BasicBrakeGetMethod;
+        private static FastMethod PistonGetMethod;
         /// <summary>
-        /// 基礎ブレーキ装置を表す <see cref="ClassWrappers.BasicBrake"/> を取得します。
+        /// 基礎ブレーキ装置のピストンを取得します。
         /// </summary>
-        public BasicBrake BasicBrake => ClassWrappers.BasicBrake.FromSource(BasicBrakeGetMethod.Invoke(Src, null));
+        public BrakePiston Piston => BrakePiston.FromSource(PistonGetMethod.Invoke(Src, null));
 
         private static FastMethod BrakeReAdhesionGetMethod;
         /// <summary>
