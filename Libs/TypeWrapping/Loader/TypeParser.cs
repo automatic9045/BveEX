@@ -166,7 +166,12 @@ namespace TypeWrapping
 
         public Type ParseSingleSpecializedTypeName(string typeName)
         {
-            Type type = SpecializedTypes[typeName];
+            if (!SpecializedTypes.TryGetValue(typeName, out Type type))
+            {
+                string message = string.Format(Resources.Value.TypeNotFound.Value, typeName);
+                throw new ArgumentException(message);
+            }
+
             return type;
         }
 
