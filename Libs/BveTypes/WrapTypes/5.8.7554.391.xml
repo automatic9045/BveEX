@@ -707,6 +707,39 @@
 	<Class Wrapper="IDrawable" Original="c0">
 	</Class>
 
+	<Class Wrapper="IniReader" Original="e8">
+		<Property Wrapper="CommentMarks">
+			<Getter Original="c"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="SectionName">
+			<Getter Original="n"/>
+		</Property>
+		<Property Wrapper="Key">
+			<Getter Original="a"/>
+		</Property>
+		<Property Wrapper="LineIndex">
+			<Getter Original="h"/>
+		</Property>
+		<Property Wrapper="DirectoryName">
+			<Getter Original="g"/>
+		</Property>
+		<Property Wrapper="FileName">
+			<Getter Original="p"/>
+		</Property>
+
+		<Method Wrapper="ReadNext" WrapperParams="void" Original="k"/>
+		<Method Wrapper="GetString" WrapperParams="void" Original="e"/>
+		<Method Wrapper="GetSingle" WrapperParams="void" Original="d"/>
+		<Method Wrapper="GetDouble" WrapperParams="void" Original="f"/>
+		<Method Wrapper="GetInt32" WrapperParams="void" Original="m"/>
+		<Method Wrapper="GetBoolean" WrapperParams="void" Original="i"/>
+		<Method Wrapper="GetStringArray" WrapperParams="void" Original="o"/>
+		<Method Wrapper="GetDoubleArray" WrapperParams="void" Original="l"/>
+		<Method Wrapper="GetInt32Array" WrapperParams="void" Original="m"/>
+		<Method Wrapper="Dispose" WrapperParams="void" Original="Dispose"/>
+	</Class>
+
 	<Class Wrapper="InstructionText" Original="fy">
 	</Class>
 

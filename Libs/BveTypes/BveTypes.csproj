@@ -87,6 +87,7 @@
     <Compile Include="ClassWrappers\Public\CircularGauge.cs" />
     <Compile Include="ClassWrappers\Public\ClassicMapParser.cs" />
     <Compile Include="ClassWrappers\Public\Compressor.cs" />
+    <Compile Include="ClassWrappers\Public\IniReader.cs" />
     <Compile Include="ClassWrappers\Public\CscFilteredTimeDelayedHandleSet.cs" />
     <Compile Include="ClassWrappers\Public\DigitalGauge.cs" />
     <Compile Include="ClassWrappers\Public\DigitalNumber.cs" />
