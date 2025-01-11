@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,6 +18,8 @@ namespace BveTypes.ClassWrappers
         private static void Initialize(BveTypeSet bveTypes)
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<NotchInfo>();
+
+            Constructor = members.GetSourceConstructor();
 
             PowerNotchCountGetMethod = members.GetSourcePropertyGetterOf(nameof(PowerNotchCount));
             PowerNotchCountSetMethod = members.GetSourcePropertySetterOf(nameof(PowerNotchCount));
@@ -62,6 +63,14 @@ namespace BveTypes.ClassWrappers
         /// <returns>オリジナル オブジェクトをラップした <see cref="NotchInfo"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
         public static NotchInfo FromSource(object src) => src is null ? null : new NotchInfo(src);
+
+        private static FastConstructor Constructor;
+        /// <summary>
+        /// <see cref="NotchInfo"/> クラスの新しいインスタンスを初期化します。
+        /// </summary>
+        public NotchInfo() : this(Constructor.Invoke(null))
+        {
+        }
 
         private static FastMethod PowerNotchCountGetMethod;
         private static FastMethod PowerNotchCountSetMethod;

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,7 +12,7 @@ namespace BveTypes.ClassWrappers
     /// <summary>
     /// 運転台のハンドルを表します。
     /// </summary>
-    public class CabBase : ClassWrapperBase
+    public class CabBase : ClassWrapperBase, IDisposable
     {
         [InitializeClassWrapper]
         private static void Initialize(BveTypeSet bveTypes)
@@ -23,6 +22,7 @@ namespace BveTypes.ClassWrappers
             HandlesGetMethod = members.GetSourcePropertyGetterOf(nameof(Handles));
 
             GetDescriptionTextMethod = members.GetSourceMethodOf(nameof(GetDescriptionText));
+            DisposeMethod = members.GetSourceMethodOf(nameof(Dispose));
         }
 
         /// <summary>
@@ -44,5 +44,9 @@ namespace BveTypes.ClassWrappers
         /// 現在の状態を説明するテキストを取得します。
         /// </summary>
         public string GetDescriptionText() => GetDescriptionTextMethod.Invoke(Src, null) as string;
+
+        private static FastMethod DisposeMethod;
+        /// <inheritdoc/>
+        public void Dispose() => DisposeMethod.Invoke(Src, null);
     }
 }

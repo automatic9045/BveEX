@@ -52,7 +52,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Model Model
         {
-            get => ClassWrappers.Model.FromSource(ModelField.GetValue(Src));
+            get => Model.FromSource(ModelField.GetValue(Src));
             set => ModelField.SetValue(Src, value.Src);
         }
 

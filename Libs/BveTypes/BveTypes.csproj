@@ -82,12 +82,17 @@
     <Compile Include="ClassWrappers\Helpers\ReverserPosition.cs" />
     <Compile Include="ClassWrappers\Helpers\TiltOptions.cs" />
     <Compile Include="ClassWrappers\Public\BcValve.cs" />
+    <Compile Include="ClassWrappers\Public\BpValve.cs" />
+    <Compile Include="ClassWrappers\Public\CircuitBreaker.cs" />
     <Compile Include="ClassWrappers\Public\CircularGauge.cs" />
     <Compile Include="ClassWrappers\Public\ClassicMapParser.cs" />
+    <Compile Include="ClassWrappers\Public\Compressor.cs" />
+    <Compile Include="ClassWrappers\Public\CscFilteredTimeDelayedHandleSet.cs" />
     <Compile Include="ClassWrappers\Public\DigitalGauge.cs" />
     <Compile Include="ClassWrappers\Public\DigitalNumber.cs" />
     <Compile Include="ClassWrappers\Public\ElectricBrakeCommand.cs" />
     <Compile Include="ClassWrappers\Public\Forms\ConfigForm.cs" />
+    <Compile Include="ClassWrappers\Public\LoadCompensator.cs" />
     <Compile Include="ClassWrappers\Public\MapLoader.cs" />
     <Compile Include="ClassWrappers\Public\MapParser.cs" />
     <Compile Include="ClassWrappers\Public\MapParserBase.cs" />
@@ -100,6 +105,7 @@
     <Compile Include="ClassWrappers\Public\Sound3DObjectList.cs" />
     <Compile Include="ClassWrappers\Public\SoundObject.cs" />
     <Compile Include="ClassWrappers\Public\SoundObjectList.cs" />
+    <Compile Include="ClassWrappers\Public\TimeDelayedHandleSet.cs" />
     <Compile Include="ClassWrappers\Public\TrainSchedule.cs" />
     <Compile Include="ClassWrappers\Public\TrainStopObject.cs" />
     <Compile Include="ClassWrappers\Public\ValueContainer.cs" />

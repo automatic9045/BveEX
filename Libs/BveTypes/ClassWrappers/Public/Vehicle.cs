@@ -45,7 +45,9 @@ namespace BveTypes.ClassWrappers
             CameraLocationField = members.GetSourceFieldOf(nameof(CameraLocation));
 
             LoadMethod = members.GetSourceMethodOf(nameof(Load));
-            InitializeMethod = members.GetSourceMethodOf(nameof(Initialize));
+            InitializeMethod1 = members.GetSourceMethodOf(nameof(Initialize), new Type[0]);
+            InitializeMethod2 = members.GetSourceMethodOf(nameof(Initialize), new Type[] { typeof(BrakePosition) });
+            TickMethod = members.GetSourceMethodOf(nameof(Tick));
             DisposeMethod = members.GetSourceMethodOf(nameof(Dispose));
         }
 
@@ -114,7 +116,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 車掌を表す <see cref="Conductor"/> を取得します。
         /// </summary>
-        public Conductor Conductor => ClassWrappers.Conductor.FromSource(ConductorGetMethod.Invoke(Src, null));
+        public Conductor Conductor => Conductor.FromSource(ConductorGetMethod.Invoke(Src, null));
 
         private static FastMethod DoorsGetMethod;
         private static FastMethod DoorsSetMethod;
@@ -145,7 +147,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Passenger Passenger
         {
-            get => ClassWrappers.Passenger.FromSource(PassengerGetMethod.Invoke(Src, null));
+            get => Passenger.FromSource(PassengerGetMethod.Invoke(Src, null));
             set => PassengerSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
@@ -155,7 +157,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public CameraLocation CameraLocation
         {
-            get => ClassWrappers.CameraLocation.FromSource(CameraLocationField.GetValue(Src));
+            get => CameraLocation.FromSource(CameraLocationField.GetValue(Src));
             set => CameraLocationField.SetValue(Src, value?.Src);
         }
 
@@ -165,17 +167,36 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         /// <param name="loadingProgressForm">「シナリオを読み込んでいます...」フォーム。</param>
         /// <param name="vehicleFile">車両ファイル。</param>
-        public void Load(LoadingProgressForm loadingProgressForm, VehicleFile vehicleFile) => LoadMethod.Invoke(null, new object[] { loadingProgressForm?.Src, vehicleFile?.Src });
+        public void Load(LoadingProgressForm loadingProgressForm, VehicleFile vehicleFile) => LoadMethod.Invoke(Src, new object[] { loadingProgressForm?.Src, vehicleFile?.Src });
 
-        private static FastMethod InitializeMethod;
+        private static FastMethod InitializeMethod1;
+        /// <inheritdoc/>
+        public void Initialize() => InitializeMethod1.Invoke(Src, null);
+
+        private static FastMethod InitializeMethod2;
         /// <summary>
         /// 自列車を初期化します。
         /// </summary>
         /// <param name="brakePosition">ブレーキハンドルの位置。</param>
-        public void Initialize(BrakePosition brakePosition) => InitializeMethod.Invoke(Src, new object[] { brakePosition });
+        public void Initialize(BrakePosition brakePosition) => InitializeMethod2.Invoke(Src, new object[] { brakePosition });
+
+        private static FastMethod TickMethod;
+        /// <inheritdoc/>
+        public void Tick(double elapsedSeconds) => TickMethod.Invoke(Src, new object[] { elapsedSeconds });
+
+        /// <summary>
+        /// 毎フレーム呼び出されます。
+        /// </summary>
+        /// <remarks>
+        /// このメソッドはオリジナルではないため、<see cref="ClassMemberSet.GetSourceMethodOf(string, Type[])"/> メソッドから参照することはできません。<br/>
+        /// このメソッドのオリジナルバージョンは <see cref="Tick(double)"/> です。
+        /// </remarks>
+        /// <param name="elapsed">前フレームからの経過時間。</param>
+        /// <seealso cref="Tick(double)"/>
+        public void Tick(TimeSpan elapsed) => Tick(elapsed.TotalSeconds);
 
         private static FastMethod DisposeMethod;
         /// <inheritdoc/>
-        public void Dispose() => DisposeMethod.Invoke(this, null);
+        public void Dispose() => DisposeMethod.Invoke(Src, null);
     }
 }

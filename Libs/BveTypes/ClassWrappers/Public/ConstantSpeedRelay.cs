@@ -30,6 +30,11 @@ namespace BveTypes.ClassWrappers
 
             MinSpeedGetMethod = members.GetSourcePropertyGetterOf(nameof(MinSpeed));
             MinSpeedSetMethod = members.GetSourcePropertySetterOf(nameof(MinSpeed));
+
+            InputField = members.GetSourceFieldOf(nameof(Input));
+            OutputField = members.GetSourceFieldOf(nameof(Output));
+
+            InitializeMethod = members.GetSourceMethodOf(nameof(Initialize));
         }
 
         /// <summary>
@@ -91,5 +96,31 @@ namespace BveTypes.ClassWrappers
             get => (double)MinSpeedGetMethod.Invoke(Src, null);
             set => MinSpeedSetMethod.Invoke(Src, new object[] { value });
         }
+
+        private static FastField InputField;
+        /// <summary>
+        /// ハンドル入力を取得・設定します。
+        /// </summary>
+        public HandleSet Input
+        {
+            get => HandleSet.FromSource(InputField.GetValue(Src));
+            set => InputField.SetValue(Src, value?.Src);
+        }
+
+        private static FastField OutputField;
+        /// <summary>
+        /// ハンドル出力を取得・設定します。
+        /// </summary>
+        public HandleSet Output
+        {
+            get => HandleSet.FromSource(OutputField.GetValue(Src));
+            set => OutputField.SetValue(Src, value?.Src);
+        }
+
+        private static FastMethod InitializeMethod;
+        /// <summary>
+        /// 初期化します。
+        /// </summary>
+        public void Initialize() => InitializeMethod.Invoke(Src, null);
     }
 }

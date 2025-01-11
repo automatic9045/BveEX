@@ -28,6 +28,14 @@ namespace BveTypes.ClassWrappers
             InertiaFactorGetMethod = members.GetSourcePropertyGetterOf(nameof(InertiaFactor));
             InertiaFactorSetMethod = members.GetSourcePropertySetterOf(nameof(InertiaFactor));
 
+            TachogeneratorGetMethod = members.GetSourcePropertyGetterOf(nameof(Tachogenerator));
+
+            MotorStateGetMethod = members.GetSourcePropertyGetterOf(nameof(MotorState));
+            MotorStateSetMethod = members.GetSourcePropertySetterOf(nameof(MotorState));
+
+            BrakePistonForceGetMethod = members.GetSourcePropertyGetterOf(nameof(BrakePistonForce));
+            BrakePistonForceSetMethod = members.GetSourcePropertySetterOf(nameof(BrakePistonForce));
+
             ShoeFrictionAGetMethod = members.GetSourcePropertyGetterOf(nameof(ShoeFrictionA));
             ShoeFrictionASetMethod = members.GetSourcePropertySetterOf(nameof(ShoeFrictionA));
 
@@ -91,6 +99,34 @@ namespace BveTypes.ClassWrappers
         {
             get => (double)InertiaFactorGetMethod.Invoke(Src, null);
             set => InertiaFactorSetMethod.Invoke(Src, new object[] { value });
+        }
+
+        private static FastMethod TachogeneratorGetMethod;
+        /// <summary>
+        /// 車輪の運動を測定する速度発電機を取得します。
+        /// </summary>
+        public Tachogenerator Tachogenerator => Tachogenerator.FromSource(TachogeneratorGetMethod.Invoke(Src, null));
+
+        private static FastMethod MotorStateGetMethod;
+        private static FastMethod MotorStateSetMethod;
+        /// <summary>
+        /// モーターの状態を取得・設定します。
+        /// </summary>
+        public VehicleMotorState MotorState
+        {
+            get => VehicleMotorState.FromSource(MotorStateGetMethod.Invoke(Src, null));
+            set => MotorStateSetMethod.Invoke(Src, new object[] { value?.Src });
+        }
+
+        private static FastMethod BrakePistonForceGetMethod;
+        private static FastMethod BrakePistonForceSetMethod;
+        /// <summary>
+        /// 基礎ブレーキ装置のピストンの 1 両当たりの押し付け力 [N] を取得・設定します。
+        /// </summary>
+        public ValueContainer BrakePistonForce
+        {
+            get => ValueContainer.FromSource(BrakePistonForceGetMethod.Invoke(Src, null));
+            set => BrakePistonForceSetMethod.Invoke(Src, new object[] { value?.Src });
         }
 
         private static FastMethod ShoeFrictionAGetMethod;

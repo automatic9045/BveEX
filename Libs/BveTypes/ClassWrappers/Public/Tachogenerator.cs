@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,7 +19,12 @@ namespace BveTypes.ClassWrappers
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<Tachogenerator>();
 
+            Constructor = members.GetSourceConstructor();
+
             SpeedGetMethod = members.GetSourcePropertyGetterOf(nameof(Speed));
+
+            AccelerationField = members.GetSourceFieldOf(nameof(Acceleration));
+            ResistanceAccelerationField = members.GetSourceFieldOf(nameof(ResistanceAcceleration));
 
             TickMethod = members.GetSourceMethodOf(nameof(Tick));
             SetSpeedMethod = members.GetSourceMethodOf(nameof(SetSpeed));
@@ -42,6 +46,14 @@ namespace BveTypes.ClassWrappers
         [CreateClassWrapperFromSource]
         public static Tachogenerator FromSource(object src) => src is null ? null : new Tachogenerator(src);
 
+        private static FastConstructor Constructor;
+        /// <summary>
+        /// <see cref="Tachogenerator"/> クラスの新しいインスタンスを初期化します。
+        /// </summary>
+        public Tachogenerator() : base(Constructor.Invoke(null))
+        {
+        }
+
         private static FastMethod SpeedGetMethod;
         /// <summary>
         /// 速度 [m/s] を取得します。
@@ -51,6 +63,26 @@ namespace BveTypes.ClassWrappers
         /// </remarks>
         /// <seealso cref="SetSpeed(double)"/>
         public double Speed => (double)SpeedGetMethod.Invoke(Src, null);
+
+        private static FastField AccelerationField;
+        /// <summary>
+        /// 加速度 [m/s^2] を取得・設定します。
+        /// </summary>
+        public double Acceleration
+        {
+            get => (double)AccelerationField.GetValue(Src);
+            set => AccelerationField.SetValue(Src, value);
+        }
+
+        private static FastField ResistanceAccelerationField;
+        /// <summary>
+        /// 抵抗加速度 [m/s^2] を取得・設定します。
+        /// </summary>
+        public double ResistanceAcceleration
+        {
+            get => (double)ResistanceAccelerationField.GetValue(Src);
+            set => ResistanceAccelerationField.SetValue(Src, value);
+        }
 
         private static FastMethod TickMethod;
         /// <summary>

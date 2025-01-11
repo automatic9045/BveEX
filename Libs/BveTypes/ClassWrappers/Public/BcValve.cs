@@ -19,6 +19,15 @@ namespace BveTypes.ClassWrappers
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<BcValve>();
 
+            IsBcServoGetMethod = members.GetSourcePropertyGetterOf(nameof(IsBcServo));
+            IsBcServoSetMethod = members.GetSourcePropertySetterOf(nameof(IsBcServo));
+
+            RapidReleaseSpeedGetMethod = members.GetSourcePropertyGetterOf(nameof(RapidReleaseSpeed));
+            RapidReleaseSpeedSetMethod = members.GetSourcePropertySetterOf(nameof(RapidReleaseSpeed));
+
+            RapidApplySpeedGetMethod = members.GetSourcePropertyGetterOf(nameof(RapidApplySpeed));
+            RapidApplySpeedSetMethod = members.GetSourcePropertySetterOf(nameof(RapidApplySpeed));
+
             ReleaseStartMarginField = members.GetSourceFieldOf(nameof(ReleaseStartMargin));
             ApplyStartMarginField = members.GetSourceFieldOf(nameof(ApplyStartMargin));
             ReleaseStopMarginField = members.GetSourceFieldOf(nameof(ReleaseStopMargin));
@@ -40,6 +49,39 @@ namespace BveTypes.ClassWrappers
         /// <returns>オリジナル オブジェクトをラップした <see cref="BcValve"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
         public static new BcValve FromSource(object src) => src is null ? null : new BcValve(src);
+
+        private static FastMethod IsBcServoGetMethod;
+        private static FastMethod IsBcServoSetMethod;
+        /// <summary>
+        /// 圧力比例制御式かどうかを取得・設定します。
+        /// </summary>
+        public bool IsBcServo
+        {
+            get => (bool)IsBcServoGetMethod.Invoke(Src, null);
+            set => IsBcServoSetMethod.Invoke(Src, new object[] { value });
+        }
+
+        private static FastMethod RapidReleaseSpeedGetMethod;
+        private static FastMethod RapidReleaseSpeedSetMethod;
+        /// <summary>
+        /// 滑走再粘着制御における急排気速度 [Pa^(1/2)/s] を取得・設定します。
+        /// </summary>
+        public double RapidReleaseSpeed
+        {
+            get => (double)RapidReleaseSpeedGetMethod.Invoke(Src, null);
+            set => RapidReleaseSpeedSetMethod.Invoke(Src, new object[] { value });
+        }
+
+        private static FastMethod RapidApplySpeedGetMethod;
+        private static FastMethod RapidApplySpeedSetMethod;
+        /// <summary>
+        /// 滑走再粘着制御における急給気速度 [Pa^(1/2)/s] を取得・設定します。
+        /// </summary>
+        public double RapidApplySpeed
+        {
+            get => (double)RapidApplySpeedGetMethod.Invoke(Src, null);
+            set => RapidApplySpeedSetMethod.Invoke(Src, new object[] { value });
+        }
 
         private static FastField ReleaseStartMarginField;
         /// <summary>

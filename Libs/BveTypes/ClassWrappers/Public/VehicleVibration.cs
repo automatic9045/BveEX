@@ -21,6 +21,8 @@ namespace BveTypes.ClassWrappers
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<VehicleVibration>();
 
+            Constructor = members.GetSourceConstructor();
+
             CarBodyTransformGetMethod = members.GetSourcePropertyGetterOf(nameof(CarBodyTransform));
 
             FrontAccelerationXGetMethod = members.GetSourcePropertyGetterOf(nameof(FrontAccelerationX));
@@ -41,6 +43,7 @@ namespace BveTypes.ClassWrappers
             PassengerField = members.GetSourceFieldOf(nameof(Passenger));
             VerticalSpringsField = members.GetSourceFieldOf(nameof(VerticalSprings));
 
+            InitializeMethod = members.GetSourceMethodOf(nameof(Initialize));
             TickMethod = members.GetSourceMethodOf(nameof(Tick));
             UpdateCarBodyTransformMethod = members.GetSourceMethodOf(nameof(UpdateCarBodyTransform));
         }
@@ -60,6 +63,19 @@ namespace BveTypes.ClassWrappers
         /// <returns>オリジナル オブジェクトをラップした <see cref="VehicleVibration"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
         public static VehicleVibration FromSource(object src) => src is null ? null : new VehicleVibration(src);
+
+        private static FastConstructor Constructor;
+        /// <summary>
+        /// <see cref="VehicleVibration"/> クラスの新しいインスタンスを初期化します。
+        /// </summary>
+        /// <param name="vehicleLocation">自列車の位置情報。</param>
+        /// <param name="myTrack">自軌道。</param>
+        /// <param name="irregularityObjects">軌道変位のリスト。</param>
+        /// <param name="passenger">乗客。</param>
+        public VehicleVibration(VehicleLocation vehicleLocation, MyTrack myTrack, MapFunctionList irregularityObjects, Passenger passenger)
+            : this(Constructor.Invoke(new object[] { vehicleLocation?.Src, myTrack?.Src, irregularityObjects?.Src, passenger?.Src }))
+        {
+        }
 
         private static FastMethod CarBodyTransformGetMethod;
         /// <summary>
@@ -140,7 +156,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Passenger Passenger
         {
-            get => ClassWrappers.Passenger.FromSource(PassengerField.GetValue(Src));
+            get => Passenger.FromSource(PassengerField.GetValue(Src));
             set => PassengerField.SetValue(Src, value?.Src);
         }
 
@@ -157,15 +173,32 @@ namespace BveTypes.ClassWrappers
             set => VerticalSpringsField.SetValue(Src, value?.Src);
         }
 
+        private static FastMethod InitializeMethod;
+        /// <summary>
+        /// 初期化します。
+        /// </summary>
+        public void Initialize() => InitializeMethod.Invoke(Src, null);
+
         private static FastMethod TickMethod;
         /// <summary>
         /// 毎フレーム呼び出されます。
         /// </summary>
         public void Tick(double elapsedSeconds) => TickMethod.Invoke(Src, new object[] { elapsedSeconds });
 
+        /// <summary>
+        /// 毎フレーム呼び出されます。
+        /// </summary>
+        /// <remarks>
+        /// このメソッドはオリジナルではないため、<see cref="ClassMemberSet.GetSourceMethodOf(string, Type[])"/> メソッドから参照することはできません。<br/>
+        /// このメソッドのオリジナルバージョンは <see cref="Tick(double)"/> です。
+        /// </remarks>
+        /// <param name="elapsed">前フレームからの経過時間。</param>
+        /// <seealso cref="Tick(double)"/>
+        public void Tick(TimeSpan elapsed) => Tick(elapsed.TotalSeconds);
+
         private static FastMethod UpdateCarBodyTransformMethod;
         /// <summary>
-        /// 車両
+        /// 車体の揺れを表す行列を更新します。
         /// </summary>
         public void UpdateCarBodyTransform() => UpdateCarBodyTransformMethod.Invoke(Src, null);
     }

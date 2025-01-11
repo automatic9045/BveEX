@@ -141,6 +141,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         /// <param name="loadingProgressForm">「シナリオを読み込んでいます...」フォーム。</param>
         /// <param name="path">車両ファイルのパス。</param>
-        public static void FromFile(LoadingProgressForm loadingProgressForm, string path) => FromFileMethod.Invoke(null, new object[] { loadingProgressForm?.Src, path });
+        public static VehicleFile FromFile(LoadingProgressForm loadingProgressForm, string path)
+            => FromSource(FromFileMethod.Invoke(null, new object[] { loadingProgressForm?.Src, path }));
     }
 }

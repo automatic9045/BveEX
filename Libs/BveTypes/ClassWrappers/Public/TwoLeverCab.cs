@@ -18,6 +18,8 @@ namespace BveTypes.ClassWrappers
         private static void Initialize(BveTypeSet bveTypes)
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<TwoLeverCab>();
+
+            Constructor = members.GetSourceConstructor();
         }
 
         /// <summary>
@@ -35,5 +37,15 @@ namespace BveTypes.ClassWrappers
         /// <returns>オリジナル オブジェクトをラップした <see cref="TwoLeverCab"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
         public static TwoLeverCab FromSource(object src) => src is null ? null : new TwoLeverCab(src);
+
+        private static FastConstructor Constructor;
+        /// <summary>
+        /// <see cref="TwoLeverCab"/> クラスの新しいインスタンスを初期化します。
+        /// </summary>
+        /// <param name="inputManager">キー入力の情報。</param>
+        /// <param name="handles">ハンドル入力。</param>
+        public TwoLeverCab(InputManager inputManager, HandleSet handles) : this(Constructor.Invoke(new object[] { inputManager?.Src, handles?.Src }))
+        {
+        }
     }
 }

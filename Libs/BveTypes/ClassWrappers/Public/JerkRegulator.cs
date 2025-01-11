@@ -21,6 +21,15 @@ namespace BveTypes.ClassWrappers
 
             MotorStateGetMethod = members.GetSourcePropertyGetterOf(nameof(MotorState));
 
+            ElectricBrakeCommandGetMethod = members.GetSourcePropertyGetterOf(nameof(ElectricBrakeCommand));
+            ElectricBrakeCommandSetMethod = members.GetSourcePropertySetterOf(nameof(ElectricBrakeCommand));
+
+            CurrentIncreaseGetMethod = members.GetSourcePropertyGetterOf(nameof(CurrentIncrease));
+            CurrentIncreaseSetMethod = members.GetSourcePropertySetterOf(nameof(CurrentIncrease));
+
+            CurrentDecreaseGetMethod = members.GetSourcePropertyGetterOf(nameof(CurrentDecrease));
+            CurrentDecreaseSetMethod = members.GetSourcePropertySetterOf(nameof(CurrentDecrease));
+
             InitializeMethod = members.GetSourceMethodOf(nameof(Initialize));
             CalculateRawCurrentMethod = members.GetSourceMethodOf(nameof(CalculateRawCurrent));
             TickMethod = members.GetSourceMethodOf(nameof(Tick));
@@ -47,6 +56,39 @@ namespace BveTypes.ClassWrappers
         /// 自列車のモーターの状態を取得します。
         /// </summary>
         public VehicleMotorState MotorState => VehicleMotorState.FromSource(MotorStateGetMethod.Invoke(Src, null));
+
+        private static FastMethod ElectricBrakeCommandGetMethod;
+        private static FastMethod ElectricBrakeCommandSetMethod;
+        /// <summary>
+        /// 電空協調制御から送られる指令を取得・設定します。
+        /// </summary>
+        public ElectricBrakeCommand ElectricBrakeCommand
+        {
+            get => ElectricBrakeCommand.FromSource(ElectricBrakeCommandGetMethod.Invoke(Src, null));
+            set => ElectricBrakeCommandSetMethod.Invoke(Src, new object[] { value?.Src });
+        }
+
+        private static FastMethod CurrentIncreaseGetMethod;
+        private static FastMethod CurrentIncreaseSetMethod;
+        /// <summary>
+        /// 電流増加速度 [A/s] を取得・設定します。
+        /// </summary>
+        public double CurrentIncrease
+        {
+            get => (double)CurrentIncreaseGetMethod.Invoke(Src, null);
+            set => CurrentIncreaseSetMethod.Invoke(Src, new object[] { value });
+        }
+
+        private static FastMethod CurrentDecreaseGetMethod;
+        private static FastMethod CurrentDecreaseSetMethod;
+        /// <summary>
+        /// 電流減少速度 [A/s] を取得・設定します。
+        /// </summary>
+        public double CurrentDecrease
+        {
+            get => (double)CurrentDecreaseGetMethod.Invoke(Src, null);
+            set => CurrentDecreaseSetMethod.Invoke(Src, new object[] { value });
+        }
 
         private static FastMethod InitializeMethod;
         /// <inheritdoc/>

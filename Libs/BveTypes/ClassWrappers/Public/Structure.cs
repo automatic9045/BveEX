@@ -94,7 +94,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Model Model
         {
-            get => ClassWrappers.Model.FromSource(ModelGetMethod.Invoke(Src, null));
+            get => Model.FromSource(ModelGetMethod.Invoke(Src, null));
             set => ModelSetMethod.Invoke(Src, new object[] { value?.Src });
         }
     }

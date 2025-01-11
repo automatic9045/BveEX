@@ -78,13 +78,13 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 自列車の位置情報を取得します。
         /// </summary>
-        public VehicleLocation VehicleLocation => ClassWrappers.VehicleLocation.FromSource(VehicleLocationField.GetValue(Src));
+        public VehicleLocation VehicleLocation => VehicleLocation.FromSource(VehicleLocationField.GetValue(Src));
 
         private static FastField MapField;
         /// <summary>
         /// マップを取得します。
         /// </summary>
-        public Map Map => ClassWrappers.Map.FromSource(MapField.GetValue(Src));
+        public Map Map => Map.FromSource(MapField.GetValue(Src));
 
         private static FastField TrainInfoField;
         /// <summary>
@@ -92,7 +92,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public TrainInfo TrainInfo
         {
-            get => ClassWrappers.TrainInfo.FromSource(TrainInfoField.GetValue(Src));
+            get => TrainInfo.FromSource(TrainInfoField.GetValue(Src));
             set => TrainInfoField.SetValue(Src, value?.Src);
         }
 
@@ -100,7 +100,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 描画距離に関する情報を取得します。
         /// </summary>
-        public DrawDistanceManager DrawDistanceManager => ClassWrappers.DrawDistanceManager.FromSource(DrawDistanceManagerField.GetValue(Src));
+        public DrawDistanceManager DrawDistanceManager => DrawDistanceManager.FromSource(DrawDistanceManagerField.GetValue(Src));
 
         private static FastField SchedulesField;
         /// <summary>

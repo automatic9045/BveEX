@@ -21,6 +21,8 @@ namespace BveTypes.ClassWrappers
 
             PowerGetMethod = members.GetSourcePropertyGetterOf(nameof(Power));
             BrakeGetMethod = members.GetSourcePropertyGetterOf(nameof(Brake));
+
+            LoadFromFileMethod = members.GetSourceMethodOf(nameof(LoadFromFile));
         }
 
         /// <summary>
@@ -50,5 +52,13 @@ namespace BveTypes.ClassWrappers
         /// 電気ブレーキ性能を取得します。
         /// </summary>
         public VehicleStepSet Brake => VehicleStepSet.FromSource(BrakeGetMethod.Invoke(Src, null));
+
+        private static FastMethod LoadFromFileMethod;
+        /// <summary>
+        /// 車両性能ファイルを読み込みます。
+        /// </summary>
+        /// <param name="loadingProgressForm">エラーの出力先となる「シナリオを読み込んでいます...」フォーム。</param>
+        /// <param name="filePath">車両性能ファイルのパス。</param>
+        public void LoadFromFile(LoadingProgressForm loadingProgressForm, string filePath) => LoadFromFileMethod.Invoke(Src, new object[] { loadingProgressForm?.Src, filePath });
     }
 }

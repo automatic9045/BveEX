@@ -19,6 +19,9 @@ namespace BveTypes.ClassWrappers
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<Cl>();
 
+            ErGetMethod = members.GetSourcePropertyGetterOf(nameof(Er));
+            BpGetMethod = members.GetSourcePropertyGetterOf(nameof(Bp));
+
             BpInitialPressureGetMethod = members.GetSourcePropertyGetterOf(nameof(BpInitialPressure));
             BpInitialPressureSetMethod = members.GetSourcePropertySetterOf(nameof(BpInitialPressure));
         }
@@ -38,6 +41,18 @@ namespace BveTypes.ClassWrappers
         /// <returns>オリジナル オブジェクトをラップした <see cref="Cl"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
         public static Cl FromSource(object src) => src is null ? null : new Cl(src);
+
+        private static FastMethod ErGetMethod;
+        /// <summary>
+        /// 釣り合い空気溜めの圧力調整弁を取得します。
+        /// </summary>
+        public BpValve Er => BpValve.FromSource(ErGetMethod.Invoke(Src, null));
+
+        private static FastMethod BpGetMethod;
+        /// <summary>
+        /// ブレーキ管の圧力調整弁を取得します。
+        /// </summary>
+        public BpValve Bp => BpValve.FromSource(BpGetMethod.Invoke(Src, null));
 
         private static FastMethod BpInitialPressureGetMethod;
         private static FastMethod BpInitialPressureSetMethod;

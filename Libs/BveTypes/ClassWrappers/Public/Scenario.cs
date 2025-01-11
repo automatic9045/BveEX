@@ -62,25 +62,25 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// このシナリオに関連付けられた <see cref="ClassWrappers.TimeManager"/> のインスタンスを取得します。
         /// </summary>
-        public TimeManager TimeManager => ClassWrappers.TimeManager.FromSource(TimeManagerGetMethod.Invoke(Src, null));
+        public TimeManager TimeManager => TimeManager.FromSource(TimeManagerGetMethod.Invoke(Src, null));
 
         private static FastMethod VehicleLocationGetMethod;
         /// <summary>
         /// このシナリオに関連付けられた <see cref="ClassWrappers.VehicleLocation"/> のインスタンスを取得します。
         /// </summary>
-        public VehicleLocation VehicleLocation => ClassWrappers.VehicleLocation.FromSource(VehicleLocationGetMethod.Invoke(Src, null));
+        public VehicleLocation VehicleLocation => VehicleLocation.FromSource(VehicleLocationGetMethod.Invoke(Src, null));
 
         private static FastMethod MapGetMethod;
         /// <summary>
         /// このシナリオに関連付けられた <see cref="ClassWrappers.Map"/> のインスタンスを取得します。
         /// </summary>
-        public Map Map => ClassWrappers.Map.FromSource(MapGetMethod.Invoke(Src, null));
+        public Map Map => Map.FromSource(MapGetMethod.Invoke(Src, null));
 
         private static FastMethod VehicleGetMethod;
         /// <summary>
         /// このシナリオに関連付けられた <see cref="ClassWrappers.Vehicle"/> のインスタンスを取得します。
         /// </summary>
-        public Vehicle Vehicle => ClassWrappers.Vehicle.FromSource(VehicleGetMethod.Invoke(Src, null));
+        public Vehicle Vehicle => Vehicle.FromSource(VehicleGetMethod.Invoke(Src, null));
 
         private static FastMethod TrainsGetMethod;
         /// <summary>
@@ -100,19 +100,19 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// このシナリオに関連付けられた <see cref="SectionManager"/> のインスタンスを取得します。
         /// </summary>
-        public SectionManager SectionManager => ClassWrappers.SectionManager.FromSource(SectionManagerGetMethod.Invoke(Src, null));
+        public SectionManager SectionManager => SectionManager.FromSource(SectionManagerGetMethod.Invoke(Src, null));
 
         private static FastMethod TimeTableGetMethod;
         /// <summary>
         /// このシナリオに関連付けられた <see cref="ClassWrappers.TimeTable"/> のインスタンスを取得します。
         /// </summary>
-        public TimeTable TimeTable => ClassWrappers.TimeTable.FromSource(TimeTableGetMethod.Invoke(Src, null));
+        public TimeTable TimeTable => TimeTable.FromSource(TimeTableGetMethod.Invoke(Src, null));
 
         private static FastField ObjectDrawerField;
         /// <summary>
         /// このシナリオに関連付けられた <see cref="ClassWrappers.ObjectDrawer"/> のインスタンスを取得します。
         /// </summary>
-        public ObjectDrawer ObjectDrawer => ClassWrappers.ObjectDrawer.FromSource(ObjectDrawerField.GetValue(Src));
+        public ObjectDrawer ObjectDrawer => ObjectDrawer.FromSource(ObjectDrawerField.GetValue(Src));
 
         private static FastMethod DisposeMethod;
         /// <inheritdoc/>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,6 +18,8 @@ namespace BveTypes.ClassWrappers
         private static void Initialize(BveTypeSet bveTypes)
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<VehicleLocation>();
+
+            Constructor = members.GetSourceConstructor();
 
             LocationGetMethod = members.GetSourcePropertyGetterOf(nameof(Location));
 
@@ -43,6 +44,14 @@ namespace BveTypes.ClassWrappers
         /// <returns>オリジナル オブジェクトをラップした <see cref="VehicleLocation"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
         public static new VehicleLocation FromSource(object src) => src is null ? null : new VehicleLocation(src);
+
+        private static FastConstructor Constructor;
+        /// <summary>
+        /// <see cref="VehicleLocation"/> クラスの新しいインスタンスを初期化します。
+        /// </summary>
+        public VehicleLocation() : base(Constructor.Invoke(null))
+        {
+        }
 
         private static FastMethod LocationGetMethod;
         /// <summary>

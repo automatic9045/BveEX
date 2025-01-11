@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,6 +18,10 @@ namespace BveTypes.ClassWrappers
         private static void Initialize(BveTypeSet bveTypes)
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<VehicleDynamics>();
+
+            Constructor = members.GetSourceConstructor();
+
+            InertiaRatioGetMethod = members.GetSourcePropertyGetterOf(nameof(InertiaRatio));
 
             CurveResistanceFactorGetMethod = members.GetSourcePropertyGetterOf(nameof(CurveResistanceFactor));
             CurveResistanceFactorSetMethod = members.GetSourcePropertySetterOf(nameof(CurveResistanceFactor));
@@ -41,6 +44,14 @@ namespace BveTypes.ClassWrappers
 
             FirstCarGetMethod = members.GetSourcePropertyGetterOf(nameof(FirstCar));
             FirstCarSetMethod = members.GetSourcePropertySetterOf(nameof(FirstCar));
+
+            TotalMassField = members.GetSourceFieldOf(nameof(TotalMass));
+            TotalInertiaField = members.GetSourceFieldOf(nameof(TotalInertia));
+            MassRatioField = members.GetSourceFieldOf(nameof(MassRatio));
+
+            TickMethod = members.GetSourceMethodOf(nameof(Tick));
+            InitializeMethod = members.GetSourceMethodOf(nameof(Initialize));
+            SetupMethod = members.GetSourceMethodOf(nameof(Setup));
         }
 
         /// <summary>
@@ -58,6 +69,28 @@ namespace BveTypes.ClassWrappers
         /// <returns>オリジナル オブジェクトをラップした <see cref="VehicleDynamics"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
         public static VehicleDynamics FromSource(object src) => src is null ? null : new VehicleDynamics(src);
+
+        private static FastConstructor Constructor;
+        /// <summary>
+        /// <see cref="VehicleDynamics"/> クラスの新しいインスタンスを初期化します。
+        /// </summary>
+        /// <param name="vehicleLocation">自列車の位置情報。</param>
+        /// <param name="vehicleVibration">自列車の揺れ。</param>
+        /// <param name="passengerLoad">乗客 1 人当たりの質量 [kg]。</param>
+        /// <param name="myTrack">自軌道。</param>
+        /// <param name="adhesionObjects">車輪 - レール間の粘着特性のリスト。</param>
+        /// <param name="brakeShoeFrictionObjects">粘着係数のリスト。</param>
+        public VehicleDynamics(VehicleLocation vehicleLocation, VehicleVibration vehicleVibration, ValueContainer passengerLoad,
+            MyTrack myTrack, MapFunctionList adhesionObjects, MapFunctionList brakeShoeFrictionObjects)
+            : this(Constructor.Invoke(new object[] { vehicleLocation?.Src, vehicleVibration?.Src, passengerLoad?.Src, myTrack?.Src, adhesionObjects?.Src, brakeShoeFrictionObjects?.Src }))
+        {
+        }
+
+        private static FastMethod InertiaRatioGetMethod;
+        /// <summary>
+        /// 空車時に対する自列車全体の慣性比を取得します。
+        /// </summary>
+        public ValueContainer InertiaRatio => ValueContainer.FromSource(InertiaRatioGetMethod.Invoke(Src, null));
 
         private static FastMethod CurveResistanceFactorGetMethod;
         private static FastMethod CurveResistanceFactorSetMethod;
@@ -137,12 +170,73 @@ namespace BveTypes.ClassWrappers
         private static FastMethod FirstCarGetMethod;
         private static FastMethod FirstCarSetMethod;
         /// <summary>
-        /// 先頭車両の情報を提供する <see cref="CarInfo"/> を取得します。
+        /// 先頭車両の情報を提供する <see cref="CarInfo"/> を取得・設定します。
         /// </summary>
         public CarInfo FirstCar
         {
             get => CarInfo.FromSource(FirstCarGetMethod.Invoke(Src, null));
             set => FirstCarSetMethod.Invoke(Src, new object[] { value?.Src });
         }
+
+        private static FastField TotalMassField;
+        /// <summary>
+        /// 乗客を含めた自列車全体の質量 [kg] を取得・設定します。
+        /// </summary>
+        public double TotalMass
+        {
+            get => (double)TotalMassField.GetValue(Src);
+            set => TotalMassField.SetValue(Src, value);
+        }
+
+        private static FastField TotalInertiaField;
+        /// <summary>
+        /// 乗客を含めた自列車全体の慣性モーメントの質量相当 [kg] を取得・設定します。
+        /// </summary>
+        public double TotalInertia
+        {
+            get => (double)TotalInertiaField.GetValue(Src);
+            set => TotalInertiaField.SetValue(Src, value);
+        }
+
+        private static FastField MassRatioField;
+        /// <summary>
+        /// 空車時に対する自列車全体の質量比を取得・設定します。
+        /// </summary>
+        public double MassRatio
+        {
+            get => (double)MassRatioField.GetValue(Src);
+            set => MassRatioField.SetValue(Src, value);
+        }
+
+        private static FastMethod TickMethod;
+        /// <summary>
+        /// 毎フレーム呼び出されます。
+        /// </summary>
+        /// <param name="elapsedSeconds">前フレームからの経過時間 [s]。</param>
+        public void Tick(double elapsedSeconds) => TickMethod.Invoke(Src, new object[] { elapsedSeconds });
+
+        /// <summary>
+        /// 毎フレーム呼び出されます。
+        /// </summary>
+        /// <remarks>
+        /// このメソッドはオリジナルではないため、<see cref="ClassMemberSet.GetSourceMethodOf(string, Type[])"/> メソッドから参照することはできません。<br/>
+        /// このメソッドのオリジナルバージョンは <see cref="Tick(double)"/> です。
+        /// </remarks>
+        /// <param name="elapsed">前フレームからの経過時間。</param>
+        /// <seealso cref="Tick(double)"/>
+        public void Tick(TimeSpan elapsed) => Tick(elapsed.TotalSeconds);
+
+        private static FastMethod InitializeMethod;
+        /// <summary>
+        /// 初期化します。
+        /// </summary>
+        /// <param name="speed">速度 [m/s]。</param>
+        public void Initialize(double speed) => InitializeMethod.Invoke(Src, new object[] { speed });
+
+        private static FastMethod SetupMethod;
+        /// <summary>
+        /// 両数に依存するパラメータを計算します。
+        /// </summary>
+        public void Setup() => SetupMethod.Invoke(Src, null);
     }
 }

@@ -65,11 +65,11 @@ namespace BveTypes.ClassWrappers
 
         private static FastField TimeManagerField;
         /// <summary>
-        /// シナリオに関連付けられた <see cref="BveTypes.ClassWrappers.TimeManager"/> のインスタンスを取得・設定します。
+        /// シナリオに関連付けられた <see cref="ClassWrappers.TimeManager"/> のインスタンスを取得・設定します。
         /// </summary>
         public TimeManager TimeManager
         {
-            get => ClassWrappers.TimeManager.FromSource(TimeManagerField.GetValue(Src));
+            get => TimeManager.FromSource(TimeManagerField.GetValue(Src));
             set => TimeManagerField.SetValue(Src, value?.Src);
         }
 
@@ -85,7 +85,7 @@ namespace BveTypes.ClassWrappers
 
         private static FastField SoundsField;
         /// <summary>
-        /// シナリオに関連付けられた <see cref="BveTypes.ClassWrappers.SoundSet"/> のインスタンスを取得・設定します。
+        /// シナリオに関連付けられた <see cref="SoundSet"/> のインスタンスを取得・設定します。
         /// </summary>
         public SoundSet Sounds
         {
@@ -105,11 +105,11 @@ namespace BveTypes.ClassWrappers
 
         private static FastField SectionManagerField;
         /// <summary>
-        /// シナリオに関連付けられた <see cref="BveTypes.ClassWrappers.SectionManager"/> のインスタンスを取得・設定します。
+        /// シナリオに関連付けられた <see cref="ClassWrappers.SectionManager"/> のインスタンスを取得・設定します。
         /// </summary>
         public SectionManager SectionManager
         {
-            get => ClassWrappers.SectionManager.FromSource(SectionManagerField.GetValue(Src));
+            get => SectionManager.FromSource(SectionManagerField.GetValue(Src));
             set => SectionManagerField.SetValue(Src, value?.Src);
         }
 
@@ -125,11 +125,11 @@ namespace BveTypes.ClassWrappers
 
         private static FastField PassengerField;
         /// <summary>
-        /// シナリオに関連付けられた <see cref="BveTypes.ClassWrappers.Passenger"/> のインスタンスを取得・設定します。
+        /// シナリオに関連付けられた <see cref="ClassWrappers.Passenger"/> のインスタンスを取得・設定します。
         /// </summary>
         public Passenger Passenger
         {
-            get => ClassWrappers.Passenger.FromSource(PassengerField.GetValue(Src));
+            get => Passenger.FromSource(PassengerField.GetValue(Src));
             set => PassengerField.SetValue(Src, value?.Src);
         }
 

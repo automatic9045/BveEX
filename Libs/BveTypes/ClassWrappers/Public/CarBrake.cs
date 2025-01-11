@@ -45,9 +45,9 @@ namespace BveTypes.ClassWrappers
 
         private static FastMethod BcValveGetMethod;
         /// <summary>
-        /// ブレーキシリンダ電磁弁を表す <see cref="ClassWrappers.BcValve"/> を取得します。
+        /// ブレーキシリンダ電磁弁を取得します。
         /// </summary>
-        public BcValve BcValve => ClassWrappers.BcValve.FromSource(BcValveGetMethod.Invoke(Src, null));
+        public BcValve BcValve => BcValve.FromSource(BcValveGetMethod.Invoke(Src, null));
 
         private static FastMethod PistonGetMethod;
         /// <summary>

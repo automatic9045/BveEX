@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,6 +18,8 @@ namespace BveTypes.ClassWrappers
         private static void Initialize(BveTypeSet bveTypes)
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<HandleSet>();
+
+            Constructor = members.GetSourceConstructor();
 
             NotchInfoGetMethod = members.GetSourcePropertyGetterOf(nameof(NotchInfo));
             NotchInfoSetMethod = members.GetSourcePropertySetterOf(nameof(NotchInfo));
@@ -43,6 +44,8 @@ namespace BveTypes.ClassWrappers
             PowerChangedEvent = new WrapperEvent<EventHandler<ValueEventArgs<int>>>(powerChangedEvent, x => (sender, e) => x?.Invoke(FromSource(sender), ValueEventArgs<int>.FromSource(e)));
             ReverserChangedEvent = new WrapperEvent<EventHandler<ValueEventArgs<int>>>(reverserChangedEvent, x => (sender, e) => x?.Invoke(FromSource(sender), ValueEventArgs<int>.FromSource(e)));
             ConstantSpeedChangedEvent = members.GetSourceEventOf(nameof(ConstantSpeedChanged));
+
+            SyncMethod = members.GetSourceMethodOf(nameof(Sync));
         }
 
         /// <summary>
@@ -60,6 +63,15 @@ namespace BveTypes.ClassWrappers
         /// <returns>オリジナル オブジェクトをラップした <see cref="HandleSet"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
         public static HandleSet FromSource(object src) => src is null ? null : new HandleSet(src);
+
+        private static FastConstructor Constructor;
+        /// <summary>
+        /// <see cref="HandleSet"/> クラスの新しいインスタンスを初期化します。
+        /// </summary>
+        /// <param name="notchInfo">ノッチの情報。</param>
+        public HandleSet(NotchInfo notchInfo) : this(Constructor.Invoke(new object[] { notchInfo?.Src }))
+        {
+        }
 
         private static FastMethod NotchInfoGetMethod;
         private static FastMethod NotchInfoSetMethod;
@@ -187,5 +199,12 @@ namespace BveTypes.ClassWrappers
         /// <see cref="ConstantSpeedChanged"/> イベントを実行します。
         /// </summary>
         public void ConstantSpeedChanged_Invoke() => ConstantSpeedChangedEvent.Invoke(Src, new object[] { Src, EventArgs.Empty });
+
+        private static FastMethod SyncMethod;
+        /// <summary>
+        /// ハンドル位置を他の <see cref="HandleSet"/> と同期します。
+        /// </summary>
+        /// <param name="source">同期先の <see cref="HandleSet"/>。</param>
+        public void Sync(HandleSet source) => SyncMethod.Invoke(Src, new object[] { source?.Src });
     }
 }

@@ -163,6 +163,19 @@
 	</Class>
 
 	<Class Wrapper="BcValve" Original="az">
+		<Property Wrapper="IsBcServo">
+			<Getter Original="c"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="RapidReleaseSpeed">
+			<Getter Original="a"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="RapidApplySpeed">
+			<Getter Original="b"/>
+			<Setter Original="b"/>
+		</Property>
+
 		<Field WrapperProperty="ReleaseStartMargin" Original="b" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="ApplyStartMargin" Original="c" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="ReleaseStopMargin" Original="d" IsOriginalNonPublic="true"/>
@@ -182,6 +195,10 @@
 			<Getter Original="b"/>
 			<Setter Original="c"/>
 		</Property>
+	</Class>
+
+	<Class Wrapper="BpValve" Original="aq">
+		<Field WrapperProperty="RapidReleaseSpeed" Original="a" IsOriginalNonPublic="true"/>
 	</Class>
 
 	<Class Wrapper="BrakeBlenderBase" Original="e3">
@@ -222,15 +239,33 @@
 	</Class>
 
 	<Class Wrapper="BrakePiston" Original="bw">
+		<Property Wrapper="Stroke">
+			<Getter Original="f"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="Force">
+			<Getter Original="d"/>
+		</Property>
 		<Property Wrapper="Area">
 			<Getter Original="b"/>
 			<Setter Original="b"/>
 		</Property>
+
+		<Field WrapperProperty="ApplyPressure" Original="d" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="ReleasePressure" Original="e" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Speed" Original="f" IsOriginalNonPublic="true"/>
+
+		<Method Wrapper="Tick" WrapperParams="System.Double" Original="ag"/>
+		<Method Wrapper="Initialize" WrapperParams="void" Original="n"/>
 	</Class>
 
 	<Class Wrapper="BrakeSystem" Original="bh">
+		<Property Wrapper="TimeDelayedHandles">
+			<Getter Original="a"/>
+		</Property>
 		<Property Wrapper="BrakeBlender">
 			<Getter Original="k"/>
+			<Setter Original="a"/>
 		</Property>
 		<Property Wrapper="AirSupplement">
 			<Getter Original="g"/>
@@ -240,6 +275,7 @@
 		</Property>
 		<Property Wrapper="BrakeController">
 			<Getter Original="i"/>
+			<Setter Original="a"/>
 		</Property>
 		<Property Wrapper="Ecb">
 			<Getter Original="f"/>
@@ -260,6 +296,12 @@
 			<Getter Original="j"/>
 			<Setter Original="a"/>
 		</Property>
+		<Property Wrapper="Compressor">
+			<Getter Original="e"/>
+		</Property>
+
+		<Method Wrapper="Initialize" WrapperParams="void" Original="n"/>
+		<Method Wrapper="Tick" WrapperParams="System.Double" Original="ag"/>
 	</Class>
 
 	<Class Wrapper="BveFile" Original="b5">
@@ -275,6 +317,7 @@
 		</Property>
 
 		<Method Wrapper="GetDescriptionText" WrapperParams="void" Original="j"/>
+		<Method Wrapper="Dispose" WrapperParams="void" Original="Dispose"/>
 	</Class>
 
 	<Class Wrapper="CameraLocation" Original="bi">
@@ -368,6 +411,17 @@
 			<Getter Original="e"/>
 			<Setter Original="h"/>
 		</Property>
+		<Property Wrapper="Tachogenerator">
+			<Getter Original="c"/>
+		</Property>
+		<Property Wrapper="MotorState">
+			<Getter Original="b"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="BrakePistonForce">
+			<Getter Original="n"/>
+			<Setter Original="a"/>
+		</Property>
 		<Property Wrapper="ShoeFrictionA">
 			<Getter Original="h"/>
 			<Setter Original="c"/>
@@ -382,6 +436,23 @@
 		</Property>
 
 		<Field WrapperProperty="IsSlipping" Original="n" IsOriginalNonPublic="true"/>
+	</Class>
+
+	<Class Wrapper="CircuitBreaker" Original="at">
+		<Property Wrapper="RegenerationLimit">
+			<Getter Original="b"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="RegenerationStartLimit">
+			<Getter Original="c"/>
+			<Setter Original="b"/>
+		</Property>
+		<Property Wrapper="Performance">
+			<Getter Original="d"/>
+		</Property>
+
+		<Method Wrapper="Initialize" WrapperParams="void" Original="n"/>
+		<Method Wrapper="Tick" WrapperParams="System.Double" Original="ag"/>
 	</Class>
 
 	<Class Wrapper="CircularGauge" Original="en">
@@ -412,6 +483,12 @@
 	</Class>
 
 	<Class Wrapper="Cl" Original="dv">
+		<Property Wrapper="Er">
+			<Getter Original="b"/>
+		</Property>
+		<Property Wrapper="Bp">
+			<Getter Original="a"/>
+		</Property>
 		<Property Wrapper="BpInitialPressure">
 			<Getter Original="c"/>
 			<Setter Original="a"/>
@@ -422,6 +499,30 @@
 	</Class>
 
 	<Class Wrapper="ClockText" Original="e2">
+	</Class>
+
+	<Class Wrapper="Compressor" Original="e7">
+		<Property Wrapper="UpperPressure">
+			<Getter Original="d"/>
+			<Setter Original="d"/>
+		</Property>
+		<Property Wrapper="LowerPressure">
+			<Getter Original="e"/>
+			<Setter Original="c"/>
+		</Property>
+		<Property Wrapper="CompressionSpeed">
+			<Getter Original="a"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="LeakSpeed">
+			<Getter Original="b"/>
+			<Setter Original="b"/>
+		</Property>
+
+		<Field WrapperProperty="IsWorking" Original="e" IsOriginalNonPublic="true"/>
+
+		<Method Wrapper="Initialize" WrapperParams="void" Original="n"/>
+		<Method Wrapper="Tick" WrapperParams="System.Double" Original="ag"/>
 	</Class>
 
 	<Class Wrapper="Conductor" Original="ba">
@@ -459,6 +560,15 @@
 			<Getter Original="c"/>
 			<Setter Original="a"/>
 		</Property>
+
+		<Field WrapperProperty="Input" Original="b" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Output" Original="h" IsOriginalNonPublic="true"/>
+
+		<Method Wrapper="Initialize" WrapperParams="void" Original="h"/>
+	</Class>
+
+	<Class Wrapper="CscFilteredTimeDelayedHandleSet" Original="x">
+		<Method Wrapper="Tick" WrapperParams="System.Double" Original="ag"/>
 	</Class>
 
 	<Class Wrapper="Curve" Original="s">
@@ -590,6 +700,8 @@
 		<Event Wrapper="PowerChanged" OriginalAddAccessor="e" OriginalRemoveAccessor="c" OriginalDelegateField="h"/>
 		<Event Wrapper="ReverserChanged" OriginalAddAccessor="b" OriginalRemoveAccessor="f" OriginalDelegateField="i"/>
 		<Event Wrapper="ConstantSpeedChanged" OriginalAddAccessor="a" OriginalRemoveAccessor="b" OriginalDelegateField="j"/>
+
+		<Method Wrapper="Sync" WrapperParams="ex:HandleSet" Original="a"/>
 	</Class>
 
 	<Class Wrapper="IDrawable" Original="c0">
@@ -609,6 +721,18 @@
 		<Property Wrapper="MotorState">
 			<Getter Original="c"/>
 		</Property>
+		<Property Wrapper="ElectricBrakeCommand">
+			<Getter Original="e"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="CurrentIncrease">
+			<Getter Original="d"/>
+			<Setter Original="b"/>
+		</Property>
+		<Property Wrapper="CurrentDecrease">
+			<Getter Original="b"/>
+			<Setter Original="a"/>
+		</Property>
 
 		<Method Wrapper="Initialize" WrapperParams="void" Original="n"/>
 		<Method Wrapper="CalculateRawCurrent" WrapperParams="void" Original="a" IsOriginalNonPublic="true"/>
@@ -626,6 +750,13 @@
 	</Class>
 
 	<Class Wrapper="LeverText" Original="ci">
+	</Class>
+
+	<Class Wrapper="LoadCompensator" Original="fo">
+		<Property Wrapper="IsEnabled">
+			<Getter Original="a"/>
+			<Setter Original="a"/>
+		</Property>
 	</Class>
 
 	<Class Wrapper="LoadError" Original="ai">
@@ -676,15 +807,6 @@
 		<Field WrapperProperty="Vertices" Original="c" IsOriginalNonPublic="true"/>
 
 		<Method Wrapper="Draw" WrapperParams="ex:Direct3DProvider; SlimDX.Matrix, SlimDX; System.Boolean" Original="ah"/>
-	</Class>
-
-	<Class Wrapper="Tachogenerator" Original="ct">
-		<Property Wrapper="Speed">
-			<Getter Original="g"/>
-		</Property>
-
-		<Method Wrapper="Tick" WrapperParams="System.Double; System.Double; System.Double" Original="a"/>
-		<Method Wrapper="SetSpeed" WrapperParams="System.Double" Original="d"/>
 	</Class>
 
 	<Class Wrapper="LockoutValve" Original="dg">
@@ -1008,13 +1130,27 @@
 			<Enum Wrapper="StationProcess" Original="a"/>
 		</Children>
 
+		<Property Wrapper="Load">
+			<Getter Original="f"/>
+		</Property>
+		<Property Wrapper="BodyWeight">
+			<Getter Original="a"/>
+			<Setter Original="c"/>
+		</Property>
 		<Property Wrapper="State">
 			<Getter Original="g"/>
 		</Property>
-
 		<Property Wrapper="Capacity">
 			<Getter Original="d"/>
 			<Setter Original="b"/>
+		</Property>
+		<Property Wrapper="BoardingSpeed">
+			<Getter Original="c"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="AlightingSpeed">
+			<Getter Original="b"/>
+			<Setter Original="d"/>
 		</Property>
 
 		<Field WrapperProperty="Count" Original="j" IsOriginalNonPublic="true"/>
@@ -1069,6 +1205,34 @@
 		<Property Wrapper="IsEnabled">
 			<Getter Original="l"/>
 			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="SlipAcceleration">
+			<Getter Original="g"/>
+			<Setter Original="g"/>
+		</Property>
+		<Property Wrapper="SlipDeceleration">
+			<Getter Original="d"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="SlipVelocity">
+			<Getter Original="k"/>
+			<Setter Original="e"/>
+		</Property>
+		<Property Wrapper="BalanceAcceleration">
+			<Getter Original="f"/>
+			<Setter Original="b"/>
+		</Property>
+		<Property Wrapper="HoldingTime">
+			<Getter Original="h"/>
+			<Setter Original="f"/>
+		</Property>
+		<Property Wrapper="ReferenceAcceleration">
+			<Getter Original="c"/>
+			<Setter Original="c"/>
+		</Property>
+		<Property Wrapper="ReferenceDeceleration">
+			<Getter Original="e"/>
+			<Setter Original="d"/>
 		</Property>
 	</Class>
 
@@ -1247,6 +1411,12 @@
 	</Class>
 
 	<Class Wrapper="Smee" Original="ce">
+		<Property Wrapper="Sap">
+			<Getter Original="a"/>
+		</Property>
+		<Property Wrapper="Bp">
+			<Getter Original="c"/>
+		</Property>
 		<Property Wrapper="BpInitialPressure">
 			<Getter Original="b"/>
 			<Setter Original="a"/>
@@ -1502,6 +1672,28 @@
 	<Class Wrapper="SwayGauge" Original="b4">
 	</Class>
 
+	<Class Wrapper="Tachogenerator" Original="ct">
+		<Property Wrapper="Speed">
+			<Getter Original="g"/>
+		</Property>
+
+		<Field WrapperProperty="Acceleration" Original="f" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="ResistanceAcceleration" Original="g" IsOriginalNonPublic="true"/>
+
+		<Method Wrapper="Tick" WrapperParams="System.Double; System.Double; System.Double" Original="a"/>
+		<Method Wrapper="SetSpeed" WrapperParams="System.Double" Original="d"/>
+	</Class>
+
+	<Class Wrapper="TimeDelayedHandleSet" Original="bt">
+		<Property Wrapper="Delay">
+			<Setter Original="a"/>
+		</Property>
+
+		<Method Wrapper="Initialize" WrapperParams="void" Original="n"/>
+		<Method Wrapper="Update" WrapperParams="void" Original="a" IsOriginalNonPublic="true"/>
+		<Method Wrapper="Tick" WrapperParams="System.Double" Original="ag"/>
+	</Class>
+
 	<Class Wrapper="TimeManager" Original="cn">
 		<Children>
 			<Enum Wrapper="GameState" Original="a"/>
@@ -1671,7 +1863,9 @@
 		<Field WrapperProperty="CameraLocation" Original="q" IsOriginalNonPublic="true"/>
 
 		<Method Wrapper="Load" WrapperParams="ex:LoadingProgressForm; ex:VehicleFile" Original="a"/>
+		<Method Wrapper="Initialize" WrapperParams="void" Original="n"/>
 		<Method Wrapper="Initialize" WrapperParams="ex:BrakePosition" Original="a"/>
+		<Method Wrapper="Tick" WrapperParams="System.Double" Original="ag"/>
 		<Method Wrapper="Dispose" WrapperParams="void" Original="Dispose"/>
 	</Class>
 
@@ -1719,6 +1913,9 @@
 	</Class>
 
 	<Class Wrapper="VehicleDynamics" Original="b2">
+		<Property Wrapper="InertiaRatio">
+			<Getter Original="g"/>
+		</Property>
 		<Property Wrapper="CurveResistanceFactor">
 			<Getter Original="i"/>
 			<Setter Original="g"/>
@@ -1749,14 +1946,28 @@
 			<Getter Original="c"/>
 			<Setter Original="a"/>
 		</Property>
+
+		<Field WrapperProperty="TotalMass" Original="i" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="TotalInertia" Original="j" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="MassRatio" Original="k" IsOriginalNonPublic="true"/>
+
+		<Method Wrapper="Tick" WrapperParams="System.Double" Original="b"/>
+		<Method Wrapper="Initialize" WrapperParams="System.Double" Original="f"/>
+		<Method Wrapper="Setup" WrapperParams="void" Original="f"/>
 	</Class>
 
 	<Class Wrapper="VehicleElectricity" Original="a3">
 		<Property Wrapper="Performance">
 			<Getter Original="j"/>
 		</Property>
+		<Property Wrapper="TimeDelayedHandles">
+			<Getter Original="d"/>
+		</Property>
 		<Property Wrapper="MotorState">
 			<Getter Original="c"/>
+		</Property>
+		<Property Wrapper="Breaker">
+			<Getter Original="k"/>
 		</Property>
 		<Property Wrapper="RegenerationLimit">
 			<Getter Original="e"/>
@@ -1772,6 +1983,9 @@
 			<Getter Original="b"/>
 			<Setter Original="a"/>
 		</Property>
+
+		<Method Wrapper="Initialize" WrapperParams="void" Original="n"/>
+		<Method Wrapper="Tick" WrapperParams="System.Double" Original="ag"/>
 	</Class>
 
 	<Class Wrapper="VehicleInstrumentSet" Original="ck">
@@ -1792,6 +2006,14 @@
 			<Getter Original="f"/>
 			<Setter Original="a"/>
 		</Property>
+		<Property Wrapper="LoadCompensator">
+			<Getter Original="d"/>
+		</Property>
+
+		<Method Wrapper="Initialize" WrapperParams="void" Original="n"/>
+		<Method Wrapper="Initialize" WrapperParams="ex:BrakePosition" Original="a"/>
+		<Method Wrapper="Tick" WrapperParams="System.Double" Original="ag"/>
+		<Method Wrapper="Dispose" WrapperParams="void" Original="Dispose"/>
 	</Class>
 
 	<Class Wrapper="VehicleLocation" Original="fu">
@@ -1903,6 +2125,8 @@
 		<Property Wrapper="Brake">
 			<Getter Original="i"/>
 		</Property>
+
+		<Method Wrapper="LoadFromFile" WrapperParams="ex:LoadingProgressForm; System.String" Original="a"/>
 	</Class>
 
 	<Class Wrapper="VehiclePositioner" Original="cr">
@@ -2058,6 +2282,7 @@
 		<Field WrapperProperty="Passenger" Original="d" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="VerticalSprings" Original="ad" IsOriginalNonPublic="true"/>
 
+		<Method Wrapper="Initialize" WrapperParams="void" Original="s"/>
 		<Method Wrapper="Tick" WrapperParams="System.Double" Original="c"/>
 		<Method Wrapper="UpdateCarBodyTransform" WrapperParams="void" Original="b" IsOriginalNonPublic="true"/>
 	</Class>

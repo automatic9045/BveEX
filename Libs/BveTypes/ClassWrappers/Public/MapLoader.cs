@@ -89,7 +89,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public LoadingProgressForm LoadingProgressForm
         {
-            get => ClassWrappers.LoadingProgressForm.FromSource(LoadingProgressFormField.GetValue(Src));
+            get => LoadingProgressForm.FromSource(LoadingProgressFormField.GetValue(Src));
             set => LoadingProgressFormField.SetValue(Src, value?.Src);
         }
 
@@ -99,7 +99,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public TimeManager TimeManager
         {
-            get => ClassWrappers.TimeManager.FromSource(TimeManagerField.GetValue(Src));
+            get => TimeManager.FromSource(TimeManagerField.GetValue(Src));
             set => TimeManagerField.SetValue(Src, value?.Src);
         }
 
@@ -109,7 +109,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public Map Map
         {
-            get => ClassWrappers.Map.FromSource(MapField.GetValue(Src));
+            get => Map.FromSource(MapField.GetValue(Src));
             set => MapField.SetValue(Src, value?.Src);
         }
 
@@ -183,7 +183,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public CameraLocation CameraLocation
         {
-            get => ClassWrappers.CameraLocation.FromSource(CameraLocationField.GetValue(Src));
+            get => CameraLocation.FromSource(CameraLocationField.GetValue(Src));
             set => CameraLocationField.SetValue(Src, value?.Src);
         }
 

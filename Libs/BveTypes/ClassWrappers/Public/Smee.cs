@@ -19,6 +19,9 @@ namespace BveTypes.ClassWrappers
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<Smee>();
 
+            SapGetMethod = members.GetSourcePropertyGetterOf(nameof(Sap));
+            BpGetMethod = members.GetSourcePropertyGetterOf(nameof(Bp));
+
             BpInitialPressureGetMethod = members.GetSourcePropertyGetterOf(nameof(BpInitialPressure));
             BpInitialPressureSetMethod = members.GetSourcePropertySetterOf(nameof(BpInitialPressure));
         }
@@ -38,6 +41,18 @@ namespace BveTypes.ClassWrappers
         /// <returns>オリジナル オブジェクトをラップした <see cref="Smee"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
         public static Smee FromSource(object src) => src is null ? null : new Smee(src);
+
+        private static FastMethod SapGetMethod;
+        /// <summary>
+        /// 直通管の圧力調整弁を取得します。
+        /// </summary>
+        public Valve Sap => Valve.FromSource(SapGetMethod.Invoke(Src, null));
+
+        private static FastMethod BpGetMethod;
+        /// <summary>
+        /// ブレーキ管の圧力調整弁を取得します。
+        /// </summary>
+        public BpValve Bp => BpValve.FromSource(BpGetMethod.Invoke(Src, null));
 
         private static FastMethod BpInitialPressureGetMethod;
         private static FastMethod BpInitialPressureSetMethod;

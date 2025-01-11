@@ -175,7 +175,7 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         public SectionManager SectionManager
         {
-            get => ClassWrappers.SectionManager.FromSource(SectionManagerField.GetValue(Src));
+            get => SectionManager.FromSource(SectionManagerField.GetValue(Src));
             set => SectionManagerField.SetValue(Src, value?.Src);
         }
 

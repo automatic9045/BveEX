@@ -107,7 +107,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 自軌道に関する情報を取得します。
         /// </summary>
-        public MyTrack MyTrack => ClassWrappers.MyTrack.FromSource(MyTrackGetMethod.Invoke(Src, null));
+        public MyTrack MyTrack => MyTrack.FromSource(MyTrackGetMethod.Invoke(Src, null));
 
         private static FastMethod StructuresGetMethod;
         private static FastField StructuresField;
