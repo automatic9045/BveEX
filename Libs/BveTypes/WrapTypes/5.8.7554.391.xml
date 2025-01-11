@@ -1028,7 +1028,9 @@
 
 		<Method Wrapper="SetAlpha" WrapperParams="System.Int32" Original="a"/>
 		<Method Wrapper="FromXFile" WrapperParams="System.String" Original="a" IsWrapperStatic="true" IsOriginalStatic="true"/>
+		<Method Wrapper="CreateRectangleWithTexture" WrapperParams="System.Drawing.RectangleF, System.Drawing; System.Single; System.IO.Stream" Original="a" IsWrapperStatic="true" IsOriginalStatic="true"/>
 		<Method Wrapper="CreateRectangleWithTexture" WrapperParams="System.Drawing.RectangleF, System.Drawing; System.Single; System.Int32; System.String" Original="a" IsWrapperStatic="true" IsOriginalStatic="true"/>
+		<Method Wrapper="FromMesh" WrapperParams="SlimDX.Direct3D9.Mesh, SlimDX" Original="a" IsWrapperStatic="true" IsOriginalStatic="true"/>
 		<Method Wrapper="Dispose" WrapperParams="void" Original="Dispose"/>
 		<Method Wrapper="Draw" WrapperParams="ex:Direct3DProvider; System.Boolean" Original="a"/>
 	</Class>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,9 @@ namespace BveTypes.ClassWrappers
             SetAlphaMethod = members.GetSourceMethodOf(nameof(SetAlpha));
 
             FromXFileMethod = members.GetSourceMethodOf(nameof(FromXFile));
-            CreateRectangleWithTextureMethod = members.GetSourceMethodOf(nameof(CreateRectangleWithTexture));
+            CreateRectangleWithTextureMethod1 = members.GetSourceMethodOf(nameof(CreateRectangleWithTexture), new Type[] { typeof(RectangleF), typeof(float), typeof(Stream) });
+            CreateRectangleWithTextureMethod2 = members.GetSourceMethodOf(nameof(CreateRectangleWithTexture), new Type[] { typeof(RectangleF), typeof(float), typeof(int), typeof(string) });
+            FromMeshMethod = members.GetSourceMethodOf(nameof(FromMesh));
             DisposeMethod = members.GetSourceMethodOf(nameof(Dispose));
 
             MeshGetMethod = members.GetSourcePropertyGetterOf(nameof(Mesh));
@@ -70,7 +73,18 @@ namespace BveTypes.ClassWrappers
         public static Model FromXFile(string filePath)
             => FromSource(FromXFileMethod.Invoke(null, new object[] { filePath }));
 
-        private static FastMethod CreateRectangleWithTextureMethod;
+        private static FastMethod CreateRectangleWithTextureMethod1;
+        /// <summary>
+        /// XY 平面に平行な、テクスチャが貼り付けられた長方形のモデルを作成します。
+        /// </summary>
+        /// <param name="rectangle">長方形のサイズ。</param>
+        /// <param name="z">モデルの Z 座標。</param>
+        /// <param name="textureStream">テクスチャファイルのストリーム。</param>
+        /// <returns>読み込まれたモデルを表す <see cref="Model"/>。</returns>
+        public static Model CreateRectangleWithTexture(RectangleF rectangle, float z, Stream textureStream)
+            => FromSource(CreateRectangleWithTextureMethod1.Invoke(null, new object[] { rectangle, z, textureStream }));
+
+        private static FastMethod CreateRectangleWithTextureMethod2;
         /// <summary>
         /// XY 平面に平行な、テクスチャが貼り付けられた長方形のモデルを作成します。
         /// </summary>
@@ -80,7 +94,16 @@ namespace BveTypes.ClassWrappers
         /// <param name="texturePath">テクスチャファイルのパス。</param>
         /// <returns>読み込まれたモデルを表す <see cref="Model"/>。</returns>
         public static Model CreateRectangleWithTexture(RectangleF rectangle, float z, int transparentColor, string texturePath)
-            => FromSource(CreateRectangleWithTextureMethod.Invoke(null, new object[] { rectangle, z, transparentColor, texturePath }));
+            => FromSource(CreateRectangleWithTextureMethod2.Invoke(null, new object[] { rectangle, z, transparentColor, texturePath }));
+
+        private static FastMethod FromMeshMethod;
+        /// <summary>
+        /// メッシュを指定してモデルを読み込みます。
+        /// </summary>
+        /// <param name="mesh">モデルのメッシュ。</param>
+        /// <returns>読み込まれたモデルを表す <see cref="Model"/>。</returns>
+        public static Model FromMesh(Mesh mesh)
+            => FromSource(FromMeshMethod.Invoke(null, new object[] { mesh }));
 
         private static FastMethod DisposeMethod;
         /// <inheritdoc/>
