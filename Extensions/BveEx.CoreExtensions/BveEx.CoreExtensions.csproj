@@ -33,8 +33,8 @@
     <DocumentationFile>bin\Release\BveEx.CoreExtensions.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=2.2.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Lib.Harmony.2.2.2\lib\net48\0Harmony.dll</HintPath>
+    <Reference Include="0Harmony, Version=2.3.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Lib.Harmony.2.3.3\lib\net48\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Mackoy.IInputDevice">
