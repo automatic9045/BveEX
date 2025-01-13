@@ -51,6 +51,6 @@ namespace BveTypes.ClassWrappers
 
         private static FastMethod DisposeMethod;
         /// <inheritdoc/>
-        public void Dispose() => DisposeMethod.Invoke(this, null);
+        public void Dispose() => DisposeMethod.Invoke(Src, null);
     }
 }
