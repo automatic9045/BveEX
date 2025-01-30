@@ -23,6 +23,9 @@ namespace BveTypes.ClassWrappers
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<SpeedLimitList>();
 
+            VehicleLengthGetMethod = members.GetSourcePropertyGetterOf(nameof(VehicleLength));
+            VehicleLengthSetMethod = members.GetSourcePropertySetterOf(nameof(VehicleLength));
+
             CurrentLimitGetMethod = members.GetSourcePropertyGetterOf(nameof(CurrentLimit));
         }
 
@@ -41,6 +44,17 @@ namespace BveTypes.ClassWrappers
         /// <returns>オリジナル オブジェクトをラップした <see cref="SpeedLimitList"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
         public static new SpeedLimitList FromSource(object src) => src is null ? null : new SpeedLimitList((IList)src);
+
+        private static FastMethod VehicleLengthGetMethod;
+        private static FastMethod VehicleLengthSetMethod;
+        /// <summary>
+        /// 自列車の長さ [m] を取得・設定します。
+        /// </summary>
+        public double VehicleLength
+        {
+            get => (double)VehicleLengthGetMethod.Invoke(Src, null);
+            set => VehicleLengthSetMethod.Invoke(Src, new object[] { value });
+        }
 
         private static FastMethod CurrentLimitGetMethod;
         /// <summary>

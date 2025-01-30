@@ -1534,6 +1534,10 @@
 	</Class>
 
 	<Class Wrapper="SpeedLimitList" Original="fg">
+		<Property Wrapper="VehicleLength">
+			<Getter Original="a"/>
+			<Setter Original="a"/>
+		</Property>
 		<Property Wrapper="CurrentLimit">
 			<Getter Original="b"/>
 		</Property>
