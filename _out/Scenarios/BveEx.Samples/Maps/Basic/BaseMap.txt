@@ -31,7 +31,7 @@ Track['1'].X.Interpolate(-3.8);
 	Repeater['Form0WallR'].Begin0('0', 1, 5, 5, 'FormWallR');
 	
 0;
-	Station['1_1'].Put(-1, -5, 5);
+	Station['1_1'].Put(1, -5, 5);
 	structure['Stop6'].Put('0', -2, 0, 0, 0, 0, 0, 0, 0);
 
 15;
@@ -45,7 +45,7 @@ Track['1'].X.Interpolate(-3.8);
 	Repeater['Form0WallR'].Begin0('0', 1, 5, 5, 'FormWallR');
 
 1500;
-	Station['1_2'].Put(-1, -5, 5);
+	Station['1_2'].Put(1, -5, 5);
 	structure['Stop6'].Put('0', -2, 0, 0, 0, 0, 0, 0, 0);
 	
 1515;
@@ -59,7 +59,7 @@ Track['1'].X.Interpolate(-3.8);
 	Repeater['Form0WallR'].Begin0('0', 1, 5, 5, 'FormWallR');
 
 3000;
-	Station['1_3'].Put(-1, -5, 5);
+	Station['1_3'].Put(1, -5, 5);
 	structure['Stop6'].Put('0', -2, 0, 0, 0, 0, 0, 0, 0);
 	
 3015;
@@ -73,7 +73,7 @@ Track['1'].X.Interpolate(-3.8);
 	Repeater['Form0WallR'].Begin0('0', 1, 5, 5, 'FormWallR');
 
 4500;
-	Station['1_4'].Put(-1, -5, 5);
+	Station['1_4'].Put(1, -5, 5);
 	structure['Stop6'].Put('0', -2, 0, 0, 0, 0, 0, 0, 0);
 	
 4515;
@@ -87,7 +87,7 @@ Track['1'].X.Interpolate(-3.8);
 	Repeater['Form0WallR'].Begin0('0', 1, 5, 5, 'FormWallR');
 
 6000;
-	Station['1_5'].Put(-1, -5, 5);
+	Station['1_5'].Put(1, -5, 5);
 	structure['Stop6'].Put('0', -2, 0, 0, 0, 0, 0, 0, 0);
 	
 6015;
@@ -101,7 +101,7 @@ Track['1'].X.Interpolate(-3.8);
 	Repeater['Form0WallR'].Begin0('0', 1, 5, 5, 'FormWallR');
 
 7500;
-	Station['1_6'].Put(-1, -5, 5);
+	Station['1_6'].Put(1, -5, 5);
 	structure['Stop6'].Put('0', -2, 0, 0, 0, 0, 0, 0, 0);
 	
 7515;
