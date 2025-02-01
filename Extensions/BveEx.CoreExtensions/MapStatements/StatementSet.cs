@@ -52,17 +52,14 @@ namespace BveEx.Extensions.MapStatements
                     MapStatement source = instance.Statements.First(x => x.Clauses == clauses);
                     Statement statement = new Statement(source);
 
-                    bool isPreprocess = BuiltinProcess.TryParse(statement);
-                    if (!isPreprocess && !BuiltinProcess.IgnoreStatement)
-                    {
-                        Statements.Add(statement);
-                        StatementLoaded?.Invoke(this, new StatementLoadedEventArgs(statement, instance));
-                    }
+                    BuiltinProcess.Parse(statement);
+                    Statements.Add(statement);
+                    StatementLoaded?.Invoke(this, new StatementLoadedEventArgs(statement, instance));
 
                     return new PatchInvokationResult(SkipModes.SkipOriginal);
                 }
 
-                return BuiltinProcess.IgnoreStatement ? new PatchInvokationResult(SkipModes.SkipOriginal) : PatchInvokationResult.DoNothing(e);
+                return PatchInvokationResult.DoNothing(e);
             };
 
             FastMethod loadMethod = mapLoaderMembers.GetSourceMethodOf(nameof(MapLoader.Load));
