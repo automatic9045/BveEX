@@ -5,25 +5,49 @@ include '..\..\BaseMap.txt';
 Station.Load('Stations.csv');
 
 50;
-	// BeginIf、ElseIf の引数には条件を記述します。
-	// (左辺, 比較演算子, 右辺) の形で、左辺・右辺には整数、倍精度浮動小数点数 (64bit 実数)、文字列が使用可能です。
-	// 比較演算子は '=='、'!='、'<'、'<='、'>'、'>=' が使用可能です。
+	// if 文は C 言語調に記述します。ただし、if → ex_if、else if → ex_elif、else → ex_else としてください。
+	// BveEX によって追加で定義される演算子 <、>、<=、>=、==、!=、&&、||、! を使用することもできます (これらの演算子は if 文の条件式以外でも使用可能です)。
 	$random = floor(rand() * 100);
-	BveEx.If.BeginIf($random, '==', 0);
+	ex_if ($random == 0) {
 		BveEx.Dialog.Show('random はちょうど 0 です。'); // ダイアログを表示することができる構文です。変数の値のデバッグなどに便利です。
-	BveEx.If.ElseIf($random, '<', 30);
+	} ex_elif ($random < 30) {
 		BveEx.Dialog.Show('random は 1 以上 30 未満です (' + $random + ')。');
-	BveEx.If.ElseIf($random, '<', 60);
+	} ex_elif ($random < 60) {
 		BveEx.Dialog.Show('random は 30 以上 60 未満です (' + $random + ')。');
-	BveEx.If.Else();
+	} ex_else {
 		BveEx.Dialog.Show('random は 60 以上 100 未満です (' + $random + ')。');
-	BveEx.If.End();
+	}
+
+	ex_if ($random <= 50 && 50 < $random) {
+		BveEx.Dialog.Show('条件: random ≦ 50 かつ 50 < random。このダイアログが表示されることはありません。');
+	}
+
+	ex_if ($random <= 50 || 50 < $random) {
+		BveEx.Dialog.Show('条件: random ≦ 50 または 50 < random。このダイアログは必ず表示されます。');
+	}
 
 100;
-	// BeginIf、ElseIf の引数を 1 つのみ指定すると、その値が 0 以外なら true、0 なら false として処理されます。
+	// 条件式の真偽判定も C 言語調に実装されています。
+	// 整数・実数型の場合は 0 以外なら true、0 なら false として処理されます。
+	// 文字列型の場合は常に true として処理されます。
 	$condition = 1;
-	BveEx.If.BeginIf($condition);
-		BveEx.Dialog.Show('このダイアログは必ず表示されます。ここの距離程は ' + distance + 'm です。');
-	BveEx.If.Else();
+	ex_if ($condition) {
+		BveEx.Dialog.Show('条件: 1。このダイアログは必ず表示されます。');
+	} ex_else {
 		BveEx.Dialog.Show('このダイアログが表示されることはありません。');
-	BveEx.If.End();
+	}
+
+150;
+	// if 文中の構文が 1 つのみの場合は、{} を省略することもできます。
+	ex_if (1) BveEx.Dialog.Show('{} を省略して記述された if 文です。');
+
+200;
+	// if 文中で距離程の変更や変数への代入を行うこともできます。
+	ex_if (1) {
+		123;
+	} ex_else {
+		456;
+	}
+
+	ex_if (distance == 123) $message = '正解です！'; ex_else $message = '不正解です。';
+	BveEx.Dialog.Show('ここの距離程は必ず 123 m になるはずです。実際は ' + distance + ' m なので、' + $message);
