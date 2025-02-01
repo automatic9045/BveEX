@@ -22,6 +22,7 @@ namespace BveTypes.ClassWrappers
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<MapParser>();
 
+            ParseMethod = members.GetSourceMethodOf(nameof(Parse));
             IncludeMethod = members.GetSourceMethodOf(nameof(Include));
             SetLocationMethod = members.GetSourceMethodOf(nameof(SetLocation));
             GetValueMethod = members.GetSourceMethodOf(nameof(GetValue));
@@ -49,6 +50,10 @@ namespace BveTypes.ClassWrappers
         [CreateClassWrapperFromSource]
         public static MapParser FromSource(object src) => src is null ? null : new MapParser(src);
 
+        private static FastMethod ParseMethod;
+        /// <inheritdoc/>
+        public override void Parse(string sourceText, string filePath) => ParseMethod.Invoke(Src, new object[] { sourceText, filePath });
+
         private static FastMethod IncludeMethod;
         /// <summary>
         /// 他のマップファイルをインクルードします。
@@ -58,9 +63,9 @@ namespace BveTypes.ClassWrappers
 
         private static FastMethod SetLocationMethod;
         /// <summary>
-        /// 距離程 [m] を設定します。
+        /// 距離程 [m] を設定するか、ステートメントを登録します。
         /// </summary>
-        /// <param name="node">距離程を設定する構文 (例: <c>1200;</c>) を表す構文木。</param>
+        /// <param name="node">距離程を設定する構文 (例: <c>1200;</c>) またはステートメント (例: <c>Beacon.Put(1, 0, 0);</c>) を表す構文木。</param>
         public void SetLocation(ParseTreeNode node) => SetLocationMethod.Invoke(Src, new object[] { node });
 
         private static FastMethod GetValueMethod;

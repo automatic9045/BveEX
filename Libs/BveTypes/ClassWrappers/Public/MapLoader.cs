@@ -17,7 +17,7 @@ namespace BveTypes.ClassWrappers
     /// <summary>
     /// マップを読み込むための機能を提供します。
     /// </summary>
-    public class MapLoader : ClassWrapperBase
+    public class MapLoader : ClassWrapperBase, IMapLoader
     {
         [InitializeClassWrapper]
         private static void Initialize(BveTypeSet bveTypes)
@@ -48,6 +48,7 @@ namespace BveTypes.ClassWrappers
             LoadStructureListMethod = members.GetSourceMethodOf(nameof(LoadStructureList));
             LoadStationListMethod = members.GetSourceMethodOf(nameof(LoadStationList));
             IncludeMethod = members.GetSourceMethodOf(nameof(Include));
+            ThrowErrorMethod = members.GetSourceMethodOf(nameof(ThrowError), new Type[] { typeof(LoadError) });
         }
 
         /// <summary>
@@ -256,10 +257,11 @@ namespace BveTypes.ClassWrappers
         public void LoadStationList(string filePath) => LoadStationListMethod.Invoke(Src, new object[] { filePath });
 
         private static FastMethod IncludeMethod;
-        /// <summary>
-        /// 他のマップファイルの内容を挿入します。
-        /// </summary>
-        /// <param name="filePath">挿入するマップファイルのパス。</param>
+        /// <inheritdoc/>
         public void Include(string filePath) => IncludeMethod.Invoke(Src, new object[] { filePath });
+
+        private static FastMethod ThrowErrorMethod;
+        /// <inheritdoc/>
+        public void ThrowError(LoadError error) => ThrowErrorMethod.Invoke(Src, new object[] { error?.Src });
     }
 }

@@ -19,6 +19,7 @@ namespace BveTypes.ClassWrappers
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<MapParserBase>();
 
+            ParentField = members.GetSourceFieldOf(nameof(Parent));
             VariablesField = members.GetSourceFieldOf(nameof(Variables));
             FilePathField = members.GetSourceFieldOf(nameof(FilePath));
             StatementsField = members.GetSourceFieldOf(nameof(Statements));
@@ -33,6 +34,16 @@ namespace BveTypes.ClassWrappers
         /// <param name="src">ラップするオリジナル オブジェクト。</param>
         protected MapParserBase(object src) : base(src)
         {
+        }
+
+        private static FastField ParentField;
+        /// <summary>
+        /// 親となる <see cref="IMapLoader"/> オブジェクトを取得・設定します。
+        /// </summary>
+        public IMapLoader Parent
+        {
+            get => CreateFromSource(ParentField.GetValue(Src)) as IMapLoader;
+            set => ParentField.SetValue(Src, (value as ClassWrapperBase)?.Src);
         }
 
         private static FastField VariablesField;
@@ -81,6 +92,6 @@ namespace BveTypes.ClassWrappers
         /// </summary>
         /// <param name="sourceText">マップ構文のテキスト。</param>
         /// <param name="filePath">マップファイルのパス。この値はエラーを表示する際に使用されます。</param>
-        public string Parse(string sourceText, string filePath) => ParseMethod.Invoke(Src, new object[] { sourceText, filePath }) as string;
+        public virtual void Parse(string sourceText, string filePath) => ParseMethod.Invoke(Src, new object[] { sourceText, filePath });
     }
 }

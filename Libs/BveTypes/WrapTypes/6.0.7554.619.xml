@@ -496,6 +496,7 @@
 	</Class>
 
 	<Class Wrapper="ClassicMapParser" Original="z">
+		<Method Wrapper="Parse" WrapperParams="System.String; System.String" Original="g"/>
 	</Class>
 
 	<Class Wrapper="ClockText" Original="e2">
@@ -925,6 +926,9 @@
 	<Class Wrapper="MapFunctionList" Original="dh">
 	</Class>
 
+	<Class Wrapper="MapGrammar" Original="dk">
+	</Class>
+
 	<Class Wrapper="MapObjectBase" Original="db">
 		<Property Wrapper="Location">
 			<Getter Original="v"/>
@@ -954,6 +958,7 @@
 		<Method Wrapper="LoadStructureList" WrapperParams="System.String" Original="g" IsOriginalNonPublic="true"/>
 		<Method Wrapper="LoadStationList" WrapperParams="System.String" Original="f" IsOriginalNonPublic="true"/>
 		<Method Wrapper="Include" WrapperParams="System.String" Original="b"/>
+		<Method Wrapper="ThrowError" WrapperParams="ex:LoadError" Original="c"/>
 	</Class>
 
 	<Class Wrapper="MapObjectList" Original="b6">
@@ -985,9 +990,12 @@
 		<Method Wrapper="InvokeFunction" WrapperParams="ex:WrappedList`1[ex:MapStatementClause]; Irony.Parsing.ParseTreeNode, Irony" Original="a" IsOriginalNonPublic="true"/>
 		<Method Wrapper="CalculateSign" WrapperParams="Irony.Parsing.ParseTreeNode, Irony" Original="b" IsOriginalNonPublic="true"/>
 		<Method Wrapper="CalculateOperator" WrapperParams="Irony.Parsing.ParseTreeNode, Irony" Original="a" IsOriginalNonPublic="true"/>
+
+		<Method Wrapper="Parse" WrapperParams="System.String; System.String" Original="g"/>
 	</Class>
 
 	<Class Wrapper="MapParserBase" Original="do">
+		<Field WrapperProperty="Parent" Original="a" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Variables" Original="b" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="FilePath" Original="c" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Statements" Original="d" IsOriginalNonPublic="true"/>

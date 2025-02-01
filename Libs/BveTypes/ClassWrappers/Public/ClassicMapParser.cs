@@ -18,6 +18,8 @@ namespace BveTypes.ClassWrappers
         private static void Initialize(BveTypeSet bveTypes)
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<ClassicMapParser>();
+
+            ParseMethod = members.GetSourceMethodOf(nameof(Parse));
         }
 
         /// <summary>
@@ -35,5 +37,9 @@ namespace BveTypes.ClassWrappers
         /// <returns>オリジナル オブジェクトをラップした <see cref="ClassicMapParser"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
         public static ClassicMapParser FromSource(object src) => src is null ? null : new ClassicMapParser(src);
+
+        private static FastMethod ParseMethod;
+        /// <inheritdoc/>
+        public override void Parse(string sourceText, string filePath) => ParseMethod.Invoke(Src, new object[] { sourceText, filePath });
     }
 }
