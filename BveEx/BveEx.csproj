@@ -121,6 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BveHacker\Services\ConfigFormHacker.cs" />
+    <Compile Include="BveHacker\Services\ExMapParser.cs" />
     <Compile Include="BveHacker\Services\MapLoaderHacker.cs" />
     <Compile Include="ErrorDialog.cs" />
     <Compile Include="Launching\LaunchModeException.cs" />
