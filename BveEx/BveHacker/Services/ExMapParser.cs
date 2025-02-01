@@ -60,6 +60,23 @@ namespace BveEx.BveHackerServices
 
             @operator.Rule |= grammar.ToTerm("<") | ">" | "<=" | ">=" | "==" | "!=" | "&&" | "||";
             unaryOperator.Rule |= grammar.ToTerm("!");
+
+
+            NonTerminal statementBlock = new NonTerminal("StatementBlock");
+            NonTerminal exIf = new NonTerminal("ExIf");
+            NonTerminal exIfBlock = new NonTerminal("ExIfBlock");
+            NonTerminal exElseIfBlockSet = new NonTerminal("ExElseIfBlockSet");
+            NonTerminal exElseIfBlock = new NonTerminal("ExElseIfBlock");
+            NonTerminal exElseBlock = new NonTerminal("ExElseBlock");
+
+            statementBlock.Rule = statement | ("{" + statementList + "}") | ("{" + "}");
+            exIfBlock.Rule = grammar.ToTerm("ex_if") + "(" + expression + ")" + statementBlock;
+            exElseIfBlockSet.Rule = grammar.MakeStarRule(exElseIfBlockSet, null, exElseIfBlock);
+            exElseIfBlock.Rule = grammar.ToTerm("ex_elif") + "(" + expression + ")" + statementBlock;
+            exElseBlock.Rule = "ex_else" + statementBlock;
+            exIf.Rule = (exIfBlock + exElseIfBlockSet + exElseBlock) | (exIfBlock + exElseIfBlockSet);
+
+            statement.Rule |= exIf;
         }
 
         private bool ToBool(object value)
@@ -94,6 +111,27 @@ namespace BveEx.BveHackerServices
                         parser.SetUserVariable(node);
                         break;
 
+                    case "ExIf":
+                        if (!ParseIfBlock(node.ChildNodes[0]))
+                        {
+                            bool isAnyTrue = false;
+                            IEnumerable<ParseTreeNode> elseIfBlocks = node.ChildNodes[1].ChildNodes;
+                            foreach (ParseTreeNode elseIfBlock in elseIfBlocks)
+                            {
+                                if (ParseIfBlock(elseIfBlock))
+                                {
+                                    isAnyTrue = true;
+                                    break;
+                                }
+                            }
+
+                            if (!isAnyTrue && 3 <= node.ChildNodes.Count)
+                            {
+                                ParseStatementBlock(node.ChildNodes[2].ChildNodes[1]);
+                            }
+                        }
+                        break;
+
                     case "SYNTAX_ERROR":
                         break;
 
@@ -126,6 +164,39 @@ namespace BveEx.BveHackerServices
 
                 LoadError error = new LoadError(ex.Message, parser.FilePath, lineIndex, columnIndex);
                 parser.Parent.ThrowError(error);
+            }
+
+
+            bool ParseIfBlock(ParseTreeNode blockNode)
+            {
+                object condition = parser.GetValue(blockNode.ChildNodes[1]);
+                if (ToBool(condition))
+                {
+                    ParseStatementBlock(blockNode.ChildNodes[2]);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            void ParseStatementBlock(ParseTreeNode blockNode)
+            {
+                ParseTreeNode child = blockNode.ChildNodes[0];
+                switch (child.Term.Name)
+                {
+                    case "StatementList":
+                        foreach (ParseTreeNode statement in child.ChildNodes)
+                        {
+                            ParseNode(parser, statement);
+                        }
+                        break;
+
+                    default:
+                        ParseNode(parser, child);
+                        break;
+                }
             }
         }
 
