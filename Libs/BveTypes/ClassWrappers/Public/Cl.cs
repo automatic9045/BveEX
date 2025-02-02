@@ -24,6 +24,9 @@ namespace BveTypes.ClassWrappers
 
             BpInitialPressureGetMethod = members.GetSourcePropertyGetterOf(nameof(BpInitialPressure));
             BpInitialPressureSetMethod = members.GetSourcePropertySetterOf(nameof(BpInitialPressure));
+
+            TickMethod = members.GetSourceMethodOf(nameof(Tick));
+            InitializeMethod = members.GetSourceMethodOf(nameof(Initialize));
         }
 
         /// <summary>
@@ -67,5 +70,13 @@ namespace BveTypes.ClassWrappers
             get => (double)BpInitialPressureGetMethod.Invoke(Src, null);
             set => BpInitialPressureSetMethod.Invoke(Src, new object[] { value });
         }
+
+        private static FastMethod TickMethod;
+        /// <inheritdoc/>
+        public override void Tick(double elapsedSeconds) => TickMethod.Invoke(Src, new object[] { elapsedSeconds });
+
+        private static FastMethod InitializeMethod;
+        /// <inheritdoc/>
+        public override void Initialize() => InitializeMethod.Invoke(Src, null);
     }
 }

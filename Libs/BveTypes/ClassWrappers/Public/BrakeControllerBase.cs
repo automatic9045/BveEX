@@ -12,7 +12,7 @@ namespace BveTypes.ClassWrappers
     /// <summary>
     /// すべてのブレーキ方式の基本クラスを表します。
     /// </summary>
-    public class BrakeControllerBase : ClassWrapperBase
+    public abstract class BrakeControllerBase : ClassWrapperBase, ITickable
     {
         [InitializeClassWrapper]
         private static void Initialize(BveTypeSet bveTypes)
@@ -24,6 +24,9 @@ namespace BveTypes.ClassWrappers
 
             PressureRatesGetMethod = members.GetSourcePropertyGetterOf(nameof(PressureRates));
             PressureRatesSetMethod = members.GetSourcePropertySetterOf(nameof(PressureRates));
+
+            HandlesField = members.GetSourceFieldOf(nameof(Handles));
+            OutputPressureField = members.GetSourceFieldOf(nameof(OutputPressure));
         }
 
         /// <summary>
@@ -59,5 +62,42 @@ namespace BveTypes.ClassWrappers
             get => PressureRatesGetMethod.Invoke(Src, null) as double[];
             set => PressureRatesSetMethod.Invoke(Src, new object[] { value });
         }
+
+        private static FastField HandlesField;
+        /// <summary>
+        /// ハンドル入力を取得・設定します。
+        /// </summary>
+        public HandleSet Handles
+        {
+            get => HandleSet.FromSource(HandlesField.GetValue(Src));
+            set => HandlesField.SetValue(Src, value?.Src);
+        }
+
+        private static FastField OutputPressureField;
+        /// <summary>
+        /// 出力する圧力 [Pa] を取得・設定します。
+        /// </summary>
+        public ValueContainer OutputPressure
+        {
+            get => ValueContainer.FromSource(OutputPressureField.GetValue(Src));
+            set => OutputPressureField.SetValue(Src, value?.Src);
+        }
+
+        /// <inheritdoc/>
+        public abstract void Tick(double elapsedSeconds);
+
+        /// <summary>
+        /// 毎フレーム呼び出されます。
+        /// </summary>
+        /// <remarks>
+        /// このメソッドはオリジナルではないため、<see cref="ClassMemberSet.GetSourceMethodOf(string, Type[])"/> メソッドから参照することはできません。<br/>
+        /// このメソッドのオリジナルバージョンは <see cref="Tick(double)"/> です。
+        /// </remarks>
+        /// <param name="elapsed">前フレームからの経過時間。</param>
+        /// <seealso cref="Tick(double)"/>
+        public void Tick(TimeSpan elapsed) => Tick(elapsed.TotalSeconds);
+
+        /// <inheritdoc/>
+        public abstract void Initialize();
     }
 }

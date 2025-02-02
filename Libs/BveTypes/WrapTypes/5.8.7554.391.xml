@@ -236,6 +236,9 @@
 			<Getter Original="f"/>
 			<Setter Original="a"/>
 		</Property>
+
+		<Field WrapperProperty="Handles" Original="a" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="OutputPressure" Original="d" IsOriginalNonPublic="true"/>
 	</Class>
 
 	<Class Wrapper="BrakePiston" Original="bw">
@@ -493,6 +496,9 @@
 			<Getter Original="c"/>
 			<Setter Original="a"/>
 		</Property>
+
+		<Method Wrapper="Initialize" WrapperParams="void" Original="n"/>
+		<Method Wrapper="Tick" WrapperParams="System.Double" Original="ag"/>
 	</Class>
 
 	<Class Wrapper="ClassicMapParser" Original="z">
@@ -652,6 +658,8 @@
 	</Class>
 
 	<Class Wrapper="Ecb" Original="ew">
+		<Method Wrapper="Initialize" WrapperParams="void" Original="n"/>
+		<Method Wrapper="Tick" WrapperParams="System.Double" Original="ag"/>
 	</Class>
 
 	<Class Wrapper="ElectricBrakeCommand" Original="ah">
@@ -1464,6 +1472,9 @@
 			<Getter Original="b"/>
 			<Setter Original="a"/>
 		</Property>
+
+		<Method Wrapper="Initialize" WrapperParams="void" Original="n"/>
+		<Method Wrapper="Tick" WrapperParams="System.Double" Original="ag"/>
 	</Class>
 
 	<Class Wrapper="Sound" Original="ep">
