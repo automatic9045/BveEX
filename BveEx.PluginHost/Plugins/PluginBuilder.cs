@@ -14,13 +14,15 @@ namespace BveEx.PluginHost.Plugins
         internal IExtensionSet Extensions { get; }
         internal IPluginSet Plugins { get; }
         internal string Identifier { get; }
+        internal string Location { get; }
 
-        public PluginBuilder(IBveHacker bveHacker, IExtensionSet extensions, IPluginSet plugins, string identifier)
+        public PluginBuilder(IBveHacker bveHacker, IExtensionSet extensions, IPluginSet plugins, string identifier, string location)
         {
             BveHacker = bveHacker;
             Extensions = extensions;
             Plugins = plugins;
             Identifier = identifier;
+            Location = location;
         }
 
         protected PluginBuilder(PluginBuilder pluginBuilder)
@@ -29,6 +31,7 @@ namespace BveEx.PluginHost.Plugins
             Extensions = pluginBuilder.Extensions;
             Plugins = pluginBuilder.Plugins;
             Identifier = pluginBuilder.Identifier;
+            Location = pluginBuilder.Location;
         }
     }
 }

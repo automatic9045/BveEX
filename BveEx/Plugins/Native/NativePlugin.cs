@@ -22,19 +22,17 @@ namespace BveEx.Plugins.Native
         private readonly INative Native;
         private readonly Library Library;
 
-        public override string Location { get; }
         public override string Name { get; }
         public override string Title { get; } = "(Native)";
         public override string Version { get; }
         public override string Description { get; }
         public override string Copyright { get; }
 
-        public NativePlugin(NativePluginBuilder builder) : base(builder)
+        public NativePlugin(PluginBuilder builder) : base(builder)
         {
             Native = Extensions.GetExtension<INative>();
-            Library = new Library(builder.LibraryPath);
+            Library = new Library(Location);
 
-            Location = builder.LibraryPath;
             Name = Path.GetFileName(Location);
 
             FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(Location);

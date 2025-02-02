@@ -10,11 +10,13 @@ namespace BveEx.Plugins
     internal class AssemblyPluginPackage : IPluginPackage
     {
         public Identifier Identifier { get; }
+        public string Path { get; }
         public Assembly Assembly { get; }
 
-        public AssemblyPluginPackage(Identifier identifier, Assembly assembly)
+        public AssemblyPluginPackage(Identifier identifier, string path, Assembly assembly)
         {
             Identifier = identifier;
+            Path = path;
             Assembly = assembly;
         }
     }

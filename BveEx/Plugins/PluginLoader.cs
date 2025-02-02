@@ -72,7 +72,7 @@ namespace BveEx.Plugins
                     {
                         try
                         {
-                            List<PluginBase> loadedPlugins = LoadFromAssembly(assemblyPluginPackage.Identifier, assemblyPluginPackage.Assembly, pluginSources.PluginType, pluginSources.AllowNonPluginAssembly);
+                            List<PluginBase> loadedPlugins = LoadFromAssembly(assemblyPluginPackage, pluginSources.PluginType, pluginSources.AllowNonPluginAssembly);
                             loadedPlugins.ForEach(plugin => plugins[plugin.Identifier] = plugin);
                         }
                         catch (Exception ex)
@@ -87,7 +87,7 @@ namespace BveEx.Plugins
                     {
                         try
                         {
-                            PluginBuilder pluginBuilder = new PluginBuilder(BveHacker, Extensions, Plugins, scriptPluginPackage.Identifier.Text);
+                            PluginBuilder pluginBuilder = new PluginBuilder(BveHacker, Extensions, Plugins, scriptPluginPackage.Identifier.Text, scriptPluginPackage.Location);
 
                             ScriptPluginBase plugin;
                             switch (scriptPluginPackage.ScriptLanguage)
@@ -118,13 +118,8 @@ namespace BveEx.Plugins
                     {
                         try
                         {
-                            PluginBuilder pluginBuilder = new PluginBuilder(BveHacker, Extensions, Plugins, nativePluginPackage.Identifier.Text);
-                            NativePluginBuilder nativePluginBuilder = new NativePluginBuilder(pluginBuilder)
-                            {
-                                LibraryPath = nativePluginPackage.LibraryPath,
-                            };
-
-                            NativePlugin plugin = new NativePlugin(nativePluginBuilder);
+                            PluginBuilder pluginBuilder = new PluginBuilder(BveHacker, Extensions, Plugins, nativePluginPackage.Identifier.Text, nativePluginPackage.LibraryPath);
+                            NativePlugin plugin = new NativePlugin(pluginBuilder);
                             plugins[nativePluginPackage.Identifier.Text] = plugin;
                         }
                         catch (Exception ex)
@@ -146,12 +141,12 @@ namespace BveEx.Plugins
             return plugins;
 
 
-            List<PluginBase> LoadFromAssembly(Identifier identifier, Assembly assembly, PluginType pluginType, bool allowNonPluginAssembly)
+            List<PluginBase> LoadFromAssembly(AssemblyPluginPackage package, PluginType pluginType, bool allowNonPluginAssembly)
             {
-                string fileName = Path.GetFileName(assembly.Location);
+                string fileName = Path.GetFileName(package.Path);
 
                 Version pluginHostVersion = App.Instance.BveExPluginHostAssembly.GetName().Version;
-                AssemblyName referencedPluginHost = assembly.GetReferencedPluginHost();
+                AssemblyName referencedPluginHost = package.Assembly.GetReferencedPluginHost();
                 if (referencedPluginHost is null)
                 {
                     return allowNonPluginAssembly
@@ -165,7 +160,7 @@ namespace BveEx.Plugins
                         referencedPluginHost.Version, App.Instance.ProductShortName, pluginHostVersion, SupportedMinPluginHostVersion.ToString(2)), fileName);
                 }
 
-                Type[] allTypes = assembly.GetTypes();
+                Type[] allTypes = package.Assembly.GetTypes();
                 IEnumerable<Type> pluginTypes = allTypes.Where(t => t.IsClass && !t.IsAbstract && t.IsSubclassOf(typeof(PluginBase)));
                 if (!pluginTypes.Any())
                 {
@@ -190,7 +185,7 @@ namespace BveEx.Plugins
                         break;
 
                     default:
-                        if (!(identifier is RandomIdentifier))
+                        if (!(package.Identifier is RandomIdentifier))
                         {
                             throw new BveFileLoadException(string.Format(Resources.Value.CannotSetIdentifier.Value, fileName), pluginSources.Name);
                         }
@@ -201,7 +196,7 @@ namespace BveEx.Plugins
                 {
                     (Type type, ConstructorInfo constructorInfo) = constructor;
 
-                    PluginBase pluginInstance = constructorInfo.Invoke(new object[] { new PluginBuilder(BveHacker, Extensions, Plugins, GenerateIdentifier()) }) as PluginBase;
+                    PluginBase pluginInstance = constructorInfo.Invoke(new object[] { new PluginBuilder(BveHacker, Extensions, Plugins, GenerateIdentifier(), package.Path) }) as PluginBase;
                     if (pluginInstance.PluginType != pluginType)
                     {
                         throw new InvalidOperationException(string.Format(Resources.Value.WrongPluginType.Value, pluginType.GetTypeString(), pluginInstance.PluginType.GetTypeString()));
@@ -213,7 +208,7 @@ namespace BveEx.Plugins
                 return constructedPlugins;
 
 
-                string GenerateIdentifier() => constructors.Count == 1 ? identifier.Text : Guid.NewGuid().ToString();
+                string GenerateIdentifier() => constructors.Count == 1 ? package.Identifier.Text : Guid.NewGuid().ToString();
             }
         }
     }

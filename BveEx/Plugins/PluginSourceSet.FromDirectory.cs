@@ -16,7 +16,7 @@ namespace BveEx.Plugins
         {
             List<IPluginPackage> assemblies =
                 Directory.GetFiles(directoryName, "*.dll", SearchOption.AllDirectories)
-                .Select(x => (IPluginPackage)new AssemblyPluginPackage(new RandomIdentifier(), Assembly.LoadFrom(x)))
+                .Select(x => (IPluginPackage)new AssemblyPluginPackage(new RandomIdentifier(), x, Assembly.LoadFrom(x)))
                 .ToList();
 
             return new PluginSourceSet(name, pluginType, allowNonPluginAssembly, assemblies);

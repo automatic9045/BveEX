@@ -93,7 +93,7 @@ namespace BveEx.PluginHost.Plugins
         /// <summary>
         /// この BveEX プラグインのファイルの完全パスを取得します。
         /// </summary>
-        public abstract string Location { get; }
+        public string Location { get; }
 
         /// <summary>
         /// この BveEX プラグインのファイル名を取得します。
@@ -130,6 +130,7 @@ namespace BveEx.PluginHost.Plugins
             Plugins = builder.Plugins;
             BveHacker = builder.BveHacker;
             Identifier = builder.Identifier;
+            Location = builder.Location;
 
             if (info is null)
             {

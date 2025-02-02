@@ -147,7 +147,6 @@
     <Compile Include="Plugins\Native\Library.cs" />
     <Compile Include="Plugins\Native\LibraryProcedure.cs" />
     <Compile Include="Plugins\Native\NativePlugin.cs" />
-    <Compile Include="Plugins\Native\NativePluginBuilder.cs" />
     <Compile Include="Plugins\Native\NativePluginPackage.cs" />
     <Compile Include="Plugins\PluginLoader.PluginLoadErrorQueue.cs" />
     <Compile Include="BveHacker\Services\MainFormHacker.cs" />

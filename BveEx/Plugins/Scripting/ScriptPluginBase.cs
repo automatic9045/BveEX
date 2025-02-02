@@ -40,7 +40,6 @@ namespace BveEx.Plugins.Scripting
             NameText = Resources.Value.Name.Value;
         }
 
-        public override string Location { get; } = "";
         public override string Name { get; } = NameText;
         public override string Title { get; } = "";
         public override string Version { get; } = "";
@@ -56,7 +55,6 @@ namespace BveEx.Plugins.Scripting
 
         protected ScriptPluginBase(ScriptPluginBuilder builder, PluginType pluginType) : base(builder, new PluginAttribute(pluginType))
         {
-            Location = builder.Location;
             Title = builder.Title;
             Version = builder.Version;
             Description = builder.Description;

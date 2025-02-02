@@ -6,10 +6,6 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-using BveTypes.ClassWrappers;
-using BveTypes.ClassWrappers.Extensions;
-
-using BveEx.Extensions.MapStatements;
 using BveEx.PluginHost.Plugins;
 using BveEx.PluginHost.Plugins.Extensions;
 
@@ -49,7 +45,7 @@ namespace BveEx.Plugins
             {
                 pluginSources = new PluginSourceSet(Path.GetFileName(path), PluginType.MapPlugin, false, new IPluginPackage[]
                 {
-                    new AssemblyPluginPackage(identifier, Assembly.LoadFrom(path)),
+                    new AssemblyPluginPackage(identifier, path, Assembly.LoadFrom(path)),
                 });
             }
             catch (Exception ex)

@@ -14,9 +14,6 @@ namespace BveEx.PluginHost.Plugins
     public abstract class AssemblyPluginBase : PluginBase
     {
         /// <inheritdoc/>
-        public override string Location { get; }
-
-        /// <inheritdoc/>
         public override string Name { get; }
 
         /// <inheritdoc/>
@@ -42,7 +39,6 @@ namespace BveEx.PluginHost.Plugins
         {
             Assembly pluginAssembly = GetType().Assembly;
 
-            Location = pluginAssembly.Location;
             Name = Path.GetFileName(Location);
             Title = (Attribute.GetCustomAttribute(pluginAssembly, typeof(AssemblyTitleAttribute)) as AssemblyTitleAttribute)?.Title ?? string.Empty;
             Version = pluginAssembly.GetName().Version.ToString();

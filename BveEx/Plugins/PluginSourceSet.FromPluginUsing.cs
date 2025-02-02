@@ -91,18 +91,19 @@ namespace BveEx.Plugins
         {
             IXmlLineInfo lineInfo = element;
 
-            string assemblyPath = element.Attribute("Path").Value;
+            string assemblyRelativePath = element.Attribute("Path").Value;
             try
             {
-                Assembly assembly = Assembly.LoadFrom(Path.Combine(Path.GetDirectoryName(listPath), assemblyPath));
-                return new AssemblyPluginPackage(GetIdentifier(element), assembly);
+                string assemblyPath = Path.Combine(Path.GetDirectoryName(listPath), assemblyRelativePath);
+                Assembly assembly = Assembly.LoadFrom(assemblyPath);
+                return new AssemblyPluginPackage(GetIdentifier(element), assemblyPath, assembly);
             }
             catch (BadImageFormatException)
             {
                 int currentBveVersion = App.Instance.BveAssembly.GetName().Version.Major;
                 int otherBveVersion = currentBveVersion == 6 ? 5 : 6;
                 throw new BveFileLoadException(
-                    string.Format(Resources.Value.BadImageFormat.Value, Path.GetDirectoryName(assemblyPath), otherBveVersion, App.Instance.ProductShortName, currentBveVersion),
+                    string.Format(Resources.Value.BadImageFormat.Value, Path.GetDirectoryName(assemblyRelativePath), otherBveVersion, App.Instance.ProductShortName, currentBveVersion),
                     Path.GetFileName(listPath), lineInfo.LineNumber, lineInfo.LinePosition);;
             }
         }
