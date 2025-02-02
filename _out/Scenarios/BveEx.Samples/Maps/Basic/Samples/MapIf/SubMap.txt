@@ -1,0 +1,13 @@
+BveTs Map 2.02:utf-8
+
+// ex_include 構文を使用すると、以下のシステム変数に値がセットされます。
+//   ex_argdistance: インクルードされた時点での距離程
+//   ex_arg0: このファイルのパス
+//   ex_arg1、ex_arg2、ex_arg3、……: ex_include 構文で指定した引数 (使用していない引数は 0)
+// なお、新たに ex_include 構文を呼び出すと値は更新されるので注意してください。
+
+ex_argdistance;
+	// 今回の場合は「ex_include 'SubMap.txt', 500, 'hello!';」と記述されているので、
+	// ex_arg1 = 500、ex_arg2 = 'hello!'、ex_arg3 = 0 (使用していないため) となります。
+	BveEx.Dialog.Show('distance=' + distance + ', ex_argdistance=' + ex_argdistance + ', ' +
+		'ex_arg0=' + ex_arg0 + ', ex_arg1=' + ex_arg1 + ', ex_arg2=' + ex_arg2 + ', ex_arg3=' + ex_arg3);

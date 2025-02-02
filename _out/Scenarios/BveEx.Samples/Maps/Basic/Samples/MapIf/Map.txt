@@ -6,7 +6,7 @@ Station.Load('Stations.csv');
 
 50;
 	// if 文は C 言語調に記述します。ただし、if → ex_if、else if → ex_elif、else → ex_else としてください。
-	// BveEX によって追加で定義される演算子 <、>、<=、>=、==、!=、&&、||、! を使用することもできます (これらの演算子は if 文の条件式以外でも使用可能です)。
+	// また、演算子 <、>、<=、>=、==、!=、&&、||、! が BveEX によって追加で定義されています (これらの演算子は if 文の条件式以外でも使用可能です)。
 	$random = floor(rand() * 100);
 	ex_if ($random == 0) {
 		BveEx.Dialog.Show('random はちょうど 0 です。'); // ダイアログを表示することができる構文です。変数の値のデバッグなどに便利です。
@@ -34,7 +34,11 @@ Station.Load('Stations.csv');
 	ex_if ($condition) {
 		BveEx.Dialog.Show('条件: 1。このダイアログは必ず表示されます。');
 	} ex_else {
-		BveEx.Dialog.Show('このダイアログが表示されることはありません。');
+		BveEx.Dialog.Show('条件: 1 でない。このダイアログが表示されることはありません。');
+	}
+
+	ex_if (!$condition) {
+		BveEx.Dialog.Show('条件: !1 (1 でない)。このダイアログが表示されることはありません。');
 	}
 
 150;
@@ -51,3 +55,6 @@ Station.Load('Stations.csv');
 
 	ex_if (distance == 123) $message = '正解です！'; ex_else $message = '不正解です。';
 	BveEx.Dialog.Show('ここの距離程は必ず 123 m になるはずです。実際は ' + distance + ' m なので、' + $message);
+
+	// 引数を付加できるようにした拡張 include 文です。詳しい使い方は SubMap.txt を参照してください。
+	ex_include 'SubMap.txt', 500, 'hello!';
