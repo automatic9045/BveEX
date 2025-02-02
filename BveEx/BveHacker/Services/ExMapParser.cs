@@ -16,6 +16,9 @@ namespace BveEx.BveHackerServices
     {
         private readonly FieldInfo DataField;
 
+        private double IncludeLocation = 0;
+        private readonly List<object> IncludeArgs = new List<object>(8);
+
         public ExMapParser()
         {
             DataField = typeof(BnfExpression)
@@ -63,20 +66,29 @@ namespace BveEx.BveHackerServices
 
 
             NonTerminal statementBlock = new NonTerminal("StatementBlock");
+
             NonTerminal exIf = new NonTerminal("ExIf");
             NonTerminal exIfBlock = new NonTerminal("ExIfBlock");
-            NonTerminal exElseIfBlockSet = new NonTerminal("ExElseIfBlockSet");
+            NonTerminal exElseIfBlockList = new NonTerminal("ExElseIfBlockList");
             NonTerminal exElseIfBlock = new NonTerminal("ExElseIfBlock");
             NonTerminal exElseBlock = new NonTerminal("ExElseBlock");
 
+            NonTerminal exInclude = new NonTerminal("ExInclude");
+            NonTerminal exIncludeArgList = new NonTerminal("ExIncludeArgList");
+
             statementBlock.Rule = statement | ("{" + statementList + "}") | ("{" + "}");
+
+            exIf.Rule = (exIfBlock + exElseIfBlockList + exElseBlock) | (exIfBlock + exElseIfBlockList);
             exIfBlock.Rule = grammar.ToTerm("ex_if") + "(" + expression + ")" + statementBlock;
-            exElseIfBlockSet.Rule = grammar.MakeStarRule(exElseIfBlockSet, null, exElseIfBlock);
+            exElseIfBlockList.Rule = grammar.MakeStarRule(exElseIfBlockList, null, exElseIfBlock);
             exElseIfBlock.Rule = grammar.ToTerm("ex_elif") + "(" + expression + ")" + statementBlock;
             exElseBlock.Rule = "ex_else" + statementBlock;
-            exIf.Rule = (exIfBlock + exElseIfBlockSet + exElseBlock) | (exIfBlock + exElseIfBlockSet);
 
-            statement.Rule |= exIf;
+            exInclude.Rule = "ex_include" + exIncludeArgList + ";";
+            exIncludeArgList.Rule = grammar.MakePlusRule(exIncludeArgList, grammar.ToTerm(","), expression);
+
+
+            statement.Rule |= exIf | exInclude;
         }
 
         private bool ToBool(object value)
@@ -130,6 +142,23 @@ namespace BveEx.BveHackerServices
                                 ParseStatementBlock(node.ChildNodes[2].ChildNodes[1]);
                             }
                         }
+                        break;
+
+                    case "ExInclude":
+                        IncludeLocation = parser.Location;
+
+                        IncludeArgs.Clear();
+                        foreach (ParseTreeNode argNode in node.ChildNodes[1].ChildNodes)
+                        {
+                            object value = parser.GetValue(argNode);
+                            IncludeArgs.Add(value);
+                        }
+
+                        Uri baseUri = new Uri(Path.GetDirectoryName(((MapLoader)parser.Parent).FilePath) + Path.DirectorySeparatorChar);
+                        string relativePath = Convert.ToString(IncludeArgs[0]);
+                        Uri uri = new Uri(baseUri, relativePath);
+                        IncludeArgs[0] = uri.LocalPath;
+                        parser.Parent.Include(uri.LocalPath);
                         break;
 
                     case "SYNTAX_ERROR":
@@ -202,6 +231,22 @@ namespace BveEx.BveHackerServices
 
         public bool TryGetSystemVariable(MapParser parser, string key, out object result)
         {
+            if (key.StartsWith("ex_arg", StringComparison.OrdinalIgnoreCase))
+            {
+                if (key == "ex_argdistance")
+                {
+                    result = IncludeLocation;
+                    return true;
+                }
+
+                string indexText = key.Substring(6);
+                if (int.TryParse(indexText, out int index) && 0 <= index)
+                {
+                    result = index < IncludeArgs.Count ? IncludeArgs[index] : 0;
+                    return true;
+                }
+            }
+
             switch (key)
             {
                 case "ex_relativedir":
