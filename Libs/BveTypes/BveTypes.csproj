@@ -171,6 +171,7 @@
     <Compile Include="ClassWrappers\Public\Spring.cs" />
     <Compile Include="ClassWrappers\Public\SwayGauge.cs" />
     <Compile Include="ClassWrappers\Public\Transform.cs" />
+    <Compile Include="ClassWrappers\Public\ValveMode.cs" />
     <Compile Include="ClassWrappers\Public\VehicleBogieWheel.cs" />
     <Compile Include="ClassWrappers\Public\VehicleElectricity.cs" />
     <Compile Include="ClassWrappers\Public\Forms\ChartForm.cs" />

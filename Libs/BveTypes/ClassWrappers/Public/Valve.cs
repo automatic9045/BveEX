@@ -24,6 +24,8 @@ namespace BveTypes.ClassWrappers
             ApplySpeedField = members.GetSourceFieldOf(nameof(ApplySpeed));
             ReleaseSpeedField = members.GetSourceFieldOf(nameof(ReleaseSpeed));
             VolumeRatioField = members.GetSourceFieldOf(nameof(VolumeRatio));
+            PressureField = members.GetSourceFieldOf(nameof(Pressure));
+            ModeField = members.GetSourceFieldOf(nameof(Mode));
 
             InitializeMethod = members.GetSourceMethodOf(nameof(Initialize));
             TickMethod = members.GetSourceMethodOf(nameof(Tick));
@@ -96,6 +98,26 @@ namespace BveTypes.ClassWrappers
         {
             get => (double)VolumeRatioField.GetValue(Src);
             set => VolumeRatioField.SetValue(Src, value);
+        }
+
+        private static FastField PressureField;
+        /// <summary>
+        /// 現在の圧力 [Pa] を取得・設定します。
+        /// </summary>
+        public ValueContainer Pressure
+        {
+            get => ValueContainer.FromSource(PressureField.GetValue(Src));
+            set => PressureField.SetValue(Src, value?.Src);
+        }
+
+        private static FastField ModeField;
+        /// <summary>
+        /// 給排気のモードを取得・設定します。
+        /// </summary>
+        public ValveMode Mode
+        {
+            get => (ValveMode)ModeField.GetValue(Src);
+            set => ModeField.SetValue(Src, value);
         }
 
         private static FastMethod InitializeMethod;

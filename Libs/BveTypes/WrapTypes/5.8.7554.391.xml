@@ -1874,6 +1874,8 @@
 		<Field WrapperProperty="ApplySpeed" Original="c" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="ReleaseSpeed" Original="d" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="VolumeRatio" Original="e" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Pressure" Original="f" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Mode" Original="g" IsOriginalNonPublic="true"/>
 
 		<Method Wrapper="Initialize" WrapperParams="void" Original="n"/>
 		<Method Wrapper="Tick" WrapperParams="System.Double" Original="ag"/>
