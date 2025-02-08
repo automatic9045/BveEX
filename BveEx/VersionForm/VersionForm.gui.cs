@@ -155,7 +155,6 @@ namespace BveEx
                 Dock = DockStyle.Fill,
             };
             PluginList.TabPages.AddRange(PluginListPages.Values.ToArray());
-            Controls.Add(PluginList);
 
             PluginListPanel = new Panel()
             {
