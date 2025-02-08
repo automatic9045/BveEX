@@ -29,6 +29,7 @@ namespace BveEx
         private Label PluginListHeader;
         private Dictionary<int, PluginListTabPage> PluginListPages;
         private TabControl PluginList;
+        private Panel PluginListPanel;
 
         private Button OK;
 
@@ -151,14 +152,20 @@ namespace BveEx
 
             PluginList = new TabControl()
             {
+                Dock = DockStyle.Fill,
+            };
+            PluginList.TabPages.AddRange(PluginListPages.Values.ToArray());
+            Controls.Add(PluginList);
+
+            PluginListPanel = new Panel()
+            {
                 Left = 16,
                 Top = 216,
                 Width = 768,
                 Height = 224,
             };
-            PluginList.TabPages.AddRange(PluginListPages.Values.ToArray());
-            Controls.Add(PluginList);
-
+            PluginListPanel.Controls.Add(PluginList);
+            Controls.Add(PluginListPanel);
 
             OK = new Button()
             {
