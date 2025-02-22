@@ -109,6 +109,7 @@
     <Compile Include="ClassWrappers\Public\SoundObject.cs" />
     <Compile Include="ClassWrappers\Public\SoundObjectList.cs" />
     <Compile Include="ClassWrappers\Public\TimeDelayedHandleSet.cs" />
+    <Compile Include="ClassWrappers\Public\TractionMotor.cs" />
     <Compile Include="ClassWrappers\Public\TrainSchedule.cs" />
     <Compile Include="ClassWrappers\Public\TrainStopObject.cs" />
     <Compile Include="ClassWrappers\Public\ValueContainer.cs" />

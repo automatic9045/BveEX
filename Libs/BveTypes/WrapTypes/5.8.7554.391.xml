@@ -759,6 +759,16 @@
 	<Class Wrapper="ITickable" Original="fi">
 	</Class>
 
+	<Class Wrapper="InputManager" Original="ag">
+		<Property Wrapper="InputDevices">
+			<Getter Original="c"/>
+		</Property>
+
+		<Event Wrapper="LeverMoved" OriginalAddAccessor="c" OriginalRemoveAccessor="f" OriginalDelegateField="d"/>
+		<Event Wrapper="KeyDown" OriginalAddAccessor="e" OriginalRemoveAccessor="d" OriginalDelegateField="e"/>
+		<Event Wrapper="KeyUp" OriginalAddAccessor="b" OriginalRemoveAccessor="a" OriginalDelegateField="f"/>
+	</Class>
+
 	<Class Wrapper="JerkRegulator" Original="eh">
 		<Property Wrapper="MotorState">
 			<Getter Original="c"/>
@@ -776,19 +786,11 @@
 			<Setter Original="a"/>
 		</Property>
 
+		<Field WrapperProperty="TractionMotor" Original="b" IsOriginalNonPublic="true"/>
+
 		<Method Wrapper="Initialize" WrapperParams="void" Original="n"/>
 		<Method Wrapper="CalculateRawCurrent" WrapperParams="void" Original="a" IsOriginalNonPublic="true"/>
 		<Method Wrapper="Tick" WrapperParams="System.Double" Original="ag"/>
-	</Class>
-
-	<Class Wrapper="InputManager" Original="ag">
-		<Property Wrapper="InputDevices">
-			<Getter Original="c"/>
-		</Property>
-
-		<Event Wrapper="LeverMoved" OriginalAddAccessor="c" OriginalRemoveAccessor="f" OriginalDelegateField="d"/>
-		<Event Wrapper="KeyDown" OriginalAddAccessor="e" OriginalRemoveAccessor="d" OriginalDelegateField="e"/>
-		<Event Wrapper="KeyUp" OriginalAddAccessor="b" OriginalRemoveAccessor="a" OriginalDelegateField="f"/>
 	</Class>
 
 	<Class Wrapper="LeverText" Original="ci">
@@ -1778,6 +1780,16 @@
 		<Method Wrapper="Update" WrapperParams="void" Original="a" IsOriginalNonPublic="true"/>
 	</Class>
 
+	<Class Wrapper="TractionMotor" Original="c7">
+		<Field WrapperProperty="Performance" Original="a" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="MotorCarTachogenerator" Original="b" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="ForceEmpty" Original="c" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="ForceFull" Original="d" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="CurrentEmpty" Original="e" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="CurrentFull" Original="f" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="NoLoadCurrent" Original="g" IsOriginalNonPublic="true"/>
+	</Class>
+
 	<Class Wrapper="Train" Original="e4">
 		<Field WrapperProperty="VehicleLocation" Original="b" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Map" Original="c" IsOriginalNonPublic="true"/>
@@ -2043,6 +2055,8 @@
 			<Getter Original="b"/>
 			<Setter Original="a"/>
 		</Property>
+
+		<Field WrapperProperty="TractionMotor" Original="d" IsOriginalNonPublic="true"/>
 
 		<Method Wrapper="Initialize" WrapperParams="void" Original="n"/>
 		<Method Wrapper="Tick" WrapperParams="System.Double" Original="ag"/>
