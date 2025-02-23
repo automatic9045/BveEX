@@ -15,7 +15,7 @@ namespace BveEx.BveHackerServices
 {
     internal sealed class StructureSetLifeProlonger : IDisposable
     {
-        private readonly HarmonyPatch SetMapMethodPatch;
+        private readonly HarmonyPatch BuildMethodPatch;
 
         private readonly BveHacker BveHacker;
 
@@ -24,10 +24,10 @@ namespace BveEx.BveHackerServices
             BveHacker = bveHacker;
 
             ClassMemberSet trainDrawerMembers = BveHacker.BveTypes.GetClassInfoOf<ObjectDrawer>();
-            FastMethod setMapMethod = trainDrawerMembers.GetSourceMethodOf(nameof(ObjectDrawer.SetMap));
+            FastMethod buildMethod = trainDrawerMembers.GetSourceMethodOf(nameof(ObjectDrawer.Build));
 
-            SetMapMethodPatch = HarmonyPatch.Patch(nameof(StructureSetLifeProlonger), setMapMethod.Source, PatchType.Prefix);
-            SetMapMethodPatch.Invoked += (_, e) =>
+            BuildMethodPatch = HarmonyPatch.Patch(nameof(StructureSetLifeProlonger), buildMethod.Source, PatchType.Prefix);
+            BuildMethodPatch.Invoked += (_, e) =>
             {
                 Map map = Map.FromSource(e.Args[0]);
                 StructureSet structures = map.Structures;
@@ -40,7 +40,7 @@ namespace BveEx.BveHackerServices
 
         public void Dispose()
         {
-            SetMapMethodPatch.Dispose();
+            BuildMethodPatch.Dispose();
         }
     }
 }

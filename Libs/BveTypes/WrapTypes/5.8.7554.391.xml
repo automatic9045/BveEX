@@ -1165,7 +1165,7 @@
 		<Field WrapperProperty="StructureDrawer" Original="b" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="DrawDistanceManager" Original="g" IsOriginalNonPublic="true"/>
 
-		<Method Wrapper="SetMap" WrapperParams="ex:Map" Original="a"/>
+		<Method Wrapper="Build" WrapperParams="ex:Map" Original="a"/>
 		<Method Wrapper="Draw" WrapperParams="void" Original="o"/>
 	</Class>
 
@@ -1704,10 +1704,14 @@
 		<Property Wrapper="Blocks">
 			<Getter Original="a"/>
 		</Property>
+
 		<Field WrapperProperty="MinDrawBlockIndex" Original="b" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="MaxDrawBlockIndexPlus1" Original="c" IsOriginalNonPublic="true"/>
+
 		<Method Wrapper="OnDrawLocationRangeUpdated" WrapperParams="System.Object; System.EventArgs" Original="a" IsOriginalNonPublic="true"/>
 		<Method Wrapper="Draw" WrapperParams="ex:Direct3DProvider; SlimDX.Matrix, SlimDX" Original="a"/>
+		<Method Wrapper="BuildBlocks" WrapperParams="ex:Map" Original="a"/>
+		<Method Wrapper="BuildBlock" WrapperParams="System.Int32; ex:Map" Original="a" IsOriginalNonPublic="true"/>
 	</Class>
 
 	<Class Wrapper="StructureSet" Original="dn">
