@@ -95,7 +95,7 @@ namespace BveTypes.ClassWrappers.Extensions
         /// <summary>
         /// 空の <see cref="WrappedList{TWrapper}"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
-        public WrappedList() : base(ListConstructors.Create())
+        public WrappedList() : this((IList)ListConstructors.Create())
         {
         }
 
@@ -103,7 +103,7 @@ namespace BveTypes.ClassWrappers.Extensions
         /// 指定したコレクションからコピーした要素を格納し、コピーされる要素の数を格納できるだけの容量を備えた <see cref="WrappedList{TWrapper}"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         /// <param name="collection">要素のコピー元となるコレクション。</param>
-        public WrappedList(IEnumerable collection) : base(ListConstructors.Create(collection))
+        public WrappedList(IEnumerable collection) : this((IList)ListConstructors.Create(collection))
         {
         }
 
@@ -111,7 +111,7 @@ namespace BveTypes.ClassWrappers.Extensions
         /// 空で、指定した初期量を備えた <see cref="WrappedList{TWrapper}"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         /// <param name="capacity">新しいリストに格納できる要素の数。</param>
-        public WrappedList(int capacity) : base(ListConstructors.Create(capacity))
+        public WrappedList(int capacity) : this((IList)ListConstructors.Create(capacity))
         {
         }
 
