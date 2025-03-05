@@ -48,6 +48,7 @@
     <Compile Include="MemberCategory.cs" />
     <Compile Include="MemberKind.cs" />
     <Compile Include="MemberNotFoundException.MessageFactory.cs" />
+    <Compile Include="SourceNotFoundException.cs" />
     <Compile Include="TypeBridge.cs" />
     <Compile Include="Loader\MemberParser.cs" />
     <Compile Include="Loader\TypeParser.cs" />
