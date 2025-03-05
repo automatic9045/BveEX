@@ -318,6 +318,22 @@
 		<Property Wrapper="Handles">
 			<Getter Original="d"/>
 		</Property>
+		<Property Wrapper="ReverserTexts">
+			<Getter Original="a"/>
+			<Setter Original="c"/>
+		</Property>
+		<Property Wrapper="PowerTexts">
+			<Getter Original="c"/>
+			<Setter Original="b"/>
+		</Property>
+		<Property Wrapper="BrakeTexts">
+			<Getter Original="b"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="HoldingSpeedTexts">
+			<Getter Original="e"/>
+			<Setter Original="d"/>
+		</Property>
 
 		<Method Wrapper="GetDescriptionText" WrapperParams="void" Original="j"/>
 		<Method Wrapper="Dispose" WrapperParams="void" Original="Dispose"/>
