@@ -955,11 +955,25 @@
 	<Class Wrapper="MapGrammar" Original="dk">
 	</Class>
 
-	<Class Wrapper="MapObjectBase" Original="db">
-		<Property Wrapper="Location">
-			<Getter Original="v"/>
-			<Setter Original="g"/>
+	<Class Wrapper="MapLight" Original="bk">
+		<Property Wrapper="Ambient">
+			<Getter Original="c"/>
+			<Setter Original="a"/>
 		</Property>
+		<Property Wrapper="Diffuse">
+			<Getter Original="d"/>
+			<Setter Original="b"/>
+		</Property>
+		<Property Wrapper="IsFixedToGround">
+			<Getter Original="b"/>
+			<Setter Original="a"/>
+		</Property>
+
+		<Field WrapperProperty="Transform" Original="f" IsOriginalNonPublic="true"/>
+
+		<Method Wrapper="SetDirection" WrapperParams="System.Double; System.Double" Original="a"/>
+		<Method Wrapper="UpdateTransform" WrapperParams="void" Original="a" IsOriginalNonPublic="true"/>
+		<Method Wrapper="Apply" WrapperParams="SlimDX.Direct3D9.Device, SlimDX; SlimDX.Matrix, SlimDX" Original="a"/>
 	</Class>
 
 	<Class Wrapper="MapLoader" Original="p">
@@ -985,6 +999,13 @@
 		<Method Wrapper="LoadStationList" WrapperParams="System.String" Original="f" IsOriginalNonPublic="true"/>
 		<Method Wrapper="Include" WrapperParams="System.String" Original="b"/>
 		<Method Wrapper="ThrowError" WrapperParams="ex:LoadError" Original="c"/>
+	</Class>
+
+	<Class Wrapper="MapObjectBase" Original="db">
+		<Property Wrapper="Location">
+			<Getter Original="v"/>
+			<Setter Original="g"/>
+		</Property>
 	</Class>
 
 	<Class Wrapper="MapObjectList" Original="b6">

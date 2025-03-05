@@ -96,6 +96,7 @@
     <Compile Include="ClassWrappers\Public\Forms\ConfigForm.cs" />
     <Compile Include="ClassWrappers\Public\LoadCompensator.cs" />
     <Compile Include="ClassWrappers\Public\MapGrammar.cs" />
+    <Compile Include="ClassWrappers\Public\MapLight.cs" />
     <Compile Include="ClassWrappers\Public\MapLoader.cs" />
     <Compile Include="ClassWrappers\Public\MapParser.cs" />
     <Compile Include="ClassWrappers\Public\MapParserBase.cs" />
