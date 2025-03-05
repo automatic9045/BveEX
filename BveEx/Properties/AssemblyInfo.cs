@@ -8,7 +8,7 @@ using BveEx.Native;
 // 制御されます。アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更してください。
 [assembly: AssemblyTitle("BveEX")]
-[assembly: AssemblyDescription("ATSプラグイン拡張キット for BVE 5 & 6")]
+[assembly: AssemblyDescription("BVE 拡張キット")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("AtsEX & BveEX Project")]
 [assembly: AssemblyProduct("BveEX")]
