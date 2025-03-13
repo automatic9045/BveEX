@@ -20,7 +20,6 @@ namespace BveEx.Launcher
     {
         private static readonly Assembly LauncherAssembly = Assembly.GetExecutingAssembly();
         private static readonly string RootDirectory;
-        private static readonly string LegacyFilePath;
 
         private static readonly TargetBveFinder BveFinder = new TargetBveFinder();
 
@@ -31,7 +30,6 @@ namespace BveEx.Launcher
 #endif
 
             RootDirectory = Path.GetDirectoryName(LauncherAssembly.Location);
-            LegacyFilePath = Path.Combine(RootDirectory, ".LEGACY");
         }
 
 
@@ -44,7 +42,7 @@ namespace BveEx.Launcher
 
         public VersionSelector(Assembly callerAssembly)
         {
-            bool isLegacyMode = File.Exists(LegacyFilePath);
+            bool isLegacyMode = Environment.GetCommandLineArgs().Contains("/legacy", StringComparer.OrdinalIgnoreCase);
             string productName = isLegacyMode ? "BveEX レガシーモード (AtsEX)" : "BveEX";
 
             IpcClientChannel channel = new IpcClientChannel();
@@ -156,12 +154,6 @@ namespace BveEx.Launcher
 
         public void Dispose()
         {
-            try
-            {
-                if (File.Exists(LegacyFilePath)) File.Delete(LegacyFilePath);
-            }
-            catch { }
-
             OldLauncherLoader.Dispose();
             CoreHost.Dispose();
         }

@@ -14,11 +14,8 @@ namespace BveEx.Launching
     {
         public static void RestartAsLegacyMode(string scenarioPath)
         {
-            string legacyFilePath = Path.Combine(Path.GetDirectoryName(App.Instance.BveExLauncherAssembly.Location), ".LEGACY");
-            File.Create(legacyFilePath).Close();
-            File.SetAttributes(legacyFilePath, FileAttributes.Hidden);
 
-            Process.Start(App.Instance.BveAssembly.Location, scenarioPath is null ? string.Empty : $"\"{scenarioPath}\"");
+            Process.Start(App.Instance.BveAssembly.Location, $"{(scenarioPath is null ? string.Empty : $"\"{scenarioPath}\"")} /legacy");
             Environment.Exit(0);
         }
     }
