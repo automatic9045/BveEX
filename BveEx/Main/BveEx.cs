@@ -105,7 +105,7 @@ namespace BveEx
                 string message = string.Format(Resources.Value.ManualDisposeMessage.Value, App.Instance.ProductShortName);
                 ErrorDialogInfo dialogInfo = new ErrorDialogInfo(header, App.Instance.ProductShortName, message)
                 {
-                    HelpLink = new Uri("https://www.okaoka-depot.com/AtsEX.Docs/support/report/"),
+                    HelpLink = new Uri("https://bveex.okaoka-depot.com/support/report"),
                 };
 
                 Diagnostics.ErrorDialog.Show(dialogInfo);

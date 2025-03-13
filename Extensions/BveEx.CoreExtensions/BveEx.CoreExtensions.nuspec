@@ -6,7 +6,7 @@
 		<description>BVE Trainsim 5/6 用 BveEX [旧・AtsEX] プラグインの開発に便利な拡張機能のセットです。</description>
 		<authors>AtsEX &amp; BveEX Project</authors>
 
-		<projectUrl>https://www.okaoka-depot.com/AtsEX/</projectUrl>
+		<projectUrl>https://bveex.okaoka-depot.com</projectUrl>
 		<license type="file">LICENSE_NuGet.md</license>
 		<icon>images\Icon_NuGet.png</icon>
 		<readme>docs\README_NuGet.md</readme>

@@ -49,7 +49,7 @@ namespace BveEx.Launcher.Hosting
                     DialogResult confirm = dialog.ShowDialog();
                     if (confirm == DialogResult.OK)
                     {
-                        Process.Start("https://www.okaoka-depot.com/AtsEX.Docs/download/");
+                        Process.Start("https://bveex.okaoka-depot.com/download");
                     }
 
                     if (dialog.DoNotShowAgain)
