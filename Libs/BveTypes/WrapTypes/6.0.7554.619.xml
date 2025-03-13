@@ -51,6 +51,7 @@
 	</Class>
 
 	<Class Wrapper="ScenarioSelectionForm" Original="da">
+		<Method Wrapper="SaveSettings" WrapperParams="void" Original="g" IsOriginalNonPublic="true"/>
 	</Class>
 
 	<Class Wrapper="TimePosForm" Original="aj">
