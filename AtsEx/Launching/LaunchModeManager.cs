@@ -16,13 +16,6 @@ namespace AtsEx.Launching
     {
         public static void RestartAsNormalMode(string scenarioPath)
         {
-            string legacyFilePath = Path.Combine(Path.GetDirectoryName(App.Instance.AtsExLauncherAssembly.Location), ".LEGACY");
-            try
-            {
-                File.Delete(legacyFilePath);
-            }
-            catch { }
-
             Process.Start(App.Instance.BveAssembly.Location, scenarioPath is null ? string.Empty : $"\"{scenarioPath}\"");
             Environment.Exit(0);
         }
