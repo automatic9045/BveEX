@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,6 +55,7 @@ namespace AtsEx
 
         private readonly PatchSet Patches;
         private readonly ExtensionService ExtensionService;
+        private readonly LaunchModeManager LaunchModeManager;
 
         private bool IsFirstLoad;
 
@@ -82,7 +84,7 @@ namespace AtsEx
         public AtsEx(BveTypeSet bveTypes)
         {
             string[] commandLineArgs = Environment.GetCommandLineArgs();
-            IsFirstLoad = 1 < commandLineArgs.Length && !string.IsNullOrWhiteSpace(commandLineArgs[1]);
+            IsFirstLoad = 2 < commandLineArgs.Length && !string.IsNullOrWhiteSpace(commandLineArgs[2]);
 
             BveHacker = new BveHacker(bveTypes);
             BveHacker.ScenarioCreated += OnScenarioCreated;
@@ -99,6 +101,10 @@ namespace AtsEx
             ExtensionService = new ExtensionService(Extensions);
 
             VersionFormProvider = CreateVersionFormProvider(Extensions);
+
+            ClassMemberSet scenarioSelectionFormMembers = bveTypes.GetClassInfoOf<ScenarioSelectionForm>();
+            MethodInfo saveSettingsMethod = scenarioSelectionFormMembers.GetSourceMethodOf(nameof(ScenarioSelectionForm.SaveSettings)).Source;
+            LaunchModeManager = new LaunchModeManager(BveHacker.MainForm, BveHacker.ScenarioSelectionForm, saveSettingsMethod);
         }
 
         private void OnScenarioCreated(ScenarioCreatedEventArgs e)
@@ -143,9 +149,6 @@ namespace AtsEx
                     ErrorDialog.Show(5, Resources.Value.ConflictedMessage.Value, Resources.Value.ConflictedApproach.Value);
                     throw new InvalidOperationException(Resources.Value.ConflictedMessage.Value);
                 }
-
-                BveHacker.MainForm.Preferences.SaveToXml();
-                BveHacker.MainForm.Preferences = null;
 
                 LaunchModeManager.RestartAsNormalMode(BveHacker.ScenarioInfo?.Path);
             }
