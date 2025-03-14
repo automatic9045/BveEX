@@ -3,7 +3,7 @@
 # BveEX [旧・AtsEX] - BVE 拡張キット
 【BVE5・6 向け】BVE の機能を拡張し、あらゆる表現ができるようにするプラグイン フレームワークです。従来の ATS プラグインや入力デバイスプラグインでは実現できなかった新しい演出、機能の実装が可能になります。
 
-詳細はこちら→ https://www.okaoka-depot.com/AtsEX/
+詳細はこちら→ https://bveex.okaoka-depot.com
 
 ## 名前の由来
 **BVE** の機能を拡張 (**ex**tend) するプラグイン
