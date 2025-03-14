@@ -34,6 +34,8 @@ namespace BveTypes.ClassWrappers
 
             OnDrawLocationRangeUpdatedMethod = members.GetSourceMethodOf(nameof(OnDrawLocationRangeUpdated));
             DrawMethod = members.GetSourceMethodOf(nameof(Draw));
+            BuildBlocksMethod = members.GetSourceMethodOf(nameof(BuildBlocks));
+            BuildBlockMethod = members.GetSourceMethodOf(nameof(BuildBlock));
         }
 
         /// <summary>
@@ -102,5 +104,20 @@ namespace BveTypes.ClassWrappers
         /// <param name="view">ビュー変換行列。</param>
         public void Draw(Direct3DProvider direct3DProvider, Matrix view)
             => DrawMethod.Invoke(Src, new object[] { direct3DProvider?.Src, view });
+
+        private static FastMethod BuildBlocksMethod;
+        /// <summary>
+        /// 読み込んだ路線データを基に、全てのストラクチャーブロックを構築します。
+        /// </summary>
+        /// <param name="map">路線データ。</param>
+        public void BuildBlocks(Map map) => BuildBlocksMethod.Invoke(Src, new object[] { map?.Src });
+
+        private static FastMethod BuildBlockMethod;
+        /// <summary>
+        /// 指定したインデックスのストラクチャーブロックを構築します。
+        /// </summary>
+        /// <param name="blockIndex">構築するストラクチャーブロックのインデックス。</param>
+        /// <param name="map">路線データ。</param>
+        public void BuildBlock(int blockIndex, Map map) => BuildBlockMethod.Invoke(Src, new object[] { blockIndex, map?.Src });
     }
 }

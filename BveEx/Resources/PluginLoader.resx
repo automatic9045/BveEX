@@ -124,7 +124,7 @@
     <value>Some class(es) that implement {0} are found, but any constructors with an {1} parameter are not found.</value>
   </data>
   <data name="MaybeBecauseBuiltForDifferentVersion" xml:space="preserve">
-    <value>Failed to load; this might be because it is built for the old version (Version {0}) of {1}.</value>
+    <value>Failed to load, possibly due to a difference between the version of {0} ({1}) and the version the plugin is built for ({2}).</value>
   </data>
   <data name="PluginClassNotFound" xml:space="preserve">
     <value>Found no class subclass of {0}. It may not be a {1} plugin. The {1} plugin must have at least one class subclass of {0}.</value>

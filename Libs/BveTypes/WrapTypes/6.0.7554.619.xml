@@ -51,6 +51,7 @@
 	</Class>
 
 	<Class Wrapper="ScenarioSelectionForm" Original="da">
+		<Method Wrapper="SaveSettings" WrapperParams="void" Original="g" IsOriginalNonPublic="true"/>
 	</Class>
 
 	<Class Wrapper="TimePosForm" Original="aj">
@@ -317,6 +318,22 @@
 	<Class Wrapper="CabBase" Original="bl">
 		<Property Wrapper="Handles">
 			<Getter Original="d"/>
+		</Property>
+		<Property Wrapper="ReverserTexts">
+			<Getter Original="a"/>
+			<Setter Original="c"/>
+		</Property>
+		<Property Wrapper="PowerTexts">
+			<Getter Original="c"/>
+			<Setter Original="b"/>
+		</Property>
+		<Property Wrapper="BrakeTexts">
+			<Getter Original="b"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="HoldingSpeedTexts">
+			<Getter Original="e"/>
+			<Setter Original="d"/>
 		</Property>
 
 		<Method Wrapper="GetDescriptionText" WrapperParams="void" Original="j"/>
@@ -759,6 +776,16 @@
 	<Class Wrapper="ITickable" Original="fi">
 	</Class>
 
+	<Class Wrapper="InputManager" Original="ag">
+		<Property Wrapper="InputDevices">
+			<Getter Original="c"/>
+		</Property>
+
+		<Event Wrapper="LeverMoved" OriginalAddAccessor="c" OriginalRemoveAccessor="f" OriginalDelegateField="d"/>
+		<Event Wrapper="KeyDown" OriginalAddAccessor="e" OriginalRemoveAccessor="d" OriginalDelegateField="e"/>
+		<Event Wrapper="KeyUp" OriginalAddAccessor="b" OriginalRemoveAccessor="a" OriginalDelegateField="f"/>
+	</Class>
+
 	<Class Wrapper="JerkRegulator" Original="eh">
 		<Property Wrapper="MotorState">
 			<Getter Original="c"/>
@@ -776,19 +803,11 @@
 			<Setter Original="a"/>
 		</Property>
 
+		<Field WrapperProperty="TractionMotor" Original="b" IsOriginalNonPublic="true"/>
+
 		<Method Wrapper="Initialize" WrapperParams="void" Original="n"/>
 		<Method Wrapper="CalculateRawCurrent" WrapperParams="void" Original="a" IsOriginalNonPublic="true"/>
 		<Method Wrapper="Tick" WrapperParams="System.Double" Original="ag"/>
-	</Class>
-
-	<Class Wrapper="InputManager" Original="ag">
-		<Property Wrapper="InputDevices">
-			<Getter Original="c"/>
-		</Property>
-
-		<Event Wrapper="LeverMoved" OriginalAddAccessor="c" OriginalRemoveAccessor="f" OriginalDelegateField="d"/>
-		<Event Wrapper="KeyDown" OriginalAddAccessor="e" OriginalRemoveAccessor="d" OriginalDelegateField="e"/>
-		<Event Wrapper="KeyUp" OriginalAddAccessor="b" OriginalRemoveAccessor="a" OriginalDelegateField="f"/>
 	</Class>
 
 	<Class Wrapper="LeverText" Original="ci">
@@ -937,11 +956,25 @@
 	<Class Wrapper="MapGrammar" Original="dk">
 	</Class>
 
-	<Class Wrapper="MapObjectBase" Original="db">
-		<Property Wrapper="Location">
-			<Getter Original="v"/>
-			<Setter Original="g"/>
+	<Class Wrapper="MapLight" Original="bk">
+		<Property Wrapper="Ambient">
+			<Getter Original="c"/>
+			<Setter Original="a"/>
 		</Property>
+		<Property Wrapper="Diffuse">
+			<Getter Original="d"/>
+			<Setter Original="b"/>
+		</Property>
+		<Property Wrapper="IsFixedToGround">
+			<Getter Original="b"/>
+			<Setter Original="a"/>
+		</Property>
+
+		<Field WrapperProperty="Transform" Original="f" IsOriginalNonPublic="true"/>
+
+		<Method Wrapper="SetDirection" WrapperParams="System.Double; System.Double" Original="a"/>
+		<Method Wrapper="UpdateTransform" WrapperParams="void" Original="a" IsOriginalNonPublic="true"/>
+		<Method Wrapper="Apply" WrapperParams="SlimDX.Direct3D9.Device, SlimDX; SlimDX.Matrix, SlimDX" Original="a"/>
 	</Class>
 
 	<Class Wrapper="MapLoader" Original="p">
@@ -967,6 +1000,13 @@
 		<Method Wrapper="LoadStationList" WrapperParams="System.String" Original="f" IsOriginalNonPublic="true"/>
 		<Method Wrapper="Include" WrapperParams="System.String" Original="b"/>
 		<Method Wrapper="ThrowError" WrapperParams="ex:LoadError" Original="c"/>
+	</Class>
+
+	<Class Wrapper="MapObjectBase" Original="db">
+		<Property Wrapper="Location">
+			<Getter Original="v"/>
+			<Setter Original="g"/>
+		</Property>
 	</Class>
 
 	<Class Wrapper="MapObjectList" Original="b6">
@@ -1163,7 +1203,7 @@
 		<Field WrapperProperty="StructureDrawer" Original="b" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="DrawDistanceManager" Original="g" IsOriginalNonPublic="true"/>
 
-		<Method Wrapper="SetMap" WrapperParams="ex:Map" Original="a"/>
+		<Method Wrapper="Build" WrapperParams="ex:Map" Original="a"/>
 		<Method Wrapper="Draw" WrapperParams="void" Original="o"/>
 	</Class>
 
@@ -1702,10 +1742,14 @@
 		<Property Wrapper="Blocks">
 			<Getter Original="a"/>
 		</Property>
+
 		<Field WrapperProperty="MinDrawBlockIndex" Original="b" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="MaxDrawBlockIndexPlus1" Original="c" IsOriginalNonPublic="true"/>
+
 		<Method Wrapper="OnDrawLocationRangeUpdated" WrapperParams="System.Object; System.EventArgs" Original="a" IsOriginalNonPublic="true"/>
 		<Method Wrapper="Draw" WrapperParams="ex:Direct3DProvider; SlimDX.Matrix, SlimDX" Original="a"/>
+		<Method Wrapper="BuildBlocks" WrapperParams="ex:Map" Original="a"/>
+		<Method Wrapper="BuildBlock" WrapperParams="System.Int32; ex:Map" Original="a" IsOriginalNonPublic="true"/>
 	</Class>
 
 	<Class Wrapper="StructureSet" Original="dn">
@@ -1776,6 +1820,16 @@
 		<Field WrapperProperty="ArrivalTimeTextWidths" Original="f" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="DepartureTimeTextWidths" Original="g" IsOriginalNonPublic="true"/>
 		<Method Wrapper="Update" WrapperParams="void" Original="a" IsOriginalNonPublic="true"/>
+	</Class>
+
+	<Class Wrapper="TractionMotor" Original="c7">
+		<Field WrapperProperty="Performance" Original="a" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="MotorCarTachogenerator" Original="b" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="ForceEmpty" Original="c" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="ForceFull" Original="d" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="CurrentEmpty" Original="e" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="CurrentFull" Original="f" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="NoLoadCurrent" Original="g" IsOriginalNonPublic="true"/>
 	</Class>
 
 	<Class Wrapper="Train" Original="e4">
@@ -2043,6 +2097,8 @@
 			<Getter Original="b"/>
 			<Setter Original="a"/>
 		</Property>
+
+		<Field WrapperProperty="TractionMotor" Original="d" IsOriginalNonPublic="true"/>
 
 		<Method Wrapper="Initialize" WrapperParams="void" Original="n"/>
 		<Method Wrapper="Tick" WrapperParams="System.Double" Original="ag"/>

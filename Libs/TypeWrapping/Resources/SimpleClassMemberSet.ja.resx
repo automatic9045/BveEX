@@ -118,18 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="OriginalConstructorNotFound" xml:space="preserve">
-    <value>オリジナルコンストラクタが見つかりませんでした。{0} '{1}' は無効なキーです。</value>
+    <value>オリジナルコンストラクタが見つかりませんでした。型 {0} に パラメータ '{1}' のコンストラクタは存在しません。</value>
   </data>
   <data name="OriginalEventNotFound" xml:space="preserve">
-    <value>オリジナルイベントが見つかりませんでした。{0} '{1}' は無効なキーです。</value>
+    <value>オリジナルイベントが見つかりませんでした。型 {0} にイベント '{1}' は存在しません。</value>
   </data>
   <data name="OriginalFieldNotFound" xml:space="preserve">
-    <value>オリジナルフィールドが見つかりませんでした。{0} '{1}' は無効なキーです。</value>
+    <value>オリジナルフィールドが見つかりませんでした。型 {0} にフィールド '{1}' は存在しません。</value>
   </data>
   <data name="OriginalMethodNotFound" xml:space="preserve">
-    <value>オリジナルメソッドが見つかりませんでした。{0} '{1}' または {2} '{3}' は無効なキーです。</value>
+    <value>オリジナルメソッドが見つかりませんでした。型 {0} にメソッド '{1}' が存在しないか、パラメータが '{2}' ではありません。</value>
   </data>
   <data name="OriginalPropertyNotFound" xml:space="preserve">
-    <value>オリジナルプロパティが見つかりませんでした。{0} '{1}' は無効なキーです。</value>
+    <value>オリジナルプロパティが見つかりませんでした。型 {0} にプロパティ '{1}' は存在しません。</value>
   </data>
 </root>

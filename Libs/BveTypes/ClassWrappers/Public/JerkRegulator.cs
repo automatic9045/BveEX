@@ -30,6 +30,8 @@ namespace BveTypes.ClassWrappers
             CurrentDecreaseGetMethod = members.GetSourcePropertyGetterOf(nameof(CurrentDecrease));
             CurrentDecreaseSetMethod = members.GetSourcePropertySetterOf(nameof(CurrentDecrease));
 
+            TractionMotorField = members.GetSourceFieldOf(nameof(TractionMotor));
+
             InitializeMethod = members.GetSourceMethodOf(nameof(Initialize));
             CalculateRawCurrentMethod = members.GetSourceMethodOf(nameof(CalculateRawCurrent));
             TickMethod = members.GetSourceMethodOf(nameof(Tick));
@@ -88,6 +90,16 @@ namespace BveTypes.ClassWrappers
         {
             get => (double)CurrentDecreaseGetMethod.Invoke(Src, null);
             set => CurrentDecreaseSetMethod.Invoke(Src, new object[] { value });
+        }
+
+        private static FastField TractionMotorField;
+        /// <summary>
+        /// 主電動機を取得・設定します。
+        /// </summary>
+        public TractionMotor TractionMotor
+        {
+            get => TractionMotor.FromSource(TractionMotorField.GetValue(Src));
+            set => TractionMotorField.SetValue(Src, value?.Src);
         }
 
         private static FastMethod InitializeMethod;

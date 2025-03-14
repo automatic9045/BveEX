@@ -53,7 +53,7 @@ namespace BveTypes.ClassWrappers
         public Model Model
         {
             get => Model.FromSource(ModelField.GetValue(Src));
-            set => ModelField.SetValue(Src, value.Src);
+            set => ModelField.SetValue(Src, value?.Src);
         }
 
         private static FastField NameTextsField;

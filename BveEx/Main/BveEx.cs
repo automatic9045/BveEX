@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,6 +50,7 @@ namespace BveEx
         private readonly PatchSet Patches;
         private readonly AtsPluginOverrider AtsPluginOverrider;
         private readonly ExtensionService ExtensionService;
+        private readonly LaunchModeManager LaunchModeManager;
 
         public event EventHandler<ValueEventArgs<ScenarioInfo>> ScenarioOpened;
         public event EventHandler<ValueEventArgs<Scenario>> ScenarioClosed;
@@ -82,6 +84,10 @@ namespace BveEx
             ExtensionService = new ExtensionService(Extensions);
 
             VersionFormProvider = CreateVersionFormProvider(Extensions);
+
+            ClassMemberSet scenarioSelectionFormMembers = bveTypes.GetClassInfoOf<ScenarioSelectionForm>();
+            MethodInfo saveSettingsMethod = scenarioSelectionFormMembers.GetSourceMethodOf(nameof(ScenarioSelectionForm.SaveSettings)).Source;
+            LaunchModeManager = new LaunchModeManager(BveHacker.MainForm, BveHacker.ScenarioSelectionForm, saveSettingsMethod);
         }
 
         private void OnScenarioCreated(ScenarioCreatedEventArgs e)
@@ -105,7 +111,7 @@ namespace BveEx
                 string message = string.Format(Resources.Value.ManualDisposeMessage.Value, App.Instance.ProductShortName);
                 ErrorDialogInfo dialogInfo = new ErrorDialogInfo(header, App.Instance.ProductShortName, message)
                 {
-                    HelpLink = new Uri("https://www.okaoka-depot.com/AtsEX.Docs/support/report/"),
+                    HelpLink = new Uri("https://bveex.okaoka-depot.com/support/report"),
                 };
 
                 Diagnostics.ErrorDialog.Show(dialogInfo);
@@ -125,9 +131,6 @@ namespace BveEx
         {
             if (e.Exception is LaunchModeException)
             {
-                BveHacker.MainForm.Preferences.SaveToXml();
-                BveHacker.MainForm.Preferences = null;
-
                 LaunchModeManager.RestartAsLegacyMode(BveHacker.ScenarioInfo?.Path);
             }
         }

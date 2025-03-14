@@ -62,46 +62,57 @@ namespace TypeWrapping
         {
             return PropertyGetters.TryGetValue(wrapperName, out FastMethod method)
                 ? method
-                : throw new KeyNotFoundException(string.Format(Resources.Value.OriginalPropertyNotFound.Value, nameof(wrapperName), wrapperName));
+                : throw new SourceNotFoundException(string.Format(Resources.Value.OriginalPropertyNotFound.Value, WrapperType.FullName, wrapperName));
         }
 
         public override FastMethod GetSourcePropertySetterOf(string wrapperName)
         {
             return PropertySetters.TryGetValue(wrapperName, out FastMethod method)
                 ? method
-                : throw new KeyNotFoundException(string.Format(Resources.Value.OriginalPropertyNotFound.Value, nameof(wrapperName), wrapperName));
+                : throw new SourceNotFoundException(string.Format(Resources.Value.OriginalPropertyNotFound.Value, WrapperType.FullName, wrapperName));
         }
 
         public override FastField GetSourceFieldOf(string wrapperName)
         {
             return Fields.TryGetValue(wrapperName, out FastField field)
                 ? field
-                : throw new KeyNotFoundException(string.Format(Resources.Value.OriginalFieldNotFound.Value, nameof(wrapperName), wrapperName));
+                : throw new SourceNotFoundException(string.Format(Resources.Value.OriginalFieldNotFound.Value, WrapperType.FullName, wrapperName));
         }
 
         public override FastEvent GetSourceEventOf(string wrapperName)
         {
             return Events.TryGetValue(wrapperName, out FastEvent @event)
                 ? @event
-                : throw new KeyNotFoundException(string.Format(Resources.Value.OriginalEventNotFound.Value, nameof(wrapperName), wrapperName));
+                : throw new SourceNotFoundException(string.Format(Resources.Value.OriginalEventNotFound.Value, WrapperType.FullName, wrapperName));
         }
 
         public override FastConstructor GetSourceConstructor(Type[] parameters = null)
         {
             FastConstructor matchConstructor = Constructors.FirstOrDefault(x => parameters is null || x.Key.SequenceEqual(parameters)).Value;
+            if (matchConstructor is null)
+            {
+                string parametersText = GetParametersText(parameters);
+                throw new SourceNotFoundException(string.Format(Resources.Value.OriginalConstructorNotFound.Value, WrapperType.FullName, parametersText));
+            }
 
-            return matchConstructor is null
-                ? throw new KeyNotFoundException(string.Format(Resources.Value.OriginalConstructorNotFound.Value, nameof(parameters), parameters))
-                : matchConstructor;
+            return matchConstructor;
         }
 
         public override FastMethod GetSourceMethodOf(string wrapperName, Type[] parameters = null)
         {
             FastMethod matchMethod = Methods.FirstOrDefault(x => x.Key.Name == wrapperName && (parameters is null || x.Key.Parameters.SequenceEqual(parameters))).Value;
+            if (matchMethod is null)
+            {
+                string parametersText = GetParametersText(parameters);
+                throw new SourceNotFoundException(string.Format(Resources.Value.OriginalMethodNotFound.Value, WrapperType.FullName, wrapperName, parametersText));
+            }
 
-            return matchMethod is null
-                ? throw new KeyNotFoundException(string.Format(Resources.Value.OriginalMethodNotFound.Value, nameof(wrapperName), wrapperName, nameof(parameters), parameters))
-                : matchMethod;
+            return matchMethod;
+        }
+
+        private string GetParametersText(Type[] parameters)
+        {
+            return parameters is null || parameters.Length == 0 ? string.Empty : string.Join(", ", parameters.Select(parameter => parameter.Name));
         }
     }
 }

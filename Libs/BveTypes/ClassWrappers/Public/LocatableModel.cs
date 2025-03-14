@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 using SlimDX;
-using SlimDX.Direct3D9;
 
 using FastMember;
 using TypeWrapping;
@@ -65,7 +64,7 @@ namespace BveTypes.ClassWrappers
         public Model Model
         {
             get => Model.FromSource(ModelField.GetValue(Src));
-            set => ModelField.SetValue(Src, value.Src);
+            set => ModelField.SetValue(Src, value?.Src);
         }
 
         private static FastField MatrixField;

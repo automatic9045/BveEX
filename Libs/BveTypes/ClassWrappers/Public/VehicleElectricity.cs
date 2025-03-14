@@ -37,6 +37,8 @@ namespace BveTypes.ClassWrappers
             SlipVelocityCoefficientGetMethod = members.GetSourcePropertyGetterOf(nameof(SlipVelocityCoefficient));
             SlipVelocityCoefficientSetMethod = members.GetSourcePropertySetterOf(nameof(SlipVelocityCoefficient));
 
+            TractionMotorField = members.GetSourceFieldOf(nameof(TractionMotor));
+
             InitializeMethod = members.GetSourceMethodOf(nameof(Initialize));
             TickMethod = members.GetSourceMethodOf(nameof(Tick));
         }
@@ -113,6 +115,16 @@ namespace BveTypes.ClassWrappers
         {
             get => (double)SlipVelocityCoefficientGetMethod.Invoke(Src, null);
             set => SlipVelocityCoefficientSetMethod.Invoke(Src, new object[] { value });
+        }
+
+        private static FastField TractionMotorField;
+        /// <summary>
+        /// 主電動機を取得・設定します。
+        /// </summary>
+        public TractionMotor TractionMotor
+        {
+            get => TractionMotor.FromSource(TractionMotorField.GetValue(Src));
+            set => TractionMotorField.SetValue(Src, value?.Src);
         }
 
         private static FastMethod InitializeMethod;

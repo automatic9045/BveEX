@@ -124,7 +124,7 @@
     <value>{0} を継承しているクラスは見つかりましたが、パラメータ {1} を持つコンストラクタが見つかりませんでした。</value>
   </data>
   <data name="MaybeBecauseBuiltForDifferentVersion" xml:space="preserve">
-    <value>初期化に失敗しました。古いバージョン (バージョン {0}) の {1} に準拠していることが原因の可能性があります。</value>
+    <value>初期化に失敗しました。{0} 本体のバージョン ({1}) とプラグインが準拠しているバージョン (バージョン {2}) が異なっていることが原因の可能性があります。</value>
   </data>
   <data name="PluginClassNotFound" xml:space="preserve">
     <value>{0} を継承しているクラスが見つかりませんでした。{1} プラグインではない可能性があります。{1} プラグインとして認識されるには、{0} を継承しているクラスが必要です。</value>

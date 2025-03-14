@@ -38,7 +38,7 @@ namespace BveEx.Plugins
                 }
                 else if (pluginHostVersion != referencedPluginHostVersion)
                 {
-                    string message = string.Format(Resources.Value.MaybeBecauseBuiltForDifferentVersion.Value, pluginHostVersion, App.Instance.ProductShortName);
+                    string message = string.Format(Resources.Value.MaybeBecauseBuiltForDifferentVersion.Value, App.Instance.ProductShortName, pluginHostVersion, referencedPluginHostVersion);
                     BveFileLoadException additionalInfoException = new BveFileLoadException(message, assemblyFileName);
 
                     ExceptionsToResolve.Enqueue(new PluginException(assemblyFileName, additionalInfoException));

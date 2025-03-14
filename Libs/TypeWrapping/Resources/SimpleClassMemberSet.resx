@@ -118,18 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="OriginalConstructorNotFound" xml:space="preserve">
-    <value>オリジナルコンストラクタが見つかりませんでした。{0} '{1}' は無効なキーです。</value>
+    <value>Original constructor is not found. Constructor with parameter(s) '{1}' does not exist in type {0}.</value>
   </data>
   <data name="OriginalEventNotFound" xml:space="preserve">
-    <value>オリジナルイベントが見つかりませんでした。{0} '{1}' は無効なキーです。</value>
+    <value>Original event is not found. Event '{1}' does not exist in type {0}.</value>
   </data>
   <data name="OriginalFieldNotFound" xml:space="preserve">
-    <value>オリジナルフィールドが見つかりませんでした。{0} '{1}' は無効なキーです。</value>
+    <value>Original field is not found. Field '{1}' does not exist in type {0}.</value>
   </data>
   <data name="OriginalMethodNotFound" xml:space="preserve">
-    <value>オリジナルメソッドが見つかりませんでした。{0} '{1}' または {2} '{3}' は無効なキーです。</value>
+    <value>Original method is not found. Method '{1}' does not exist in type {0} or is not with parameter(s) '{2}.'</value>
   </data>
   <data name="OriginalPropertyNotFound" xml:space="preserve">
-    <value>オリジナルプロパティが見つかりませんでした。{0} '{1}' は無効なキーです。</value>
+    <value>Original property is not found. Property '{1}' does not exist in type {0}.</value>
   </data>
 </root>

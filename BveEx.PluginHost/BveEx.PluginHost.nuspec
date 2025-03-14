@@ -2,11 +2,11 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<id>BveEx.PluginHost</id>
-		<version>2.0.0</version>
+		<version>2.0.5.1</version>
 		<description>BVE Trainsim 5/6 用 BveEX [旧・AtsEX] プラグインを開発するための基本ライブラリです。</description>
 		<authors>AtsEX &amp; BveEX Project</authors>
 
-		<projectUrl>https://www.okaoka-depot.com/AtsEX/</projectUrl>
+		<projectUrl>https://bveex.okaoka-depot.com</projectUrl>
 		<license type="file">LICENSE_NuGet.md</license>
 		<icon>images\Icon_NuGet.png</icon>
 		<readme>docs\README_NuGet.md</readme>

@@ -24,6 +24,8 @@ namespace BveTypes.ClassWrappers
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<MapObjectList>();
 
+            Constructor = members.GetSourceConstructor();
+
             CurrentIndexGetMethod = members.GetSourcePropertyGetterOf(nameof(CurrentIndex));
             CurrentIndexSetMethod = members.GetSourcePropertySetterOf(nameof(CurrentIndex));
 
@@ -51,6 +53,14 @@ namespace BveTypes.ClassWrappers
         /// <returns>オリジナル オブジェクトをラップした <see cref="MapObjectList"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
         public static MapObjectList FromSource(object src) => src is null ? null : new MapObjectList((IList)src);
+
+        private static FastConstructor Constructor;
+        /// <summary>
+        /// <see cref="MapObjectList"/> クラスの新しいインスタンスを初期化します。
+        /// </summary>
+        public MapObjectList() : base(Constructor.Invoke(null) as IList)
+        {
+        }
 
         private static FastMethod CurrentIndexGetMethod;
         private static FastMethod CurrentIndexSetMethod;

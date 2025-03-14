@@ -193,7 +193,7 @@ namespace BveEx
                         break;
 
                     case nameof(HomepageLink):
-                        link = "https://www.okaoka-depot.com/AtsEX/";
+                        link = "https://bveex.okaoka-depot.com";
                         break;
 
                     case nameof(RepositoryLink):

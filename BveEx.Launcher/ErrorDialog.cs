@@ -17,7 +17,7 @@ namespace BveEx.Launcher
             Diagnostics.ErrorDialogInfo errorDialogInfo = new Diagnostics.ErrorDialogInfo(header, Resources.Name, messageWithCode)
             {
                 Approach = approach,
-                HelpLink = new Uri($"https://www.okaoka-depot.com/AtsEX.Docs/support/errors/#{code}"),
+                HelpLink = new Uri($"https://bveex.okaoka-depot.com/support/errors#{code}"),
             };
 
             Diagnostics.ErrorDialog.Show(errorDialogInfo);
