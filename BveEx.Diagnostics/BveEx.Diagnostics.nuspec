@@ -6,7 +6,7 @@
 		<description>BveEX [旧・AtsEX] 本体および BveEX プラグインで発生したエラーを解析するための機能を提供します。</description>
 		<authors>AtsEX &amp; BveEX Project</authors>
 
-		<projectUrl>https://www.okaoka-depot.com/AtsEX/</projectUrl>
+		<projectUrl>https://bveex.okaoka-depot.com</projectUrl>
 		<license type="file">LICENSE_NuGet.md</license>
 		<icon>images\Icon_NuGet.png</icon>
 		<readme>docs\README_NuGet.md</readme>
