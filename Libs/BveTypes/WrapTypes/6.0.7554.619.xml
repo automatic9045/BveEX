@@ -2135,13 +2135,16 @@
 	</Class>
 
 	<Class Wrapper="VehicleLocation" Original="fu">
-		<Property Wrapper="Location">
-			<Getter Original="c"/>
-		</Property>
-		<Property Wrapper="BlockIndex">
-			<Getter Original="d"/>
-		</Property>
+		<Field WrapperProperty="BlockIndex" Original="b" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="LocationInBlock" Original="c" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="LimitLocation" Original="d" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Location" Original="e" IsOriginalNonPublic="true"/>
 
+		<Event Wrapper="BlockChanged" OriginalAddAccessor="b" OriginalRemoveAccessor="a" OriginalDelegateField="f"/>
+		<Event Wrapper="LocationChanged" OriginalAddAccessor="b" OriginalRemoveAccessor="a" OriginalDelegateField="g"/>
+
+		<Method Wrapper="OnBlockChanged" WrapperParams="System.Int32" Original="a" IsOriginalNonPublic="true"/>
+		<Method Wrapper="OnLocationChanged" WrapperParams="System.Double" Original="b" IsOriginalNonPublic="true"/>
 		<Method Wrapper="Tick" WrapperParams="System.Double; System.Double; System.Double; System.Double" Original="a"/>
 		<Method Wrapper="SetLocation" WrapperParams="System.Double; System.Boolean" Original="a"/>
 	</Class>

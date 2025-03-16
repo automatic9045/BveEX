@@ -21,10 +21,19 @@ namespace BveTypes.ClassWrappers
 
             Constructor = members.GetSourceConstructor();
 
-            LocationGetMethod = members.GetSourcePropertyGetterOf(nameof(Location));
+            BlockIndexField = members.GetSourceFieldOf(nameof(BlockIndex));
+            LocationInBlockField = members.GetSourceFieldOf(nameof(LocationInBlock));
+            LimitLocationField = members.GetSourceFieldOf(nameof(LimitLocation));
+            LocationField = members.GetSourceFieldOf(nameof(Location));
 
-            BlockIndexGetMethod = members.GetSourcePropertyGetterOf(nameof(BlockIndex));
+            FastEvent blockChangedEvent = members.GetSourceEventOf(nameof(BlockChanged));
+            FastEvent locationChangedEvent = members.GetSourceEventOf(nameof(LocationChanged));
 
+            BlockChangedEvent = new WrapperEvent<EventHandler<ValueEventArgs<int>>>(blockChangedEvent, x => (sender, e) => x?.Invoke(FromSource(sender), ValueEventArgs<int>.FromSource(e)));
+            LocationChangedEvent = new WrapperEvent<EventHandler<ValueEventArgs<double>>>(locationChangedEvent, x => (sender, e) => x?.Invoke(FromSource(sender), ValueEventArgs<double>.FromSource(e)));
+
+            OnBlockChangedMethod = members.GetSourceMethodOf(nameof(OnBlockChanged));
+            OnLocationChangedMethod = members.GetSourceMethodOf(nameof(OnLocationChanged));
             TickMethod = members.GetSourceMethodOf(nameof(Tick));
             SetLocationMethod = members.GetSourceMethodOf(nameof(SetLocation));
         }
@@ -53,25 +62,88 @@ namespace BveTypes.ClassWrappers
         {
         }
 
-        private static FastMethod LocationGetMethod;
+        private static FastField BlockIndexField;
         /// <summary>
-        /// 自車両の位置を取得します。
+        /// 現在走行しているストラクチャーブロックのインデックスを取得・設定します。
         /// </summary>
-        /// <remarks>
-        /// 自車両の位置を設定するには <see cref="SetLocation(double, bool)"/> メソッドを使用してください。
-        /// </remarks>
-        /// <seealso cref="SetLocation(double, bool)"/>
-        public double Location => (double)LocationGetMethod.Invoke(Src, null);
+        public int BlockIndex
+        {
+            get => (int)BlockIndexField.GetValue(Src);
+            set => BlockIndexField.SetValue(Src, value);
+        }
 
-        private static FastMethod BlockIndexGetMethod;
+        private static FastField LocationInBlockField;
         /// <summary>
-        /// 現在の自車両の位置が含まれるストラクチャー描画ブロックのインデックスを取得します。
+        /// 現在走行しているストラクチャーブロックの原点を基準とした走行位置 [m] を取得・設定します。
+        /// </summary>
+        public double LocationInBlock
+        {
+            get => (double)LocationInBlockField.GetValue(Src);
+            set => LocationInBlockField.SetValue(Src, value);
+        }
+
+        private static FastField LimitLocationField;
+        /// <summary>
+        /// ストラクチャーが設置される限界の距離程 [m] を取得・設定します。通常は最後の駅の 10km 先の位置になります。
+        /// </summary>
+        public int LimitLocation
+        {
+            get => (int)LimitLocationField.GetValue(Src);
+            set => LimitLocationField.SetValue(Src, value);
+        }
+
+        private static FastField LocationField;
+        /// <summary>
+        /// 現在の距離程 [m] を取得・設定します。
         /// </summary>
         /// <remarks>
-        /// 25m 毎に 1 つの描画ブロックが定義されており、全てのストラクチャーは設置された距離程が含まれるブロックに登録されます。<br/>
-        /// 各ストラクチャーが描画距離内に入っているかどうかを描画ブロック単位で判定することで、ストラクチャーの描画処理を高速化しています。
+        /// このプロパティに値を直接設定すると、テレポート時の処理が行われません。通常は <see cref="SetLocation(double, bool)"/> メソッドを使用してください。
         /// </remarks>
-        public int BlockIndex => (int)BlockIndexGetMethod.Invoke(Src, null);
+        public double Location
+        {
+            get => (double)LocationField.GetValue(Src);
+            set => LocationField.SetValue(Src, value);
+        }
+
+        private static WrapperEvent<EventHandler<ValueEventArgs<int>>> BlockChangedEvent;
+        /// <summary>
+        /// 走行しているストラクチャーブロックが変わったときに発生します。
+        /// </summary>
+        public event EventHandler<ValueEventArgs<int>> BlockChanged
+        {
+            add => BlockChangedEvent.Add(Src, value);
+            remove => BlockChangedEvent.Remove(Src, value);
+        }
+        /// <summary>
+        /// <see cref="BlockChanged"/> イベントを実行します。
+        /// </summary>
+        public void BlockChanged_Invoke(ValueEventArgs<int> args) => BlockChangedEvent.Invoke(Src, args);
+
+        private static WrapperEvent<EventHandler<ValueEventArgs<double>>> LocationChangedEvent;
+        /// <summary>
+        /// 走行している距離程が変わったときに発生します。
+        /// </summary>
+        public event EventHandler<ValueEventArgs<double>> LocationChanged
+        {
+            add => LocationChangedEvent.Add(Src, value);
+            remove => LocationChangedEvent.Remove(Src, value);
+        }
+        /// <summary>
+        /// <see cref="LocationChanged"/> イベントを実行します。
+        /// </summary>
+        public void LocationChanged_Invoke(ValueEventArgs<double> args) => LocationChangedEvent.Invoke(Src, args);
+
+        private static FastMethod OnBlockChangedMethod;
+        /// <summary>
+        /// 走行しているストラクチャーブロックが変わったことを通知します。
+        /// </summary>
+        public void OnBlockChanged(int delta) => OnBlockChangedMethod.Invoke(Src, new object[] { delta });
+
+        private static FastMethod OnLocationChangedMethod;
+        /// <summary>
+        /// 走行している距離程が変わったことを通知します。
+        /// </summary>
+        public void OnLocationChanged(double delta) => OnLocationChangedMethod.Invoke(Src, new object[] { delta });
 
         private static FastMethod TickMethod;
         /// <summary>
