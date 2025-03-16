@@ -30,9 +30,9 @@ namespace BveTypes.ClassWrappers
             VelocityField = members.GetSourceFieldOf(nameof(Velocity));
             AccelerationField = members.GetSourceFieldOf(nameof(Acceleration));
 
-            AddMethod = members.GetSourceMethodOf("Add");
-            SubtractMethod = members.GetSourceMethodOf("Add");
-            MultiplyMethod = members.GetSourceMethodOf("Add");
+            AddMethod = members.GetSourceMethodOf(nameof(Add));
+            SubtractMethod = members.GetSourceMethodOf(nameof(Subtract));
+            MultiplyMethod = members.GetSourceMethodOf(nameof(Multiply));
         }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace BveTypes.ClassWrappers
         }
 
         private static FastMethod AddMethod;
-        private static Physical Add(Physical a, Physical b) => (Physical)AddMethod.Invoke(null, new object[] { a, b });
+        private static Physical Add(Physical a, Physical b) => FromSource(AddMethod.Invoke(null, new object[] { a?.Src, b?.Src }));
 
         /// <summary>
         /// 2 つの <see cref="Physical"/> を足し合わせます。
@@ -123,7 +123,7 @@ namespace BveTypes.ClassWrappers
         public static Physical operator +(Physical a, Physical b) => Add(a, b);
 
         private static FastMethod SubtractMethod;
-        private static Physical Subtract(Physical a, Physical b) => (Physical)SubtractMethod.Invoke(null, new object[] { a, b });
+        private static Physical Subtract(Physical a, Physical b) => FromSource(SubtractMethod.Invoke(null, new object[] { a?.Src, b?.Src }));
 
         /// <summary>
         /// 一方の <see cref="Physical"/> からもう一方の <see cref="Physical"/> を引きます。
@@ -134,7 +134,7 @@ namespace BveTypes.ClassWrappers
         public static Physical operator -(Physical a, Physical b) => Subtract(a, b);
 
         private static FastMethod MultiplyMethod;
-        private static Physical Multiply(double a, Physical b) => (Physical)MultiplyMethod.Invoke(null, new object[] { a, b });
+        private static Physical Multiply(double a, Physical b) => FromSource(MultiplyMethod.Invoke(null, new object[] { a, b?.Src }));
 
         /// <summary>
         /// <see cref="Physical"/> を実数倍します。
