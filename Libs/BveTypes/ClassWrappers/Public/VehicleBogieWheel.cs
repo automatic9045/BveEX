@@ -21,6 +21,8 @@ namespace BveTypes.ClassWrappers
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<VehicleBogieWheel>();
 
+            VehicleLocationField = members.GetSourceFieldOf(nameof(VehicleLocation));
+            TotalInertiaField = members.GetSourceFieldOf(nameof(MyTrack));
             LocationInCarField = members.GetSourceFieldOf(nameof(LocationInCar));
             XField = members.GetSourceFieldOf(nameof(X));
             YField = members.GetSourceFieldOf(nameof(Y));
@@ -45,6 +47,26 @@ namespace BveTypes.ClassWrappers
         /// <returns>オリジナル オブジェクトをラップした <see cref="VehicleBogieWheel"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
         public static VehicleBogieWheel FromSource(object src) => src is null ? null : new VehicleBogieWheel(src);
+
+        private static FastField VehicleLocationField;
+        /// <summary>
+        /// 自列車の位置情報を取得・設定します。
+        /// </summary>
+        public VehicleLocation VehicleLocation
+        {
+            get => VehicleLocation.FromSource(VehicleLocationField.GetValue(Src));
+            set => VehicleLocationField.SetValue(Src, value?.Src);
+        }
+
+        private static FastField TotalInertiaField;
+        /// <summary>
+        /// 自軌道を取得・設定します。
+        /// </summary>
+        public MyTrack MyTrack
+        {
+            get => MyTrack.FromSource(TotalInertiaField.GetValue(Src));
+            set => TotalInertiaField.SetValue(Src, value?.Src);
+        }
 
         private static FastField LocationInCarField;
         /// <summary>

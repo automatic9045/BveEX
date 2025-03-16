@@ -2017,6 +2017,8 @@
 	</Class>
 
 	<Class Wrapper="VehicleBogieWheel" Original="b7">
+		<Field WrapperProperty="VehicleLocation" Original="a" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="MyTrack" Original="c" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="LocationInCar" Original="d" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="X" Original="e" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="Y" Original="f" IsOriginalNonPublic="true"/>
