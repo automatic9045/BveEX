@@ -19,7 +19,12 @@ namespace BveTypes.ClassWrappers
 
         private static void LoadMembers()
         {
+            if (!(BveTypes is null)) return;
+            BveTypes = ClassWrapperInitializer.LazyInitialize();
+
             ClassMemberSet members = BveTypes.GetClassInfoOf<ValueEventArgs<T>>();
+
+            Constructor = members.GetSourceConstructor();
 
             ValueGetMethod = members.GetSourcePropertyGetterOf(nameof(Value));
         }
@@ -30,11 +35,7 @@ namespace BveTypes.ClassWrappers
         /// <param name="src">ラップするオリジナル オブジェクト。</param>
         protected ValueEventArgs(object src) : base(src)
         {
-            if (BveTypes is null)
-            {
-                BveTypes = ClassWrapperInitializer.LazyInitialize();
-                LoadMembers();
-            }
+            LoadMembers();
         }
 
         /// <summary>
@@ -44,6 +45,20 @@ namespace BveTypes.ClassWrappers
         /// <returns>オリジナル オブジェクトをラップした <see cref="ValueEventArgs{T}"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
         public static ValueEventArgs<T> FromSource(object src) => src is null ? null : new ValueEventArgs<T>(src);
+
+        private static FastConstructor Constructor;
+        /// <summary>
+        /// <see cref="ValueEventArgs{T}"/> クラスの新しいインスタンスを初期化します。
+        /// </summary>
+        /// <param name="value"></param>
+        public ValueEventArgs(T value) : this(ConstructOriginal(value))
+        {
+        }
+        private static object ConstructOriginal(T value)
+        {
+            LoadMembers();
+            return Constructor.Invoke(new object[] { value });
+        }
 
         private static FastMethod ValueGetMethod;
         /// <summary>
