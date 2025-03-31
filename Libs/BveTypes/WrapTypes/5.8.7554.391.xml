@@ -90,6 +90,8 @@
 			<Getter Original="c"/>
 			<Setter Original="a"/>
 		</Property>
+
+		<Method Wrapper="Dispose" WrapperParams="void" Original="Dispose"/>
 	</Class>
 
 	<Class Wrapper="AssistantBase" Original="cu">
@@ -107,6 +109,7 @@
 		<Method Wrapper="Draw" WrapperParams="void" Original="o"/>
 		<Method Wrapper="OnDeviceLost" WrapperParams="void" Original="s"/>
 		<Method Wrapper="OnDeviceReset" WrapperParams="void" Original="t"/>
+		<Method Wrapper="Dispose" WrapperParams="void" Original="Dispose"/>
 	</Class>
 
 	<Class Wrapper="AssistantSet" Original="ar">

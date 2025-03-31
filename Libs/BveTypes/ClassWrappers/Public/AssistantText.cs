@@ -29,6 +29,8 @@ namespace BveTypes.ClassWrappers
 
             TextGetMethod = members.GetSourcePropertyGetterOf(nameof(Text));
             TextSetMethod = members.GetSourcePropertySetterOf(nameof(Text));
+
+            DisposeMethod = members.GetSourceMethodOf(nameof(Dispose));
         }
 
         /// <summary>
@@ -93,5 +95,9 @@ namespace BveTypes.ClassWrappers
             get => TextGetMethod.Invoke(Src, null) as string;
             set => TextSetMethod.Invoke(Src, new object[] { value });
         }
+
+        private static FastMethod DisposeMethod;
+        /// <inheritdoc/>
+        public override void Dispose() => DisposeMethod.Invoke(Src, null);
     }
 }
