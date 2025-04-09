@@ -32,6 +32,9 @@ namespace BveTypes.ClassWrappers
             ObjectPassedEvent = members.GetSourceEventOf(nameof(ObjectPassed));
 
             InsertMethod = members.GetSourceMethodOf(nameof(Insert), new Type[] { typeof(MapObjectBase) });
+            GetNextMethod = members.GetSourceMethodOf(nameof(GetNext));
+            GoToAndGetNextMethod = members.GetSourceMethodOf(nameof(GoToAndGetNext));
+            GetCurrentMethod = members.GetSourceMethodOf(nameof(GetCurrent));
             GoToAndGetCurrentMethod = members.GetSourceMethodOf(nameof(GoToAndGetCurrent));
             GoToMethod1 = members.GetSourceMethodOf(nameof(GoTo), new Type[] { typeof(double) });
             GoToMethod2 = members.GetSourceMethodOf(nameof(GoTo), new Type[] { typeof(double), typeof(double) });
@@ -65,11 +68,8 @@ namespace BveTypes.ClassWrappers
         private static FastMethod CurrentIndexGetMethod;
         private static FastMethod CurrentIndexSetMethod;
         /// <summary>
-        /// この <see cref="MapObjectList"/> に関連付けられた現在のインデックスを取得・設定します。
+        /// 現在の距離程に対応するコレクションの要素のインデックスを取得・設定します。
         /// </summary>
-        /// <remarks>
-        /// 通常、この <see cref="MapObjectList"/> において自列車の距離程に対応する値を示します。
-        /// </remarks>
         public int CurrentIndex
         {
             get => (int)CurrentIndexGetMethod.Invoke(Src, null);
@@ -91,6 +91,37 @@ namespace BveTypes.ClassWrappers
         /// <param name="args">自列車が通過したマップ オブジェクト。</param>
         public void ObjectPassed_Invoke(ObjectPassedEventArgs args) => ObjectPassedEvent.Invoke(Src, new object[] { Src, args?.Src });
 
+        private static FastMethod GetNextMethod;
+        /// <summary>
+        /// 現在の距離程に対応するコレクションの要素の次を取得します。
+        /// </summary>
+        public MapObjectBase GetNext()
+        {
+            object src = GetNextMethod.Invoke(Src, null);
+            return CreateFromSource(src) as MapObjectBase;
+        }
+
+        private static FastMethod GoToAndGetNextMethod;
+        /// <summary>
+        /// 指定した距離程へ移動し、その距離程に対応するコレクションの要素の次を取得します。
+        /// </summary>
+        /// <param name="location">移動先の距離程 [m]。</param>
+        public MapObjectBase GoToAndGetNext(int location)
+        {
+            object src = GoToAndGetNextMethod.Invoke(Src, new object[] { location });
+            return CreateFromSource(src) as MapObjectBase;
+        }
+
+        private static FastMethod GetCurrentMethod;
+        /// <summary>
+        /// 現在の距離程に対応するコレクションの要素を取得します。
+        /// </summary>
+        public MapObjectBase GetCurrent()
+        {
+            object src = GetCurrentMethod.Invoke(Src, null);
+            return CreateFromSource(src) as MapObjectBase;
+        }
+
         private static FastMethod GoToAndGetCurrentMethod;
         /// <summary>
         /// 指定した距離程へ移動し、その距離程に対応するコレクションの要素を取得します。
@@ -99,7 +130,7 @@ namespace BveTypes.ClassWrappers
         public MapObjectBase GoToAndGetCurrent(double location)
         {
             object src = GoToAndGetCurrentMethod.Invoke(Src, new object[] { location });
-            return src is null ? null : (MapObjectBase)CreateFromSource(src);
+            return CreateFromSource(src) as MapObjectBase;
         }
 
         private static FastMethod InsertMethod;

@@ -1025,6 +1025,9 @@
 		<Event Wrapper="ObjectPassed" OriginalAddAccessor="b" OriginalRemoveAccessor="a" OriginalDelegateField="b"/>
 
 		<Method Wrapper="Insert" WrapperParams="ex:MapObjectBase" Original="a"/>
+		<Method Wrapper="GetNext" WrapperParams="void" Original="i"/>
+		<Method Wrapper="GoToAndGetNext" WrapperParams="System.Int32" Original="c"/>
+		<Method Wrapper="GetCurrent" WrapperParams="void" Original="k"/>
 		<Method Wrapper="GoToAndGetCurrent" WrapperParams="System.Double" Original="c"/>
 		<Method Wrapper="GoTo" WrapperParams="System.Double" Original="u"/>
 		<Method Wrapper="GoTo" WrapperParams="System.Double; System.Double" Original="ae" IsOriginalNonPublic="true"/>
