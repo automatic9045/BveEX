@@ -14,7 +14,7 @@ namespace BveTypes.ClassWrappers
     /// <summary>
     /// 変換行列を格納します。
     /// </summary>
-    public class Transform : MapObjectBase
+    public class Transform : ClassWrapperBase
     {
         [InitializeClassWrapper]
         private static void Initialize(BveTypeSet bveTypes)
