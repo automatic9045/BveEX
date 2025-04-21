@@ -2271,11 +2271,9 @@
 			<Getter Original="e"/>
 			<Setter Original="b"/>
 		</Property>
-		<Property Wrapper="BlockToCarCenterTransform">
-			<Getter Original="d"/>
-		</Property>
 
 		<Field WrapperProperty="PositionInBlock" Original="g" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="BlockToCarCenterTransform" Original="h" IsOriginalNonPublic="true"/>
 
 		<Method Wrapper="OnLocationChanged" WrapperParams="System.Object; ex:ValueEventArgs`1[System.Double]" Original="a" IsWrapperNonPublic="true" IsOriginalNonPublic="true"/>
 	</Class>
@@ -2396,6 +2394,14 @@
 		</Property>
 		<Property Wrapper="Positioner">
 			<Getter Original="i"/>
+		</Property>
+		<Property Wrapper="HalfOfCarLength">
+			<Getter Original="z"/>
+			<Setter Original="p"/>
+		</Property>
+		<Property Wrapper="HalfOfBogieDistance">
+			<Getter Original="u"/>
+			<Setter Original="g"/>
 		</Property>
 		<Property Wrapper="SpringHeight">
 			<Getter Original="ab"/>

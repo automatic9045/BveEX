@@ -34,6 +34,12 @@ namespace BveTypes.ClassWrappers
 
             PositionerGetMethod = members.GetSourcePropertyGetterOf(nameof(Positioner));
 
+            HalfOfCarLengthGetMethod = members.GetSourcePropertyGetterOf(nameof(HalfOfCarLength));
+            HalfOfCarLengthSetMethod = members.GetSourcePropertySetterOf(nameof(HalfOfCarLength));
+
+            HalfOfBogieDistanceGetMethod = members.GetSourcePropertyGetterOf(nameof(HalfOfBogieDistance));
+            HalfOfBogieDistanceSetMethod = members.GetSourcePropertySetterOf(nameof(HalfOfBogieDistance));
+
             SpringHeightGetMethod = members.GetSourcePropertyGetterOf(nameof(SpringHeight));
             SpringHeightSetMethod = members.GetSourcePropertySetterOf(nameof(SpringHeight));
 
@@ -127,6 +133,28 @@ namespace BveTypes.ClassWrappers
         /// 自列車をマップ上に配置するための機能を提供する <see cref="VehiclePositioner"/> を取得します。
         /// </summary>
         public VehiclePositioner Positioner => VehiclePositioner.FromSource(PositionerGetMethod.Invoke(Src, null));
+
+        private static FastMethod HalfOfCarLengthGetMethod;
+        private static FastMethod HalfOfCarLengthSetMethod;
+        /// <summary>
+        /// 車両長 [m] の半分、すなわち車両の先頭から中心までの距離を取得・設定します。
+        /// </summary>
+        public double HalfOfCarLength
+        {
+            get => (double)HalfOfCarLengthGetMethod.Invoke(Src, null);
+            set => HalfOfCarLengthSetMethod.Invoke(Src, new object[] { value });
+        }
+
+        private static FastMethod HalfOfBogieDistanceGetMethod;
+        private static FastMethod HalfOfBogieDistanceSetMethod;
+        /// <summary>
+        /// 台車中心間距離 [m] の半分を取得・設定します。
+        /// </summary>
+        public double HalfOfBogieDistance
+        {
+            get => (double)HalfOfBogieDistanceGetMethod.Invoke(Src, null);
+            set => HalfOfBogieDistanceSetMethod.Invoke(Src, new object[] { value });
+        }
 
         private static FastMethod SpringHeightGetMethod;
         private static FastMethod SpringHeightSetMethod;

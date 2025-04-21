@@ -31,9 +31,8 @@ namespace BveTypes.ClassWrappers
             HalfOfBogieDistanceGetMethod = members.GetSourcePropertyGetterOf(nameof(HalfOfBogieDistance));
             HalfOfBogieDistanceSetMethod = members.GetSourcePropertySetterOf(nameof(HalfOfBogieDistance));
 
-            BlockToCarCenterTransformGetMethod = members.GetSourcePropertyGetterOf(nameof(BlockToCarCenterTransform));
-
             PositionInBlockField = members.GetSourceFieldOf(nameof(PositionInBlock));
+            BlockToCarCenterTransformField = members.GetSourceFieldOf(nameof(BlockToCarCenterTransform));
 
             OnLocationChangedMethod = members.GetSourceMethodOf(nameof(OnLocationChanged));
         }
@@ -88,12 +87,6 @@ namespace BveTypes.ClassWrappers
             set => HalfOfBogieDistanceSetMethod.Invoke(Src, new object[] { value });
         }
 
-        private static FastMethod BlockToCarCenterTransformGetMethod;
-        /// <summary>
-        /// ワールド座標系を車両中心原点・車両前方を基準とした座標系に変換する行列を格納している <see cref="Transform"/> を取得します。
-        /// </summary>
-        public Transform BlockToCarCenterTransform => Transform.FromSource(BlockToCarCenterTransformGetMethod.Invoke(Src, null));
-
         private static FastField PositionInBlockField;
         /// <summary>
         /// 現在自列車が走行しているマップ ブロックの原点に対する、車両中心の位置ベクトル [m] を取得・設定します。
@@ -102,6 +95,16 @@ namespace BveTypes.ClassWrappers
         {
             get => (Vector3)PositionInBlockField.GetValue(Src);
             set => PositionInBlockField.SetValue(Src, value);
+        }
+
+        private static FastField BlockToCarCenterTransformField;
+        /// <summary>
+        /// ワールド座標系を車両中心原点・車両前方を基準とした座標系に変換する行列を格納している <see cref="Transform"/> を取得・設定します。
+        /// </summary>
+        public Transform BlockToCarCenterTransform
+        {
+            get => Transform.FromSource(BlockToCarCenterTransformField.GetValue(Src));
+            set => BlockToCarCenterTransformField.SetValue(Src, value?.Src);
         }
 
         private static FastMethod OnLocationChangedMethod;
