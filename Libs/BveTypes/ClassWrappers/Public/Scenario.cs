@@ -91,8 +91,8 @@ namespace BveTypes.ClassWrappers
         {
             get
             {
-                IDictionary dictionarySrc = TrainsGetMethod.Invoke(Src, null) as IDictionary;
-                return new WrappedSortedList<string, Train>(dictionarySrc);
+                object src = TrainsGetMethod.Invoke(Src, null);
+                return src is IDictionary dictionarySrc ? new WrappedSortedList<string, Train>(dictionarySrc) : null;
             }
         }
 
