@@ -29,6 +29,8 @@ namespace BveTypes.ClassWrappers
 
             MyTrackGetMethod = members.GetSourcePropertyGetterOf(nameof(MyTrack));
 
+            OtherTracksGetMethod = members.GetSourcePropertyGetterOf(nameof(OtherTracks));
+
             StructuresGetMethod = members.GetSourcePropertyGetterOf(nameof(Structures));
             StructuresField = members.GetSourceFieldOf(nameof(Structures));
 
@@ -70,6 +72,7 @@ namespace BveTypes.ClassWrappers
 
             DrawDistanceObjectsGetMethod = members.GetSourcePropertyGetterOf(nameof(DrawDistanceObjects));
 
+            GetPositionMethod = members.GetSourceMethodOf(nameof(GetPosition));
             GetTrackMatrixMethod = members.GetSourceMethodOf(nameof(GetTrackMatrix));
         }
 
@@ -108,6 +111,12 @@ namespace BveTypes.ClassWrappers
         /// 自軌道に関する情報を取得します。
         /// </summary>
         public MyTrack MyTrack => MyTrack.FromSource(MyTrackGetMethod.Invoke(Src, null));
+
+        private static FastMethod OtherTracksGetMethod;
+        /// <summary>
+        /// 他軌道のリストを取得します。
+        /// </summary>
+        public WrappedSortedList<string, OtherTrack> OtherTracks => new WrappedSortedList<string, OtherTrack>(OtherTracksGetMethod.Invoke(Src, null) as IDictionary);
 
         private static FastMethod StructuresGetMethod;
         private static FastField StructuresField;
@@ -275,6 +284,16 @@ namespace BveTypes.ClassWrappers
         /// DrawDistance.Change ステートメントにより設置された、最長描画距離を指定するためのオブジェクトのリストを取得します。
         /// </summary>
         public MapFunctionList DrawDistanceObjects => MapFunctionList.FromSource(DrawDistanceObjectsGetMethod.Invoke(Src, null));
+
+        private static FastMethod GetPositionMethod;
+        /// <summary>
+        /// 自軌道を基準とした座標系における、任意軌道上の相対座標を表す位置ベクトルを計算します。
+        /// </summary>
+        /// <param name="mapObject">計算対象とする軌道、およびその軌道上における相対座標を指定するためのマップ オブジェクト。</param>
+        /// <param name="location">計算対象とする距離程 [m]。</param>
+        /// <param name="baseLocation">基準点とする自軌道の距離程 [m]。</param>
+        /// <returns>距離程 <paramref name="baseLocation"/> の自軌道を基準点とした座標系における、<paramref name="mapObject"/>、<paramref name="location"/> が表す位置ベクトル。</returns>
+        public Vector3 GetPosition(LocatableMapObject mapObject, double location, double baseLocation) => (Vector3)GetPositionMethod.Invoke(Src, new object[] { mapObject?.Src, location, baseLocation });
 
         private static FastMethod GetTrackMatrixMethod;
         /// <summary>

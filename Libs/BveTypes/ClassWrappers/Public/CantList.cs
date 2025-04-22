@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using SlimDX;
+
 using FastMember;
 using TypeWrapping;
 
@@ -28,6 +30,12 @@ namespace BveTypes.ClassWrappers
 
             XGetMethod = members.GetSourcePropertyGetterOf(nameof(X));
             XSetMethod = members.GetSourcePropertySetterOf(nameof(X));
+
+            TranslationGetMethod = members.GetSourcePropertyGetterOf(nameof(Translation));
+            TranslationSetMethod = members.GetSourcePropertySetterOf(nameof(Translation));
+
+            RotationGetMethod = members.GetSourcePropertyGetterOf(nameof(Rotation));
+            RotationSetMethod = members.GetSourcePropertySetterOf(nameof(Rotation));
         }
 
         /// <summary>
@@ -77,6 +85,28 @@ namespace BveTypes.ClassWrappers
         {
             get => Physical.FromSource(XGetMethod.Invoke(Src, null));
             set => XSetMethod.Invoke(Src, new object[] { value?.Src });
+        }
+
+        private static FastMethod TranslationGetMethod;
+        private static FastMethod TranslationSetMethod;
+        /// <summary>
+        /// 平行移動成分の行列を取得・設定します。
+        /// </summary>
+        public Matrix Translation
+        {
+            get => (Matrix)TranslationGetMethod.Invoke(Src, null);
+            set => TranslationSetMethod.Invoke(Src, new object[] { value });
+        }
+
+        private static FastMethod RotationGetMethod;
+        private static FastMethod RotationSetMethod;
+        /// <summary>
+        /// 回転成分の行列を取得・設定します。
+        /// </summary>
+        public Matrix Rotation
+        {
+            get => (Matrix)RotationGetMethod.Invoke(Src, null);
+            set => RotationSetMethod.Invoke(Src, new object[] { value });
         }
     }
 }

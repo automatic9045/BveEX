@@ -387,6 +387,14 @@
 			<Getter Original="d"/>
 			<Setter Original="a"/>
 		</Property>
+		<Property Wrapper="Translation">
+			<Getter Original="b"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="Rotation">
+			<Getter Original="e"/>
+			<Setter Original="b"/>
+		</Property>
 	</Class>
 
 	<Class Wrapper="CarBrake" Original="d6">
@@ -886,6 +894,9 @@
 		<Property Wrapper="MyTrack">
 			<Getter Original="l"/>
 		</Property>
+		<Property Wrapper="OtherTracks">
+			<Getter Original="o"/>
+		</Property>
 		<Property Wrapper="Structures">
 			<Getter Original="y"/>
 		</Property>
@@ -950,6 +961,7 @@
 
 		<Field WrapperProperty="Structures" Original="d" IsOriginalNonPublic="true"/>
 
+		<Method Wrapper="GetPosition" WrapperParams="ex:LocatableMapObject; System.Double; System.Double" Original="b"/>
 		<Method Wrapper="GetTrackMatrix" WrapperParams="ex:LocatableMapObject; System.Double; System.Double" Original="a"/>
 	</Class>
 
@@ -1228,6 +1240,14 @@
 	</Class>
 
 	<Class Wrapper="OneLeverCab" Original="c1">
+	</Class>
+
+	<Class Wrapper="OtherTrack" Original="ei">
+		<Field WrapperProperty="X" Original="a" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Y" Original="b" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Cants" Original="c" IsOriginalNonPublic="true"/>
+
+		<Method Wrapper="GetPosition" WrapperParams="System.Double" Original="a"/>
 	</Class>
 
 	<Class Wrapper="Passenger" Original="a9">
@@ -1834,6 +1854,21 @@
 		<Field WrapperProperty="ArrivalTimeTextWidths" Original="f" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="DepartureTimeTextWidths" Original="g" IsOriginalNonPublic="true"/>
 		<Method Wrapper="Update" WrapperParams="void" Original="a" IsOriginalNonPublic="true"/>
+	</Class>
+
+	<Class Wrapper="TrackPosition" Original="cq">
+		<Property Wrapper="Displacement">
+			<Getter Original="a"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="Radius">
+			<Getter Original="b"/>
+			<Setter Original="b"/>
+		</Property>
+	</Class>
+
+	<Class Wrapper="TrackPositionList" Original="ay">
+		<Method Wrapper="GetValueAt" WrapperParams="System.Double" Original="a"/>
 	</Class>
 
 	<Class Wrapper="TractionMotor" Original="c7">
