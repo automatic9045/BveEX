@@ -26,7 +26,7 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// ラップされているオリジナルの <see cref="Grammar"/> 型オブジェクトを取得します。
         /// </summary>
-        public new Grammar Src => (Grammar)base.Src;
+        public new Grammar Src => base.Src as Grammar;
 
         /// <summary>
         /// オリジナル オブジェクトから <see cref="MapGrammar"/> クラスの新しいインスタンスを初期化します。
