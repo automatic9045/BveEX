@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BveEx.Extensions.MapStatements.Builtin
+namespace BveEx.Extensions.MapStatements.Builtin.Statements
 {
     internal interface IParser
     {

@@ -5,15 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 using BveEx.Extensions.LoadErrorManager;
-using BveEx.Extensions.MapStatements.Builtin.Statements;
 
-namespace BveEx.Extensions.MapStatements.Builtin
+namespace BveEx.Extensions.MapStatements.Builtin.Statements
 {
-    internal class BuiltinProcess
+    internal class BuiltinStatementSet
     {
         private readonly List<IParser> StatementParsers;
 
-        public BuiltinProcess(ILoadErrorManager loadErrorManager)
+        public BuiltinStatementSet(ILoadErrorManager loadErrorManager)
         {
             StatementParsers = new List<IParser>()
             {

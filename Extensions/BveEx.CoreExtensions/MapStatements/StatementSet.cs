@@ -16,7 +16,8 @@ using BveEx.PluginHost.Plugins;
 using BveEx.PluginHost.Plugins.Extensions;
 
 using BveEx.Extensions.LoadErrorManager;
-using BveEx.Extensions.MapStatements.Builtin;
+using BveEx.Extensions.MapStatements.Builtin.Statements;
+using BveEx.Extensions.MapStatements.Parsing;
 
 namespace BveEx.Extensions.MapStatements
 {
@@ -26,8 +27,9 @@ namespace BveEx.Extensions.MapStatements
     {
         private readonly HarmonyPatch ParsePatch;
         private readonly HarmonyPatch PostLoadPatch;
+        private readonly RawParserSet Parsers;
 
-        private BuiltinProcess BuiltinProcess;
+        private BuiltinStatementSet BuiltinStatements;
         private List<Statement> Statements = null;
 
         public override string Title { get; } = nameof(MapStatements);
@@ -53,7 +55,7 @@ namespace BveEx.Extensions.MapStatements
                     MapStatement source = instance.Statements.First(x => x.Clauses == clauses);
                     Statement statement = new Statement(source);
 
-                    BuiltinProcess.Parse(statement);
+                    BuiltinStatements.Parse(statement);
                     Statements.Add(statement);
                     StatementLoaded?.Invoke(this, new StatementLoadedEventArgs(statement, instance));
 
@@ -71,6 +73,8 @@ namespace BveEx.Extensions.MapStatements
                 return PatchInvokationResult.DoNothing(e);
             };
 
+            Parsers = new RawParserSet(BveHacker.BveTypes);
+
             BveHacker.ScenarioOpened += OnScenarioOpened;
             BveHacker.ScenarioClosed += OnScenarioClosed;
         }
@@ -78,13 +82,13 @@ namespace BveEx.Extensions.MapStatements
         private void OnScenarioOpened(ScenarioOpenedEventArgs e)
         {
             ILoadErrorManager loadErrorManager = Extensions.GetExtension<ILoadErrorManager>();
-            BuiltinProcess = new BuiltinProcess(loadErrorManager);
+            BuiltinStatements = new BuiltinStatementSet(loadErrorManager);
             Statements = new List<Statement>();
         }
 
         private void OnScenarioClosed(EventArgs e)
         {
-            BuiltinProcess = null;
+            BuiltinStatements = null;
             Statements = null;
         }
 
@@ -92,6 +96,7 @@ namespace BveEx.Extensions.MapStatements
         {
             ParsePatch.Dispose();
             PostLoadPatch.Dispose();
+            Parsers.Dispose();
         }
 
         public override void Tick(TimeSpan elapsed)
@@ -100,6 +105,8 @@ namespace BveEx.Extensions.MapStatements
 
         public IEnumerator<Statement> GetEnumerator() => Statements.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+        public void RegisterParser(RawParserBase parser) => Parsers.Add(parser);
 
         public Statement FindOfficialStatement(params ClauseFilter[] clauses) => FindOfficialStatements(clauses).FirstOrDefault();
         public IEnumerable<Statement> FindOfficialStatements(params ClauseFilter[] clauses) => Statements.Where(statement => statement.IsOfficialStatement(clauses));

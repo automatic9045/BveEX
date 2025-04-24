@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 using BveEx.PluginHost.Plugins.Extensions;
 
+using BveEx.Extensions.MapStatements.Parsing;
+
 namespace BveEx.Extensions.MapStatements
 {
     /// <summary>
@@ -22,6 +24,16 @@ namespace BveEx.Extensions.MapStatements
         /// マップの読込が完了したときに発生します。
         /// </summary>
         event EventHandler LoadingCompleted;
+
+        /// <summary>
+        /// 独自の文法をサポートする構文解析器を登録します。
+        /// </summary>
+        /// <remarks>
+        /// 独自の文法を追加すると、将来のアップデートで BVE 本体や BveEX 公式の文法と衝突する危険性があります。
+        /// この機能は可能な限り使わず、単純なマップステートメントを使用されることを強く推奨します。
+        /// </remarks>
+        /// <param name="parser">登録する構文解析器。</param>
+        void RegisterParser(RawParserBase parser);
 
         /// <summary>
         /// 指定された条件に一致する BveEX 公式のマップステートメントを検索し、その冒頭 1 つ目を取得します。

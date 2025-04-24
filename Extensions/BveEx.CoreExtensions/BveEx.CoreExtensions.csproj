@@ -37,6 +37,10 @@
       <HintPath>..\..\packages\Lib.Harmony.2.3.3\lib\net48\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Irony, Version=1.1.0.0, Culture=neutral, PublicKeyToken=ca48ace7223ead47, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Irony.1.1.0\lib\net40\Irony.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Mackoy.IInputDevice">
       <HintPath>..\..\LocalReferences\BveTs\Mackoy.IInputDevice.DLL</HintPath>
       <Private>False</Private>
@@ -80,13 +84,20 @@
     <Compile Include="LoadErrorManager\ILoadErrorManager.cs" />
     <Compile Include="LoadErrorManager\LoadErrorList.cs" />
     <Compile Include="LoadErrorManager\LoadErrorManager.cs" />
-    <Compile Include="MapStatements\Builtin\BuiltinProcess.cs" />
-    <Compile Include="MapStatements\Builtin\IParser.cs" />
+    <Compile Include="MapStatements\Builtin\Raw\BuiltinRawParserSet.cs" />
+    <Compile Include="MapStatements\Builtin\Statements\BuiltinStatementSet.cs" />
+    <Compile Include="MapStatements\Builtin\Raw\Include.cs" />
+    <Compile Include="MapStatements\Builtin\Raw\If.cs" />
+    <Compile Include="MapStatements\Builtin\Raw\Operators.cs" />
+    <Compile Include="MapStatements\Builtin\Statements\IParser.cs" />
     <Compile Include="MapStatements\Builtin\Statements\Dialog.cs" />
     <Compile Include="MapStatements\Builtin\Statements\Error.cs" />
     <Compile Include="MapStatements\ClauseFilter.cs" />
     <Compile Include="MapStatements\ClauseType.cs" />
+    <Compile Include="MapStatements\Parsing\RawParserSet.cs" />
+    <Compile Include="MapStatements\Parsing\RawParserBase.cs" />
     <Compile Include="MapStatements\IStatementSet.cs" />
+    <Compile Include="MapStatements\Parsing\TerminalSet.cs" />
     <Compile Include="MapStatements\Statement.cs" />
     <Compile Include="MapStatements\StatementLoadedEventArgs.cs" />
     <Compile Include="MapStatements\StatementSet.cs" />
