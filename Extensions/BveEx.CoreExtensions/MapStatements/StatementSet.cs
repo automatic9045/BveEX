@@ -15,6 +15,7 @@ using BveEx.PluginHost;
 using BveEx.PluginHost.Plugins;
 using BveEx.PluginHost.Plugins.Extensions;
 
+using BveEx.Extensions.LoadErrorManager;
 using BveEx.Extensions.MapStatements.Builtin;
 
 namespace BveEx.Extensions.MapStatements
@@ -76,7 +77,8 @@ namespace BveEx.Extensions.MapStatements
 
         private void OnScenarioOpened(ScenarioOpenedEventArgs e)
         {
-            BuiltinProcess = new BuiltinProcess();
+            ILoadErrorManager loadErrorManager = Extensions.GetExtension<ILoadErrorManager>();
+            BuiltinProcess = new BuiltinProcess(loadErrorManager);
             Statements = new List<Statement>();
         }
 

@@ -83,6 +83,7 @@
     <Compile Include="MapStatements\Builtin\BuiltinProcess.cs" />
     <Compile Include="MapStatements\Builtin\IParser.cs" />
     <Compile Include="MapStatements\Builtin\Statements\Dialog.cs" />
+    <Compile Include="MapStatements\Builtin\Statements\Error.cs" />
     <Compile Include="MapStatements\ClauseFilter.cs" />
     <Compile Include="MapStatements\ClauseType.cs" />
     <Compile Include="MapStatements\IStatementSet.cs" />

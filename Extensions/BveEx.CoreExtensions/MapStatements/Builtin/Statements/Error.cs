@@ -3,16 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 using BveTypes.ClassWrappers;
 
+using BveEx.Extensions.LoadErrorManager;
+
 namespace BveEx.Extensions.MapStatements.Builtin.Statements
 {
-    internal class Dialog : IParser
+    internal class Error : IParser
     {
-        private static readonly ClauseFilter RootFilter = ClauseFilter.Element("Dialog", 0);
-        private static readonly ClauseFilter ShowFilter = ClauseFilter.Function("Show", 1);
+        private static readonly ClauseFilter RootFilter = ClauseFilter.Element("Error", 0);
+        private static readonly ClauseFilter ThrowFilter = ClauseFilter.Function("Throw", 1);
+
+
+        private readonly ILoadErrorManager LoadErrorManager;
+
+        public Error(ILoadErrorManager loadErrorManager)
+        {
+            LoadErrorManager = loadErrorManager;
+        }
 
         public bool CanParse(Statement statement) => statement.IsOfficialStatement(RootFilter);
 
@@ -22,9 +31,10 @@ namespace BveEx.Extensions.MapStatements.Builtin.Statements
             if (clauses.Count != 3) throw new SyntaxException(statement);
             if (clauses[0].Keys.Count != 0) throw new SyntaxException(statement);
 
-            if (statement.IsOfficialStatement(RootFilter, ShowFilter))
+            if (statement.IsOfficialStatement(RootFilter, ThrowFilter))
             {
-                MessageBox.Show(clauses[2].Args[0].ToString());
+                MapStatementClause firstClause = statement.Source.Clauses[0];
+                LoadErrorManager.Throw(clauses[2].Args[0].ToString(), statement.Source.FileName, firstClause.LineIndex, firstClause.CharIndex);
             }
             else
             {
