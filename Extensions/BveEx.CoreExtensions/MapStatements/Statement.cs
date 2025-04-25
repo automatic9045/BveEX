@@ -18,9 +18,18 @@ namespace BveEx.Extensions.MapStatements
         /// </summary>
         public MapStatement Source { get; }
 
-        internal Statement(MapStatement source)
+        /// <summary>
+        /// このステートメントのソースを、<c>ex_using</c> 句による補完を行う前の形で取得します。
+        /// </summary>
+        /// <remarks>
+        /// 補完をしていない場合は <see cref="Source"/> と同じオブジェクトを返します。
+        /// </remarks>
+        public MapStatement OriginalSource { get; }
+
+        internal Statement(MapStatement source, MapStatement originalSource)
         {
             Source = source;
+            OriginalSource = originalSource;
         }
 
         /// <inheritdoc/>

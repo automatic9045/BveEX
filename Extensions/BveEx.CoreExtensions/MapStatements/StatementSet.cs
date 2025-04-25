@@ -27,7 +27,7 @@ namespace BveEx.Extensions.MapStatements
     {
         private readonly HarmonyPatch ParsePatch;
         private readonly HarmonyPatch PostLoadPatch;
-        private readonly RawParserSet Parsers;
+        private readonly RawParserSet RawParsers;
 
         private BuiltinStatementSet BuiltinStatements;
         private List<Statement> Statements = null;
@@ -46,20 +46,59 @@ namespace BveEx.Extensions.MapStatements
             ParsePatch = HarmonyPatch.Patch(nameof(MapStatements), parseStatementMethod.Source, PatchType.Prefix);
             ParsePatch.Invoked += (sender, e) =>
             {
+                MapLoader instance = MapLoader.FromSource(e.Instance);
                 WrappedList<MapStatementClause> clauses = WrappedList<MapStatementClause>.FromSource((IList)e.Args[0]);
 
-                if (0 < clauses.Count && clauses[0].Name.ToLowerInvariant() == "bveex")
+                if (0 < clauses.Count)
                 {
-                    MapLoader instance = MapLoader.FromSource(e.Instance);
+                    string firstClauseName = clauses[0].Name.ToLowerInvariant();
 
-                    MapStatement source = instance.Statements.First(x => x.Clauses == clauses);
-                    Statement statement = new Statement(source);
+                    if (firstClauseName[0] == '_')
+                    {
+                        Uri mapUri = new Uri(instance.FilePath, UriKind.Absolute);
+                        IReadOnlyDictionary<string, IReadOnlyList<string>> usingChains = RawParsers.GetUsingChains(mapUri);
 
-                    BuiltinStatements.Parse(statement);
-                    Statements.Add(statement);
-                    StatementLoaded?.Invoke(this, new StatementLoadedEventArgs(statement, instance));
+                        if (usingChains.TryGetValue(firstClauseName, out IReadOnlyList<string> original))
+                        {
+                            MapStatement source = instance.Statements.First(x => x.Clauses == clauses);
+                            MapStatement fixedSource = new MapStatement(source.Location, new WrappedList<MapStatementClause>(original.Count + source.Clauses.Count - 1), source.FileName);
 
-                    return new PatchInvokationResult(SkipModes.SkipOriginal);
+                            foreach (string clauseName in original)
+                            {
+                                MapStatementClause clause = new MapStatementClause(clauseName, source.Clauses[0].LineIndex, source.Clauses[0].CharIndex);
+                                fixedSource.Clauses.Add(clause);
+                            }
+
+                            MapStatementClause originalLastClause = fixedSource.Clauses[fixedSource.Clauses.Count - 1];
+                            originalLastClause.Keys = source.Clauses[0].Keys;
+
+                            foreach (MapStatementClause clause in source.Clauses.Skip(1))
+                            {
+                                fixedSource.Clauses.Add(clause);
+                            }
+
+                            RegisterStatement(fixedSource, source);
+
+                            return new PatchInvokationResult(SkipModes.SkipOriginal);
+                        }
+                    }
+                    else if (firstClauseName == "bveex")
+                    {
+                        MapStatement source = instance.Statements.First(x => x.Clauses == clauses);
+                        RegisterStatement(source, source);
+
+                        return new PatchInvokationResult(SkipModes.SkipOriginal);
+                    }
+
+
+                    void RegisterStatement(MapStatement source, MapStatement originalSource)
+                    {
+                        Statement statement = new Statement(source, originalSource);
+
+                        BuiltinStatements.Parse(statement);
+                        Statements.Add(statement);
+                        StatementLoaded?.Invoke(this, new StatementLoadedEventArgs(statement, instance));
+                    }
                 }
 
                 return PatchInvokationResult.DoNothing(e);
@@ -73,7 +112,7 @@ namespace BveEx.Extensions.MapStatements
                 return PatchInvokationResult.DoNothing(e);
             };
 
-            Parsers = new RawParserSet(BveHacker.BveTypes);
+            RawParsers = new RawParserSet(BveHacker.BveTypes);
 
             BveHacker.ScenarioOpened += OnScenarioOpened;
             BveHacker.ScenarioClosed += OnScenarioClosed;
@@ -96,7 +135,7 @@ namespace BveEx.Extensions.MapStatements
         {
             ParsePatch.Dispose();
             PostLoadPatch.Dispose();
-            Parsers.Dispose();
+            RawParsers.Dispose();
         }
 
         public override void Tick(TimeSpan elapsed)
@@ -106,7 +145,7 @@ namespace BveEx.Extensions.MapStatements
         public IEnumerator<Statement> GetEnumerator() => Statements.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        public void RegisterParser(RawParserBase parser) => Parsers.Add(parser);
+        public void RegisterParser(RawParserBase parser) => RawParsers.Add(parser);
 
         public Statement FindOfficialStatement(params ClauseFilter[] clauses) => FindOfficialStatements(clauses).FirstOrDefault();
         public IEnumerable<Statement> FindOfficialStatements(params ClauseFilter[] clauses) => Statements.Where(statement => statement.IsOfficialStatement(clauses));

@@ -27,12 +27,13 @@ namespace BveEx.Extensions.MapStatements.Parsing
         private readonly HarmonyPatch CalculateOperatorPatch;
         private readonly HarmonyPatch MapGrammarCtorPatch;
 
+        private readonly BuiltinRawParserSet Builtin;
         private readonly List<RawParserBase> Items;
 
         public RawParserSet(BveTypeSet bveTypes)
         {
-            BuiltinRawParserSet builtin = new BuiltinRawParserSet(ParseNode);
-            Items = new List<RawParserBase>(builtin.Items);
+            Builtin = new BuiltinRawParserSet(ParseNode);
+            Items = new List<RawParserBase>(Builtin.Items);
 
 
             ClassMemberSet mapParserMembers = bveTypes.GetClassInfoOf<MapParser>();
@@ -226,5 +227,7 @@ namespace BveEx.Extensions.MapStatements.Parsing
         }
 
         public void Add(RawParserBase parser) => Items.Add(parser);
+
+        public IReadOnlyDictionary<string, IReadOnlyList<string>> GetUsingChains(Uri mapUri) => Builtin.GetUsingChains(mapUri);
     }
 }
