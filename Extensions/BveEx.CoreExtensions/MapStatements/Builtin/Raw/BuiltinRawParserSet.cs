@@ -25,6 +25,7 @@ namespace BveEx.Extensions.MapStatements.Builtin.Raw
             {
                 new If(parseNode),
                 new Include(),
+                new Loop(parseNode),
                 new Operators(),
                 Using,
             };

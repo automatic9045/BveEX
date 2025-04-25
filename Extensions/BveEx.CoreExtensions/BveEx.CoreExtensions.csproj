@@ -85,6 +85,7 @@
     <Compile Include="LoadErrorManager\LoadErrorList.cs" />
     <Compile Include="LoadErrorManager\LoadErrorManager.cs" />
     <Compile Include="MapStatements\Builtin\Raw\BuiltinRawParserSet.cs" />
+    <Compile Include="MapStatements\Builtin\Raw\Loop.cs" />
     <Compile Include="MapStatements\Builtin\Statements\BuiltinStatementSet.cs" />
     <Compile Include="MapStatements\Builtin\Raw\Include.cs" />
     <Compile Include="MapStatements\Builtin\Raw\If.cs" />
