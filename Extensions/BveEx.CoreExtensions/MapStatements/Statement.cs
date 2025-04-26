@@ -93,7 +93,7 @@ namespace BveEx.Extensions.MapStatements
         {
             ClauseFilter[] userClauses = new ClauseFilter[]
             {
-                new ClauseFilter("User", ClauseType.Element), new ClauseFilter(userName, ClauseType.Element),
+                ClauseFilter.Element("User", 0), ClauseFilter.Element(userName, 0),
             };
 
             return FilterMatches(userClauses.Concat(filters));
