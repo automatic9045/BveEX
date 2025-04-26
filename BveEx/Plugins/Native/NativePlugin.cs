@@ -22,6 +22,8 @@ namespace BveEx.Plugins.Native
         private readonly INative Native;
         private readonly Library Library;
 
+        private bool IsChangingAtsHandles = false;
+
         public override string Name { get; }
         public override string Title { get; } = "(Native)";
         public override string Version { get; }
@@ -65,9 +67,9 @@ namespace BveEx.Plugins.Native
         {
             AtsPlugin atsPlugin = e.Scenario.Vehicle.Instruments.AtsPlugin;
 
-            atsPlugin.Handles.PowerChanged += OnPowerChanged;
-            atsPlugin.Handles.BrakeChanged += OnBrakeChanged;
-            atsPlugin.Handles.ReverserChanged += OnReverserChanged;
+            atsPlugin.AtsHandles.PowerChanged += OnPowerChanged;
+            atsPlugin.AtsHandles.BrakeChanged += OnBrakeChanged;
+            atsPlugin.AtsHandles.ReverserChanged += OnReverserChanged;
         }
 
         private void OnLoaded(object sender, EventArgs e)
@@ -86,9 +88,18 @@ namespace BveEx.Plugins.Native
         }
 
         private void OnStarted(object sender, StartedEventArgs e) => Library.Initialize?.Invoke((int)e.DefaultBrakePosition);
-        private void OnPowerChanged(object sender, ValueEventArgs<int> e) => Library.SetPower?.Invoke(((HandleSet)sender).PowerNotch);
-        private void OnBrakeChanged(object sender, ValueEventArgs<int> e) => Library.SetBrake?.Invoke(((HandleSet)sender).BrakeNotch);
-        private void OnReverserChanged(object sender, ValueEventArgs<int> e) => Library.SetReverser?.Invoke((int)((HandleSet)sender).ReverserPosition);
+        private void OnPowerChanged(object sender, ValueEventArgs<int> e)
+        {
+            if (!IsChangingAtsHandles) Library.SetPower?.Invoke(((HandleSet)sender).PowerNotch);
+        }
+        private void OnBrakeChanged(object sender, ValueEventArgs<int> e)
+        {
+            if (!IsChangingAtsHandles) Library.SetBrake?.Invoke(((HandleSet)sender).BrakeNotch);
+        }
+        private void OnReverserChanged(object sender, ValueEventArgs<int> e)
+        {
+            if (!IsChangingAtsHandles) Library.SetReverser?.Invoke((int)((HandleSet)sender).ReverserPosition);
+        }
         private void OnKeyDown(object sender, AtsKeyEventArgs e) => Library.KeyDown?.Invoke((int)e.KeyName);
         private void OnKeyUp(object sender, AtsKeyEventArgs e) => Library.KeyUp?.Invoke((int)e.KeyName);
         private void OnHornBlown(object sender, HornBlownEventArgs e) => Library.HornBlow?.Invoke((int)e.HornType);
@@ -122,15 +133,20 @@ namespace BveEx.Plugins.Native
                 SapPressure = Native.VehicleState.SapPressure,
                 Current = Native.VehicleState.Current,
             };
+
             AtsPlugin atsPlugin = BveHacker.Scenario.Vehicle.Instruments.AtsPlugin;
 
             Imports.Handles handles = Library.Elapse.Invoke(vehicleState, atsPlugin.PanelArray, atsPlugin.SoundArray);
 
-            HandleSet atsHandles = BveHacker.Scenario.Vehicle.Instruments.AtsPlugin.AtsHandles;
+            IsChangingAtsHandles = true;
+
+            HandleSet atsHandles = atsPlugin.AtsHandles;
             atsHandles.PowerNotch = handles.Power;
             atsHandles.BrakeNotch = handles.Brake;
             atsHandles.ReverserPosition = (ReverserPosition)handles.Reverser;
             atsHandles.ConstantSpeedMode = (ConstantSpeedMode)handles.ConstantSpeed;
+
+            IsChangingAtsHandles = false;
         }
     }
 }
