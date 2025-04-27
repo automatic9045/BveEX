@@ -58,7 +58,7 @@ namespace BveTypes.ClassWrappers
         /// <param name="tiltOptions">傾斜オプション。</param>
         /// <param name="source">再生するサウンド。</param>
         public Sound3DObject(double location, string trackKey, double x, double y, int tiltOptions, Sound source)
-            : this(Constructor.Invoke(new object[] { location, trackKey, x, y, tiltOptions, source }))
+            : this(Constructor.Invoke(new object[] { location, trackKey, x, y, tiltOptions, source.Src }))
         {
         }
 
