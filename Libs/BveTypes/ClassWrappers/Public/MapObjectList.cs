@@ -29,7 +29,9 @@ namespace BveTypes.ClassWrappers
             CurrentIndexGetMethod = members.GetSourcePropertyGetterOf(nameof(CurrentIndex));
             CurrentIndexSetMethod = members.GetSourcePropertySetterOf(nameof(CurrentIndex));
 
-            ObjectPassedEvent = members.GetSourceEventOf(nameof(ObjectPassed));
+            ObjectPassedEvent = new WrapperEvent<ObjectPassedEventHandler>(
+                members.GetSourceEventOf(nameof(ObjectPassed)),
+                x => (sender, e) => x?.Invoke(FromSource(sender), ObjectPassedEventArgs.FromSource(e)));
 
             InsertMethod = members.GetSourceMethodOf(nameof(Insert), new Type[] { typeof(MapObjectBase) });
             GetNextMethod = members.GetSourceMethodOf(nameof(GetNext));
@@ -76,7 +78,7 @@ namespace BveTypes.ClassWrappers
             set => CurrentIndexSetMethod.Invoke(Src, new object[] { value });
         }
 
-        private static FastEvent ObjectPassedEvent;
+        private static WrapperEvent<ObjectPassedEventHandler> ObjectPassedEvent;
         /// <summary>
         /// <see cref="CurrentIndex"/> の値が変更されたときに発生します。
         /// </summary>
@@ -89,7 +91,7 @@ namespace BveTypes.ClassWrappers
         /// <see cref="ObjectPassed"/> イベントを実行します。
         /// </summary>
         /// <param name="args">自列車が通過したマップ オブジェクト。</param>
-        public void ObjectPassed_Invoke(ObjectPassedEventArgs args) => ObjectPassedEvent.Invoke(Src, new object[] { Src, args?.Src });
+        public void ObjectPassed_Invoke(ObjectPassedEventArgs args) => ObjectPassedEvent.Invoke(Src, args);
 
         private static FastMethod GetNextMethod;
         /// <summary>
