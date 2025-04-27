@@ -1,0 +1,10 @@
+BveTs Scenario 2.00 : UTF-8
+
+Title = 普通 一橋→六合【BveEX オリジナルマップ文法サンプル】
+Route = BveEx.Samples\Maps\Basic\Samples\MapGrammar\Map.txt
+RouteTitle = ★BveEX サンプル
+Vehicle = BveEx.Samples\Vehicles\Basic\Vehicle_Simple.txt
+VehicleTitle = BveEX 搭載サンプル車両
+Author = おーとま (automatic9045)
+Image = BveEx.Samples\Thumbnails\Basic\Default.png
+Comment = マップファイルで BveEX オリジナルの文法 (if 文、while 文、using 文、演算子、デバッグ用ダイアログ構文、エラー発生構文) を使用するサンプルです。
