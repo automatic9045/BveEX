@@ -24,7 +24,7 @@
     <DocumentationFile>bin\Debug\BveTypes.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
+    <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -33,14 +33,15 @@
     <DocumentationFile>bin\Release\BveTypes.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Irony, Version=1.5.3.0, Culture=neutral, PublicKeyToken=ca48ace7223ead47, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Irony.1.5.3\lib\netstandard2.0\Irony.dll</HintPath>
+    <Reference Include="Irony, Version=1.1.0.0, Culture=neutral, PublicKeyToken=ca48ace7223ead47, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Irony.1.1.0\lib\net40\Irony.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Mackoy.IInputDevice">
-      <HintPath>..\..\..\..\..\..\..\Program Files\mackoy\BveTs6\Mackoy.IInputDevice.DLL</HintPath>
+      <HintPath>..\..\LocalReferences\BveTs\Mackoy.IInputDevice.DLL</HintPath>
     </Reference>
     <Reference Include="Mackoy.XmlInterfaces">
-      <HintPath>..\..\..\..\..\..\..\Program Files\mackoy\BveTs6\Mackoy.XmlInterfaces.DLL</HintPath>
+      <HintPath>..\..\LocalReferences\BveTs\Mackoy.XmlInterfaces.DLL</HintPath>
     </Reference>
     <Reference Include="SlimDX, Version=4.0.13.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9, processorArchitecture=x86">
       <HintPath>..\..\packages\SlimDX.4.0.13.44\lib\NET40\SlimDX.dll</HintPath>
