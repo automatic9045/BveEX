@@ -30,7 +30,7 @@ Station.Load('Stations.csv');
 	// while 文も C 言語調に記述します。ただし、while → ex_while としてください。
 	$i = 0;
 	ex_while ($i < 5) {
-		BveEx.Dialog.Show('5 回ループします。' + $i + 1 + ' 回目');
+		BveEx.Dialog.Show('5 回ループします。' + ($i + 1) + ' 回目');
 		$i = $i + 1;
 	}
 
@@ -86,6 +86,6 @@ Station.Load('Stations.csv');
 400;
 	// BveEx.Error.Throw 構文によって、オリジナルのエラーを発生させることができます。
 	$one = 1;
-	if ($one != 1) {
-		BveEx.Error.Throw();
+	ex_if ($one != 1) {
+		BveEx.Error.Throw('マップ変数 $one に 1 以外を設定することはできません。');
 	}
