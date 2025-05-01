@@ -52,5 +52,7 @@ namespace FastMember.PInvoke
 
         public override object Invoke(object instance, object[] args) 
             => IsCompiled ? CompiledMethod.Invoke(instance, args) : throw new InvalidOperationException(Resources.Value.CannotCallBeforeCompile.Value);
+
+        public override object InvokeDeclaredOnly(object instance, object[] args) => throw new NotSupportedException();
     }
 }

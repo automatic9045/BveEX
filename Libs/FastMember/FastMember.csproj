@@ -44,6 +44,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MethodInfoExtensions.cs" />
     <Compile Include="FastConstructor.cs" />
     <Compile Include="FastConstructor.Generic.cs" />
     <Compile Include="FastConstructor.NonGeneric.cs" />

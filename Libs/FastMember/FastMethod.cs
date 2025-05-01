@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
+using System.Reflection.Emit;
 using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 
 namespace FastMember
 {
@@ -15,5 +17,7 @@ namespace FastMember
             => source.DeclaringType.IsGenericTypeDefinition ? new Generic(source) : new NonGeneric(source) as FastMethod;
 
         public abstract object Invoke(object instance, object[] args);
+
+        public abstract object InvokeDeclaredOnly(object instance, object[] args);
     }
 }

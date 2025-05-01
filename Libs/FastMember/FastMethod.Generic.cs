@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -37,6 +38,7 @@ namespace FastMember
 
             private readonly FastCache<object, Type[]> GenericTypeArgumentCache = new FastCache<object, Type[]>();
             private readonly FastCache<Type[], FastMethod> MethodCache = new FastCache<Type[], FastMethod>();
+            private readonly FastCache<FastMethod, DynamicMethod> DynamicMethodCache = new FastCache<FastMethod, DynamicMethod>();
 
             public override MethodInfo Source { get; }
 
@@ -49,6 +51,21 @@ namespace FastMember
             {
                 if (instance is null) throw new NotImplementedException();
 
+                FastMethod method = GetMethodFor(instance);
+                return method.Invoke(instance, args);
+            }
+
+            public override object InvokeDeclaredOnly(object instance, object[] args)
+            {
+                if (instance is null) throw new NotImplementedException();
+
+                FastMethod method = GetMethodFor(instance);
+                DynamicMethod dynamicMethod = DynamicMethodCache.GetOrAdd(method, _ => method.Source.ToDeclaredOnly());
+                return dynamicMethod.Invoke(instance, args);
+            }
+
+            private FastMethod GetMethodFor(object instance)
+            {
                 Type[] genericTypeArguments = GenericTypeArgumentCache.GetOrAdd(instance, _ =>
                 {
                     Type type = instance.GetType();
@@ -70,7 +87,7 @@ namespace FastMember
                     return result;
                 });
 
-                return method.Invoke(instance, args);
+                return method;
             }
         }
     }
