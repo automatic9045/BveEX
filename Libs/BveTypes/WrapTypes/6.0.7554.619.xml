@@ -1173,6 +1173,13 @@
 		<Method Wrapper="GetTransform" WrapperParams="System.Double; System.Double" Original="b"/>
 	</Class>
 
+	<Class Wrapper="MyTrackAlignment" Original="cl">
+		<Field WrapperProperty="Curvature" Original="c" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Gradient" Original="d" IsOriginalNonPublic="true"/>
+
+		<Method Wrapper="GetCarCenterGradient" WrapperParams="void" Original="f"/>
+	</Class>
+
 	<Class Wrapper="Needle" Original="cb">
 		<Property Wrapper="Origin">
 			<Setter Original="a"/>
@@ -2131,6 +2138,7 @@
 			<Setter Original="a"/>
 		</Property>
 
+		<Field WrapperProperty="TrackAlignment" Original="g" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="TotalMass" Original="i" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="TotalInertia" Original="j" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="MassRatio" Original="k" IsOriginalNonPublic="true"/>

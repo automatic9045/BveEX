@@ -45,6 +45,7 @@ namespace BveTypes.ClassWrappers
             FirstCarGetMethod = members.GetSourcePropertyGetterOf(nameof(FirstCar));
             FirstCarSetMethod = members.GetSourcePropertySetterOf(nameof(FirstCar));
 
+            TrackAlignmentField = members.GetSourceFieldOf(nameof(TrackAlignment));
             TotalMassField = members.GetSourceFieldOf(nameof(TotalMass));
             TotalInertiaField = members.GetSourceFieldOf(nameof(TotalInertia));
             MassRatioField = members.GetSourceFieldOf(nameof(MassRatio));
@@ -176,6 +177,16 @@ namespace BveTypes.ClassWrappers
         {
             get => CarInfo.FromSource(FirstCarGetMethod.Invoke(Src, null));
             set => FirstCarSetMethod.Invoke(Src, new object[] { value?.Src });
+        }
+
+        private static FastField TrackAlignmentField;
+        /// <summary>
+        /// 自列車の軌道形状を取得・設定します。
+        /// </summary>
+        public MyTrackAlignment TrackAlignment
+        {
+            get => MyTrackAlignment.FromSource(TrackAlignmentField.GetValue(Src));
+            set => TrackAlignmentField.SetValue(Src, value?.Src);
         }
 
         private static FastField TotalMassField;

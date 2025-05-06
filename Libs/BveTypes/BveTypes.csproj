@@ -103,6 +103,7 @@
     <Compile Include="ClassWrappers\Public\MapStatement.cs" />
     <Compile Include="ClassWrappers\Public\MapStatementClause.cs" />
     <Compile Include="ClassWrappers\Public\MapStatementList.cs" />
+    <Compile Include="ClassWrappers\Public\MyTrackAlignment.cs" />
     <Compile Include="ClassWrappers\Public\Needle.cs" />
     <Compile Include="ClassWrappers\Public\OtherTrack.cs" />
     <Compile Include="ClassWrappers\Public\PilotLamp.cs" />
