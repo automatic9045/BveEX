@@ -238,6 +238,7 @@
     <Compile Include="ClassWrappers\Public\VehiclePositioner.cs" />
     <Compile Include="ClassWrappers\Public\VehicleStateStore.cs" />
     <Compile Include="ClassWrappers\Public\VehicleStep.cs" />
+    <Compile Include="ClassWrappers\Public\VehicleStepper.cs" />
     <Compile Include="ClassWrappers\Public\VehicleStepSet.cs" />
     <Compile Include="ClassWrappers\Public\VehicleVibration.cs" />
     <Compile Include="ClassWrappers\Public\StopPositionGauge.cs" />

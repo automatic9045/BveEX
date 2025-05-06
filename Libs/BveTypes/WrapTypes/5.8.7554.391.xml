@@ -2401,6 +2401,11 @@
 		</Property>
 	</Class>
 
+	<Class Wrapper="VehicleStepper" Original="am">
+		<Method Wrapper="Initialize" WrapperParams="void" Original="n"/>
+		<Method Wrapper="Tick" WrapperParams="System.Double" Original="ag"/>
+	</Class>
+
 	<Class Wrapper="VehicleStepSet" Original="fw">
 		<Property Wrapper="StepCount">
 			<Getter Original="b"/>
