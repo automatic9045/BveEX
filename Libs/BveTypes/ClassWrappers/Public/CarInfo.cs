@@ -45,7 +45,12 @@ namespace BveTypes.ClassWrappers
             ShoeFrictionCGetMethod = members.GetSourcePropertyGetterOf(nameof(ShoeFrictionC));
             ShoeFrictionCSetMethod = members.GetSourcePropertySetterOf(nameof(ShoeFrictionC));
 
+            PowerCreapField = members.GetSourceFieldOf(nameof(PowerCreap));
+            BrakeCreapField = members.GetSourceFieldOf(nameof(BrakeCreap));
             IsSlippingField = members.GetSourceFieldOf(nameof(IsSlipping));
+
+            UpdateCreapMethod = members.GetSourceMethodOf(nameof(UpdateCreap));
+            TickMethod = members.GetSourceMethodOf(nameof(Tick));
         }
 
         /// <summary>
@@ -162,6 +167,26 @@ namespace BveTypes.ClassWrappers
             set => ShoeFrictionCSetMethod.Invoke(Src, new object[] { value });
         }
 
+        private static FastField PowerCreapField;
+        /// <summary>
+        /// 力行による縦クリープ力 [N] を取得・設定します。
+        /// </summary>
+        public double PowerCreap
+        {
+            get => (double)PowerCreapField.GetValue(Src);
+            set => PowerCreapField.SetValue(Src, value);
+        }
+
+        private static FastField BrakeCreapField;
+        /// <summary>
+        /// 制動による縦クリープ力 [N] を取得・設定します。
+        /// </summary>
+        public double BrakeCreap
+        {
+            get => (double)BrakeCreapField.GetValue(Src);
+            set => BrakeCreapField.SetValue(Src, value);
+        }
+
         private static FastField IsSlippingField;
         /// <summary>
         /// 現在空転または滑走しているかどうかを取得・設定します。
@@ -171,5 +196,29 @@ namespace BveTypes.ClassWrappers
             get => (bool)IsSlippingField.GetValue(Src);
             set => IsSlippingField.SetValue(Src, value);
         }
+
+        private static FastMethod UpdateCreapMethod;
+        /// <summary>
+        /// 縦クリープ力を計算し、<see cref="PowerCreap"/> プロパティ、<see cref="BrakeCreap"/> プロパティの値を更新します。
+        /// </summary>
+        public void UpdateCreap(double resistanceP, double resistanceB) => UpdateCreapMethod.Invoke(Src, new object[] { resistanceP, resistanceB });
+
+        private static FastMethod TickMethod;
+        /// <summary>
+        /// 毎フレーム呼び出されます。
+        /// </summary>
+        /// <param name="elapsedSeconds">前フレームからの経過時間 [s]。</param>
+        public void Tick(double elapsedSeconds) => TickMethod.Invoke(Src, new object[] { elapsedSeconds });
+
+        /// <summary>
+        /// 毎フレーム呼び出されます。
+        /// </summary>
+        /// <remarks>
+        /// このメソッドはオリジナルではないため、<see cref="ClassMemberSet.GetSourceMethodOf(string, Type[])"/> メソッドから参照することはできません。<br/>
+        /// このメソッドのオリジナルバージョンは <see cref="Tick(double)"/> です。
+        /// </remarks>
+        /// <param name="elapsed">前フレームからの経過時間。</param>
+        /// <seealso cref="Tick(double)"/>
+        public void Tick(TimeSpan elapsed) => Tick(elapsed.TotalSeconds);
     }
 }

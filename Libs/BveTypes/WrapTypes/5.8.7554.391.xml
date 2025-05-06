@@ -466,7 +466,12 @@
 			<Setter Original="e"/>
 		</Property>
 
+		<Field WrapperProperty="PowerCreap" Original="k" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="BrakeCreap" Original="l" IsOriginalNonPublic="true"/>
 		<Field WrapperProperty="IsSlipping" Original="n" IsOriginalNonPublic="true"/>
+
+		<Method Wrapper="UpdateCreap" WrapperParams="System.Double; System.Double" Original="a"/>
+		<Method Wrapper="Tick" WrapperParams="System.Double" Original="b"/>
 	</Class>
 
 	<Class Wrapper="CircuitBreaker" Original="at">
