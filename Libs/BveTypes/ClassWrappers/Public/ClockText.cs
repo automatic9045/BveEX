@@ -18,6 +18,8 @@ namespace BveTypes.ClassWrappers
         private static void Initialize(BveTypeSet bveTypes)
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<ClockText>();
+
+            DrawMethod = members.GetSourceMethodOf(nameof(Draw));
         }
 
         /// <summary>
@@ -35,5 +37,9 @@ namespace BveTypes.ClassWrappers
         /// <returns>オリジナル オブジェクトをラップした <see cref="ClockText"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
         public static new ClockText FromSource(object src) => src is null ? null : new ClockText(src);
+
+        private static FastMethod DrawMethod;
+        /// <inheritdoc/>
+        public override void Draw() => DrawMethod.Invoke(Src, null);
     }
 }

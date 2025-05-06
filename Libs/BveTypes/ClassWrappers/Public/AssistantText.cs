@@ -30,6 +30,7 @@ namespace BveTypes.ClassWrappers
             TextGetMethod = members.GetSourcePropertyGetterOf(nameof(Text));
             TextSetMethod = members.GetSourcePropertySetterOf(nameof(Text));
 
+            DrawMethod = members.GetSourceMethodOf(nameof(Draw));
             DisposeMethod = members.GetSourceMethodOf(nameof(Dispose));
         }
 
@@ -95,6 +96,10 @@ namespace BveTypes.ClassWrappers
             get => TextGetMethod.Invoke(Src, null) as string;
             set => TextSetMethod.Invoke(Src, new object[] { value });
         }
+
+        private static FastMethod DrawMethod;
+        /// <inheritdoc/>
+        public override void Draw() => DrawMethod.Invoke(Src, null);
 
         private static FastMethod DisposeMethod;
         /// <inheritdoc/>

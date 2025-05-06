@@ -18,6 +18,9 @@ namespace BveTypes.ClassWrappers
         private static void Initialize(BveTypeSet bveTypes)
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<InstructionText>();
+
+            DisposeMethod = members.GetSourceMethodOf(nameof(Dispose));
+            DrawMethod = members.GetSourceMethodOf(nameof(Draw));
         }
 
         /// <summary>
@@ -35,5 +38,13 @@ namespace BveTypes.ClassWrappers
         /// <returns>オリジナル オブジェクトをラップした <see cref="InstructionText"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
         public static new InstructionText FromSource(object src) => src is null ? null : new InstructionText(src);
+
+        private static FastMethod DisposeMethod;
+        /// <inheritdoc/>
+        public override void Dispose() => DisposeMethod.Invoke(Src, null);
+
+        private static FastMethod DrawMethod;
+        /// <inheritdoc/>
+        public override void Draw() => DrawMethod.Invoke(Src, null);
     }
 }

@@ -70,15 +70,15 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 補助表示を描画します。
         /// </summary>
-        public void Draw() => DrawMethod.Invoke(Src, null);
+        public virtual void Draw() => DrawMethod.Invoke(Src, null);
 
         private static FastMethod OnDeviceLostMethod;
         /// <inheritdoc/>
-        public void OnDeviceLost() => OnDeviceLostMethod.Invoke(Src, null);
+        public virtual void OnDeviceLost() => OnDeviceLostMethod.Invoke(Src, null);
 
         private static FastMethod OnDeviceResetMethod;
         /// <inheritdoc/>
-        public void OnDeviceReset() => OnDeviceResetMethod.Invoke(Src, null);
+        public virtual void OnDeviceReset() => OnDeviceResetMethod.Invoke(Src, null);
 
         private static FastMethod DisposeMethod;
         /// <inheritdoc/>

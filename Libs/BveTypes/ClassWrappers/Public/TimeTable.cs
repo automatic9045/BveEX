@@ -28,6 +28,8 @@ namespace BveTypes.ClassWrappers
             DepartureTimeTextWidthsField = members.GetSourceFieldOf(nameof(DepartureTimeTextWidths));
 
             UpdateMethod = members.GetSourceMethodOf(nameof(Update));
+            DrawMethod = members.GetSourceMethodOf(nameof(Draw));
+            DisposeMethod = members.GetSourceMethodOf(nameof(Dispose));
         }
 
         /// <summary>
@@ -144,9 +146,14 @@ namespace BveTypes.ClassWrappers
         /// <summary>
         /// 時刻表の表示を最新の状態に更新します。
         /// </summary>
-        public void Update()
-        {
-            UpdateMethod.Invoke(Src, null);
-        }
+        public void Update() => UpdateMethod.Invoke(Src, null);
+
+        private static FastMethod DrawMethod;
+        /// <inheritdoc/>
+        public override void Draw() => DrawMethod.Invoke(Src, null);
+
+        private static FastMethod DisposeMethod;
+        /// <inheritdoc/>
+        public override void Dispose() => DisposeMethod.Invoke(Src, null);
     }
 }
