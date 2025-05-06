@@ -19,6 +19,8 @@ namespace BveTypes.ClassWrappers
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<Section>();
 
+            Constructor = members.GetSourceConstructor();
+
             SectionIndexesTrainOnGetMethod = members.GetSourcePropertyGetterOf(nameof(SectionIndexesTrainOn));
             SectionIndexesTrainOnSetMethod = members.GetSourcePropertySetterOf(nameof(SectionIndexesTrainOn));
 
@@ -46,6 +48,15 @@ namespace BveTypes.ClassWrappers
         /// <returns>オリジナル オブジェクトをラップした <see cref="Section"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
         public static Section FromSource(object src) => src is null ? null : new Section(src);
+
+        private static FastConstructor Constructor;
+        /// <summary>
+        /// <see cref="Section"/> クラスの新しいインスタンスを初期化します。
+        /// </summary>
+        /// <param name="location">距離程 [m]。</param>
+        public Section(double location) : this(Constructor.Invoke(new object[] { location }))
+        {
+        }
 
         private static FastMethod SectionIndexesTrainOnGetMethod;
         private static FastMethod SectionIndexesTrainOnSetMethod;
