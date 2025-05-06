@@ -89,7 +89,7 @@ namespace BveTypes.ClassWrappers
         }
 
         /// <inheritdoc/>
-        public static bool operator ==(ClassWrapperBase left, ClassWrapperBase right) => left?.Equals(right) ?? false;
+        public static bool operator ==(ClassWrapperBase left, ClassWrapperBase right) => left is null ? right is null : left.Equals(right);
 
         /// <inheritdoc/>
         public static bool operator !=(ClassWrapperBase left, ClassWrapperBase right) => !(left == right);
