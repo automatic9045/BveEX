@@ -1762,6 +1762,14 @@
 	</Class>
 
 	<Class Wrapper="StationText" Original="dz">
+		<Field WrapperProperty="Stations" Original="a" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Location" Original="b" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="NextText" Original="c" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Next" Original="d" IsOriginalNonPublic="true"/>
+		<Field WrapperProperty="Doors" Original="e" IsOriginalNonPublic="true"/>
+
+		<Method Wrapper="Update" WrapperParams="void" Original="b" IsOriginalNonPublic="true"/>
+		<Method Wrapper="UpdateText" WrapperParams="void" Original="a" IsOriginalNonPublic="true"/>
 		<Method Wrapper="Draw" WrapperParams="void" Original="o"/>
 		<Method Wrapper="Dispose" WrapperParams="void" Original="Dispose"/>
 	</Class>

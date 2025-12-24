@@ -19,6 +19,14 @@ namespace BveTypes.ClassWrappers
         {
             ClassMemberSet members = bveTypes.GetClassInfoOf<StationText>();
 
+            StationsField = members.GetSourceFieldOf(nameof(Stations));
+            LocationField = members.GetSourceFieldOf(nameof(Location));
+            NextTextField = members.GetSourceFieldOf(nameof(NextText));
+            NextField = members.GetSourceFieldOf(nameof(Next));
+            DoorsField = members.GetSourceFieldOf(nameof(Doors));
+
+            UpdateMethod = members.GetSourceMethodOf(nameof(Update));
+            UpdateTextMethod = members.GetSourceMethodOf(nameof(UpdateText));
             DrawMethod = members.GetSourceMethodOf(nameof(Draw));
             DisposeMethod = members.GetSourceMethodOf(nameof(Dispose));
         }
@@ -38,6 +46,70 @@ namespace BveTypes.ClassWrappers
         /// <returns>オリジナル オブジェクトをラップした <see cref="StationText"/> クラスのインスタンス。</returns>
         [CreateClassWrapperFromSource]
         public static new StationText FromSource(object src) => src is null ? null : new StationText(src);
+
+        private static FastField StationsField;
+        /// <summary>
+        /// 停車場のリストを取得・設定します。
+        /// </summary>
+        public StationList Stations
+        {
+            get => StationList.FromSource(StationsField.GetValue(Src));
+            set => StationsField.SetValue(Src, value?.Src);
+        }
+
+        private static FastField LocationField;
+        /// <summary>
+        /// 自列車の位置情報を取得・設定します。
+        /// </summary>
+        public VehicleLocation Location
+        {
+            get => VehicleLocation.FromSource(LocationField.GetValue(Src));
+            set => LocationField.SetValue(Src, value?.Src);
+        }
+
+        private static FastField NextTextField;
+        /// <summary>
+        /// 次駅を表すテキストを取得・設定します。
+        /// </summary>
+        public string NextText
+        {
+            get => NextTextField.GetValue(Src) as string;
+            set => NextTextField.SetValue(Src, value);
+        }
+
+        private static FastField NextField;
+        /// <summary>
+        /// 次駅を取得・設定します。
+        /// </summary>
+        public Station Next
+        {
+            get => Station.FromSource(NextField.GetValue(Src));
+            set => NextField.SetValue(Src, value?.Src);
+        }
+
+        private static FastField DoorsField;
+        /// <summary>
+        /// 自列車のドアのセットを取得・設定します。
+        /// </summary>
+        public DoorSet Doors
+        {
+            get => DoorSet.FromSource(DoorsField.GetValue(Src));
+            set => DoorsField.SetValue(Src, value?.Src);
+        }
+
+        private static FastMethod UpdateMethod;
+        /// <summary>
+        /// 表示するテキストを更新します。
+        /// </summary>
+        public void Update()
+            => UpdateMethod.Invoke(Src, null);
+
+        private static FastMethod UpdateTextMethod;
+        /// <summary>
+        /// 表示するテキストに、<see cref="NextText"/> プロパティの値および次駅までの残距離を反映します。
+        /// </summary>
+        public void UpdateText()
+            => UpdateTextMethod.Invoke(Src, null);
 
         private static FastMethod DrawMethod;
         /// <inheritdoc/>
