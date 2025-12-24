@@ -60,6 +60,21 @@
 	</Class>
 	<!-- Forms END -->
 
+	<Class Wrapper="AdhesionObject" Original="a7">
+		<Property Wrapper="A">
+			<Getter Original="a"/>
+			<Setter Original="a"/>
+		</Property>
+		<Property Wrapper="B">
+			<Getter Original="c"/>
+			<Setter Original="c"/>
+		</Property>
+		<Property Wrapper="C">
+			<Getter Original="b"/>
+			<Setter Original="b"/>
+		</Property>
+	</Class>
+
 	<Class Wrapper="AirSpring" Original="cp">
 	</Class>
 
